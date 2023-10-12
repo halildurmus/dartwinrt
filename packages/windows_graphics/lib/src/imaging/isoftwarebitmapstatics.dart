@@ -35,7 +35,7 @@ class ISoftwareBitmapStatics extends IInspectable {
   SoftwareBitmap? copy(SoftwareBitmap? source) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,11 +44,8 @@ class ISoftwareBitmapStatics extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer source,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, source.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer source,
+                Pointer<COMObject> value)>()(lpVtbl, source.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -67,7 +64,7 @@ class ISoftwareBitmapStatics extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -81,7 +78,7 @@ class ISoftwareBitmapStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer source,
                         int format, Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, source.lpVtbl, format.value, value);
+            lpVtbl, source.lpVtbl, format.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -100,7 +97,7 @@ class ISoftwareBitmapStatics extends IInspectable {
       SoftwareBitmap? source, BitmapPixelFormat format, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -115,7 +112,7 @@ class ISoftwareBitmapStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     int format, int alpha, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, source.lpVtbl, format.value, alpha.value, value);
+        lpVtbl, source.lpVtbl, format.value, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -134,7 +131,7 @@ class ISoftwareBitmapStatics extends IInspectable {
       IBuffer? source, BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -155,7 +152,7 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int width,
                     int height,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, source.lpVtbl, format.value, width, height, value);
+        lpVtbl, source.lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -174,7 +171,7 @@ class ISoftwareBitmapStatics extends IInspectable {
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -196,8 +193,8 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int width,
                     int height,
                     int alpha,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl, source.lpVtbl,
-        format.value, width, height, alpha.value, value);
+                    Pointer<COMObject> value)>()(
+        lpVtbl, source.lpVtbl, format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -216,21 +213,17 @@ class ISoftwareBitmapStatics extends IInspectable {
       IDirect3DSurface? surface) {
     final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer surface,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer surface,
-                        Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, surface.lpVtbl, value);
+    final hr = vtable
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer surface, Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer surface,
+                Pointer<COMObject> value)>()(lpVtbl, surface.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -246,7 +239,7 @@ class ISoftwareBitmapStatics extends IInspectable {
       IDirect3DSurface? surface, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -260,7 +253,7 @@ class ISoftwareBitmapStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer surface,
                     int alpha, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, surface.lpVtbl, alpha.value, value);
+        lpVtbl, surface.lpVtbl, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);

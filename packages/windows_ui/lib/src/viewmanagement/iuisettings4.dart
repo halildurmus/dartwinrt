@@ -32,17 +32,17 @@ class IUISettings4 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,7 +57,7 @@ class IUISettings4 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -70,7 +70,7 @@ class IUISettings4 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer handler,
                           Pointer<IntPtr> cookie)>()(
-              ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
+              lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -82,7 +82,7 @@ class IUISettings4 extends IInspectable {
 
   void remove_AdvancedEffectsEnabledChanged(int cookie) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -91,7 +91,7 @@ class IUISettings4 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr cookie)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            ptr.ref.lpVtbl, cookie);
+            lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

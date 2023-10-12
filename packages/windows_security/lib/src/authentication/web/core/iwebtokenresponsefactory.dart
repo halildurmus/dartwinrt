@@ -33,7 +33,7 @@ class IWebTokenResponseFactory extends IInspectable {
   WebTokenResponse createWithToken(String token) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IWebTokenResponseFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int token,
                     Pointer<COMObject> webTokenResponse)>()(
-        ptr.ref.lpVtbl, token.toHString(), webTokenResponse);
+        lpVtbl, token.toHString(), webTokenResponse);
 
     if (FAILED(hr)) {
       free(webTokenResponse);
@@ -58,7 +58,7 @@ class IWebTokenResponseFactory extends IInspectable {
       String token, WebAccount? webAccount) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class IWebTokenResponseFactory extends IInspectable {
                     int token,
                     VTablePointer webAccount,
                     Pointer<COMObject> webTokenResponse)>()(
-        ptr.ref.lpVtbl, token.toHString(), webAccount.lpVtbl, webTokenResponse);
+        lpVtbl, token.toHString(), webAccount.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {
       free(webTokenResponse);
@@ -89,7 +89,7 @@ class IWebTokenResponseFactory extends IInspectable {
       String token, WebAccount? webAccount, WebProviderError? error) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -107,7 +107,7 @@ class IWebTokenResponseFactory extends IInspectable {
                     int token,
                     VTablePointer webAccount,
                     VTablePointer error,
-                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> webTokenResponse)>()(lpVtbl,
         token.toHString(), webAccount.lpVtbl, error.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {

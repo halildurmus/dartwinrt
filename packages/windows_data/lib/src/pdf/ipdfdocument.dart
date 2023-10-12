@@ -31,18 +31,17 @@ class IPdfDocument extends IInspectable {
   PdfPage? getPage(int pageIndex) {
     final pdfPage = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 pageIndex,
-                            Pointer<COMObject> pdfPage)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int pageIndex,
-                    Pointer<COMObject> pdfPage)>()(
-        ptr.ref.lpVtbl, pageIndex, pdfPage);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 pageIndex,
+                        Pointer<COMObject> pdfPage)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int pageIndex,
+                Pointer<COMObject> pdfPage)>()(lpVtbl, pageIndex, pdfPage);
 
     if (FAILED(hr)) {
       free(pdfPage);
@@ -61,7 +60,7 @@ class IPdfDocument extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -71,7 +70,7 @@ class IPdfDocument extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +84,17 @@ class IPdfDocument extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

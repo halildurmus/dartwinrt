@@ -30,7 +30,7 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -40,7 +40,7 @@ class INumberFormatter extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,7 +54,7 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -64,7 +64,7 @@ class INumberFormatter extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,7 +78,7 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -88,7 +88,7 @@ class INumberFormatter extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, double value,
-                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

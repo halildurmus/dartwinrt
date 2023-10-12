@@ -31,7 +31,7 @@ class ILanguageFactory extends IInspectable {
   Language createLanguage(String languageTag) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class ILanguageFactory extends IInspectable {
                 VTablePointer lpVtbl,
                 int languageTag,
                 Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, languageTag.toHString(), result);
+                    result)>()(lpVtbl, languageTag.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

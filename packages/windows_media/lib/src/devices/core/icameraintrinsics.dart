@@ -30,7 +30,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<NativeVector2>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -40,7 +40,7 @@ class ICameraIntrinsics extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeVector2> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeVector2> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,7 +54,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<NativeVector2>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -64,7 +64,7 @@ class ICameraIntrinsics extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeVector2> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeVector2> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,7 +78,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<NativeVector3>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -88,7 +88,7 @@ class ICameraIntrinsics extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeVector3> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeVector3> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -102,7 +102,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<NativeVector2>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(9)
           .cast<
               Pointer<
@@ -112,7 +112,7 @@ class ICameraIntrinsics extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeVector2> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeVector2> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -126,7 +126,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -136,7 +136,7 @@ class ICameraIntrinsics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -150,7 +150,7 @@ class ICameraIntrinsics extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -160,7 +160,7 @@ class ICameraIntrinsics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -176,7 +176,7 @@ class ICameraIntrinsics extends IInspectable {
     try {
       final coordinateNativeStructPtr = coordinate.toNative();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -189,7 +189,7 @@ class ICameraIntrinsics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, NativeVector3 coordinate,
                       Pointer<NativePoint> result)>()(
-          ptr.ref.lpVtbl, coordinateNativeStructPtr.ref, result);
+          lpVtbl, coordinateNativeStructPtr.ref, result);
 
       free(coordinateNativeStructPtr);
 
@@ -207,7 +207,7 @@ class ICameraIntrinsics extends IInspectable {
     try {
       final pixelCoordinateNativeStructPtr = pixelCoordinate.toNative();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -222,7 +222,7 @@ class ICameraIntrinsics extends IInspectable {
                       VTablePointer lpVtbl,
                       NativePoint pixelCoordinate,
                       Pointer<NativeVector2> result)>()(
-          ptr.ref.lpVtbl, pixelCoordinateNativeStructPtr.ref, result);
+          lpVtbl, pixelCoordinateNativeStructPtr.ref, result);
 
       free(pixelCoordinateNativeStructPtr);
 
@@ -240,7 +240,7 @@ class ICameraIntrinsics extends IInspectable {
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(14)
               .cast<
                   Pointer<
@@ -258,8 +258,8 @@ class ICameraIntrinsics extends IInspectable {
                       int coordinatesSize,
                       Pointer<NativeVector3> coordinates,
                       int resultsSize,
-                      Pointer<NativePoint> results)>()(ptr.ref.lpVtbl,
-          coordinates.length, coordinatesArray, resultsSize, results);
+                      Pointer<NativePoint> results)>()(
+          lpVtbl, coordinates.length, coordinatesArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -278,7 +278,7 @@ class ICameraIntrinsics extends IInspectable {
     final results = calloc<NativeVector2>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(15)
               .cast<
                   Pointer<
@@ -296,7 +296,7 @@ class ICameraIntrinsics extends IInspectable {
                       int pixelCoordinatesSize,
                       Pointer<NativePoint> pixelCoordinates,
                       int resultsSize,
-                      Pointer<NativeVector2> results)>()(ptr.ref.lpVtbl,
+                      Pointer<NativeVector2> results)>()(lpVtbl,
           pixelCoordinates.length, pixelCoordinatesArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);

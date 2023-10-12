@@ -35,7 +35,7 @@ class IKnownFoldersStatics3 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -49,7 +49,7 @@ class IKnownFoldersStatics3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int folderId, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, folderId.value, operation);
+            lpVtbl, user.lpVtbl, folderId.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

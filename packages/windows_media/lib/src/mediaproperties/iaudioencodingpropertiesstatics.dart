@@ -34,7 +34,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,7 +49,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sampleRate,
                     int channelCount, int bitrate, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitrate, value);
+        lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -68,7 +68,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -83,7 +83,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sampleRate,
                     int channelCount, int bitrate, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitrate, value);
+        lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -102,7 +102,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -117,7 +117,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sampleRate,
                     int channelCount, int bitrate, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitrate, value);
+        lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -136,7 +136,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -155,7 +155,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
                     int channelCount,
                     int bitsPerSample,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitsPerSample, value);
+        lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -174,7 +174,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -189,7 +189,7 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sampleRate,
                     int channelCount, int bitrate, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitrate, value);
+        lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
       free(value);

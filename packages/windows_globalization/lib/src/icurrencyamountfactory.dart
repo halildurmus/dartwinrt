@@ -31,7 +31,7 @@ class ICurrencyAmountFactory extends IInspectable {
   CurrencyAmount create(String amount, String currency) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class ICurrencyAmountFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int amount, int currency,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, amount.toHString(), currency.toHString(), result);
+        lpVtbl, amount.toHString(), currency.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

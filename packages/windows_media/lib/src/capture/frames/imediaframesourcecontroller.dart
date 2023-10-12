@@ -36,7 +36,7 @@ class IMediaFrameSourceController extends IInspectable {
       String propertyId) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -49,7 +49,7 @@ class IMediaFrameSourceController extends IInspectable {
                 VTablePointer lpVtbl,
                 int propertyId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, propertyId.toHString(), value);
+                    value)>()(lpVtbl, propertyId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -66,7 +66,7 @@ class IMediaFrameSourceController extends IInspectable {
       String propertyId, Object? propertyValue) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -80,7 +80,7 @@ class IMediaFrameSourceController extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyId,
                     VTablePointer propertyValue, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         propertyId.toHString(),
         propertyValue?.boxValue().lpVtbl ?? nullptr,
         value);
@@ -99,7 +99,7 @@ class IMediaFrameSourceController extends IInspectable {
   VideoDeviceController? get videoDeviceController {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -109,7 +109,7 @@ class IMediaFrameSourceController extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

@@ -36,7 +36,7 @@ class IDevicePicker extends IInspectable {
   DevicePickerFilter? get filter {
     final filter = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -46,7 +46,7 @@ class IDevicePicker extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> filter)>()(ptr.ref.lpVtbl, filter);
+                Pointer<COMObject> filter)>()(lpVtbl, filter);
 
     if (FAILED(hr)) {
       free(filter);
@@ -64,7 +64,7 @@ class IDevicePicker extends IInspectable {
   DevicePickerAppearance? get appearance {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class IDevicePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -92,7 +92,7 @@ class IDevicePicker extends IInspectable {
   IVector<String>? get requestedProperties {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class IDevicePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -122,18 +122,17 @@ class IDevicePicker extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -145,7 +144,7 @@ class IDevicePicker extends IInspectable {
 
   void remove_DeviceSelected(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -154,7 +153,7 @@ class IDevicePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -163,18 +162,17 @@ class IDevicePicker extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -186,7 +184,7 @@ class IDevicePicker extends IInspectable {
 
   void remove_DisconnectButtonClicked(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -195,7 +193,7 @@ class IDevicePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -204,18 +202,17 @@ class IDevicePicker extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -227,7 +224,7 @@ class IDevicePicker extends IInspectable {
 
   void remove_DevicePickerDismissed(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -236,7 +233,7 @@ class IDevicePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -244,7 +241,7 @@ class IDevicePicker extends IInspectable {
   void show(Rect selection) {
     final selectionNativeStructPtr = selection.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -254,7 +251,7 @@ class IDevicePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeRect selection)>()(
-        ptr.ref.lpVtbl, selectionNativeStructPtr.ref);
+        lpVtbl, selectionNativeStructPtr.ref);
 
     free(selectionNativeStructPtr);
 
@@ -265,7 +262,7 @@ class IDevicePicker extends IInspectable {
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(16)
                 .cast<
                     Pointer<
@@ -276,7 +273,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, NativeRect selection,
                         int placement)>()(
-            ptr.ref.lpVtbl, selectionNativeStructPtr.ref, placement.value);
+            lpVtbl, selectionNativeStructPtr.ref, placement.value);
 
     free(selectionNativeStructPtr);
 
@@ -288,7 +285,7 @@ class IDevicePicker extends IInspectable {
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(17)
                 .cast<
                     Pointer<
@@ -301,7 +298,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, NativeRect selection,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, selectionNativeStructPtr.ref, operation);
+            lpVtbl, selectionNativeStructPtr.ref, operation);
 
     free(selectionNativeStructPtr);
 
@@ -322,7 +319,7 @@ class IDevicePicker extends IInspectable {
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(18)
                 .cast<
                     Pointer<
@@ -336,10 +333,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, NativeRect selection,
                         int placement, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            selectionNativeStructPtr.ref,
-            placement.value,
-            operation);
+            lpVtbl, selectionNativeStructPtr.ref, placement.value, operation);
 
     free(selectionNativeStructPtr);
 
@@ -355,11 +349,11 @@ class IDevicePicker extends IInspectable {
   }
 
   void hide() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(19)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -367,7 +361,7 @@ class IDevicePicker extends IInspectable {
   void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(20)
                 .cast<
                     Pointer<
@@ -381,7 +375,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
                         int status, int options)>()(
-            ptr.ref.lpVtbl, device.lpVtbl, status.toHString(), options.value);
+            lpVtbl, device.lpVtbl, status.toHString(), options.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

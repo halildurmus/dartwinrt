@@ -50,7 +50,7 @@ class IStorageFile extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -60,7 +60,7 @@ class IStorageFile extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,7 +74,7 @@ class IStorageFile extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -84,7 +84,7 @@ class IStorageFile extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -97,7 +97,7 @@ class IStorageFile extends IInspectable
   Future<IRandomAccessStream?> openAsync(FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -108,7 +108,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int accessMode,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, accessMode.value, operation);
+        lpVtbl, accessMode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -124,7 +124,7 @@ class IStorageFile extends IInspectable
   Future<StorageStreamTransaction?> openTransactedWriteAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -134,7 +134,7 @@ class IStorageFile extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -151,7 +151,7 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -166,7 +166,7 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, destinationFolder.lpVtbl, operation);
+        lpVtbl, destinationFolder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -182,7 +182,7 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder, String desiredNewName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -198,7 +198,7 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> operation)>()(lpVtbl,
         destinationFolder.lpVtbl, desiredNewName.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -215,7 +215,7 @@ class IStorageFile extends IInspectable
       String desiredNewName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -234,7 +234,7 @@ class IStorageFile extends IInspectable
                     int desiredNewName,
                     int option,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         destinationFolder.lpVtbl,
         desiredNewName.toHString(),
         option.value,
@@ -253,7 +253,7 @@ class IStorageFile extends IInspectable
   Future<void> copyAndReplaceAsync(IStorageFile? fileToReplace) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -266,7 +266,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, fileToReplace.lpVtbl, operation);
+        lpVtbl, fileToReplace.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -280,7 +280,7 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -295,7 +295,7 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, destinationFolder.lpVtbl, operation);
+        lpVtbl, destinationFolder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -309,7 +309,7 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder, String desiredNewName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -325,7 +325,7 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> operation)>()(lpVtbl,
         destinationFolder.lpVtbl, desiredNewName.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -340,7 +340,7 @@ class IStorageFile extends IInspectable
       String desiredNewName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -359,7 +359,7 @@ class IStorageFile extends IInspectable
                     int desiredNewName,
                     int option,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         destinationFolder.lpVtbl,
         desiredNewName.toHString(),
         option.value,
@@ -376,7 +376,7 @@ class IStorageFile extends IInspectable
   Future<void> moveAndReplaceAsync(IStorageFile? fileToReplace) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -389,7 +389,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, fileToReplace.lpVtbl, operation);
+        lpVtbl, fileToReplace.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

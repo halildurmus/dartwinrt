@@ -42,21 +42,17 @@ class IMediaCapture4 extends IInspectable {
       IAudioEffectDefinition? definition) {
     final op = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer definition,
-                                Pointer<COMObject> op)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer definition,
-                        Pointer<COMObject> op)>()(
-            ptr.ref.lpVtbl, definition.lpVtbl, op);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer definition, Pointer<COMObject> op)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer definition,
+                Pointer<COMObject> op)>()(lpVtbl, definition.lpVtbl, op);
 
     if (FAILED(hr)) {
       free(op);
@@ -72,7 +68,7 @@ class IMediaCapture4 extends IInspectable {
       IVideoEffectDefinition? definition, MediaStreamType mediaStreamType) {
     final op = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -86,7 +82,7 @@ class IMediaCapture4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer definition,
                     int mediaStreamType, Pointer<COMObject> op)>()(
-        ptr.ref.lpVtbl, definition.lpVtbl, mediaStreamType.value, op);
+        lpVtbl, definition.lpVtbl, mediaStreamType.value, op);
 
     if (FAILED(hr)) {
       free(op);
@@ -101,7 +97,7 @@ class IMediaCapture4 extends IInspectable {
   Future<void> pauseRecordAsync(MediaCapturePauseBehavior behavior) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -112,7 +108,7 @@ class IMediaCapture4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int behavior,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, behavior.value, asyncInfo);
+        lpVtbl, behavior.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -125,7 +121,7 @@ class IMediaCapture4 extends IInspectable {
   Future<void> resumeRecordAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -135,7 +131,7 @@ class IMediaCapture4 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -149,18 +145,17 @@ class IMediaCapture4 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -172,7 +167,7 @@ class IMediaCapture4 extends IInspectable {
 
   void remove_CameraStreamStateChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -181,7 +176,7 @@ class IMediaCapture4 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -190,7 +185,7 @@ class IMediaCapture4 extends IInspectable {
     final streamState = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(12)
           .cast<
               Pointer<
@@ -200,7 +195,7 @@ class IMediaCapture4 extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> streamState)>()(ptr.ref.lpVtbl, streamState);
+                  Pointer<Int32> streamState)>()(lpVtbl, streamState);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -213,7 +208,7 @@ class IMediaCapture4 extends IInspectable {
   Future<VideoFrame?> getPreviewFrameAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(13)
         .cast<
             Pointer<
@@ -223,7 +218,7 @@ class IMediaCapture4 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -238,7 +233,7 @@ class IMediaCapture4 extends IInspectable {
   Future<VideoFrame?> getPreviewFrameCopyAsync(VideoFrame? destination) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -251,7 +246,7 @@ class IMediaCapture4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer destination,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, destination.lpVtbl, operation);
+        lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -267,18 +262,17 @@ class IMediaCapture4 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(15)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -290,7 +284,7 @@ class IMediaCapture4 extends IInspectable {
 
   void remove_ThermalStatusChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(16)
                 .cast<
                     Pointer<
@@ -299,7 +293,7 @@ class IMediaCapture4 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -308,17 +302,17 @@ class IMediaCapture4 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(17)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -332,7 +326,7 @@ class IMediaCapture4 extends IInspectable {
       ImageEncodingProperties? encodingProperties) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(18)
             .cast<
                 Pointer<
@@ -347,7 +341,7 @@ class IMediaCapture4 extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProperties,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, encodingProperties.lpVtbl, operation);
+        lpVtbl, encodingProperties.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

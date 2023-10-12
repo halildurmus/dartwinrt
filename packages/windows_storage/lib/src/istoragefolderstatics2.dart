@@ -34,7 +34,7 @@ class IStorageFolderStatics2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -48,7 +48,7 @@ class IStorageFolderStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int path, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, path.toHString(), operation);
+            lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

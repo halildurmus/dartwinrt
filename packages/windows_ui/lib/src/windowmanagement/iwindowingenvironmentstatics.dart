@@ -34,7 +34,7 @@ class IWindowingEnvironmentStatics extends IInspectable {
   List<WindowingEnvironment?> findAll() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class IWindowingEnvironmentStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -60,18 +60,17 @@ class IWindowingEnvironmentStatics extends IInspectable {
   List<WindowingEnvironment?> findAllWithKind(WindowingEnvironmentKind kind) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 kind,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int kind,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, kind.value, result);
+    final hr = vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 kind,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int kind,
+                Pointer<COMObject> result)>()(lpVtbl, kind.value, result);
 
     if (FAILED(hr)) {
       free(result);

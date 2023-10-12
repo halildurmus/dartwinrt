@@ -35,7 +35,7 @@ class IToastNotificationManagerStatics extends IInspectable {
   ToastNotifier? createToastNotifier() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -45,7 +45,7 @@ class IToastNotificationManagerStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -64,7 +64,7 @@ class IToastNotificationManagerStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IToastNotificationManagerStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, applicationId.toHString(), result);
+            lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -95,18 +95,17 @@ class IToastNotificationManagerStatics extends IInspectable {
   XmlDocument? getTemplateContent(ToastTemplateType type) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int type,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, type.value, result);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 type,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int type,
+                Pointer<COMObject> result)>()(lpVtbl, type.value, result);
 
     if (FAILED(hr)) {
       free(result);

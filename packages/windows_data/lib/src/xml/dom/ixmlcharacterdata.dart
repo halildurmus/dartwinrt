@@ -39,7 +39,7 @@ class IXmlCharacterData extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -49,7 +49,7 @@ class IXmlCharacterData extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,7 +61,7 @@ class IXmlCharacterData extends IInspectable
 
   set data(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -70,7 +70,7 @@ class IXmlCharacterData extends IInspectable
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -79,7 +79,7 @@ class IXmlCharacterData extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -89,7 +89,7 @@ class IXmlCharacterData extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,7 +103,7 @@ class IXmlCharacterData extends IInspectable
     final data = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(9)
           .cast<
               Pointer<
@@ -113,7 +113,7 @@ class IXmlCharacterData extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int offset, int count,
-                  Pointer<IntPtr> data)>()(ptr.ref.lpVtbl, offset, count, data);
+                  Pointer<IntPtr> data)>()(lpVtbl, offset, count, data);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -124,7 +124,7 @@ class IXmlCharacterData extends IInspectable
   }
 
   void appendData(String data) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -132,13 +132,13 @@ class IXmlCharacterData extends IInspectable
                         HRESULT Function(VTablePointer lpVtbl, IntPtr data)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int data)>()(
-        ptr.ref.lpVtbl, data.toHString());
+        lpVtbl, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void insertData(int offset, String data) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(11)
         .cast<
             Pointer<
@@ -148,13 +148,13 @@ class IXmlCharacterData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int offset,
-                int data)>()(ptr.ref.lpVtbl, offset, data.toHString());
+                int data)>()(lpVtbl, offset, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void deleteData(int offset, int count) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(12)
         .cast<
             Pointer<
@@ -164,13 +164,13 @@ class IXmlCharacterData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int offset,
-                int count)>()(ptr.ref.lpVtbl, offset, count);
+                int count)>()(lpVtbl, offset, count);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void replaceData(int offset, int count, String data) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(13)
         .cast<
             Pointer<
@@ -180,7 +180,7 @@ class IXmlCharacterData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int offset, int count,
-                int data)>()(ptr.ref.lpVtbl, offset, count, data.toHString());
+                int data)>()(lpVtbl, offset, count, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

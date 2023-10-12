@@ -36,7 +36,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -46,7 +46,7 @@ class IDisplayMonitor extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,7 +60,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -70,7 +70,7 @@ class IDisplayMonitor extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,17 +84,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -108,17 +108,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -132,7 +132,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -142,7 +142,7 @@ class IDisplayMonitor extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -156,18 +156,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativeDisplayAdapterId>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeDisplayAdapterId> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeDisplayAdapterId> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeDisplayAdapterId> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeDisplayAdapterId> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -181,7 +180,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -191,7 +190,7 @@ class IDisplayMonitor extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -205,17 +204,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -229,7 +228,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativeSizeInt32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(14)
           .cast<
               Pointer<
@@ -239,7 +238,7 @@ class IDisplayMonitor extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSizeInt32> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeSizeInt32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -252,7 +251,7 @@ class IDisplayMonitor extends IInspectable {
   Size? get physicalSizeInInches {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -262,7 +261,7 @@ class IDisplayMonitor extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -283,17 +282,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(16)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -307,17 +306,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(17)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -331,7 +330,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(18)
           .cast<
               Pointer<
@@ -341,7 +340,7 @@ class IDisplayMonitor extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativePoint> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -355,7 +354,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(19)
           .cast<
               Pointer<
@@ -365,7 +364,7 @@ class IDisplayMonitor extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativePoint> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -379,7 +378,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(20)
           .cast<
               Pointer<
@@ -389,7 +388,7 @@ class IDisplayMonitor extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativePoint> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -403,7 +402,7 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(21)
           .cast<
               Pointer<
@@ -413,7 +412,7 @@ class IDisplayMonitor extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativePoint> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -427,17 +426,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(22)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(22)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -451,17 +450,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(23)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -475,17 +474,17 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(24)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -500,7 +499,7 @@ class IDisplayMonitor extends IInspectable {
     final result = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(25)
               .cast<
                   Pointer<
@@ -517,7 +516,7 @@ class IDisplayMonitor extends IInspectable {
                       int descriptorKind,
                       Pointer<Uint32> resultSize,
                       Pointer<Pointer<Uint8>> result)>()(
-          ptr.ref.lpVtbl, descriptorKind.value, resultSize, result);
+          lpVtbl, descriptorKind.value, resultSize, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

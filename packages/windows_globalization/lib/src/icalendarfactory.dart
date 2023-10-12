@@ -31,21 +31,17 @@ class ICalendarFactory extends IInspectable {
   Calendar createCalendarDefaultCalendarAndClock(IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer languages,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer languages,
-                        Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, languages.lpVtbl, result);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer languages, Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer languages,
+                Pointer<COMObject> result)>()(lpVtbl, languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -59,7 +55,7 @@ class ICalendarFactory extends IInspectable {
       IIterable<String>? languages, String calendar, String clock) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +70,7 @@ class ICalendarFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int calendar, int clock, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         languages.lpVtbl,
         calendar.toHString(),
         clock.toHString(),

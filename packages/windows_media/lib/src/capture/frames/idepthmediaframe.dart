@@ -36,7 +36,7 @@ class IDepthMediaFrame extends IInspectable {
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class IDepthMediaFrame extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -64,7 +64,7 @@ class IDepthMediaFrame extends IInspectable {
   VideoMediaFrame? get videoMediaFrame {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class IDepthMediaFrame extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -92,7 +92,7 @@ class IDepthMediaFrame extends IInspectable {
   DepthMediaFrameFormat? get depthFormat {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class IDepthMediaFrame extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -122,7 +122,7 @@ class IDepthMediaFrame extends IInspectable {
       SpatialCoordinateSystem? coordinateSystem) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -138,8 +138,8 @@ class IDepthMediaFrame extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer cameraIntrinsics,
                     VTablePointer coordinateSystem,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        cameraIntrinsics.lpVtbl, coordinateSystem.lpVtbl, value);
+                    Pointer<COMObject> value)>()(
+        lpVtbl, cameraIntrinsics.lpVtbl, coordinateSystem.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

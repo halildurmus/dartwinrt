@@ -35,7 +35,7 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameSourceInfo? get info {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IMediaFrameSource extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +63,7 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameSourceController? get controller {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -73,7 +73,7 @@ class IMediaFrameSource extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,7 +91,7 @@ class IMediaFrameSource extends IInspectable {
   List<MediaFrameFormat?>? get supportedFormats {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -101,7 +101,7 @@ class IMediaFrameSource extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -122,7 +122,7 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameFormat? get currentFormat {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -132,7 +132,7 @@ class IMediaFrameSource extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -150,7 +150,7 @@ class IMediaFrameSource extends IInspectable {
   Future<void> setFormatAsync(MediaFrameFormat? format) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<
             Pointer<
@@ -159,11 +159,8 @@ class IMediaFrameSource extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer format,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, format.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer format,
+                Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -177,18 +174,17 @@ class IMediaFrameSource extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -200,7 +196,7 @@ class IMediaFrameSource extends IInspectable {
 
   void remove_FormatChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -209,7 +205,7 @@ class IMediaFrameSource extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -217,7 +213,7 @@ class IMediaFrameSource extends IInspectable {
   CameraIntrinsics? tryGetCameraIntrinsics(MediaFrameFormat? format) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(13)
         .cast<
             Pointer<
@@ -226,11 +222,8 @@ class IMediaFrameSource extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer format,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, format.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer format,
+                Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

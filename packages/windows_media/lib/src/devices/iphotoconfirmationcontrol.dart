@@ -32,7 +32,7 @@ class IPhotoConfirmationControl extends IInspectable {
     final pbSupported = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -42,7 +42,7 @@ class IPhotoConfirmationControl extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> pbSupported)>()(ptr.ref.lpVtbl, pbSupported);
+                  Pointer<Bool> pbSupported)>()(lpVtbl, pbSupported);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +56,17 @@ class IPhotoConfirmationControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,7 +77,7 @@ class IPhotoConfirmationControl extends IInspectable {
   }
 
   set enabled(bool value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -85,7 +85,7 @@ class IPhotoConfirmationControl extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -94,7 +94,7 @@ class IPhotoConfirmationControl extends IInspectable {
     final format = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -104,7 +104,7 @@ class IPhotoConfirmationControl extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Int32> format)>()(
-          ptr.ref.lpVtbl, format);
+          lpVtbl, format);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -116,7 +116,7 @@ class IPhotoConfirmationControl extends IInspectable {
 
   set pixelFormat(MediaPixelFormat format) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -125,7 +125,7 @@ class IPhotoConfirmationControl extends IInspectable {
                                 VTablePointer lpVtbl, Int32 format)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int format)>()(
-            ptr.ref.lpVtbl, format.value);
+            lpVtbl, format.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

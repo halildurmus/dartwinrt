@@ -35,7 +35,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,7 +59,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
       String propertyId, int? maxPropertyValueSize) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -76,7 +76,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                     int propertyId,
                     VTablePointer maxPropertyValueSize,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         propertyId.toHString(),
         maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
         value);
@@ -99,7 +99,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -113,7 +113,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int propertyId,
                       VTablePointer propertyValue, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           propertyId.toHString(),
           propertyValue?.boxValue().lpVtbl ?? nullptr,
           value);
@@ -131,7 +131,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<COMObject>();
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -150,7 +150,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                     Pointer<Uint8> extendedPropertyId,
                     VTablePointer maxPropertyValueSize,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
         maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
@@ -179,7 +179,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
       final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
       final propertyValueArray = propertyValue.toArray<Uint8>();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -200,7 +200,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                       int propertyValueSize,
                       Pointer<Uint8> propertyValue,
                       Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           extendedPropertyId.length,
           extendedPropertyIdArray,
           propertyValue.length,

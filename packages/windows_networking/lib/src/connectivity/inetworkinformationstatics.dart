@@ -36,7 +36,7 @@ class INetworkInformationStatics extends IInspectable {
   List<ConnectionProfile?> getConnectionProfiles() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class INetworkInformationStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,7 +62,7 @@ class INetworkInformationStatics extends IInspectable {
   ConnectionProfile? getInternetConnectionProfile() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +72,7 @@ class INetworkInformationStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -90,7 +90,7 @@ class INetworkInformationStatics extends IInspectable {
   List<LanIdentifier?> getLanIdentifiers() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -100,7 +100,7 @@ class INetworkInformationStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -116,7 +116,7 @@ class INetworkInformationStatics extends IInspectable {
   List<HostName?> getHostNames() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -126,7 +126,7 @@ class INetworkInformationStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -142,7 +142,7 @@ class INetworkInformationStatics extends IInspectable {
   Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -153,7 +153,7 @@ class INetworkInformationStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, value);
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -170,7 +170,7 @@ class INetworkInformationStatics extends IInspectable {
       HostNameSortOptions sortOptions) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -187,7 +187,7 @@ class INetworkInformationStatics extends IInspectable {
                     VTablePointer destinationList,
                     int sortOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, destinationList.lpVtbl, sortOptions.value, value);
+        lpVtbl, destinationList.lpVtbl, sortOptions.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -204,7 +204,7 @@ class INetworkInformationStatics extends IInspectable {
     final eventCookie = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -219,7 +219,7 @@ class INetworkInformationStatics extends IInspectable {
                       VTablePointer lpVtbl,
                       VTablePointer networkStatusHandler,
                       Pointer<IntPtr> eventCookie)>()(
-          ptr.ref.lpVtbl, networkStatusHandler.ref.lpVtbl, eventCookie);
+          lpVtbl, networkStatusHandler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -230,7 +230,7 @@ class INetworkInformationStatics extends IInspectable {
   }
 
   void remove_NetworkStatusChanged(int eventCookie) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -239,7 +239,7 @@ class INetworkInformationStatics extends IInspectable {
                             VTablePointer lpVtbl, IntPtr eventCookie)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
-        ptr.ref.lpVtbl, eventCookie);
+        lpVtbl, eventCookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

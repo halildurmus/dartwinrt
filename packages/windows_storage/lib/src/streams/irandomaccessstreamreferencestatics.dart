@@ -36,7 +36,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final streamReference = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -49,7 +49,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> streamReference)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, streamReference);
+            lpVtbl, file.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -68,7 +68,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final streamReference = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -80,8 +80,8 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().lpVtbl ?? nullptr, streamReference);
+                        Pointer<COMObject> streamReference)>()(
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -100,7 +100,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final streamReference = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -113,7 +113,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
                         Pointer<COMObject> streamReference)>()(
-            ptr.ref.lpVtbl, stream.lpVtbl, streamReference);
+            lpVtbl, stream.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);

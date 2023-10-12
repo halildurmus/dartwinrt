@@ -35,7 +35,7 @@ class IStorageFolderQueryResult extends IInspectable
       int startIndex, int maxNumberOfItems) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,7 +49,7 @@ class IStorageFolderQueryResult extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startIndex,
                     int maxNumberOfItems, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, startIndex, maxNumberOfItems, operation);
+        lpVtbl, startIndex, maxNumberOfItems, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -67,7 +67,7 @@ class IStorageFolderQueryResult extends IInspectable
   Future<List<StorageFolder?>> getFoldersAsyncDefaultStartAndCount() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -77,7 +77,7 @@ class IStorageFolderQueryResult extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

@@ -30,17 +30,17 @@ class IRegionOfInterest extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -51,7 +51,7 @@ class IRegionOfInterest extends IInspectable {
   }
 
   set autoFocusEnabled(bool value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -59,7 +59,7 @@ class IRegionOfInterest extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -68,17 +68,17 @@ class IRegionOfInterest extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -89,7 +89,7 @@ class IRegionOfInterest extends IInspectable {
   }
 
   set autoWhiteBalanceEnabled(bool value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -97,7 +97,7 @@ class IRegionOfInterest extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -106,17 +106,17 @@ class IRegionOfInterest extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -127,7 +127,7 @@ class IRegionOfInterest extends IInspectable {
   }
 
   set autoExposureEnabled(bool value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -135,7 +135,7 @@ class IRegionOfInterest extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -144,7 +144,7 @@ class IRegionOfInterest extends IInspectable {
     final value = calloc<NativeRect>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(12)
           .cast<
               Pointer<
@@ -154,7 +154,7 @@ class IRegionOfInterest extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeRect> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeRect> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -167,7 +167,7 @@ class IRegionOfInterest extends IInspectable {
   set bounds(Rect value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -176,7 +176,7 @@ class IRegionOfInterest extends IInspectable {
                             VTablePointer lpVtbl, NativeRect value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 

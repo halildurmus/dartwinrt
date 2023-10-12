@@ -30,7 +30,7 @@ class IFolderLauncherOptions extends IInspectable {
   IVector<IStorageItem?>? get itemsToSelect {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class IFolderLauncherOptions extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

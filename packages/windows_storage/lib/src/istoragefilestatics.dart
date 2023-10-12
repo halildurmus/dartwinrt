@@ -33,7 +33,7 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IStorageFileStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, path.toHString(), operation);
+        lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -60,7 +60,7 @@ class IStorageFileStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -73,7 +73,7 @@ class IStorageFileStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -91,7 +91,7 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -110,7 +110,7 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer dataRequested,
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         displayNameWithExtension.toHString(),
         dataRequested.ref.lpVtbl,
         thumbnail.lpVtbl,
@@ -132,7 +132,7 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -151,7 +151,7 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer dataRequested,
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         fileToReplace.lpVtbl,
         dataRequested.ref.lpVtbl,
         thumbnail.lpVtbl,
@@ -173,7 +173,7 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -192,7 +192,7 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer uri,
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         displayNameWithExtension.toHString(),
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         thumbnail.lpVtbl,
@@ -214,7 +214,7 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -233,7 +233,7 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer uri,
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         fileToReplace.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         thumbnail.lpVtbl,

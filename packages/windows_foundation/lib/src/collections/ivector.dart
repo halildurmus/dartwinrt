@@ -268,7 +268,7 @@ abstract interface class IVector<T> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -278,7 +278,7 @@ abstract interface class IVector<T> extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -292,7 +292,7 @@ abstract interface class IVector<T> extends IInspectable
   List<T> getView() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -302,7 +302,7 @@ abstract interface class IVector<T> extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -331,15 +331,14 @@ abstract interface class IVector<T> extends IInspectable
 
   /// Removes the item at the specified index in the vector.
   void removeAt(int index) {
-    final hr = ptr.ref.vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int)>()(
-        ptr.ref.lpVtbl, index);
+    final hr = vtable
+        .elementAt(12)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32)>>>()
+        .value
+        .asFunction<int Function(VTablePointer lpVtbl, int)>()(lpVtbl, index);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -349,22 +348,22 @@ abstract interface class IVector<T> extends IInspectable
 
   /// Removes the last item from the vector.
   void removeAtEnd() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(14)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Removes all items from the vector.
   void clear() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(15)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

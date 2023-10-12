@@ -29,7 +29,7 @@ class ILearningModelSessionOptions3 extends IInspectable {
           IID_ILearningModelSessionOptions3);
 
   void overrideNamedDimension(String name, int dimension) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -39,7 +39,7 @@ class ILearningModelSessionOptions3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name, int dimension)>()(
-        ptr.ref.lpVtbl, name.toHString(), dimension);
+        lpVtbl, name.toHString(), dimension);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

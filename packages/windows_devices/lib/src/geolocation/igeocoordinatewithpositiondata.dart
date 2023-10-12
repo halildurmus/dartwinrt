@@ -37,7 +37,7 @@ class IGeocoordinateWithPositionData extends IInspectable
     final pValue = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -47,7 +47,7 @@ class IGeocoordinateWithPositionData extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Int32> pValue)>()(
-          ptr.ref.lpVtbl, pValue);
+          lpVtbl, pValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,7 +60,7 @@ class IGeocoordinateWithPositionData extends IInspectable
   GeocoordinateSatelliteData? get satelliteData {
     final ppValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -70,7 +70,7 @@ class IGeocoordinateWithPositionData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
+                Pointer<COMObject> ppValue)>()(lpVtbl, ppValue);
 
     if (FAILED(hr)) {
       free(ppValue);

@@ -215,14 +215,14 @@ base class MethodProjection {
   /// The names of the parameters to be passed through to the underlying WinRT
   /// function.
   String get identifiers => [
-        'ptr.ref.lpVtbl',
+        'lpVtbl',
         ...parameters.map((param) => param.localIdentifier),
         if (typeProjection.isSimpleArray) '${paramIdentifier}Size',
         if (!typeProjection.isVoid) paramLocalIdentifier,
       ].join(', ');
 
   String get ffiCall => '''
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt($vtableOffset)
         .cast<Pointer<NativeFunction<$nativePrototype>>>()
         .value

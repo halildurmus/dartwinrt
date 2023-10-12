@@ -29,18 +29,17 @@ class IVideoEncodingProperties2 extends IInspectable {
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                            Pointer<Uint8> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int valueSize,
-                    Pointer<Uint8> value)>()(
-        ptr.ref.lpVtbl, value.length, valueArray);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+                        Pointer<Uint8> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int valueSize,
+                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -52,20 +51,19 @@ class IVideoEncodingProperties2 extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<Uint8>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<Uint8>> value)>()(
-          ptr.ref.lpVtbl, valueSize, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl,
+                          Pointer<Uint32> valueSize,
+                          Pointer<Pointer<Uint8>> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,7 +75,7 @@ class IVideoEncodingProperties2 extends IInspectable {
   }
 
   set profileId(int value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -85,7 +83,7 @@ class IVideoEncodingProperties2 extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -94,17 +92,17 @@ class IVideoEncodingProperties2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

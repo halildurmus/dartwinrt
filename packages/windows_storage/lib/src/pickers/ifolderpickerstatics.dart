@@ -32,7 +32,7 @@ class IFolderPickerStatics extends IInspectable {
   FolderPicker? createForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,11 +41,8 @@ class IFolderPickerStatics extends IInspectable {
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer user,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, user.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

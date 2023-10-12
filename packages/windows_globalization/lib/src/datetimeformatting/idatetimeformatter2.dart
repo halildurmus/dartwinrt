@@ -30,7 +30,7 @@ class IDateTimeFormatter2 extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -40,8 +40,8 @@ class IDateTimeFormatter2 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int datetime,
-                      int timeZoneId, Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
-          datetime.toWinRTDateTime(), timeZoneId.toHString(), result);
+                      int timeZoneId, Pointer<IntPtr> result)>()(
+          lpVtbl, datetime.toWinRTDateTime(), timeZoneId.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

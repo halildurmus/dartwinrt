@@ -35,7 +35,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, query.toHString(), instance);
+        lpVtbl, query.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);

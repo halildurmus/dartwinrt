@@ -32,7 +32,7 @@ class IImageFeatureValueStatics extends IInspectable {
   ImageFeatureValue? createFromVideoFrame(VideoFrame? image) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,11 +41,8 @@ class IImageFeatureValueStatics extends IInspectable {
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer image,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, image.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer image,
+                Pointer<COMObject> result)>()(lpVtbl, image.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

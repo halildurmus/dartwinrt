@@ -41,7 +41,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
       WebAccountProvider? provider) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -54,7 +54,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, provider.lpVtbl, operation);
+        lpVtbl, provider.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -71,7 +71,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
       WebAccountProvider? provider, String clientId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -85,7 +85,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int clientId, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, provider.lpVtbl, clientId.toHString(), operation);
+        lpVtbl, provider.lpVtbl, clientId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -102,7 +102,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
       String webAccountProviderId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -115,7 +115,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, webAccountProviderId.toHString(), operation);
+        lpVtbl, webAccountProviderId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -132,7 +132,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
       String webAccountProviderId, String authority) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -145,11 +145,8 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
-                    int authority, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        webAccountProviderId.toHString(),
-        authority.toHString(),
-        operation);
+                    int authority, Pointer<COMObject> operation)>()(lpVtbl,
+        webAccountProviderId.toHString(), authority.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -167,7 +164,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
           String webAccountProviderId, String authority, User? user) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -186,7 +183,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                     int authority,
                     VTablePointer user,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         webAccountProviderId.toHString(),
         authority.toHString(),
         user.lpVtbl,

@@ -29,7 +29,7 @@ class IFolderPicker2 extends IInspectable {
   ValueSet? get continuationData {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -39,7 +39,7 @@ class IFolderPicker2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,11 +56,11 @@ class IFolderPicker2 extends IInspectable {
 
   @Deprecated("Instead, use PickSingleFolderAsync")
   void pickFolderAndContinue() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -38,7 +38,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   int? get desiredAccuracyInMeters {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -48,7 +48,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -66,7 +66,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   }
 
   set desiredAccuracyInMeters(int? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -76,7 +76,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

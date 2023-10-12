@@ -32,21 +32,17 @@ class IPackage9 extends IInspectable {
   IVector<Package?> findRelatedPackages(FindRelatedPackagesOptions? options) {
     final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer options,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer options,
-                        Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, options.lpVtbl, result);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer options, Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer options,
+                Pointer<COMObject> result)>()(lpVtbl, options.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,7 +58,7 @@ class IPackage9 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -72,7 +68,7 @@ class IPackage9 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

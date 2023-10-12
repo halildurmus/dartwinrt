@@ -115,9 +115,7 @@ final class ObjectParameterProjection extends ParameterProjection {
             : '$identifier.boxValue().lpVtbl';
       }
 
-      if (!typeProjection.isReferenceType && !typeProjection.isSimpleArray) {
-        return '$identifier.lpVtbl';
-      }
+      if (!typeProjection.isReferenceType) return '$identifier.lpVtbl';
     }
 
     return identifier;

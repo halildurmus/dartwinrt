@@ -34,7 +34,7 @@ class ILearningModelSession extends IInspectable {
   LearningModel? get model {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class ILearningModelSession extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,7 +62,7 @@ class ILearningModelSession extends IInspectable {
   LearningModelDevice? get device {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +72,7 @@ class ILearningModelSession extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -90,7 +90,7 @@ class ILearningModelSession extends IInspectable {
   IPropertySet? get evaluationProperties {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -100,7 +100,7 @@ class ILearningModelSession extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -119,7 +119,7 @@ class ILearningModelSession extends IInspectable {
       LearningModelBinding? bindings, String correlationId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -133,7 +133,7 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, bindings.lpVtbl, correlationId.toHString(), operation);
+        lpVtbl, bindings.lpVtbl, correlationId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -150,7 +150,7 @@ class ILearningModelSession extends IInspectable {
       IMap<String, Object?>? features, String correlationId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -164,7 +164,7 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer features,
                     int correlationId, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, features.lpVtbl, correlationId.toHString(), operation);
+        lpVtbl, features.lpVtbl, correlationId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -181,7 +181,7 @@ class ILearningModelSession extends IInspectable {
       LearningModelBinding? bindings, String correlationId) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -195,7 +195,7 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, bindings.lpVtbl, correlationId.toHString(), result);
+        lpVtbl, bindings.lpVtbl, correlationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -214,7 +214,7 @@ class ILearningModelSession extends IInspectable {
       IMap<String, Object?>? features, String correlationId) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -228,7 +228,7 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer features,
                     int correlationId, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, features.lpVtbl, correlationId.toHString(), result);
+        lpVtbl, features.lpVtbl, correlationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

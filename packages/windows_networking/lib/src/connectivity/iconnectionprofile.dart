@@ -38,7 +38,7 @@ class IConnectionProfile extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -48,7 +48,7 @@ class IConnectionProfile extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -62,17 +62,17 @@ class IConnectionProfile extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,7 +85,7 @@ class IConnectionProfile extends IInspectable {
   List<String> getNetworkNames() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -95,7 +95,7 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -110,7 +110,7 @@ class IConnectionProfile extends IInspectable {
   ConnectionCost? getConnectionCost() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -120,7 +120,7 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -138,7 +138,7 @@ class IConnectionProfile extends IInspectable {
   DataPlanStatus? getDataPlanStatus() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -148,7 +148,7 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -166,7 +166,7 @@ class IConnectionProfile extends IInspectable {
   NetworkAdapter? get networkAdapter {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -176,7 +176,7 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -196,7 +196,7 @@ class IConnectionProfile extends IInspectable {
   DataUsage? getLocalUsage(DateTime startTime, DateTime endTime) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -206,8 +206,8 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime, int endTime,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        startTime.toWinRTDateTime(), endTime.toWinRTDateTime(), value);
+                    Pointer<COMObject> value)>()(
+        lpVtbl, startTime.toWinRTDateTime(), endTime.toWinRTDateTime(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -228,7 +228,7 @@ class IConnectionProfile extends IInspectable {
       DateTime startTime, DateTime endTime, RoamingStates states) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -243,7 +243,7 @@ class IConnectionProfile extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime, int endTime,
                     int states, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         states.value,
@@ -265,7 +265,7 @@ class IConnectionProfile extends IInspectable {
   NetworkSecuritySettings? get networkSecuritySettings {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -275,7 +275,7 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

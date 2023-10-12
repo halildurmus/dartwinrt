@@ -35,7 +35,7 @@ class IDeviceInformationPairingStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -48,7 +48,7 @@ class IDeviceInformationPairingStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int pairingKindsSupported,
                       Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, pairingKindsSupported.value, result);
+          lpVtbl, pairingKindsSupported.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

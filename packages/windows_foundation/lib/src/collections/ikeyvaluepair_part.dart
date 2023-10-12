@@ -19,7 +19,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -29,7 +29,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<GUID> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -43,7 +43,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -53,7 +53,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -77,7 +77,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -87,7 +87,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<GUID> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -101,7 +101,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
   Object? get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -111,7 +111,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -137,7 +137,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Int16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -147,7 +147,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -161,7 +161,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -171,7 +171,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -197,7 +197,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -207,7 +207,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -221,7 +221,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -231,7 +231,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -257,7 +257,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -267,7 +267,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -281,7 +281,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -291,7 +291,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -314,7 +314,7 @@ final class _IKeyValuePairObjectObject extends IKeyValuePair<Object, Object?> {
   Object get key {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -324,7 +324,7 @@ final class _IKeyValuePairObjectObject extends IKeyValuePair<Object, Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -338,7 +338,7 @@ final class _IKeyValuePairObjectObject extends IKeyValuePair<Object, Object?> {
   Object? get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -348,7 +348,7 @@ final class _IKeyValuePairObjectObject extends IKeyValuePair<Object, Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -375,7 +375,7 @@ final class _IKeyValuePairStringInspectable<V>
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -385,7 +385,7 @@ final class _IKeyValuePairStringInspectable<V>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -399,7 +399,7 @@ final class _IKeyValuePairStringInspectable<V>
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -409,7 +409,7 @@ final class _IKeyValuePairStringInspectable<V>
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -433,7 +433,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -443,7 +443,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -457,7 +457,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
   Object? get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -467,7 +467,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -491,7 +491,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -501,7 +501,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -516,7 +516,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -526,7 +526,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -547,7 +547,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -557,7 +557,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -572,7 +572,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -582,7 +582,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -605,7 +605,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -615,7 +615,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -630,7 +630,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -640,7 +640,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -661,7 +661,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Uint8>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -671,7 +671,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint8> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -685,7 +685,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -695,7 +695,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -721,7 +721,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Uint16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -731,7 +731,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -745,7 +745,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -755,7 +755,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -781,7 +781,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -791,7 +791,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -805,7 +805,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -815,7 +815,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -841,7 +841,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
     final retValuePtr = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -851,7 +851,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -865,7 +865,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -875,7 +875,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -898,7 +898,7 @@ final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
   Uri get key {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -908,7 +908,7 @@ final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -923,7 +923,7 @@ final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -933,7 +933,7 @@ final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -957,7 +957,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -967,7 +967,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -981,7 +981,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -991,7 +991,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -1020,7 +1020,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -1030,7 +1030,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1044,7 +1044,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
   V get value {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -1054,7 +1054,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

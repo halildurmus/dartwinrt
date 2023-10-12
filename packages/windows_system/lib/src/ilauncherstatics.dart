@@ -33,7 +33,7 @@ class ILauncherStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class ILauncherStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -61,7 +61,7 @@ class ILauncherStatics extends IInspectable {
       IStorageFile? file, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class ILauncherStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, options.lpVtbl, operation);
+        lpVtbl, file.lpVtbl, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -90,7 +90,7 @@ class ILauncherStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -103,7 +103,7 @@ class ILauncherStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -117,7 +117,7 @@ class ILauncherStatics extends IInspectable {
   Future<bool> launchUriWithOptionsAsync(Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -131,10 +131,7 @@ class ILauncherStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr,
-        options.lpVtbl,
-        operation);
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

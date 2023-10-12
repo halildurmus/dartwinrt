@@ -34,7 +34,7 @@ class IUriEscapeStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -45,7 +45,7 @@ class IUriEscapeStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int toUnescape,
                           Pointer<IntPtr> value)>()(
-              ptr.ref.lpVtbl, toUnescape.toHString(), value);
+              lpVtbl, toUnescape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,7 +60,7 @@ class IUriEscapeStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -71,7 +71,7 @@ class IUriEscapeStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int toEscape,
                           Pointer<IntPtr> value)>()(
-              ptr.ref.lpVtbl, toEscape.toHString(), value);
+              lpVtbl, toEscape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

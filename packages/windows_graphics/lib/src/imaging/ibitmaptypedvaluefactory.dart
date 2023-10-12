@@ -32,7 +32,7 @@ class IBitmapTypedValueFactory extends IInspectable {
     final bitmapTypedValue = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class IBitmapTypedValueFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer value,
                         int type, Pointer<COMObject> bitmapTypedValue)>()(
-            ptr.ref.lpVtbl,
+            lpVtbl,
             value?.boxValue().lpVtbl ?? nullptr,
             type.value,
             bitmapTypedValue);

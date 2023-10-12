@@ -31,7 +31,7 @@ class IAudioFrameFactory extends IInspectable {
   AudioFrame create(int capacity) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IAudioFrameFactory extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int capacity,
-                Pointer<COMObject> value)>()(ptr.ref.lpVtbl, capacity, value);
+                Pointer<COMObject> value)>()(lpVtbl, capacity, value);
 
     if (FAILED(hr)) {
       free(value);

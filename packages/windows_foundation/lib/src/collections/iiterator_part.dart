@@ -17,7 +17,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
     final retValuePtr = calloc<NativeAccessListEntry>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -28,7 +28,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeAccessListEntry> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -44,7 +44,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
     final items = calloc<NativeAccessListEntry>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -61,7 +61,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
                       int itemsSize,
                       Pointer<NativeAccessListEntry> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,7 +85,7 @@ final class _IIteratorBackgroundTransferFileRange
     final retValuePtr = calloc<NativeBackgroundTransferFileRange>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -99,7 +99,7 @@ final class _IIteratorBackgroundTransferFileRange
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<NativeBackgroundTransferFileRange>
-                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                      retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -115,7 +115,7 @@ final class _IIteratorBackgroundTransferFileRange
     final items = calloc<NativeBackgroundTransferFileRange>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -132,7 +132,7 @@ final class _IIteratorBackgroundTransferFileRange
                       int itemsSize,
                       Pointer<NativeBackgroundTransferFileRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -155,7 +155,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
     final retValuePtr = calloc<NativeBasicGeoposition>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -166,7 +166,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeBasicGeoposition> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -182,7 +182,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
     final items = calloc<NativeBasicGeoposition>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -199,7 +199,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
                       int itemsSize,
                       Pointer<NativeBasicGeoposition> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -222,7 +222,7 @@ final class _IIteratorBool extends IIterator<bool> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -232,7 +232,7 @@ final class _IIteratorBool extends IIterator<bool> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -249,7 +249,7 @@ final class _IIteratorBool extends IIterator<bool> {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(9)
                   .cast<
                       Pointer<
@@ -263,7 +263,7 @@ final class _IIteratorBool extends IIterator<bool> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int itemsSize,
                           Pointer<Bool> items, Pointer<Uint32> retValuePtr)>()(
-              ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+              lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -286,18 +286,17 @@ final class _IIteratorColor extends IIterator<Color> {
     final retValuePtr = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeColor> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeColor> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeColor> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeColor> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -313,7 +312,7 @@ final class _IIteratorColor extends IIterator<Color> {
     final items = calloc<NativeColor>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -330,7 +329,7 @@ final class _IIteratorColor extends IIterator<Color> {
                       int itemsSize,
                       Pointer<NativeColor> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -353,7 +352,7 @@ final class _IIteratorDateTime extends IIterator<DateTime> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -363,7 +362,7 @@ final class _IIteratorDateTime extends IIterator<DateTime> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -379,7 +378,7 @@ final class _IIteratorDateTime extends IIterator<DateTime> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -393,7 +392,7 @@ final class _IIteratorDateTime extends IIterator<DateTime> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -416,7 +415,7 @@ final class _IIteratorDouble extends IIterator<double> {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -426,7 +425,7 @@ final class _IIteratorDouble extends IIterator<double> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Double> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -442,7 +441,7 @@ final class _IIteratorDouble extends IIterator<double> {
     final items = calloc<Double>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -456,7 +455,7 @@ final class _IIteratorDouble extends IIterator<double> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Double> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -479,7 +478,7 @@ final class _IIteratorDuration extends IIterator<Duration> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -489,7 +488,7 @@ final class _IIteratorDuration extends IIterator<Duration> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -505,7 +504,7 @@ final class _IIteratorDuration extends IIterator<Duration> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -519,7 +518,7 @@ final class _IIteratorDuration extends IIterator<Duration> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -542,7 +541,7 @@ final class _IIteratorFloat extends IIterator<double> {
     final retValuePtr = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -552,7 +551,7 @@ final class _IIteratorFloat extends IIterator<double> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Float> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -568,7 +567,7 @@ final class _IIteratorFloat extends IIterator<double> {
     final items = calloc<Float>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -582,7 +581,7 @@ final class _IIteratorFloat extends IIterator<double> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Float> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -605,7 +604,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
     final retValuePtr = calloc<NativeGpioChangeRecord>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -616,7 +615,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeGpioChangeRecord> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -632,7 +631,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
     final items = calloc<NativeGpioChangeRecord>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -649,7 +648,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
                       int itemsSize,
                       Pointer<NativeGpioChangeRecord> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -672,7 +671,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -682,7 +681,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<GUID> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -699,7 +698,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(9)
                   .cast<
                       Pointer<
@@ -713,7 +712,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int itemsSize,
                           Pointer<GUID> items, Pointer<Uint32> retValuePtr)>()(
-              ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+              lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -736,7 +735,7 @@ final class _IIteratorInt16 extends IIterator<int> {
     final retValuePtr = calloc<Int16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -746,7 +745,7 @@ final class _IIteratorInt16 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -762,7 +761,7 @@ final class _IIteratorInt16 extends IIterator<int> {
     final items = calloc<Int16>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -776,7 +775,7 @@ final class _IIteratorInt16 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int16> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -799,7 +798,7 @@ final class _IIteratorInt32 extends IIterator<int> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -809,7 +808,7 @@ final class _IIteratorInt32 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -825,7 +824,7 @@ final class _IIteratorInt32 extends IIterator<int> {
     final items = calloc<Int32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -839,7 +838,7 @@ final class _IIteratorInt32 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -862,7 +861,7 @@ final class _IIteratorInt64 extends IIterator<int> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -872,7 +871,7 @@ final class _IIteratorInt64 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -888,7 +887,7 @@ final class _IIteratorInt64 extends IIterator<int> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -902,7 +901,7 @@ final class _IIteratorInt64 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -925,7 +924,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
     final retValuePtr = calloc<NativeMediaTimeRange>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -936,7 +935,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeMediaTimeRange> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -952,7 +951,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
     final items = calloc<NativeMediaTimeRange>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -969,7 +968,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
                       int itemsSize,
                       Pointer<NativeMediaTimeRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -992,7 +991,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
     final retValuePtr = calloc<NativeMseTimeRange>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -1003,7 +1002,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeMseTimeRange> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1019,7 +1018,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
     final items = calloc<NativeMseTimeRange>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1036,7 +1035,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
                       int itemsSize,
                       Pointer<NativeMseTimeRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1059,18 +1058,17 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
     final retValuePtr = calloc<NativeNitRange>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeNitRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeNitRange> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeNitRange> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeNitRange> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1086,7 +1084,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
     final items = calloc<NativeNitRange>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1103,7 +1101,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
                       int itemsSize,
                       Pointer<NativeNitRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1127,7 +1125,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
   T get current {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -1137,7 +1135,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -1158,7 +1156,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1172,7 +1170,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1194,7 +1192,7 @@ final class _IIteratorObject extends IIterator<Object?> {
   Object? get current {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -1204,7 +1202,7 @@ final class _IIteratorObject extends IIterator<Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -1225,7 +1223,7 @@ final class _IIteratorObject extends IIterator<Object?> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1239,7 +1237,7 @@ final class _IIteratorObject extends IIterator<Object?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1261,7 +1259,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
   Uri? get current {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -1271,7 +1269,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -1292,7 +1290,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1306,7 +1304,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1329,18 +1327,17 @@ final class _IIteratorPoint extends IIterator<Point> {
     final retValuePtr = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativePoint> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativePoint> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativePoint> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativePoint> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1356,7 +1353,7 @@ final class _IIteratorPoint extends IIterator<Point> {
     final items = calloc<NativePoint>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1373,7 +1370,7 @@ final class _IIteratorPoint extends IIterator<Point> {
                       int itemsSize,
                       Pointer<NativePoint> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1396,7 +1393,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
     final retValuePtr = calloc<NativePointerDeviceUsage>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -1408,7 +1405,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<NativePointerDeviceUsage>
-                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                      retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1424,7 +1421,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
     final items = calloc<NativePointerDeviceUsage>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1441,7 +1438,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
                       int itemsSize,
                       Pointer<NativePointerDeviceUsage> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1464,18 +1461,17 @@ final class _IIteratorRect extends IIterator<Rect> {
     final retValuePtr = calloc<NativeRect>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeRect> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeRect> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeRect> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeRect> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1491,7 +1487,7 @@ final class _IIteratorRect extends IIterator<Rect> {
     final items = calloc<NativeRect>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1508,7 +1504,7 @@ final class _IIteratorRect extends IIterator<Rect> {
                       int itemsSize,
                       Pointer<NativeRect> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1531,18 +1527,17 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
     final retValuePtr = calloc<NativeRectInt32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeRectInt32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeRectInt32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeRectInt32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeRectInt32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1558,7 +1553,7 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
     final items = calloc<NativeRectInt32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1575,7 +1570,7 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
                       int itemsSize,
                       Pointer<NativeRectInt32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1598,18 +1593,17 @@ final class _IIteratorSize extends IIterator<Size> {
     final retValuePtr = calloc<NativeSize>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeSize> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeSize> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeSize> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1625,7 +1619,7 @@ final class _IIteratorSize extends IIterator<Size> {
     final items = calloc<NativeSize>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1642,7 +1636,7 @@ final class _IIteratorSize extends IIterator<Size> {
                       int itemsSize,
                       Pointer<NativeSize> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1665,7 +1659,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
     final retValuePtr = calloc<NativeSizeUInt32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -1676,7 +1670,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeSizeUInt32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1692,7 +1686,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
     final items = calloc<NativeSizeUInt32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1709,7 +1703,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
                       int itemsSize,
                       Pointer<NativeSizeUInt32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1732,18 +1726,17 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
     final retValuePtr = calloc<NativeSortEntry>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeSortEntry> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeSortEntry> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeSortEntry> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeSortEntry> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1759,7 +1752,7 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
     final items = calloc<NativeSortEntry>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1776,7 +1769,7 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
                       int itemsSize,
                       Pointer<NativeSortEntry> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1800,7 +1793,7 @@ final class _IIteratorStorePackageUpdateStatus
     final retValuePtr = calloc<NativeStorePackageUpdateStatus>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -1813,7 +1806,7 @@ final class _IIteratorStorePackageUpdateStatus
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeStorePackageUpdateStatus> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1829,7 +1822,7 @@ final class _IIteratorStorePackageUpdateStatus
     final items = calloc<NativeStorePackageUpdateStatus>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1846,7 +1839,7 @@ final class _IIteratorStorePackageUpdateStatus
                       int itemsSize,
                       Pointer<NativeStorePackageUpdateStatus> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1869,7 +1862,7 @@ final class _IIteratorString extends IIterator<String> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -1879,7 +1872,7 @@ final class _IIteratorString extends IIterator<String> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1895,7 +1888,7 @@ final class _IIteratorString extends IIterator<String> {
     final items = calloc<IntPtr>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1909,7 +1902,7 @@ final class _IIteratorString extends IIterator<String> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<IntPtr> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1932,18 +1925,17 @@ final class _IIteratorTextRange extends IIterator<TextRange> {
     final retValuePtr = calloc<NativeTextRange>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeTextRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeTextRange> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeTextRange> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeTextRange> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1959,7 +1951,7 @@ final class _IIteratorTextRange extends IIterator<TextRange> {
     final items = calloc<NativeTextRange>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -1976,7 +1968,7 @@ final class _IIteratorTextRange extends IIterator<TextRange> {
                       int itemsSize,
                       Pointer<NativeTextRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1999,7 +1991,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
     final retValuePtr = calloc<NativeTextSegment>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -2010,7 +2002,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeTextSegment> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2026,7 +2018,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
     final items = calloc<NativeTextSegment>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2043,7 +2035,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
                       int itemsSize,
                       Pointer<NativeTextSegment> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2066,7 +2058,7 @@ final class _IIteratorUint8 extends IIterator<int> {
     final retValuePtr = calloc<Uint8>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2076,7 +2068,7 @@ final class _IIteratorUint8 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint8> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2092,7 +2084,7 @@ final class _IIteratorUint8 extends IIterator<int> {
     final items = calloc<Uint8>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2106,7 +2098,7 @@ final class _IIteratorUint8 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Uint8> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2129,7 +2121,7 @@ final class _IIteratorUint16 extends IIterator<int> {
     final retValuePtr = calloc<Uint16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2139,7 +2131,7 @@ final class _IIteratorUint16 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2155,7 +2147,7 @@ final class _IIteratorUint16 extends IIterator<int> {
     final items = calloc<Uint16>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2169,7 +2161,7 @@ final class _IIteratorUint16 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Uint16> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2192,7 +2184,7 @@ final class _IIteratorUint32 extends IIterator<int> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2202,7 +2194,7 @@ final class _IIteratorUint32 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2218,7 +2210,7 @@ final class _IIteratorUint32 extends IIterator<int> {
     final items = calloc<Uint32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2232,7 +2224,7 @@ final class _IIteratorUint32 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2255,7 +2247,7 @@ final class _IIteratorUint64 extends IIterator<int> {
     final retValuePtr = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2265,7 +2257,7 @@ final class _IIteratorUint64 extends IIterator<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2281,7 +2273,7 @@ final class _IIteratorUint64 extends IIterator<int> {
     final items = calloc<Uint64>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2295,7 +2287,7 @@ final class _IIteratorUint64 extends IIterator<int> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Uint64> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2318,18 +2310,17 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
     final retValuePtr = calloc<NativeWindowId>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeWindowId> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeWindowId> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeWindowId> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeWindowId> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2345,7 +2336,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
     final items = calloc<NativeWindowId>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2362,7 +2353,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
                       int itemsSize,
                       Pointer<NativeWindowId> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2387,7 +2378,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2397,7 +2388,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2413,7 +2404,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
     final items = calloc<Int32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2427,7 +2418,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2452,7 +2443,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -2462,7 +2453,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2478,7 +2469,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
     final items = calloc<Uint32>(itemsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -2492,7 +2483,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int itemsSize,
                       Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, itemsSize, items, retValuePtr);
+          lpVtbl, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

@@ -35,7 +35,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final phoneNumber = calloc<COMObject>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -49,7 +49,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, input.toHString(), phoneNumber, result);
+          lpVtbl, input.toHString(), phoneNumber, result);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -78,7 +78,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final phoneNumber = calloc<COMObject>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -93,7 +93,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input, int regionCode,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           input.toHString(),
           regionCode.toHString(),
           phoneNumber,

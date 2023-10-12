@@ -35,7 +35,7 @@ class ILearningModelSessionFactory extends IInspectable {
   LearningModelSession createFromModel(LearningModel? model) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,11 +44,8 @@ class ILearningModelSessionFactory extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer model,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, model.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer model,
+                Pointer<COMObject> value)>()(lpVtbl, model.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,7 +59,7 @@ class ILearningModelSessionFactory extends IInspectable {
       LearningModel? model, LearningModelDevice? deviceToRunOn) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -76,7 +73,7 @@ class ILearningModelSessionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer model,
                     VTablePointer deviceToRunOn, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, model.lpVtbl, deviceToRunOn.lpVtbl, value);
+        lpVtbl, model.lpVtbl, deviceToRunOn.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

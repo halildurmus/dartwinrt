@@ -35,7 +35,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
       interface.cast(IAsyncAction.fromPtr, IID_IAsyncAction);
 
   set completed(Pointer<COMObject> handler) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer handler)>()(
-        ptr.ref.lpVtbl, handler.ref.lpVtbl);
+        lpVtbl, handler.ref.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -53,7 +53,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   Pointer<COMObject> get completed {
     final handler = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -63,7 +63,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> handler)>()(ptr.ref.lpVtbl, handler);
+                Pointer<COMObject> handler)>()(lpVtbl, handler);
 
     if (FAILED(hr)) {
       free(handler);
@@ -74,11 +74,11 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   }
 
   void getResults() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

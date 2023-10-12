@@ -35,7 +35,7 @@ class IToastNotificationManagerForUser extends IInspectable {
   ToastNotifier? createToastNotifier() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -45,7 +45,7 @@ class IToastNotificationManagerForUser extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -64,7 +64,7 @@ class IToastNotificationManagerForUser extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IToastNotificationManagerForUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, applicationId.toHString(), result);
+            lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -95,7 +95,7 @@ class IToastNotificationManagerForUser extends IInspectable {
   ToastNotificationHistory? get history {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -105,7 +105,7 @@ class IToastNotificationManagerForUser extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -123,7 +123,7 @@ class IToastNotificationManagerForUser extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -133,7 +133,7 @@ class IToastNotificationManagerForUser extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

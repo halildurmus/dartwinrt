@@ -33,7 +33,7 @@ class IVideoStreamDescriptor extends IInspectable
   VideoEncodingProperties? get encodingProperties {
     final encodingProperties = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IVideoStreamDescriptor extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     Pointer<COMObject> encodingProperties)>()(
-        ptr.ref.lpVtbl, encodingProperties);
+        lpVtbl, encodingProperties);
 
     if (FAILED(hr)) {
       free(encodingProperties);

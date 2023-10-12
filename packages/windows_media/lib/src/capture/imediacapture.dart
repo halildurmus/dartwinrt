@@ -40,7 +40,7 @@ class IMediaCapture extends IInspectable {
   Future<void> initializeAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -50,7 +50,7 @@ class IMediaCapture extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -64,7 +64,7 @@ class IMediaCapture extends IInspectable {
       MediaCaptureInitializationSettings? mediaCaptureInitializationSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -79,7 +79,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer mediaCaptureInitializationSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, mediaCaptureInitializationSettings.lpVtbl, asyncInfo);
+        lpVtbl, mediaCaptureInitializationSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -93,7 +93,7 @@ class IMediaCapture extends IInspectable {
       MediaEncodingProfile? encodingProfile, IStorageFile? file) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -110,7 +110,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer file,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, asyncInfo);
+        lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -124,7 +124,7 @@ class IMediaCapture extends IInspectable {
       MediaEncodingProfile? encodingProfile, IRandomAccessStream? stream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -141,7 +141,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer stream,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, asyncInfo);
+        lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -155,7 +155,7 @@ class IMediaCapture extends IInspectable {
       MediaEncodingProfile? encodingProfile, IMediaExtension? customMediaSink) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -171,8 +171,8 @@ class IMediaCapture extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-        encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -188,7 +188,7 @@ class IMediaCapture extends IInspectable {
       IPropertySet? customSinkSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -207,7 +207,7 @@ class IMediaCapture extends IInspectable {
                     int customSinkActivationId,
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         encodingProfile.lpVtbl,
         customSinkActivationId.toHString(),
         customSinkSettings.lpVtbl,
@@ -224,7 +224,7 @@ class IMediaCapture extends IInspectable {
   Future<void> stopRecordAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(12)
         .cast<
             Pointer<
@@ -234,7 +234,7 @@ class IMediaCapture extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -249,7 +249,7 @@ class IMediaCapture extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(13)
                 .cast<
                     Pointer<
@@ -263,7 +263,7 @@ class IMediaCapture extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         VTablePointer file, Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, type.lpVtbl, file.lpVtbl, asyncInfo);
+            lpVtbl, type.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -278,7 +278,7 @@ class IMediaCapture extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -292,7 +292,7 @@ class IMediaCapture extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, type.lpVtbl, stream.lpVtbl, asyncInfo);
+            lpVtbl, type.lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -308,7 +308,7 @@ class IMediaCapture extends IInspectable {
       String effectActivationID, IPropertySet? effectSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -327,7 +327,7 @@ class IMediaCapture extends IInspectable {
                     int effectActivationID,
                     VTablePointer effectSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         mediaStreamType.value,
         effectActivationID.toHString(),
         effectSettings.lpVtbl,
@@ -344,7 +344,7 @@ class IMediaCapture extends IInspectable {
   Future<void> clearEffectsAsync(MediaStreamType mediaStreamType) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -357,7 +357,7 @@ class IMediaCapture extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mediaStreamType,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, mediaStreamType.value, asyncInfo);
+        lpVtbl, mediaStreamType.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -371,7 +371,7 @@ class IMediaCapture extends IInspectable {
       MediaStreamType mediaStreamType, Guid propertyId, Object? propertyValue) {
     final propertyIdNativeStructPtr = propertyId.toNativeGUID();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -385,7 +385,7 @@ class IMediaCapture extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mediaStreamType,
                     GUID propertyId, VTablePointer propertyValue)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         mediaStreamType.value,
         propertyIdNativeStructPtr.ref,
         propertyValue?.boxValue().lpVtbl ?? nullptr);
@@ -399,7 +399,7 @@ class IMediaCapture extends IInspectable {
     final propertyValue = calloc<COMObject>();
     final propertyIdNativeStructPtr = propertyId.toNativeGUID();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(18)
             .cast<
                 Pointer<
@@ -413,7 +413,7 @@ class IMediaCapture extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mediaStreamType,
                     GUID propertyId, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         mediaStreamType.value,
         propertyIdNativeStructPtr.ref,
         propertyValue);
@@ -437,7 +437,7 @@ class IMediaCapture extends IInspectable {
     final eventCookie = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(19)
               .cast<
                   Pointer<
@@ -452,7 +452,7 @@ class IMediaCapture extends IInspectable {
                       VTablePointer lpVtbl,
                       VTablePointer errorEventHandler,
                       Pointer<IntPtr> eventCookie)>()(
-          ptr.ref.lpVtbl, errorEventHandler.ref.lpVtbl, eventCookie);
+          lpVtbl, errorEventHandler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -463,7 +463,7 @@ class IMediaCapture extends IInspectable {
   }
 
   void remove_Failed(int eventCookie) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(20)
             .cast<
                 Pointer<
@@ -472,7 +472,7 @@ class IMediaCapture extends IInspectable {
                             VTablePointer lpVtbl, IntPtr eventCookie)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
-        ptr.ref.lpVtbl, eventCookie);
+        lpVtbl, eventCookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -483,7 +483,7 @@ class IMediaCapture extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(21)
                   .cast<
                       Pointer<
@@ -498,7 +498,7 @@ class IMediaCapture extends IInspectable {
                       int Function(
                           VTablePointer lpVtbl,
                           VTablePointer recordLimitationExceededEventHandler,
-                          Pointer<IntPtr> eventCookie)>()(ptr.ref.lpVtbl,
+                          Pointer<IntPtr> eventCookie)>()(lpVtbl,
               recordLimitationExceededEventHandler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -510,7 +510,7 @@ class IMediaCapture extends IInspectable {
   }
 
   void remove_RecordLimitationExceeded(int eventCookie) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(22)
             .cast<
                 Pointer<
@@ -519,7 +519,7 @@ class IMediaCapture extends IInspectable {
                             VTablePointer lpVtbl, IntPtr eventCookie)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
-        ptr.ref.lpVtbl, eventCookie);
+        lpVtbl, eventCookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -527,7 +527,7 @@ class IMediaCapture extends IInspectable {
   MediaCaptureSettings? get mediaCaptureSettings {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(23)
             .cast<
                 Pointer<
@@ -537,7 +537,7 @@ class IMediaCapture extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -555,7 +555,7 @@ class IMediaCapture extends IInspectable {
   AudioDeviceController? get audioDeviceController {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(24)
             .cast<
                 Pointer<
@@ -565,7 +565,7 @@ class IMediaCapture extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -583,7 +583,7 @@ class IMediaCapture extends IInspectable {
   VideoDeviceController? get videoDeviceController {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(25)
             .cast<
                 Pointer<
@@ -593,7 +593,7 @@ class IMediaCapture extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -609,7 +609,7 @@ class IMediaCapture extends IInspectable {
   }
 
   void setPreviewMirroring(bool value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(26)
             .cast<
                 Pointer<
@@ -617,7 +617,7 @@ class IMediaCapture extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -626,17 +626,17 @@ class IMediaCapture extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(27)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(27)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -647,7 +647,7 @@ class IMediaCapture extends IInspectable {
   }
 
   void setPreviewRotation(VideoRotation value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(28)
             .cast<
                 Pointer<
@@ -655,7 +655,7 @@ class IMediaCapture extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -664,17 +664,17 @@ class IMediaCapture extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(29)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(29)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -685,7 +685,7 @@ class IMediaCapture extends IInspectable {
   }
 
   void setRecordRotation(VideoRotation value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(30)
             .cast<
                 Pointer<
@@ -693,7 +693,7 @@ class IMediaCapture extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -702,17 +702,17 @@ class IMediaCapture extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(31)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(31)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

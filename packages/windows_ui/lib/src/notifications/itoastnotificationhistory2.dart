@@ -31,7 +31,7 @@ class IToastNotificationHistory2 extends IInspectable {
   List<ToastNotification?> getHistory() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IToastNotificationHistory2 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -58,7 +58,7 @@ class IToastNotificationHistory2 extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -71,7 +71,7 @@ class IToastNotificationHistory2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, applicationId.toHString(), result);
+            lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

@@ -33,7 +33,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   SoftwareBitmap? get softwareBitmap {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -43,7 +43,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,7 +61,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   Future<void> copyToAsync(VideoFrame? frame) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -70,11 +70,8 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer frame,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, frame.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer frame,
+                Pointer<COMObject> value)>()(lpVtbl, frame.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -87,7 +84,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   IDirect3DSurface? get direct3DSurface {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -97,7 +94,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

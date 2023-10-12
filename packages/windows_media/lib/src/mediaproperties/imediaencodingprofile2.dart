@@ -30,7 +30,7 @@ class IMediaEncodingProfile2 extends IInspectable {
       IMediaEncodingProfile2.fromPtr, IID_IMediaEncodingProfile2);
 
   void setAudioTracks(IIterable<AudioStreamDescriptor?>? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class IMediaEncodingProfile2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.lpVtbl);
+        lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -48,7 +48,7 @@ class IMediaEncodingProfile2 extends IInspectable {
   IVector<AudioStreamDescriptor?> getAudioTracks() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -58,7 +58,7 @@ class IMediaEncodingProfile2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -71,7 +71,7 @@ class IMediaEncodingProfile2 extends IInspectable {
   }
 
   void setVideoTracks(IIterable<VideoStreamDescriptor?>? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -81,7 +81,7 @@ class IMediaEncodingProfile2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.lpVtbl);
+        lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -89,7 +89,7 @@ class IMediaEncodingProfile2 extends IInspectable {
   IVector<VideoStreamDescriptor?> getVideoTracks() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -99,7 +99,7 @@ class IMediaEncodingProfile2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

@@ -32,7 +32,7 @@ class IUserDataPathsStatics extends IInspectable {
   UserDataPaths? getForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,11 +41,8 @@ class IUserDataPathsStatics extends IInspectable {
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer user,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, user.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -63,7 +60,7 @@ class IUserDataPathsStatics extends IInspectable {
   UserDataPaths? getDefault() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -73,7 +70,7 @@ class IUserDataPathsStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

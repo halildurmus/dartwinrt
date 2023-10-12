@@ -32,7 +32,7 @@ class IPropertySetSerializer extends IInspectable {
   IBuffer? serialize(IPropertySet? propertySet) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IPropertySetSerializer extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer propertySet,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, propertySet.lpVtbl, result);
+        lpVtbl, propertySet.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,7 +62,7 @@ class IPropertySetSerializer extends IInspectable {
 
   void deserialize(IPropertySet? propertySet, IBuffer? buffer) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -75,7 +75,7 @@ class IPropertySetSerializer extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl,
                         VTablePointer propertySet, VTablePointer buffer)>()(
-            ptr.ref.lpVtbl, propertySet.lpVtbl, buffer.lpVtbl);
+            lpVtbl, propertySet.lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

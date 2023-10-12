@@ -35,7 +35,7 @@ class IToastNotifier2 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -50,11 +50,7 @@ class IToastNotifier2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer data,
                           int tag, int group, Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl,
-              data.lpVtbl,
-              tag.toHString(),
-              group.toHString(),
-              result);
+              lpVtbl, data.lpVtbl, tag.toHString(), group.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -69,7 +65,7 @@ class IToastNotifier2 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -83,7 +79,7 @@ class IToastNotifier2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer data,
                           int tag, Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl, data.lpVtbl, tag.toHString(), result);
+              lpVtbl, data.lpVtbl, tag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

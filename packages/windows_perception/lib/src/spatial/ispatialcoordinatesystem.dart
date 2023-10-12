@@ -31,7 +31,7 @@ class ISpatialCoordinateSystem extends IInspectable {
   Matrix4x4? tryGetTransformTo(SpatialCoordinateSystem? target) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -40,11 +40,8 @@ class ISpatialCoordinateSystem extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer target,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, target.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer target,
+                Pointer<COMObject> value)>()(lpVtbl, target.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

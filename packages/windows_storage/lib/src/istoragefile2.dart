@@ -35,7 +35,7 @@ class IStorageFile2 extends IInspectable {
       FileAccessMode accessMode, StorageOpenOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class IStorageFile2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int accessMode, int options,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, accessMode.value, options.value, operation);
+        lpVtbl, accessMode.value, options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -63,7 +63,7 @@ class IStorageFile2 extends IInspectable {
       StorageOpenOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class IStorageFile2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int options,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, options.value, operation);
+        lpVtbl, options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

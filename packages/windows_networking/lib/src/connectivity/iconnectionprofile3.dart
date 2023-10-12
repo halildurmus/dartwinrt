@@ -34,7 +34,7 @@ class IConnectionProfile3 extends IInspectable {
     final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IConnectionProfile3 extends IInspectable {
                     int endTime,
                     NativeNetworkUsageStates states,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         statesNativeStructPtr.ref,

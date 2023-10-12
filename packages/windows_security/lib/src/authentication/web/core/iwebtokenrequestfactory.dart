@@ -34,7 +34,7 @@ class IWebTokenRequestFactory extends IInspectable {
       WebAccountProvider? provider, String scope, String clientId) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int scope,
                     int clientId,
                     Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         provider.lpVtbl,
         scope.toHString(),
         clientId.toHString(),
@@ -71,7 +71,7 @@ class IWebTokenRequestFactory extends IInspectable {
       String scope, String clientId, WebTokenRequestPromptType promptType) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -92,7 +92,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int clientId,
                     int promptType,
                     Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         provider.lpVtbl,
         scope.toHString(),
         clientId.toHString(),
@@ -110,7 +110,7 @@ class IWebTokenRequestFactory extends IInspectable {
   WebTokenRequest createWithProvider(WebAccountProvider? provider) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -123,7 +123,7 @@ class IWebTokenRequestFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl, provider.lpVtbl, webTokenRequest);
+        lpVtbl, provider.lpVtbl, webTokenRequest);
 
     if (FAILED(hr)) {
       free(webTokenRequest);
@@ -136,7 +136,7 @@ class IWebTokenRequestFactory extends IInspectable {
   WebTokenRequest createWithScope(WebAccountProvider? provider, String scope) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -150,7 +150,7 @@ class IWebTokenRequestFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int scope, Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl, provider.lpVtbl, scope.toHString(), webTokenRequest);
+        lpVtbl, provider.lpVtbl, scope.toHString(), webTokenRequest);
 
     if (FAILED(hr)) {
       free(webTokenRequest);

@@ -29,18 +29,17 @@ class IMediaExtension extends IInspectable {
       interface.cast(IMediaExtension.fromPtr, IID_IMediaExtension);
 
   void setProperties(IPropertySet? configuration) {
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            VTablePointer configuration)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, VTablePointer configuration)>()(
-        ptr.ref.lpVtbl, configuration.lpVtbl);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, VTablePointer configuration)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                VTablePointer configuration)>()(lpVtbl, configuration.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

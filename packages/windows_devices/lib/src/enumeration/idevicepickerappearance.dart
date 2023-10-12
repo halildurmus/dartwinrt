@@ -31,7 +31,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -41,7 +41,7 @@ class IDevicePickerAppearance extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,7 +53,7 @@ class IDevicePickerAppearance extends IInspectable {
 
   set title(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -62,7 +62,7 @@ class IDevicePickerAppearance extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -71,7 +71,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -81,7 +81,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -94,7 +94,7 @@ class IDevicePickerAppearance extends IInspectable {
   set foregroundColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -104,7 +104,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -115,7 +115,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(10)
           .cast<
               Pointer<
@@ -125,7 +125,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -138,7 +138,7 @@ class IDevicePickerAppearance extends IInspectable {
   set backgroundColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -148,7 +148,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -159,7 +159,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(12)
           .cast<
               Pointer<
@@ -169,7 +169,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -182,7 +182,7 @@ class IDevicePickerAppearance extends IInspectable {
   set accentColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -192,7 +192,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -203,7 +203,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(14)
           .cast<
               Pointer<
@@ -213,7 +213,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -226,7 +226,7 @@ class IDevicePickerAppearance extends IInspectable {
   set selectedForegroundColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -236,7 +236,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -247,7 +247,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(16)
           .cast<
               Pointer<
@@ -257,7 +257,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -270,7 +270,7 @@ class IDevicePickerAppearance extends IInspectable {
   set selectedBackgroundColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -280,7 +280,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -291,7 +291,7 @@ class IDevicePickerAppearance extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(18)
           .cast<
               Pointer<
@@ -301,7 +301,7 @@ class IDevicePickerAppearance extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeColor> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -314,7 +314,7 @@ class IDevicePickerAppearance extends IInspectable {
   set selectedAccentColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(19)
             .cast<
                 Pointer<
@@ -324,7 +324,7 @@ class IDevicePickerAppearance extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 

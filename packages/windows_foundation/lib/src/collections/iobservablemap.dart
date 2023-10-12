@@ -22,7 +22,7 @@ interface class IObservableMap<K, V> extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -35,7 +35,7 @@ interface class IObservableMap<K, V> extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer vhnd,
                           Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
+              lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -47,7 +47,7 @@ interface class IObservableMap<K, V> extends IInspectable {
 
   void remove_MapChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -56,7 +56,7 @@ interface class IObservableMap<K, V> extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -33,7 +33,7 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
   Future<List<MediaFrameSourceGroup?>> findAllAsync() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -43,7 +43,7 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,18 +61,17 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
   Future<MediaFrameSourceGroup?> fromIdAsync(String id) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr id,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int id, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, id.toHString(), value);
+    final hr = vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr id,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int id,
+                Pointer<COMObject> value)>()(lpVtbl, id.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,7 +88,7 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -99,7 +98,7 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

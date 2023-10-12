@@ -34,7 +34,7 @@ class IApplicationDataContainer extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -44,7 +44,7 @@ class IApplicationDataContainer extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +58,17 @@ class IApplicationDataContainer extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,7 +81,7 @@ class IApplicationDataContainer extends IInspectable {
   IPropertySet? get values {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -91,7 +91,7 @@ class IApplicationDataContainer extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -109,7 +109,7 @@ class IApplicationDataContainer extends IInspectable {
   Map<String, ApplicationDataContainer?>? get containers {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -119,7 +119,7 @@ class IApplicationDataContainer extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -142,7 +142,7 @@ class IApplicationDataContainer extends IInspectable {
     final container = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -156,7 +156,7 @@ class IApplicationDataContainer extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int name,
                         int disposition, Pointer<COMObject> container)>()(
-            ptr.ref.lpVtbl, name.toHString(), disposition.value, container);
+            lpVtbl, name.toHString(), disposition.value, container);
 
     if (FAILED(hr)) {
       free(container);
@@ -172,7 +172,7 @@ class IApplicationDataContainer extends IInspectable {
   }
 
   void deleteContainer(String name) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -180,7 +180,7 @@ class IApplicationDataContainer extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int name)>()(
-        ptr.ref.lpVtbl, name.toHString());
+        lpVtbl, name.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

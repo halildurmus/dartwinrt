@@ -37,17 +37,17 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +61,17 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +85,17 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -109,17 +109,17 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,17 +133,17 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -155,7 +155,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
 
   set dpiX(double value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -164,7 +164,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                                 VTablePointer lpVtbl, Double value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -173,7 +173,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -183,7 +183,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -195,7 +195,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
 
   set dpiY(double value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(13)
                 .cast<
                     Pointer<
@@ -204,7 +204,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                                 VTablePointer lpVtbl, Double value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -213,7 +213,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(14)
               .cast<
                   Pointer<
@@ -223,7 +223,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -236,7 +236,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
   BitmapBuffer? lockBuffer(BitmapBufferAccessMode mode) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(15)
         .cast<
             Pointer<
@@ -246,7 +246,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int mode,
-                Pointer<COMObject> value)>()(ptr.ref.lpVtbl, mode.value, value);
+                Pointer<COMObject> value)>()(lpVtbl, mode.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -262,7 +262,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
   }
 
   void copyTo(SoftwareBitmap? bitmap) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -272,13 +272,13 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bitmap)>()(
-        ptr.ref.lpVtbl, bitmap.lpVtbl);
+        lpVtbl, bitmap.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void copyFromBuffer(IBuffer? buffer) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -288,13 +288,13 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer.lpVtbl);
+        lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void copyToBuffer(IBuffer? buffer) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(18)
             .cast<
                 Pointer<
@@ -304,7 +304,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer.lpVtbl);
+        lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -312,7 +312,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
   SoftwareBitmap? getReadOnlyView() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(19)
             .cast<
                 Pointer<
@@ -322,7 +322,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

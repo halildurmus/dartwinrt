@@ -35,7 +35,7 @@ class IApplicationData extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IApplicationData extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,7 +58,7 @@ class IApplicationData extends IInspectable {
   Future<void> setVersionAsync(int desiredVersion, Pointer<COMObject> handler) {
     final setVersionOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,8 +74,8 @@ class IApplicationData extends IInspectable {
                     VTablePointer lpVtbl,
                     int desiredVersion,
                     VTablePointer handler,
-                    Pointer<COMObject> setVersionOperation)>()(ptr.ref.lpVtbl,
-        desiredVersion, handler.ref.lpVtbl, setVersionOperation);
+                    Pointer<COMObject> setVersionOperation)>()(
+        lpVtbl, desiredVersion, handler.ref.lpVtbl, setVersionOperation);
 
     if (FAILED(hr)) {
       free(setVersionOperation);
@@ -88,18 +88,17 @@ class IApplicationData extends IInspectable {
   Future<void> clearAllAsync() {
     final clearOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> clearOperation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, Pointer<COMObject> clearOperation)>()(
-        ptr.ref.lpVtbl, clearOperation);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> clearOperation)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> clearOperation)>()(lpVtbl, clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);
@@ -112,7 +111,7 @@ class IApplicationData extends IInspectable {
   Future<void> clearAsync(ApplicationDataLocality locality) {
     final clearOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -123,7 +122,7 @@ class IApplicationData extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int locality,
                     Pointer<COMObject> clearOperation)>()(
-        ptr.ref.lpVtbl, locality.value, clearOperation);
+        lpVtbl, locality.value, clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);
@@ -136,7 +135,7 @@ class IApplicationData extends IInspectable {
   ApplicationDataContainer? get localSettings {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -146,7 +145,7 @@ class IApplicationData extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -164,7 +163,7 @@ class IApplicationData extends IInspectable {
   ApplicationDataContainer? get roamingSettings {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -174,7 +173,7 @@ class IApplicationData extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -192,7 +191,7 @@ class IApplicationData extends IInspectable {
   StorageFolder? get localFolder {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -202,7 +201,7 @@ class IApplicationData extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -220,7 +219,7 @@ class IApplicationData extends IInspectable {
   StorageFolder? get roamingFolder {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -230,7 +229,7 @@ class IApplicationData extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -248,7 +247,7 @@ class IApplicationData extends IInspectable {
   StorageFolder? get temporaryFolder {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -258,7 +257,7 @@ class IApplicationData extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -277,18 +276,17 @@ class IApplicationData extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(15)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -300,7 +298,7 @@ class IApplicationData extends IInspectable {
 
   void remove_DataChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(16)
                 .cast<
                     Pointer<
@@ -309,17 +307,17 @@ class IApplicationData extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void signalDataChanged() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(17)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -328,7 +326,7 @@ class IApplicationData extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(18)
               .cast<
                   Pointer<
@@ -338,7 +336,7 @@ class IApplicationData extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

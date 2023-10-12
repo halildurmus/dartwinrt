@@ -32,7 +32,7 @@ class IToastCollectionManager extends IInspectable {
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IToastCollectionManager extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer collection,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, collection.lpVtbl, operation);
+        lpVtbl, collection.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -58,7 +58,7 @@ class IToastCollectionManager extends IInspectable {
   Future<List<ToastCollection?>> findAllToastCollectionsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -68,7 +68,7 @@ class IToastCollectionManager extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -87,7 +87,7 @@ class IToastCollectionManager extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -100,7 +100,7 @@ class IToastCollectionManager extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionId.toHString(), operation);
+            lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -116,7 +116,7 @@ class IToastCollectionManager extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -129,7 +129,7 @@ class IToastCollectionManager extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionId.toHString(), operation);
+            lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -142,7 +142,7 @@ class IToastCollectionManager extends IInspectable {
   Future<void> removeAllToastCollectionsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<
             Pointer<
@@ -152,7 +152,7 @@ class IToastCollectionManager extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -165,7 +165,7 @@ class IToastCollectionManager extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -175,7 +175,7 @@ class IToastCollectionManager extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -194,7 +194,7 @@ class IToastCollectionManager extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -204,7 +204,7 @@ class IToastCollectionManager extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

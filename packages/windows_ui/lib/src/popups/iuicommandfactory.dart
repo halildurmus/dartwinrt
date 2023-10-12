@@ -31,7 +31,7 @@ class IUICommandFactory extends IInspectable {
   UICommand create(String label) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IUICommandFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int label,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, label.toHString(), instance);
+        lpVtbl, label.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -56,7 +56,7 @@ class IUICommandFactory extends IInspectable {
     final instance = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -70,7 +70,7 @@ class IUICommandFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int label,
                         VTablePointer action, Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl, label.toHString(), action.ref.lpVtbl, instance);
+            lpVtbl, label.toHString(), action.ref.lpVtbl, instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -84,7 +84,7 @@ class IUICommandFactory extends IInspectable {
       String label, Pointer<COMObject> action, Object? commandId) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -102,12 +102,8 @@ class IUICommandFactory extends IInspectable {
                     int label,
                     VTablePointer action,
                     VTablePointer commandId,
-                    Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl,
-        label.toHString(),
-        action.ref.lpVtbl,
-        commandId?.boxValue().lpVtbl ?? nullptr,
-        instance);
+                    Pointer<COMObject> instance)>()(lpVtbl, label.toHString(),
+        action.ref.lpVtbl, commandId?.boxValue().lpVtbl ?? nullptr, instance);
 
     if (FAILED(hr)) {
       free(instance);

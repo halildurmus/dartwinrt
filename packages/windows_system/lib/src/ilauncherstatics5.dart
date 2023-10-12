@@ -32,7 +32,7 @@ class ILauncherStatics5 extends IInspectable {
   Future<bool> launchFolderPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -43,7 +43,7 @@ class ILauncherStatics5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, path.toHString(), operation);
+        lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -58,7 +58,7 @@ class ILauncherStatics5 extends IInspectable {
       String path, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +72,7 @@ class ILauncherStatics5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, path.toHString(), options.lpVtbl, operation);
+        lpVtbl, path.toHString(), options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -87,7 +87,7 @@ class ILauncherStatics5 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -101,7 +101,7 @@ class ILauncherStatics5 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int path, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, path.toHString(), operation);
+            lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -116,7 +116,7 @@ class ILauncherStatics5 extends IInspectable {
       User? user, String path, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -131,11 +131,7 @@ class ILauncherStatics5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer user, int path,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user.lpVtbl,
-        path.toHString(),
-        options.lpVtbl,
-        operation);
+        lpVtbl, user.lpVtbl, path.toHString(), options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

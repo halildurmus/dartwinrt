@@ -32,7 +32,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -42,7 +42,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Int32> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Int32> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,7 +56,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -66,7 +66,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Uint32> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Uint32> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,7 +80,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -90,7 +90,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Int64> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Int64> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -104,7 +104,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(9)
           .cast<
               Pointer<
@@ -114,7 +114,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Uint64> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Uint64> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -128,7 +128,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(10)
           .cast<
               Pointer<
@@ -138,7 +138,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Float> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Float> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -152,7 +152,7 @@ class INumberRounder extends IInspectable {
     final result = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(11)
           .cast<
               Pointer<
@@ -162,7 +162,7 @@ class INumberRounder extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Double> result)>()(ptr.ref.lpVtbl, value, result);
+                  Pointer<Double> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

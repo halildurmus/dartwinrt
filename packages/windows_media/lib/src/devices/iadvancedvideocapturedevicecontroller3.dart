@@ -35,7 +35,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   VariablePhotoSequenceController? get variablePhotoSequenceController {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +63,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   PhotoConfirmationControl? get photoConfirmationControl {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -73,7 +73,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,7 +91,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   ZoomControl? get zoomControl {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -101,7 +101,7 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

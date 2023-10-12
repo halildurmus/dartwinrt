@@ -30,7 +30,7 @@ class IXmlDomImplementation extends IInspectable {
     final featureSupported = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -44,7 +44,7 @@ class IXmlDomImplementation extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int feature,
                       VTablePointer version, Pointer<Bool> featureSupported)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           feature.toHString(),
           version?.boxValue().lpVtbl ?? nullptr,
           featureSupported);

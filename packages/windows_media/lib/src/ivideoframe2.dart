@@ -33,7 +33,7 @@ class IVideoFrame2 extends IInspectable {
       BitmapBounds? sourceBounds, BitmapBounds? destinationBounds) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -52,7 +52,7 @@ class IVideoFrame2 extends IInspectable {
                     VTablePointer sourceBounds,
                     VTablePointer destinationBounds,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         frame.lpVtbl,
         sourceBounds?.toReference().lpVtbl ?? nullptr,
         destinationBounds?.toReference().lpVtbl ?? nullptr,

@@ -32,7 +32,7 @@ class IVideoFrameFactory extends IInspectable {
   VideoFrame create(BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IVideoFrameFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int format, int width,
                     int height, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, format.value, width, height, value);
+        lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,7 +61,7 @@ class IVideoFrameFactory extends IInspectable {
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -77,7 +77,7 @@ class IVideoFrameFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int format, int width,
                     int height, int alpha, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, format.value, width, height, alpha.value, value);
+        lpVtbl, format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);

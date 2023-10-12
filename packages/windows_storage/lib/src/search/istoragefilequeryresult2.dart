@@ -37,7 +37,7 @@ class IStorageFileQueryResult2 extends IInspectable
       StorageFile? file) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -46,11 +46,8 @@ class IStorageFileQueryResult2 extends IInspectable
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer file,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, file.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer file,
+                Pointer<COMObject> result)>()(lpVtbl, file.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

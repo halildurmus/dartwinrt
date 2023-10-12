@@ -32,7 +32,7 @@ class IStorageLibraryChangeReader2 extends IInspectable {
     final result = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -42,7 +42,7 @@ class IStorageLibraryChangeReader2 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

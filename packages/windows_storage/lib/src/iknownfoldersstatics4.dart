@@ -34,7 +34,7 @@ class IKnownFoldersStatics4 extends IInspectable {
   Future<KnownFoldersAccessStatus> requestAccessAsync(KnownFolderId folderId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IKnownFoldersStatics4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int folderId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, folderId.value, operation);
+        lpVtbl, folderId.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -63,7 +63,7 @@ class IKnownFoldersStatics4 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IKnownFoldersStatics4 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int folderId, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, folderId.value, operation);
+            lpVtbl, user.lpVtbl, folderId.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -93,7 +93,7 @@ class IKnownFoldersStatics4 extends IInspectable {
   Future<StorageFolder?> getFolderAsync(KnownFolderId folderId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -104,7 +104,7 @@ class IKnownFoldersStatics4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int folderId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, folderId.value, operation);
+        lpVtbl, folderId.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

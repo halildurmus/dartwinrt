@@ -34,7 +34,7 @@ class IWebAccountFactory extends IInspectable {
       String userName, WebAccountState state) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -52,7 +52,7 @@ class IWebAccountFactory extends IInspectable {
                     VTablePointer webAccountProvider,
                     int userName,
                     int state,
-                    Pointer<COMObject> instance)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> instance)>()(lpVtbl,
         webAccountProvider.lpVtbl, userName.toHString(), state.value, instance);
 
     if (FAILED(hr)) {

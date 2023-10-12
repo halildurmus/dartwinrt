@@ -32,7 +32,7 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<String>? propertiesToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IStorageItemExtraProperties extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, propertiesToRetrieve.lpVtbl, operation);
+        lpVtbl, propertiesToRetrieve.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -65,7 +65,7 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<IKeyValuePair<String, Object?>>? propertiesToSave) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -80,7 +80,7 @@ class IStorageItemExtraProperties extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToSave,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, propertiesToSave.lpVtbl, operation);
+        lpVtbl, propertiesToSave.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -93,7 +93,7 @@ class IStorageItemExtraProperties extends IInspectable {
   Future<void> savePropertiesAsyncOverloadDefault() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -103,7 +103,7 @@ class IStorageItemExtraProperties extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

@@ -29,7 +29,7 @@ class ILanguageExtensionSubtags extends IInspectable {
   List<String> getExtensionSubtags(String singleton) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class ILanguageExtensionSubtags extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int singleton,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, singleton.toHString(), value);
+        lpVtbl, singleton.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);

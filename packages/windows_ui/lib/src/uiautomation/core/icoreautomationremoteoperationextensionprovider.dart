@@ -42,7 +42,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
     final allocator = Arena();
     final operandIdsArray = operandIds.toArray(allocator: allocator);
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -62,12 +62,8 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                     VTablePointer context,
                     int operandIdsSize,
                     Pointer<NativeAutomationRemoteOperationOperandId>
-                        operandIds)>()(
-        ptr.ref.lpVtbl,
-        extensionIdNativeStructPtr.ref,
-        context.lpVtbl,
-        operandIds.length,
-        operandIdsArray);
+                        operandIds)>()(lpVtbl, extensionIdNativeStructPtr.ref,
+        context.lpVtbl, operandIds.length, operandIdsArray);
 
     free(extensionIdNativeStructPtr);
     allocator.releaseAll();
@@ -82,7 +78,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
       final extensionIdNativeStructPtr = extensionId.toNativeGUID();
 
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -93,7 +89,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, GUID extensionId,
                           Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, extensionIdNativeStructPtr.ref, result);
+              lpVtbl, extensionIdNativeStructPtr.ref, result);
 
       free(extensionIdNativeStructPtr);
 

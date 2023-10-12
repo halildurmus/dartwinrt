@@ -34,7 +34,7 @@ class IDirect3DSurface extends IInspectable implements IClosable {
     final value = calloc<NativeDirect3DSurfaceDescription>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -46,7 +46,7 @@ class IDirect3DSurface extends IInspectable implements IClosable {
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<NativeDirect3DSurfaceDescription>
-                      value)>()(ptr.ref.lpVtbl, value);
+                      value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

@@ -32,7 +32,7 @@ class IConnectionProfile6 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -42,7 +42,7 @@ class IConnectionProfile6 extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int kind,
-                  Pointer<Bool> result)>()(ptr.ref.lpVtbl, kind.value, result);
+                  Pointer<Bool> result)>()(lpVtbl, kind.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

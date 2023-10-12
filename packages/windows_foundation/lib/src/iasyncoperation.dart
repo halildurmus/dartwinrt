@@ -129,7 +129,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
 
   /// Sets the method that handles the operation completed notification.
   set completed(Pointer<COMObject> value) {
-    final hr = ptr.ref.lpVtbl.value
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -148,7 +148,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   Pointer<COMObject> get completed {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.lpVtbl.value
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -158,7 +158,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
 

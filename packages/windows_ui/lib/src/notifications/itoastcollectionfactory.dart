@@ -32,7 +32,7 @@ class IToastCollectionFactory extends IInspectable {
       String launchArgs, Uri? iconUri) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IToastCollectionFactory extends IInspectable {
                     int launchArgs,
                     VTablePointer iconUri,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         collectionId.toHString(),
         displayName.toHString(),
         launchArgs.toHString(),

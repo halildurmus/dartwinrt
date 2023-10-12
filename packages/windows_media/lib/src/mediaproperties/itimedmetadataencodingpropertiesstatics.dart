@@ -34,7 +34,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
   TimedMetadataEncodingProperties? createPgs() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,7 +62,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
   TimedMetadataEncodingProperties? createSrt() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -72,7 +72,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -91,7 +91,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
     final result = calloc<COMObject>();
     final formatUserDataArray = formatUserData.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -108,7 +108,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
                     int formatUserDataSize,
                     Pointer<Uint8> formatUserData,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, formatUserData.length, formatUserDataArray, result);
+        lpVtbl, formatUserData.length, formatUserDataArray, result);
 
     free(formatUserDataArray);
 
@@ -129,7 +129,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
     final result = calloc<COMObject>();
     final formatUserDataArray = formatUserData.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -146,7 +146,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
                     int formatUserDataSize,
                     Pointer<Uint8> formatUserData,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, formatUserData.length, formatUserDataArray, result);
+        lpVtbl, formatUserData.length, formatUserDataArray, result);
 
     free(formatUserDataArray);
 

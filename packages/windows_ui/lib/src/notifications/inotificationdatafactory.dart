@@ -33,7 +33,7 @@ class INotificationDataFactory extends IInspectable {
       int sequenceNumber) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     int sequenceNumber, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, initialValues.lpVtbl, sequenceNumber, value);
+        lpVtbl, initialValues.lpVtbl, sequenceNumber, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,7 +61,7 @@ class INotificationDataFactory extends IInspectable {
       IIterable<IKeyValuePair<String, String>>? initialValues) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, initialValues.lpVtbl, value);
+        lpVtbl, initialValues.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

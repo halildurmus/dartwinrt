@@ -31,7 +31,7 @@ class IAppDisplayInfo extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -41,7 +41,7 @@ class IAppDisplayInfo extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,7 +55,7 @@ class IAppDisplayInfo extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -65,7 +65,7 @@ class IAppDisplayInfo extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,7 +79,7 @@ class IAppDisplayInfo extends IInspectable {
     final value = calloc<COMObject>();
     final sizeNativeStructPtr = size.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -90,7 +90,7 @@ class IAppDisplayInfo extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeSize size,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sizeNativeStructPtr.ref, value);
+        lpVtbl, sizeNativeStructPtr.ref, value);
 
     free(sizeNativeStructPtr);
 

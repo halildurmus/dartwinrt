@@ -31,7 +31,7 @@ class ITensorBooleanStatics extends IInspectable {
   TensorBoolean? create() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class ITensorBooleanStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -59,7 +59,7 @@ class ITensorBooleanStatics extends IInspectable {
   TensorBoolean? create2(IIterable<int>? shape) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -68,11 +68,8 @@ class ITensorBooleanStatics extends IInspectable {
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer shape,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, shape.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer shape,
+                Pointer<COMObject> result)>()(lpVtbl, shape.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -91,7 +88,7 @@ class ITensorBooleanStatics extends IInspectable {
     final result = calloc<COMObject>();
     final dataArray = data.toArray();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -110,7 +107,7 @@ class ITensorBooleanStatics extends IInspectable {
                     int dataSize,
                     Pointer<Bool> data,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, shape.lpVtbl, data.length, dataArray, result);
+        lpVtbl, shape.lpVtbl, data.length, dataArray, result);
 
     free(dataArray);
 
@@ -132,7 +129,7 @@ class ITensorBooleanStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -146,7 +143,7 @@ class ITensorBooleanStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer shape,
                         VTablePointer data, Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, shape.lpVtbl, data.lpVtbl, result);
+            lpVtbl, shape.lpVtbl, data.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

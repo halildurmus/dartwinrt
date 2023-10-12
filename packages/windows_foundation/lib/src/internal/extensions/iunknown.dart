@@ -8,7 +8,13 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 /// @nodoc
-extension IInspectableFreeHelper on IInspectable {
+extension IUnknownHelpers on IUnknown {
+  /// Returns the [VTablePointer] associated with the object.
+  VTablePointer get lpVtbl => ptr.ref.lpVtbl;
+
+  /// Returns the v-table associated with the object.
+  Pointer<IntPtr> get vtable => lpVtbl.value;
+
   /// Detaches the object from the `Finalizer`, decrements its reference count
   /// and frees its memory.
   void free() {
@@ -19,8 +25,8 @@ extension IInspectableFreeHelper on IInspectable {
 }
 
 /// @nodoc
-extension IInspectableVTablePointerHelper on IInspectable? {
+extension NullableIUnknownVTablePointerHelper on IUnknown? {
   /// Returns the [VTablePointer] associated with the object, or returns
   /// [nullptr] if the object is `null`.
-  VTablePointer get lpVtbl => this?.ptr.ref.lpVtbl ?? nullptr;
+  VTablePointer get lpVtbl => this?.lpVtbl ?? nullptr;
 }

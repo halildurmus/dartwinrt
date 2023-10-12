@@ -33,7 +33,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
   List<JapanesePhoneme?> getWords(String input) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, input.toHString(), result);
+        lpVtbl, input.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -61,7 +61,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
       String input, bool monoRuby) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +72,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input, bool monoRuby,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, input.toHString(), monoRuby, result);
+        lpVtbl, input.toHString(), monoRuby, result);
 
     if (FAILED(hr)) {
       free(result);

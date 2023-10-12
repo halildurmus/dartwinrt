@@ -34,7 +34,7 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
                     int channelCount,
                     int bitsPerSample,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitsPerSample, value);
+        lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -72,7 +72,7 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -91,7 +91,7 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
                     int channelCount,
                     int bitsPerSample,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sampleRate, channelCount, bitsPerSample, value);
+        lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
       free(value);

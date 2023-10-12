@@ -42,7 +42,7 @@ class IStorageFolderQueryOperations extends IInspectable {
   Future<IndexedState> getIndexedStateAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -52,7 +52,7 @@ class IStorageFolderQueryOperations extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -67,7 +67,7 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFileQueryResult? createFileQueryOverloadDefault() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -77,7 +77,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -95,18 +95,17 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFileQueryResult? createFileQuery(CommonFileQuery query) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, query.value, value);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 query,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int query,
+                Pointer<COMObject> value)>()(lpVtbl, query.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -125,7 +124,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -138,7 +137,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
+        lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -156,7 +155,7 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFolderQueryResult? createFolderQueryOverloadDefault() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -166,7 +165,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -184,18 +183,17 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFolderQueryResult? createFolderQuery(CommonFolderQuery query) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, query.value, value);
+    final hr = vtable
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 query,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int query,
+                Pointer<COMObject> value)>()(lpVtbl, query.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -214,7 +212,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -227,7 +225,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
+        lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -245,7 +243,7 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageItemQueryResult? createItemQuery() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -255,7 +253,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -274,7 +272,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -287,7 +285,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
+        lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -306,7 +304,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFileQuery query, int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -321,7 +319,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query, int startIndex,
                     int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
+        lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -340,7 +338,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFileQuery query) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -351,7 +349,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, query.value, operation);
+        lpVtbl, query.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -370,7 +368,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFolderQuery query, int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -385,7 +383,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query, int startIndex,
                     int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
+        lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -404,7 +402,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFolderQuery query) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(18)
             .cast<
                 Pointer<
@@ -415,7 +413,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, query.value, operation);
+        lpVtbl, query.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -434,7 +432,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(19)
             .cast<
                 Pointer<
@@ -448,7 +446,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startIndex,
                     int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, startIndex, maxItemsToRetrieve, operation);
+        lpVtbl, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -467,21 +465,17 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(20)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer queryOptions,
-                                  Pointer<Bool> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl,
-                          VTablePointer queryOptions, Pointer<Bool> value)>()(
-              ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
+      final hr = vtable
+          .elementAt(20)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer queryOptions, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+                  Pointer<Bool> value)>()(lpVtbl, queryOptions.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -495,7 +489,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(21)
           .cast<
               Pointer<
@@ -505,7 +499,7 @@ class IStorageFolderQueryOperations extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int query,
-                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, query.value, value);
+                  Pointer<Bool> value)>()(lpVtbl, query.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -519,7 +513,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(22)
           .cast<
               Pointer<
@@ -529,7 +523,7 @@ class IStorageFolderQueryOperations extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int query,
-                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, query.value, value);
+                  Pointer<Bool> value)>()(lpVtbl, query.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

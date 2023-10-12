@@ -35,7 +35,7 @@ class ITensorInt16BitStatics2 extends IInspectable {
     final shapeArray = shape.toArray<Int64>();
     final dataArray = data.toArray<Int16>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -55,8 +55,8 @@ class ITensorInt16BitStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     int dataSize,
                     Pointer<Int16> data,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        shapeArray, data.length, dataArray, result);
+                    Pointer<COMObject> result)>()(
+        lpVtbl, shape.length, shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
     free(dataArray);
@@ -78,7 +78,7 @@ class ITensorInt16BitStatics2 extends IInspectable {
     final result = calloc<COMObject>();
     final shapeArray = shape.toArray<Int64>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -97,7 +97,7 @@ class ITensorInt16BitStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     VTablePointer buffer,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, shape.length, shapeArray, buffer.lpVtbl, result);
+        lpVtbl, shape.length, shapeArray, buffer.lpVtbl, result);
 
     free(shapeArray);
 

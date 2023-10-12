@@ -38,18 +38,17 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer profile, Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer profile,
-                      Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, profile.lpVtbl, result);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer profile, Pointer<Int32> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer profile,
+                  Pointer<Int32> result)>()(lpVtbl, profile.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -63,7 +62,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
       ConnectionProfile? profile) {
     final ppManager = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -76,7 +75,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer profile,
                     Pointer<COMObject> ppManager)>()(
-        ptr.ref.lpVtbl, profile.lpVtbl, ppManager);
+        lpVtbl, profile.lpVtbl, ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

@@ -27,7 +27,7 @@ class ILearningModelBinding extends IInspectable {
       interface.cast(ILearningModelBinding.fromPtr, IID_ILearningModelBinding);
 
   void bind(String name, Object? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -38,13 +38,13 @@ class ILearningModelBinding extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int name, VTablePointer value)>()(
-        ptr.ref.lpVtbl, name.toHString(), value?.boxValue().lpVtbl ?? nullptr);
+        lpVtbl, name.toHString(), value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void bindWithProperties(String name, Object? value, IPropertySet? props) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -54,18 +54,18 @@ class ILearningModelBinding extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    VTablePointer value, VTablePointer props)>()(ptr.ref.lpVtbl,
+                    VTablePointer value, VTablePointer props)>()(lpVtbl,
         name.toHString(), value?.boxValue().lpVtbl ?? nullptr, props.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clear() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -31,7 +31,7 @@ class IPackage5 extends IInspectable {
   Future<IVector<PackageContentGroup?>> getContentGroupsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IPackage5 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -59,7 +59,7 @@ class IPackage5 extends IInspectable {
   Future<PackageContentGroup?> getContentGroupAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -70,7 +70,7 @@ class IPackage5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, name.toHString(), operation);
+        lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -88,7 +88,7 @@ class IPackage5 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -101,7 +101,7 @@ class IPackage5 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer names,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, names.lpVtbl, operation);
+            lpVtbl, names.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -120,7 +120,7 @@ class IPackage5 extends IInspectable {
       IIterable<String>? names, bool moveToHeadOfQueue) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -134,7 +134,7 @@ class IPackage5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer names,
                     bool moveToHeadOfQueue, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, names.lpVtbl, moveToHeadOfQueue, operation);
+        lpVtbl, names.lpVtbl, moveToHeadOfQueue, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -152,18 +152,17 @@ class IPackage5 extends IInspectable {
   Future<bool> setInUseAsync(bool inUse) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool inUse,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, bool inUse,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, inUse, operation);
+    final hr = vtable
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Bool inUse,
+                        Pointer<COMObject> operation)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, bool inUse,
+                Pointer<COMObject> operation)>()(lpVtbl, inUse, operation);
 
     if (FAILED(hr)) {
       free(operation);

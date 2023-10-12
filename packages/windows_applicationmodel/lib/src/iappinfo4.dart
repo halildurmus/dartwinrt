@@ -31,20 +31,19 @@ class IAppInfo4 extends IInspectable {
     final value = calloc<Pointer<IntPtr>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<IntPtr>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<IntPtr>> value)>()(
-          ptr.ref.lpVtbl, valueSize, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl,
+                          Pointer<Uint32> valueSize,
+                          Pointer<Pointer<IntPtr>> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                  Pointer<Pointer<IntPtr>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

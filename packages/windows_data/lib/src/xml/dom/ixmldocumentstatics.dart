@@ -34,7 +34,7 @@ class IXmlDocumentStatics extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -47,7 +47,7 @@ class IXmlDocumentStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, asyncInfo);
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -63,7 +63,7 @@ class IXmlDocumentStatics extends IInspectable {
       Uri? uri, XmlLoadSettings? loadSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -79,7 +79,7 @@ class IXmlDocumentStatics extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer uri,
                     VTablePointer loadSettings,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> asyncInfo)>()(lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr, loadSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -96,7 +96,7 @@ class IXmlDocumentStatics extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -109,7 +109,7 @@ class IXmlDocumentStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, asyncInfo);
+            lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -125,7 +125,7 @@ class IXmlDocumentStatics extends IInspectable {
       IStorageFile? file, XmlLoadSettings? loadSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -142,7 +142,7 @@ class IXmlDocumentStatics extends IInspectable {
                     VTablePointer file,
                     VTablePointer loadSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, loadSettings.lpVtbl, asyncInfo);
+        lpVtbl, file.lpVtbl, loadSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

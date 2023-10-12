@@ -34,7 +34,7 @@ class IVideoStreamDescriptorFactory extends IInspectable {
   VideoStreamDescriptor create(VideoEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,7 +49,7 @@ class IVideoStreamDescriptorFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProperties,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, encodingProperties.lpVtbl, result);
+        lpVtbl, encodingProperties.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

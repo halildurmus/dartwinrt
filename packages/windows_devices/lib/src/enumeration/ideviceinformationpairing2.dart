@@ -36,17 +36,17 @@ class IDeviceInformationPairing2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,7 +59,7 @@ class IDeviceInformationPairing2 extends IInspectable {
   DeviceInformationCustomPairing? get custom {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -69,7 +69,7 @@ class IDeviceInformationPairing2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,7 +89,7 @@ class IDeviceInformationPairing2 extends IInspectable {
       IDevicePairingSettings? devicePairingSettings) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -105,8 +105,8 @@ class IDeviceInformationPairing2 extends IInspectable {
                     VTablePointer lpVtbl,
                     int minProtectionLevel,
                     VTablePointer devicePairingSettings,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-        minProtectionLevel.value, devicePairingSettings.lpVtbl, result);
+                    Pointer<COMObject> result)>()(
+        lpVtbl, minProtectionLevel.value, devicePairingSettings.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -121,7 +121,7 @@ class IDeviceInformationPairing2 extends IInspectable {
   Future<DeviceUnpairingResult?> unpairAsync() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -131,7 +131,7 @@ class IDeviceInformationPairing2 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

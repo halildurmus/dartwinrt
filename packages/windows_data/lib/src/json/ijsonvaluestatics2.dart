@@ -31,7 +31,7 @@ class IJsonValueStatics2 extends IInspectable {
   JsonValue? createNullValue() {
     final jsonValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IJsonValueStatics2 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> jsonValue)>()(ptr.ref.lpVtbl, jsonValue);
+                Pointer<COMObject> jsonValue)>()(lpVtbl, jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);

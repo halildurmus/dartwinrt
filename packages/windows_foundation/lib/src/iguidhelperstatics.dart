@@ -33,7 +33,7 @@ class IGuidHelperStatics extends IInspectable {
     final result = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -43,7 +43,7 @@ class IGuidHelperStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<GUID> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +57,17 @@ class IGuidHelperStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,7 +84,7 @@ class IGuidHelperStatics extends IInspectable {
       final targetNativeStructPtr = target.toNativeGUID();
       final valueNativeStructPtr = value.toNativeGUID();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -98,7 +98,7 @@ class IGuidHelperStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<GUID> target,
                       Pointer<GUID> value, Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, targetNativeStructPtr, valueNativeStructPtr, result);
+          lpVtbl, targetNativeStructPtr, valueNativeStructPtr, result);
 
       free(targetNativeStructPtr);
       free(valueNativeStructPtr);

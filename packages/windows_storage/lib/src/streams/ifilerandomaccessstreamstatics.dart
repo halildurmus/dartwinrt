@@ -39,7 +39,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -50,7 +50,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath, int accessMode,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, filePath.toHString(), accessMode.value, operation);
+        lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -70,7 +70,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -91,7 +91,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int sharingOptions,
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         filePath.toHString(),
         accessMode.value,
         sharingOptions.value,
@@ -112,7 +112,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   Future<StorageStreamTransaction?> openTransactedWriteAsync(String filePath) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -123,7 +123,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, filePath.toHString(), operation);
+        lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -142,7 +142,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -161,7 +161,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openOptions,
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         filePath.toHString(),
         openOptions.value,
         openDisposition.value,
@@ -182,7 +182,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       User? user, String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -200,8 +200,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     VTablePointer user,
                     int filePath,
                     int accessMode,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        user.lpVtbl, filePath.toHString(), accessMode.value, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -222,7 +222,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -245,7 +245,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int sharingOptions,
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         user.lpVtbl,
         filePath.toHString(),
         accessMode.value,
@@ -269,7 +269,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -283,7 +283,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int filePath, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, filePath.toHString(), operation);
+            lpVtbl, user.lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -303,7 +303,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -324,7 +324,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openOptions,
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         user.lpVtbl,
         filePath.toHString(),
         openOptions.value,

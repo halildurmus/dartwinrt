@@ -30,7 +30,7 @@ class ILanguageStatics3 extends IInspectable {
       IIterable<String>? languageTags) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -43,7 +43,7 @@ class ILanguageStatics3 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languageTags,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, languageTags.lpVtbl, result);
+        lpVtbl, languageTags.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

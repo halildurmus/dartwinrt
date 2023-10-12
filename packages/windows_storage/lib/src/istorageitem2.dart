@@ -37,7 +37,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
   Future<StorageFolder?> getParentAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -47,7 +47,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -63,7 +63,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -73,7 +73,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, VTablePointer item,
-                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, item.lpVtbl, value);
+                  Pointer<Bool> value)>()(lpVtbl, item.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

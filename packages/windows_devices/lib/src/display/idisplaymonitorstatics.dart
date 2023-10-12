@@ -32,7 +32,7 @@ class IDisplayMonitorStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -42,7 +42,7 @@ class IDisplayMonitorStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,7 +55,7 @@ class IDisplayMonitorStatics extends IInspectable {
   Future<DisplayMonitor?> fromIdAsync(String deviceId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -66,7 +66,7 @@ class IDisplayMonitorStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, deviceId.toHString(), operation);
+        lpVtbl, deviceId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -81,7 +81,7 @@ class IDisplayMonitorStatics extends IInspectable {
   Future<DisplayMonitor?> fromInterfaceIdAsync(String deviceInterfaceId) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -94,7 +94,7 @@ class IDisplayMonitorStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceInterfaceId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, deviceInterfaceId.toHString(), operation);
+        lpVtbl, deviceInterfaceId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

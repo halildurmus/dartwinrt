@@ -34,17 +34,17 @@ class IWebAccountProvider3 extends IInspectable
   User? get user {
     final user = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> user)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> user)>()(
-        ptr.ref.lpVtbl, user);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> user)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl, Pointer<COMObject> user)>()(lpVtbl, user);
 
     if (FAILED(hr)) {
       free(user);

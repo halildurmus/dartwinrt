@@ -40,7 +40,7 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
       String webAccountProviderId, String authority, User? user) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -59,7 +59,7 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
                     int authority,
                     VTablePointer user,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         webAccountProviderId.toHString(),
         authority.toHString(),
         user.lpVtbl,

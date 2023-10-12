@@ -33,18 +33,17 @@ class ICharacterGroupings extends IInspectable
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int text,
-                      Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, text.toHString(), result);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, IntPtr text,
+                          Pointer<IntPtr> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int text,
+                  Pointer<IntPtr> result)>()(lpVtbl, text.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

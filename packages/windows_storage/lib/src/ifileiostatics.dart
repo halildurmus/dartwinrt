@@ -34,7 +34,7 @@ class IFileIOStatics extends IInspectable {
     final textOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -47,7 +47,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, textOperation);
+            lpVtbl, file.lpVtbl, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -63,7 +63,7 @@ class IFileIOStatics extends IInspectable {
     final textOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, encoding.value, textOperation);
+            lpVtbl, file.lpVtbl, encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -92,7 +92,7 @@ class IFileIOStatics extends IInspectable {
     final textOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -106,7 +106,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
+            lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -120,7 +120,7 @@ class IFileIOStatics extends IInspectable {
       IStorageFile? file, String contents, UnicodeEncoding encoding) {
     final textOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -138,8 +138,8 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int contents,
                     int encoding,
-                    Pointer<COMObject> textOperation)>()(ptr.ref.lpVtbl,
-        file.lpVtbl, contents.toHString(), encoding.value, textOperation);
+                    Pointer<COMObject> textOperation)>()(lpVtbl, file.lpVtbl,
+        contents.toHString(), encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -153,7 +153,7 @@ class IFileIOStatics extends IInspectable {
     final textOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -167,7 +167,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
+            lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -181,7 +181,7 @@ class IFileIOStatics extends IInspectable {
       IStorageFile? file, String contents, UnicodeEncoding encoding) {
     final textOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -199,8 +199,8 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int contents,
                     int encoding,
-                    Pointer<COMObject> textOperation)>()(ptr.ref.lpVtbl,
-        file.lpVtbl, contents.toHString(), encoding.value, textOperation);
+                    Pointer<COMObject> textOperation)>()(lpVtbl, file.lpVtbl,
+        contents.toHString(), encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -214,7 +214,7 @@ class IFileIOStatics extends IInspectable {
     final linesOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -227,7 +227,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> linesOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, linesOperation);
+            lpVtbl, file.lpVtbl, linesOperation);
 
     if (FAILED(hr)) {
       free(linesOperation);
@@ -246,7 +246,7 @@ class IFileIOStatics extends IInspectable {
     final linesOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(13)
                 .cast<
                     Pointer<
@@ -260,7 +260,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> linesOperation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, encoding.value, linesOperation);
+            lpVtbl, file.lpVtbl, encoding.value, linesOperation);
 
     if (FAILED(hr)) {
       free(linesOperation);
@@ -278,7 +278,7 @@ class IFileIOStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -292,7 +292,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -306,7 +306,7 @@ class IFileIOStatics extends IInspectable {
       IStorageFile? file, IIterable<String>? lines, UnicodeEncoding encoding) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -325,7 +325,7 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer lines,
                     int encoding,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
+        lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -339,7 +339,7 @@ class IFileIOStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(16)
                 .cast<
                     Pointer<
@@ -353,7 +353,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -367,7 +367,7 @@ class IFileIOStatics extends IInspectable {
       IStorageFile? file, IIterable<String>? lines, UnicodeEncoding encoding) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -386,7 +386,7 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer lines,
                     int encoding,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
+        lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -400,7 +400,7 @@ class IFileIOStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(18)
                 .cast<
                     Pointer<
@@ -413,7 +413,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -429,7 +429,7 @@ class IFileIOStatics extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(19)
                 .cast<
                     Pointer<
@@ -443,7 +443,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer buffer, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, buffer.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, buffer.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -457,7 +457,7 @@ class IFileIOStatics extends IInspectable {
     final operation = calloc<COMObject>();
     final bufferArray = buffer.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(20)
             .cast<
                 Pointer<
@@ -476,7 +476,7 @@ class IFileIOStatics extends IInspectable {
                     int bufferSize,
                     Pointer<Uint8> buffer,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, buffer.length, bufferArray, operation);
+        lpVtbl, file.lpVtbl, buffer.length, bufferArray, operation);
 
     free(bufferArray);
 

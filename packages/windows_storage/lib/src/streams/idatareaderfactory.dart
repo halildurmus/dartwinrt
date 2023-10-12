@@ -32,7 +32,7 @@ class IDataReaderFactory extends IInspectable {
   DataReader createDataReader(IInputStream? inputStream) {
     final dataReader = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IDataReaderFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                     Pointer<COMObject> dataReader)>()(
-        ptr.ref.lpVtbl, inputStream.lpVtbl, dataReader);
+        lpVtbl, inputStream.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

@@ -34,18 +34,17 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
   ImageEncodingProperties? createUncompressed(MediaPixelFormat format) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 format,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, format.value, value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 format,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int format,
+                Pointer<COMObject> value)>()(lpVtbl, format.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +62,7 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
   ImageEncodingProperties? createBmp() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -73,7 +72,7 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
