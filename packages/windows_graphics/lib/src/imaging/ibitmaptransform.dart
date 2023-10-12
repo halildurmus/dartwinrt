@@ -35,7 +35,7 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IBitmapTransform extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,7 +57,7 @@ class IBitmapTransform extends IInspectable {
 
   set scaledWidth(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -66,7 +66,7 @@ class IBitmapTransform extends IInspectable {
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -75,7 +75,7 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -85,7 +85,7 @@ class IBitmapTransform extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -97,7 +97,7 @@ class IBitmapTransform extends IInspectable {
 
   set scaledHeight(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -106,7 +106,7 @@ class IBitmapTransform extends IInspectable {
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -115,17 +115,17 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -136,7 +136,7 @@ class IBitmapTransform extends IInspectable {
   }
 
   set interpolationMode(BitmapInterpolationMode value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -144,7 +144,7 @@ class IBitmapTransform extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -153,17 +153,17 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -174,7 +174,7 @@ class IBitmapTransform extends IInspectable {
   }
 
   set flip(BitmapFlip value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -182,7 +182,7 @@ class IBitmapTransform extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -191,17 +191,17 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(14)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -212,7 +212,7 @@ class IBitmapTransform extends IInspectable {
   }
 
   set rotation(BitmapRotation value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -220,7 +220,7 @@ class IBitmapTransform extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -229,7 +229,7 @@ class IBitmapTransform extends IInspectable {
     final value = calloc<NativeBitmapBounds>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(16)
           .cast<
               Pointer<
@@ -239,7 +239,7 @@ class IBitmapTransform extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeBitmapBounds> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeBitmapBounds> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -252,7 +252,7 @@ class IBitmapTransform extends IInspectable {
   set bounds(BitmapBounds value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -262,7 +262,7 @@ class IBitmapTransform extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeBitmapBounds value)>()(
-        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+        lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 

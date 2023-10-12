@@ -29,7 +29,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
           IID_IAdvancedVideoCaptureDeviceController);
 
   void setDeviceProperty(String propertyId, Object? propertyValue) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -39,7 +39,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyId,
-                    VTablePointer propertyValue)>()(ptr.ref.lpVtbl,
+                    VTablePointer propertyValue)>()(lpVtbl,
         propertyId.toHString(), propertyValue?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -49,7 +49,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
     final propertyValue = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -62,7 +62,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int propertyId,
                         Pointer<COMObject> propertyValue)>()(
-            ptr.ref.lpVtbl, propertyId.toHString(), propertyValue);
+            lpVtbl, propertyId.toHString(), propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);

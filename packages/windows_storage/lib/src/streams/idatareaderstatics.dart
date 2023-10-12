@@ -33,7 +33,7 @@ class IDataReaderStatics extends IInspectable {
     final dataReader = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class IDataReaderStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         Pointer<COMObject> dataReader)>()(
-            ptr.ref.lpVtbl, buffer.lpVtbl, dataReader);
+            lpVtbl, buffer.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

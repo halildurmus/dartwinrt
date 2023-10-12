@@ -10,7 +10,7 @@ import '../../iuriruntimeclass.dart';
 import '../../propertytype.dart';
 import '../../uri.dart' as winrt_uri;
 import 'comobject.dart';
-import 'iinspectable.dart';
+import 'iunknown.dart';
 import 'uri.dart';
 
 extension IPropertyValueHelper on IPropertyValue {

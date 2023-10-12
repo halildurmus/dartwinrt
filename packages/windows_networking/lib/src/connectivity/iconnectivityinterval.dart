@@ -30,7 +30,7 @@ class IConnectivityInterval extends IInspectable {
     final startTime = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -40,7 +40,7 @@ class IConnectivityInterval extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> startTime)>()(ptr.ref.lpVtbl, startTime);
+                  Pointer<Int64> startTime)>()(lpVtbl, startTime);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,7 +54,7 @@ class IConnectivityInterval extends IInspectable {
     final duration = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -64,7 +64,7 @@ class IConnectivityInterval extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> duration)>()(ptr.ref.lpVtbl, duration);
+                  Pointer<Int64> duration)>()(lpVtbl, duration);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

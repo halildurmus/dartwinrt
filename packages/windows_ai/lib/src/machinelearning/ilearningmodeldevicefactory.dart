@@ -34,18 +34,17 @@ class ILearningModelDeviceFactory extends IInspectable {
   LearningModelDevice create(LearningModelDeviceKind deviceKind) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 deviceKind,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int deviceKind,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, deviceKind.value, value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 deviceKind,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int deviceKind,
+                Pointer<COMObject> value)>()(lpVtbl, deviceKind.value, value);
 
     if (FAILED(hr)) {
       free(value);

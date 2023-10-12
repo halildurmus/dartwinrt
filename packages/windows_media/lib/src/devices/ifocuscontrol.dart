@@ -32,17 +32,17 @@ class IFocusControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,7 +55,7 @@ class IFocusControl extends IInspectable {
   List<FocusPreset>? get supportedPresets {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -65,7 +65,7 @@ class IFocusControl extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -87,17 +87,17 @@ class IFocusControl extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,7 +110,7 @@ class IFocusControl extends IInspectable {
   Future<void> setPresetAsync(FocusPreset preset) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -121,7 +121,7 @@ class IFocusControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int preset,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, preset.value, asyncInfo);
+        lpVtbl, preset.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -135,7 +135,7 @@ class IFocusControl extends IInspectable {
       FocusPreset preset, bool completeBeforeFocus) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -149,7 +149,7 @@ class IFocusControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int preset,
                     bool completeBeforeFocus, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, preset.value, completeBeforeFocus, asyncInfo);
+        lpVtbl, preset.value, completeBeforeFocus, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -163,7 +163,7 @@ class IFocusControl extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -173,7 +173,7 @@ class IFocusControl extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -187,7 +187,7 @@ class IFocusControl extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -197,7 +197,7 @@ class IFocusControl extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,7 +211,7 @@ class IFocusControl extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -221,7 +221,7 @@ class IFocusControl extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -235,7 +235,7 @@ class IFocusControl extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(14)
               .cast<
                   Pointer<
@@ -245,7 +245,7 @@ class IFocusControl extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -258,18 +258,17 @@ class IFocusControl extends IInspectable {
   Future<void> setValueAsync(int focus) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 focus,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int focus,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, focus, asyncInfo);
+    final hr = vtable
+        .elementAt(15)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 focus,
+                        Pointer<COMObject> asyncInfo)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int focus,
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, focus, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -282,7 +281,7 @@ class IFocusControl extends IInspectable {
   Future<void> focusAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(16)
         .cast<
             Pointer<
@@ -292,7 +291,7 @@ class IFocusControl extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

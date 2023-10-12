@@ -34,7 +34,7 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,7 +49,7 @@ class IGeopointFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, positionNativeStructPtr.ref, value);
+        lpVtbl, positionNativeStructPtr.ref, value);
 
     free(positionNativeStructPtr);
 
@@ -66,7 +66,7 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -82,7 +82,7 @@ class IGeopointFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> value)>()(lpVtbl,
         positionNativeStructPtr.ref, altitudeReferenceSystem.value, value);
 
     free(positionNativeStructPtr);
@@ -102,7 +102,7 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -121,7 +121,7 @@ class IGeopointFactory extends IInspectable {
                     int altitudeReferenceSystem,
                     int spatialReferenceId,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         positionNativeStructPtr.ref,
         altitudeReferenceSystem.value,
         spatialReferenceId,

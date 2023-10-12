@@ -34,18 +34,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
   JsonObject getObjectAt(int index) {
     final returnValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> returnValue)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, index, returnValue);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                        Pointer<COMObject> returnValue)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                Pointer<COMObject> returnValue)>()(lpVtbl, index, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -58,18 +57,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
   JsonArray getArrayAt(int index) {
     final returnValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> returnValue)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, index, returnValue);
+    final hr = vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                        Pointer<COMObject> returnValue)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                Pointer<COMObject> returnValue)>()(lpVtbl, index, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -83,18 +81,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
     final returnValue = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<IntPtr> returnValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<IntPtr> returnValue)>()(
-          ptr.ref.lpVtbl, index, returnValue);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                          Pointer<IntPtr> returnValue)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<IntPtr> returnValue)>()(lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -108,18 +105,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
     final returnValue = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<Double> returnValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<Double> returnValue)>()(
-          ptr.ref.lpVtbl, index, returnValue);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                          Pointer<Double> returnValue)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<Double> returnValue)>()(lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,18 +129,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
     final returnValue = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<Bool> returnValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<Bool> returnValue)>()(
-          ptr.ref.lpVtbl, index, returnValue);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                          Pointer<Bool> returnValue)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<Bool> returnValue)>()(lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

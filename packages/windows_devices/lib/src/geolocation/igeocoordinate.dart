@@ -32,7 +32,7 @@ class IGeocoordinate extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -42,7 +42,7 @@ class IGeocoordinate extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,7 +58,7 @@ class IGeocoordinate extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -68,7 +68,7 @@ class IGeocoordinate extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,7 +83,7 @@ class IGeocoordinate extends IInspectable {
   double? get altitude {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -93,7 +93,7 @@ class IGeocoordinate extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -114,7 +114,7 @@ class IGeocoordinate extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -124,7 +124,7 @@ class IGeocoordinate extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -137,7 +137,7 @@ class IGeocoordinate extends IInspectable {
   double? get altitudeAccuracy {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -147,7 +147,7 @@ class IGeocoordinate extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -167,7 +167,7 @@ class IGeocoordinate extends IInspectable {
   double? get heading {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -177,7 +177,7 @@ class IGeocoordinate extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -197,7 +197,7 @@ class IGeocoordinate extends IInspectable {
   double? get speed {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -207,7 +207,7 @@ class IGeocoordinate extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -228,17 +228,17 @@ class IGeocoordinate extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

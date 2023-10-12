@@ -31,11 +31,11 @@ class IClosable extends IInspectable {
       interface.cast(IClosable.fromPtr, IID_IClosable);
 
   void close() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

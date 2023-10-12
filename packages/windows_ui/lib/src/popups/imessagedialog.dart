@@ -33,7 +33,7 @@ class IMessageDialog extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -43,7 +43,7 @@ class IMessageDialog extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,7 +55,7 @@ class IMessageDialog extends IInspectable {
 
   set title(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -64,7 +64,7 @@ class IMessageDialog extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -72,7 +72,7 @@ class IMessageDialog extends IInspectable {
   IVector<IUICommand?>? get commands {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -82,7 +82,7 @@ class IMessageDialog extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -103,7 +103,7 @@ class IMessageDialog extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -113,7 +113,7 @@ class IMessageDialog extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -125,7 +125,7 @@ class IMessageDialog extends IInspectable {
 
   set defaultCommandIndex(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -134,7 +134,7 @@ class IMessageDialog extends IInspectable {
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -143,7 +143,7 @@ class IMessageDialog extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -153,7 +153,7 @@ class IMessageDialog extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -165,7 +165,7 @@ class IMessageDialog extends IInspectable {
 
   set cancelCommandIndex(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -174,7 +174,7 @@ class IMessageDialog extends IInspectable {
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -183,7 +183,7 @@ class IMessageDialog extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -193,7 +193,7 @@ class IMessageDialog extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -205,7 +205,7 @@ class IMessageDialog extends IInspectable {
 
   set content(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -214,7 +214,7 @@ class IMessageDialog extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -222,7 +222,7 @@ class IMessageDialog extends IInspectable {
   Future<IUICommand?> showAsync() {
     final messageDialogAsyncOperation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -233,7 +233,7 @@ class IMessageDialog extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     Pointer<COMObject> messageDialogAsyncOperation)>()(
-        ptr.ref.lpVtbl, messageDialogAsyncOperation);
+        lpVtbl, messageDialogAsyncOperation);
 
     if (FAILED(hr)) {
       free(messageDialogAsyncOperation);
@@ -250,7 +250,7 @@ class IMessageDialog extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(16)
               .cast<
                   Pointer<
@@ -260,7 +260,7 @@ class IMessageDialog extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -272,7 +272,7 @@ class IMessageDialog extends IInspectable {
 
   set options(MessageDialogOptions value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(17)
                 .cast<
                     Pointer<
@@ -281,7 +281,7 @@ class IMessageDialog extends IInspectable {
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.value);
+            lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

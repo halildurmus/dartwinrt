@@ -32,17 +32,17 @@ class IGeolocatorStatics2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,7 +53,7 @@ class IGeolocatorStatics2 extends IInspectable {
   }
 
   set defaultGeoposition(BasicGeoposition? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -63,7 +63,7 @@ class IGeolocatorStatics2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference().lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -71,7 +71,7 @@ class IGeolocatorStatics2 extends IInspectable {
   BasicGeoposition? get defaultGeoposition {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -81,7 +81,7 @@ class IGeolocatorStatics2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

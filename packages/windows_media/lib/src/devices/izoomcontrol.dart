@@ -30,17 +30,17 @@ class IZoomControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +54,17 @@ class IZoomControl extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,17 +78,17 @@ class IZoomControl extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -102,17 +102,17 @@ class IZoomControl extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -126,17 +126,17 @@ class IZoomControl extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -147,7 +147,7 @@ class IZoomControl extends IInspectable {
   }
 
   set value(double value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -155,7 +155,7 @@ class IZoomControl extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Float value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

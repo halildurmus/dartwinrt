@@ -30,17 +30,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +54,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,18 +77,17 @@ class IExposureControl extends IInspectable {
   Future<void> setAutoAsync(bool value) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, bool value,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, value, asyncInfo);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Bool value,
+                        Pointer<COMObject> asyncInfo)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, bool value,
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -102,17 +101,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -126,17 +125,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -150,17 +149,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -174,17 +173,17 @@ class IExposureControl extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -197,7 +196,7 @@ class IExposureControl extends IInspectable {
   Future<void> setValueAsync(Duration shutterDuration) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -210,7 +209,7 @@ class IExposureControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int shutterDuration,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, shutterDuration.toWinRTDuration(), asyncInfo);
+        lpVtbl, shutterDuration.toWinRTDuration(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

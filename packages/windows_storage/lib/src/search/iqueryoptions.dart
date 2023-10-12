@@ -37,7 +37,7 @@ class IQueryOptions extends IInspectable {
   IVector<String>? get fileTypeFilter {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IQueryOptions extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -67,17 +67,17 @@ class IQueryOptions extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -88,7 +88,7 @@ class IQueryOptions extends IInspectable {
   }
 
   set folderDepth(FolderDepth value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -96,7 +96,7 @@ class IQueryOptions extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -105,7 +105,7 @@ class IQueryOptions extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -115,7 +115,7 @@ class IQueryOptions extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -127,7 +127,7 @@ class IQueryOptions extends IInspectable {
 
   set applicationSearchFilter(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -136,7 +136,7 @@ class IQueryOptions extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -145,7 +145,7 @@ class IQueryOptions extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -155,7 +155,7 @@ class IQueryOptions extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -167,7 +167,7 @@ class IQueryOptions extends IInspectable {
 
   set userSearchFilter(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(12)
                 .cast<
                     Pointer<
@@ -176,7 +176,7 @@ class IQueryOptions extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -185,7 +185,7 @@ class IQueryOptions extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -195,7 +195,7 @@ class IQueryOptions extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -207,7 +207,7 @@ class IQueryOptions extends IInspectable {
 
   set language(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -216,7 +216,7 @@ class IQueryOptions extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -225,17 +225,17 @@ class IQueryOptions extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(15)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -246,7 +246,7 @@ class IQueryOptions extends IInspectable {
   }
 
   set indexerOption(IndexerOption value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -254,7 +254,7 @@ class IQueryOptions extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -262,7 +262,7 @@ class IQueryOptions extends IInspectable {
   IVector<SortEntry>? get sortOrder {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -272,7 +272,7 @@ class IQueryOptions extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -292,7 +292,7 @@ class IQueryOptions extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(18)
               .cast<
                   Pointer<
@@ -302,7 +302,7 @@ class IQueryOptions extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -316,17 +316,17 @@ class IQueryOptions extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(19)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -340,7 +340,7 @@ class IQueryOptions extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(20)
               .cast<
                   Pointer<
@@ -350,7 +350,7 @@ class IQueryOptions extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -362,7 +362,7 @@ class IQueryOptions extends IInspectable {
 
   void loadFromString(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(21)
                 .cast<
                     Pointer<
@@ -371,14 +371,14 @@ class IQueryOptions extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setThumbnailPrefetch(
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(22)
             .cast<
                 Pointer<
@@ -389,14 +389,14 @@ class IQueryOptions extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mode, int requestedSize,
                     int options)>()(
-        ptr.ref.lpVtbl, mode.value, requestedSize, options.value);
+        lpVtbl, mode.value, requestedSize, options.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setPropertyPrefetch(PropertyPrefetchOptions options,
       IIterable<String>? propertiesToRetrieve) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(23)
             .cast<
                 Pointer<
@@ -407,7 +407,7 @@ class IQueryOptions extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int options,
                     VTablePointer propertiesToRetrieve)>()(
-        ptr.ref.lpVtbl, options.value, propertiesToRetrieve.lpVtbl);
+        lpVtbl, options.value, propertiesToRetrieve.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

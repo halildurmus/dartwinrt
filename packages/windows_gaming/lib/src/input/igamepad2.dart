@@ -39,7 +39,7 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -49,7 +49,7 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int button,
-                  Pointer<Int32> value)>()(ptr.ref.lpVtbl, button.value, value);
+                  Pointer<Int32> value)>()(lpVtbl, button.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

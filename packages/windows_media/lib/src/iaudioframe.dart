@@ -33,7 +33,7 @@ class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
   AudioBuffer? lockBuffer(AudioBufferAccessMode mode) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -43,7 +43,7 @@ class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int mode,
-                Pointer<COMObject> value)>()(ptr.ref.lpVtbl, mode.value, value);
+                Pointer<COMObject> value)>()(lpVtbl, mode.value, value);
 
     if (FAILED(hr)) {
       free(value);

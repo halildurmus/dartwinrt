@@ -35,7 +35,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
   ToastNotificationManagerForUser? getForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,11 +44,8 @@ class IToastNotificationManagerStatics4 extends IInspectable {
                         Pointer<COMObject> result)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer user,
-                Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, user.lpVtbl, result);
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -64,7 +61,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
   }
 
   void configureNotificationMirroring(NotificationMirroring value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +69,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -33,7 +33,7 @@ class IInputStream extends IInspectable implements IClosable {
       IBuffer? buffer, int count, InputStreamOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -48,7 +48,7 @@ class IInputStream extends IInspectable implements IClosable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer,
                     int count, int options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, buffer.lpVtbl, count, options.value, operation);
+        lpVtbl, buffer.lpVtbl, count, options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

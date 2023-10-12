@@ -35,7 +35,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,7 +59,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -69,7 +69,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,7 +83,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -93,7 +93,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -107,7 +107,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -117,7 +117,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -131,7 +131,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -141,7 +141,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -155,7 +155,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -165,7 +165,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -179,7 +179,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -189,7 +189,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -203,7 +203,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -213,7 +213,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -227,7 +227,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(14)
               .cast<
                   Pointer<
@@ -237,7 +237,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -250,7 +250,7 @@ class IUriRuntimeClass extends IInspectable {
   WwwFormUrlDecoder? get queryParsed {
     final ppWwwFormUrlDecoder = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -261,7 +261,7 @@ class IUriRuntimeClass extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     Pointer<COMObject> ppWwwFormUrlDecoder)>()(
-        ptr.ref.lpVtbl, ppWwwFormUrlDecoder);
+        lpVtbl, ppWwwFormUrlDecoder);
 
     if (FAILED(hr)) {
       free(ppWwwFormUrlDecoder);
@@ -280,7 +280,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(16)
               .cast<
                   Pointer<
@@ -290,7 +290,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -304,7 +304,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(17)
               .cast<
                   Pointer<
@@ -314,7 +314,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -328,7 +328,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(18)
               .cast<
                   Pointer<
@@ -338,7 +338,7 @@ class IUriRuntimeClass extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -352,17 +352,17 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(19)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -376,17 +376,17 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(20)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(20)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -400,7 +400,7 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(21)
           .cast<
               Pointer<
@@ -410,7 +410,7 @@ class IUriRuntimeClass extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, VTablePointer pUri,
-                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, pUri.lpVtbl, value);
+                  Pointer<Bool> value)>()(lpVtbl, pUri.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -424,7 +424,7 @@ class IUriRuntimeClass extends IInspectable {
     final instance = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(22)
                 .cast<
                     Pointer<
@@ -437,7 +437,7 @@ class IUriRuntimeClass extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int relativeUri,
                         Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl, relativeUri.toHString(), instance);
+            lpVtbl, relativeUri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);

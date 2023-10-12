@@ -31,7 +31,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
   PhoneNumberInfo create(String number) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int number,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, number.toHString(), result);
+        lpVtbl, number.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

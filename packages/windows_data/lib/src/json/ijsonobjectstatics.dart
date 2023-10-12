@@ -31,7 +31,7 @@ class IJsonObjectStatics extends IInspectable {
   JsonObject parse(String input) {
     final jsonObject = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IJsonObjectStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonObject)>()(
-        ptr.ref.lpVtbl, input.toHString(), jsonObject);
+        lpVtbl, input.toHString(), jsonObject);
 
     if (FAILED(hr)) {
       free(jsonObject);
@@ -57,7 +57,7 @@ class IJsonObjectStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -71,7 +71,7 @@ class IJsonObjectStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, input.toHString(), result, succeeded);
+          lpVtbl, input.toHString(), result, succeeded);
 
       if (FAILED(hr)) {
         free(result);

@@ -36,7 +36,7 @@ class IEndpointPairFactory extends IInspectable {
       String remoteServiceName) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -57,7 +57,7 @@ class IEndpointPairFactory extends IInspectable {
                     VTablePointer remoteHostName,
                     int remoteServiceName,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         localHostName.lpVtbl,
         localServiceName.toHString(),
         remoteHostName.lpVtbl,

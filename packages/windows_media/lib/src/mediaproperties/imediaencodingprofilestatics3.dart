@@ -35,18 +35,17 @@ class IMediaEncodingProfileStatics3 extends IInspectable {
   MediaEncodingProfile? createAlac(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int quality,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, quality.value, value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int quality,
+                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -64,18 +63,17 @@ class IMediaEncodingProfileStatics3 extends IInspectable {
   MediaEncodingProfile? createFlac(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int quality,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, quality.value, value);
+    final hr = vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int quality,
+                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -93,18 +91,17 @@ class IMediaEncodingProfileStatics3 extends IInspectable {
   MediaEncodingProfile? createHevc(VideoEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int quality,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, quality.value, value);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int quality,
+                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);

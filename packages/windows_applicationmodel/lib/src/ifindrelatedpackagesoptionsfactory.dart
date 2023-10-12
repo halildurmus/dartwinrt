@@ -34,7 +34,7 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
   FindRelatedPackagesOptions createInstance(PackageRelationship relationship) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -43,11 +43,8 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int relationship,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, relationship.value, value);
+            int Function(VTablePointer lpVtbl, int relationship,
+                Pointer<COMObject> value)>()(lpVtbl, relationship.value, value);
 
     if (FAILED(hr)) {
       free(value);

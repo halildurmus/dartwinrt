@@ -36,7 +36,7 @@ class IMediaFrameSourceController2 extends IInspectable {
     final operation = calloc<COMObject>();
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -55,7 +55,7 @@ class IMediaFrameSourceController2 extends IInspectable {
                     Pointer<Uint8> extendedPropertyId,
                     VTablePointer maxPropertyValueSize,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
         maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
@@ -80,7 +80,7 @@ class IMediaFrameSourceController2 extends IInspectable {
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
     final propertyValueArray = propertyValue.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -101,7 +101,7 @@ class IMediaFrameSourceController2 extends IInspectable {
                     int propertyValueSize,
                     Pointer<Uint8> propertyValue,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
         propertyValue.length,

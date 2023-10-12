@@ -31,7 +31,7 @@ class ICharacterGroupingsFactory extends IInspectable {
   CharacterGroupings create(String language) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class ICharacterGroupingsFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int language,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, language.toHString(), result);
+        lpVtbl, language.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

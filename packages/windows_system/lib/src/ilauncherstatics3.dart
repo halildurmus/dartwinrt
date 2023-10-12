@@ -33,7 +33,7 @@ class ILauncherStatics3 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class ILauncherStatics3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer folder,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, folder.lpVtbl, operation);
+            lpVtbl, folder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -61,7 +61,7 @@ class ILauncherStatics3 extends IInspectable {
       IStorageFolder? folder, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class ILauncherStatics3 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer folder,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, folder.lpVtbl, options.lpVtbl, operation);
+        lpVtbl, folder.lpVtbl, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

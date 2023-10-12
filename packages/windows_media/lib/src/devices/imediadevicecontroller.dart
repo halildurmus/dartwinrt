@@ -34,7 +34,7 @@ class IMediaDeviceController extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -47,7 +47,7 @@ class IMediaDeviceController extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int mediaStreamType,
                         Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, mediaStreamType.value, value);
+            lpVtbl, mediaStreamType.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -65,7 +65,7 @@ class IMediaDeviceController extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -78,7 +78,7 @@ class IMediaDeviceController extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int mediaStreamType,
                         Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, mediaStreamType.value, value);
+            lpVtbl, mediaStreamType.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -97,7 +97,7 @@ class IMediaDeviceController extends IInspectable {
       IMediaEncodingProperties? mediaEncodingProperties) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -113,7 +113,7 @@ class IMediaDeviceController extends IInspectable {
                     VTablePointer lpVtbl,
                     int mediaStreamType,
                     VTablePointer mediaEncodingProperties,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> asyncInfo)>()(lpVtbl,
         mediaStreamType.value, mediaEncodingProperties.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {

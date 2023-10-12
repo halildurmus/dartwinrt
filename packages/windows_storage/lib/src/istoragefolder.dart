@@ -41,7 +41,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -54,7 +54,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), operation);
+            lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -71,7 +71,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -85,7 +85,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int options, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), options.value, operation);
+            lpVtbl, desiredName.toHString(), options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -102,7 +102,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -115,7 +115,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), operation);
+            lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -132,7 +132,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -146,7 +146,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int options, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), options.value, operation);
+            lpVtbl, desiredName.toHString(), options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -161,7 +161,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFile?> getFileAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -172,7 +172,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, name.toHString(), operation);
+        lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -187,7 +187,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFolder?> getFolderAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -198,7 +198,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, name.toHString(), operation);
+        lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -213,7 +213,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<IStorageItem?> getItemAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -224,7 +224,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, name.toHString(), operation);
+        lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -240,7 +240,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       getFilesAsyncOverloadDefaultOptionsStartAndCount() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(13)
         .cast<
             Pointer<
@@ -250,7 +250,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -269,7 +269,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       getFoldersAsyncOverloadDefaultOptionsStartAndCount() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(14)
         .cast<
             Pointer<
@@ -279,7 +279,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -297,7 +297,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<List<IStorageItem?>> getItemsAsyncOverloadDefaultStartAndCount() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(15)
         .cast<
             Pointer<
@@ -307,7 +307,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

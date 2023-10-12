@@ -223,7 +223,7 @@ abstract interface class IMap<K, V> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.lpVtbl.value
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -233,7 +233,7 @@ abstract interface class IMap<K, V> extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -250,7 +250,7 @@ abstract interface class IMap<K, V> extends IInspectable
   Map<K, V> getView() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -260,7 +260,7 @@ abstract interface class IMap<K, V> extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -284,11 +284,11 @@ abstract interface class IMap<K, V> extends IInspectable
 
   /// Removes all items from the map.
   void clear() {
-    final hr = ptr.ref.lpVtbl.value
+    final hr = vtable
         .elementAt(12)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

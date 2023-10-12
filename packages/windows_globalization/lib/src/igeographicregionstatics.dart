@@ -30,7 +30,7 @@ class IGeographicRegionStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -43,7 +43,7 @@ class IGeographicRegionStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int geographicRegionCode,
                       Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, geographicRegionCode.toHString(), result);
+          lpVtbl, geographicRegionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

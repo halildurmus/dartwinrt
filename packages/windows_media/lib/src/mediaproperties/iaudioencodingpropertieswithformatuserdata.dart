@@ -32,18 +32,17 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                            Pointer<Uint8> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int valueSize,
-                    Pointer<Uint8> value)>()(
-        ptr.ref.lpVtbl, value.length, valueArray);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+                        Pointer<Uint8> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int valueSize,
+                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -55,20 +54,19 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<Uint8>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<Uint8>> value)>()(
-          ptr.ref.lpVtbl, valueSize, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl,
+                          Pointer<Uint32> valueSize,
+                          Pointer<Pointer<Uint8>> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

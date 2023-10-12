@@ -31,7 +31,7 @@ class IApplicationData3 extends IInspectable {
   StorageFolder? getPublisherCacheFolder(String folderName) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class IApplicationData3 extends IInspectable {
                 VTablePointer lpVtbl,
                 int folderName,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, folderName.toHString(), value);
+                    value)>()(lpVtbl, folderName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +63,7 @@ class IApplicationData3 extends IInspectable {
     final clearOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -76,7 +76,7 @@ class IApplicationData3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int folderName,
                         Pointer<COMObject> clearOperation)>()(
-            ptr.ref.lpVtbl, folderName.toHString(), clearOperation);
+            lpVtbl, folderName.toHString(), clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);
@@ -89,7 +89,7 @@ class IApplicationData3 extends IInspectable {
   StorageFolder? get sharedLocalFolder {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -99,7 +99,7 @@ class IApplicationData3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

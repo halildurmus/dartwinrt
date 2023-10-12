@@ -32,21 +32,21 @@ class IRemoteAutomationClientSession extends IInspectable {
           IID_IRemoteAutomationClientSession);
 
   void start() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -55,7 +55,7 @@ class IRemoteAutomationClientSession extends IInspectable {
       int remoteProcessId, Object? parentAutomationElement) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                     int remoteProcessId,
                     VTablePointer parentAutomationElement,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         remoteWindowId,
         remoteProcessId,
         parentAutomationElement?.boxValue().lpVtbl ?? nullptr,
@@ -95,17 +95,17 @@ class IRemoteAutomationClientSession extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -119,18 +119,17 @@ class IRemoteAutomationClientSession extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -142,7 +141,7 @@ class IRemoteAutomationClientSession extends IInspectable {
 
   void remove_ConnectionRequested(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -151,7 +150,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -160,18 +159,17 @@ class IRemoteAutomationClientSession extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -183,7 +181,7 @@ class IRemoteAutomationClientSession extends IInspectable {
 
   void remove_Disconnected(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(13)
                 .cast<
                     Pointer<
@@ -192,7 +190,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

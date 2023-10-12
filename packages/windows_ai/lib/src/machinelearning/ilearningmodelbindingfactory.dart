@@ -34,21 +34,17 @@ class ILearningModelBindingFactory extends IInspectable {
   LearningModelBinding createFromSession(LearningModelSession? session) {
     final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer session,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer session,
-                        Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, session.lpVtbl, value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer session, Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer session,
+                Pointer<COMObject> value)>()(lpVtbl, session.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

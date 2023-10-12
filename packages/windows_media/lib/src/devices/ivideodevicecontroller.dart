@@ -36,7 +36,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get brightness {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -64,7 +64,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get contrast {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -74,7 +74,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -92,7 +92,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get hue {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -120,7 +120,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get whiteBalance {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -130,7 +130,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -148,7 +148,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get backlightCompensation {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -158,7 +158,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -176,7 +176,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get pan {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -186,7 +186,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -204,7 +204,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get tilt {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -214,7 +214,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -232,7 +232,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get zoom {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -242,7 +242,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -260,7 +260,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get roll {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -270,7 +270,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -288,7 +288,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get exposure {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -298,7 +298,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -316,7 +316,7 @@ class IVideoDeviceController extends IInspectable
   MediaDeviceControl? get focus {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -326,7 +326,7 @@ class IVideoDeviceController extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -345,18 +345,17 @@ class IVideoDeviceController extends IInspectable
     final succeeded = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int32 value,
-                              Pointer<Bool> succeeded)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, value.value, succeeded);
+      final hr = vtable
+          .elementAt(17)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Int32 value,
+                          Pointer<Bool> succeeded)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Bool> succeeded)>()(lpVtbl, value.value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -371,7 +370,7 @@ class IVideoDeviceController extends IInspectable
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(18)
           .cast<
               Pointer<
@@ -381,7 +380,7 @@ class IVideoDeviceController extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> value,
-                  Pointer<Bool> succeeded)>()(ptr.ref.lpVtbl, value, succeeded);
+                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

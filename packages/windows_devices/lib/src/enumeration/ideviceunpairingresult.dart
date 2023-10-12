@@ -32,7 +32,7 @@ class IDeviceUnpairingResult extends IInspectable {
     final status = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -42,7 +42,7 @@ class IDeviceUnpairingResult extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
-          ptr.ref.lpVtbl, status);
+          lpVtbl, status);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

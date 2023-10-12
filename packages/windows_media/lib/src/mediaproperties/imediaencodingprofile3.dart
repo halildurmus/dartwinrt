@@ -30,7 +30,7 @@ class IMediaEncodingProfile3 extends IInspectable {
 
   void setTimedMetadataTracks(
       IIterable<TimedMetadataStreamDescriptor?>? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class IMediaEncodingProfile3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.lpVtbl);
+        lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -48,7 +48,7 @@ class IMediaEncodingProfile3 extends IInspectable {
   IVector<TimedMetadataStreamDescriptor?> getTimedMetadataTracks() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -58,7 +58,7 @@ class IMediaEncodingProfile3 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

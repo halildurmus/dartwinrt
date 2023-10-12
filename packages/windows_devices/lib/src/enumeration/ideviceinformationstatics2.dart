@@ -36,7 +36,7 @@ class IDeviceInformationStatics2 extends IInspectable {
     final aqsFilter = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -49,7 +49,7 @@ class IDeviceInformationStatics2 extends IInspectable {
                   VTablePointer lpVtbl,
                   int deviceClass,
                   Pointer<IntPtr>
-                      aqsFilter)>()(ptr.ref.lpVtbl, deviceClass.value, aqsFilter);
+                      aqsFilter)>()(lpVtbl, deviceClass.value, aqsFilter);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -65,7 +65,7 @@ class IDeviceInformationStatics2 extends IInspectable {
       DeviceInformationKind kind) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -83,8 +83,8 @@ class IDeviceInformationStatics2 extends IInspectable {
                     int deviceId,
                     VTablePointer additionalProperties,
                     int kind,
-                    Pointer<COMObject> asyncOp)>()(ptr.ref.lpVtbl,
-        deviceId.toHString(), additionalProperties.lpVtbl, kind.value, asyncOp);
+                    Pointer<COMObject> asyncOp)>()(lpVtbl, deviceId.toHString(),
+        additionalProperties.lpVtbl, kind.value, asyncOp);
 
     if (FAILED(hr)) {
       free(asyncOp);
@@ -101,7 +101,7 @@ class IDeviceInformationStatics2 extends IInspectable {
           IIterable<String>? additionalProperties, DeviceInformationKind kind) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -120,7 +120,7 @@ class IDeviceInformationStatics2 extends IInspectable {
                     VTablePointer additionalProperties,
                     int kind,
                     Pointer<COMObject> asyncOp)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         aqsFilter.toHString(),
         additionalProperties.lpVtbl,
         kind.value,
@@ -143,7 +143,7 @@ class IDeviceInformationStatics2 extends IInspectable {
       DeviceInformationKind kind) {
     final watcher = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -162,7 +162,7 @@ class IDeviceInformationStatics2 extends IInspectable {
                     VTablePointer additionalProperties,
                     int kind,
                     Pointer<COMObject> watcher)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         aqsFilter.toHString(),
         additionalProperties.lpVtbl,
         kind.value,

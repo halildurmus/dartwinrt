@@ -35,17 +35,17 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,18 +59,17 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -82,7 +81,7 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
 
   void remove_Changed(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -91,27 +90,27 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void start() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

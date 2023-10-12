@@ -32,7 +32,7 @@ class IBitmapPropertiesView extends IInspectable {
       IIterable<String>? propertiesToRetrieve) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IBitmapPropertiesView extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, propertiesToRetrieve.lpVtbl, asyncInfo);
+        lpVtbl, propertiesToRetrieve.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

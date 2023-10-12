@@ -31,7 +31,7 @@ class IBatteryStatics extends IInspectable {
   Battery? get aggregateBattery {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IBatteryStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -59,7 +59,7 @@ class IBatteryStatics extends IInspectable {
   Future<Battery?> fromIdAsync(String deviceId) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -70,7 +70,7 @@ class IBatteryStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceId,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, deviceId.toHString(), result);
+        lpVtbl, deviceId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -86,7 +86,7 @@ class IBatteryStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -96,7 +96,7 @@ class IBatteryStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

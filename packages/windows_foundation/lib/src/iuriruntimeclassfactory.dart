@@ -33,7 +33,7 @@ class IUriRuntimeClassFactory extends IInspectable {
   Uri createUri(String uri) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IUriRuntimeClassFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int uri,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, uri.toHString(), instance);
+        lpVtbl, uri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -58,7 +58,7 @@ class IUriRuntimeClassFactory extends IInspectable {
     final instance = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -72,10 +72,7 @@ class IUriRuntimeClassFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int baseUri,
                         int relativeUri, Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl,
-            baseUri.toHString(),
-            relativeUri.toHString(),
-            instance);
+            lpVtbl, baseUri.toHString(), relativeUri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);

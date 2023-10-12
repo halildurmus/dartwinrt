@@ -30,7 +30,7 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -40,7 +40,7 @@ class IDigitalWindowBounds extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,7 +52,7 @@ class IDigitalWindowBounds extends IInspectable {
 
   set normalizedOriginTop(double value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -61,7 +61,7 @@ class IDigitalWindowBounds extends IInspectable {
                                 VTablePointer lpVtbl, Double value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -70,7 +70,7 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -80,7 +80,7 @@ class IDigitalWindowBounds extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -92,7 +92,7 @@ class IDigitalWindowBounds extends IInspectable {
 
   set normalizedOriginLeft(double value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -101,7 +101,7 @@ class IDigitalWindowBounds extends IInspectable {
                                 VTablePointer lpVtbl, Double value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -110,7 +110,7 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -120,7 +120,7 @@ class IDigitalWindowBounds extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -132,7 +132,7 @@ class IDigitalWindowBounds extends IInspectable {
 
   set scale(double value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -141,7 +141,7 @@ class IDigitalWindowBounds extends IInspectable {
                                 VTablePointer lpVtbl, Double value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

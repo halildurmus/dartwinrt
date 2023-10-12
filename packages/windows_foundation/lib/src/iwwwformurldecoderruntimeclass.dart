@@ -41,7 +41,7 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     final phstrValue = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -52,7 +52,7 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
                       Pointer<IntPtr> phstrValue)>()(
-          ptr.ref.lpVtbl, name.toHString(), phstrValue);
+          lpVtbl, name.toHString(), phstrValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

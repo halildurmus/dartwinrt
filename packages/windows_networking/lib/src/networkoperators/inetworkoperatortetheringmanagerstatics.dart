@@ -37,7 +37,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -50,7 +50,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int networkAccountId,
                           Pointer<Int32> value)>()(
-              ptr.ref.lpVtbl, networkAccountId.toHString(), value);
+              lpVtbl, networkAccountId.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -64,7 +64,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
       String networkAccountId) {
     final ppManager = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -77,7 +77,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int networkAccountId,
                     Pointer<COMObject> ppManager)>()(
-        ptr.ref.lpVtbl, networkAccountId.toHString(), ppManager);
+        lpVtbl, networkAccountId.toHString(), ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

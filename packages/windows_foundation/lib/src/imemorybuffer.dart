@@ -35,7 +35,7 @@ class IMemoryBuffer extends IInspectable implements IClosable {
   IMemoryBufferReference? createReference() {
     final reference = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -45,7 +45,7 @@ class IMemoryBuffer extends IInspectable implements IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> reference)>()(ptr.ref.lpVtbl, reference);
+                Pointer<COMObject> reference)>()(lpVtbl, reference);
 
     if (FAILED(hr)) {
       free(reference);

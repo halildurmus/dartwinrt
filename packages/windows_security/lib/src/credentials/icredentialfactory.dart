@@ -32,7 +32,7 @@ class ICredentialFactory extends IInspectable {
       String resource, String userName, String password) {
     final credential = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class ICredentialFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int resource, int userName,
                     int password, Pointer<COMObject> credential)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         resource.toHString(),
         userName.toHString(),
         password.toHString(),

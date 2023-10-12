@@ -31,7 +31,7 @@ class IVideoEncodingProperties5 extends IInspectable {
   VideoEncodingProperties? copy() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IVideoEncodingProperties5 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

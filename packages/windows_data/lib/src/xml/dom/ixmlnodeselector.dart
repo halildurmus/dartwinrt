@@ -32,18 +32,17 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNode? selectSingleNode(String xpath) {
     final node = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                            Pointer<COMObject> node)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int xpath,
-                    Pointer<COMObject> node)>()(
-        ptr.ref.lpVtbl, xpath.toHString(), node);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
+                        Pointer<COMObject> node)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int xpath,
+                Pointer<COMObject> node)>()(lpVtbl, xpath.toHString(), node);
 
     if (FAILED(hr)) {
       free(node);
@@ -61,7 +60,7 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList selectNodes(String xpath) {
     final nodelist = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +71,7 @@ class IXmlNodeSelector extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xpath,
                     Pointer<COMObject> nodelist)>()(
-        ptr.ref.lpVtbl, xpath.toHString(), nodelist);
+        lpVtbl, xpath.toHString(), nodelist);
 
     if (FAILED(hr)) {
       free(nodelist);
@@ -86,7 +85,7 @@ class IXmlNodeSelector extends IInspectable {
     final node = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -100,7 +99,7 @@ class IXmlNodeSelector extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int xpath,
                         VTablePointer namespaces, Pointer<COMObject> node)>()(
-            ptr.ref.lpVtbl,
+            lpVtbl,
             xpath.toHString(),
             namespaces?.boxValue().lpVtbl ?? nullptr,
             node);
@@ -121,7 +120,7 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList selectNodesNS(String xpath, Object? namespaces) {
     final nodelist = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -135,7 +134,7 @@ class IXmlNodeSelector extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xpath,
                     VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         xpath.toHString(),
         namespaces?.boxValue().lpVtbl ?? nullptr,
         nodelist);

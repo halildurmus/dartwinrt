@@ -34,7 +34,7 @@ class IUserStatics extends IInspectable {
   UserWatcher? createWatcher() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class IUserStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,7 +62,7 @@ class IUserStatics extends IInspectable {
   Future<List<User?>> findAllAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -72,7 +72,7 @@ class IUserStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -92,18 +92,17 @@ class IUserStatics extends IInspectable {
   Future<List<User?>> findAllAsyncByType(UserType type) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int type,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, type.value, operation);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 type,
+                        Pointer<COMObject> operation)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int type,
+                Pointer<COMObject> operation)>()(lpVtbl, type.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -124,7 +123,7 @@ class IUserStatics extends IInspectable {
       UserType type, UserAuthenticationStatus status) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -135,7 +134,7 @@ class IUserStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int type, int status,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, type.value, status.value, operation);
+        lpVtbl, type.value, status.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -154,7 +153,7 @@ class IUserStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -167,7 +166,7 @@ class IUserStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int nonRoamableId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, nonRoamableId.toHString(), result);
+            lpVtbl, nonRoamableId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

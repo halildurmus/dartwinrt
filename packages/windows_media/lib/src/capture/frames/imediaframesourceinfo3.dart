@@ -32,7 +32,7 @@ class IMediaFrameSourceInfo3 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IMediaFrameSourceInfo3 extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       VTablePointer displayRegion, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, displayRegion.lpVtbl, result);
+          lpVtbl, displayRegion.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

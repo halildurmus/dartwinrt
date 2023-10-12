@@ -32,7 +32,7 @@ class IStandardDataFormatsStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -42,7 +42,7 @@ class IStandardDataFormatsStatics2 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,7 +56,7 @@ class IStandardDataFormatsStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -66,7 +66,7 @@ class IStandardDataFormatsStatics2 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

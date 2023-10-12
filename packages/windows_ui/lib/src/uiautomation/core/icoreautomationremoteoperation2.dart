@@ -35,7 +35,7 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
       AutomationConnectionBoundObject? connectionBoundObject) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,8 +49,8 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer connectionBoundObject)>()(ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref, connectionBoundObject.lpVtbl);
+                    VTablePointer connectionBoundObject)>()(
+        lpVtbl, operandIdNativeStructPtr.ref, connectionBoundObject.lpVtbl);
 
     free(operandIdNativeStructPtr);
 

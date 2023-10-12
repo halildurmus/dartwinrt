@@ -38,18 +38,17 @@ class IStorageItemProperties2 extends IInspectable
           ThumbnailMode mode) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 mode,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int mode,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, mode.value, operation);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 mode,
+                        Pointer<COMObject> operation)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int mode,
+                Pointer<COMObject> operation)>()(lpVtbl, mode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -68,7 +67,7 @@ class IStorageItemProperties2 extends IInspectable
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -82,7 +81,7 @@ class IStorageItemProperties2 extends IInspectable
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int mode,
                         int requestedSize, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, mode.value, requestedSize, operation);
+            lpVtbl, mode.value, requestedSize, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -99,7 +98,7 @@ class IStorageItemProperties2 extends IInspectable
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -114,7 +113,7 @@ class IStorageItemProperties2 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mode, int requestedSize,
                     int options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, mode.value, requestedSize, options.value, operation);
+        lpVtbl, mode.value, requestedSize, options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

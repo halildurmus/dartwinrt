@@ -33,21 +33,17 @@ class INumeralSystemTranslatorFactory extends IInspectable {
   NumeralSystemTranslator create(IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer languages,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer languages,
-                        Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, languages.lpVtbl, result);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer languages, Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer languages,
+                Pointer<COMObject> result)>()(lpVtbl, languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

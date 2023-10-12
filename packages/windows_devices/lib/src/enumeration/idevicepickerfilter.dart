@@ -31,7 +31,7 @@ class IDevicePickerFilter extends IInspectable {
   IVector<DeviceClass>? get supportedDeviceClasses {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -41,7 +41,7 @@ class IDevicePickerFilter extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,7 +61,7 @@ class IDevicePickerFilter extends IInspectable {
   IVector<String>? get supportedDeviceSelectors {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -71,7 +71,7 @@ class IDevicePickerFilter extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

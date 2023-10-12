@@ -31,7 +31,7 @@ class IWebProviderErrorFactory extends IInspectable {
   WebProviderError create(int errorCode, String errorMessage) {
     final webProviderError = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IWebProviderErrorFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int errorCode,
                     int errorMessage, Pointer<COMObject> webProviderError)>()(
-        ptr.ref.lpVtbl, errorCode, errorMessage.toHString(), webProviderError);
+        lpVtbl, errorCode, errorMessage.toHString(), webProviderError);
 
     if (FAILED(hr)) {
       free(webProviderError);

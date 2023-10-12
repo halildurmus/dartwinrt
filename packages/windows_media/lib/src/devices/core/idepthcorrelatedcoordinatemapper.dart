@@ -39,7 +39,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     try {
       final sourcePointNativeStructPtr = sourcePoint.toNative();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -56,7 +56,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       NativePoint sourcePoint,
                       VTablePointer targetCoordinateSystem,
                       Pointer<NativeVector3> result)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           sourcePointNativeStructPtr.ref,
           targetCoordinateSystem.lpVtbl,
           result);
@@ -78,7 +78,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     final results = calloc<NativeVector3>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -99,7 +99,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       VTablePointer targetCoordinateSystem,
                       int resultsSize,
                       Pointer<NativeVector3> results)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
           targetCoordinateSystem.lpVtbl,
@@ -124,7 +124,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     try {
       final sourcePointNativeStructPtr = sourcePoint.toNative();
 
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -143,7 +143,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       VTablePointer targetCoordinateSystem,
                       VTablePointer targetCameraIntrinsics,
                       Pointer<NativePoint> result)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           sourcePointNativeStructPtr.ref,
           targetCoordinateSystem.lpVtbl,
           targetCameraIntrinsics.lpVtbl,
@@ -169,7 +169,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -192,7 +192,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       VTablePointer targetCameraIntrinsics,
                       int resultsSize,
                       Pointer<NativePoint> results)>()(
-          ptr.ref.lpVtbl,
+          lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
           targetCoordinateSystem.lpVtbl,

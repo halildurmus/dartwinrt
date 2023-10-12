@@ -32,7 +32,7 @@ class IPercentFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class IPercentFormatterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int geographicRegion, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
+        lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

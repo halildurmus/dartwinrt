@@ -33,7 +33,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -43,7 +43,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,11 +54,11 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   }
 
   void enableNoConnectionsTimeout() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -66,7 +66,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   Future<void> enableNoConnectionsTimeoutAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -76,7 +76,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -87,11 +87,11 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   }
 
   void disableNoConnectionsTimeout() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -99,7 +99,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   Future<void> disableNoConnectionsTimeoutAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<
             Pointer<
@@ -109,7 +109,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

@@ -37,7 +37,7 @@ class ILauncherStatics4 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -50,7 +50,7 @@ class ILauncherStatics4 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -67,7 +67,7 @@ class ILauncherStatics4 extends IInspectable {
       Uri? uri, String packageFamilyName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -81,7 +81,7 @@ class ILauncherStatics4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     int packageFamilyName, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         packageFamilyName.toHString(),
         operation);
@@ -101,7 +101,7 @@ class ILauncherStatics4 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -114,7 +114,7 @@ class ILauncherStatics4 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -133,7 +133,7 @@ class ILauncherStatics4 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -147,7 +147,7 @@ class ILauncherStatics4 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         VTablePointer uri, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
+            lpVtbl,
             user.lpVtbl,
             uri?.toWinRTUri().lpVtbl ?? nullptr,
             operation);
@@ -166,7 +166,7 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -184,12 +184,8 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer user,
                     VTablePointer uri,
                     VTablePointer options,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user.lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr,
-        options.lpVtbl,
-        operation);
+                    Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -205,7 +201,7 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -226,7 +222,7 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         options.lpVtbl,
@@ -247,7 +243,7 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -265,12 +261,8 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer user,
                     VTablePointer uri,
                     VTablePointer options,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user.lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr,
-        options.lpVtbl,
-        operation);
+                    Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -286,7 +278,7 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -307,7 +299,7 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         options.lpVtbl,

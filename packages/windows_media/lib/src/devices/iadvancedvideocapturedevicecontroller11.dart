@@ -37,7 +37,7 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -51,7 +51,7 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int deviceId, int mode,
                           Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, deviceId.toHString(), mode.value, result);
+              lpVtbl, deviceId.toHString(), mode.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

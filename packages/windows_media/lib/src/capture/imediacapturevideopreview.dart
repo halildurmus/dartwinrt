@@ -32,7 +32,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
   Future<void> startPreviewAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -42,7 +42,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -56,7 +56,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
       MediaEncodingProfile? encodingProfile, IMediaExtension? customMediaSink) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,8 +72,8 @@ class IMediaCaptureVideoPreview extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-        encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -89,7 +89,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
       IPropertySet? customSinkSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -108,7 +108,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
                     int customSinkActivationId,
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         encodingProfile.lpVtbl,
         customSinkActivationId.toHString(),
         customSinkSettings.lpVtbl,
@@ -125,7 +125,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
   Future<void> stopPreviewAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -135,7 +135,7 @@ class IMediaCaptureVideoPreview extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

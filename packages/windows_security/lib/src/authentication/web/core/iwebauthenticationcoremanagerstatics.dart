@@ -37,7 +37,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       WebTokenRequest? request) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -50,7 +50,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request.lpVtbl, asyncInfo);
+        lpVtbl, request.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -67,7 +67,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       WebTokenRequest? request, WebAccount? webAccount) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -81,7 +81,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
+        lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -97,7 +97,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
   Future<WebTokenRequestResult?> requestTokenAsync(WebTokenRequest? request) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -110,7 +110,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request.lpVtbl, asyncInfo);
+        lpVtbl, request.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -127,7 +127,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       WebTokenRequest? request, WebAccount? webAccount) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -141,7 +141,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
+        lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -158,7 +158,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       WebAccountProvider? provider, String webAccountId) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -172,7 +172,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int webAccountId, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, provider.lpVtbl, webAccountId.toHString(), asyncInfo);
+        lpVtbl, provider.lpVtbl, webAccountId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -188,7 +188,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       String webAccountProviderId) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -201,7 +201,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, webAccountProviderId.toHString(), asyncInfo);
+        lpVtbl, webAccountProviderId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -218,7 +218,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
       String webAccountProviderId, String authority) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -231,11 +231,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
-                    int authority, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        webAccountProviderId.toHString(),
-        authority.toHString(),
-        asyncInfo);
+                    int authority, Pointer<COMObject> asyncInfo)>()(lpVtbl,
+        webAccountProviderId.toHString(), authority.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

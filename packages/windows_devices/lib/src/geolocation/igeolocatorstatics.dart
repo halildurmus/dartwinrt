@@ -32,7 +32,7 @@ class IGeolocatorStatics extends IInspectable {
   Future<GeolocationAccessStatus> requestAccessAsync() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -42,7 +42,7 @@ class IGeolocatorStatics extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -58,7 +58,7 @@ class IGeolocatorStatics extends IInspectable {
   Future<List<Geoposition?>> getGeopositionHistoryAsync(DateTime startTime) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -69,7 +69,7 @@ class IGeolocatorStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, startTime.toWinRTDateTime(), result);
+        lpVtbl, startTime.toWinRTDateTime(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -88,7 +88,7 @@ class IGeolocatorStatics extends IInspectable {
       DateTime startTime, Duration duration) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -98,7 +98,7 @@ class IGeolocatorStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime, int duration,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+                    Pointer<COMObject> result)>()(lpVtbl,
         startTime.toWinRTDateTime(), duration.toWinRTDuration(), result);
 
     if (FAILED(hr)) {

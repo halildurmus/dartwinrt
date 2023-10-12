@@ -31,7 +31,7 @@ class IStorageFolder2 extends IInspectable {
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IStorageFolder2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, name.toHString(), operation);
+        lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

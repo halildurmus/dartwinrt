@@ -35,18 +35,17 @@ class IMediaCapture6 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,7 +57,7 @@ class IMediaCapture6 extends IInspectable {
 
   void remove_CaptureDeviceExclusiveControlStatusChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -67,7 +66,7 @@ class IMediaCapture6 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -76,7 +75,7 @@ class IMediaCapture6 extends IInspectable {
       IIterable<MediaFrameSource?>? inputSources) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -89,7 +88,7 @@ class IMediaCapture6 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputSources,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, inputSources.lpVtbl, value);
+        lpVtbl, inputSources.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

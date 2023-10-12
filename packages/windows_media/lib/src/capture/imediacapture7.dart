@@ -34,7 +34,7 @@ class IMediaCapture7 extends IInspectable {
       StreamingCaptureMode captureMode, DisplayRegion? displayRegion) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -48,7 +48,7 @@ class IMediaCapture7 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int captureMode,
                     VTablePointer displayRegion, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, captureMode.value, displayRegion.lpVtbl, result);
+        lpVtbl, captureMode.value, displayRegion.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

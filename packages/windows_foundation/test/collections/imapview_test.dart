@@ -21,7 +21,7 @@ void main() {
     IMapView<String, String> getView(Pointer<COMObject> ptr) {
       final retValuePtr = calloc<COMObject>();
 
-      final hr = ptr.ref.lpVtbl.value
+      final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
                   Pointer<

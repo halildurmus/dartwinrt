@@ -33,7 +33,7 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
   StorageFolder? get playlists {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -43,7 +43,7 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

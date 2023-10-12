@@ -31,7 +31,7 @@ class IHostNameFactory extends IInspectable {
   HostName createHostName(String hostName) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IHostNameFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int hostName,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, hostName.toHString(), value);
+        lpVtbl, hostName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);

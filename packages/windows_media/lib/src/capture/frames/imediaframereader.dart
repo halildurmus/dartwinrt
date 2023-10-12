@@ -34,18 +34,17 @@ class IMediaFrameReader extends IInspectable implements IClosable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,7 +56,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
 
   void remove_FrameArrived(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -66,7 +65,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -74,7 +73,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
   MediaFrameReference? tryAcquireLatestFrame() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -84,7 +83,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -102,7 +101,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
   Future<MediaFrameReaderStartStatus> startAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -112,7 +111,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -128,7 +127,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
   Future<void> stopAsync() {
     final action = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<
             Pointer<
@@ -138,7 +137,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> action)>()(ptr.ref.lpVtbl, action);
+                Pointer<COMObject> action)>()(lpVtbl, action);
 
     if (FAILED(hr)) {
       free(action);

@@ -27,7 +27,7 @@ class IConnectionProfileFilter3 extends IInspectable {
       .cast(IConnectionProfileFilter3.fromPtr, IID_IConnectionProfileFilter3);
 
   set purposeGuid(Guid? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -37,7 +37,7 @@ class IConnectionProfileFilter3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference().lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -45,7 +45,7 @@ class IConnectionProfileFilter3 extends IInspectable {
   Guid? get purposeGuid {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -55,7 +55,7 @@ class IConnectionProfileFilter3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

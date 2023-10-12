@@ -34,7 +34,7 @@ class IQueryOptionsFactory extends IInspectable {
       CommonFileQuery query, IIterable<String>? fileTypeFilter) {
     final queryOptions = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -51,7 +51,7 @@ class IQueryOptionsFactory extends IInspectable {
                     int query,
                     VTablePointer fileTypeFilter,
                     Pointer<COMObject> queryOptions)>()(
-        ptr.ref.lpVtbl, query.value, fileTypeFilter.lpVtbl, queryOptions);
+        lpVtbl, query.value, fileTypeFilter.lpVtbl, queryOptions);
 
     if (FAILED(hr)) {
       free(queryOptions);
@@ -64,7 +64,7 @@ class IQueryOptionsFactory extends IInspectable {
   QueryOptions createCommonFolderQuery(CommonFolderQuery query) {
     final queryOptions = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class IQueryOptionsFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> queryOptions)>()(
-        ptr.ref.lpVtbl, query.value, queryOptions);
+        lpVtbl, query.value, queryOptions);
 
     if (FAILED(hr)) {
       free(queryOptions);

@@ -39,7 +39,7 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -49,7 +49,7 @@ class IAsyncInfo extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -63,7 +63,7 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -73,7 +73,7 @@ class IAsyncInfo extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,7 +87,7 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -97,7 +97,7 @@ class IAsyncInfo extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -108,21 +108,21 @@ class IAsyncInfo extends IInspectable {
   }
 
   void cancel() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void close() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -39,7 +39,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -56,7 +56,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     int name,
                     VTablePointer defaultValue,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
+        lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -74,7 +74,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonObject getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -91,7 +91,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     int name,
                     VTablePointer defaultValue,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
+        lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -106,7 +106,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(8)
                   .cast<
                       Pointer<
@@ -120,10 +120,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int name,
                           int defaultValue, Pointer<IntPtr> returnValue)>()(
-              ptr.ref.lpVtbl,
-              name.toHString(),
-              defaultValue.toHString(),
-              returnValue);
+              lpVtbl, name.toHString(), defaultValue.toHString(), returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -136,7 +133,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonArray getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -153,7 +150,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     int name,
                     VTablePointer defaultValue,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
+        lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -168,7 +165,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(10)
                   .cast<
                       Pointer<
@@ -182,7 +179,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int name,
                           double defaultValue, Pointer<Double> returnValue)>()(
-              ptr.ref.lpVtbl, name.toHString(), defaultValue, returnValue);
+              lpVtbl, name.toHString(), defaultValue, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -196,7 +193,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final returnValue = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -207,7 +204,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
                       bool defaultValue, Pointer<Bool> returnValue)>()(
-          ptr.ref.lpVtbl, name.toHString(), defaultValue, returnValue);
+          lpVtbl, name.toHString(), defaultValue, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

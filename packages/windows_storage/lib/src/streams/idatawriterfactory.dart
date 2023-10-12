@@ -32,7 +32,7 @@ class IDataWriterFactory extends IInspectable {
   DataWriter createDataWriter(IOutputStream? outputStream) {
     final dataWriter = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IDataWriterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> dataWriter)>()(
-        ptr.ref.lpVtbl, outputStream.lpVtbl, dataWriter);
+        lpVtbl, outputStream.lpVtbl, dataWriter);
 
     if (FAILED(hr)) {
       free(dataWriter);

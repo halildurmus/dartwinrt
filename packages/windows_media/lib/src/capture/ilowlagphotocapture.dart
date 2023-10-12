@@ -31,7 +31,7 @@ class ILowLagPhotoCapture extends IInspectable {
   Future<CapturedPhoto?> captureAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class ILowLagPhotoCapture extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -56,7 +56,7 @@ class ILowLagPhotoCapture extends IInspectable {
   Future<void> finishAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -66,7 +66,7 @@ class ILowLagPhotoCapture extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

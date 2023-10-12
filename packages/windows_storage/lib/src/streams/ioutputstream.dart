@@ -32,7 +32,7 @@ class IOutputStream extends IInspectable implements IClosable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -45,7 +45,7 @@ class IOutputStream extends IInspectable implements IClosable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, buffer.lpVtbl, operation);
+            lpVtbl, buffer.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -58,7 +58,7 @@ class IOutputStream extends IInspectable implements IClosable {
   Future<bool> flushAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -68,7 +68,7 @@ class IOutputStream extends IInspectable implements IClosable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

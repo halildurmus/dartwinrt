@@ -34,7 +34,7 @@ class IPdfPage extends IInspectable {
   Future<void> renderToStreamAsync(IRandomAccessStream? outputStream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IPdfPage extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, outputStream.lpVtbl, asyncInfo);
+        lpVtbl, outputStream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -61,7 +61,7 @@ class IPdfPage extends IInspectable {
       IRandomAccessStream? outputStream, PdfPageRenderOptions? options) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class IPdfPage extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     VTablePointer options, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, outputStream.lpVtbl, options.lpVtbl, asyncInfo);
+        lpVtbl, outputStream.lpVtbl, options.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -88,7 +88,7 @@ class IPdfPage extends IInspectable {
   Future<void> preparePageAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -98,7 +98,7 @@ class IPdfPage extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -112,7 +112,7 @@ class IPdfPage extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -122,7 +122,7 @@ class IPdfPage extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -136,7 +136,7 @@ class IPdfPage extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(10)
           .cast<
               Pointer<
@@ -146,7 +146,7 @@ class IPdfPage extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeSize> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -159,7 +159,7 @@ class IPdfPage extends IInspectable {
   PdfPageDimensions? get dimensions {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -169,7 +169,7 @@ class IPdfPage extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -188,17 +188,17 @@ class IPdfPage extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -212,17 +212,17 @@ class IPdfPage extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

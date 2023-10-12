@@ -33,7 +33,7 @@ class ILearningModelStatics extends IInspectable {
   Future<LearningModel?> loadFromStorageFileAsync(IStorageFile? modelFile) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -46,7 +46,7 @@ class ILearningModelStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelFile,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, modelFile.lpVtbl, operation);
+        lpVtbl, modelFile.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -62,7 +62,7 @@ class ILearningModelStatics extends IInspectable {
       IRandomAccessStreamReference? modelStream) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -75,7 +75,7 @@ class ILearningModelStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, modelStream.lpVtbl, operation);
+        lpVtbl, modelStream.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -90,7 +90,7 @@ class ILearningModelStatics extends IInspectable {
   LearningModel? loadFromFilePath(String filePath) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -101,7 +101,7 @@ class ILearningModelStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, filePath.toHString(), result);
+        lpVtbl, filePath.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -119,7 +119,7 @@ class ILearningModelStatics extends IInspectable {
   LearningModel? loadFromStream(IRandomAccessStreamReference? modelStream) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -132,7 +132,7 @@ class ILearningModelStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, modelStream.lpVtbl, result);
+        lpVtbl, modelStream.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -152,7 +152,7 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -169,7 +169,7 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer modelFile,
                     VTablePointer operatorProvider,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, modelFile.lpVtbl, operatorProvider.lpVtbl, operation);
+        lpVtbl, modelFile.lpVtbl, operatorProvider.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -186,7 +186,7 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -203,7 +203,7 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer modelStream,
                     VTablePointer operatorProvider,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, operation);
+        lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -219,7 +219,7 @@ class ILearningModelStatics extends IInspectable {
       String filePath, ILearningModelOperatorProvider? operatorProvider) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -236,7 +236,7 @@ class ILearningModelStatics extends IInspectable {
                     int filePath,
                     VTablePointer operatorProvider,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, filePath.toHString(), operatorProvider.lpVtbl, result);
+        lpVtbl, filePath.toHString(), operatorProvider.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -256,7 +256,7 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -273,7 +273,7 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer modelStream,
                     VTablePointer operatorProvider,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, result);
+        lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

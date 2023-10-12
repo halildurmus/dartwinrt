@@ -32,7 +32,7 @@ class IImageEncodingProperties extends IInspectable
 
   set width(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -41,7 +41,7 @@ class IImageEncodingProperties extends IInspectable
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -50,7 +50,7 @@ class IImageEncodingProperties extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -60,7 +60,7 @@ class IImageEncodingProperties extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,7 +72,7 @@ class IImageEncodingProperties extends IInspectable
 
   set height(int value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -81,7 +81,7 @@ class IImageEncodingProperties extends IInspectable
                                 VTablePointer lpVtbl, Uint32 value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value);
+            lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -90,7 +90,7 @@ class IImageEncodingProperties extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -100,7 +100,7 @@ class IImageEncodingProperties extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

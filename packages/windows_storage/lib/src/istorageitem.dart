@@ -36,7 +36,7 @@ class IStorageItem extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -49,7 +49,7 @@ class IStorageItem extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), operation);
+            lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -63,7 +63,7 @@ class IStorageItem extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IStorageItem extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int option, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredName.toHString(), option.value, operation);
+            lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -90,7 +90,7 @@ class IStorageItem extends IInspectable {
   Future<void> deleteAsyncOverloadDefaultOptions() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -100,7 +100,7 @@ class IStorageItem extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -113,7 +113,7 @@ class IStorageItem extends IInspectable {
   Future<void> deleteAsync(StorageDeleteOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -124,7 +124,7 @@ class IStorageItem extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int option,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, option.value, operation);
+        lpVtbl, option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -137,7 +137,7 @@ class IStorageItem extends IInspectable {
   Future<BasicProperties?> getBasicPropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(10)
         .cast<
             Pointer<
@@ -147,7 +147,7 @@ class IStorageItem extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -163,7 +163,7 @@ class IStorageItem extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(11)
               .cast<
                   Pointer<
@@ -173,7 +173,7 @@ class IStorageItem extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -187,7 +187,7 @@ class IStorageItem extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(12)
               .cast<
                   Pointer<
@@ -197,7 +197,7 @@ class IStorageItem extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,7 +211,7 @@ class IStorageItem extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -221,7 +221,7 @@ class IStorageItem extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -235,17 +235,17 @@ class IStorageItem extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(14)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -259,7 +259,7 @@ class IStorageItem extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(15)
           .cast<
               Pointer<
@@ -269,7 +269,7 @@ class IStorageItem extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int type,
-                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, type.value, value);
+                  Pointer<Bool> value)>()(lpVtbl, type.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

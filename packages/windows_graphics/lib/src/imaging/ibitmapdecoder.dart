@@ -34,7 +34,7 @@ class IBitmapDecoder extends IInspectable {
   BitmapPropertiesView? get bitmapContainerProperties {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IBitmapDecoder extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,7 +62,7 @@ class IBitmapDecoder extends IInspectable {
   BitmapCodecInformation? get decoderInformation {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -72,7 +72,7 @@ class IBitmapDecoder extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,7 +91,7 @@ class IBitmapDecoder extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -101,7 +101,7 @@ class IBitmapDecoder extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -114,7 +114,7 @@ class IBitmapDecoder extends IInspectable {
   Future<ImageStream?> getPreviewAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -124,7 +124,7 @@ class IBitmapDecoder extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -139,21 +139,17 @@ class IBitmapDecoder extends IInspectable {
   Future<BitmapFrame?> getFrameAsync(int frameIndex) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Uint32 frameIndex,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int frameIndex,
-                        Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, frameIndex, asyncInfo);
+    final hr = vtable
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 frameIndex,
+                        Pointer<COMObject> asyncInfo)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int frameIndex,
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, frameIndex, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

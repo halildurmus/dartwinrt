@@ -33,7 +33,7 @@ class IMediaCaptureStatics extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -44,7 +44,7 @@ class IMediaCaptureStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int videoDeviceId,
                       Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
+          lpVtbl, videoDeviceId.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,7 +57,7 @@ class IMediaCaptureStatics extends IInspectable {
   List<MediaCaptureVideoProfile?> findAllVideoProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -70,7 +70,7 @@ class IMediaCaptureStatics extends IInspectable {
                 VTablePointer lpVtbl,
                 int videoDeviceId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
+                    value)>()(lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -86,7 +86,7 @@ class IMediaCaptureStatics extends IInspectable {
   List<MediaCaptureVideoProfile?> findConcurrentProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -99,7 +99,7 @@ class IMediaCaptureStatics extends IInspectable {
                 VTablePointer lpVtbl,
                 int videoDeviceId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
+                    value)>()(lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -117,7 +117,7 @@ class IMediaCaptureStatics extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -131,7 +131,7 @@ class IMediaCaptureStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int videoDeviceId,
                         int name, Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, videoDeviceId.toHString(), name.value, value);
+            lpVtbl, videoDeviceId.toHString(), name.value, value);
 
     if (FAILED(hr)) {
       free(value);

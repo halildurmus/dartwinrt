@@ -33,7 +33,7 @@ class IPdfDocumentStatics extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class IPdfDocumentStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, asyncInfo);
+            lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -63,7 +63,7 @@ class IPdfDocumentStatics extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IPdfDocumentStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int password, Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, password.toHString(), asyncInfo);
+            lpVtbl, file.lpVtbl, password.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -92,7 +92,7 @@ class IPdfDocumentStatics extends IInspectable {
   Future<PdfDocument?> loadFromStreamAsync(IRandomAccessStream? inputStream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -105,7 +105,7 @@ class IPdfDocumentStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, inputStream.lpVtbl, asyncInfo);
+        lpVtbl, inputStream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -121,7 +121,7 @@ class IPdfDocumentStatics extends IInspectable {
       IRandomAccessStream? inputStream, String password) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -135,7 +135,7 @@ class IPdfDocumentStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                     int password, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, inputStream.lpVtbl, password.toHString(), asyncInfo);
+        lpVtbl, inputStream.lpVtbl, password.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

@@ -30,7 +30,7 @@ class IXmlDocumentIO extends IInspectable {
       interface.cast(IXmlDocumentIO.fromPtr, IID_IXmlDocumentIO);
 
   void loadXml(String xml) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -38,13 +38,13 @@ class IXmlDocumentIO extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, IntPtr xml)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int xml)>()(
-        ptr.ref.lpVtbl, xml.toHString());
+        lpVtbl, xml.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -55,7 +55,7 @@ class IXmlDocumentIO extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xml,
                     VTablePointer loadSettings)>()(
-        ptr.ref.lpVtbl, xml.toHString(), loadSettings.lpVtbl);
+        lpVtbl, xml.toHString(), loadSettings.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -64,7 +64,7 @@ class IXmlDocumentIO extends IInspectable {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -77,7 +77,7 @@ class IXmlDocumentIO extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, asyncInfo);
+            lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

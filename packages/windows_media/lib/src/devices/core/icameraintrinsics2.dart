@@ -30,7 +30,7 @@ class ICameraIntrinsics2 extends IInspectable {
     final value = calloc<NativeMatrix4x4>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -40,7 +40,7 @@ class ICameraIntrinsics2 extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<NativeMatrix4x4> value)>()(ptr.ref.lpVtbl, value);
+                  Pointer<NativeMatrix4x4> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,7 +57,7 @@ class ICameraIntrinsics2 extends IInspectable {
       final inputNativeStructPtr = input.toNative();
 
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -70,7 +70,7 @@ class ICameraIntrinsics2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, NativePoint input,
                           Pointer<NativePoint> result)>()(
-              ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
+              lpVtbl, inputNativeStructPtr.ref, result);
 
       free(inputNativeStructPtr);
 
@@ -88,7 +88,7 @@ class ICameraIntrinsics2 extends IInspectable {
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -107,7 +107,7 @@ class ICameraIntrinsics2 extends IInspectable {
                       Pointer<NativePoint> inputs,
                       int resultsSize,
                       Pointer<NativePoint> results)>()(
-          ptr.ref.lpVtbl, inputs.length, inputsArray, resultsSize, results);
+          lpVtbl, inputs.length, inputsArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -125,7 +125,7 @@ class ICameraIntrinsics2 extends IInspectable {
       final inputNativeStructPtr = input.toNative();
 
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(9)
                   .cast<
                       Pointer<
@@ -138,7 +138,7 @@ class ICameraIntrinsics2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, NativePoint input,
                           Pointer<NativePoint> result)>()(
-              ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
+              lpVtbl, inputNativeStructPtr.ref, result);
 
       free(inputNativeStructPtr);
 
@@ -156,7 +156,7 @@ class ICameraIntrinsics2 extends IInspectable {
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -175,7 +175,7 @@ class ICameraIntrinsics2 extends IInspectable {
                       Pointer<NativePoint> inputs,
                       int resultsSize,
                       Pointer<NativePoint> results)>()(
-          ptr.ref.lpVtbl, inputs.length, inputsArray, resultsSize, results);
+          lpVtbl, inputs.length, inputsArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

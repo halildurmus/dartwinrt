@@ -34,7 +34,7 @@ class IMultiSourceMediaFrameReference extends IInspectable
   MediaFrameReference? tryGetFrameReferenceBySourceId(String sourceId) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IMultiSourceMediaFrameReference extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sourceId,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sourceId.toHString(), value);
+        lpVtbl, sourceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);

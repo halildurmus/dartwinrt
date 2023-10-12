@@ -81,7 +81,7 @@ interface class IIterable<T> extends IInspectable {
   IIterator<T> first() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.lpVtbl.value
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -91,7 +91,7 @@ interface class IIterable<T> extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

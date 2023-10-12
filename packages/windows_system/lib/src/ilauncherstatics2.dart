@@ -37,7 +37,7 @@ class ILauncherStatics2 extends IInspectable {
       Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -51,10 +51,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr,
-        options.lpVtbl,
-        operation);
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -70,7 +67,7 @@ class ILauncherStatics2 extends IInspectable {
       Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -89,7 +86,7 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer options,
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         options.lpVtbl,
         inputData.lpVtbl,
@@ -109,7 +106,7 @@ class ILauncherStatics2 extends IInspectable {
       Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -128,7 +125,7 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer options,
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         options.lpVtbl,
         inputData.lpVtbl,
@@ -147,7 +144,7 @@ class ILauncherStatics2 extends IInspectable {
       Uri? uri, LaunchQuerySupportType launchQuerySupportType) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -164,7 +161,7 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer uri,
                     int launchQuerySupportType,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         launchQuerySupportType.value,
         operation);
@@ -186,7 +183,7 @@ class ILauncherStatics2 extends IInspectable {
       String packageFamilyName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -205,7 +202,7 @@ class ILauncherStatics2 extends IInspectable {
                     int launchQuerySupportType,
                     int packageFamilyName,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         launchQuerySupportType.value,
         packageFamilyName.toHString(),
@@ -226,7 +223,7 @@ class ILauncherStatics2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -239,7 +236,7 @@ class ILauncherStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file.lpVtbl, operation);
+            lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -256,7 +253,7 @@ class ILauncherStatics2 extends IInspectable {
       StorageFile? file, String packageFamilyName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -270,7 +267,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     int packageFamilyName, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, file.lpVtbl, packageFamilyName.toHString(), operation);
+        lpVtbl, file.lpVtbl, packageFamilyName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -286,7 +283,7 @@ class ILauncherStatics2 extends IInspectable {
   Future<List<AppInfo?>> findUriSchemeHandlersAsync(String scheme) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -297,7 +294,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int scheme,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, scheme.toHString(), operation);
+        lpVtbl, scheme.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -316,7 +313,7 @@ class ILauncherStatics2 extends IInspectable {
       String scheme, LaunchQuerySupportType launchQuerySupportType) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -332,8 +329,8 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer lpVtbl,
                     int scheme,
                     int launchQuerySupportType,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        scheme.toHString(), launchQuerySupportType.value, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, scheme.toHString(), launchQuerySupportType.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -351,7 +348,7 @@ class ILauncherStatics2 extends IInspectable {
   Future<List<AppInfo?>> findFileHandlersAsync(String extension) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -362,7 +359,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int extension,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, extension.toHString(), operation);
+        lpVtbl, extension.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

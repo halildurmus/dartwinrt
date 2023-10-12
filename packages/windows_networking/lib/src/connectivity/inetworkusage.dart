@@ -30,7 +30,7 @@ class INetworkUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -40,7 +40,7 @@ class INetworkUsage extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,7 +54,7 @@ class INetworkUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -64,7 +64,7 @@ class INetworkUsage extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,7 +78,7 @@ class INetworkUsage extends IInspectable {
     final duration = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -88,7 +88,7 @@ class INetworkUsage extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> duration)>()(ptr.ref.lpVtbl, duration);
+                  Pointer<Int64> duration)>()(lpVtbl, duration);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

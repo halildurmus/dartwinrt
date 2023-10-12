@@ -36,24 +36,23 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
     try {
       final guidNativeStructPtr = guid.toNativeGUID();
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              GUID guid,
-                              Pointer<NativeAutomationAnnotationTypeRegistration>
-                                  result)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      GUID guid,
-                      Pointer<NativeAutomationAnnotationTypeRegistration>
-                          result)>()(
-          ptr.ref.lpVtbl, guidNativeStructPtr.ref, result);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl,
+                          GUID guid,
+                          Pointer<NativeAutomationAnnotationTypeRegistration>
+                              result)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  GUID guid,
+                  Pointer<NativeAutomationAnnotationTypeRegistration>
+                      result)>()(lpVtbl, guidNativeStructPtr.ref, result);
 
       free(guidNativeStructPtr);
 
@@ -69,7 +68,7 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
       AutomationAnnotationTypeRegistration registration) {
     final registrationNativeStructPtr = registration.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -82,7 +81,7 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     NativeAutomationAnnotationTypeRegistration registration)>()(
-        ptr.ref.lpVtbl, registrationNativeStructPtr.ref);
+        lpVtbl, registrationNativeStructPtr.ref);
 
     free(registrationNativeStructPtr);
 

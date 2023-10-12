@@ -30,7 +30,7 @@ class ITimeZoneOnCalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -40,7 +40,7 @@ class ITimeZoneOnCalendar extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -51,7 +51,7 @@ class ITimeZoneOnCalendar extends IInspectable {
   }
 
   void changeTimeZone(String timeZoneId) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -60,7 +60,7 @@ class ITimeZoneOnCalendar extends IInspectable {
                             VTablePointer lpVtbl, IntPtr timeZoneId)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int timeZoneId)>()(
-        ptr.ref.lpVtbl, timeZoneId.toHString());
+        lpVtbl, timeZoneId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -69,7 +69,7 @@ class ITimeZoneOnCalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(8)
               .cast<
                   Pointer<
@@ -79,7 +79,7 @@ class ITimeZoneOnCalendar extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, result);
+          lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -93,7 +93,7 @@ class ITimeZoneOnCalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(9)
           .cast<
               Pointer<
@@ -102,11 +102,8 @@ class ITimeZoneOnCalendar extends IInspectable {
                           Pointer<IntPtr> result)>>>()
           .value
           .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  int idealLength,
-                  Pointer<IntPtr>
-                      result)>()(ptr.ref.lpVtbl, idealLength, result);
+              int Function(VTablePointer lpVtbl, int idealLength,
+                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

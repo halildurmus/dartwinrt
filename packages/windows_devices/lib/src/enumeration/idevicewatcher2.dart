@@ -33,7 +33,7 @@ class IDeviceWatcher2 extends IInspectable {
       IIterable<DeviceWatcherEventKind>? requestedEventKinds) {
     final trigger = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -48,7 +48,7 @@ class IDeviceWatcher2 extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer requestedEventKinds,
                     Pointer<COMObject> trigger)>()(
-        ptr.ref.lpVtbl, requestedEventKinds.lpVtbl, trigger);
+        lpVtbl, requestedEventKinds.lpVtbl, trigger);
 
     if (FAILED(hr)) {
       free(trigger);

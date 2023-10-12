@@ -29,7 +29,7 @@ class IWebTokenRequest2 extends IInspectable {
   IMap<String, String>? get appProperties {
     final requestProperties = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class IWebTokenRequest2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     Pointer<COMObject> requestProperties)>()(
-        ptr.ref.lpVtbl, requestProperties);
+        lpVtbl, requestProperties);
 
     if (FAILED(hr)) {
       free(requestProperties);

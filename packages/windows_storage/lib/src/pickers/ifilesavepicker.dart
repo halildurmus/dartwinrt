@@ -33,7 +33,7 @@ class IFileSavePicker extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -43,7 +43,7 @@ class IFileSavePicker extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,7 +55,7 @@ class IFileSavePicker extends IInspectable {
 
   set settingsIdentifier(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -64,7 +64,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -73,17 +73,17 @@ class IFileSavePicker extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -94,7 +94,7 @@ class IFileSavePicker extends IInspectable {
   }
 
   set suggestedStartLocation(PickerLocationId value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class IFileSavePicker extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value.value);
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -111,7 +111,7 @@ class IFileSavePicker extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(10)
               .cast<
                   Pointer<
@@ -121,7 +121,7 @@ class IFileSavePicker extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,7 +133,7 @@ class IFileSavePicker extends IInspectable {
 
   set commitButtonText(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -142,7 +142,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -150,7 +150,7 @@ class IFileSavePicker extends IInspectable {
   IMap<String, IVector<String>>? get fileTypeChoices {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -160,7 +160,7 @@ class IFileSavePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -182,7 +182,7 @@ class IFileSavePicker extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(13)
               .cast<
                   Pointer<
@@ -192,7 +192,7 @@ class IFileSavePicker extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -204,7 +204,7 @@ class IFileSavePicker extends IInspectable {
 
   set defaultFileExtension(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(14)
                 .cast<
                     Pointer<
@@ -213,7 +213,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -221,7 +221,7 @@ class IFileSavePicker extends IInspectable {
   StorageFile? get suggestedSaveFile {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -231,7 +231,7 @@ class IFileSavePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -247,7 +247,7 @@ class IFileSavePicker extends IInspectable {
   }
 
   set suggestedSaveFile(StorageFile? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -257,7 +257,7 @@ class IFileSavePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.lpVtbl);
+        lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -266,7 +266,7 @@ class IFileSavePicker extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(17)
               .cast<
                   Pointer<
@@ -276,7 +276,7 @@ class IFileSavePicker extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -288,7 +288,7 @@ class IFileSavePicker extends IInspectable {
 
   set suggestedFileName(String value) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(18)
                 .cast<
                     Pointer<
@@ -297,7 +297,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, value.toHString());
+            lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -305,7 +305,7 @@ class IFileSavePicker extends IInspectable {
   Future<StorageFile?> pickSaveFileAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(19)
         .cast<
             Pointer<
@@ -315,7 +315,7 @@ class IFileSavePicker extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
+                Pointer<COMObject> operation)>()(lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

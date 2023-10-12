@@ -30,7 +30,7 @@ class IHostNameStatics extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -41,7 +41,7 @@ class IHostNameStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value1, int value2,
                       Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, value1.toHString(), value2.toHString(), result);
+          lpVtbl, value1.toHString(), value2.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

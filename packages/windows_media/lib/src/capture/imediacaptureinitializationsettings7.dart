@@ -32,7 +32,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   PasswordCredential? get deviceUriPasswordCredential {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,7 +58,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   }
 
   set deviceUriPasswordCredential(PasswordCredential? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -68,7 +68,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.lpVtbl);
+        lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -76,7 +76,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   Uri? get deviceUri {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -86,7 +86,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -102,7 +102,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   }
 
   set deviceUri(Uri? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -112,7 +112,7 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr);
+        lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

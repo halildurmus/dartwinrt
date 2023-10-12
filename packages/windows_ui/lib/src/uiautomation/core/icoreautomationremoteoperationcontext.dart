@@ -34,7 +34,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
     final result = calloc<COMObject>();
     final idNativeStructPtr = id.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -49,7 +49,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, idNativeStructPtr.ref, result);
+        lpVtbl, idNativeStructPtr.ref, result);
 
     free(idNativeStructPtr);
 
@@ -69,7 +69,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
   void setOperand(AutomationRemoteOperationOperandId id, Object? operand) {
     final idNativeStructPtr = id.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -83,8 +83,8 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
-                    VTablePointer operand)>()(ptr.ref.lpVtbl,
-        idNativeStructPtr.ref, operand?.boxValue().lpVtbl ?? nullptr);
+                    VTablePointer operand)>()(
+        lpVtbl, idNativeStructPtr.ref, operand?.boxValue().lpVtbl ?? nullptr);
 
     free(idNativeStructPtr);
 
@@ -96,7 +96,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
     final idNativeStructPtr = id.toNative();
     final operandInterfaceIdNativeStructPtr = operandInterfaceId.toNativeGUID();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -113,7 +113,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     NativeAutomationRemoteOperationOperandId id,
                     VTablePointer operand,
                     GUID operandInterfaceId)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         idNativeStructPtr.ref,
         operand?.boxValue().lpVtbl ?? nullptr,
         operandInterfaceIdNativeStructPtr.ref);

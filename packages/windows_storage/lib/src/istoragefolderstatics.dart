@@ -31,7 +31,7 @@ class IStorageFolderStatics extends IInspectable {
   Future<StorageFolder?> getFolderFromPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IStorageFolderStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, path.toHString(), operation);
+        lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

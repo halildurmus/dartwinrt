@@ -31,18 +31,16 @@ class IRemoteAutomationServerStatics extends IInspectable {
   void reportSession(Guid sessionId) {
     final sessionIdNativeStructPtr = sessionId.toNativeGUID();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, GUID sessionId)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, GUID sessionId)>()(
-            ptr.ref.lpVtbl, sessionIdNativeStructPtr.ref);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, GUID sessionId)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                GUID sessionId)>()(lpVtbl, sessionIdNativeStructPtr.ref);
 
     free(sessionIdNativeStructPtr);
 

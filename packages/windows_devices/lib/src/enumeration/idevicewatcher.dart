@@ -35,18 +35,17 @@ class IDeviceWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,7 +57,7 @@ class IDeviceWatcher extends IInspectable {
 
   void remove_Added(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -67,7 +66,7 @@ class IDeviceWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -76,18 +75,17 @@ class IDeviceWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -99,7 +97,7 @@ class IDeviceWatcher extends IInspectable {
 
   void remove_Updated(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -108,7 +106,7 @@ class IDeviceWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -117,18 +115,17 @@ class IDeviceWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -140,7 +137,7 @@ class IDeviceWatcher extends IInspectable {
 
   void remove_Removed(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -149,7 +146,7 @@ class IDeviceWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -158,18 +155,17 @@ class IDeviceWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -181,7 +177,7 @@ class IDeviceWatcher extends IInspectable {
 
   void remove_EnumerationCompleted(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(13)
                 .cast<
                     Pointer<
@@ -190,7 +186,7 @@ class IDeviceWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -199,18 +195,17 @@ class IDeviceWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(14)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -222,7 +217,7 @@ class IDeviceWatcher extends IInspectable {
 
   void remove_Stopped(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(15)
                 .cast<
                     Pointer<
@@ -231,7 +226,7 @@ class IDeviceWatcher extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -240,7 +235,7 @@ class IDeviceWatcher extends IInspectable {
     final status = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(16)
               .cast<
                   Pointer<
@@ -250,7 +245,7 @@ class IDeviceWatcher extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
-          ptr.ref.lpVtbl, status);
+          lpVtbl, status);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -261,21 +256,21 @@ class IDeviceWatcher extends IInspectable {
   }
 
   void start() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(17)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(18)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

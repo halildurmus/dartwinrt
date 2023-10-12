@@ -32,7 +32,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
       String propertyCanonicalName) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -45,7 +45,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyCanonicalName,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, propertyCanonicalName.toHString(), operation);
+        lpVtbl, propertyCanonicalName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

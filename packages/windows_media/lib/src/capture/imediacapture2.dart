@@ -41,7 +41,7 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IStorageFile? file) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -58,7 +58,7 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer file,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, operation);
+        lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -75,7 +75,7 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IRandomAccessStream? stream) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -92,7 +92,7 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer stream,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, operation);
+        lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -109,7 +109,7 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IMediaExtension? customMediaSink) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -125,8 +125,8 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        encodingProfile.lpVtbl, customMediaSink.lpVtbl, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, encodingProfile.lpVtbl, customMediaSink.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -145,7 +145,7 @@ class IMediaCapture2 extends IInspectable {
       IPropertySet? customSinkSettings) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -164,7 +164,7 @@ class IMediaCapture2 extends IInspectable {
                     int customSinkActivationId,
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         encodingProfile.lpVtbl,
         customSinkActivationId.toHString(),
         customSinkSettings.lpVtbl,
@@ -186,7 +186,7 @@ class IMediaCapture2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -199,7 +199,7 @@ class IMediaCapture2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, type.lpVtbl, operation);
+            lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -217,7 +217,7 @@ class IMediaCapture2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -230,7 +230,7 @@ class IMediaCapture2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, type.lpVtbl, operation);
+            lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -249,7 +249,7 @@ class IMediaCapture2 extends IInspectable {
       MediaPropertySet? encoderProperties) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -268,7 +268,7 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer mediaEncodingProperties,
                     VTablePointer encoderProperties,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         mediaStreamType.value,
         mediaEncodingProperties.lpVtbl,
         encoderProperties.lpVtbl,

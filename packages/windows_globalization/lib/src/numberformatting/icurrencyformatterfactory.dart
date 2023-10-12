@@ -31,7 +31,7 @@ class ICurrencyFormatterFactory extends IInspectable {
   CurrencyFormatter createCurrencyFormatterCode(String currencyCode) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -44,7 +44,7 @@ class ICurrencyFormatterFactory extends IInspectable {
                 VTablePointer lpVtbl,
                 int currencyCode,
                 Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, currencyCode.toHString(), result);
+                    result)>()(lpVtbl, currencyCode.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -58,7 +58,7 @@ class ICurrencyFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -77,7 +77,7 @@ class ICurrencyFormatterFactory extends IInspectable {
                     VTablePointer languages,
                     int geographicRegion,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         currencyCode.toHString(),
         languages.lpVtbl,
         geographicRegion.toHString(),

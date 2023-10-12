@@ -183,7 +183,7 @@ abstract interface class IMapView<K, V> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.lpVtbl.value
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -193,7 +193,7 @@ abstract interface class IMapView<K, V> extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,7 +211,7 @@ abstract interface class IMapView<K, V> extends IInspectable
     final first = calloc<COMObject>();
     final second = calloc<COMObject>();
 
-    final hr = ptr.ref.lpVtbl.value
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -223,7 +223,7 @@ abstract interface class IMapView<K, V> extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
-                Pointer<COMObject> second)>()(ptr.ref.lpVtbl, first, second);
+                Pointer<COMObject> second)>()(lpVtbl, first, second);
 
     if (FAILED(hr)) {
       free(first);

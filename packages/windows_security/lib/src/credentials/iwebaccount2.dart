@@ -36,7 +36,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -46,7 +46,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,7 +59,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Map<String, String>? get properties {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -69,7 +69,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,7 +91,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
     final asyncInfo = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -104,7 +104,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desizedSize,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, desizedSize.value, asyncInfo);
+            lpVtbl, desizedSize.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -120,7 +120,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Future<void> signOutAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -130,7 +130,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -143,7 +143,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Future<void> signOutWithClientIdAsync(String clientId) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -154,7 +154,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int clientId,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, clientId.toHString(), asyncInfo);
+        lpVtbl, clientId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

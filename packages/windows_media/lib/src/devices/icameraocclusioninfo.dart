@@ -33,7 +33,7 @@ class ICameraOcclusionInfo extends IInspectable {
   CameraOcclusionState? getState() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -43,7 +43,7 @@ class ICameraOcclusionInfo extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,18 +62,17 @@ class ICameraOcclusionInfo extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Int32 occlusionKind, Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int occlusionKind,
-                      Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, occlusionKind.value, result);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Int32 occlusionKind, Pointer<Bool> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int occlusionKind,
+                  Pointer<Bool> result)>()(lpVtbl, occlusionKind.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,18 +86,17 @@ class ICameraOcclusionInfo extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              VTablePointer handler, Pointer<IntPtr> token)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> token)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          VTablePointer handler, Pointer<IntPtr> token)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,7 +108,7 @@ class ICameraOcclusionInfo extends IInspectable {
 
   void remove_StateChanged(int token) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(9)
                 .cast<
                     Pointer<
@@ -119,7 +117,7 @@ class ICameraOcclusionInfo extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr token)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            ptr.ref.lpVtbl, token);
+            lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

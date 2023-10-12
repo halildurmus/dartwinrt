@@ -173,7 +173,7 @@ abstract interface class IIterator<T> extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.lpVtbl.value
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -183,7 +183,7 @@ abstract interface class IIterator<T> extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -198,7 +198,7 @@ abstract interface class IIterator<T> extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.lpVtbl.value
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -208,7 +208,7 @@ abstract interface class IIterator<T> extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

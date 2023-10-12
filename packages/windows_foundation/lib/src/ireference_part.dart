@@ -19,7 +19,7 @@ final class _IReferenceBasicGeoposition extends IReference<BasicGeoposition?> {
     final retValuePtr = calloc<NativeBasicGeoposition>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -30,7 +30,7 @@ final class _IReferenceBasicGeoposition extends IReference<BasicGeoposition?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeBasicGeoposition> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -51,7 +51,7 @@ final class _IReferenceBool extends IReference<bool?> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -61,7 +61,7 @@ final class _IReferenceBool extends IReference<bool?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -82,18 +82,17 @@ final class _IReferenceColor extends IReference<Color?> {
     final retValuePtr = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeColor> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeColor> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeColor> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeColor> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -114,7 +113,7 @@ final class _IReferenceDateTime extends IReference<DateTime?> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -124,7 +123,7 @@ final class _IReferenceDateTime extends IReference<DateTime?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -146,7 +145,7 @@ final class _IReferenceDisplayPresentationRate
     final retValuePtr = calloc<NativeDisplayPresentationRate>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -159,7 +158,7 @@ final class _IReferenceDisplayPresentationRate
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeDisplayPresentationRate> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -180,7 +179,7 @@ final class _IReferenceDouble extends IReference<double?> {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -190,7 +189,7 @@ final class _IReferenceDouble extends IReference<double?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Double> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,7 +210,7 @@ final class _IReferenceDuration extends IReference<Duration?> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -221,7 +220,7 @@ final class _IReferenceDuration extends IReference<Duration?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -242,7 +241,7 @@ final class _IReferenceFloat extends IReference<double?> {
     final retValuePtr = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -252,7 +251,7 @@ final class _IReferenceFloat extends IReference<double?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Float> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -273,7 +272,7 @@ final class _IReferenceGuid extends IReference<Guid?> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -283,7 +282,7 @@ final class _IReferenceGuid extends IReference<Guid?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<GUID> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -305,7 +304,7 @@ final class _IReferenceHolographicStereoTransform
     final retValuePtr = calloc<NativeHolographicStereoTransform>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -318,7 +317,7 @@ final class _IReferenceHolographicStereoTransform
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeHolographicStereoTransform> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -339,7 +338,7 @@ final class _IReferenceInt16 extends IReference<int?> {
     final retValuePtr = calloc<Int16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -349,7 +348,7 @@ final class _IReferenceInt16 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -370,7 +369,7 @@ final class _IReferenceInt32 extends IReference<int?> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -380,7 +379,7 @@ final class _IReferenceInt32 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -401,7 +400,7 @@ final class _IReferenceInt64 extends IReference<int?> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -411,7 +410,7 @@ final class _IReferenceInt64 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -432,18 +431,17 @@ final class _IReferenceMatrix4x4 extends IReference<Matrix4x4?> {
     final retValuePtr = calloc<NativeMatrix4x4>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeMatrix4x4> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeMatrix4x4> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeMatrix4x4> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeMatrix4x4> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -464,7 +462,7 @@ final class _IReferenceMseTimeRange extends IReference<MseTimeRange?> {
     final retValuePtr = calloc<NativeMseTimeRange>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -475,7 +473,7 @@ final class _IReferenceMseTimeRange extends IReference<MseTimeRange?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeMseTimeRange> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -496,18 +494,17 @@ final class _IReferencePoint extends IReference<Point?> {
     final retValuePtr = calloc<NativePoint>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativePoint> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativePoint> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativePoint> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativePoint> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -528,7 +525,7 @@ final class _IReferenceQuaternion extends IReference<Quaternion?> {
     final retValuePtr = calloc<NativeQuaternion>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -539,7 +536,7 @@ final class _IReferenceQuaternion extends IReference<Quaternion?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeQuaternion> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -560,18 +557,17 @@ final class _IReferenceRect extends IReference<Rect?> {
     final retValuePtr = calloc<NativeRect>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeRect> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeRect> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeRect> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeRect> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -592,18 +588,17 @@ final class _IReferenceSize extends IReference<Size?> {
     final retValuePtr = calloc<NativeSize>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeSize> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeSize> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeSize> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -624,18 +619,17 @@ final class _IReferenceSizeInt32 extends IReference<SizeInt32?> {
     final retValuePtr = calloc<NativeSizeInt32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeSizeInt32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeSizeInt32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeSizeInt32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeSizeInt32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -657,7 +651,7 @@ final class _IReferenceSpatialBoundingBox
     final retValuePtr = calloc<NativeSpatialBoundingBox>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -669,7 +663,7 @@ final class _IReferenceSpatialBoundingBox
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<NativeSpatialBoundingBox>
-                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                      retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -691,7 +685,7 @@ final class _IReferenceSpatialBoundingFrustum
     final retValuePtr = calloc<NativeSpatialBoundingFrustum>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -704,7 +698,7 @@ final class _IReferenceSpatialBoundingFrustum
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeSpatialBoundingFrustum> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -726,7 +720,7 @@ final class _IReferenceSpatialBoundingOrientedBox
     final retValuePtr = calloc<NativeSpatialBoundingOrientedBox>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -739,7 +733,7 @@ final class _IReferenceSpatialBoundingOrientedBox
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeSpatialBoundingOrientedBox> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -760,7 +754,7 @@ final class _IReferenceSpatialRay extends IReference<SpatialRay?> {
     final retValuePtr = calloc<NativeSpatialRay>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -771,7 +765,7 @@ final class _IReferenceSpatialRay extends IReference<SpatialRay?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeSpatialRay> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -792,7 +786,7 @@ final class _IReferenceString extends IReference<String?> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -802,7 +796,7 @@ final class _IReferenceString extends IReference<String?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -823,7 +817,7 @@ final class _IReferenceUint8 extends IReference<int?> {
     final retValuePtr = calloc<Uint8>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -833,7 +827,7 @@ final class _IReferenceUint8 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint8> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -854,7 +848,7 @@ final class _IReferenceUint16 extends IReference<int?> {
     final retValuePtr = calloc<Uint16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -864,7 +858,7 @@ final class _IReferenceUint16 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -885,7 +879,7 @@ final class _IReferenceUint32 extends IReference<int?> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -895,7 +889,7 @@ final class _IReferenceUint32 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -916,7 +910,7 @@ final class _IReferenceUint64 extends IReference<int?> {
     final retValuePtr = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -926,7 +920,7 @@ final class _IReferenceUint64 extends IReference<int?> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -947,18 +941,17 @@ final class _IReferenceVector2 extends IReference<Vector2?> {
     final retValuePtr = calloc<NativeVector2>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeVector2> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeVector2> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeVector2> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeVector2> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -979,18 +972,17 @@ final class _IReferenceVector3 extends IReference<Vector3?> {
     final retValuePtr = calloc<NativeVector3>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeVector3> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeVector3> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeVector3> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeVector3> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1011,7 +1003,7 @@ final class _IReferenceWhiteBalanceGain extends IReference<WhiteBalanceGain?> {
     final retValuePtr = calloc<NativeWhiteBalanceGain>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -1022,7 +1014,7 @@ final class _IReferenceWhiteBalanceGain extends IReference<WhiteBalanceGain?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativeWhiteBalanceGain> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1045,7 +1037,7 @@ final class _IReferenceWinRTEnum<T> extends IReference<T> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -1055,7 +1047,7 @@ final class _IReferenceWinRTEnum<T> extends IReference<T> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1078,7 +1070,7 @@ final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -1088,7 +1080,7 @@ final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

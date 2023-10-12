@@ -31,7 +31,7 @@ class ILanguageStatics2 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -42,7 +42,7 @@ class ILanguageStatics2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int languageTag,
                           Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, languageTag.toHString(), result);
+              lpVtbl, languageTag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

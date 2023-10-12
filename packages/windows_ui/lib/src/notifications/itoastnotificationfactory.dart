@@ -32,21 +32,17 @@ class IToastNotificationFactory extends IInspectable {
   ToastNotification createToastNotification(XmlDocument? content) {
     final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer content,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer content,
-                        Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, content.lpVtbl, value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        VTablePointer content, Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer content,
+                Pointer<COMObject> value)>()(lpVtbl, content.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

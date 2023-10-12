@@ -28,7 +28,7 @@ class IConnectionProfileFilter2 extends IInspectable {
       .cast(IConnectionProfileFilter2.fromPtr, IID_IConnectionProfileFilter2);
 
   set isRoaming(bool? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -38,7 +38,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference().lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -46,7 +46,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isRoaming {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -56,7 +56,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -74,7 +74,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   }
 
   set isOverDataLimit(bool? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -84,7 +84,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference().lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -92,7 +92,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isOverDataLimit {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -120,7 +120,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   }
 
   set isBackgroundDataUsageRestricted(bool? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -130,7 +130,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference().lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -138,7 +138,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isBackgroundDataUsageRestricted {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -148,7 +148,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -168,7 +168,7 @@ class IConnectionProfileFilter2 extends IInspectable {
   IBuffer? get rawData {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -178,7 +178,7 @@ class IConnectionProfileFilter2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

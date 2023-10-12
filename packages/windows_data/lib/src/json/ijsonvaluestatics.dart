@@ -31,7 +31,7 @@ class IJsonValueStatics extends IInspectable {
   JsonValue? parse(String input) {
     final jsonValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IJsonValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, input.toHString(), jsonValue);
+        lpVtbl, input.toHString(), jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);
@@ -62,7 +62,7 @@ class IJsonValueStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(7)
               .cast<
                   Pointer<
@@ -76,7 +76,7 @@ class IJsonValueStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, input.toHString(), result, succeeded);
+          lpVtbl, input.toHString(), result, succeeded);
 
       if (FAILED(hr)) {
         free(result);
@@ -101,18 +101,17 @@ class IJsonValueStatics extends IInspectable {
   JsonValue? createBooleanValue(bool input) {
     final jsonValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool input,
-                            Pointer<COMObject> jsonValue)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, bool input,
-                    Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, input, jsonValue);
+    final hr = vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Bool input,
+                        Pointer<COMObject> jsonValue)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, bool input,
+                Pointer<COMObject> jsonValue)>()(lpVtbl, input, jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);
@@ -130,18 +129,17 @@ class IJsonValueStatics extends IInspectable {
   JsonValue? createNumberValue(double input) {
     final jsonValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Double input,
-                            Pointer<COMObject> jsonValue)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, double input,
-                    Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, input, jsonValue);
+    final hr = vtable
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Double input,
+                        Pointer<COMObject> jsonValue)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, double input,
+                Pointer<COMObject> jsonValue)>()(lpVtbl, input, jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);
@@ -159,7 +157,7 @@ class IJsonValueStatics extends IInspectable {
   JsonValue? createStringValue(String input) {
     final jsonValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -170,7 +168,7 @@ class IJsonValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, input.toHString(), jsonValue);
+        lpVtbl, input.toHString(), jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);

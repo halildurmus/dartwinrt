@@ -35,7 +35,7 @@ class IUISettings3 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -48,7 +48,7 @@ class IUISettings3 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int desiredColor,
                           Pointer<NativeColor> value)>()(
-              ptr.ref.lpVtbl, desiredColor.value, value);
+              lpVtbl, desiredColor.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -63,7 +63,7 @@ class IUISettings3 extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -76,7 +76,7 @@ class IUISettings3 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer handler,
                           Pointer<IntPtr> cookie)>()(
-              ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
+              lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -88,7 +88,7 @@ class IUISettings3 extends IInspectable {
 
   void remove_ColorValuesChanged(int cookie) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -97,7 +97,7 @@ class IUISettings3 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr cookie)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            ptr.ref.lpVtbl, cookie);
+            lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

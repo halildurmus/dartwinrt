@@ -34,21 +34,17 @@ class ILearningModelDeviceStatics extends IInspectable {
   LearningModelDevice? createFromDirect3D11Device(IDirect3DDevice? device) {
     final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer device,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer device,
-                        Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, device.lpVtbl, result);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer device,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer device,
+                Pointer<COMObject> result)>()(lpVtbl, device.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

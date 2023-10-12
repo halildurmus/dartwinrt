@@ -32,7 +32,7 @@ class IBufferStatics extends IInspectable {
   Buffer? createCopyFromMemoryBuffer(IMemoryBuffer? input) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,11 +41,8 @@ class IBufferStatics extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer input,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, input.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer input,
+                Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +60,7 @@ class IBufferStatics extends IInspectable {
   MemoryBuffer? createMemoryBufferOverIBuffer(IBuffer? input) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -72,11 +69,8 @@ class IBufferStatics extends IInspectable {
                         Pointer<COMObject> value)>>>()
         .value
         .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer input,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, input.lpVtbl, value);
+            int Function(VTablePointer lpVtbl, VTablePointer input,
+                Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

@@ -34,17 +34,17 @@ class IDigitalWindowControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,20 +59,19 @@ class IDigitalWindowControl extends IInspectable {
     final value = calloc<Pointer<Int32>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<Int32>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<Int32>> value)>()(
-          ptr.ref.lpVtbl, valueSize, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl,
+                          Pointer<Uint32> valueSize,
+                          Pointer<Pointer<Int32>> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                  Pointer<Pointer<Int32>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -88,17 +87,17 @@ class IDigitalWindowControl extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -111,7 +110,7 @@ class IDigitalWindowControl extends IInspectable {
   DigitalWindowBounds? getBounds() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -121,7 +120,7 @@ class IDigitalWindowControl extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -137,7 +136,7 @@ class IDigitalWindowControl extends IInspectable {
   }
 
   void configure(DigitalWindowMode digitalWindowMode) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -147,14 +146,14 @@ class IDigitalWindowControl extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int digitalWindowMode)>()(
-        ptr.ref.lpVtbl, digitalWindowMode.value);
+        lpVtbl, digitalWindowMode.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void configureWithBounds(DigitalWindowMode digitalWindowMode,
       DigitalWindowBounds? digitalWindowBounds) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -167,7 +166,7 @@ class IDigitalWindowControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int digitalWindowMode,
                     VTablePointer digitalWindowBounds)>()(
-        ptr.ref.lpVtbl, digitalWindowMode.value, digitalWindowBounds.lpVtbl);
+        lpVtbl, digitalWindowMode.value, digitalWindowBounds.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -175,7 +174,7 @@ class IDigitalWindowControl extends IInspectable {
   List<DigitalWindowCapability?>? get supportedCapabilities {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -185,7 +184,7 @@ class IDigitalWindowControl extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -206,18 +205,17 @@ class IDigitalWindowControl extends IInspectable {
   DigitalWindowCapability? getCapabilityForSize(int width, int height) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 width,
-                            Int32 height, Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int width, int height,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, width, height, result);
+    final hr = vtable
+        .elementAt(13)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 width,
+                        Int32 height, Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int width, int height,
+                Pointer<COMObject> result)>()(lpVtbl, width, height, result);
 
     if (FAILED(hr)) {
       free(result);

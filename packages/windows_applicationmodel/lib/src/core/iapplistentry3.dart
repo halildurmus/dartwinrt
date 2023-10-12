@@ -31,7 +31,7 @@ class IAppListEntry3 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -44,7 +44,7 @@ class IAppListEntry3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, operation);
+            lpVtbl, user.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

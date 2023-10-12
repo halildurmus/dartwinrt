@@ -48,7 +48,7 @@ class IXmlDocument extends IInspectable
   XmlDocumentType? get doctype {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -58,7 +58,7 @@ class IXmlDocument extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -76,7 +76,7 @@ class IXmlDocument extends IInspectable
   XmlDomImplementation? get implementation {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -86,7 +86,7 @@ class IXmlDocument extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -104,7 +104,7 @@ class IXmlDocument extends IInspectable
   XmlElement? get documentElement {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -114,7 +114,7 @@ class IXmlDocument extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -132,7 +132,7 @@ class IXmlDocument extends IInspectable
   XmlElement? createElement(String tagName) {
     final newElement = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -143,7 +143,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> newElement)>()(
-        ptr.ref.lpVtbl, tagName.toHString(), newElement);
+        lpVtbl, tagName.toHString(), newElement);
 
     if (FAILED(hr)) {
       free(newElement);
@@ -161,7 +161,7 @@ class IXmlDocument extends IInspectable
   XmlDocumentFragment? createDocumentFragment() {
     final newDocumentFragment = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -172,7 +172,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl,
                     Pointer<COMObject> newDocumentFragment)>()(
-        ptr.ref.lpVtbl, newDocumentFragment);
+        lpVtbl, newDocumentFragment);
 
     if (FAILED(hr)) {
       free(newDocumentFragment);
@@ -190,7 +190,7 @@ class IXmlDocument extends IInspectable
   XmlText? createTextNode(String data) {
     final newTextNode = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -201,7 +201,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int data,
                     Pointer<COMObject> newTextNode)>()(
-        ptr.ref.lpVtbl, data.toHString(), newTextNode);
+        lpVtbl, data.toHString(), newTextNode);
 
     if (FAILED(hr)) {
       free(newTextNode);
@@ -219,7 +219,7 @@ class IXmlDocument extends IInspectable
   XmlComment? createComment(String data) {
     final newComment = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -230,7 +230,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int data,
                     Pointer<COMObject> newComment)>()(
-        ptr.ref.lpVtbl, data.toHString(), newComment);
+        lpVtbl, data.toHString(), newComment);
 
     if (FAILED(hr)) {
       free(newComment);
@@ -249,7 +249,7 @@ class IXmlDocument extends IInspectable
       String target, String data) {
     final newProcessingInstruction = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(13)
             .cast<
                 Pointer<
@@ -263,10 +263,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int target, int data,
                     Pointer<COMObject> newProcessingInstruction)>()(
-        ptr.ref.lpVtbl,
-        target.toHString(),
-        data.toHString(),
-        newProcessingInstruction);
+        lpVtbl, target.toHString(), data.toHString(), newProcessingInstruction);
 
     if (FAILED(hr)) {
       free(newProcessingInstruction);
@@ -284,7 +281,7 @@ class IXmlDocument extends IInspectable
   XmlAttribute? createAttribute(String name) {
     final newAttribute = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(14)
             .cast<
                 Pointer<
@@ -295,7 +292,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> newAttribute)>()(
-        ptr.ref.lpVtbl, name.toHString(), newAttribute);
+        lpVtbl, name.toHString(), newAttribute);
 
     if (FAILED(hr)) {
       free(newAttribute);
@@ -313,7 +310,7 @@ class IXmlDocument extends IInspectable
   XmlEntityReference? createEntityReference(String name) {
     final newEntityReference = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(15)
             .cast<
                 Pointer<
@@ -324,7 +321,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> newEntityReference)>()(
-        ptr.ref.lpVtbl, name.toHString(), newEntityReference);
+        lpVtbl, name.toHString(), newEntityReference);
 
     if (FAILED(hr)) {
       free(newEntityReference);
@@ -342,7 +339,7 @@ class IXmlDocument extends IInspectable
   XmlNodeList getElementsByTagName(String tagName) {
     final elements = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(16)
             .cast<
                 Pointer<
@@ -353,7 +350,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> elements)>()(
-        ptr.ref.lpVtbl, tagName.toHString(), elements);
+        lpVtbl, tagName.toHString(), elements);
 
     if (FAILED(hr)) {
       free(elements);
@@ -366,7 +363,7 @@ class IXmlDocument extends IInspectable
   XmlCDataSection? createCDataSection(String data) {
     final newCDataSection = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(17)
             .cast<
                 Pointer<
@@ -377,7 +374,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int data,
                     Pointer<COMObject> newCDataSection)>()(
-        ptr.ref.lpVtbl, data.toHString(), newCDataSection);
+        lpVtbl, data.toHString(), newCDataSection);
 
     if (FAILED(hr)) {
       free(newCDataSection);
@@ -396,7 +393,7 @@ class IXmlDocument extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(18)
               .cast<
                   Pointer<
@@ -406,7 +403,7 @@ class IXmlDocument extends IInspectable
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -419,7 +416,7 @@ class IXmlDocument extends IInspectable
   XmlAttribute? createAttributeNS(Object? namespaceUri, String qualifiedName) {
     final newAttribute = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(19)
             .cast<
                 Pointer<
@@ -433,7 +430,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> newAttribute)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
         newAttribute);
@@ -454,7 +451,7 @@ class IXmlDocument extends IInspectable
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
     final newElement = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(20)
             .cast<
                 Pointer<
@@ -468,7 +465,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> newElement)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
         newElement);
@@ -489,7 +486,7 @@ class IXmlDocument extends IInspectable
   XmlElement? getElementById(String elementId) {
     final element = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(21)
             .cast<
                 Pointer<
@@ -500,7 +497,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int elementId,
                     Pointer<COMObject> element)>()(
-        ptr.ref.lpVtbl, elementId.toHString(), element);
+        lpVtbl, elementId.toHString(), element);
 
     if (FAILED(hr)) {
       free(element);
@@ -519,7 +516,7 @@ class IXmlDocument extends IInspectable
     final newNode = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(22)
                 .cast<
                     Pointer<
@@ -533,7 +530,7 @@ class IXmlDocument extends IInspectable
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer node,
                         bool deep, Pointer<COMObject> newNode)>()(
-            ptr.ref.lpVtbl, node.lpVtbl, deep, newNode);
+            lpVtbl, node.lpVtbl, deep, newNode);
 
     if (FAILED(hr)) {
       free(newNode);

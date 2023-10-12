@@ -271,7 +271,7 @@ abstract interface class IVectorView<T> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -281,7 +281,7 @@ abstract interface class IVectorView<T> extends IInspectable
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

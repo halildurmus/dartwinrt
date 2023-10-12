@@ -35,7 +35,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -49,7 +49,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
+            lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -66,7 +66,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -80,7 +80,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
+            lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -96,7 +96,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -114,8 +114,8 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        user.lpVtbl, desiredName.toHString(), option.value, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -131,7 +131,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -149,8 +149,8 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        user.lpVtbl, desiredName.toHString(), option.value, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

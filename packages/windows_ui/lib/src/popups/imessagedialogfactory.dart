@@ -31,7 +31,7 @@ class IMessageDialogFactory extends IInspectable {
   MessageDialog create(String content) {
     final messageDialog = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IMessageDialogFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content,
                     Pointer<COMObject> messageDialog)>()(
-        ptr.ref.lpVtbl, content.toHString(), messageDialog);
+        lpVtbl, content.toHString(), messageDialog);
 
     if (FAILED(hr)) {
       free(messageDialog);
@@ -55,7 +55,7 @@ class IMessageDialogFactory extends IInspectable {
   MessageDialog createWithTitle(String content, String title) {
     final messageDialog = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -66,7 +66,7 @@ class IMessageDialogFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content, int title,
                     Pointer<COMObject> messageDialog)>()(
-        ptr.ref.lpVtbl, content.toHString(), title.toHString(), messageDialog);
+        lpVtbl, content.toHString(), title.toHString(), messageDialog);
 
     if (FAILED(hr)) {
       free(messageDialog);

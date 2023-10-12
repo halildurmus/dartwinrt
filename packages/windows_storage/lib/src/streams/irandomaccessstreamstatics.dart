@@ -33,7 +33,7 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
+        lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -61,7 +61,7 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination, int bytesToCopy) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -79,8 +79,8 @@ class IRandomAccessStreamStatics extends IInspectable {
                     VTablePointer source,
                     VTablePointer destination,
                     int bytesToCopy,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        source.lpVtbl, destination.lpVtbl, bytesToCopy, operation);
+                    Pointer<COMObject> operation)>()(
+        lpVtbl, source.lpVtbl, destination.lpVtbl, bytesToCopy, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -94,7 +94,7 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -108,7 +108,7 @@ class IRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
+        lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

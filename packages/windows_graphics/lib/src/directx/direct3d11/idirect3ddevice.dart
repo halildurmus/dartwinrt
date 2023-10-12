@@ -29,11 +29,11 @@ class IDirect3DDevice extends IInspectable implements IClosable {
       interface.cast(IDirect3DDevice.fromPtr, IID_IDirect3DDevice);
 
   void trim() {
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

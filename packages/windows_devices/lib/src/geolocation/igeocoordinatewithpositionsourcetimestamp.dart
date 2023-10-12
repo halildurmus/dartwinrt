@@ -32,7 +32,7 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
   DateTime? get positionSourceTimestamp {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -42,7 +42,7 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

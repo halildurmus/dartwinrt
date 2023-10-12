@@ -31,7 +31,7 @@ class IMediaDeviceControl extends IInspectable {
   MediaDeviceControlCapabilities? get capabilities {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -41,7 +41,7 @@ class IMediaDeviceControl extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,7 +61,7 @@ class IMediaDeviceControl extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(7)
           .cast<
               Pointer<
@@ -71,7 +71,7 @@ class IMediaDeviceControl extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Double> value,
-                  Pointer<Bool> succeeded)>()(ptr.ref.lpVtbl, value, succeeded);
+                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -86,7 +86,7 @@ class IMediaDeviceControl extends IInspectable {
     final succeeded = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -96,7 +96,7 @@ class IMediaDeviceControl extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Bool> succeeded)>()(ptr.ref.lpVtbl, value, succeeded);
+                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -111,7 +111,7 @@ class IMediaDeviceControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(9)
           .cast<
               Pointer<
@@ -121,7 +121,7 @@ class IMediaDeviceControl extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Bool> value,
-                  Pointer<Bool> succeeded)>()(ptr.ref.lpVtbl, value, succeeded);
+                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -136,7 +136,7 @@ class IMediaDeviceControl extends IInspectable {
     final succeeded = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(10)
           .cast<
               Pointer<
@@ -146,7 +146,7 @@ class IMediaDeviceControl extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, bool value,
-                  Pointer<Bool> succeeded)>()(ptr.ref.lpVtbl, value, succeeded);
+                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

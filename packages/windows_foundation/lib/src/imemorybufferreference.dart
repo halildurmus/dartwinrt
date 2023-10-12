@@ -35,7 +35,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,7 +60,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -73,7 +73,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer handler,
                           Pointer<IntPtr> cookie)>()(
-              ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
+              lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,7 +85,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
 
   void remove_Closed(int cookie) {
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(8)
                 .cast<
                     Pointer<
@@ -94,7 +94,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
                                 VTablePointer lpVtbl, IntPtr cookie)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            ptr.ref.lpVtbl, cookie);
+            lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

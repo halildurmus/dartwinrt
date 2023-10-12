@@ -34,7 +34,7 @@ class IUser2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -47,7 +47,7 @@ class IUser2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int consentGroup,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, consentGroup.value, operation);
+            lpVtbl, consentGroup.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

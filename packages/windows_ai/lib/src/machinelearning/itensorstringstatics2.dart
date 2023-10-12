@@ -34,7 +34,7 @@ class ITensorStringStatics2 extends IInspectable {
     final shapeArray = shape.toArray<Int64>();
     final dataArray = data.toArray();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -54,8 +54,8 @@ class ITensorStringStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     int dataSize,
                     Pointer<IntPtr> data,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        shapeArray, data.length, dataArray, result);
+                    Pointer<COMObject> result)>()(
+        lpVtbl, shape.length, shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
     free(dataArray);

@@ -43,7 +43,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
   Future<SoftwareBitmap?> getSoftwareBitmapAsync() {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -70,7 +70,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
     final value = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -84,7 +84,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int pixelFormat,
                         int alphaMode, Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, pixelFormat.value, alphaMode.value, value);
+            lpVtbl, pixelFormat.value, alphaMode.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -104,7 +104,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
       ColorManagementMode colorManagementMode) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -127,7 +127,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
                     int exifOrientationMode,
                     int colorManagementMode,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         pixelFormat.value,
         alphaMode.value,
         transform.lpVtbl,

@@ -37,7 +37,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(6)
           .cast<
               Pointer<
@@ -47,7 +47,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl, int opcode,
-                  Pointer<Bool> result)>()(ptr.ref.lpVtbl, opcode, result);
+                  Pointer<Bool> result)>()(lpVtbl, opcode, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,7 +61,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
       AutomationElement? element) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -76,7 +76,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     VTablePointer element)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, element.lpVtbl);
+        lpVtbl, operandIdNativeStructPtr.ref, element.lpVtbl);
 
     free(operandIdNativeStructPtr);
 
@@ -87,7 +87,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
       AutomationTextRange? textRange) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -102,7 +102,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     VTablePointer textRange)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, textRange.lpVtbl);
+        lpVtbl, operandIdNativeStructPtr.ref, textRange.lpVtbl);
 
     free(operandIdNativeStructPtr);
 
@@ -112,7 +112,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
   void addToResults(AutomationRemoteOperationOperandId operandId) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(9)
         .cast<
             Pointer<
@@ -124,7 +124,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
             int Function(
                 VTablePointer lpVtbl,
                 NativeAutomationRemoteOperationOperandId
-                    operandId)>()(ptr.ref.lpVtbl, operandIdNativeStructPtr.ref);
+                    operandId)>()(lpVtbl, operandIdNativeStructPtr.ref);
 
     free(operandIdNativeStructPtr);
 
@@ -135,7 +135,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
     final result = calloc<COMObject>();
     final bytecodeBufferArray = bytecodeBuffer.toArray<Uint8>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -152,7 +152,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     int bytecodeBufferSize,
                     Pointer<Uint8> bytecodeBuffer,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, bytecodeBuffer.length, bytecodeBufferArray, result);
+        lpVtbl, bytecodeBuffer.length, bytecodeBufferArray, result);
 
     free(bytecodeBufferArray);
 

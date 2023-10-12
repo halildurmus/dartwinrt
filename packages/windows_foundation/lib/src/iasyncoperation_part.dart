@@ -17,7 +17,7 @@ final class _IAsyncOperationBool extends IAsyncOperation<bool> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -27,7 +27,7 @@ final class _IAsyncOperationBool extends IAsyncOperation<bool> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -46,7 +46,7 @@ final class _IAsyncOperationDouble extends IAsyncOperation<double> {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -56,7 +56,7 @@ final class _IAsyncOperationDouble extends IAsyncOperation<double> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Double> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,7 +75,7 @@ final class _IAsyncOperationFloat extends IAsyncOperation<double> {
     final retValuePtr = calloc<Float>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -85,7 +85,7 @@ final class _IAsyncOperationFloat extends IAsyncOperation<double> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Float> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -104,7 +104,7 @@ final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -114,7 +114,7 @@ final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<GUID> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,7 +133,7 @@ final class _IAsyncOperationInt16 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Int16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -143,7 +143,7 @@ final class _IAsyncOperationInt16 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -162,7 +162,7 @@ final class _IAsyncOperationInt32 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -172,7 +172,7 @@ final class _IAsyncOperationInt32 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -191,7 +191,7 @@ final class _IAsyncOperationInt64 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -201,7 +201,7 @@ final class _IAsyncOperationInt64 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -221,7 +221,7 @@ final class _IAsyncOperationLoadMoreItemsResult
     final retValuePtr = calloc<NativeLoadMoreItemsResult>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -233,7 +233,7 @@ final class _IAsyncOperationLoadMoreItemsResult
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<NativeLoadMoreItemsResult>
-                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                      retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -254,7 +254,7 @@ final class _IAsyncOperationInspectable<TResult>
   TResult getResults() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -264,7 +264,7 @@ final class _IAsyncOperationInspectable<TResult>
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -287,7 +287,7 @@ final class _IAsyncOperationObject extends IAsyncOperation<Object?> {
   Object? getResults() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -297,7 +297,7 @@ final class _IAsyncOperationObject extends IAsyncOperation<Object?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -320,7 +320,7 @@ final class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
   Uri? getResults() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -330,7 +330,7 @@ final class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -354,7 +354,7 @@ final class _IAsyncOperationString extends IAsyncOperation<String> {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -364,7 +364,7 @@ final class _IAsyncOperationString extends IAsyncOperation<String> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -383,7 +383,7 @@ final class _IAsyncOperationUint8 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Uint8>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -393,7 +393,7 @@ final class _IAsyncOperationUint8 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint8> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -412,7 +412,7 @@ final class _IAsyncOperationUint16 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Uint16>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -422,7 +422,7 @@ final class _IAsyncOperationUint16 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint16> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -441,7 +441,7 @@ final class _IAsyncOperationUint32 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -451,7 +451,7 @@ final class _IAsyncOperationUint32 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -470,7 +470,7 @@ final class _IAsyncOperationUint64 extends IAsyncOperation<int> {
     final retValuePtr = calloc<Uint64>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -480,7 +480,7 @@ final class _IAsyncOperationUint64 extends IAsyncOperation<int> {
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint64> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -502,7 +502,7 @@ final class _IAsyncOperationWinRTEnum<TResult>
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -512,7 +512,7 @@ final class _IAsyncOperationWinRTEnum<TResult>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -535,7 +535,7 @@ final class _IAsyncOperationWinRTFlagsEnum<TResult>
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
           .elementAt(8)
           .cast<
               Pointer<
@@ -545,7 +545,7 @@ final class _IAsyncOperationWinRTFlagsEnum<TResult>
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

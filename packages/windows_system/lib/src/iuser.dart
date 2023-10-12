@@ -35,7 +35,7 @@ class IUser extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -45,7 +45,7 @@ class IUser extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          ptr.ref.lpVtbl, value);
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +59,17 @@ class IUser extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +83,17 @@ class IUser extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -106,7 +106,7 @@ class IUser extends IInspectable {
   Future<Object?> getPropertyAsync(String value) {
     final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -117,7 +117,7 @@ class IUser extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int value,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, value.toHString(), operation);
+        lpVtbl, value.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -132,7 +132,7 @@ class IUser extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(10)
                 .cast<
                     Pointer<
@@ -145,7 +145,7 @@ class IUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer values,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, values.lpVtbl, operation);
+            lpVtbl, values.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -162,7 +162,7 @@ class IUser extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(11)
                 .cast<
                     Pointer<
@@ -175,7 +175,7 @@ class IUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredSize,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredSize.value, operation);
+            lpVtbl, desiredSize.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

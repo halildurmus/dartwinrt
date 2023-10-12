@@ -41,7 +41,7 @@ class ICameraIntrinsicsFactory extends IInspectable {
     final radialDistortionNativeStructPtr = radialDistortion.toNative();
     final tangentialDistortionNativeStructPtr = tangentialDistortion.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -66,7 +66,7 @@ class ICameraIntrinsicsFactory extends IInspectable {
                     int imageWidth,
                     int imageHeight,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         focalLengthNativeStructPtr.ref,
         principalPointNativeStructPtr.ref,
         radialDistortionNativeStructPtr.ref,

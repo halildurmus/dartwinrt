@@ -37,7 +37,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -50,7 +50,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionId.toHString(), operation);
+            lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -67,7 +67,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final operation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(7)
                 .cast<
                     Pointer<
@@ -80,7 +80,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionId.toHString(), operation);
+            lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -96,7 +96,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   ToastCollectionManager? getToastCollectionManager() {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -106,7 +106,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
+                Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -124,7 +124,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   ToastCollectionManager? getToastCollectionManagerWithAppId(String appId) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -135,7 +135,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int appId,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, appId.toHString(), result);
+        lpVtbl, appId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

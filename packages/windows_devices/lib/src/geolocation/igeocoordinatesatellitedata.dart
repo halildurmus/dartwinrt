@@ -31,7 +31,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
   double? get positionDilutionOfPrecision {
     final ppValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(6)
         .cast<
             Pointer<
@@ -41,7 +41,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
+                Pointer<COMObject> ppValue)>()(lpVtbl, ppValue);
 
     if (FAILED(hr)) {
       free(ppValue);
@@ -61,7 +61,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
   double? get horizontalDilutionOfPrecision {
     final ppValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(7)
         .cast<
             Pointer<
@@ -71,7 +71,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
+                Pointer<COMObject> ppValue)>()(lpVtbl, ppValue);
 
     if (FAILED(hr)) {
       free(ppValue);
@@ -91,7 +91,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
   double? get verticalDilutionOfPrecision {
     final ppValue = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
         .elementAt(8)
         .cast<
             Pointer<
@@ -101,7 +101,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
+                Pointer<COMObject> ppValue)>()(lpVtbl, ppValue);
 
     if (FAILED(hr)) {
       free(ppValue);

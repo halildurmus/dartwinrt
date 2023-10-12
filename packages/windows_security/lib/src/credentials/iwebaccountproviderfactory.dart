@@ -32,7 +32,7 @@ class IWebAccountProviderFactory extends IInspectable {
       String id, String displayName, Uri? iconUri) {
     final instance = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -47,7 +47,7 @@ class IWebAccountProviderFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int id, int displayName,
                     VTablePointer iconUri, Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         id.toHString(),
         displayName.toHString(),
         iconUri?.toWinRTUri().lpVtbl ?? nullptr,

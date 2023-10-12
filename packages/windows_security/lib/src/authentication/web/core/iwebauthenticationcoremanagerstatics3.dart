@@ -40,7 +40,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
       IIterable<WebAccount?>? webAccounts) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -53,7 +53,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer webAccounts,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, webAccounts.lpVtbl, result);
+        lpVtbl, webAccounts.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

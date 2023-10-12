@@ -35,7 +35,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(6)
                   .cast<
                       Pointer<
@@ -48,7 +48,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           Pointer<COMObject> phoneNumber)>()(
-              ptr.ref.lpVtbl, regionCode.toHString(), phoneNumber);
+              lpVtbl, regionCode.toHString(), phoneNumber);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -69,7 +69,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
@@ -80,7 +80,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl, regionCode.toHString(), result);
+              lpVtbl, regionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -96,7 +96,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
     try {
       final hr =
-          ptr.ref.vtable
+          vtable
                   .elementAt(8)
                   .cast<
                       Pointer<
@@ -110,7 +110,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           bool stripNonDigit, Pointer<IntPtr> result)>()(
-              ptr.ref.lpVtbl, regionCode.toHString(), stripNonDigit, result);
+              lpVtbl, regionCode.toHString(), stripNonDigit, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -124,7 +124,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(9)
               .cast<
                   Pointer<
@@ -135,7 +135,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, number.toHString(), result);
+          lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

@@ -33,18 +33,17 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
   RemoteAutomationClientSession createInstance(String name) {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, name.toHString(), value);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                Pointer<COMObject> value)>()(lpVtbl, name.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,7 +57,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
     final value = calloc<COMObject>();
     final sessionIdNativeStructPtr = sessionId.toNativeGUID();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -69,7 +68,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name, GUID sessionId,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, name.toHString(), sessionIdNativeStructPtr.ref, value);
+        lpVtbl, name.toHString(), sessionIdNativeStructPtr.ref, value);
 
     free(sessionIdNativeStructPtr);
 

@@ -30,7 +30,7 @@ class IAudioStreamDescriptor2 extends IInspectable
       .cast(IAudioStreamDescriptor2.fromPtr, IID_IAudioStreamDescriptor2);
 
   set leadingEncoderPadding(int? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -40,7 +40,7 @@ class IAudioStreamDescriptor2 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -48,7 +48,7 @@ class IAudioStreamDescriptor2 extends IInspectable
   int? get leadingEncoderPadding {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -58,7 +58,7 @@ class IAudioStreamDescriptor2 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -76,7 +76,7 @@ class IAudioStreamDescriptor2 extends IInspectable
   }
 
   set trailingEncoderPadding(int? value) {
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -86,7 +86,7 @@ class IAudioStreamDescriptor2 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
+        lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -94,7 +94,7 @@ class IAudioStreamDescriptor2 extends IInspectable
   int? get trailingEncoderPadding {
     final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -104,7 +104,7 @@ class IAudioStreamDescriptor2 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, value);
+        lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

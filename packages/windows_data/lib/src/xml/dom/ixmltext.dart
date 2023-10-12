@@ -43,18 +43,17 @@ class IXmlText extends IInspectable
   IXmlText? splitText(int offset) {
     final secondPart = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
-                            Pointer<COMObject> secondPart)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int offset,
-                    Pointer<COMObject> secondPart)>()(
-        ptr.ref.lpVtbl, offset, secondPart);
+    final hr = vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
+                        Pointer<COMObject> secondPart)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int offset,
+                Pointer<COMObject> secondPart)>()(lpVtbl, offset, secondPart);
 
     if (FAILED(hr)) {
       free(secondPart);

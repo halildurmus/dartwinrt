@@ -37,7 +37,7 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
       ConnectionProfile? profile, NetworkAdapter? adapter) {
     final ppManager = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -51,7 +51,7 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer profile,
                     VTablePointer adapter, Pointer<COMObject> ppManager)>()(
-        ptr.ref.lpVtbl, profile.lpVtbl, adapter.lpVtbl, ppManager);
+        lpVtbl, profile.lpVtbl, adapter.lpVtbl, ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

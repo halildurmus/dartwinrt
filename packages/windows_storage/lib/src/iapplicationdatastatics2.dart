@@ -33,7 +33,7 @@ class IApplicationDataStatics2 extends IInspectable {
     final getForUserOperation = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -46,7 +46,7 @@ class IApplicationDataStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         Pointer<COMObject> getForUserOperation)>()(
-            ptr.ref.lpVtbl, user.lpVtbl, getForUserOperation);
+            lpVtbl, user.lpVtbl, getForUserOperation);
 
     if (FAILED(hr)) {
       free(getForUserOperation);

@@ -39,7 +39,7 @@ class IDateTimeFormatterFactory extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr.ref.vtable
+        vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -52,7 +52,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int formatTemplate,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, formatTemplate.toHString(), result);
+            lpVtbl, formatTemplate.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -66,7 +66,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       String formatTemplate, IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(7)
             .cast<
                 Pointer<
@@ -80,7 +80,7 @@ class IDateTimeFormatterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int formatTemplate,
                     VTablePointer languages, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, formatTemplate.toHString(), languages.lpVtbl, result);
+        lpVtbl, formatTemplate.toHString(), languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -98,7 +98,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       String clock) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(8)
             .cast<
                 Pointer<
@@ -121,7 +121,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int calendar,
                     int clock,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         formatTemplate.toHString(),
         languages.lpVtbl,
         geographicRegion.toHString(),
@@ -144,7 +144,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       DayOfWeekFormat dayOfWeekFormat) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(9)
             .cast<
                 Pointer<
@@ -164,13 +164,8 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int monthFormat,
                     int dayFormat,
                     int dayOfWeekFormat,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        yearFormat.value,
-        monthFormat.value,
-        dayFormat.value,
-        dayOfWeekFormat.value,
-        result);
+                    Pointer<COMObject> result)>()(lpVtbl, yearFormat.value,
+        monthFormat.value, dayFormat.value, dayOfWeekFormat.value, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -184,7 +179,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       MinuteFormat minuteFormat, SecondFormat secondFormat) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -202,8 +197,8 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int hourFormat,
                     int minuteFormat,
                     int secondFormat,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-        hourFormat.value, minuteFormat.value, secondFormat.value, result);
+                    Pointer<COMObject> result)>()(lpVtbl, hourFormat.value,
+        minuteFormat.value, secondFormat.value, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -224,7 +219,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(11)
             .cast<
                 Pointer<
@@ -253,7 +248,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int secondFormat,
                     VTablePointer languages,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         yearFormat.value,
         monthFormat.value,
         dayFormat.value,
@@ -286,7 +281,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       String clock) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(12)
             .cast<
                 Pointer<
@@ -321,7 +316,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int calendar,
                     int clock,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
+        lpVtbl,
         yearFormat.value,
         monthFormat.value,
         dayFormat.value,

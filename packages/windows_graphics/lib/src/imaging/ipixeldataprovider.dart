@@ -31,7 +31,7 @@ class IPixelDataProvider extends IInspectable {
     final pixelData = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = ptr.ref.vtable
+      final hr = vtable
               .elementAt(6)
               .cast<
                   Pointer<
@@ -46,7 +46,7 @@ class IPixelDataProvider extends IInspectable {
                       VTablePointer lpVtbl,
                       Pointer<Uint32> pixelDataSize,
                       Pointer<Pointer<Uint8>> pixelData)>()(
-          ptr.ref.lpVtbl, pixelDataSize, pixelData);
+          lpVtbl, pixelDataSize, pixelData);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

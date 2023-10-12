@@ -35,17 +35,17 @@ class IAutomationRemoteOperationResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +59,17 @@ class IAutomationRemoteOperationResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +83,17 @@ class IAutomationRemoteOperationResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
-          ptr.ref.lpVtbl, value);
+      final hr = vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -109,24 +109,22 @@ class IAutomationRemoteOperationResult extends IInspectable {
     try {
       final operandIdNativeStructPtr = operandId.toNative();
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativeAutomationRemoteOperationOperandId
-                                      operandId,
-                                  Pointer<Bool> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(
+      final hr = vtable
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
                           VTablePointer lpVtbl,
                           NativeAutomationRemoteOperationOperandId operandId,
-                          Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
+                          Pointer<Bool> result)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  NativeAutomationRemoteOperationOperandId operandId,
+                  Pointer<Bool>
+                      result)>()(lpVtbl, operandIdNativeStructPtr.ref, result);
 
       free(operandIdNativeStructPtr);
 
@@ -142,7 +140,7 @@ class IAutomationRemoteOperationResult extends IInspectable {
     final result = calloc<COMObject>();
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(10)
             .cast<
                 Pointer<
@@ -157,7 +155,7 @@ class IAutomationRemoteOperationResult extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
+        lpVtbl, operandIdNativeStructPtr.ref, result);
 
     free(operandIdNativeStructPtr);
 

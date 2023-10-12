@@ -31,7 +31,7 @@ class IGeographicRegionFactory extends IInspectable {
   GeographicRegion createGeographicRegion(String geographicRegionCode) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
+    final hr = vtable
             .elementAt(6)
             .cast<
                 Pointer<
@@ -44,7 +44,7 @@ class IGeographicRegionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int geographicRegionCode,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, geographicRegionCode.toHString(), result);
+        lpVtbl, geographicRegionCode.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
