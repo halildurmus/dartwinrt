@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPixelDataProvider = '{dd831f25-185c-4595-9fb9-ccbe6ec18a6f}';
 
 class IPixelDataProvider extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IPixelDataProvider.fromPtr(super.ptr);
 
   factory IPixelDataProvider.from(IInspectable interface) =>

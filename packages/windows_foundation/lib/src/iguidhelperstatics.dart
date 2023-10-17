@@ -23,7 +23,6 @@ import 'helpers.dart';
 const IID_IGuidHelperStatics = '{59c7966b-ae52-5283-ad7f-a1b9e9678add}';
 
 class IGuidHelperStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IGuidHelperStatics.fromPtr(super.ptr);
 
   factory IGuidHelperStatics.from(IInspectable interface) =>

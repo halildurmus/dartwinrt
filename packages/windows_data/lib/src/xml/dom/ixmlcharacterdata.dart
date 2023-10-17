@@ -29,7 +29,6 @@ const IID_IXmlCharacterData = '{132e42ab-4e36-4df6-b1c8-0ce62fd88b26}';
 
 class IXmlCharacterData extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  // vtable begins at 6, is 8 entries long.
   IXmlCharacterData.fromPtr(super.ptr);
 
   factory IXmlCharacterData.from(IInspectable interface) =>

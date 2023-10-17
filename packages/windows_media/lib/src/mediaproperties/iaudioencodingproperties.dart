@@ -24,7 +24,6 @@ const IID_IAudioEncodingProperties = '{62bc7a16-005c-4b3b-8a0b-0a090e9687f3}';
 
 class IAudioEncodingProperties extends IInspectable
     implements IMediaEncodingProperties {
-  // vtable begins at 6, is 8 entries long.
   IAudioEncodingProperties.fromPtr(super.ptr);
 
   factory IAudioEncodingProperties.from(IInspectable interface) => interface

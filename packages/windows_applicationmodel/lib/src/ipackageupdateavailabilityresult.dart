@@ -23,7 +23,6 @@ const IID_IPackageUpdateAvailabilityResult =
     '{114e5009-199a-48a1-a079-313c45634a71}';
 
 class IPackageUpdateAvailabilityResult extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IPackageUpdateAvailabilityResult.fromPtr(super.ptr);
 
   factory IPackageUpdateAvailabilityResult.from(IInspectable interface) =>

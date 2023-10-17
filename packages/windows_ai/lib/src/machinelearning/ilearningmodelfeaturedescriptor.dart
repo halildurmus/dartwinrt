@@ -23,7 +23,6 @@ const IID_ILearningModelFeatureDescriptor =
     '{bc08cf7c-6ed0-4004-97ba-b9a2eecd2b4f}';
 
 class ILearningModelFeatureDescriptor extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ILearningModelFeatureDescriptor.fromPtr(super.ptr);
 
   factory ILearningModelFeatureDescriptor.from(IInspectable interface) =>

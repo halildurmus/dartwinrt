@@ -23,7 +23,6 @@ import 'packagecontentgroupstate.dart';
 const IID_IPackageContentGroup = '{8f62695d-120a-4798-b5e1-5800dda8f2e1}';
 
 class IPackageContentGroup extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IPackageContentGroup.fromPtr(super.ptr);
 
   factory IPackageContentGroup.from(IInspectable interface) =>

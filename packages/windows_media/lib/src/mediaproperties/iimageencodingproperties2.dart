@@ -22,7 +22,6 @@ import 'imageencodingproperties.dart';
 const IID_IImageEncodingProperties2 = '{c854a2df-c923-469b-ac8e-6a9f3c1cd9e3}';
 
 class IImageEncodingProperties2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IImageEncodingProperties2.fromPtr(super.ptr);
 
   factory IImageEncodingProperties2.from(IInspectable interface) => interface

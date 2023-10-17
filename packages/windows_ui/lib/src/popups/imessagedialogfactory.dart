@@ -22,7 +22,6 @@ import 'messagedialog.dart';
 const IID_IMessageDialogFactory = '{2d161777-a66f-4ea5-bb87-793ffa4941f2}';
 
 class IMessageDialogFactory extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMessageDialogFactory.fromPtr(super.ptr);
 
   factory IMessageDialogFactory.from(IInspectable interface) =>

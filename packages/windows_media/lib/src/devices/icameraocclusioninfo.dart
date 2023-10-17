@@ -24,7 +24,6 @@ import 'cameraocclusionstate.dart';
 const IID_ICameraOcclusionInfo = '{af6c4ad0-a84d-5db6-be58-a5da21cfe011}';
 
 class ICameraOcclusionInfo extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ICameraOcclusionInfo.fromPtr(super.ptr);
 
   factory ICameraOcclusionInfo.from(IInspectable interface) =>

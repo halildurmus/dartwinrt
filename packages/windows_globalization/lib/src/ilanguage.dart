@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguage = '{ea79a752-f7c2-4265-b1bd-c4dec4e4f080}';
 
 class ILanguage extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ILanguage.fromPtr(super.ptr);
 
   factory ILanguage.from(IInspectable interface) =>

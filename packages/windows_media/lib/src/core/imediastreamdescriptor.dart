@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IMediaStreamDescriptor = '{80f16e6e-92f7-451e-97d2-afd80742da70}';
 
 class IMediaStreamDescriptor extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IMediaStreamDescriptor.fromPtr(super.ptr);
 
   factory IMediaStreamDescriptor.from(IInspectable interface) => interface.cast(

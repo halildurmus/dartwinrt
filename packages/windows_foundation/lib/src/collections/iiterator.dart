@@ -25,7 +25,6 @@ part 'iiterator_part.dart';
 
 /// Supports simple iteration over a collection.
 abstract interface class IIterator<T> extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IIterator(super.ptr);
 
   /// Creates an instance of [IIterator] from the given [ptr].

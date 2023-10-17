@@ -22,7 +22,6 @@ import 'cameraintrinsics.dart';
 const IID_ICameraIntrinsicsFactory = '{c0ddc486-2132-4a34-a659-9bfe2a055712}';
 
 class ICameraIntrinsicsFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICameraIntrinsicsFactory.fromPtr(super.ptr);
 
   factory ICameraIntrinsicsFactory.from(IInspectable interface) => interface

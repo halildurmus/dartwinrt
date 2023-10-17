@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBasicProperties = '{d05d55db-785e-4a66-be02-9beec58aea81}';
 
 class IBasicProperties extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IBasicProperties.fromPtr(super.ptr);
 
   factory IBasicProperties.from(IInspectable interface) =>

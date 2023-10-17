@@ -23,7 +23,6 @@ import 'ocrengine.dart';
 const IID_IOcrEngineStatics = '{5bffa85a-3384-3540-9940-699120d428a8}';
 
 class IOcrEngineStatics extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IOcrEngineStatics.fromPtr(super.ptr);
 
   factory IOcrEngineStatics.from(IInspectable interface) =>

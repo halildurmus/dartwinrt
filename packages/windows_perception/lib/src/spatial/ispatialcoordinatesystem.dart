@@ -22,7 +22,6 @@ import 'spatialcoordinatesystem.dart';
 const IID_ISpatialCoordinateSystem = '{69ebca4b-60a3-3586-a653-59a7bd676d07}';
 
 class ISpatialCoordinateSystem extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ISpatialCoordinateSystem.fromPtr(super.ptr);
 
   factory ISpatialCoordinateSystem.from(IInspectable interface) => interface

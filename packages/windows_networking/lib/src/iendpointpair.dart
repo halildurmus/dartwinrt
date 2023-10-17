@@ -22,7 +22,6 @@ import 'hostname.dart';
 const IID_IEndpointPair = '{33a0aa36-f8fa-4b30-b856-76517c3bd06d}';
 
 class IEndpointPair extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IEndpointPair.fromPtr(super.ptr);
 
   factory IEndpointPair.from(IInspectable interface) =>

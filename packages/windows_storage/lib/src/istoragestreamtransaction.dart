@@ -22,7 +22,6 @@ import 'streams/irandomaccessstream.dart';
 const IID_IStorageStreamTransaction = '{f67cf363-a53d-4d94-ae2c-67232d93acdd}';
 
 class IStorageStreamTransaction extends IInspectable implements IClosable {
-  // vtable begins at 6, is 2 entries long.
   IStorageStreamTransaction.fromPtr(super.ptr);
 
   factory IStorageStreamTransaction.from(IInspectable interface) => interface

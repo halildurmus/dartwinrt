@@ -24,7 +24,6 @@ import 'manualfocusdistance.dart';
 const IID_IFocusSettings = '{79958f6b-3263-4275-85d6-aeae891c96ee}';
 
 class IFocusSettings extends IInspectable {
-  // vtable begins at 6, is 12 entries long.
   IFocusSettings.fromPtr(super.ptr);
 
   factory IFocusSettings.from(IInspectable interface) =>

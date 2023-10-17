@@ -34,7 +34,6 @@ class IXmlComment extends IInspectable
         IXmlNode,
         IXmlNodeSelector,
         IXmlNodeSerializer {
-  // vtable begins at 6, is 0 entries long.
   IXmlComment.fromPtr(super.ptr);
 
   factory IXmlComment.from(IInspectable interface) =>

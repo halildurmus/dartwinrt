@@ -23,7 +23,6 @@ const IID_IOpticalImageStabilizationControl =
     '{bfad9c1d-00bc-423b-8eb2-a0178ca94247}';
 
 class IOpticalImageStabilizationControl extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IOpticalImageStabilizationControl.fromPtr(super.ptr);
 
   factory IOpticalImageStabilizationControl.from(IInspectable interface) =>

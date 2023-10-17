@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IToastNotificationHistory = '{5caddc63-01d3-4c97-986f-0533483fee14}';
 
 class IToastNotificationHistory extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IToastNotificationHistory.fromPtr(super.ptr);
 
   factory IToastNotificationHistory.from(IInspectable interface) => interface

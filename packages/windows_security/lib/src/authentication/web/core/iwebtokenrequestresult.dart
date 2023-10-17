@@ -24,7 +24,6 @@ import 'webtokenresponse.dart';
 const IID_IWebTokenRequestResult = '{c12a8305-d1f8-4483-8d54-38fe292784ff}';
 
 class IWebTokenRequestResult extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IWebTokenRequestResult.fromPtr(super.ptr);
 
   factory IWebTokenRequestResult.from(IInspectable interface) => interface.cast(

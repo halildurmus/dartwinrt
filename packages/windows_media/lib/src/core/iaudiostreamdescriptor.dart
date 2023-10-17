@@ -24,7 +24,6 @@ const IID_IAudioStreamDescriptor = '{1e3692e4-4027-4847-a70b-df1d9a2a7b04}';
 
 class IAudioStreamDescriptor extends IInspectable
     implements IMediaStreamDescriptor {
-  // vtable begins at 6, is 1 entries long.
   IAudioStreamDescriptor.fromPtr(super.ptr);
 
   factory IAudioStreamDescriptor.from(IInspectable interface) => interface.cast(

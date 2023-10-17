@@ -33,7 +33,6 @@ class IPropertySet extends IInspectable
         IObservableMap<String, Object?>,
         IMap<String, Object?>,
         IIterable<IKeyValuePair<String, Object?>> {
-  // vtable begins at 6, is 0 entries long.
   IPropertySet.fromPtr(super.ptr);
 
   factory IPropertySet.from(IInspectable interface) =>

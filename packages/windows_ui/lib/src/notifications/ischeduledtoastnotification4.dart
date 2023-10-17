@@ -21,7 +21,6 @@ const IID_IScheduledToastNotification4 =
     '{1d4761fd-bdef-4e4a-96be-0101369b58d2}';
 
 class IScheduledToastNotification4 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IScheduledToastNotification4.fromPtr(super.ptr);
 
   factory IScheduledToastNotification4.from(IInspectable interface) =>

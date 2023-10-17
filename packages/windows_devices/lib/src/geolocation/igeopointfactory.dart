@@ -24,7 +24,6 @@ import 'geopoint.dart';
 const IID_IGeopointFactory = '{db6b8d33-76bd-4e30-8af7-a844dc37b7a0}';
 
 class IGeopointFactory extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IGeopointFactory.fromPtr(super.ptr);
 
   factory IGeopointFactory.from(IInspectable interface) =>

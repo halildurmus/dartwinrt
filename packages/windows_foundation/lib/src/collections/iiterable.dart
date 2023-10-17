@@ -15,7 +15,6 @@ import 'iiterator.dart';
 /// Exposes an iterator that supports simple iteration over a collection of a
 /// specified type.
 interface class IIterable<T> extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   final COMObjectCreator<T>? _creator;
   final EnumCreator<T>? _enumCreator;
   final DoubleType? _doubleType;

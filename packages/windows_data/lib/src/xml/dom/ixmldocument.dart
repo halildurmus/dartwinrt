@@ -39,7 +39,6 @@ const IID_IXmlDocument = '{f7f3a506-1e87-42d6-bcfb-b8c809fa5494}';
 
 class IXmlDocument extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  // vtable begins at 6, is 17 entries long.
   IXmlDocument.fromPtr(super.ptr);
 
   factory IXmlDocument.from(IInspectable interface) =>

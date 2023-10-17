@@ -22,7 +22,6 @@ import 'pdfpage.dart';
 const IID_IPdfDocument = '{ac7ebedd-80fa-4089-846e-81b77ff5a86c}';
 
 class IPdfDocument extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IPdfDocument.fromPtr(super.ptr);
 
   factory IPdfDocument.from(IInspectable interface) =>

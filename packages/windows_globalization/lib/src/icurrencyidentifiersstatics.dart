@@ -21,7 +21,6 @@ const IID_ICurrencyIdentifiersStatics =
     '{9f1d091b-d586-4913-9b6a-a9bd2dc12874}';
 
 class ICurrencyIdentifiersStatics extends IInspectable {
-  // vtable begins at 6, is 157 entries long.
   ICurrencyIdentifiersStatics.fromPtr(super.ptr);
 
   factory ICurrencyIdentifiersStatics.from(IInspectable interface) =>

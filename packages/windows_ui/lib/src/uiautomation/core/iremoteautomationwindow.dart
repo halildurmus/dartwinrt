@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IRemoteAutomationWindow = '{7c607689-496d-512a-9bd5-c050cfaf1428}';
 
 class IRemoteAutomationWindow extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IRemoteAutomationWindow.fromPtr(super.ptr);
 
   factory IRemoteAutomationWindow.from(IInspectable interface) => interface

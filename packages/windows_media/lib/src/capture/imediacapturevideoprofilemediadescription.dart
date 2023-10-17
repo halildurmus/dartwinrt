@@ -21,7 +21,6 @@ const IID_IMediaCaptureVideoProfileMediaDescription =
     '{8012afef-b691-49ff-83f2-c1e76eaaea1b}';
 
 class IMediaCaptureVideoProfileMediaDescription extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IMediaCaptureVideoProfileMediaDescription.fromPtr(super.ptr);
 
   factory IMediaCaptureVideoProfileMediaDescription.from(

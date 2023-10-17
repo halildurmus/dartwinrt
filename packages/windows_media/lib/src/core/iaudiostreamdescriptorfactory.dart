@@ -24,7 +24,6 @@ const IID_IAudioStreamDescriptorFactory =
     '{4a86ce9e-4cb1-4380-8e0c-83504b7f5bf3}';
 
 class IAudioStreamDescriptorFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAudioStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory IAudioStreamDescriptorFactory.from(IInspectable interface) =>

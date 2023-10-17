@@ -23,7 +23,6 @@ import 'geoshapetype.dart';
 const IID_IGeoshape = '{c99ca2af-c729-43c1-8fab-d6dec914df7e}';
 
 class IGeoshape extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IGeoshape.fromPtr(super.ptr);
 
   factory IGeoshape.from(IInspectable interface) =>

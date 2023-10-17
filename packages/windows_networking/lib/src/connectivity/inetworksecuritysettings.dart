@@ -23,7 +23,6 @@ import 'networkencryptiontype.dart';
 const IID_INetworkSecuritySettings = '{7ca07e8d-917b-4b5f-b84d-28f7a5ac5402}';
 
 class INetworkSecuritySettings extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   INetworkSecuritySettings.fromPtr(super.ptr);
 
   factory INetworkSecuritySettings.from(IInspectable interface) => interface

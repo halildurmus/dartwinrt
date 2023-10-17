@@ -22,7 +22,6 @@ import 'passwordcredential.dart';
 const IID_ICredentialFactory = '{54ef13a1-bf26-47b5-97dd-de779b7cad58}';
 
 class ICredentialFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICredentialFactory.fromPtr(super.ptr);
 
   factory ICredentialFactory.from(IInspectable interface) =>

@@ -25,7 +25,6 @@ import 'pdfpagerotation.dart';
 const IID_IPdfPage = '{9db4b0c8-5320-4cfc-ad76-493fdad0e594}';
 
 class IPdfPage extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IPdfPage.fromPtr(super.ptr);
 
   factory IPdfPage.from(IInspectable interface) =>

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILearningModelBinding = '{ea312f20-168f-4f8c-94fe-2e7ac31b4aa8}';
 
 class ILearningModelBinding extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   ILearningModelBinding.fromPtr(super.ptr);
 
   factory ILearningModelBinding.from(IInspectable interface) =>

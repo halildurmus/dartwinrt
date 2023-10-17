@@ -25,7 +25,6 @@ const IID_IMediaCaptureInitializationSettings5 =
     '{d5a2e3b8-2626-4e94-b7b3-5308a0f64b1a}';
 
 class IMediaCaptureInitializationSettings5 extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IMediaCaptureInitializationSettings5.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings5.from(IInspectable interface) =>

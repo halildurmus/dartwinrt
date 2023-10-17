@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILowLagMediaRecording = '{41c8baf7-ff3f-49f0-a477-f195e3ce5108}';
 
 class ILowLagMediaRecording extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   ILowLagMediaRecording.fromPtr(super.ptr);
 
   factory ILowLagMediaRecording.from(IInspectable interface) =>

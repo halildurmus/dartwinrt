@@ -21,7 +21,6 @@ import 'package:windows_graphics/windows_graphics.dart';
 const IID_IMediaCaptureSettings3 = '{303c67c2-8058-4b1b-b877-8c2ef3528440}';
 
 class IMediaCaptureSettings3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaCaptureSettings3.fromPtr(super.ptr);
 
   factory IMediaCaptureSettings3.from(IInspectable interface) => interface.cast(

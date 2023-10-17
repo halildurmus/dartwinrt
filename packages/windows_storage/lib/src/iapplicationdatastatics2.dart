@@ -23,7 +23,6 @@ import 'applicationdata.dart';
 const IID_IApplicationDataStatics2 = '{cd606211-cf49-40a4-a47c-c7f0dbba8107}';
 
 class IApplicationDataStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IApplicationDataStatics2.fromPtr(super.ptr);
 
   factory IApplicationDataStatics2.from(IInspectable interface) => interface

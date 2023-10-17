@@ -21,7 +21,6 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_ILauncherViewOptions = '{8a9b29f1-7ca7-49de-9bd3-3c5b7184f616}';
 
 class ILauncherViewOptions extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILauncherViewOptions.fromPtr(super.ptr);
 
   factory ILauncherViewOptions.from(IInspectable interface) =>

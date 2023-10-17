@@ -23,7 +23,6 @@ import 'devicewatchereventkind.dart';
 const IID_IDeviceWatcher2 = '{ff08456e-ed14-49e9-9a69-8117c54ae971}';
 
 class IDeviceWatcher2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDeviceWatcher2.fromPtr(super.ptr);
 
   factory IDeviceWatcher2.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'stereoscopicvideopackingmode.dart';
 const IID_IVideoEncodingProperties3 = '{386bcdc4-873a-479f-b3eb-56c1fcbec6d7}';
 
 class IVideoEncodingProperties3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties3.fromPtr(super.ptr);
 
   factory IVideoEncodingProperties3.from(IInspectable interface) => interface

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAutomationElement = '{a1898370-2c07-56fd-993f-61a72a08058c}';
 
 class IAutomationElement extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IAutomationElement.fromPtr(super.ptr);
 
   factory IAutomationElement.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'bitmaptypedvalue.dart';
 const IID_IBitmapTypedValueFactory = '{92dbb599-ce13-46bb-9545-cb3a3f63eb8b}';
 
 class IBitmapTypedValueFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IBitmapTypedValueFactory.fromPtr(super.ptr);
 
   factory IBitmapTypedValueFactory.from(IInspectable interface) => interface

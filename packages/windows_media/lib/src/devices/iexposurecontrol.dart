@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IExposureControl = '{09e8cbe2-ad96-4f28-a0e0-96ed7e1b5fd2}';
 
 class IExposureControl extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IExposureControl.fromPtr(super.ptr);
 
   factory IExposureControl.from(IInspectable interface) =>

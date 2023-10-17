@@ -21,7 +21,6 @@ const IID_IRemoteAutomationServerStatics =
     '{e6e8945e-0c11-5028-9ae3-c2771288b6b7}';
 
 class IRemoteAutomationServerStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IRemoteAutomationServerStatics.fromPtr(super.ptr);
 
   factory IRemoteAutomationServerStatics.from(IInspectable interface) =>

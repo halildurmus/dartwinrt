@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDepthMediaFrame2 = '{6cca473d-c4a4-4176-b0cd-33eae3b35aa3}';
 
 class IDepthMediaFrame2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IDepthMediaFrame2.fromPtr(super.ptr);
 
   factory IDepthMediaFrame2.from(IInspectable interface) =>

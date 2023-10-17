@@ -21,7 +21,6 @@ const IID_IPrinting3DMultiplePropertyMaterial =
     '{25a6254b-c6e9-484d-a214-a25e5776ba62}';
 
 class IPrinting3DMultiplePropertyMaterial extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IPrinting3DMultiplePropertyMaterial.fromPtr(super.ptr);
 
   factory IPrinting3DMultiplePropertyMaterial.from(IInspectable interface) =>

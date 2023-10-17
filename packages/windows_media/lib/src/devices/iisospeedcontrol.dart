@@ -22,7 +22,6 @@ import 'isospeedpreset.dart';
 const IID_IIsoSpeedControl = '{27b6c322-25ad-4f1b-aaab-524ab376ca33}';
 
 class IIsoSpeedControl extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IIsoSpeedControl.fromPtr(super.ptr);
 
   factory IIsoSpeedControl.from(IInspectable interface) =>

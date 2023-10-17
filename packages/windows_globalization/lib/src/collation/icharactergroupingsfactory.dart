@@ -22,7 +22,6 @@ import 'charactergroupings.dart';
 const IID_ICharacterGroupingsFactory = '{99ea9fd9-886d-4401-9f98-69c82d4c2f78}';
 
 class ICharacterGroupingsFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICharacterGroupingsFactory.fromPtr(super.ptr);
 
   factory ICharacterGroupingsFactory.from(IInspectable interface) => interface

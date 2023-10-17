@@ -24,7 +24,6 @@ const IID_IVideoProperties = '{719ae507-68de-4db8-97de-49998c059f2f}';
 
 class IVideoProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  // vtable begins at 6, is 21 entries long.
   IVideoProperties.fromPtr(super.ptr);
 
   factory IVideoProperties.from(IInspectable interface) =>

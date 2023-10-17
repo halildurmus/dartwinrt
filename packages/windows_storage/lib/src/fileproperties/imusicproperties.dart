@@ -23,7 +23,6 @@ const IID_IMusicProperties = '{bc8aab62-66ec-419a-bc5d-ca65a4cb46da}';
 
 class IMusicProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  // vtable begins at 6, is 25 entries long.
   IMusicProperties.fromPtr(super.ptr);
 
   factory IMusicProperties.from(IInspectable interface) =>

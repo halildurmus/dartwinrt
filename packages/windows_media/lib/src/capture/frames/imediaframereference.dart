@@ -26,7 +26,6 @@ import 'videomediaframe.dart';
 const IID_IMediaFrameReference = '{f6b88641-f0dc-4044-8dc9-961cedd05bad}';
 
 class IMediaFrameReference extends IInspectable implements IClosable {
-  // vtable begins at 6, is 8 entries long.
   IMediaFrameReference.fromPtr(super.ptr);
 
   factory IMediaFrameReference.from(IInspectable interface) =>

@@ -29,7 +29,6 @@ import 'igamepad.dart';
 const IID_IGamepad2 = '{3c1689bd-5915-4245-b0c0-c89fae0308ff}';
 
 class IGamepad2 extends IInspectable implements IGamepad, IGameController {
-  // vtable begins at 6, is 1 entries long.
   IGamepad2.fromPtr(super.ptr);
 
   factory IGamepad2.from(IInspectable interface) =>

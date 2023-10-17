@@ -22,7 +22,6 @@ import 'mediaframesourceinfo.dart';
 const IID_IMediaFrameSourceGroup = '{7f605b87-4832-4b5f-ae3d-412faab37d34}';
 
 class IMediaFrameSourceGroup extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IMediaFrameSourceGroup.fromPtr(super.ptr);
 
   factory IMediaFrameSourceGroup.from(IInspectable interface) => interface.cast(

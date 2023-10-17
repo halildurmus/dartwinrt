@@ -22,7 +22,6 @@ const IID_IPanelBasedOptimizationControl =
     '{33323223-6247-5419-a5a4-3d808645d917}';
 
 class IPanelBasedOptimizationControl extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IPanelBasedOptimizationControl.fromPtr(super.ptr);
 
   factory IPanelBasedOptimizationControl.from(IInspectable interface) =>

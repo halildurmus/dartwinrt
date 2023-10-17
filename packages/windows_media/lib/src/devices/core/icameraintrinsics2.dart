@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICameraIntrinsics2 = '{0cdaa447-0798-4b4d-839f-c5ec414db27a}';
 
 class ICameraIntrinsics2 extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   ICameraIntrinsics2.fromPtr(super.ptr);
 
   factory ICameraIntrinsics2.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import '../mediaproperties/imediaencodingproperties.dart';
 const IID_IMediaDeviceController = '{f6f8f5ce-209a-48fb-86fc-d44578f317e6}';
 
 class IMediaDeviceController extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IMediaDeviceController.fromPtr(super.ptr);
 
   factory IMediaDeviceController.from(IInspectable interface) => interface.cast(

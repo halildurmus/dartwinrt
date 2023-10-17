@@ -24,7 +24,6 @@ const IID_IVideoStreamDescriptorFactory =
     '{494ef6d1-bb75-43d2-9e5e-7b79a3afced4}';
 
 class IVideoStreamDescriptorFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory IVideoStreamDescriptorFactory.from(IInspectable interface) =>

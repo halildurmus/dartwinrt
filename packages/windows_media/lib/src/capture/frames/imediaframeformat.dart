@@ -23,7 +23,6 @@ import 'videomediaframeformat.dart';
 const IID_IMediaFrameFormat = '{71902b4e-b279-4a97-a9db-bd5a2fb78f39}';
 
 class IMediaFrameFormat extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IMediaFrameFormat.fromPtr(super.ptr);
 
   factory IMediaFrameFormat.from(IInspectable interface) =>

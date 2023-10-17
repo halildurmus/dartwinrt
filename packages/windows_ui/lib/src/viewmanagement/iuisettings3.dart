@@ -24,7 +24,6 @@ import 'uisettings.dart';
 const IID_IUISettings3 = '{03021be4-5254-4781-8194-5168f7d06d7b}';
 
 class IUISettings3 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IUISettings3.fromPtr(super.ptr);
 
   factory IUISettings3.from(IInspectable interface) =>

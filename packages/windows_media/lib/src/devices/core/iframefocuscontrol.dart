@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFrameFocusControl = '{272df1d0-d912-4214-a67b-e38a8d48d8c6}';
 
 class IFrameFocusControl extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IFrameFocusControl.fromPtr(super.ptr);
 
   factory IFrameFocusControl.from(IInspectable interface) =>

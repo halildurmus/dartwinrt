@@ -21,7 +21,6 @@ import 'package:windows_system/windows_system.dart';
 const IID_IFileOpenPicker3 = '{d9a5c5b3-c5dc-5b98-bd80-a8d0ca0584d8}';
 
 class IFileOpenPicker3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IFileOpenPicker3.fromPtr(super.ptr);
 
   factory IFileOpenPicker3.from(IInspectable interface) =>

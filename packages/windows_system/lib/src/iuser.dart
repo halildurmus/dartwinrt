@@ -25,7 +25,6 @@ import 'usertype.dart';
 const IID_IUser = '{df9a26c6-e746-4bcd-b5d4-120103c4209b}';
 
 class IUser extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IUser.fromPtr(super.ptr);
 
   factory IUser.from(IInspectable interface) =>

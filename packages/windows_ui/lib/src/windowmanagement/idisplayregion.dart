@@ -23,7 +23,6 @@ import 'windowingenvironment.dart';
 const IID_IDisplayRegion = '{db50c3a2-4094-5f47-8cb1-ea01ddafaa94}';
 
 class IDisplayRegion extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IDisplayRegion.fromPtr(super.ptr);
 
   factory IDisplayRegion.from(IInspectable interface) =>

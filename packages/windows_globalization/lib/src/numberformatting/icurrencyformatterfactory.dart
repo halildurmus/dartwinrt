@@ -22,7 +22,6 @@ import 'currencyformatter.dart';
 const IID_ICurrencyFormatterFactory = '{86c7537e-b938-4aa2-84b0-2c33dc5b1450}';
 
 class ICurrencyFormatterFactory extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ICurrencyFormatterFactory.fromPtr(super.ptr);
 
   factory ICurrencyFormatterFactory.from(IInspectable interface) => interface

@@ -24,7 +24,6 @@ import 'videoframe.dart';
 const IID_IVideoFrame = '{0cc06625-90fc-4c92-bd95-7ded21819d1c}';
 
 class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
-  // vtable begins at 6, is 3 entries long.
   IVideoFrame.fromPtr(super.ptr);
 
   factory IVideoFrame.from(IInspectable interface) =>

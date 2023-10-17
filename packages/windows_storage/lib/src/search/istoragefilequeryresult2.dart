@@ -27,7 +27,6 @@ const IID_IStorageFileQueryResult2 = '{4e5db9dd-7141-46c4-8be3-e9dc9e27275c}';
 
 class IStorageFileQueryResult2 extends IInspectable
     implements IStorageQueryResultBase {
-  // vtable begins at 6, is 1 entries long.
   IStorageFileQueryResult2.fromPtr(super.ptr);
 
   factory IStorageFileQueryResult2.from(IInspectable interface) => interface

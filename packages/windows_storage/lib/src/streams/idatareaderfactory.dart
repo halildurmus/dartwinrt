@@ -23,7 +23,6 @@ import 'iinputstream.dart';
 const IID_IDataReaderFactory = '{d7527847-57da-4e15-914c-06806699a098}';
 
 class IDataReaderFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDataReaderFactory.fromPtr(super.ptr);
 
   factory IDataReaderFactory.from(IInspectable interface) =>

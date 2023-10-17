@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFlashControl2 = '{7d29cc9e-75e1-4af7-bd7d-4e38e1c06cd6}';
 
 class IFlashControl2 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IFlashControl2.fromPtr(super.ptr);
 
   factory IFlashControl2.from(IInspectable interface) =>

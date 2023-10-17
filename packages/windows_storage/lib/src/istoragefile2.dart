@@ -25,7 +25,6 @@ import 'streams/irandomaccessstream.dart';
 const IID_IStorageFile2 = '{954e4bcf-0a77-42fb-b777-c2ed58a52e44}';
 
 class IStorageFile2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IStorageFile2.fromPtr(super.ptr);
 
   factory IStorageFile2.from(IInspectable interface) =>

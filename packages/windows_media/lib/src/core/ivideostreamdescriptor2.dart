@@ -22,7 +22,6 @@ import 'videostreamdescriptor.dart';
 const IID_IVideoStreamDescriptor2 = '{8b306e10-453e-4088-832d-c36fa4f94af3}';
 
 class IVideoStreamDescriptor2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoStreamDescriptor2.fromPtr(super.ptr);
 
   factory IVideoStreamDescriptor2.from(IInspectable interface) => interface

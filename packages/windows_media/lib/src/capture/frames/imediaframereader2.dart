@@ -22,7 +22,6 @@ import 'mediaframereaderacquisitionmode.dart';
 const IID_IMediaFrameReader2 = '{871127b3-8531-4050-87cc-a13733cf3e9b}';
 
 class IMediaFrameReader2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaFrameReader2.fromPtr(super.ptr);
 
   factory IMediaFrameReader2.from(IInspectable interface) =>

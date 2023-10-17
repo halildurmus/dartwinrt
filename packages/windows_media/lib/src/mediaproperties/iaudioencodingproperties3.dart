@@ -22,7 +22,6 @@ import 'audioencodingproperties.dart';
 const IID_IAudioEncodingProperties3 = '{87600341-748c-4f8d-b0fd-10caf08ff087}';
 
 class IAudioEncodingProperties3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAudioEncodingProperties3.fromPtr(super.ptr);
 
   factory IAudioEncodingProperties3.from(IInspectable interface) => interface

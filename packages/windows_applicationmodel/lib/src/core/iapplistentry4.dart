@@ -22,7 +22,6 @@ import '../appinfo.dart';
 const IID_IAppListEntry4 = '{2a131ed2-56f5-487c-8697-5166f3b33da0}';
 
 class IAppListEntry4 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAppListEntry4.fromPtr(super.ptr);
 
   factory IAppListEntry4.from(IInspectable interface) =>

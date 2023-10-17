@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectionProfileFilter3 = '{0aaa09c0-5014-447c-8809-aee4cb0af94a}';
 
 class IConnectionProfileFilter3 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IConnectionProfileFilter3.fromPtr(super.ptr);
 
   factory IConnectionProfileFilter3.from(IInspectable interface) => interface

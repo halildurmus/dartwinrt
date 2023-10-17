@@ -25,7 +25,6 @@ import 'imagestream.dart';
 const IID_IBitmapDecoder = '{acef22ba-1d74-4c91-9dfc-9620745233e6}';
 
 class IBitmapDecoder extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IBitmapDecoder.fromPtr(super.ptr);
 
   factory IBitmapDecoder.from(IInspectable interface) =>

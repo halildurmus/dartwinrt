@@ -23,7 +23,6 @@ const IID_IKnownFoldersSavedPicturesStatics =
     '{055c93ea-253d-467c-b6ca-a97da1e9a18d}';
 
 class IKnownFoldersSavedPicturesStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IKnownFoldersSavedPicturesStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersSavedPicturesStatics.from(IInspectable interface) =>

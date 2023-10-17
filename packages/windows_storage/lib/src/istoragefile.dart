@@ -40,7 +40,6 @@ class IStorageFile extends IInspectable
         IStorageItem,
         IRandomAccessStreamReference,
         IInputStreamReference {
-  // vtable begins at 6, is 12 entries long.
   IStorageFile.fromPtr(super.ptr);
 
   factory IStorageFile.from(IInspectable interface) =>

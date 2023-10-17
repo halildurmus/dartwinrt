@@ -24,7 +24,6 @@ import 'tensorkind.dart';
 const IID_ITensor = '{05489593-a305-4a25-ad09-440119b4b7f6}';
 
 class ITensor extends IInspectable implements ILearningModelFeatureValue {
-  // vtable begins at 6, is 2 entries long.
   ITensor.fromPtr(super.ptr);
 
   factory ITensor.from(IInspectable interface) =>

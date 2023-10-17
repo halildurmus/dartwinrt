@@ -23,7 +23,6 @@ import 'networkitem.dart';
 const IID_INetworkAdapter = '{3b542e03-5388-496c-a8a3-affd39aec2e6}';
 
 class INetworkAdapter extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   INetworkAdapter.fromPtr(super.ptr);
 
   factory INetworkAdapter.from(IInspectable interface) =>

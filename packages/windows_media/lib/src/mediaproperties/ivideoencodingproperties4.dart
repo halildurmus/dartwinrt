@@ -22,7 +22,6 @@ import 'sphericalvideoframeformat.dart';
 const IID_IVideoEncodingProperties4 = '{724ef014-c10c-40f2-9d72-3ee13b45fa8e}';
 
 class IVideoEncodingProperties4 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties4.fromPtr(super.ptr);
 
   factory IVideoEncodingProperties4.from(IInspectable interface) => interface

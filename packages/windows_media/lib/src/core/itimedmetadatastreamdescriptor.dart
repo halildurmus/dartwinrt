@@ -24,7 +24,6 @@ const IID_ITimedMetadataStreamDescriptor =
     '{133336bf-296a-463e-9ff9-01cd25691408}';
 
 class ITimedMetadataStreamDescriptor extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ITimedMetadataStreamDescriptor.fromPtr(super.ptr);
 
   factory ITimedMetadataStreamDescriptor.from(IInspectable interface) =>

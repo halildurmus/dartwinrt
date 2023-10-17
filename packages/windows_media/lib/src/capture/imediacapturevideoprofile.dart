@@ -23,7 +23,6 @@ import 'mediacapturevideoprofilemediadescription.dart';
 const IID_IMediaCaptureVideoProfile = '{21a073bf-a3ee-4ecf-9ef6-50b0bc4e1305}';
 
 class IMediaCaptureVideoProfile extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IMediaCaptureVideoProfile.fromPtr(super.ptr);
 
   factory IMediaCaptureVideoProfile.from(IInspectable interface) => interface

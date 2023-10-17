@@ -21,7 +21,6 @@ import 'package:windows_graphics/windows_graphics.dart';
 const IID_IImageFeatureDescriptor = '{365585a5-171a-4a2a-985f-265159d3895a}';
 
 class IImageFeatureDescriptor extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IImageFeatureDescriptor.fromPtr(super.ptr);
 
   factory IImageFeatureDescriptor.from(IInspectable interface) => interface

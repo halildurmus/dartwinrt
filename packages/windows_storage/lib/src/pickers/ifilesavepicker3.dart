@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFileSavePicker3 = '{698aec69-ba3c-4e51-bd90-4abcbbf4cfaf}';
 
 class IFileSavePicker3 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IFileSavePicker3.fromPtr(super.ptr);
 
   factory IFileSavePicker3.from(IInspectable interface) =>

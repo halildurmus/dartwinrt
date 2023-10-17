@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IMediaFrame = '{bfb52f8c-5943-47d8-8e10-05308aa5fbd0}';
 
 class IMediaFrame extends IInspectable implements IClosable {
-  // vtable begins at 6, is 11 entries long.
   IMediaFrame.fromPtr(super.ptr);
 
   factory IMediaFrame.from(IInspectable interface) =>

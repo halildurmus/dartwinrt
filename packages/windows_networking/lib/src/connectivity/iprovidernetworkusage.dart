@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IProviderNetworkUsage = '{5ec69e04-7931-48c8-b8f3-46300fa42728}';
 
 class IProviderNetworkUsage extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IProviderNetworkUsage.fromPtr(super.ptr);
 
   factory IProviderNetworkUsage.from(IInspectable interface) =>

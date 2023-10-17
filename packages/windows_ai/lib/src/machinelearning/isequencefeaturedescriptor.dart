@@ -22,7 +22,6 @@ import 'ilearningmodelfeaturedescriptor.dart';
 const IID_ISequenceFeatureDescriptor = '{84f6945a-562b-4d62-a851-739aced96668}';
 
 class ISequenceFeatureDescriptor extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ISequenceFeatureDescriptor.fromPtr(super.ptr);
 
   factory ISequenceFeatureDescriptor.from(IInspectable interface) => interface

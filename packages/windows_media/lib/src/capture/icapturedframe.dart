@@ -28,7 +28,6 @@ class ICapturedFrame extends IInspectable
         IInputStream,
         IOutputStream,
         IContentTypeProvider {
-  // vtable begins at 6, is 2 entries long.
   ICapturedFrame.fromPtr(super.ptr);
 
   factory ICapturedFrame.from(IInspectable interface) =>

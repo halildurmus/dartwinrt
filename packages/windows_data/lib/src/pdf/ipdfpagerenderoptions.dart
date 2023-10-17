@@ -21,7 +21,6 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_IPdfPageRenderOptions = '{3c98056f-b7cf-4c29-9a04-52d90267f425}';
 
 class IPdfPageRenderOptions extends IInspectable {
-  // vtable begins at 6, is 12 entries long.
   IPdfPageRenderOptions.fromPtr(super.ptr);
 
   factory IPdfPageRenderOptions.from(IInspectable interface) =>

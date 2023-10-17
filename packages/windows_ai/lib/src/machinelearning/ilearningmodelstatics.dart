@@ -24,7 +24,6 @@ import 'learningmodel.dart';
 const IID_ILearningModelStatics = '{e3b977e8-6952-4e47-8ef4-1f7f07897c6d}';
 
 class ILearningModelStatics extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   ILearningModelStatics.fromPtr(super.ptr);
 
   factory ILearningModelStatics.from(IInspectable interface) =>

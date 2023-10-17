@@ -22,7 +22,6 @@ import 'webaccountmonitor.dart';
 const IID_IWebAccountMonitor2 = '{a7adc1f8-24b8-4f01-9ae5-24545e71233a}';
 
 class IWebAccountMonitor2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IWebAccountMonitor2.fromPtr(super.ptr);
 
   factory IWebAccountMonitor2.from(IInspectable interface) =>

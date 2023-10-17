@@ -21,7 +21,6 @@ const IID_ILearningModelSessionOptions =
     '{b8f63fa1-134d-5133-8cff-3a5c3c263beb}';
 
 class ILearningModelSessionOptions extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILearningModelSessionOptions.fromPtr(super.ptr);
 
   factory ILearningModelSessionOptions.from(IInspectable interface) =>

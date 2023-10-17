@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPdfPageDimensions = '{22170471-313e-44e8-835d-63a3e7624a10}';
 
 class IPdfPageDimensions extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IPdfPageDimensions.fromPtr(super.ptr);
 
   factory IPdfPageDimensions.from(IInspectable interface) =>

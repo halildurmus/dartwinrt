@@ -24,7 +24,6 @@ const IID_ICoreAutomationRemoteOperation2 =
     '{eefaf86f-e953-5099-8ce9-dca813482ba0}';
 
 class ICoreAutomationRemoteOperation2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICoreAutomationRemoteOperation2.fromPtr(super.ptr);
 
   factory ICoreAutomationRemoteOperation2.from(IInspectable interface) =>

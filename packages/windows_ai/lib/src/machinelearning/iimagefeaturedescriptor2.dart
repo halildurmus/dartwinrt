@@ -22,7 +22,6 @@ import 'learningmodelpixelrange.dart';
 const IID_IImageFeatureDescriptor2 = '{2b27cca7-d533-5862-bb98-1611b155b0e1}';
 
 class IImageFeatureDescriptor2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IImageFeatureDescriptor2.fromPtr(super.ptr);
 
   factory IImageFeatureDescriptor2.from(IInspectable interface) => interface

@@ -23,7 +23,6 @@ import '../mediaproperties/mediaencodingprofile.dart';
 const IID_IMediaCaptureVideoPreview = '{27727073-549e-447f-a20a-4f03c479d8c0}';
 
 class IMediaCaptureVideoPreview extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IMediaCaptureVideoPreview.fromPtr(super.ptr);
 
   factory IMediaCaptureVideoPreview.from(IInspectable interface) => interface

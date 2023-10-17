@@ -25,7 +25,6 @@ const IID_IWebAccountProvider3 = '{da1c518b-970d-4d49-825c-f2706f8ca7fe}';
 
 class IWebAccountProvider3 extends IInspectable
     implements IWebAccountProvider2, IWebAccountProvider {
-  // vtable begins at 6, is 1 entries long.
   IWebAccountProvider3.fromPtr(super.ptr);
 
   factory IWebAccountProvider3.from(IInspectable interface) =>

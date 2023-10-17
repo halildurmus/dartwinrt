@@ -21,7 +21,6 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_ILauncherOptions2 = '{3ba08eb4-6e40-4dce-a1a3-2f53950afb49}';
 
 class ILauncherOptions2 extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ILauncherOptions2.fromPtr(super.ptr);
 
   factory ILauncherOptions2.from(IInspectable interface) =>

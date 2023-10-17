@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INotificationData = '{9ffd2312-9d6a-4aaf-b6ac-ff17f0c1f280}';
 
 class INotificationData extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   INotificationData.fromPtr(super.ptr);
 
   factory INotificationData.from(IInspectable interface) =>

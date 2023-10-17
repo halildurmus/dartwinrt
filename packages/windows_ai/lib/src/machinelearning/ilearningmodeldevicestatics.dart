@@ -24,7 +24,6 @@ const IID_ILearningModelDeviceStatics =
     '{49f32107-a8bf-42bb-92c7-10b12dc5d21f}';
 
 class ILearningModelDeviceStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ILearningModelDeviceStatics.fromPtr(super.ptr);
 
   factory ILearningModelDeviceStatics.from(IInspectable interface) =>

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IXmlLoadSettings = '{58aa07a8-fed6-46f7-b4c5-fb1ba72108d6}';
 
 class IXmlLoadSettings extends IInspectable {
-  // vtable begins at 6, is 10 entries long.
   IXmlLoadSettings.fromPtr(super.ptr);
 
   factory IXmlLoadSettings.from(IInspectable interface) =>

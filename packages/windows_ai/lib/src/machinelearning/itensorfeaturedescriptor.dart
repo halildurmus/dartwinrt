@@ -22,7 +22,6 @@ import 'tensorkind.dart';
 const IID_ITensorFeatureDescriptor = '{74455c80-946a-4310-a19c-ee0af028fce4}';
 
 class ITensorFeatureDescriptor extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ITensorFeatureDescriptor.fromPtr(super.ptr);
 
   factory ITensorFeatureDescriptor.from(IInspectable interface) => interface

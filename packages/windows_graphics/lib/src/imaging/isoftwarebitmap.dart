@@ -27,7 +27,6 @@ import 'softwarebitmap.dart';
 const IID_ISoftwareBitmap = '{689e0708-7eef-483f-963f-da938818e073}';
 
 class ISoftwareBitmap extends IInspectable implements IClosable {
-  // vtable begins at 6, is 14 entries long.
   ISoftwareBitmap.fromPtr(super.ptr);
 
   factory ISoftwareBitmap.from(IInspectable interface) =>

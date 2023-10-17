@@ -22,7 +22,6 @@ import 'decimalformatter.dart';
 const IID_IDecimalFormatterFactory = '{0d018c9a-e393-46b8-b830-7a69c8f89fbb}';
 
 class IDecimalFormatterFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDecimalFormatterFactory.fromPtr(super.ptr);
 
   factory IDecimalFormatterFactory.from(IInspectable interface) => interface

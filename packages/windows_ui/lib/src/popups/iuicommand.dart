@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IUICommand = '{4ff93a75-4145-47ff-ac7f-dff1c1fa5b0f}';
 
 class IUICommand extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IUICommand.fromPtr(super.ptr);
 
   factory IUICommand.from(IInspectable interface) =>

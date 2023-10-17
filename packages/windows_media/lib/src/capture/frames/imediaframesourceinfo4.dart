@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IMediaFrameSourceInfo4 = '{4817d721-85eb-470c-8f37-43ca5498e41d}';
 
 class IMediaFrameSourceInfo4 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaFrameSourceInfo4.fromPtr(super.ptr);
 
   factory IMediaFrameSourceInfo4.from(IInspectable interface) => interface.cast(

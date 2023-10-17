@@ -30,7 +30,6 @@ const IID_IXmlElement = '{2dfb8a1f-6b10-4ef8-9f83-efcce8faec37}';
 
 class IXmlElement extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  // vtable begins at 6, is 13 entries long.
   IXmlElement.fromPtr(super.ptr);
 
   factory IXmlElement.from(IInspectable interface) =>

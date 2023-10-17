@@ -23,7 +23,6 @@ const IID_IPropertySetSerializer = '{6e8ebf1c-ef3d-4376-b20e-5be638aeac77}';
 
 /// Provides the ability to serialize/deserialize an IPropertySet to an IBuffer.
 class IPropertySetSerializer extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IPropertySetSerializer.fromPtr(super.ptr);
 
   factory IPropertySetSerializer.from(IInspectable interface) => interface.cast(

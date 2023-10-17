@@ -22,7 +22,6 @@ import 'iwebaccountprovider.dart';
 const IID_IWebAccountProvider2 = '{4a01eb05-4e42-41d4-b518-e008a5163614}';
 
 class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
-  // vtable begins at 6, is 2 entries long.
   IWebAccountProvider2.fromPtr(super.ptr);
 
   factory IWebAccountProvider2.from(IInspectable interface) =>

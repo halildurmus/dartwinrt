@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBitmapDecoderStatics2 = '{50ba68ea-99a1-40c4-80d9-aef0dafa6c3f}';
 
 class IBitmapDecoderStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IBitmapDecoderStatics2.fromPtr(super.ptr);
 
   factory IBitmapDecoderStatics2.from(IInspectable interface) => interface.cast(

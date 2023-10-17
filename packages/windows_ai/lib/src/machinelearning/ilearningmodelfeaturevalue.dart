@@ -22,7 +22,6 @@ import 'learningmodelfeaturekind.dart';
 const IID_ILearningModelFeatureValue = '{f51005db-4085-4dfe-9fed-95eb0c0cf75c}';
 
 class ILearningModelFeatureValue extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ILearningModelFeatureValue.fromPtr(super.ptr);
 
   factory ILearningModelFeatureValue.from(IInspectable interface) => interface

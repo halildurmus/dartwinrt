@@ -22,7 +22,6 @@ import 'toastnotification.dart';
 const IID_IToastNotificationHistory2 = '{3bc3d253-2f31-4092-9129-8ad5abf067da}';
 
 class IToastNotificationHistory2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IToastNotificationHistory2.fromPtr(super.ptr);
 
   factory IToastNotificationHistory2.from(IInspectable interface) => interface

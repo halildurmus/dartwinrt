@@ -23,7 +23,6 @@ import 'filesavepicker.dart';
 const IID_IFileSavePickerStatics = '{28e3cf9e-961c-5e2c-aed7-e64737f4ce37}';
 
 class IFileSavePickerStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IFileSavePickerStatics.fromPtr(super.ptr);
 
   factory IFileSavePickerStatics.from(IInspectable interface) => interface.cast(

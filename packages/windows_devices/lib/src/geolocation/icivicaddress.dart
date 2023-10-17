@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICivicAddress = '{a8567a1a-64f4-4d48-bcea-f6b008eca34c}';
 
 class ICivicAddress extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   ICivicAddress.fromPtr(super.ptr);
 
   factory ICivicAddress.from(IInspectable interface) =>

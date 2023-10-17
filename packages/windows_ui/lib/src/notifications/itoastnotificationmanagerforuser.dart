@@ -25,7 +25,6 @@ const IID_IToastNotificationManagerForUser =
     '{79ab57f6-43fe-487b-8a7f-99567200ae94}';
 
 class IToastNotificationManagerForUser extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IToastNotificationManagerForUser.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser.from(IInspectable interface) =>

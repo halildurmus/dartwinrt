@@ -23,7 +23,6 @@ import 'imagefeaturevalue.dart';
 const IID_IImageFeatureValueStatics = '{1bc317fd-23cb-4610-b085-c8e1c87ebaa0}';
 
 class IImageFeatureValueStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IImageFeatureValueStatics.fromPtr(super.ptr);
 
   factory IImageFeatureValueStatics.from(IInspectable interface) => interface

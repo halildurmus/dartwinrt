@@ -23,7 +23,6 @@ const IID_IKnownFoldersPlaylistsStatics =
     '{dad5ecd6-306f-4d6a-b496-46ba8eb106ce}';
 
 class IKnownFoldersPlaylistsStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IKnownFoldersPlaylistsStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersPlaylistsStatics.from(IInspectable interface) =>

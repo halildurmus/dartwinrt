@@ -22,7 +22,6 @@ import 'frameflashcontrol.dart';
 const IID_IFrameController2 = '{00d3bc75-d87c-485b-8a09-5c358568b427}';
 
 class IFrameController2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IFrameController2.fromPtr(super.ptr);
 
   factory IFrameController2.from(IInspectable interface) =>

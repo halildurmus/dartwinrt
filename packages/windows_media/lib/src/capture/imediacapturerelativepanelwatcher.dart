@@ -24,7 +24,6 @@ const IID_IMediaCaptureRelativePanelWatcher =
     '{7d896566-04be-5b89-b30e-bd34a9f12db0}';
 
 class IMediaCaptureRelativePanelWatcher extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IMediaCaptureRelativePanelWatcher.fromPtr(super.ptr);
 
   factory IMediaCaptureRelativePanelWatcher.from(IInspectable interface) =>

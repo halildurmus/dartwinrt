@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDigitalWindowCapability = '{d78bad2c-f721-5244-a196-b56ccbec606c}';
 
 class IDigitalWindowCapability extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IDigitalWindowCapability.fromPtr(super.ptr);
 
   factory IDigitalWindowCapability.from(IInspectable interface) => interface

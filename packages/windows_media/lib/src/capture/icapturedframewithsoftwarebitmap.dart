@@ -22,7 +22,6 @@ const IID_ICapturedFrameWithSoftwareBitmap =
     '{b58e8b6e-8503-49b5-9e86-897d26a3ff3d}';
 
 class ICapturedFrameWithSoftwareBitmap extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICapturedFrameWithSoftwareBitmap.fromPtr(super.ptr);
 
   factory ICapturedFrameWithSoftwareBitmap.from(IInspectable interface) =>

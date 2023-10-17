@@ -160,7 +160,6 @@ $iidConstant
 
 $classPreamble
 $classHeader {
-  // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
   $namedConstructor
 
   $fromFactoryConstructor

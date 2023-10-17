@@ -28,7 +28,6 @@ const IID_IGeolocatorWithScalarAccuracy =
 
 class IGeolocatorWithScalarAccuracy extends IInspectable
     implements IGeolocator {
-  // vtable begins at 6, is 2 entries long.
   IGeolocatorWithScalarAccuracy.fromPtr(super.ptr);
 
   factory IGeolocatorWithScalarAccuracy.from(IInspectable interface) =>

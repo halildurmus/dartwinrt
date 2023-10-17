@@ -25,7 +25,6 @@ import 'bitmaprotation.dart';
 const IID_IBitmapTransform = '{ae755344-e268-4d35-adcf-e995d31a8d34}';
 
 class IBitmapTransform extends IInspectable {
-  // vtable begins at 6, is 12 entries long.
   IBitmapTransform.fromPtr(super.ptr);
 
   factory IBitmapTransform.from(IInspectable interface) =>

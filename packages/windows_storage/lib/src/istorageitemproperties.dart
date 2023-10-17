@@ -25,7 +25,6 @@ import 'fileproperties/thumbnailoptions.dart';
 const IID_IStorageItemProperties = '{86664478-8029-46fe-a789-1c2f3e2ffb5c}';
 
 class IStorageItemProperties extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IStorageItemProperties.fromPtr(super.ptr);
 
   factory IStorageItemProperties.from(IInspectable interface) => interface.cast(

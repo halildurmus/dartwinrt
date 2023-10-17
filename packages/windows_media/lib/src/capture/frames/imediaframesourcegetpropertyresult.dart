@@ -23,7 +23,6 @@ const IID_IMediaFrameSourceGetPropertyResult =
     '{088616c2-3a64-4bd5-bd2b-e7c898d2f37a}';
 
 class IMediaFrameSourceGetPropertyResult extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaFrameSourceGetPropertyResult.fromPtr(super.ptr);
 
   factory IMediaFrameSourceGetPropertyResult.from(IInspectable interface) =>

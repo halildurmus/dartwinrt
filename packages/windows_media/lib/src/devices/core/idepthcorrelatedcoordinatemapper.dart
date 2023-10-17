@@ -25,7 +25,6 @@ const IID_IDepthCorrelatedCoordinateMapper =
 
 class IDepthCorrelatedCoordinateMapper extends IInspectable
     implements IClosable {
-  // vtable begins at 6, is 4 entries long.
   IDepthCorrelatedCoordinateMapper.fromPtr(super.ptr);
 
   factory IDepthCorrelatedCoordinateMapper.from(IInspectable interface) =>

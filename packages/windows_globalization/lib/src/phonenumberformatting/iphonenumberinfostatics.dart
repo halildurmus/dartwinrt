@@ -23,7 +23,6 @@ import 'phonenumberparseresult.dart';
 const IID_IPhoneNumberInfoStatics = '{5b3f4f6a-86a9-40e9-8649-6d61161928d4}';
 
 class IPhoneNumberInfoStatics extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IPhoneNumberInfoStatics.fromPtr(super.ptr);
 
   factory IPhoneNumberInfoStatics.from(IInspectable interface) => interface

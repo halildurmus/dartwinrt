@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAdvancedCapturedPhoto2 = '{18cf6cd8-cffe-42d8-8104-017bb318f4a1}';
 
 class IAdvancedCapturedPhoto2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAdvancedCapturedPhoto2.fromPtr(super.ptr);
 
   factory IAdvancedCapturedPhoto2.from(IInspectable interface) => interface

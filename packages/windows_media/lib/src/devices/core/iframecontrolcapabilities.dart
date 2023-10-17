@@ -25,7 +25,6 @@ import 'frameisospeedcapabilities.dart';
 const IID_IFrameControlCapabilities = '{a8ffae60-4e9e-4377-a789-e24c4ae7e544}';
 
 class IFrameControlCapabilities extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IFrameControlCapabilities.fromPtr(super.ptr);
 
   factory IFrameControlCapabilities.from(IInspectable interface) => interface

@@ -24,7 +24,6 @@ const IID_IWindowingEnvironmentStatics =
     '{874e9fb7-c642-55ab-8aa2-162f734a9a72}';
 
 class IWindowingEnvironmentStatics extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IWindowingEnvironmentStatics.fromPtr(super.ptr);
 
   factory IWindowingEnvironmentStatics.from(IInspectable interface) =>

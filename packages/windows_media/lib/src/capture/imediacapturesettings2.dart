@@ -23,7 +23,6 @@ import 'mediacategory.dart';
 const IID_IMediaCaptureSettings2 = '{6f9e7cfb-fa9f-4b13-9cbe-5ab94f1f3493}';
 
 class IMediaCaptureSettings2 extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IMediaCaptureSettings2.fromPtr(super.ptr);
 
   factory IMediaCaptureSettings2.from(IInspectable interface) => interface.cast(

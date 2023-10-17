@@ -21,7 +21,6 @@ const IID_IExposureCompensationControl =
     '{81c8e834-dcec-4011-a610-1f3847e64aca}';
 
 class IExposureCompensationControl extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IExposureCompensationControl.fromPtr(super.ptr);
 
   factory IExposureCompensationControl.from(IInspectable interface) =>

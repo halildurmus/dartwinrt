@@ -24,7 +24,6 @@ import '../mediaproperties/mediathumbnailformat.dart';
 const IID_ILowLagPhotoControl = '{6d5c4dd0-fadf-415d-aee6-3baa529300c9}';
 
 class ILowLagPhotoControl extends IInspectable {
-  // vtable begins at 6, is 9 entries long.
   ILowLagPhotoControl.fromPtr(super.ptr);
 
   factory ILowLagPhotoControl.from(IInspectable interface) =>

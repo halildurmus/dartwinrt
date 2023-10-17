@@ -18,7 +18,6 @@ part 'ikeyvaluepair_part.dart';
 /// two type parameters into one to satisfy the constraints of another generic
 /// interface.
 abstract interface class IKeyValuePair<K, V> extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IKeyValuePair(super.ptr);
 
   /// Creates an instance of [IKeyValuePair] from the given [ptr].

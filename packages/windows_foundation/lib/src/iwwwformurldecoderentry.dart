@@ -23,7 +23,6 @@ import 'helpers.dart';
 const IID_IWwwFormUrlDecoderEntry = '{125e7431-f678-4e8e-b670-20a9b06c512d}';
 
 class IWwwFormUrlDecoderEntry extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IWwwFormUrlDecoderEntry.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderEntry.from(IInspectable interface) => interface

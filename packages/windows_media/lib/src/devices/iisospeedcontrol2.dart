@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IIsoSpeedControl2 = '{6f1578f2-6d77-4f8a-8c2f-6130b6395053}';
 
 class IIsoSpeedControl2 extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IIsoSpeedControl2.fromPtr(super.ptr);
 
   factory IIsoSpeedControl2.from(IInspectable interface) =>

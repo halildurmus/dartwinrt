@@ -23,7 +23,6 @@ import 'panel.dart';
 const IID_IEnclosureLocation2 = '{2885995b-e07d-485d-8a9e-bdf29aef4f66}';
 
 class IEnclosureLocation2 extends IInspectable implements IEnclosureLocation {
-  // vtable begins at 6, is 1 entries long.
   IEnclosureLocation2.fromPtr(super.ptr);
 
   factory IEnclosureLocation2.from(IInspectable interface) =>

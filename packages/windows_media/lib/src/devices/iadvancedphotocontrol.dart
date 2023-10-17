@@ -23,7 +23,6 @@ import 'advancedphotomode.dart';
 const IID_IAdvancedPhotoControl = '{c5b15486-9001-4682-9309-68eae0080eec}';
 
 class IAdvancedPhotoControl extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IAdvancedPhotoControl.fromPtr(super.ptr);
 
   factory IAdvancedPhotoControl.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'percentformatter.dart';
 const IID_IPercentFormatterFactory = '{b7828aef-fed4-4018-a6e2-e09961e03765}';
 
 class IPercentFormatterFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IPercentFormatterFactory.fromPtr(super.ptr);
 
   factory IPercentFormatterFactory.from(IInspectable interface) => interface

@@ -22,7 +22,6 @@ import 'lanidentifierdata.dart';
 const IID_ILanIdentifier = '{48aa53aa-1108-4546-a6cb-9a74da4b7ba0}';
 
 class ILanIdentifier extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   ILanIdentifier.fromPtr(super.ptr);
 
   factory ILanIdentifier.from(IInspectable interface) =>

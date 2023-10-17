@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWebTokenRequest2 = '{d700c079-30c8-4397-9654-961c3be8b855}';
 
 class IWebTokenRequest2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IWebTokenRequest2.fromPtr(super.ptr);
 
   factory IWebTokenRequest2.from(IInspectable interface) =>

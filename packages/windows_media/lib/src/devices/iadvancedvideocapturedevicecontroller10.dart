@@ -23,7 +23,6 @@ const IID_IAdvancedVideoCaptureDeviceController10 =
     '{c621b82d-d6f0-5c1b-a388-a6e938407146}';
 
 class IAdvancedVideoCaptureDeviceController10 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAdvancedVideoCaptureDeviceController10.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController10.from(

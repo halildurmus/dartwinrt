@@ -22,7 +22,6 @@ import 'capturedframe.dart';
 const IID_ICapturedPhoto = '{b0ce7e5a-cfcc-4d6c-8ad1-0869208aca16}';
 
 class ICapturedPhoto extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ICapturedPhoto.fromPtr(super.ptr);
 
   factory ICapturedPhoto.from(IInspectable interface) =>

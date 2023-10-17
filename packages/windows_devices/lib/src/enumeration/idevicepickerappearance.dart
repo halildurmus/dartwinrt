@@ -21,7 +21,6 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_IDevicePickerAppearance = '{e69a12c6-e627-4ed8-9b6c-460af445e56d}';
 
 class IDevicePickerAppearance extends IInspectable {
-  // vtable begins at 6, is 14 entries long.
   IDevicePickerAppearance.fromPtr(super.ptr);
 
   factory IDevicePickerAppearance.from(IInspectable interface) => interface

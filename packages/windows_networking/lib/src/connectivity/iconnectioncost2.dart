@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectionCost2 = '{8e113a05-e209-4549-bb25-5e0db691cb05}';
 
 class IConnectionCost2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IConnectionCost2.fromPtr(super.ptr);
 
   factory IConnectionCost2.from(IInspectable interface) =>

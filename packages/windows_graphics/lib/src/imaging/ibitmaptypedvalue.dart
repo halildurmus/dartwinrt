@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBitmapTypedValue = '{cd8044a9-2443-4000-b0cd-79316c56f589}';
 
 class IBitmapTypedValue extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IBitmapTypedValue.fromPtr(super.ptr);
 
   factory IBitmapTypedValue.from(IInspectable interface) =>

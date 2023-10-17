@@ -22,7 +22,6 @@ import 'mediadevicecontrolcapabilities.dart';
 const IID_IMediaDeviceControl = '{efa8dfa9-6f75-4863-ba0b-583f3036b4de}';
 
 class IMediaDeviceControl extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IMediaDeviceControl.fromPtr(super.ptr);
 
   factory IMediaDeviceControl.from(IInspectable interface) =>

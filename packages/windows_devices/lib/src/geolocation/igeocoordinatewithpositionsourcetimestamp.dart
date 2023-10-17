@@ -21,7 +21,6 @@ const IID_IGeocoordinateWithPositionSourceTimestamp =
     '{8543fc02-c9f1-4610-afe0-8bc3a6a87036}';
 
 class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithPositionSourceTimestamp.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPositionSourceTimestamp.from(

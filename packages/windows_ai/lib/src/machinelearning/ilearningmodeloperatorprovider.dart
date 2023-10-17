@@ -22,7 +22,6 @@ const IID_ILearningModelOperatorProvider =
 
 /// Describes the operaators for a learning model.
 class ILearningModelOperatorProvider extends IInspectable {
-  // vtable begins at 6, is 0 entries long.
   ILearningModelOperatorProvider.fromPtr(super.ptr);
 
   factory ILearningModelOperatorProvider.from(IInspectable interface) =>

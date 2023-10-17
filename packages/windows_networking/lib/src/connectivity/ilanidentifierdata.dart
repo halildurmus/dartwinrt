@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanIdentifierData = '{a74e83c3-d639-45be-a36a-c4e4aeaf6d9b}';
 
 class ILanIdentifierData extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILanIdentifierData.fromPtr(super.ptr);
 
   factory ILanIdentifierData.from(IInspectable interface) =>

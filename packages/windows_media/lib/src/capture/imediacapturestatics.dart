@@ -23,7 +23,6 @@ import 'mediacapturevideoprofile.dart';
 const IID_IMediaCaptureStatics = '{acef81ff-99ed-4645-965e-1925cfc63834}';
 
 class IMediaCaptureStatics extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IMediaCaptureStatics.fromPtr(super.ptr);
 
   factory IMediaCaptureStatics.from(IInspectable interface) =>

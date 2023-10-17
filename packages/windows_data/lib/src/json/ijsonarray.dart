@@ -25,7 +25,6 @@ import 'jsonvaluetype.dart';
 const IID_IJsonArray = '{08c1ddb6-0cbd-4a9a-b5d3-2f852dc37e81}';
 
 class IJsonArray extends IInspectable implements IJsonValue {
-  // vtable begins at 6, is 5 entries long.
   IJsonArray.fromPtr(super.ptr);
 
   factory IJsonArray.from(IInspectable interface) =>

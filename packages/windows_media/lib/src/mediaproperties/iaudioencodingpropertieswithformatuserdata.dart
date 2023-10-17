@@ -21,7 +21,6 @@ const IID_IAudioEncodingPropertiesWithFormatUserData =
     '{98f10d79-13ea-49ff-be70-2673db69702c}';
 
 class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IAudioEncodingPropertiesWithFormatUserData.fromPtr(super.ptr);
 
   factory IAudioEncodingPropertiesWithFormatUserData.from(

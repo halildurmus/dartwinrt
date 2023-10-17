@@ -23,7 +23,6 @@ const IID_IKnownFoldersCameraRollStatics =
     '{5d115e66-27e8-492f-b8e5-2f90896cd4cd}';
 
 class IKnownFoldersCameraRollStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IKnownFoldersCameraRollStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersCameraRollStatics.from(IInspectable interface) =>

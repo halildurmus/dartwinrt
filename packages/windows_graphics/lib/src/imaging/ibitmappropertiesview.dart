@@ -22,7 +22,6 @@ import 'bitmappropertyset.dart';
 const IID_IBitmapPropertiesView = '{7e0fe87a-3a70-48f8-9c55-196cf5a545f5}';
 
 class IBitmapPropertiesView extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IBitmapPropertiesView.fromPtr(super.ptr);
 
   factory IBitmapPropertiesView.from(IInspectable interface) =>

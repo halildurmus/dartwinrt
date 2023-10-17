@@ -22,7 +22,6 @@ import 'istorageitem.dart';
 const IID_IStorageFolder2 = '{e827e8b9-08d9-4a8e-a0ac-fe5ed3cbbbd3}';
 
 class IStorageFolder2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IStorageFolder2.fromPtr(super.ptr);
 
   factory IStorageFolder2.from(IInspectable interface) =>

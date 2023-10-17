@@ -22,7 +22,6 @@ import 'thumbnailtype.dart';
 const IID_IThumbnailProperties = '{693dd42f-dbe7-49b5-b3b3-2893ac5d3423}';
 
 class IThumbnailProperties extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IThumbnailProperties.fromPtr(super.ptr);
 
   factory IThumbnailProperties.from(IInspectable interface) =>

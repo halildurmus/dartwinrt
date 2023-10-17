@@ -22,7 +22,6 @@ import 'packagesignaturekind.dart';
 const IID_IPackage4 = '{65aed1ae-b95b-450c-882b-6255187f397e}';
 
 class IPackage4 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IPackage4.fromPtr(super.ptr);
 
   factory IPackage4.from(IInspectable interface) =>

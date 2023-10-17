@@ -25,7 +25,6 @@ const IID_IMultiSourceMediaFrameReader =
     '{8d144402-f763-488d-98f2-b437bcf075e7}';
 
 class IMultiSourceMediaFrameReader extends IInspectable implements IClosable {
-  // vtable begins at 6, is 5 entries long.
   IMultiSourceMediaFrameReader.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReader.from(IInspectable interface) =>

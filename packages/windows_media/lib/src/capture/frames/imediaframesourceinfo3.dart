@@ -22,7 +22,6 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_IMediaFrameSourceInfo3 = '{ca824ab6-66ea-5885-a2b6-26c0eeec3c7b}';
 
 class IMediaFrameSourceInfo3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaFrameSourceInfo3.fromPtr(super.ptr);
 
   factory IMediaFrameSourceInfo3.from(IInspectable interface) => interface.cast(

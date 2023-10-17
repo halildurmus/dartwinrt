@@ -23,7 +23,6 @@ import 'phonenumberinfo.dart';
 const IID_IPhoneNumberFormatter = '{1556b49e-bad4-4b4a-900d-4407adb7c981}';
 
 class IPhoneNumberFormatter extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IPhoneNumberFormatter.fromPtr(super.ptr);
 
   factory IPhoneNumberFormatter.from(IInspectable interface) =>

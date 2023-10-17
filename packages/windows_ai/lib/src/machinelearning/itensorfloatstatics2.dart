@@ -23,7 +23,6 @@ import 'tensorfloat.dart';
 const IID_ITensorFloatStatics2 = '{24610bc1-5e44-5713-b281-8f4ad4d555e8}';
 
 class ITensorFloatStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ITensorFloatStatics2.fromPtr(super.ptr);
 
   factory ITensorFloatStatics2.from(IInspectable interface) =>

@@ -21,7 +21,6 @@ import 'package:windows_media/windows_media.dart';
 const IID_IImageFeatureValue = '{f0414fd9-c9aa-4405-b7fb-94f87c8a3037}';
 
 class IImageFeatureValue extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IImageFeatureValue.fromPtr(super.ptr);
 
   factory IImageFeatureValue.from(IInspectable interface) =>

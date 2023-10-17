@@ -36,7 +36,6 @@ class IXmlCDataSection extends IInspectable
         IXmlNode,
         IXmlNodeSelector,
         IXmlNodeSerializer {
-  // vtable begins at 6, is 0 entries long.
   IXmlCDataSection.fromPtr(super.ptr);
 
   factory IXmlCDataSection.from(IInspectable interface) =>

@@ -21,7 +21,6 @@ const IID_ICalendarIdentifiersStatics =
     '{80653f68-2cb2-4c1f-b590-f0f52bf4fd1a}';
 
 class ICalendarIdentifiersStatics extends IInspectable {
-  // vtable begins at 6, is 9 entries long.
   ICalendarIdentifiersStatics.fromPtr(super.ptr);
 
   factory ICalendarIdentifiersStatics.from(IInspectable interface) =>

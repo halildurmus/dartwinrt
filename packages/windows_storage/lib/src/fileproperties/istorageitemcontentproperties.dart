@@ -28,7 +28,6 @@ const IID_IStorageItemContentProperties =
 
 class IStorageItemContentProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  // vtable begins at 6, is 4 entries long.
   IStorageItemContentProperties.fromPtr(super.ptr);
 
   factory IStorageItemContentProperties.from(IInspectable interface) =>

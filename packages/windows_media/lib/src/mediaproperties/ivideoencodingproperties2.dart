@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IVideoEncodingProperties2 = '{f743a1ef-d465-4290-a94b-ef0f1528f8e3}';
 
 class IVideoEncodingProperties2 extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IVideoEncodingProperties2.fromPtr(super.ptr);
 
   factory IVideoEncodingProperties2.from(IInspectable interface) => interface

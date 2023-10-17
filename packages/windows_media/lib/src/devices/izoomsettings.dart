@@ -22,7 +22,6 @@ import 'zoomtransitionmode.dart';
 const IID_IZoomSettings = '{6ad66b24-14b4-4bfd-b18f-88fe24463b52}';
 
 class IZoomSettings extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IZoomSettings.fromPtr(super.ptr);
 
   factory IZoomSettings.from(IInspectable interface) =>
