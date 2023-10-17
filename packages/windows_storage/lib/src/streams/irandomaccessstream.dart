@@ -27,7 +27,6 @@ const IID_IRandomAccessStream = '{905a0fe1-bc53-11df-8c49-001e4fc686da}';
 /// Supports random access of data in input and output streams.
 class IRandomAccessStream extends IInspectable
     implements IClosable, IInputStream, IOutputStream {
-  // vtable begins at 6, is 9 entries long.
   IRandomAccessStream.fromPtr(super.ptr);
 
   factory IRandomAccessStream.from(IInspectable interface) =>

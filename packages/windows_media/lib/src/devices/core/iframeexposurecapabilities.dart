@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFrameExposureCapabilities = '{bdbe9ce3-3985-4e72-97c2-0590d61307a1}';
 
 class IFrameExposureCapabilities extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IFrameExposureCapabilities.fromPtr(super.ptr);
 
   factory IFrameExposureCapabilities.from(IInspectable interface) => interface

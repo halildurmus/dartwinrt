@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPackage2 = '{a6612fb6-7688-4ace-95fb-359538e7aa01}';
 
 class IPackage2 extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IPackage2.fromPtr(super.ptr);
 
   factory IPackage2.from(IInspectable interface) =>

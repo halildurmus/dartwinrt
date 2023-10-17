@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAudioBuffer = '{35175827-724b-4c6a-b130-f6537f9ae0d0}';
 
 class IAudioBuffer extends IInspectable implements IMemoryBuffer, IClosable {
-  // vtable begins at 6, is 3 entries long.
   IAudioBuffer.fromPtr(super.ptr);
 
   factory IAudioBuffer.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'geocoordinate.dart';
 const IID_IGeoposition = '{c18d0454-7d41-4ff7-a957-9dffb4ef7f5b}';
 
 class IGeoposition extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IGeoposition.fromPtr(super.ptr);
 
   factory IGeoposition.from(IInspectable interface) =>

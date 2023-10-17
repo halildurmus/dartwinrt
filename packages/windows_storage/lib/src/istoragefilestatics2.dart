@@ -23,7 +23,6 @@ import 'storagefile.dart';
 const IID_IStorageFileStatics2 = '{5c76a781-212e-4af9-8f04-740cae108974}';
 
 class IStorageFileStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IStorageFileStatics2.fromPtr(super.ptr);
 
   factory IStorageFileStatics2.from(IInspectable interface) =>

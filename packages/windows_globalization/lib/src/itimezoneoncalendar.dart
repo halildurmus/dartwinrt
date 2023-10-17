@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITimeZoneOnCalendar = '{bb3c25e5-46cf-4317-a3f5-02621ad54478}';
 
 class ITimeZoneOnCalendar extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ITimeZoneOnCalendar.fromPtr(super.ptr);
 
   factory ITimeZoneOnCalendar.from(IInspectable interface) =>

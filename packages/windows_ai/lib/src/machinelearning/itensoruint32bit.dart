@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITensorUInt32Bit = '{d8c9c2ff-7511-45a3-bfac-c38f370d2237}';
 
 class ITensorUInt32Bit extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ITensorUInt32Bit.fromPtr(super.ptr);
 
   factory ITensorUInt32Bit.from(IInspectable interface) =>

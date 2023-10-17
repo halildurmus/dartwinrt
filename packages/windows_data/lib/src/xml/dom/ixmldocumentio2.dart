@@ -23,7 +23,6 @@ import 'xmlloadsettings.dart';
 const IID_IXmlDocumentIO2 = '{5d034661-7bd8-4ad5-9ebf-81e6347263b1}';
 
 class IXmlDocumentIO2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IXmlDocumentIO2.fromPtr(super.ptr);
 
   factory IXmlDocumentIO2.from(IInspectable interface) =>

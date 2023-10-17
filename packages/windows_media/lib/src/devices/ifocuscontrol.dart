@@ -22,7 +22,6 @@ import 'focuspreset.dart';
 const IID_IFocusControl = '{c0d889f6-5228-4453-b153-85606592b238}';
 
 class IFocusControl extends IInspectable {
-  // vtable begins at 6, is 11 entries long.
   IFocusControl.fromPtr(super.ptr);
 
   factory IFocusControl.from(IInspectable interface) =>

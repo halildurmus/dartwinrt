@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITensorBoolean = '{50f311ed-29e9-4a5c-a44d-8fc512584eed}';
 
 class ITensorBoolean extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ITensorBoolean.fromPtr(super.ptr);
 
   factory ITensorBoolean.from(IInspectable interface) =>

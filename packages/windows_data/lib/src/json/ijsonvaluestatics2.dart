@@ -22,7 +22,6 @@ import 'jsonvalue.dart';
 const IID_IJsonValueStatics2 = '{1d9ecbe4-3fe8-4335-8392-93d8e36865f0}';
 
 class IJsonValueStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IJsonValueStatics2.fromPtr(super.ptr);
 
   factory IJsonValueStatics2.from(IInspectable interface) =>

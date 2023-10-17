@@ -29,7 +29,6 @@ import 'yearformat.dart';
 const IID_IDateTimeFormatterFactory = '{ec8d8a53-1a2e-412d-8815-3b745fb1a2a0}';
 
 class IDateTimeFormatterFactory extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IDateTimeFormatterFactory.fromPtr(super.ptr);
 
   factory IDateTimeFormatterFactory.from(IInspectable interface) => interface

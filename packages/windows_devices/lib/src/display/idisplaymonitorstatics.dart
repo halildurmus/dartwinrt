@@ -22,7 +22,6 @@ import 'displaymonitor.dart';
 const IID_IDisplayMonitorStatics = '{6eae698f-a228-4c05-821d-b695d667de8e}';
 
 class IDisplayMonitorStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IDisplayMonitorStatics.fromPtr(super.ptr);
 
   factory IDisplayMonitorStatics.from(IInspectable interface) => interface.cast(

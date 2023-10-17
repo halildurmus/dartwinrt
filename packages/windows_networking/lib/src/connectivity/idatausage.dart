@@ -22,7 +22,6 @@ const IID_IDataUsage = '{c1431dd3-b146-4d39-b959-0c69b096c512}';
 @Deprecated(
     "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")
 class IDataUsage extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IDataUsage.fromPtr(super.ptr);
 
   factory IDataUsage.from(IInspectable interface) =>

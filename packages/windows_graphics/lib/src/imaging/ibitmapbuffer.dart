@@ -22,7 +22,6 @@ import 'bitmapplanedescription.dart';
 const IID_IBitmapBuffer = '{a53e04c4-399c-438c-b28f-a63a6b83d1a1}';
 
 class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
-  // vtable begins at 6, is 2 entries long.
   IBitmapBuffer.fromPtr(super.ptr);
 
   factory IBitmapBuffer.from(IInspectable interface) =>

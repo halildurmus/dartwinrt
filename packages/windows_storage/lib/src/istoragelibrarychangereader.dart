@@ -23,7 +23,6 @@ const IID_IStorageLibraryChangeReader =
     '{f205bc83-fca2-41f9-8954-ee2e991eb96f}';
 
 class IStorageLibraryChangeReader extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IStorageLibraryChangeReader.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeReader.from(IInspectable interface) =>

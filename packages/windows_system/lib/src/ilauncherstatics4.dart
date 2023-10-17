@@ -27,7 +27,6 @@ import 'user.dart';
 const IID_ILauncherStatics4 = '{b9ec819f-b5a5-41c6-b3b3-dd1b3178bcf2}';
 
 class ILauncherStatics4 extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   ILauncherStatics4.fromPtr(super.ptr);
 
   factory ILauncherStatics4.from(IInspectable interface) =>

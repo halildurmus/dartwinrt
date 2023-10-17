@@ -27,7 +27,6 @@ const IID_IVideoDeviceController = '{99555575-2e2e-40b8-b6c7-f82d10013210}';
 
 class IVideoDeviceController extends IInspectable
     implements IMediaDeviceController {
-  // vtable begins at 6, is 13 entries long.
   IVideoDeviceController.fromPtr(super.ptr);
 
   factory IVideoDeviceController.from(IInspectable interface) => interface.cast(

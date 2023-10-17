@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IUserDataPaths = '{f9c53912-abc4-46ff-8a2b-dc9d7fa6e52f}';
 
 class IUserDataPaths extends IInspectable {
-  // vtable begins at 6, is 19 entries long.
   IUserDataPaths.fromPtr(super.ptr);
 
   factory IUserDataPaths.from(IInspectable interface) =>

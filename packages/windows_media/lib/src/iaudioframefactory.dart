@@ -22,7 +22,6 @@ import 'audioframe.dart';
 const IID_IAudioFrameFactory = '{91a90ade-2422-40a6-b9ad-30d02404317d}';
 
 class IAudioFrameFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAudioFrameFactory.fromPtr(super.ptr);
 
   factory IAudioFrameFactory.from(IInspectable interface) =>

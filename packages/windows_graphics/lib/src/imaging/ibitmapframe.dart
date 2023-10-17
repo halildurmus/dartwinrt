@@ -29,7 +29,6 @@ import 'pixeldataprovider.dart';
 const IID_IBitmapFrame = '{72a49a1c-8081-438d-91bc-94ecfc8185c6}';
 
 class IBitmapFrame extends IInspectable {
-  // vtable begins at 6, is 12 entries long.
   IBitmapFrame.fromPtr(super.ptr);
 
   factory IBitmapFrame.from(IInspectable interface) =>

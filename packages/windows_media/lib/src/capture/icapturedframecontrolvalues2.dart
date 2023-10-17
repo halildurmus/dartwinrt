@@ -25,7 +25,6 @@ const IID_ICapturedFrameControlValues2 =
     '{500b2b88-06d2-4aa7-a7db-d37af73321d8}';
 
 class ICapturedFrameControlValues2 extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   ICapturedFrameControlValues2.fromPtr(super.ptr);
 
   factory ICapturedFrameControlValues2.from(IInspectable interface) =>

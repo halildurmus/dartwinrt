@@ -21,7 +21,6 @@ const IID_IMediaSource = '{e7bfb599-a09d-4c21-bcdf-20af4f86b3d9}';
 
 /// Represents a media source that delivers media samples to a media pipeline.
 class IMediaSource extends IInspectable {
-  // vtable begins at 6, is 0 entries long.
   IMediaSource.fromPtr(super.ptr);
 
   factory IMediaSource.from(IInspectable interface) =>

@@ -21,7 +21,6 @@ part 'ireference_part.dart';
 /// Enables arbitrary enumerations, structures, and delegate types to be used
 /// as property values.
 abstract interface class IReference<T> extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IReference(super.ptr) : _isNull = ptr.ref.isNull;
 
   final bool _isNull;

@@ -23,7 +23,6 @@ import 'queryoptions.dart';
 const IID_IStorageQueryResultBase = '{c297d70d-7353-47ab-ba58-8c61425dc54b}';
 
 class IStorageQueryResultBase extends IInspectable {
-  // vtable begins at 6, is 9 entries long.
   IStorageQueryResultBase.fromPtr(super.ptr);
 
   factory IStorageQueryResultBase.from(IInspectable interface) => interface

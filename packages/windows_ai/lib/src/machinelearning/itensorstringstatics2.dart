@@ -22,7 +22,6 @@ import 'tensorstring.dart';
 const IID_ITensorStringStatics2 = '{9e355ed0-c8e2-5254-9137-0193a3668fd8}';
 
 class ITensorStringStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ITensorStringStatics2.fromPtr(super.ptr);
 
   factory ITensorStringStatics2.from(IInspectable interface) =>

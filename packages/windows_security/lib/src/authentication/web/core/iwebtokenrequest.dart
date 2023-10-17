@@ -23,7 +23,6 @@ import 'webtokenrequestprompttype.dart';
 const IID_IWebTokenRequest = '{b77b4d68-adcb-4673-b364-0cf7b35caf97}';
 
 class IWebTokenRequest extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IWebTokenRequest.fromPtr(super.ptr);
 
   factory IWebTokenRequest.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ const IID_IRandomAccessStreamReference =
     '{33ee3134-1dd6-4e3a-8067-d1c162e8642b}';
 
 class IRandomAccessStreamReference extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IRandomAccessStreamReference.fromPtr(super.ptr);
 
   factory IRandomAccessStreamReference.from(IInspectable interface) =>

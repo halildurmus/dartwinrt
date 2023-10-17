@@ -22,7 +22,6 @@ import '../videoframe.dart';
 const IID_IMediaCaptureStopResult = '{f9db6a2a-a092-4ad1-97d4-f201f9d082db}';
 
 class IMediaCaptureStopResult extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaCaptureStopResult.fromPtr(super.ptr);
 
   factory IMediaCaptureStopResult.from(IInspectable interface) => interface

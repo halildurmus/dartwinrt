@@ -24,7 +24,6 @@ const IID_IFindRelatedPackagesOptionsFactory =
     '{d7d17254-a4fd-55c4-98cf-f2710b7d8be2}';
 
 class IFindRelatedPackagesOptionsFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IFindRelatedPackagesOptionsFactory.fromPtr(super.ptr);
 
   factory IFindRelatedPackagesOptionsFactory.from(IInspectable interface) =>

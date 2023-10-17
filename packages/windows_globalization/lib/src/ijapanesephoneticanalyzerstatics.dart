@@ -23,7 +23,6 @@ const IID_IJapanesePhoneticAnalyzerStatics =
     '{88ab9e90-93de-41b2-b4d5-8edb227fd1c2}';
 
 class IJapanesePhoneticAnalyzerStatics extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IJapanesePhoneticAnalyzerStatics.fromPtr(super.ptr);
 
   factory IJapanesePhoneticAnalyzerStatics.from(IInspectable interface) =>

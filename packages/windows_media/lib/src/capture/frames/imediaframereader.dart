@@ -24,7 +24,6 @@ import 'mediaframereference.dart';
 const IID_IMediaFrameReader = '{e4c94395-2028-48ed-90b0-d1c1b162e24c}';
 
 class IMediaFrameReader extends IInspectable implements IClosable {
-  // vtable begins at 6, is 5 entries long.
   IMediaFrameReader.fromPtr(super.ptr);
 
   factory IMediaFrameReader.from(IInspectable interface) =>

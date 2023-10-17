@@ -24,7 +24,6 @@ import 'videoencodingproperties.dart';
 const IID_IMediaEncodingProfile = '{e7dbf5a8-1db9-4783-876b-3dfe12acfdb3}';
 
 class IMediaEncodingProfile extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IMediaEncodingProfile.fromPtr(super.ptr);
 
   factory IMediaEncodingProfile.from(IInspectable interface) =>

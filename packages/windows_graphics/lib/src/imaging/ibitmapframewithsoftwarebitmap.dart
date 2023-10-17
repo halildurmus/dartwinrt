@@ -33,7 +33,6 @@ const IID_IBitmapFrameWithSoftwareBitmap =
 
 class IBitmapFrameWithSoftwareBitmap extends IInspectable
     implements IBitmapFrame {
-  // vtable begins at 6, is 3 entries long.
   IBitmapFrameWithSoftwareBitmap.fromPtr(super.ptr);
 
   factory IBitmapFrameWithSoftwareBitmap.from(IInspectable interface) =>

@@ -24,7 +24,6 @@ import 'digitalwindowmode.dart';
 const IID_IDigitalWindowControl = '{23b69eff-65d2-53ea-8780-de582b48b544}';
 
 class IDigitalWindowControl extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IDigitalWindowControl.fromPtr(super.ptr);
 
   factory IDigitalWindowControl.from(IInspectable interface) =>

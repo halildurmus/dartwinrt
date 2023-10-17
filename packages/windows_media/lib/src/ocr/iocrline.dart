@@ -22,7 +22,6 @@ import 'ocrword.dart';
 const IID_IOcrLine = '{0043a16f-e31f-3a24-899c-d444bd088124}';
 
 class IOcrLine extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IOcrLine.fromPtr(super.ptr);
 
   factory IOcrLine.from(IInspectable interface) =>

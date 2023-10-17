@@ -22,7 +22,6 @@ import '../core/timedmetadatastreamdescriptor.dart';
 const IID_IMediaEncodingProfile3 = '{ba6ebe88-7570-4e69-accf-5611ad015f88}';
 
 class IMediaEncodingProfile3 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaEncodingProfile3.fromPtr(super.ptr);
 
   factory IMediaEncodingProfile3.from(IInspectable interface) => interface.cast(

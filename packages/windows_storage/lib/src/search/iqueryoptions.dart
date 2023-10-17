@@ -28,7 +28,6 @@ import 'sortentry.dart';
 const IID_IQueryOptions = '{1e5e46ee-0f45-4838-a8e9-d0479d446c30}';
 
 class IQueryOptions extends IInspectable {
-  // vtable begins at 6, is 18 entries long.
   IQueryOptions.fromPtr(super.ptr);
 
   factory IQueryOptions.from(IInspectable interface) =>

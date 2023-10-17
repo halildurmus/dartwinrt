@@ -22,7 +22,6 @@ import 'tensordouble.dart';
 const IID_ITensorDoubleStatics = '{a86693c5-9538-44e7-a3ca-5df374a5a70c}';
 
 class ITensorDoubleStatics extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ITensorDoubleStatics.fromPtr(super.ptr);
 
   factory ITensorDoubleStatics.from(IInspectable interface) =>

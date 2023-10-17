@@ -23,7 +23,6 @@ const IID_IAutomationConnectionBoundObject =
     '{5e8558fb-ca52-5b65-9830-dd2905816093}';
 
 class IAutomationConnectionBoundObject extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAutomationConnectionBoundObject.fromPtr(super.ptr);
 
   factory IAutomationConnectionBoundObject.from(IInspectable interface) =>

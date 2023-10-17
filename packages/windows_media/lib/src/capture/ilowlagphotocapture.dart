@@ -22,7 +22,6 @@ import 'capturedphoto.dart';
 const IID_ILowLagPhotoCapture = '{a37251b7-6b44-473d-8f24-f703d6c0ec44}';
 
 class ILowLagPhotoCapture extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILowLagPhotoCapture.fromPtr(super.ptr);
 
   factory ILowLagPhotoCapture.from(IInspectable interface) =>

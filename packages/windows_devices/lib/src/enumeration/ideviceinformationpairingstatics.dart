@@ -23,7 +23,6 @@ const IID_IDeviceInformationPairingStatics =
     '{e915c408-36d4-49a1-bf13-514173799b6b}';
 
 class IDeviceInformationPairingStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDeviceInformationPairingStatics.fromPtr(super.ptr);
 
   factory IDeviceInformationPairingStatics.from(IInspectable interface) =>

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDateTimeFormatter2 = '{27c91a86-bdaa-4fd0-9e36-671d5aa5ee03}';
 
 class IDateTimeFormatter2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDateTimeFormatter2.fromPtr(super.ptr);
 
   factory IDateTimeFormatter2.from(IInspectable interface) =>

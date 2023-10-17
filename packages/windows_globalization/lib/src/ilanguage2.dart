@@ -22,7 +22,6 @@ import 'languagelayoutdirection.dart';
 const IID_ILanguage2 = '{6a47e5b5-d94d-4886-a404-a5a5b9d5b494}';
 
 class ILanguage2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ILanguage2.fromPtr(super.ptr);
 
   factory ILanguage2.from(IInspectable interface) =>

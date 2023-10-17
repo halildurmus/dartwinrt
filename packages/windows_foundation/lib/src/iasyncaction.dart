@@ -28,7 +28,6 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// Runtime asynchronous methods that don't have a result object, and don't
 /// report ongoing progress.
 class IAsyncAction extends IInspectable implements IAsyncInfo {
-  // vtable begins at 6, is 3 entries long.
   IAsyncAction.fromPtr(super.ptr);
 
   factory IAsyncAction.from(IInspectable interface) =>

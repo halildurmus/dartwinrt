@@ -22,7 +22,6 @@ import 'capturescenemode.dart';
 const IID_ISceneModeControl = '{d48e5af7-8d59-4854-8c62-12c70ba89b7c}';
 
 class ISceneModeControl extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   ISceneModeControl.fromPtr(super.ptr);
 
   factory ISceneModeControl.from(IInspectable interface) =>

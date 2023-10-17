@@ -21,7 +21,6 @@ const IID_IKnownUserPropertiesStatics =
     '{7755911a-70c5-48e5-b637-5ba3441e4ee4}';
 
 class IKnownUserPropertiesStatics extends IInspectable {
-  // vtable begins at 6, is 9 entries long.
   IKnownUserPropertiesStatics.fromPtr(super.ptr);
 
   factory IKnownUserPropertiesStatics.from(IInspectable interface) =>

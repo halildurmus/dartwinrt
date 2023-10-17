@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWebProviderError = '{db191bb1-50c5-4809-8dca-09c99410245c}';
 
 class IWebProviderError extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IWebProviderError.fromPtr(super.ptr);
 
   factory IWebProviderError.from(IInspectable interface) =>

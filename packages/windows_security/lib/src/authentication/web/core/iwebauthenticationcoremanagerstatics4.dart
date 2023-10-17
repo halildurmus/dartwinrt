@@ -30,7 +30,6 @@ const IID_IWebAuthenticationCoreManagerStatics4 =
 
 class IWebAuthenticationCoreManagerStatics4 extends IInspectable
     implements IWebAuthenticationCoreManagerStatics {
-  // vtable begins at 6, is 5 entries long.
   IWebAuthenticationCoreManagerStatics4.fromPtr(super.ptr);
 
   factory IWebAuthenticationCoreManagerStatics4.from(IInspectable interface) =>

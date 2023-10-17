@@ -22,7 +22,6 @@ import 'videoencodingproperties.dart';
 const IID_IVideoEncodingProperties5 = '{4959080f-272f-4ece-a4df-c0ccdb33d840}';
 
 class IVideoEncodingProperties5 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties5.fromPtr(super.ptr);
 
   factory IVideoEncodingProperties5.from(IInspectable interface) => interface

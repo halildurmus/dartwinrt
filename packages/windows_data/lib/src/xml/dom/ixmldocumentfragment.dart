@@ -29,7 +29,6 @@ const IID_IXmlDocumentFragment = '{e2ea6a96-0c21-44a5-8bc9-9e4a262708ec}';
 
 class IXmlDocumentFragment extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  // vtable begins at 6, is 0 entries long.
   IXmlDocumentFragment.fromPtr(super.ptr);
 
   factory IXmlDocumentFragment.from(IInspectable interface) =>

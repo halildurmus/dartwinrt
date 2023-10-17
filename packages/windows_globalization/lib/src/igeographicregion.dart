@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeographicRegion = '{01e9a621-4a64-4ed9-954f-9edeb07bd903}';
 
 class IGeographicRegion extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IGeographicRegion.fromPtr(super.ptr);
 
   factory IGeographicRegion.from(IInspectable interface) =>

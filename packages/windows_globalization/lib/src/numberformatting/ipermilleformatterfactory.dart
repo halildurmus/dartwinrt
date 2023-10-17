@@ -22,7 +22,6 @@ import 'permilleformatter.dart';
 const IID_IPermilleFormatterFactory = '{2b37b4ac-e638-4ed5-a998-62f6b06a49ae}';
 
 class IPermilleFormatterFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IPermilleFormatterFactory.fromPtr(super.ptr);
 
   factory IPermilleFormatterFactory.from(IInspectable interface) => interface

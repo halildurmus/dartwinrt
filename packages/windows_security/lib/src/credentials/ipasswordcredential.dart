@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPasswordCredential = '{6ab18989-c720-41a7-a6c1-feadb36329a0}';
 
 class IPasswordCredential extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IPasswordCredential.fromPtr(super.ptr);
 
   factory IPasswordCredential.from(IInspectable interface) =>

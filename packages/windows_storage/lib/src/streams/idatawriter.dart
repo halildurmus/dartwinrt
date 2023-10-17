@@ -26,7 +26,6 @@ import 'unicodeencoding.dart';
 const IID_IDataWriter = '{64b89265-d341-4922-b38a-dd4af8808c4e}';
 
 class IDataWriter extends IInspectable {
-  // vtable begins at 6, is 27 entries long.
   IDataWriter.fromPtr(super.ptr);
 
   factory IDataWriter.from(IInspectable interface) =>

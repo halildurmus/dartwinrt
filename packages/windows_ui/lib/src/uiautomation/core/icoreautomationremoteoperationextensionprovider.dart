@@ -26,7 +26,6 @@ const IID_ICoreAutomationRemoteOperationExtensionProvider =
 /// Provides support for implementing one or more pattern extensions for a UI
 /// Automation provider.
 class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ICoreAutomationRemoteOperationExtensionProvider.fromPtr(super.ptr);
 
   factory ICoreAutomationRemoteOperationExtensionProvider.from(

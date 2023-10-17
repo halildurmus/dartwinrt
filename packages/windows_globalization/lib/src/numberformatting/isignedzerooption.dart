@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ISignedZeroOption = '{fd1cdd31-0a3c-49c4-a642-96a1564f4f30}';
 
 class ISignedZeroOption extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ISignedZeroOption.fromPtr(super.ptr);
 
   factory ISignedZeroOption.from(IInspectable interface) =>

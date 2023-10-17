@@ -26,7 +26,6 @@ const IID_IGeocoordinateWithPositionData =
 
 class IGeocoordinateWithPositionData extends IInspectable
     implements IGeocoordinate {
-  // vtable begins at 6, is 2 entries long.
   IGeocoordinateWithPositionData.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPositionData.from(IInspectable interface) =>

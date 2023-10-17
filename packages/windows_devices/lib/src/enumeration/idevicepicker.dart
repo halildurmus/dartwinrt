@@ -27,7 +27,6 @@ import 'devicepickerfilter.dart';
 const IID_IDevicePicker = '{84997aa2-034a-4440-8813-7d0bd479bf5a}';
 
 class IDevicePicker extends IInspectable {
-  // vtable begins at 6, is 15 entries long.
   IDevicePicker.fromPtr(super.ptr);
 
   factory IDevicePicker.from(IInspectable interface) =>

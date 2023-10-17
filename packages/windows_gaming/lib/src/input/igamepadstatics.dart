@@ -22,7 +22,6 @@ import 'gamepad.dart';
 const IID_IGamepadStatics = '{8bbce529-d49c-39e9-9560-e47dde96b7c8}';
 
 class IGamepadStatics extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IGamepadStatics.fromPtr(super.ptr);
 
   factory IGamepadStatics.from(IInspectable interface) =>

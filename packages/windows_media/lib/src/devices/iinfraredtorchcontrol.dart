@@ -22,7 +22,6 @@ import 'infraredtorchmode.dart';
 const IID_IInfraredTorchControl = '{1cba2c83-6cb6-5a04-a6fc-3be7b33ff056}';
 
 class IInfraredTorchControl extends IInspectable {
-  // vtable begins at 6, is 9 entries long.
   IInfraredTorchControl.fromPtr(super.ptr);
 
   factory IInfraredTorchControl.from(IInspectable interface) =>

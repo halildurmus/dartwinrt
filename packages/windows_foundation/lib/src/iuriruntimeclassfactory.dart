@@ -24,7 +24,6 @@ import 'uri.dart';
 const IID_IUriRuntimeClassFactory = '{44a9796f-723e-4fdf-a218-033e75b0c084}';
 
 class IUriRuntimeClassFactory extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IUriRuntimeClassFactory.fromPtr(super.ptr);
 
   factory IUriRuntimeClassFactory.from(IInspectable interface) => interface

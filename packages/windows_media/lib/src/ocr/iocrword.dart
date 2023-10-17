@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IOcrWord = '{3c2a477a-5cd9-3525-ba2a-23d1e0a68a1d}';
 
 class IOcrWord extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IOcrWord.fromPtr(super.ptr);
 
   factory IOcrWord.from(IInspectable interface) =>

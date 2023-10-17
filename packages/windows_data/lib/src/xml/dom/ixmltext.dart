@@ -34,7 +34,6 @@ class IXmlText extends IInspectable
         IXmlNode,
         IXmlNodeSelector,
         IXmlNodeSerializer {
-  // vtable begins at 6, is 1 entries long.
   IXmlText.fromPtr(super.ptr);
 
   factory IXmlText.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ const IID_IAudioEncodingPropertiesStatics2 =
     '{7489316f-77a0-433d-8ed5-4040280e8665}';
 
 class IAudioEncodingPropertiesStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IAudioEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IAudioEncodingPropertiesStatics2.from(IInspectable interface) =>

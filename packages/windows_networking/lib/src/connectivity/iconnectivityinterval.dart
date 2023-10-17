@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectivityInterval = '{4faa3fff-6746-4824-a964-eed8e87f8709}';
 
 class IConnectivityInterval extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IConnectivityInterval.fromPtr(super.ptr);
 
   factory IConnectivityInterval.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ const IID_IMediaExtension = '{07915118-45df-442b-8a3f-f7826a6370ab}';
 /// Encapsulates the method needed to set the configuration properties on a
 /// registered media parser or codec.
 class IMediaExtension extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaExtension.fromPtr(super.ptr);
 
   factory IMediaExtension.from(IInspectable interface) =>

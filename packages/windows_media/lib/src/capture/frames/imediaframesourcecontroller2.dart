@@ -24,7 +24,6 @@ const IID_IMediaFrameSourceController2 =
     '{efc49fd4-fcf2-4a03-b4e4-ac9628739bee}';
 
 class IMediaFrameSourceController2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaFrameSourceController2.fromPtr(super.ptr);
 
   factory IMediaFrameSourceController2.from(IInspectable interface) =>

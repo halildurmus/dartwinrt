@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWebAccountProvider = '{29dcc8c3-7ab9-4a7c-a336-b942f9dbf7c7}';
 
 class IWebAccountProvider extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IWebAccountProvider.fromPtr(super.ptr);
 
   factory IWebAccountProvider.from(IInspectable interface) =>

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INumeralSystemTranslator = '{28f5bc2c-8c23-4234-ad2e-fa5a3a426e9b}';
 
 class INumeralSystemTranslator extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   INumeralSystemTranslator.fromPtr(super.ptr);
 
   factory INumeralSystemTranslator.from(IInspectable interface) => interface

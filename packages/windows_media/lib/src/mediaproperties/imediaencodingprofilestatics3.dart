@@ -25,7 +25,6 @@ const IID_IMediaEncodingProfileStatics3 =
     '{90dac5aa-cf76-4294-a9ed-1a1420f51f6b}';
 
 class IMediaEncodingProfileStatics3 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IMediaEncodingProfileStatics3.fromPtr(super.ptr);
 
   factory IMediaEncodingProfileStatics3.from(IInspectable interface) =>

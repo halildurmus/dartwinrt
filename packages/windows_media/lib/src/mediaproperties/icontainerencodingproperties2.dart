@@ -23,7 +23,6 @@ const IID_IContainerEncodingProperties2 =
     '{b272c029-ae26-4819-baad-ad7a49b0a876}';
 
 class IContainerEncodingProperties2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IContainerEncodingProperties2.fromPtr(super.ptr);
 
   factory IContainerEncodingProperties2.from(IInspectable interface) =>

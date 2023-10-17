@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IRegionOfInterest = '{e5ecc834-ce66-4e05-a78f-cf391a5ec2d1}';
 
 class IRegionOfInterest extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IRegionOfInterest.fromPtr(super.ptr);
 
   factory IRegionOfInterest.from(IInspectable interface) =>

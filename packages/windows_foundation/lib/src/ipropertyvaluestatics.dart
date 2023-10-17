@@ -26,7 +26,6 @@ import 'size.dart';
 const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';
 
 class IPropertyValueStatics extends IInspectable {
-  // vtable begins at 6, is 39 entries long.
   IPropertyValueStatics.fromPtr(super.ptr);
 
   factory IPropertyValueStatics.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ const IID_IVideoEncodingPropertiesStatics2 =
     '{cf1ebd5d-49fe-4d00-b59a-cfa4dfc51944}';
 
 class IVideoEncodingPropertiesStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IVideoEncodingPropertiesStatics2.from(IInspectable interface) =>

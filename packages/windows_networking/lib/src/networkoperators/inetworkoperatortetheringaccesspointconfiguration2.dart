@@ -23,7 +23,6 @@ const IID_INetworkOperatorTetheringAccessPointConfiguration2 =
     '{b1809142-7238-59a0-928b-74ab46fd64b6}';
 
 class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   INetworkOperatorTetheringAccessPointConfiguration2.fromPtr(super.ptr);
 
   factory INetworkOperatorTetheringAccessPointConfiguration2.from(

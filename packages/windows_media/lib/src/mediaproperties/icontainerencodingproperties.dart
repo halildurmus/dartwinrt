@@ -25,7 +25,6 @@ const IID_IContainerEncodingProperties =
 
 class IContainerEncodingProperties extends IInspectable
     implements IMediaEncodingProperties {
-  // vtable begins at 6, is 0 entries long.
   IContainerEncodingProperties.fromPtr(super.ptr);
 
   factory IContainerEncodingProperties.from(IInspectable interface) =>

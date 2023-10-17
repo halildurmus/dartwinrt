@@ -23,7 +23,6 @@ const IID_ITimedMetadataEncodingProperties =
     '{51cd30d3-d690-4cfa-97f4-4a398e9db420}';
 
 class ITimedMetadataEncodingProperties extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   ITimedMetadataEncodingProperties.fromPtr(super.ptr);
 
   factory ITimedMetadataEncodingProperties.from(IInspectable interface) =>

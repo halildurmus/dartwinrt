@@ -25,7 +25,6 @@ const IID_ICurrencyFormatter = '{11730ca5-4b00-41b2-b332-73b12a497d54}';
 
 class ICurrencyFormatter extends IInspectable
     implements INumberFormatterOptions, INumberFormatter, INumberParser {
-  // vtable begins at 6, is 2 entries long.
   ICurrencyFormatter.fromPtr(super.ptr);
 
   factory ICurrencyFormatter.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ const IID_IToastNotificationManagerStatics2 =
     '{7ab93c52-0e48-4750-ba9d-1a4113981847}';
 
 class IToastNotificationManagerStatics2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IToastNotificationManagerStatics2.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics2.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'tensorkind.dart';
 const IID_IMapFeatureDescriptor = '{530424bd-a257-436d-9e60-c2981f7cc5c4}';
 
 class IMapFeatureDescriptor extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMapFeatureDescriptor.fromPtr(super.ptr);
 
   factory IMapFeatureDescriptor.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'audiomediaframe.dart';
 const IID_IMediaFrameReference2 = '{ddbc3ecc-d5b2-49ef-836a-947d989b80c1}';
 
 class IMediaFrameReference2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaFrameReference2.fromPtr(super.ptr);
 
   factory IMediaFrameReference2.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'inumberrounder.dart';
 const IID_INumberRounderOption = '{3b088433-646f-4efe-8d48-66eb2e49e736}';
 
 class INumberRounderOption extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   INumberRounderOption.fromPtr(super.ptr);
 
   factory INumberRounderOption.from(IInspectable interface) =>

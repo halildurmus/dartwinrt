@@ -23,7 +23,6 @@ import 'tensorboolean.dart';
 const IID_ITensorBooleanStatics2 = '{a3a4a501-6a2d-52d7-b04b-c435baee0115}';
 
 class ITensorBooleanStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ITensorBooleanStatics2.fromPtr(super.ptr);
 
   factory ITensorBooleanStatics2.from(IInspectable interface) => interface.cast(

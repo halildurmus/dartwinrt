@@ -36,7 +36,6 @@ class IRandomAccessStreamWithContentType extends IInspectable
         IInputStream,
         IOutputStream,
         IContentTypeProvider {
-  // vtable begins at 6, is 0 entries long.
   IRandomAccessStreamWithContentType.fromPtr(super.ptr);
 
   factory IRandomAccessStreamWithContentType.from(IInspectable interface) =>

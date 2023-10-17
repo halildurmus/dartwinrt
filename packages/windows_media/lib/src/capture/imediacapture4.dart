@@ -32,7 +32,6 @@ import 'mediastreamtype.dart';
 const IID_IMediaCapture4 = '{bacd6fd6-fb08-4947-aea2-ce14eff0ce13}';
 
 class IMediaCapture4 extends IInspectable {
-  // vtable begins at 6, is 13 entries long.
   IMediaCapture4.fromPtr(super.ptr);
 
   factory IMediaCapture4.from(IInspectable interface) =>

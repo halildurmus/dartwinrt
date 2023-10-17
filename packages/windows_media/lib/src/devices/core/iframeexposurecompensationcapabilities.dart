@@ -21,7 +21,6 @@ const IID_IFrameExposureCompensationCapabilities =
     '{b988a823-8065-41ee-b04f-722265954500}';
 
 class IFrameExposureCompensationCapabilities extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IFrameExposureCompensationCapabilities.fromPtr(super.ptr);
 
   factory IFrameExposureCompensationCapabilities.from(IInspectable interface) =>

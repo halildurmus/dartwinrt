@@ -21,7 +21,6 @@ const IID_ILearningModelEvaluationResult =
     '{b2f9bfcd-960e-49c0-8593-eb190ae3eee2}';
 
 class ILearningModelEvaluationResult extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ILearningModelEvaluationResult.fromPtr(super.ptr);
 
   factory ILearningModelEvaluationResult.from(IInspectable interface) =>

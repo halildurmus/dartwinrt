@@ -22,7 +22,6 @@ import 'deviceinformationkind.dart';
 const IID_IDeviceInformationUpdate2 = '{5d9d148c-a873-485e-baa6-aa620788e3cc}';
 
 class IDeviceInformationUpdate2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDeviceInformationUpdate2.fromPtr(super.ptr);
 
   factory IDeviceInformationUpdate2.from(IInspectable interface) => interface

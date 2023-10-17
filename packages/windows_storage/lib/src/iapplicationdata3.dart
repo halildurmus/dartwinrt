@@ -22,7 +22,6 @@ import 'storagefolder.dart';
 const IID_IApplicationData3 = '{dc222cf4-2772-4c1d-aa2c-c9f743ade8d1}';
 
 class IApplicationData3 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IApplicationData3.fromPtr(super.ptr);
 
   factory IApplicationData3.from(IInspectable interface) =>

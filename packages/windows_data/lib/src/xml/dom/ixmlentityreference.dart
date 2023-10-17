@@ -29,7 +29,6 @@ const IID_IXmlEntityReference = '{2e2f47bc-c3d0-4ccf-bb86-0ab8c36a61cf}';
 
 class IXmlEntityReference extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  // vtable begins at 6, is 0 entries long.
   IXmlEntityReference.fromPtr(super.ptr);
 
   factory IXmlEntityReference.from(IInspectable interface) =>

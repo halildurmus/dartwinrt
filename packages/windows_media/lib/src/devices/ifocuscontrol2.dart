@@ -26,7 +26,6 @@ import 'mediacapturefocusstate.dart';
 const IID_IFocusControl2 = '{3f7cff48-c534-4e9e-94c3-52ef2afd5d07}';
 
 class IFocusControl2 extends IInspectable {
-  // vtable begins at 6, is 10 entries long.
   IFocusControl2.fromPtr(super.ptr);
 
   factory IFocusControl2.from(IInspectable interface) =>

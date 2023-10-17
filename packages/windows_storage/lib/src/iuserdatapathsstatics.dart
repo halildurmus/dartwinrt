@@ -23,7 +23,6 @@ import 'userdatapaths.dart';
 const IID_IUserDataPathsStatics = '{01b29def-e062-48a1-8b0c-f2c7a9ca56c0}';
 
 class IUserDataPathsStatics extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IUserDataPathsStatics.fromPtr(super.ptr);
 
   factory IUserDataPathsStatics.from(IInspectable interface) =>

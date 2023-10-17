@@ -24,7 +24,6 @@ import 'streams/unicodeencoding.dart';
 const IID_IFileIOStatics = '{887411eb-7f54-4732-a5f0-5e43e3b8c2f5}';
 
 class IFileIOStatics extends IInspectable {
-  // vtable begins at 6, is 15 entries long.
   IFileIOStatics.fromPtr(super.ptr);
 
   factory IFileIOStatics.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ const IID_IWwanConnectionProfileDetails2 =
     '{7a754ede-a1ed-48b2-8e92-b460033d52e2}';
 
 class IWwanConnectionProfileDetails2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IWwanConnectionProfileDetails2.fromPtr(super.ptr);
 
   factory IWwanConnectionProfileDetails2.from(IInspectable interface) =>

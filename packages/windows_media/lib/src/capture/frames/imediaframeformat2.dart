@@ -22,7 +22,6 @@ import '../../mediaproperties/audioencodingproperties.dart';
 const IID_IMediaFrameFormat2 = '{63856340-5e87-4c10-86d1-6df097a6c6a8}';
 
 class IMediaFrameFormat2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaFrameFormat2.fromPtr(super.ptr);
 
   factory IMediaFrameFormat2.from(IInspectable interface) =>

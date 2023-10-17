@@ -23,7 +23,6 @@ const IID_IMediaFrameSourceGroupStatics =
     '{1c48bfc5-436f-4508-94cf-d5d8b7326445}';
 
 class IMediaFrameSourceGroupStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IMediaFrameSourceGroupStatics.fromPtr(super.ptr);
 
   factory IMediaFrameSourceGroupStatics.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'appinfo.dart';
 const IID_IAppInfoStatics = '{cf1f782a-e48b-4f0c-9b0b-79c3f8957dd7}';
 
 class IAppInfoStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IAppInfoStatics.fromPtr(super.ptr);
 
   factory IAppInfoStatics.from(IInspectable interface) =>

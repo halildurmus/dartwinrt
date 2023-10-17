@@ -22,7 +22,6 @@ import 'uicommand.dart';
 const IID_IUICommandFactory = '{a21a8189-26b0-4676-ae94-54041bc125e8}';
 
 class IUICommandFactory extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IUICommandFactory.fromPtr(super.ptr);
 
   factory IUICommandFactory.from(IInspectable interface) =>

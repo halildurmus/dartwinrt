@@ -22,7 +22,6 @@ import 'colortemperaturepreset.dart';
 const IID_IWhiteBalanceControl = '{781f047e-7162-49c8-a8f9-9481c565363e}';
 
 class IWhiteBalanceControl extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   IWhiteBalanceControl.fromPtr(super.ptr);
 
   factory IWhiteBalanceControl.from(IInspectable interface) =>

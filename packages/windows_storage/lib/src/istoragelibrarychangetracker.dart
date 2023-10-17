@@ -23,7 +23,6 @@ const IID_IStorageLibraryChangeTracker =
     '{9e157316-6073-44f6-9681-7492d1286c90}';
 
 class IStorageLibraryChangeTracker extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IStorageLibraryChangeTracker.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTracker.from(IInspectable interface) =>

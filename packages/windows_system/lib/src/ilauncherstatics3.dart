@@ -23,7 +23,6 @@ import 'folderlauncheroptions.dart';
 const IID_ILauncherStatics3 = '{234261a8-9db3-4683-aa42-dc6f51d33847}';
 
 class ILauncherStatics3 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILauncherStatics3.fromPtr(super.ptr);
 
   factory ILauncherStatics3.from(IInspectable interface) =>

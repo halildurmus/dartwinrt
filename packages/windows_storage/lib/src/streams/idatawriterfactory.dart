@@ -23,7 +23,6 @@ import 'ioutputstream.dart';
 const IID_IDataWriterFactory = '{338c67c2-8b84-4c2b-9c50-7b8767847a1f}';
 
 class IDataWriterFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDataWriterFactory.fromPtr(super.ptr);
 
   factory IDataWriterFactory.from(IInspectable interface) =>

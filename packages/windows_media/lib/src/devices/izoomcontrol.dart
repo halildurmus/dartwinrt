@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IZoomControl = '{3a1e0b12-32da-4c17-bfd7-8d0c73c8f5a5}';
 
 class IZoomControl extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IZoomControl.fromPtr(super.ptr);
 
   factory IZoomControl.from(IInspectable interface) =>

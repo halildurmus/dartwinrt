@@ -24,7 +24,6 @@ import 'streamingcapturemode.dart';
 const IID_IMediaCapture7 = '{9169f102-8888-541a-95bc-24e4d462542a}';
 
 class IMediaCapture7 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IMediaCapture7.fromPtr(super.ptr);
 
   factory IMediaCapture7.from(IInspectable interface) =>

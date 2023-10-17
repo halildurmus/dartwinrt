@@ -24,7 +24,6 @@ const IID_ITimedMetadataStreamDescriptorFactory =
     '{c027de30-7362-4ff9-98b1-2dfd0b8d1cae}';
 
 class ITimedMetadataStreamDescriptorFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ITimedMetadataStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory ITimedMetadataStreamDescriptorFactory.from(IInspectable interface) =>

@@ -24,7 +24,6 @@ import 'windowingenvironmentkind.dart';
 const IID_IWindowingEnvironment = '{264363c0-2a49-5417-b3ae-48a71c63a3bd}';
 
 class IWindowingEnvironment extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IWindowingEnvironment.fromPtr(super.ptr);
 
   factory IWindowingEnvironment.from(IInspectable interface) =>

@@ -24,7 +24,6 @@ const IID_IImageEncodingPropertiesStatics2 =
     '{f6c25b29-3824-46b0-956e-501329e1be3c}';
 
 class IImageEncodingPropertiesStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IImageEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IImageEncodingPropertiesStatics2.from(IInspectable interface) =>

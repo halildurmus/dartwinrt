@@ -30,7 +30,6 @@ part 'ivector_part.dart';
 /// Represents a random-access collection of elements.
 abstract interface class IVector<T> extends IInspectable
     implements IIterable<T> {
-  // vtable begins at 6, is 12 entries long.
   IVector(
     super.ptr, {
     required String iterableIid,

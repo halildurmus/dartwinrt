@@ -22,7 +22,6 @@ import 'hdrvideomode.dart';
 const IID_IHdrVideoControl = '{55d8e2d0-30c0-43bf-9b9a-9799d70ced94}';
 
 class IHdrVideoControl extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IHdrVideoControl.fromPtr(super.ptr);
 
   factory IHdrVideoControl.from(IInspectable interface) =>

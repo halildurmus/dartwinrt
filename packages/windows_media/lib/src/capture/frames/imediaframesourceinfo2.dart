@@ -22,7 +22,6 @@ import '../mediacapturevideoprofilemediadescription.dart';
 const IID_IMediaFrameSourceInfo2 = '{195a7855-6457-42c6-a769-19b65bd32e6e}';
 
 class IMediaFrameSourceInfo2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMediaFrameSourceInfo2.fromPtr(super.ptr);
 
   factory IMediaFrameSourceInfo2.from(IInspectable interface) => interface.cast(

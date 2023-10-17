@@ -23,7 +23,6 @@ const IID_IVideoDeviceControllerGetDevicePropertyResult =
     '{c5d88395-6ed5-4790-8b5d-0ef13935d0f8}';
 
 class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IVideoDeviceControllerGetDevicePropertyResult.fromPtr(super.ptr);
 
   factory IVideoDeviceControllerGetDevicePropertyResult.from(

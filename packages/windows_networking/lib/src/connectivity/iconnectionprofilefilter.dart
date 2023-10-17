@@ -22,7 +22,6 @@ import 'networkcosttype.dart';
 const IID_IConnectionProfileFilter = '{204c7cc8-bd2d-4e8d-a4b3-455ec337388a}';
 
 class IConnectionProfileFilter extends IInspectable {
-  // vtable begins at 6, is 10 entries long.
   IConnectionProfileFilter.fromPtr(super.ptr);
 
   factory IConnectionProfileFilter.from(IInspectable interface) => interface

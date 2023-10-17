@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFrameIsoSpeedCapabilities = '{16bdff61-6df6-4ac9-b92a-9f6ecd1ad2fa}';
 
 class IFrameIsoSpeedCapabilities extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IFrameIsoSpeedCapabilities.fromPtr(super.ptr);
 
   factory IFrameIsoSpeedCapabilities.from(IInspectable interface) => interface

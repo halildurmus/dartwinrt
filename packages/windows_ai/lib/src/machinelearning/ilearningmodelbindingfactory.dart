@@ -24,7 +24,6 @@ const IID_ILearningModelBindingFactory =
     '{c95f7a7a-e788-475e-8917-23aa381faf0b}';
 
 class ILearningModelBindingFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ILearningModelBindingFactory.fromPtr(super.ptr);
 
   factory ILearningModelBindingFactory.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'capturedframecontrolvalues.dart';
 const IID_ICapturedFrame2 = '{543fa6d1-bd78-4866-adda-24314bc65dea}';
 
 class ICapturedFrame2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ICapturedFrame2.fromPtr(super.ptr);
 
   factory ICapturedFrame2.from(IInspectable interface) =>

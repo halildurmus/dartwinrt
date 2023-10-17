@@ -23,7 +23,6 @@ const IID_IDocumentProperties = '{7eab19bc-1821-4923-b4a9-0aea404d0070}';
 
 class IDocumentProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  // vtable begins at 6, is 6 entries long.
   IDocumentProperties.fromPtr(super.ptr);
 
   factory IDocumentProperties.from(IInspectable interface) =>

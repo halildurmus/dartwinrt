@@ -27,7 +27,6 @@ import 'proxyconfiguration.dart';
 const IID_INetworkInformationStatics = '{5074f851-950d-4165-9c15-365619481eea}';
 
 class INetworkInformationStatics extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   INetworkInformationStatics.fromPtr(super.ptr);
 
   factory INetworkInformationStatics.from(IInspectable interface) => interface

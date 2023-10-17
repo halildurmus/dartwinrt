@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITorchControl = '{a6053665-8250-416c-919a-724296afa306}';
 
 class ITorchControl extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   ITorchControl.fromPtr(super.ptr);
 
   factory ITorchControl.from(IInspectable interface) =>

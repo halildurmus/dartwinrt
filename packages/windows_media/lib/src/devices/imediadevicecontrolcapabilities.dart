@@ -21,7 +21,6 @@ const IID_IMediaDeviceControlCapabilities =
     '{23005816-eb85-43e2-b92b-8240d5ee70ec}';
 
 class IMediaDeviceControlCapabilities extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IMediaDeviceControlCapabilities.fromPtr(super.ptr);
 
   factory IMediaDeviceControlCapabilities.from(IInspectable interface) =>

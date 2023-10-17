@@ -21,7 +21,6 @@ const IID_IStandardDataFormatsStatics2 =
     '{42a254f4-9d76-42e8-861b-47c25dd0cf71}';
 
 class IStandardDataFormatsStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IStandardDataFormatsStatics2.fromPtr(super.ptr);
 
   factory IStandardDataFormatsStatics2.from(IInspectable interface) =>

@@ -22,7 +22,6 @@ import 'regionofinteresttype.dart';
 const IID_IRegionOfInterest2 = '{19fe2a91-73aa-4d51-8a9d-56ccf7db7f54}';
 
 class IRegionOfInterest2 extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
   IRegionOfInterest2.fromPtr(super.ptr);
 
   factory IRegionOfInterest2.from(IInspectable interface) =>

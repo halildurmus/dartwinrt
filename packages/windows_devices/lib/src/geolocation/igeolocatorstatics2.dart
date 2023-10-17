@@ -22,7 +22,6 @@ import 'basicgeoposition.dart';
 const IID_IGeolocatorStatics2 = '{993011a2-fa1c-4631-a71d-0dbeb1250d9c}';
 
 class IGeolocatorStatics2 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IGeolocatorStatics2.fromPtr(super.ptr);
 
   factory IGeolocatorStatics2.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'inputstreamoptions.dart';
 const IID_IInputStream = '{905a0fe2-bc53-11df-8c49-001e4fc686da}';
 
 class IInputStream extends IInspectable implements IClosable {
-  // vtable begins at 6, is 1 entries long.
   IInputStream.fromPtr(super.ptr);
 
   factory IInputStream.from(IInspectable interface) =>

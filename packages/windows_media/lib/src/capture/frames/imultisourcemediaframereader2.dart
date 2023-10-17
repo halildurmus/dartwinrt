@@ -23,7 +23,6 @@ const IID_IMultiSourceMediaFrameReader2 =
     '{ef5c8abd-fc5c-4c6b-9d81-3cb9cc637c26}';
 
 class IMultiSourceMediaFrameReader2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IMultiSourceMediaFrameReader2.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReader2.from(IInspectable interface) =>

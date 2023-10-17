@@ -26,7 +26,6 @@ import 'softwarebitmap.dart';
 const IID_ISoftwareBitmapStatics = '{df0385db-672f-4a9d-806e-c2442f343e86}';
 
 class ISoftwareBitmapStatics extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   ISoftwareBitmapStatics.fromPtr(super.ptr);
 
   factory ISoftwareBitmapStatics.from(IInspectable interface) => interface.cast(

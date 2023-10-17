@@ -23,7 +23,6 @@ part 'imap_part.dart';
 /// Represents an associative collection, also known as a map or a dictionary.
 abstract interface class IMap<K, V> extends IInspectable
     implements IIterable<IKeyValuePair<K, V>> {
-  // vtable begins at 6, is 7 entries long.
   IMap(
     super.ptr, {
     required String iterableIid,

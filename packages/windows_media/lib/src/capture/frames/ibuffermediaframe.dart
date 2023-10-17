@@ -23,7 +23,6 @@ import 'mediaframereference.dart';
 const IID_IBufferMediaFrame = '{b5b153c7-9b84-4062-b79c-a365b2596854}';
 
 class IBufferMediaFrame extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IBufferMediaFrame.fromPtr(super.ptr);
 
   factory IBufferMediaFrame.from(IInspectable interface) =>

@@ -25,7 +25,6 @@ import 'learningmodelevaluationresult.dart';
 const IID_ILearningModelSession = '{8e58f8f6-b787-4c11-90f0-7129aeca74a9}';
 
 class ILearningModelSession extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   ILearningModelSession.fromPtr(super.ptr);
 
   factory ILearningModelSession.from(IInspectable interface) =>

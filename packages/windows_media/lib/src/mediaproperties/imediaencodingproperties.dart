@@ -23,7 +23,6 @@ const IID_IMediaEncodingProperties = '{b4002af6-acd4-4e5a-a24b-5d7498a8b8c4}';
 
 /// Describes the format of a media stream or media container.
 class IMediaEncodingProperties extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IMediaEncodingProperties.fromPtr(super.ptr);
 
   factory IMediaEncodingProperties.from(IInspectable interface) => interface

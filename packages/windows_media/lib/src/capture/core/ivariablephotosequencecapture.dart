@@ -23,7 +23,6 @@ const IID_IVariablePhotoSequenceCapture =
     '{d0112d1d-031e-4041-a6d6-bd742476a8ee}';
 
 class IVariablePhotoSequenceCapture extends IInspectable {
-  // vtable begins at 6, is 7 entries long.
   IVariablePhotoSequenceCapture.fromPtr(super.ptr);
 
   factory IVariablePhotoSequenceCapture.from(IInspectable interface) =>

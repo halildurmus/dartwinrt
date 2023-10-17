@@ -23,7 +23,6 @@ const IID_IVideoTemporalDenoisingControl =
     '{7ab34735-3e2a-4a32-baff-4358c4fbdd57}';
 
 class IVideoTemporalDenoisingControl extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IVideoTemporalDenoisingControl.fromPtr(super.ptr);
 
   factory IVideoTemporalDenoisingControl.from(IInspectable interface) =>

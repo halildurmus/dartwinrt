@@ -21,7 +21,6 @@ import 'package:windows_system/windows_system.dart';
 const IID_IFolderPicker3 = '{673b1e29-d326-53c0-bd24-a25c714cee36}';
 
 class IFolderPicker3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IFolderPicker3.fromPtr(super.ptr);
 
   factory IFolderPicker3.from(IInspectable interface) =>

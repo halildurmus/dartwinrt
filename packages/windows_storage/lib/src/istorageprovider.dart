@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageProvider = '{e705eed4-d478-47d6-ba46-1a8ebe114a20}';
 
 class IStorageProvider extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IStorageProvider.fromPtr(super.ptr);
 
   factory IStorageProvider.from(IInspectable interface) =>

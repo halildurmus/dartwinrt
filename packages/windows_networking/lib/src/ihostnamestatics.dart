@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IHostNameStatics = '{f68cd4bf-a388-4e8b-91ea-54dd6dd901c0}';
 
 class IHostNameStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IHostNameStatics.fromPtr(super.ptr);
 
   factory IHostNameStatics.from(IInspectable interface) =>

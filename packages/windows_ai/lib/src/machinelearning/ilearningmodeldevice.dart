@@ -21,7 +21,6 @@ import 'package:windows_graphics/windows_graphics.dart';
 const IID_ILearningModelDevice = '{f5c2c8fe-3f56-4a8c-ac5f-fdb92d8b8252}';
 
 class ILearningModelDevice extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILearningModelDevice.fromPtr(super.ptr);
 
   factory ILearningModelDevice.from(IInspectable interface) =>

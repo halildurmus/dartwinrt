@@ -22,7 +22,6 @@ import '../mediaproperties/mediapixelformat.dart';
 const IID_IPhotoConfirmationControl = '{c8f3f363-ff5e-4582-a9a8-0550f85a4a76}';
 
 class IPhotoConfirmationControl extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IPhotoConfirmationControl.fromPtr(super.ptr);
 
   factory IPhotoConfirmationControl.from(IInspectable interface) => interface

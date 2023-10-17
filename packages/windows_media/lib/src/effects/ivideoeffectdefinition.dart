@@ -22,7 +22,6 @@ const IID_IVideoEffectDefinition = '{39f38cf0-8d0f-4f3e-84fc-2d46a5297943}';
 /// Exposes the methods and properties of a VideoEffectDefinition object.
 /// Implement this interface when you create a custom video effect definition.
 class IVideoEffectDefinition extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IVideoEffectDefinition.fromPtr(super.ptr);
 
   factory IVideoEffectDefinition.from(IInspectable interface) => interface.cast(

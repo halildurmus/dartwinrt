@@ -29,7 +29,6 @@ const IID_IStorageItemPropertiesWithProvider =
 
 class IStorageItemPropertiesWithProvider extends IInspectable
     implements IStorageItemProperties {
-  // vtable begins at 6, is 1 entries long.
   IStorageItemPropertiesWithProvider.fromPtr(super.ptr);
 
   factory IStorageItemPropertiesWithProvider.from(IInspectable interface) =>

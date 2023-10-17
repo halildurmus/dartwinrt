@@ -23,7 +23,6 @@ const IID_ILowLagPhotoSequenceCapture =
     '{7cc346bb-b9a9-4c91-8ffa-287e9c668669}';
 
 class ILowLagPhotoSequenceCapture extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   ILowLagPhotoSequenceCapture.fromPtr(super.ptr);
 
   factory ILowLagPhotoSequenceCapture.from(IInspectable interface) =>

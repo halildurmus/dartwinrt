@@ -23,7 +23,6 @@ import 'tensorfloat16bit.dart';
 const IID_ITensorFloat16BitStatics2 = '{68545726-2dc7-51bf-b470-0b344cc2a1bc}';
 
 class ITensorFloat16BitStatics2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ITensorFloat16BitStatics2.fromPtr(super.ptr);
 
   factory ITensorFloat16BitStatics2.from(IInspectable interface) => interface

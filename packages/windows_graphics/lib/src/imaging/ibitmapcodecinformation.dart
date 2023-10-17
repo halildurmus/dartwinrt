@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBitmapCodecInformation = '{400caaf2-c4b0-4392-a3b0-6f6f9ba95cb4}';
 
 class IBitmapCodecInformation extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IBitmapCodecInformation.fromPtr(super.ptr);
 
   factory IBitmapCodecInformation.from(IInspectable interface) => interface

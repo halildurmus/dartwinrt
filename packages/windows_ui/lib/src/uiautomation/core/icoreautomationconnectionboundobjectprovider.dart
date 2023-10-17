@@ -23,7 +23,6 @@ const IID_ICoreAutomationConnectionBoundObjectProvider =
 /// Exposes the properties of a connection-bound object in a remote operation
 /// for a UI Automation provider.
 class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   ICoreAutomationConnectionBoundObjectProvider.fromPtr(super.ptr);
 
   factory ICoreAutomationConnectionBoundObjectProvider.from(

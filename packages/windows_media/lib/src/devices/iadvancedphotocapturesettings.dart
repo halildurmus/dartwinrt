@@ -23,7 +23,6 @@ const IID_IAdvancedPhotoCaptureSettings =
     '{08f3863a-0018-445b-93d2-646d1c5ed05c}';
 
 class IAdvancedPhotoCaptureSettings extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IAdvancedPhotoCaptureSettings.fromPtr(super.ptr);
 
   factory IAdvancedPhotoCaptureSettings.from(IInspectable interface) =>

@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IMediaRatio = '{d2d0fee5-8929-401d-ac78-7d357e378163}';
 
 class IMediaRatio extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IMediaRatio.fromPtr(super.ptr);
 
   factory IMediaRatio.from(IInspectable interface) =>

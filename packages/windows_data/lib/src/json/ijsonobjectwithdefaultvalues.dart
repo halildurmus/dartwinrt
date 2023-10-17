@@ -29,7 +29,6 @@ const IID_IJsonObjectWithDefaultValues =
 
 class IJsonObjectWithDefaultValues extends IInspectable
     implements IJsonObject, IJsonValue {
-  // vtable begins at 6, is 6 entries long.
   IJsonObjectWithDefaultValues.fromPtr(super.ptr);
 
   factory IJsonObjectWithDefaultValues.from(IInspectable interface) =>

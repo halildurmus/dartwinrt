@@ -21,7 +21,6 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_IPackage7 = '{86ff8d31-a2e4-45e0-9732-283a6d88fde1}';
 
 class IPackage7 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IPackage7.fromPtr(super.ptr);
 
   factory IPackage7.from(IInspectable interface) =>

@@ -25,7 +25,6 @@ import 'userwatcher.dart';
 const IID_IUserStatics = '{155eb23b-242a-45e0-a2e9-3171fc6a7fdd}';
 
 class IUserStatics extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IUserStatics.fromPtr(super.ptr);
 
   factory IUserStatics.from(IInspectable interface) =>

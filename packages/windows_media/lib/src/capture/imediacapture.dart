@@ -31,7 +31,6 @@ import 'videorotation.dart';
 const IID_IMediaCapture = '{c61afbb4-fb10-4a34-ac18-ca80d9c8e7ee}';
 
 class IMediaCapture extends IInspectable {
-  // vtable begins at 6, is 26 entries long.
   IMediaCapture.fromPtr(super.ptr);
 
   factory IMediaCapture.from(IInspectable interface) =>

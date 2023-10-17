@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAudioEncodingProperties2 = '{c45d54da-80bd-4c23-80d5-72d4a181e894}';
 
 class IAudioEncodingProperties2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAudioEncodingProperties2.fromPtr(super.ptr);
 
   factory IAudioEncodingProperties2.from(IInspectable interface) => interface

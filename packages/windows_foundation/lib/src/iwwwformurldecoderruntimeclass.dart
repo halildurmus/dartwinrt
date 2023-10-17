@@ -30,7 +30,6 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     implements
         IIterable<IWwwFormUrlDecoderEntry?>,
         IVectorView<IWwwFormUrlDecoderEntry?> {
-  // vtable begins at 6, is 1 entries long.
   IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderRuntimeClass.from(IInspectable interface) =>

@@ -23,7 +23,6 @@ import 'videoframe.dart';
 const IID_IVideoFrame2 = '{3837840d-336c-4366-8d46-060798736c5d}';
 
 class IVideoFrame2 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IVideoFrame2.fromPtr(super.ptr);
 
   factory IVideoFrame2.from(IInspectable interface) =>

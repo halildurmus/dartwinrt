@@ -26,7 +26,6 @@ const IID_IMemoryBuffer = '{fbc4dd2a-245b-11e4-af98-689423260cf8}';
 
 /// Represents a reference counted memory buffer.
 class IMemoryBuffer extends IInspectable implements IClosable {
-  // vtable begins at 6, is 1 entries long.
   IMemoryBuffer.fromPtr(super.ptr);
 
   factory IMemoryBuffer.from(IInspectable interface) =>

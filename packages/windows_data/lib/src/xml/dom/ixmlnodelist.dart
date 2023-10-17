@@ -23,7 +23,6 @@ const IID_IXmlNodeList = '{8c60ad77-83a4-4ec1-9c54-7ba429e13da6}';
 
 class IXmlNodeList extends IInspectable
     implements IVectorView<IXmlNode?>, IIterable<IXmlNode?> {
-  // vtable begins at 6, is 2 entries long.
   IXmlNodeList.fromPtr(super.ptr);
 
   factory IXmlNodeList.from(IInspectable interface) =>

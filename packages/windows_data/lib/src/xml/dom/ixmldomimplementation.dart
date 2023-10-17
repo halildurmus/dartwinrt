@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IXmlDomImplementation = '{6de58132-f11d-4fbb-8cc6-583cba93112f}';
 
 class IXmlDomImplementation extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IXmlDomImplementation.fromPtr(super.ptr);
 
   factory IXmlDomImplementation.from(IInspectable interface) =>

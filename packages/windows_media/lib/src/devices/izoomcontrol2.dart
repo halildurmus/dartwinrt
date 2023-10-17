@@ -23,7 +23,6 @@ import 'zoomtransitionmode.dart';
 const IID_IZoomControl2 = '{69843db0-2e99-4641-8529-184f319d1671}';
 
 class IZoomControl2 extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IZoomControl2.fromPtr(super.ptr);
 
   factory IZoomControl2.from(IInspectable interface) =>

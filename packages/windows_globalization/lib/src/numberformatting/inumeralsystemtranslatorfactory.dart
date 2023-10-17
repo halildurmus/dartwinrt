@@ -23,7 +23,6 @@ const IID_INumeralSystemTranslatorFactory =
     '{9630c8da-36ef-4d88-a85c-6f0d98d620a6}';
 
 class INumeralSystemTranslatorFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   INumeralSystemTranslatorFactory.fromPtr(super.ptr);
 
   factory INumeralSystemTranslatorFactory.from(IInspectable interface) =>

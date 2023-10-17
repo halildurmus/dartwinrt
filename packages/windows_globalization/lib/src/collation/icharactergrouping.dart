@@ -20,7 +20,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICharacterGrouping = '{fae761bb-805d-4bb0-95bb-c1f7c3e8eb8e}';
 
 class ICharacterGrouping extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ICharacterGrouping.fromPtr(super.ptr);
 
   factory ICharacterGrouping.from(IInspectable interface) =>

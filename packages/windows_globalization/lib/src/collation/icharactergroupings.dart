@@ -23,7 +23,6 @@ const IID_ICharacterGroupings = '{b8d20a75-d4cf-4055-80e5-ce169c226496}';
 
 class ICharacterGroupings extends IInspectable
     implements IVectorView<CharacterGrouping?>, IIterable<CharacterGrouping?> {
-  // vtable begins at 6, is 1 entries long.
   ICharacterGroupings.fromPtr(super.ptr);
 
   factory ICharacterGroupings.from(IInspectable interface) =>

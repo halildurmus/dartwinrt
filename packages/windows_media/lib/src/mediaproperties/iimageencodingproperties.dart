@@ -24,7 +24,6 @@ const IID_IImageEncodingProperties = '{78625635-f331-4189-b1c3-b48d5ae034f1}';
 
 class IImageEncodingProperties extends IInspectable
     implements IMediaEncodingProperties {
-  // vtable begins at 6, is 4 entries long.
   IImageEncodingProperties.fromPtr(super.ptr);
 
   factory IImageEncodingProperties.from(IInspectable interface) => interface

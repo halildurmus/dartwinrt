@@ -24,7 +24,6 @@ const IID_IMultiSourceMediaFrameReference =
 
 class IMultiSourceMediaFrameReference extends IInspectable
     implements IClosable {
-  // vtable begins at 6, is 1 entries long.
   IMultiSourceMediaFrameReference.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReference.from(IInspectable interface) =>

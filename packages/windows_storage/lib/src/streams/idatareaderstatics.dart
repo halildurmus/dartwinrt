@@ -23,7 +23,6 @@ import 'ibuffer.dart';
 const IID_IDataReaderStatics = '{11fcbfc8-f93a-471b-b121-f379e349313c}';
 
 class IDataReaderStatics extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IDataReaderStatics.fromPtr(super.ptr);
 
   factory IDataReaderStatics.from(IInspectable interface) =>

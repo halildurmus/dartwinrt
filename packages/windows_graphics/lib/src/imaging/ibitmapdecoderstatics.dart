@@ -24,7 +24,6 @@ import 'bitmapdecoder.dart';
 const IID_IBitmapDecoderStatics = '{438ccb26-bcef-4e95-bad6-23a822e58d01}';
 
 class IBitmapDecoderStatics extends IInspectable {
-  // vtable begins at 6, is 10 entries long.
   IBitmapDecoderStatics.fromPtr(super.ptr);
 
   factory IBitmapDecoderStatics.from(IInspectable interface) =>

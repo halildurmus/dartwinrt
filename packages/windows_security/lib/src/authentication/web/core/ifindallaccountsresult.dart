@@ -24,7 +24,6 @@ import 'webprovidererror.dart';
 const IID_IFindAllAccountsResult = '{a5812b5d-b72e-420c-86ab-aac0d7b7261f}';
 
 class IFindAllAccountsResult extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IFindAllAccountsResult.fromPtr(super.ptr);
 
   factory IFindAllAccountsResult.from(IInspectable interface) => interface.cast(

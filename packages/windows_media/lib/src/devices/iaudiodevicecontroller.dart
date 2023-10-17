@@ -25,7 +25,6 @@ const IID_IAudioDeviceController = '{edd4a388-79c7-4f7c-90e8-ef934b21580a}';
 
 class IAudioDeviceController extends IInspectable
     implements IMediaDeviceController {
-  // vtable begins at 6, is 4 entries long.
   IAudioDeviceController.fromPtr(super.ptr);
 
   factory IAudioDeviceController.from(IInspectable interface) => interface.cast(

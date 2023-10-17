@@ -24,7 +24,6 @@ import 'mediacapturestopresult.dart';
 const IID_ILowLagMediaRecording3 = '{5c33ab12-48f7-47da-b41e-90880a5fe0ec}';
 
 class ILowLagMediaRecording3 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   ILowLagMediaRecording3.fromPtr(super.ptr);
 
   factory ILowLagMediaRecording3.from(IInspectable interface) => interface.cast(

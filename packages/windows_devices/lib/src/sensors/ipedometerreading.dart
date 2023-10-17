@@ -22,7 +22,6 @@ import 'pedometerstepkind.dart';
 const IID_IPedometerReading = '{2245dcf4-a8e1-432f-896a-be0dd9b02d24}';
 
 class IPedometerReading extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   IPedometerReading.fromPtr(super.ptr);
 
   factory IPedometerReading.from(IInspectable interface) =>

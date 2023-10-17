@@ -22,7 +22,6 @@ import 'tensorint8bit.dart';
 const IID_ITensorInt8BitStatics = '{b1a12284-095c-4c76-a661-ac4cee1f3e8b}';
 
 class ITensorInt8BitStatics extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
   ITensorInt8BitStatics.fromPtr(super.ptr);
 
   factory ITensorInt8BitStatics.from(IInspectable interface) =>

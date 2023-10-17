@@ -22,7 +22,6 @@ import 'geopoint.dart';
 const IID_IGeocoordinateWithPoint = '{feea0525-d22c-4d46-b527-0b96066fc7db}';
 
 class IGeocoordinateWithPoint extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithPoint.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPoint.from(IInspectable interface) => interface

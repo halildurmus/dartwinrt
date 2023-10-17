@@ -21,7 +21,6 @@ const IID_IExposurePriorityVideoControl =
     '{2cb240a3-5168-4271-9ea5-47621a98a352}';
 
 class IExposurePriorityVideoControl extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
   IExposurePriorityVideoControl.fromPtr(super.ptr);
 
   factory IExposurePriorityVideoControl.from(IInspectable interface) =>

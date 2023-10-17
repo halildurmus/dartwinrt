@@ -23,7 +23,6 @@ import 'userwatcherstatus.dart';
 const IID_IUserWatcher = '{155eb23b-242a-45e0-a2e9-3171fc6a7fbb}';
 
 class IUserWatcher extends IInspectable {
-  // vtable begins at 6, is 17 entries long.
   IUserWatcher.fromPtr(super.ptr);
 
   factory IUserWatcher.from(IInspectable interface) =>

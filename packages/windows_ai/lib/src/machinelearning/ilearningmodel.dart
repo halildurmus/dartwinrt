@@ -22,7 +22,6 @@ import 'ilearningmodelfeaturedescriptor.dart';
 const IID_ILearningModel = '{5b8e4920-489f-4e86-9128-265a327b78fa}';
 
 class ILearningModel extends IInspectable {
-  // vtable begins at 6, is 8 entries long.
   ILearningModel.fromPtr(super.ptr);
 
   factory ILearningModel.from(IInspectable interface) =>

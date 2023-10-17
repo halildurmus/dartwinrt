@@ -22,7 +22,6 @@ import 'toastcollection.dart';
 const IID_IToastCollectionFactory = '{164dd3d7-73c4-44f7-b4ff-fb6d4bf1f4c6}';
 
 class IToastCollectionFactory extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IToastCollectionFactory.fromPtr(super.ptr);
 
   factory IToastCollectionFactory.from(IInspectable interface) => interface

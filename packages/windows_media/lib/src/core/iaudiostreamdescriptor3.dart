@@ -22,7 +22,6 @@ import 'audiostreamdescriptor.dart';
 const IID_IAudioStreamDescriptor3 = '{4d220da1-8e83-44ef-8973-2f63e993f36b}';
 
 class IAudioStreamDescriptor3 extends IInspectable {
-  // vtable begins at 6, is 1 entries long.
   IAudioStreamDescriptor3.fromPtr(super.ptr);
 
   factory IAudioStreamDescriptor3.from(IInspectable interface) => interface

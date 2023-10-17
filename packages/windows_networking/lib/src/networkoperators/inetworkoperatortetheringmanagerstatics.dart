@@ -24,7 +24,6 @@ const IID_INetworkOperatorTetheringManagerStatics =
     '{3ebcbacc-f8c3-405c-9964-70a1eeabe194}';
 
 class INetworkOperatorTetheringManagerStatics extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   INetworkOperatorTetheringManagerStatics.fromPtr(super.ptr);
 
   factory INetworkOperatorTetheringManagerStatics.from(

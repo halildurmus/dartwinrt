@@ -21,7 +21,6 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_IAttributedNetworkUsage = '{f769b039-eca2-45eb-ade1-b0368b756c49}';
 
 class IAttributedNetworkUsage extends IInspectable {
-  // vtable begins at 6, is 5 entries long.
   IAttributedNetworkUsage.fromPtr(super.ptr);
 
   factory IAttributedNetworkUsage.from(IInspectable interface) => interface
