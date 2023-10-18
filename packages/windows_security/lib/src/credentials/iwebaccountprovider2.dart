@@ -22,7 +22,10 @@ import 'iwebaccountprovider.dart';
 const IID_IWebAccountProvider2 = '{4a01eb05-4e42-41d4-b518-e008a5163614}';
 
 class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
-  IWebAccountProvider2.fromPtr(super.ptr);
+  IWebAccountProvider2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountProvider2Vtbl>().ref;
+
+  final _IWebAccountProvider2Vtbl _vtable;
 
   factory IWebAccountProvider2.from(IInspectable interface) =>
       interface.cast(IWebAccountProvider2.fromPtr, IID_IWebAccountProvider2);
@@ -31,17 +34,9 @@ class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayPurpose.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Authority.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,4 +74,16 @@ class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
       "IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.")
   @override
   Uri? get iconUri => _iWebAccountProvider.iconUri;
+}
+
+final class _IWebAccountProvider2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayPurpose;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Authority;
 }

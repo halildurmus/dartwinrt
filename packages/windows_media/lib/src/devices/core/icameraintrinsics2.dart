@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICameraIntrinsics2 = '{0cdaa447-0798-4b4d-839f-c5ec414db27a}';
 
 class ICameraIntrinsics2 extends IInspectable {
-  ICameraIntrinsics2.fromPtr(super.ptr);
+  ICameraIntrinsics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICameraIntrinsics2Vtbl>().ref;
+
+  final _ICameraIntrinsics2Vtbl _vtable;
 
   factory ICameraIntrinsics2.from(IInspectable interface) =>
       interface.cast(ICameraIntrinsics2.fromPtr, IID_ICameraIntrinsics2);
@@ -29,17 +32,9 @@ class ICameraIntrinsics2 extends IInspectable {
     final value = calloc<NativeMatrix4x4>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeMatrix4x4> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeMatrix4x4> value)>()(lpVtbl, value);
+      final hr = _vtable.get_UndistortedProjectionTransform.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeMatrix4x4> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,21 +50,10 @@ class ICameraIntrinsics2 extends IInspectable {
     try {
       final inputNativeStructPtr = input.toNative();
 
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativePoint input,
-                                  Pointer<NativePoint> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativePoint input,
-                          Pointer<NativePoint> result)>()(
-              lpVtbl, inputNativeStructPtr.ref, result);
+      final hr = _vtable.DistortPoint.asFunction<
+              int Function(VTablePointer lpVtbl, NativePoint input,
+                  Pointer<NativePoint> result)>()(
+          lpVtbl, inputNativeStructPtr.ref, result);
 
       free(inputNativeStructPtr);
 
@@ -87,25 +71,13 @@ class ICameraIntrinsics2 extends IInspectable {
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 inputsSize,
-                              Pointer<NativePoint> inputs,
-                              Uint32 resultsSize,
-                              Pointer<NativePoint> results)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int inputsSize,
-                      Pointer<NativePoint> inputs,
-                      int resultsSize,
-                      Pointer<NativePoint> results)>()(
+      final hr = _vtable.DistortPoints.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int inputsSize,
+                  Pointer<NativePoint> inputs,
+                  int resultsSize,
+                  Pointer<NativePoint> results)>()(
           lpVtbl, inputs.length, inputsArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -123,21 +95,10 @@ class ICameraIntrinsics2 extends IInspectable {
     try {
       final inputNativeStructPtr = input.toNative();
 
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativePoint input,
-                                  Pointer<NativePoint> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativePoint input,
-                          Pointer<NativePoint> result)>()(
-              lpVtbl, inputNativeStructPtr.ref, result);
+      final hr = _vtable.UndistortPoint.asFunction<
+              int Function(VTablePointer lpVtbl, NativePoint input,
+                  Pointer<NativePoint> result)>()(
+          lpVtbl, inputNativeStructPtr.ref, result);
 
       free(inputNativeStructPtr);
 
@@ -155,25 +116,13 @@ class ICameraIntrinsics2 extends IInspectable {
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 inputsSize,
-                              Pointer<NativePoint> inputs,
-                              Uint32 resultsSize,
-                              Pointer<NativePoint> results)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int inputsSize,
-                      Pointer<NativePoint> inputs,
-                      int resultsSize,
-                      Pointer<NativePoint> results)>()(
+      final hr = _vtable.UndistortPoints.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int inputsSize,
+                  Pointer<NativePoint> inputs,
+                  int resultsSize,
+                  Pointer<NativePoint> results)>()(
           lpVtbl, inputs.length, inputsArray, resultsSize, results);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -184,4 +133,37 @@ class ICameraIntrinsics2 extends IInspectable {
       free(results);
     }
   }
+}
+
+final class _ICameraIntrinsics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeMatrix4x4> value)>>
+      get_UndistortedProjectionTransform;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativePoint input,
+              Pointer<NativePoint> result)>> DistortPoint;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 inputsSize,
+              Pointer<NativePoint> inputs,
+              Uint32 resultsSize,
+              Pointer<NativePoint> results)>> DistortPoints;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativePoint input,
+              Pointer<NativePoint> result)>> UndistortPoint;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 inputsSize,
+              Pointer<NativePoint> inputs,
+              Uint32 resultsSize,
+              Pointer<NativePoint> results)>> UndistortPoints;
 }

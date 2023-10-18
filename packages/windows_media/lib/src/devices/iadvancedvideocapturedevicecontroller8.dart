@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController8 =
     '{d843f010-e7fb-595b-9a78-0e54c4532b43}';
 
 class IAdvancedVideoCaptureDeviceController8 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController8.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController8.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController8Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController8Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController8.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController8.fromPtr,
@@ -32,17 +37,9 @@ class IAdvancedVideoCaptureDeviceController8 extends IInspectable {
   PanelBasedOptimizationControl? get panelBasedOptimizationControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PanelBasedOptimizationControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +53,12 @@ class IAdvancedVideoCaptureDeviceController8 extends IInspectable {
 
     return PanelBasedOptimizationControl.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController8Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PanelBasedOptimizationControl;
 }

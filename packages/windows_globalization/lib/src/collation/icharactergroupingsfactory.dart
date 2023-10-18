@@ -22,7 +22,10 @@ import 'charactergroupings.dart';
 const IID_ICharacterGroupingsFactory = '{99ea9fd9-886d-4401-9f98-69c82d4c2f78}';
 
 class ICharacterGroupingsFactory extends IInspectable {
-  ICharacterGroupingsFactory.fromPtr(super.ptr);
+  ICharacterGroupingsFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICharacterGroupingsFactoryVtbl>().ref;
+
+  final _ICharacterGroupingsFactoryVtbl _vtable;
 
   factory ICharacterGroupingsFactory.from(IInspectable interface) => interface
       .cast(ICharacterGroupingsFactory.fromPtr, IID_ICharacterGroupingsFactory);
@@ -30,18 +33,9 @@ class ICharacterGroupingsFactory extends IInspectable {
   CharacterGroupings create(String language) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr language,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int language,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, language.toHString(), result);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, int language,
+            Pointer<COMObject> result)>()(lpVtbl, language.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -50,4 +44,12 @@ class ICharacterGroupingsFactory extends IInspectable {
 
     return CharacterGroupings.fromPtr(result);
   }
+}
+
+final class _ICharacterGroupingsFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr language,
+              Pointer<COMObject> result)>> Create;
 }

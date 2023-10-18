@@ -33,7 +33,11 @@ const IID_IBitmapFrameWithSoftwareBitmap =
 
 class IBitmapFrameWithSoftwareBitmap extends IInspectable
     implements IBitmapFrame {
-  IBitmapFrameWithSoftwareBitmap.fromPtr(super.ptr);
+  IBitmapFrameWithSoftwareBitmap.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IBitmapFrameWithSoftwareBitmapVtbl>().ref;
+
+  final _IBitmapFrameWithSoftwareBitmapVtbl _vtable;
 
   factory IBitmapFrameWithSoftwareBitmap.from(IInspectable interface) =>
       interface.cast(IBitmapFrameWithSoftwareBitmap.fromPtr,
@@ -42,17 +46,9 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
   Future<SoftwareBitmap?> getSoftwareBitmapAsync() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetSoftwareBitmapAsync.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -68,22 +64,10 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
       BitmapPixelFormat pixelFormat, BitmapAlphaMode alphaMode) {
     final value = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 pixelFormat,
-                                Int32 alphaMode,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int pixelFormat,
-                        int alphaMode, Pointer<COMObject> value)>()(
-            lpVtbl, pixelFormat.value, alphaMode.value, value);
+    final hr = _vtable.GetSoftwareBitmapConvertedAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int pixelFormat, int alphaMode,
+                Pointer<COMObject> value)>()(
+        lpVtbl, pixelFormat.value, alphaMode.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -103,29 +87,15 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
       ColorManagementMode colorManagementMode) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 pixelFormat,
-                            Int32 alphaMode,
-                            VTablePointer transform,
-                            Int32 exifOrientationMode,
-                            Int32 colorManagementMode,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int pixelFormat,
-                    int alphaMode,
-                    VTablePointer transform,
-                    int exifOrientationMode,
-                    int colorManagementMode,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetSoftwareBitmapTransformedAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int pixelFormat,
+                int alphaMode,
+                VTablePointer transform,
+                int exifOrientationMode,
+                int colorManagementMode,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         pixelFormat.value,
         alphaMode.value,
@@ -189,4 +159,29 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
           ColorManagementMode colorManagementMode) =>
       _iBitmapFrame.getPixelDataTransformedAsync(pixelFormat, alphaMode,
           transform, exifOrientationMode, colorManagementMode);
+}
+
+final class _IBitmapFrameWithSoftwareBitmapVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetSoftwareBitmapAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 pixelFormat,
+              Int32 alphaMode,
+              Pointer<COMObject> value)>> GetSoftwareBitmapConvertedAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 pixelFormat,
+              Int32 alphaMode,
+              VTablePointer transform,
+              Int32 exifOrientationMode,
+              Int32 colorManagementMode,
+              Pointer<COMObject> value)>> GetSoftwareBitmapTransformedAsync;
 }

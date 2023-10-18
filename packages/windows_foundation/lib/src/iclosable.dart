@@ -24,18 +24,24 @@ const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';
 
 /// Defines a method to release allocated resources.
 class IClosable extends IInspectable {
-  IClosable.fromPtr(super.ptr);
+  IClosable.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IClosableVtbl>().ref;
+
+  final _IClosableVtbl _vtable;
 
   factory IClosable.from(IInspectable interface) =>
       interface.cast(IClosable.fromPtr, IID_IClosable);
 
   void close() {
-    final hr = vtable
-        .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Close.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IClosableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Close;
 }

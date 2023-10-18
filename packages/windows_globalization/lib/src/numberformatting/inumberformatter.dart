@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INumberFormatter = '{a5007c49-7676-4db7-8631-1b6ff265caa9}';
 
 class INumberFormatter extends IInspectable {
-  INumberFormatter.fromPtr(super.ptr);
+  INumberFormatter.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INumberFormatterVtbl>().ref;
+
+  final _INumberFormatterVtbl _vtable;
 
   factory INumberFormatter.from(IInspectable interface) =>
       interface.cast(INumberFormatter.fromPtr, IID_INumberFormatter);
@@ -29,17 +32,9 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int64 value,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
+      final hr = _vtable.FormatInt.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint64 value,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
+      final hr = _vtable.FormatUInt.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,17 +64,9 @@ class INumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Double value,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, double value,
-                  Pointer<IntPtr> result)>()(lpVtbl, value, result);
+      final hr = _vtable.FormatDouble.asFunction<
+          int Function(VTablePointer lpVtbl, double value,
+              Pointer<IntPtr> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -96,4 +75,23 @@ class INumberFormatter extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _INumberFormatterVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int64 value, Pointer<IntPtr> result)>>
+      FormatInt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint64 value, Pointer<IntPtr> result)>>
+      FormatUInt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Double value, Pointer<IntPtr> result)>>
+      FormatDouble;
 }

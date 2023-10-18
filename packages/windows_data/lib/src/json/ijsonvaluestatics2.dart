@@ -22,7 +22,10 @@ import 'jsonvalue.dart';
 const IID_IJsonValueStatics2 = '{1d9ecbe4-3fe8-4335-8392-93d8e36865f0}';
 
 class IJsonValueStatics2 extends IInspectable {
-  IJsonValueStatics2.fromPtr(super.ptr);
+  IJsonValueStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IJsonValueStatics2Vtbl>().ref;
+
+  final _IJsonValueStatics2Vtbl _vtable;
 
   factory IJsonValueStatics2.from(IInspectable interface) =>
       interface.cast(IJsonValueStatics2.fromPtr, IID_IJsonValueStatics2);
@@ -30,17 +33,9 @@ class IJsonValueStatics2 extends IInspectable {
   JsonValue? createNullValue() {
     final jsonValue = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> jsonValue)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> jsonValue)>()(lpVtbl, jsonValue);
+    final hr = _vtable.CreateNullValue.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> jsonValue)>()(
+        lpVtbl, jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);
@@ -54,4 +49,13 @@ class IJsonValueStatics2 extends IInspectable {
 
     return JsonValue.fromPtr(jsonValue);
   }
+}
+
+final class _IJsonValueStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> jsonValue)>>
+      CreateNullValue;
 }

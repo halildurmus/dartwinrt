@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDisplayMonitor2 = '{023018e6-cb23-5830-96df-a7bf6e602577}';
 
 class IDisplayMonitor2 extends IInspectable {
-  IDisplayMonitor2.fromPtr(super.ptr);
+  IDisplayMonitor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDisplayMonitor2Vtbl>().ref;
+
+  final _IDisplayMonitor2Vtbl _vtable;
 
   factory IDisplayMonitor2.from(IInspectable interface) =>
       interface.cast(IDisplayMonitor2.fromPtr, IID_IDisplayMonitor2);
@@ -29,17 +32,9 @@ class IDisplayMonitor2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsDolbyVisionSupportedInHdrMode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IDisplayMonitor2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDisplayMonitor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsDolbyVisionSupportedInHdrMode;
 }

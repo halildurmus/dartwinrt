@@ -23,7 +23,11 @@ const IID_IToastNotificationManagerStatics5 =
     '{d6f5f569-d40d-407c-8989-88cab42cfd14}';
 
 class IToastNotificationManagerStatics5 extends IInspectable {
-  IToastNotificationManagerStatics5.fromPtr(super.ptr);
+  IToastNotificationManagerStatics5.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IToastNotificationManagerStatics5Vtbl>().ref;
+
+  final _IToastNotificationManagerStatics5Vtbl _vtable;
 
   factory IToastNotificationManagerStatics5.from(IInspectable interface) =>
       interface.cast(IToastNotificationManagerStatics5.fromPtr,
@@ -32,17 +36,9 @@ class IToastNotificationManagerStatics5 extends IInspectable {
   ToastNotificationManagerForUser? getDefault() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetDefault.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -56,4 +52,12 @@ class IToastNotificationManagerStatics5 extends IInspectable {
 
     return ToastNotificationManagerForUser.fromPtr(result);
   }
+}
+
+final class _IToastNotificationManagerStatics5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> GetDefault;
 }

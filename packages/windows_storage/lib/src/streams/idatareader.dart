@@ -27,7 +27,10 @@ import 'unicodeencoding.dart';
 const IID_IDataReader = '{e2b50029-b4c1-4314-a4b8-fb813a2f275e}';
 
 class IDataReader extends IInspectable {
-  IDataReader.fromPtr(super.ptr);
+  IDataReader.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataReaderVtbl>().ref;
+
+  final _IDataReaderVtbl _vtable;
 
   factory IDataReader.from(IInspectable interface) =>
       interface.cast(IDataReader.fromPtr, IID_IDataReader);
@@ -36,17 +39,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_UnconsumedBufferLength.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,17 +55,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_UnicodeEncoding.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,13 +68,7 @@ class IDataReader extends IInspectable {
   }
 
   set unicodeEncoding(UnicodeEncoding value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_UnicodeEncoding
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -98,17 +79,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ByteOrder.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -119,13 +92,7 @@ class IDataReader extends IInspectable {
   }
 
   set byteOrder(ByteOrder value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_ByteOrder
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -136,17 +103,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_InputStreamOptions.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -157,17 +116,9 @@ class IDataReader extends IInspectable {
   }
 
   set inputStreamOptions(InputStreamOptions value) {
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.value);
+    final hr = _vtable.put_InputStreamOptions
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -176,17 +127,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint8>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Uint8> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Uint8> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadByte.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint8> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -200,17 +143,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint8>(valueSize);
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                          Pointer<Uint8> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int valueSize,
-                  Pointer<Uint8> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.ReadBytes.asFunction<
+          int Function(VTablePointer lpVtbl, int valueSize,
+              Pointer<Uint8> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -223,17 +158,9 @@ class IDataReader extends IInspectable {
   IBuffer? readBuffer(int length) {
     final buffer = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 length,
-                        Pointer<COMObject> buffer)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int length,
-                Pointer<COMObject> buffer)>()(lpVtbl, length, buffer);
+    final hr = _vtable.ReadBuffer.asFunction<
+        int Function(VTablePointer lpVtbl, int length,
+            Pointer<COMObject> buffer)>()(lpVtbl, length, buffer);
 
     if (FAILED(hr)) {
       free(buffer);
@@ -252,17 +179,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadBoolean.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -276,17 +195,9 @@ class IDataReader extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadGuid.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -300,17 +211,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int16>();
 
     try {
-      final hr = vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int16> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int16> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadInt16.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int16> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -324,17 +227,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadInt32.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -348,17 +243,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadInt64.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -372,17 +259,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint16>();
 
     try {
-      final hr = vtable
-              .elementAt(21)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint16> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.ReadUInt16.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint16> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -396,17 +275,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(22)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.ReadUInt32.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -420,17 +291,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.ReadUInt64.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -444,17 +307,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(24)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadSingle.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -468,17 +323,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(25)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.ReadDouble.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -492,17 +339,9 @@ class IDataReader extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(26)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Uint32 codeUnitCount, Pointer<IntPtr> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int codeUnitCount,
-                  Pointer<IntPtr> value)>()(lpVtbl, codeUnitCount, value);
+      final hr = _vtable.ReadString.asFunction<
+          int Function(VTablePointer lpVtbl, int codeUnitCount,
+              Pointer<IntPtr> value)>()(lpVtbl, codeUnitCount, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -516,17 +355,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(27)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadDateTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -540,17 +371,9 @@ class IDataReader extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(28)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.ReadTimeSpan.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -563,17 +386,9 @@ class IDataReader extends IInspectable {
   Future<int> loadAsync(int count) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(29)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 count,
-                        Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int count,
-                Pointer<COMObject> operation)>()(lpVtbl, count, operation);
+    final hr = _vtable.LoadAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int count,
+            Pointer<COMObject> operation)>()(lpVtbl, count, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -588,17 +403,9 @@ class IDataReader extends IInspectable {
   IBuffer? detachBuffer() {
     final buffer = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(30)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> buffer)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> buffer)>()(lpVtbl, buffer);
+    final hr = _vtable.DetachBuffer.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> buffer)>()(lpVtbl, buffer);
 
     if (FAILED(hr)) {
       free(buffer);
@@ -616,17 +423,9 @@ class IDataReader extends IInspectable {
   IInputStream? detachStream() {
     final stream = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(31)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> stream)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> stream)>()(lpVtbl, stream);
+    final hr = _vtable.DetachStream.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> stream)>()(lpVtbl, stream);
 
     if (FAILED(hr)) {
       free(stream);
@@ -640,4 +439,109 @@ class IDataReader extends IInspectable {
 
     return IInputStream.fromPtr(stream);
   }
+}
+
+final class _IDataReaderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_UnconsumedBufferLength;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_UnicodeEncoding;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_UnicodeEncoding;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ByteOrder;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_ByteOrder;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_InputStreamOptions;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_InputStreamOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint8> value)>>
+      ReadByte;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+              Pointer<Uint8> value)>> ReadBytes;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 length,
+              Pointer<COMObject> buffer)>> ReadBuffer;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      ReadBoolean;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      ReadGuid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int16> value)>>
+      ReadInt16;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      ReadInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      ReadInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> value)>>
+      ReadUInt16;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      ReadUInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      ReadUInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      ReadSingle;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      ReadDouble;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 codeUnitCount,
+              Pointer<IntPtr> value)>> ReadString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      ReadDateTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      ReadTimeSpan;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 count,
+              Pointer<COMObject> operation)>> LoadAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> buffer)>> DetachBuffer;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> stream)>> DetachStream;
 }

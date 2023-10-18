@@ -29,7 +29,11 @@ const IID_IStorageItemPropertiesWithProvider =
 
 class IStorageItemPropertiesWithProvider extends IInspectable
     implements IStorageItemProperties {
-  IStorageItemPropertiesWithProvider.fromPtr(super.ptr);
+  IStorageItemPropertiesWithProvider.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IStorageItemPropertiesWithProviderVtbl>().ref;
+
+  final _IStorageItemPropertiesWithProviderVtbl _vtable;
 
   factory IStorageItemPropertiesWithProvider.from(IInspectable interface) =>
       interface.cast(IStorageItemPropertiesWithProvider.fromPtr,
@@ -38,17 +42,9 @@ class IStorageItemPropertiesWithProvider extends IInspectable
   StorageProvider? get provider {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Provider.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -94,4 +90,12 @@ class IStorageItemPropertiesWithProvider extends IInspectable
   @override
   StorageItemContentProperties? get properties =>
       _iStorageItemProperties.properties;
+}
+
+final class _IStorageItemPropertiesWithProviderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Provider;
 }

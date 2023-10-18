@@ -21,25 +21,29 @@ const IID_ILearningModelSessionOptions3 =
     '{58e15cee-d8c2-56fc-92e8-76d751081086}';
 
 class ILearningModelSessionOptions3 extends IInspectable {
-  ILearningModelSessionOptions3.fromPtr(super.ptr);
+  ILearningModelSessionOptions3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionOptions3Vtbl>().ref;
+
+  final _ILearningModelSessionOptions3Vtbl _vtable;
 
   factory ILearningModelSessionOptions3.from(IInspectable interface) =>
       interface.cast(ILearningModelSessionOptions3.fromPtr,
           IID_ILearningModelSessionOptions3);
 
   void overrideNamedDimension(String name, int dimension) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Uint32 dimension)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name, int dimension)>()(
+    final hr = _vtable.OverrideNamedDimension.asFunction<
+            int Function(VTablePointer lpVtbl, int name, int dimension)>()(
         lpVtbl, name.toHString(), dimension);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILearningModelSessionOptions3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr name, Uint32 dimension)>>
+      OverrideNamedDimension;
 }

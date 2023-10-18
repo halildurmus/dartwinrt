@@ -23,7 +23,10 @@ import 'applicationdata.dart';
 const IID_IApplicationDataStatics2 = '{cd606211-cf49-40a4-a47c-c7f0dbba8107}';
 
 class IApplicationDataStatics2 extends IInspectable {
-  IApplicationDataStatics2.fromPtr(super.ptr);
+  IApplicationDataStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationDataStatics2Vtbl>().ref;
+
+  final _IApplicationDataStatics2Vtbl _vtable;
 
   factory IApplicationDataStatics2.from(IInspectable interface) => interface
       .cast(IApplicationDataStatics2.fromPtr, IID_IApplicationDataStatics2);
@@ -31,21 +34,10 @@ class IApplicationDataStatics2 extends IInspectable {
   Future<ApplicationData?> getForUserAsync(User? user) {
     final getForUserOperation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                Pointer<COMObject> getForUserOperation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> getForUserOperation)>()(
-            lpVtbl, user.lpVtbl, getForUserOperation);
+    final hr = _vtable.GetForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                Pointer<COMObject> getForUserOperation)>()(
+        lpVtbl, user.lpVtbl, getForUserOperation);
 
     if (FAILED(hr)) {
       free(getForUserOperation);
@@ -57,4 +49,12 @@ class IApplicationDataStatics2 extends IInspectable {
         creator: ApplicationData.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IApplicationDataStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> getForUserOperation)>> GetForUserAsync;
 }

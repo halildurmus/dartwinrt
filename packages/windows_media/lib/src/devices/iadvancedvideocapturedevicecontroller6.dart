@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController6 =
     '{b6563a53-68a1-44b7-9f89-b5fa97ac0cbe}';
 
 class IAdvancedVideoCaptureDeviceController6 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController6.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController6Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController6Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController6.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController6.fromPtr,
@@ -32,17 +37,9 @@ class IAdvancedVideoCaptureDeviceController6 extends IInspectable {
   VideoTemporalDenoisingControl? get videoTemporalDenoisingControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoTemporalDenoisingControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +53,12 @@ class IAdvancedVideoCaptureDeviceController6 extends IInspectable {
 
     return VideoTemporalDenoisingControl.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoTemporalDenoisingControl;
 }

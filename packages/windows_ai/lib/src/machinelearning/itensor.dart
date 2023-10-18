@@ -24,7 +24,10 @@ import 'tensorkind.dart';
 const IID_ITensor = '{05489593-a305-4a25-ad09-440119b4b7f6}';
 
 class ITensor extends IInspectable implements ILearningModelFeatureValue {
-  ITensor.fromPtr(super.ptr);
+  ITensor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorVtbl>().ref;
+
+  final _ITensorVtbl _vtable;
 
   factory ITensor.from(IInspectable interface) =>
       interface.cast(ITensor.fromPtr, IID_ITensor);
@@ -33,17 +36,9 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_TensorKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
   List<int>? get shape {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Shape.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,4 +76,16 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
 
   @override
   LearningModelFeatureKind get kind => _iLearningModelFeatureValue.kind;
+}
+
+final class _ITensorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_TensorKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Shape;
 }

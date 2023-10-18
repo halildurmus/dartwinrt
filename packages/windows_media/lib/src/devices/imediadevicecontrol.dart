@@ -22,7 +22,10 @@ import 'mediadevicecontrolcapabilities.dart';
 const IID_IMediaDeviceControl = '{efa8dfa9-6f75-4863-ba0b-583f3036b4de}';
 
 class IMediaDeviceControl extends IInspectable {
-  IMediaDeviceControl.fromPtr(super.ptr);
+  IMediaDeviceControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaDeviceControlVtbl>().ref;
+
+  final _IMediaDeviceControlVtbl _vtable;
 
   factory IMediaDeviceControl.from(IInspectable interface) =>
       interface.cast(IMediaDeviceControl.fromPtr, IID_IMediaDeviceControl);
@@ -30,17 +33,9 @@ class IMediaDeviceControl extends IInspectable {
   MediaDeviceControlCapabilities? get capabilities {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Capabilities.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IMediaDeviceControl extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> value, Pointer<Bool> succeeded)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Double> value,
-                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
+      final hr = _vtable.TryGetValue.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Double> value,
+              Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +72,9 @@ class IMediaDeviceControl extends IInspectable {
     final succeeded = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Double value,
-                          Pointer<Bool> succeeded)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
+      final hr = _vtable.TrySetValue.asFunction<
+          int Function(VTablePointer lpVtbl, double value,
+              Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,17 +89,9 @@ class IMediaDeviceControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Bool> value, Pointer<Bool> succeeded)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Bool> value,
-                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
+      final hr = _vtable.TryGetAuto.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Bool> value,
+              Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -135,17 +106,9 @@ class IMediaDeviceControl extends IInspectable {
     final succeeded = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Bool value,
-                          Pointer<Bool> succeeded)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, bool value,
-                  Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
+      final hr = _vtable.TrySetAuto.asFunction<
+          int Function(VTablePointer lpVtbl, bool value,
+              Pointer<Bool> succeeded)>()(lpVtbl, value, succeeded);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -154,4 +117,30 @@ class IMediaDeviceControl extends IInspectable {
       free(succeeded);
     }
   }
+}
+
+final class _IMediaDeviceControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Capabilities;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value,
+              Pointer<Bool> succeeded)>> TryGetValue;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Double value, Pointer<Bool> succeeded)>>
+      TrySetValue;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value,
+              Pointer<Bool> succeeded)>> TryGetAuto;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Bool value, Pointer<Bool> succeeded)>>
+      TrySetAuto;
 }

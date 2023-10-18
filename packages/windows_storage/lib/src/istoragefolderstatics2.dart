@@ -23,7 +23,10 @@ import 'storagefolder.dart';
 const IID_IStorageFolderStatics2 = '{b4656dc3-71d2-467d-8b29-371f0f62bf6f}';
 
 class IStorageFolderStatics2 extends IInspectable {
-  IStorageFolderStatics2.fromPtr(super.ptr);
+  IStorageFolderStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFolderStatics2Vtbl>().ref;
+
+  final _IStorageFolderStatics2Vtbl _vtable;
 
   factory IStorageFolderStatics2.from(IInspectable interface) => interface.cast(
       IStorageFolderStatics2.fromPtr, IID_IStorageFolderStatics2);
@@ -32,22 +35,10 @@ class IStorageFolderStatics2 extends IInspectable {
       User? user, String path) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr path,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int path, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, path.toHString(), operation);
+    final hr = _vtable.GetFolderFromPathForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int path,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -58,4 +49,15 @@ class IStorageFolderStatics2 extends IInspectable {
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFolderStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr path,
+              Pointer<COMObject> operation)>> GetFolderFromPathForUserAsync;
 }

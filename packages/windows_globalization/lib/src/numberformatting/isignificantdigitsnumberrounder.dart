@@ -23,7 +23,11 @@ const IID_ISignificantDigitsNumberRounder =
     '{f5941bca-6646-4913-8c76-1b191ff94dfd}';
 
 class ISignificantDigitsNumberRounder extends IInspectable {
-  ISignificantDigitsNumberRounder.fromPtr(super.ptr);
+  ISignificantDigitsNumberRounder.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ISignificantDigitsNumberRounderVtbl>().ref;
+
+  final _ISignificantDigitsNumberRounderVtbl _vtable;
 
   factory ISignificantDigitsNumberRounder.from(IInspectable interface) =>
       interface.cast(ISignificantDigitsNumberRounder.fromPtr,
@@ -33,17 +37,9 @@ class ISignificantDigitsNumberRounder extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RoundingAlgorithm.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,13 +50,7 @@ class ISignificantDigitsNumberRounder extends IInspectable {
   }
 
   set roundingAlgorithm(RoundingAlgorithm value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_RoundingAlgorithm
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -71,17 +61,9 @@ class ISignificantDigitsNumberRounder extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_SignificantDigits.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -92,18 +74,28 @@ class ISignificantDigitsNumberRounder extends IInspectable {
   }
 
   set significantDigits(int value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_SignificantDigits
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ISignificantDigitsNumberRounderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_RoundingAlgorithm;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_RoundingAlgorithm;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_SignificantDigits;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_SignificantDigits;
 }

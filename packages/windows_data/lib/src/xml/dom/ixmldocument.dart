@@ -39,7 +39,10 @@ const IID_IXmlDocument = '{f7f3a506-1e87-42d6-bcfb-b8c809fa5494}';
 
 class IXmlDocument extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  IXmlDocument.fromPtr(super.ptr);
+  IXmlDocument.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDocumentVtbl>().ref;
+
+  final _IXmlDocumentVtbl _vtable;
 
   factory IXmlDocument.from(IInspectable interface) =>
       interface.cast(IXmlDocument.fromPtr, IID_IXmlDocument);
@@ -47,17 +50,9 @@ class IXmlDocument extends IInspectable
   XmlDocumentType? get doctype {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Doctype.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -75,17 +70,9 @@ class IXmlDocument extends IInspectable
   XmlDomImplementation? get implementation {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Implementation.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -103,17 +90,9 @@ class IXmlDocument extends IInspectable
   XmlElement? get documentElement {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DocumentElement.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -131,17 +110,9 @@ class IXmlDocument extends IInspectable
   XmlElement? createElement(String tagName) {
     final newElement = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
-                            Pointer<COMObject> newElement)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int tagName,
-                    Pointer<COMObject> newElement)>()(
+    final hr = _vtable.CreateElement.asFunction<
+            int Function(VTablePointer lpVtbl, int tagName,
+                Pointer<COMObject> newElement)>()(
         lpVtbl, tagName.toHString(), newElement);
 
     if (FAILED(hr)) {
@@ -160,17 +131,9 @@ class IXmlDocument extends IInspectable
   XmlDocumentFragment? createDocumentFragment() {
     final newDocumentFragment = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> newDocumentFragment)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    Pointer<COMObject> newDocumentFragment)>()(
+    final hr = _vtable.CreateDocumentFragment.asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> newDocumentFragment)>()(
         lpVtbl, newDocumentFragment);
 
     if (FAILED(hr)) {
@@ -189,17 +152,9 @@ class IXmlDocument extends IInspectable
   XmlText? createTextNode(String data) {
     final newTextNode = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
-                            Pointer<COMObject> newTextNode)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int data,
-                    Pointer<COMObject> newTextNode)>()(
+    final hr = _vtable.CreateTextNode.asFunction<
+            int Function(VTablePointer lpVtbl, int data,
+                Pointer<COMObject> newTextNode)>()(
         lpVtbl, data.toHString(), newTextNode);
 
     if (FAILED(hr)) {
@@ -218,17 +173,9 @@ class IXmlDocument extends IInspectable
   XmlComment? createComment(String data) {
     final newComment = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
-                            Pointer<COMObject> newComment)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int data,
-                    Pointer<COMObject> newComment)>()(
+    final hr = _vtable.CreateComment.asFunction<
+            int Function(VTablePointer lpVtbl, int data,
+                Pointer<COMObject> newComment)>()(
         lpVtbl, data.toHString(), newComment);
 
     if (FAILED(hr)) {
@@ -248,20 +195,9 @@ class IXmlDocument extends IInspectable
       String target, String data) {
     final newProcessingInstruction = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr target,
-                            IntPtr data,
-                            Pointer<COMObject> newProcessingInstruction)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int target, int data,
-                    Pointer<COMObject> newProcessingInstruction)>()(
+    final hr = _vtable.CreateProcessingInstruction.asFunction<
+            int Function(VTablePointer lpVtbl, int target, int data,
+                Pointer<COMObject> newProcessingInstruction)>()(
         lpVtbl, target.toHString(), data.toHString(), newProcessingInstruction);
 
     if (FAILED(hr)) {
@@ -280,17 +216,9 @@ class IXmlDocument extends IInspectable
   XmlAttribute? createAttribute(String name) {
     final newAttribute = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> newAttribute)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> newAttribute)>()(
+    final hr = _vtable.CreateAttribute.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                Pointer<COMObject> newAttribute)>()(
         lpVtbl, name.toHString(), newAttribute);
 
     if (FAILED(hr)) {
@@ -309,17 +237,9 @@ class IXmlDocument extends IInspectable
   XmlEntityReference? createEntityReference(String name) {
     final newEntityReference = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> newEntityReference)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> newEntityReference)>()(
+    final hr = _vtable.CreateEntityReference.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                Pointer<COMObject> newEntityReference)>()(
         lpVtbl, name.toHString(), newEntityReference);
 
     if (FAILED(hr)) {
@@ -338,17 +258,9 @@ class IXmlDocument extends IInspectable
   XmlNodeList getElementsByTagName(String tagName) {
     final elements = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
-                            Pointer<COMObject> elements)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int tagName,
-                    Pointer<COMObject> elements)>()(
+    final hr = _vtable.GetElementsByTagName.asFunction<
+            int Function(VTablePointer lpVtbl, int tagName,
+                Pointer<COMObject> elements)>()(
         lpVtbl, tagName.toHString(), elements);
 
     if (FAILED(hr)) {
@@ -362,17 +274,9 @@ class IXmlDocument extends IInspectable
   XmlCDataSection? createCDataSection(String data) {
     final newCDataSection = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
-                            Pointer<COMObject> newCDataSection)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int data,
-                    Pointer<COMObject> newCDataSection)>()(
+    final hr = _vtable.CreateCDataSection.asFunction<
+            int Function(VTablePointer lpVtbl, int data,
+                Pointer<COMObject> newCDataSection)>()(
         lpVtbl, data.toHString(), newCDataSection);
 
     if (FAILED(hr)) {
@@ -392,17 +296,9 @@ class IXmlDocument extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DocumentUri.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -415,20 +311,9 @@ class IXmlDocument extends IInspectable
   XmlAttribute? createAttributeNS(Object? namespaceUri, String qualifiedName) {
     final newAttribute = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(19)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer namespaceUri,
-                            IntPtr qualifiedName,
-                            Pointer<COMObject> newAttribute)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
-                    int qualifiedName, Pointer<COMObject> newAttribute)>()(
+    final hr = _vtable.CreateAttributeNS.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                int qualifiedName, Pointer<COMObject> newAttribute)>()(
         lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
@@ -450,20 +335,9 @@ class IXmlDocument extends IInspectable
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
     final newElement = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(20)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer namespaceUri,
-                            IntPtr qualifiedName,
-                            Pointer<COMObject> newElement)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
-                    int qualifiedName, Pointer<COMObject> newElement)>()(
+    final hr = _vtable.CreateElementNS.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                int qualifiedName, Pointer<COMObject> newElement)>()(
         lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
@@ -485,17 +359,9 @@ class IXmlDocument extends IInspectable
   XmlElement? getElementById(String elementId) {
     final element = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(21)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr elementId,
-                            Pointer<COMObject> element)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int elementId,
-                    Pointer<COMObject> element)>()(
+    final hr = _vtable.GetElementById.asFunction<
+            int Function(VTablePointer lpVtbl, int elementId,
+                Pointer<COMObject> element)>()(
         lpVtbl, elementId.toHString(), element);
 
     if (FAILED(hr)) {
@@ -514,22 +380,9 @@ class IXmlDocument extends IInspectable
   IXmlNode? importNode(IXmlNode? node, bool deep) {
     final newNode = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(22)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer node,
-                                Bool deep,
-                                Pointer<COMObject> newNode)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer node,
-                        bool deep, Pointer<COMObject> newNode)>()(
-            lpVtbl, node.lpVtbl, deep, newNode);
+    final hr = _vtable.ImportNode.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer node, bool deep,
+            Pointer<COMObject> newNode)>()(lpVtbl, node.lpVtbl, deep, newNode);
 
     if (FAILED(hr)) {
       free(newNode);
@@ -645,4 +498,83 @@ class IXmlDocument extends IInspectable
 
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
+}
+
+final class _IXmlDocumentVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Doctype;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Implementation;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DocumentElement;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
+              Pointer<COMObject> newElement)>> CreateElement;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<COMObject> newDocumentFragment)>> CreateDocumentFragment;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr data,
+              Pointer<COMObject> newTextNode)>> CreateTextNode;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr data,
+              Pointer<COMObject> newComment)>> CreateComment;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr target, IntPtr data,
+                  Pointer<COMObject> newProcessingInstruction)>>
+      CreateProcessingInstruction;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              Pointer<COMObject> newAttribute)>> CreateAttribute;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              Pointer<COMObject> newEntityReference)>> CreateEntityReference;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
+              Pointer<COMObject> elements)>> GetElementsByTagName;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr data,
+              Pointer<COMObject> newCDataSection)>> CreateCDataSection;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DocumentUri;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer namespaceUri,
+              IntPtr qualifiedName,
+              Pointer<COMObject> newAttribute)>> CreateAttributeNS;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer namespaceUri,
+              IntPtr qualifiedName,
+              Pointer<COMObject> newElement)>> CreateElementNS;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr elementId,
+              Pointer<COMObject> element)>> GetElementById;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer node, Bool deep,
+              Pointer<COMObject> newNode)>> ImportNode;
 }

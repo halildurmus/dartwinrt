@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPasswordCredential = '{6ab18989-c720-41a7-a6c1-feadb36329a0}';
 
 class IPasswordCredential extends IInspectable {
-  IPasswordCredential.fromPtr(super.ptr);
+  IPasswordCredential.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPasswordCredentialVtbl>().ref;
+
+  final _IPasswordCredentialVtbl _vtable;
 
   factory IPasswordCredential.from(IInspectable interface) =>
       interface.cast(IPasswordCredential.fromPtr, IID_IPasswordCredential);
@@ -29,17 +32,9 @@ class IPasswordCredential extends IInspectable {
     final resource = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<IntPtr> resource)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> resource)>()(lpVtbl, resource);
+      final hr = _vtable.get_Resource.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<IntPtr> resource)>()(
+          lpVtbl, resource);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,17 +45,9 @@ class IPasswordCredential extends IInspectable {
   }
 
   set resource(String resource) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr resource)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int resource)>()(
-            lpVtbl, resource.toHString());
+    final hr = _vtable.put_Resource
+            .asFunction<int Function(VTablePointer lpVtbl, int resource)>()(
+        lpVtbl, resource.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -69,17 +56,9 @@ class IPasswordCredential extends IInspectable {
     final userName = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<IntPtr> userName)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> userName)>()(lpVtbl, userName);
+      final hr = _vtable.get_UserName.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<IntPtr> userName)>()(
+          lpVtbl, userName);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -90,17 +69,9 @@ class IPasswordCredential extends IInspectable {
   }
 
   set userName(String userName) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr userName)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int userName)>()(
-            lpVtbl, userName.toHString());
+    final hr = _vtable.put_UserName
+            .asFunction<int Function(VTablePointer lpVtbl, int userName)>()(
+        lpVtbl, userName.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -109,17 +80,9 @@ class IPasswordCredential extends IInspectable {
     final password = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<IntPtr> password)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> password)>()(lpVtbl, password);
+      final hr = _vtable.get_Password.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<IntPtr> password)>()(
+          lpVtbl, password);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -130,27 +93,16 @@ class IPasswordCredential extends IInspectable {
   }
 
   set password(String password) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr password)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int password)>()(
-            lpVtbl, password.toHString());
+    final hr = _vtable.put_Password
+            .asFunction<int Function(VTablePointer lpVtbl, int password)>()(
+        lpVtbl, password.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void retrievePassword() {
-    final hr = vtable
-        .elementAt(12)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.RetrievePassword.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -158,17 +110,9 @@ class IPasswordCredential extends IInspectable {
   IPropertySet? get properties {
     final props = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> props)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> props)>()(
-        lpVtbl, props);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> props)>()(lpVtbl, props);
 
     if (FAILED(hr)) {
       free(props);
@@ -182,4 +126,38 @@ class IPasswordCredential extends IInspectable {
 
     return IPropertySet.fromPtr(props);
   }
+}
+
+final class _IPasswordCredentialVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> resource)>>
+      get_Resource;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr resource)>>
+      put_Resource;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> userName)>>
+      get_UserName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr userName)>>
+      put_UserName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> password)>>
+      get_Password;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr password)>>
+      put_Password;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RetrievePassword;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> props)>>
+      get_Properties;
 }

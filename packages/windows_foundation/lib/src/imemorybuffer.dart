@@ -26,7 +26,10 @@ const IID_IMemoryBuffer = '{fbc4dd2a-245b-11e4-af98-689423260cf8}';
 
 /// Represents a reference counted memory buffer.
 class IMemoryBuffer extends IInspectable implements IClosable {
-  IMemoryBuffer.fromPtr(super.ptr);
+  IMemoryBuffer.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMemoryBufferVtbl>().ref;
+
+  final _IMemoryBufferVtbl _vtable;
 
   factory IMemoryBuffer.from(IInspectable interface) =>
       interface.cast(IMemoryBuffer.fromPtr, IID_IMemoryBuffer);
@@ -34,17 +37,9 @@ class IMemoryBuffer extends IInspectable implements IClosable {
   IMemoryBufferReference? createReference() {
     final reference = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> reference)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> reference)>()(lpVtbl, reference);
+    final hr = _vtable.CreateReference.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> reference)>()(
+        lpVtbl, reference);
 
     if (FAILED(hr)) {
       free(reference);
@@ -63,4 +58,13 @@ class IMemoryBuffer extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IMemoryBufferVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> reference)>>
+      CreateReference;
 }

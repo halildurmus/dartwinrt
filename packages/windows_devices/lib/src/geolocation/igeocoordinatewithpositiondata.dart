@@ -26,7 +26,11 @@ const IID_IGeocoordinateWithPositionData =
 
 class IGeocoordinateWithPositionData extends IInspectable
     implements IGeocoordinate {
-  IGeocoordinateWithPositionData.fromPtr(super.ptr);
+  IGeocoordinateWithPositionData.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IGeocoordinateWithPositionDataVtbl>().ref;
+
+  final _IGeocoordinateWithPositionDataVtbl _vtable;
 
   factory IGeocoordinateWithPositionData.from(IInspectable interface) =>
       interface.cast(IGeocoordinateWithPositionData.fromPtr,
@@ -36,17 +40,9 @@ class IGeocoordinateWithPositionData extends IInspectable
     final pValue = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> pValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> pValue)>()(
-          lpVtbl, pValue);
+      final hr = _vtable.get_PositionSource.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> pValue)>()(lpVtbl, pValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +55,9 @@ class IGeocoordinateWithPositionData extends IInspectable
   GeocoordinateSatelliteData? get satelliteData {
     final ppValue = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> ppValue)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> ppValue)>()(lpVtbl, ppValue);
+    final hr = _vtable.get_SatelliteData.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> ppValue)>()(
+        lpVtbl, ppValue);
 
     if (FAILED(hr)) {
       free(ppValue);
@@ -115,4 +103,17 @@ class IGeocoordinateWithPositionData extends IInspectable
 
   @override
   DateTime get timestamp => _iGeocoordinate.timestamp;
+}
+
+final class _IGeocoordinateWithPositionDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> pValue)>>
+      get_PositionSource;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> ppValue)>>
+      get_SatelliteData;
 }

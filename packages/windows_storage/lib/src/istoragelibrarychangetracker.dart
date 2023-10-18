@@ -23,7 +23,10 @@ const IID_IStorageLibraryChangeTracker =
     '{9e157316-6073-44f6-9681-7492d1286c90}';
 
 class IStorageLibraryChangeTracker extends IInspectable {
-  IStorageLibraryChangeTracker.fromPtr(super.ptr);
+  IStorageLibraryChangeTracker.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageLibraryChangeTrackerVtbl>().ref;
+
+  final _IStorageLibraryChangeTrackerVtbl _vtable;
 
   factory IStorageLibraryChangeTracker.from(IInspectable interface) =>
       interface.cast(IStorageLibraryChangeTracker.fromPtr,
@@ -32,17 +35,9 @@ class IStorageLibraryChangeTracker extends IInspectable {
   StorageLibraryChangeReader? getChangeReader() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetChangeReader.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,22 +53,28 @@ class IStorageLibraryChangeTracker extends IInspectable {
   }
 
   void enable() {
-    final hr = vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Enable.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void reset() {
-    final hr = vtable
-        .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IStorageLibraryChangeTrackerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetChangeReader;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Enable;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
 }

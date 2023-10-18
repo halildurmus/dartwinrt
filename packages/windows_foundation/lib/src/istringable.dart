@@ -24,7 +24,10 @@ const IID_IStringable = '{96369f54-8eb6-48f0-abce-c1b211e627c3}';
 
 /// Provides a way to represent the current object as a string.
 class IStringable extends IInspectable {
-  IStringable.fromPtr(super.ptr);
+  IStringable.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStringableVtbl>().ref;
+
+  final _IStringableVtbl _vtable;
 
   factory IStringable.from(IInspectable interface) =>
       interface.cast(IStringable.fromPtr, IID_IStringable);
@@ -34,17 +37,9 @@ class IStringable extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.ToString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,4 +48,12 @@ class IStringable extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStringableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      ToString;
 }

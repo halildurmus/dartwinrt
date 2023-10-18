@@ -23,7 +23,10 @@ import 'ibuffer.dart';
 const IID_IBufferStatics = '{e901e65b-d716-475a-a90a-af7229b1e741}';
 
 class IBufferStatics extends IInspectable {
-  IBufferStatics.fromPtr(super.ptr);
+  IBufferStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBufferStaticsVtbl>().ref;
+
+  final _IBufferStaticsVtbl _vtable;
 
   factory IBufferStatics.from(IInspectable interface) =>
       interface.cast(IBufferStatics.fromPtr, IID_IBufferStatics);
@@ -31,17 +34,9 @@ class IBufferStatics extends IInspectable {
   Buffer? createCopyFromMemoryBuffer(IMemoryBuffer? input) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer input,
-                Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
+    final hr = _vtable.CreateCopyFromMemoryBuffer.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer input,
+            Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IBufferStatics extends IInspectable {
   MemoryBuffer? createMemoryBufferOverIBuffer(IBuffer? input) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer input,
-                Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
+    final hr = _vtable.CreateMemoryBufferOverIBuffer.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer input,
+            Pointer<COMObject> value)>()(lpVtbl, input.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,4 +70,16 @@ class IBufferStatics extends IInspectable {
 
     return MemoryBuffer.fromPtr(value);
   }
+}
+
+final class _IBufferStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
+              Pointer<COMObject> value)>> CreateCopyFromMemoryBuffer;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
+              Pointer<COMObject> value)>> CreateMemoryBufferOverIBuffer;
 }

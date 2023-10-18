@@ -23,7 +23,10 @@ const IID_IStorageLibraryChangeReader =
     '{f205bc83-fca2-41f9-8954-ee2e991eb96f}';
 
 class IStorageLibraryChangeReader extends IInspectable {
-  IStorageLibraryChangeReader.fromPtr(super.ptr);
+  IStorageLibraryChangeReader.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageLibraryChangeReaderVtbl>().ref;
+
+  final _IStorageLibraryChangeReaderVtbl _vtable;
 
   factory IStorageLibraryChangeReader.from(IInspectable interface) =>
       interface.cast(
@@ -32,17 +35,9 @@ class IStorageLibraryChangeReader extends IInspectable {
   Future<List<StorageLibraryChange?>> readBatchAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.ReadBatchAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -60,17 +55,9 @@ class IStorageLibraryChangeReader extends IInspectable {
   Future<void> acceptChangesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.AcceptChangesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -79,4 +66,18 @@ class IStorageLibraryChangeReader extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IStorageLibraryChangeReaderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      ReadBatchAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      AcceptChangesAsync;
 }

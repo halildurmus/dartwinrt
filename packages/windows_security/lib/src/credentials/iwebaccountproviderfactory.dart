@@ -22,7 +22,10 @@ import 'webaccountprovider.dart';
 const IID_IWebAccountProviderFactory = '{1d767df1-e1e1-4b9a-a774-5c7c7e3bf371}';
 
 class IWebAccountProviderFactory extends IInspectable {
-  IWebAccountProviderFactory.fromPtr(super.ptr);
+  IWebAccountProviderFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountProviderFactoryVtbl>().ref;
+
+  final _IWebAccountProviderFactoryVtbl _vtable;
 
   factory IWebAccountProviderFactory.from(IInspectable interface) => interface
       .cast(IWebAccountProviderFactory.fromPtr, IID_IWebAccountProviderFactory);
@@ -31,21 +34,9 @@ class IWebAccountProviderFactory extends IInspectable {
       String id, String displayName, Uri? iconUri) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr id,
-                            IntPtr displayName,
-                            VTablePointer iconUri,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int id, int displayName,
-                    VTablePointer iconUri, Pointer<COMObject> instance)>()(
+    final hr = _vtable.CreateWebAccountProvider.asFunction<
+            int Function(VTablePointer lpVtbl, int id, int displayName,
+                VTablePointer iconUri, Pointer<COMObject> instance)>()(
         lpVtbl,
         id.toHString(),
         displayName.toHString(),
@@ -59,4 +50,16 @@ class IWebAccountProviderFactory extends IInspectable {
 
     return WebAccountProvider.fromPtr(instance);
   }
+}
+
+final class _IWebAccountProviderFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr id,
+              IntPtr displayName,
+              VTablePointer iconUri,
+              Pointer<COMObject> instance)>> CreateWebAccountProvider;
 }

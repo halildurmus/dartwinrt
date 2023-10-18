@@ -20,114 +20,95 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IToastNotificationHistory = '{5caddc63-01d3-4c97-986f-0533483fee14}';
 
 class IToastNotificationHistory extends IInspectable {
-  IToastNotificationHistory.fromPtr(super.ptr);
+  IToastNotificationHistory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotificationHistoryVtbl>().ref;
+
+  final _IToastNotificationHistoryVtbl _vtable;
 
   factory IToastNotificationHistory.from(IInspectable interface) => interface
       .cast(IToastNotificationHistory.fromPtr, IID_IToastNotificationHistory);
 
   void removeGroup(String group) {
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr group)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int group)>()(
-            lpVtbl, group.toHString());
+    final hr = _vtable.RemoveGroup.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int group)>()(lpVtbl, group.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupWithId(String group, String applicationId) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr group,
-                            IntPtr applicationId)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int group, int applicationId)>()(
+    final hr = _vtable.RemoveGroupWithId.asFunction<
+            int Function(VTablePointer lpVtbl, int group, int applicationId)>()(
         lpVtbl, group.toHString(), applicationId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupedTagWithId(String tag, String group, String applicationId) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr tag,
-                            IntPtr group, IntPtr applicationId)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int tag, int group,
-                    int applicationId)>()(
+    final hr = _vtable.RemoveGroupedTagWithId.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int tag, int group, int applicationId)>()(
         lpVtbl, tag.toHString(), group.toHString(), applicationId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupedTag(String tag, String group) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr tag, IntPtr group)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int tag, int group)>()(
+    final hr = _vtable.RemoveGroupedTag.asFunction<
+            int Function(VTablePointer lpVtbl, int tag, int group)>()(
         lpVtbl, tag.toHString(), group.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void remove(String tag) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr tag)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int tag)>()(
-        lpVtbl, tag.toHString());
+    final hr = _vtable.Remove.asFunction<
+        int Function(VTablePointer lpVtbl, int tag)>()(lpVtbl, tag.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clear() {
-    final hr = vtable
-        .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Clear.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clearWithId(String applicationId) {
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr applicationId)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int applicationId)>()(
+    final hr = _vtable.ClearWithId.asFunction<
+            int Function(VTablePointer lpVtbl, int applicationId)>()(
         lpVtbl, applicationId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IToastNotificationHistoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr group)>>
+      RemoveGroup;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr group, IntPtr applicationId)>>
+      RemoveGroupWithId;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr tag, IntPtr group,
+              IntPtr applicationId)>> RemoveGroupedTagWithId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr tag, IntPtr group)>>
+      RemoveGroupedTag;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr tag)>>
+      Remove;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr applicationId)>>
+      ClearWithId;
 }

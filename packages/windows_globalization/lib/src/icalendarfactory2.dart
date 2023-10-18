@@ -22,7 +22,10 @@ import 'calendar.dart';
 const IID_ICalendarFactory2 = '{b44b378c-ca7e-4590-9e72-ea2bec1a5115}';
 
 class ICalendarFactory2 extends IInspectable {
-  ICalendarFactory2.fromPtr(super.ptr);
+  ICalendarFactory2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICalendarFactory2Vtbl>().ref;
+
+  final _ICalendarFactory2Vtbl _vtable;
 
   factory ICalendarFactory2.from(IInspectable interface) =>
       interface.cast(ICalendarFactory2.fromPtr, IID_ICalendarFactory2);
@@ -31,27 +34,14 @@ class ICalendarFactory2 extends IInspectable {
       String calendar, String clock, String timeZoneId) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languages,
-                            IntPtr calendar,
-                            IntPtr clock,
-                            IntPtr timeZoneId,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer languages,
-                    int calendar,
-                    int clock,
-                    int timeZoneId,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateCalendarWithTimeZone.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer languages,
+                int calendar,
+                int clock,
+                int timeZoneId,
+                Pointer<COMObject> result)>()(
         lpVtbl,
         languages.lpVtbl,
         calendar.toHString(),
@@ -66,4 +56,17 @@ class ICalendarFactory2 extends IInspectable {
 
     return Calendar.fromPtr(result);
   }
+}
+
+final class _ICalendarFactory2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer languages,
+              IntPtr calendar,
+              IntPtr clock,
+              IntPtr timeZoneId,
+              Pointer<COMObject> result)>> CreateCalendarWithTimeZone;
 }

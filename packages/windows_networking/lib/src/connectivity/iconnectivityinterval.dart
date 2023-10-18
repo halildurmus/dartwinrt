@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectivityInterval = '{4faa3fff-6746-4824-a964-eed8e87f8709}';
 
 class IConnectivityInterval extends IInspectable {
-  IConnectivityInterval.fromPtr(super.ptr);
+  IConnectivityInterval.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectivityIntervalVtbl>().ref;
+
+  final _IConnectivityIntervalVtbl _vtable;
 
   factory IConnectivityInterval.from(IInspectable interface) =>
       interface.cast(IConnectivityInterval.fromPtr, IID_IConnectivityInterval);
@@ -29,17 +32,9 @@ class IConnectivityInterval extends IInspectable {
     final startTime = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> startTime)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> startTime)>()(lpVtbl, startTime);
+      final hr = _vtable.get_StartTime.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Int64> startTime)>()(
+          lpVtbl, startTime);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IConnectivityInterval extends IInspectable {
     final duration = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> duration)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> duration)>()(lpVtbl, duration);
+      final hr = _vtable.get_ConnectionDuration.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Int64> duration)>()(
+          lpVtbl, duration);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IConnectivityInterval extends IInspectable {
       free(duration);
     }
   }
+}
+
+final class _IConnectivityIntervalVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> startTime)>>
+      get_StartTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> duration)>>
+      get_ConnectionDuration;
 }

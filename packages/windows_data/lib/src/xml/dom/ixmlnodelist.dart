@@ -23,7 +23,10 @@ const IID_IXmlNodeList = '{8c60ad77-83a4-4ec1-9c54-7ba429e13da6}';
 
 class IXmlNodeList extends IInspectable
     implements IVectorView<IXmlNode?>, IIterable<IXmlNode?> {
-  IXmlNodeList.fromPtr(super.ptr);
+  IXmlNodeList.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlNodeListVtbl>().ref;
+
+  final _IXmlNodeListVtbl _vtable;
 
   factory IXmlNodeList.from(IInspectable interface) =>
       interface.cast(IXmlNodeList.fromPtr, IID_IXmlNodeList);
@@ -32,17 +35,9 @@ class IXmlNodeList extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Length.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IXmlNodeList extends IInspectable
   IXmlNode? item(int index) {
     final node = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        Pointer<COMObject> node)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                Pointer<COMObject> node)>()(lpVtbl, index, node);
+    final hr = _vtable.Item.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            Pointer<COMObject> node)>()(lpVtbl, index, node);
 
     if (FAILED(hr)) {
       free(node);
@@ -109,4 +96,17 @@ class IXmlNodeList extends IInspectable
 
   @override
   List<IXmlNode?> operator +(List<IXmlNode?> other) => toList() + other;
+}
+
+final class _IXmlNodeListVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Length;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, Pointer<COMObject> node)>>
+      Item;
 }

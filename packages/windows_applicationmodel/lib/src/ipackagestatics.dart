@@ -22,7 +22,10 @@ import 'package.dart';
 const IID_IPackageStatics = '{4e534bdf-2960-4878-97a4-9624deb72f2d}';
 
 class IPackageStatics extends IInspectable {
-  IPackageStatics.fromPtr(super.ptr);
+  IPackageStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackageStaticsVtbl>().ref;
+
+  final _IPackageStaticsVtbl _vtable;
 
   factory IPackageStatics.from(IInspectable interface) =>
       interface.cast(IPackageStatics.fromPtr, IID_IPackageStatics);
@@ -30,17 +33,9 @@ class IPackageStatics extends IInspectable {
   Package? get current {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Current.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IPackageStatics extends IInspectable {
 
     return Package.fromPtr(value);
   }
+}
+
+final class _IPackageStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Current;
 }

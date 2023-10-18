@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPackageStatus2 = '{f428fa93-7c56-4862-acfa-abaedcc0694d}';
 
 class IPackageStatus2 extends IInspectable {
-  IPackageStatus2.fromPtr(super.ptr);
+  IPackageStatus2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackageStatus2Vtbl>().ref;
+
+  final _IPackageStatus2Vtbl _vtable;
 
   factory IPackageStatus2.from(IInspectable interface) =>
       interface.cast(IPackageStatus2.fromPtr, IID_IPackageStatus2);
@@ -29,17 +32,9 @@ class IPackageStatus2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsPartiallyStaged.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IPackageStatus2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPackageStatus2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsPartiallyStaged;
 }

@@ -24,7 +24,10 @@ const IID_IVideoStreamDescriptorFactory =
     '{494ef6d1-bb75-43d2-9e5e-7b79a3afced4}';
 
 class IVideoStreamDescriptorFactory extends IInspectable {
-  IVideoStreamDescriptorFactory.fromPtr(super.ptr);
+  IVideoStreamDescriptorFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoStreamDescriptorFactoryVtbl>().ref;
+
+  final _IVideoStreamDescriptorFactoryVtbl _vtable;
 
   factory IVideoStreamDescriptorFactory.from(IInspectable interface) =>
       interface.cast(IVideoStreamDescriptorFactory.fromPtr,
@@ -33,21 +36,9 @@ class IVideoStreamDescriptorFactory extends IInspectable {
   VideoStreamDescriptor create(VideoEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProperties,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProperties,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProperties,
+                Pointer<COMObject> result)>()(
         lpVtbl, encodingProperties.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -57,4 +48,14 @@ class IVideoStreamDescriptorFactory extends IInspectable {
 
     return VideoStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _IVideoStreamDescriptorFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer encodingProperties,
+              Pointer<COMObject> result)>> Create;
 }

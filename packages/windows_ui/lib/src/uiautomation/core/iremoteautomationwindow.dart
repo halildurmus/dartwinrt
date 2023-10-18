@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IRemoteAutomationWindow = '{7c607689-496d-512a-9bd5-c050cfaf1428}';
 
 class IRemoteAutomationWindow extends IInspectable {
-  IRemoteAutomationWindow.fromPtr(super.ptr);
+  IRemoteAutomationWindow.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IRemoteAutomationWindowVtbl>().ref;
+
+  final _IRemoteAutomationWindowVtbl _vtable;
 
   factory IRemoteAutomationWindow.from(IInspectable interface) => interface
       .cast(IRemoteAutomationWindow.fromPtr, IID_IRemoteAutomationWindow);
@@ -28,17 +31,9 @@ class IRemoteAutomationWindow extends IInspectable {
   Object? get automationProvider {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_AutomationProvider.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,17 +51,9 @@ class IRemoteAutomationWindow extends IInspectable {
   Future<void> unregisterAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.UnregisterAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -75,4 +62,17 @@ class IRemoteAutomationWindow extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IRemoteAutomationWindowVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_AutomationProvider;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      UnregisterAsync;
 }

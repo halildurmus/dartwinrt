@@ -26,7 +26,10 @@ import 'webaccountstate.dart';
 const IID_IWebAccount2 = '{7b56d6f8-990b-4eb5-94a7-5621f3a8b824}';
 
 class IWebAccount2 extends IInspectable implements IWebAccount {
-  IWebAccount2.fromPtr(super.ptr);
+  IWebAccount2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccount2Vtbl>().ref;
+
+  final _IWebAccount2Vtbl _vtable;
 
   factory IWebAccount2.from(IInspectable interface) =>
       interface.cast(IWebAccount2.fromPtr, IID_IWebAccount2);
@@ -35,17 +38,9 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +53,9 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Map<String, String>? get properties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,21 +76,10 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
       WebAccountPictureSize desizedSize) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 desizedSize,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desizedSize,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, desizedSize.value, asyncInfo);
+    final hr = _vtable.GetPictureAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desizedSize,
+                Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, desizedSize.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -119,17 +95,9 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Future<void> signOutAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.SignOutAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -142,17 +110,9 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   Future<void> signOutWithClientIdAsync(String clientId) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr clientId,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int clientId,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.SignOutWithClientIdAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int clientId,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, clientId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
@@ -173,4 +133,29 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
   @override
   WebAccountState get state => _iWebAccount.state;
+}
+
+final class _IWebAccount2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Properties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 desizedSize,
+              Pointer<COMObject> asyncInfo)>> GetPictureAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      SignOutAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr clientId,
+              Pointer<COMObject> asyncInfo)>> SignOutWithClientIdAsync;
 }

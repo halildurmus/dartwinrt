@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAppInstallerInfo = '{29ab2ac0-d4f6-42a3-adcd-d6583c659508}';
 
 class IAppInstallerInfo extends IInspectable {
-  IAppInstallerInfo.fromPtr(super.ptr);
+  IAppInstallerInfo.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppInstallerInfoVtbl>().ref;
+
+  final _IAppInstallerInfoVtbl _vtable;
 
   factory IAppInstallerInfo.from(IInspectable interface) =>
       interface.cast(IAppInstallerInfo.fromPtr, IID_IAppInstallerInfo);
@@ -28,17 +31,9 @@ class IAppInstallerInfo extends IInspectable {
   Uri? get uri {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Uri.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -52,4 +47,12 @@ class IAppInstallerInfo extends IInspectable {
 
     return value.toWinRTUri().toDartUri();
   }
+}
+
+final class _IAppInstallerInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Uri;
 }

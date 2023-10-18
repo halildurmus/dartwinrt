@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INumeralSystemTranslator = '{28f5bc2c-8c23-4234-ad2e-fa5a3a426e9b}';
 
 class INumeralSystemTranslator extends IInspectable {
-  INumeralSystemTranslator.fromPtr(super.ptr);
+  INumeralSystemTranslator.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INumeralSystemTranslatorVtbl>().ref;
+
+  final _INumeralSystemTranslatorVtbl _vtable;
 
   factory INumeralSystemTranslator.from(IInspectable interface) => interface
       .cast(INumeralSystemTranslator.fromPtr, IID_INumeralSystemTranslator);
@@ -28,17 +31,9 @@ class INumeralSystemTranslator extends IInspectable {
   List<String>? get languages {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Languages.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class INumeralSystemTranslator extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ResolvedLanguage.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +70,9 @@ class INumeralSystemTranslator extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_NumeralSystem.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -104,17 +83,9 @@ class INumeralSystemTranslator extends IInspectable {
   }
 
   set numeralSystem(String value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_NumeralSystem
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -123,17 +94,9 @@ class INumeralSystemTranslator extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<IntPtr> result)>()(lpVtbl, value.toHString(), result);
+      final hr = _vtable.TranslateNumerals.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<IntPtr> result)>()(lpVtbl, value.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -142,4 +105,28 @@ class INumeralSystemTranslator extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _INumeralSystemTranslatorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Languages;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ResolvedLanguage;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_NumeralSystem;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_NumeralSystem;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr value, Pointer<IntPtr> result)>>
+      TranslateNumerals;
 }

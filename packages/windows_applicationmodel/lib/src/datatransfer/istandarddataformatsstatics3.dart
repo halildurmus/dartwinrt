@@ -21,7 +21,10 @@ const IID_IStandardDataFormatsStatics3 =
     '{3b57b069-01d4-474c-8b5f-bc8e27f38b21}';
 
 class IStandardDataFormatsStatics3 extends IInspectable {
-  IStandardDataFormatsStatics3.fromPtr(super.ptr);
+  IStandardDataFormatsStatics3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStandardDataFormatsStatics3Vtbl>().ref;
+
+  final _IStandardDataFormatsStatics3Vtbl _vtable;
 
   factory IStandardDataFormatsStatics3.from(IInspectable interface) =>
       interface.cast(IStandardDataFormatsStatics3.fromPtr,
@@ -31,17 +34,9 @@ class IStandardDataFormatsStatics3 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_UserActivityJsonArray.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IStandardDataFormatsStatics3 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStandardDataFormatsStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_UserActivityJsonArray;
 }

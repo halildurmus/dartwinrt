@@ -23,7 +23,12 @@ const IID_ICoreAutomationConnectionBoundObjectProvider =
 /// Exposes the properties of a connection-bound object in a remote operation
 /// for a UI Automation provider.
 class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
-  ICoreAutomationConnectionBoundObjectProvider.fromPtr(super.ptr);
+  ICoreAutomationConnectionBoundObjectProvider.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_ICoreAutomationConnectionBoundObjectProviderVtbl>()
+            .ref;
+
+  final _ICoreAutomationConnectionBoundObjectProviderVtbl _vtable;
 
   factory ICoreAutomationConnectionBoundObjectProvider.from(
           IInspectable interface) =>
@@ -34,17 +39,9 @@ class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsComThreadingRequired.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,4 +50,12 @@ class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ICoreAutomationConnectionBoundObjectProviderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsComThreadingRequired;
 }

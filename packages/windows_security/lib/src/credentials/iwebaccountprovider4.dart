@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWebAccountProvider4 = '{718fd8db-e796-4210-b74e-84d29894b080}';
 
 class IWebAccountProvider4 extends IInspectable {
-  IWebAccountProvider4.fromPtr(super.ptr);
+  IWebAccountProvider4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountProvider4Vtbl>().ref;
+
+  final _IWebAccountProvider4Vtbl _vtable;
 
   factory IWebAccountProvider4.from(IInspectable interface) =>
       interface.cast(IWebAccountProvider4.fromPtr, IID_IWebAccountProvider4);
@@ -29,17 +32,9 @@ class IWebAccountProvider4 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsSystemProvider.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IWebAccountProvider4 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IWebAccountProvider4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsSystemProvider;
 }

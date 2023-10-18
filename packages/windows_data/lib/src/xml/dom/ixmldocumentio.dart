@@ -23,37 +23,25 @@ import 'xmlloadsettings.dart';
 const IID_IXmlDocumentIO = '{6cd0e74e-ee65-4489-9ebf-ca43e87ba637}';
 
 class IXmlDocumentIO extends IInspectable {
-  IXmlDocumentIO.fromPtr(super.ptr);
+  IXmlDocumentIO.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDocumentIOVtbl>().ref;
+
+  final _IXmlDocumentIOVtbl _vtable;
 
   factory IXmlDocumentIO.from(IInspectable interface) =>
       interface.cast(IXmlDocumentIO.fromPtr, IID_IXmlDocumentIO);
 
   void loadXml(String xml) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr xml)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int xml)>()(
-        lpVtbl, xml.toHString());
+    final hr = _vtable.LoadXml.asFunction<
+        int Function(VTablePointer lpVtbl, int xml)>()(lpVtbl, xml.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr xml,
-                            VTablePointer loadSettings)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int xml,
-                    VTablePointer loadSettings)>()(
+    final hr = _vtable.LoadXmlWithSettings.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int xml, VTablePointer loadSettings)>()(
         lpVtbl, xml.toHString(), loadSettings.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -62,21 +50,9 @@ class IXmlDocumentIO extends IInspectable {
   Future<void> saveToFileAsync(IStorageFile? file) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, file.lpVtbl, asyncInfo);
+    final hr = _vtable.SaveToFileAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer file,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -85,4 +61,19 @@ class IXmlDocumentIO extends IInspectable {
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
+}
+
+final class _IXmlDocumentIOVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr xml)>>
+      LoadXml;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr xml,
+              VTablePointer loadSettings)>> LoadXmlWithSettings;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> asyncInfo)>> SaveToFileAsync;
 }

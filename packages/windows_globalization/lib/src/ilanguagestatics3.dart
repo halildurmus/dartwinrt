@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguageStatics3 = '{d15ecb5a-71de-5752-9542-fac5b4f27261}';
 
 class ILanguageStatics3 extends IInspectable {
-  ILanguageStatics3.fromPtr(super.ptr);
+  ILanguageStatics3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguageStatics3Vtbl>().ref;
+
+  final _ILanguageStatics3Vtbl _vtable;
 
   factory ILanguageStatics3.from(IInspectable interface) =>
       interface.cast(ILanguageStatics3.fromPtr, IID_ILanguageStatics3);
@@ -29,20 +32,9 @@ class ILanguageStatics3 extends IInspectable {
       IIterable<String>? languageTags) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languageTags,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer languageTags,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, languageTags.lpVtbl, result);
+    final hr = _vtable.GetMuiCompatibleLanguageListFromLanguageTags.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer languageTags,
+            Pointer<COMObject> result)>()(lpVtbl, languageTags.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -52,4 +44,13 @@ class ILanguageStatics3 extends IInspectable {
     return IVector.fromPtr(result,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
+}
+
+final class _ILanguageStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer languageTags,
+                  Pointer<COMObject> result)>>
+      GetMuiCompatibleLanguageListFromLanguageTags;
 }

@@ -28,7 +28,10 @@ const IID_IGeolocatorWithScalarAccuracy =
 
 class IGeolocatorWithScalarAccuracy extends IInspectable
     implements IGeolocator {
-  IGeolocatorWithScalarAccuracy.fromPtr(super.ptr);
+  IGeolocatorWithScalarAccuracy.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeolocatorWithScalarAccuracyVtbl>().ref;
+
+  final _IGeolocatorWithScalarAccuracyVtbl _vtable;
 
   factory IGeolocatorWithScalarAccuracy.from(IInspectable interface) =>
       interface.cast(IGeolocatorWithScalarAccuracy.fromPtr,
@@ -37,17 +40,9 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   int? get desiredAccuracyInMeters {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DesiredAccuracyInMeters.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -65,16 +60,8 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   }
 
   set desiredAccuracyInMeters(int? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_DesiredAccuracyInMeters.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -128,4 +115,16 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   @override
   void remove_StatusChanged(int token) =>
       _iGeolocator.remove_StatusChanged(token);
+}
+
+final class _IGeolocatorWithScalarAccuracyVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DesiredAccuracyInMeters;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_DesiredAccuracyInMeters;
 }

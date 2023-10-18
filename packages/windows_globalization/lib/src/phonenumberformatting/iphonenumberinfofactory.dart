@@ -22,7 +22,10 @@ import 'phonenumberinfo.dart';
 const IID_IPhoneNumberInfoFactory = '{8202b964-adaa-4cff-8fcf-17e7516a28ff}';
 
 class IPhoneNumberInfoFactory extends IInspectable {
-  IPhoneNumberInfoFactory.fromPtr(super.ptr);
+  IPhoneNumberInfoFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhoneNumberInfoFactoryVtbl>().ref;
+
+  final _IPhoneNumberInfoFactoryVtbl _vtable;
 
   factory IPhoneNumberInfoFactory.from(IInspectable interface) => interface
       .cast(IPhoneNumberInfoFactory.fromPtr, IID_IPhoneNumberInfoFactory);
@@ -30,18 +33,9 @@ class IPhoneNumberInfoFactory extends IInspectable {
   PhoneNumberInfo create(String number) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int number,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, number.toHString(), result);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, int number,
+            Pointer<COMObject> result)>()(lpVtbl, number.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -50,4 +44,12 @@ class IPhoneNumberInfoFactory extends IInspectable {
 
     return PhoneNumberInfo.fromPtr(result);
   }
+}
+
+final class _IPhoneNumberInfoFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
+              Pointer<COMObject> result)>> Create;
 }

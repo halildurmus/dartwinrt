@@ -24,7 +24,10 @@ import 'geopoint.dart';
 const IID_IGeopointFactory = '{db6b8d33-76bd-4e30-8af7-a844dc37b7a0}';
 
 class IGeopointFactory extends IInspectable {
-  IGeopointFactory.fromPtr(super.ptr);
+  IGeopointFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeopointFactoryVtbl>().ref;
+
+  final _IGeopointFactoryVtbl _vtable;
 
   factory IGeopointFactory.from(IInspectable interface) =>
       interface.cast(IGeopointFactory.fromPtr, IID_IGeopointFactory);
@@ -33,21 +36,9 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeBasicGeoposition position,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeBasicGeoposition position,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, NativeBasicGeoposition position,
+                Pointer<COMObject> value)>()(
         lpVtbl, positionNativeStructPtr.ref, value);
 
     free(positionNativeStructPtr);
@@ -65,24 +56,13 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeBasicGeoposition position,
-                            Int32 altitudeReferenceSystem,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeBasicGeoposition position,
-                    int altitudeReferenceSystem,
-                    Pointer<COMObject> value)>()(lpVtbl,
-        positionNativeStructPtr.ref, altitudeReferenceSystem.value, value);
+    final hr = _vtable.CreateWithAltitudeReferenceSystem.asFunction<
+            int Function(VTablePointer lpVtbl, NativeBasicGeoposition position,
+                int altitudeReferenceSystem, Pointer<COMObject> value)>()(
+        lpVtbl,
+        positionNativeStructPtr.ref,
+        altitudeReferenceSystem.value,
+        value);
 
     free(positionNativeStructPtr);
 
@@ -101,18 +81,7 @@ class IGeopointFactory extends IInspectable {
     final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeBasicGeoposition position,
-                            Int32 altitudeReferenceSystem,
-                            Uint32 spatialReferenceId,
-                            Pointer<COMObject> value)>>>()
-            .value
+    final hr = _vtable.CreateWithAltitudeReferenceSystemAndSpatialReferenceId
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
@@ -135,4 +104,30 @@ class IGeopointFactory extends IInspectable {
 
     return Geopoint.fromPtr(value);
   }
+}
+
+final class _IGeopointFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeBasicGeoposition position,
+              Pointer<COMObject> value)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeBasicGeoposition position,
+              Int32 altitudeReferenceSystem,
+              Pointer<COMObject> value)>> CreateWithAltitudeReferenceSystem;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  NativeBasicGeoposition position,
+                  Int32 altitudeReferenceSystem,
+                  Uint32 spatialReferenceId,
+                  Pointer<COMObject> value)>>
+      CreateWithAltitudeReferenceSystemAndSpatialReferenceId;
 }

@@ -22,7 +22,10 @@ import 'stereoscopicvideopackingmode.dart';
 const IID_IVideoEncodingProperties3 = '{386bcdc4-873a-479f-b3eb-56c1fcbec6d7}';
 
 class IVideoEncodingProperties3 extends IInspectable {
-  IVideoEncodingProperties3.fromPtr(super.ptr);
+  IVideoEncodingProperties3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoEncodingProperties3Vtbl>().ref;
+
+  final _IVideoEncodingProperties3Vtbl _vtable;
 
   factory IVideoEncodingProperties3.from(IInspectable interface) => interface
       .cast(IVideoEncodingProperties3.fromPtr, IID_IVideoEncodingProperties3);
@@ -31,17 +34,9 @@ class IVideoEncodingProperties3 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_StereoscopicVideoPackingMode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IVideoEncodingProperties3 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IVideoEncodingProperties3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_StereoscopicVideoPackingMode;
 }

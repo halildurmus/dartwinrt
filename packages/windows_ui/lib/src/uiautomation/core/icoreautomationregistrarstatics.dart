@@ -23,7 +23,11 @@ const IID_ICoreAutomationRegistrarStatics =
     '{3e50129b-d6dc-5680-b580-ffff78300304}';
 
 class ICoreAutomationRegistrarStatics extends IInspectable {
-  ICoreAutomationRegistrarStatics.fromPtr(super.ptr);
+  ICoreAutomationRegistrarStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ICoreAutomationRegistrarStaticsVtbl>().ref;
+
+  final _ICoreAutomationRegistrarStaticsVtbl _vtable;
 
   factory ICoreAutomationRegistrarStatics.from(IInspectable interface) =>
       interface.cast(ICoreAutomationRegistrarStatics.fromPtr,
@@ -35,23 +39,12 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
     try {
       final guidNativeStructPtr = guid.toNativeGUID();
 
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          GUID guid,
-                          Pointer<NativeAutomationAnnotationTypeRegistration>
-                              result)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  GUID guid,
-                  Pointer<NativeAutomationAnnotationTypeRegistration>
-                      result)>()(lpVtbl, guidNativeStructPtr.ref, result);
+      final hr = _vtable.RegisterAnnotationType.asFunction<
+          int Function(
+              VTablePointer lpVtbl,
+              GUID guid,
+              Pointer<NativeAutomationAnnotationTypeRegistration>
+                  result)>()(lpVtbl, guidNativeStructPtr.ref, result);
 
       free(guidNativeStructPtr);
 
@@ -67,23 +60,27 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
       AutomationAnnotationTypeRegistration registration) {
     final registrationNativeStructPtr = registration.toNative();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeAutomationAnnotationTypeRegistration
-                                registration)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    NativeAutomationAnnotationTypeRegistration registration)>()(
+    final hr = _vtable.UnregisterAnnotationType.asFunction<
+            int Function(VTablePointer lpVtbl,
+                NativeAutomationAnnotationTypeRegistration registration)>()(
         lpVtbl, registrationNativeStructPtr.ref);
 
     free(registrationNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ICoreAutomationRegistrarStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, GUID guid,
+                  Pointer<NativeAutomationAnnotationTypeRegistration> result)>>
+      RegisterAnnotationType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl,
+                  NativeAutomationAnnotationTypeRegistration registration)>>
+      UnregisterAnnotationType;
 }

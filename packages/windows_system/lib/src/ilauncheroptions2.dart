@@ -21,7 +21,10 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_ILauncherOptions2 = '{3ba08eb4-6e40-4dce-a1a3-2f53950afb49}';
 
 class ILauncherOptions2 extends IInspectable {
-  ILauncherOptions2.fromPtr(super.ptr);
+  ILauncherOptions2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherOptions2Vtbl>().ref;
+
+  final _ILauncherOptions2Vtbl _vtable;
 
   factory ILauncherOptions2.from(IInspectable interface) =>
       interface.cast(ILauncherOptions2.fromPtr, IID_ILauncherOptions2);
@@ -30,17 +33,9 @@ class ILauncherOptions2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_TargetApplicationPackageFamilyName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -51,17 +46,9 @@ class ILauncherOptions2 extends IInspectable {
   }
 
   set targetApplicationPackageFamilyName(String value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_TargetApplicationPackageFamilyName
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -69,17 +56,9 @@ class ILauncherOptions2 extends IInspectable {
   StorageFileQueryResult? get neighboringFilesQuery {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_NeighboringFilesQuery.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -95,18 +74,29 @@ class ILauncherOptions2 extends IInspectable {
   }
 
   set neighboringFilesQuery(StorageFileQueryResult? value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_NeighboringFilesQuery.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILauncherOptions2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_TargetApplicationPackageFamilyName;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_TargetApplicationPackageFamilyName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_NeighboringFilesQuery;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_NeighboringFilesQuery;
 }

@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFolderPicker2 = '{8eb3ba97-dc85-4616-be94-9660881f2f5d}';
 
 class IFolderPicker2 extends IInspectable {
-  IFolderPicker2.fromPtr(super.ptr);
+  IFolderPicker2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFolderPicker2Vtbl>().ref;
+
+  final _IFolderPicker2Vtbl _vtable;
 
   factory IFolderPicker2.from(IInspectable interface) =>
       interface.cast(IFolderPicker2.fromPtr, IID_IFolderPicker2);
@@ -28,17 +31,9 @@ class IFolderPicker2 extends IInspectable {
   ValueSet? get continuationData {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ContinuationData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -55,12 +50,19 @@ class IFolderPicker2 extends IInspectable {
 
   @Deprecated("Instead, use PickSingleFolderAsync")
   void pickFolderAndContinue() {
-    final hr = vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.PickFolderAndContinue.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFolderPicker2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ContinuationData;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      PickFolderAndContinue;
 }

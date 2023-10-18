@@ -22,7 +22,10 @@ import 'deviceinformationkind.dart';
 const IID_IDeviceInformationUpdate2 = '{5d9d148c-a873-485e-baa6-aa620788e3cc}';
 
 class IDeviceInformationUpdate2 extends IInspectable {
-  IDeviceInformationUpdate2.fromPtr(super.ptr);
+  IDeviceInformationUpdate2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceInformationUpdate2Vtbl>().ref;
+
+  final _IDeviceInformationUpdate2Vtbl _vtable;
 
   factory IDeviceInformationUpdate2.from(IInspectable interface) => interface
       .cast(IDeviceInformationUpdate2.fromPtr, IID_IDeviceInformationUpdate2);
@@ -31,17 +34,9 @@ class IDeviceInformationUpdate2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Kind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IDeviceInformationUpdate2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDeviceInformationUpdate2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Kind;
 }

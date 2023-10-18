@@ -23,7 +23,10 @@ import 'queryoptions.dart';
 const IID_IStorageQueryResultBase = '{c297d70d-7353-47ab-ba58-8c61425dc54b}';
 
 class IStorageQueryResultBase extends IInspectable {
-  IStorageQueryResultBase.fromPtr(super.ptr);
+  IStorageQueryResultBase.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageQueryResultBaseVtbl>().ref;
+
+  final _IStorageQueryResultBaseVtbl _vtable;
 
   factory IStorageQueryResultBase.from(IInspectable interface) => interface
       .cast(IStorageQueryResultBase.fromPtr, IID_IStorageQueryResultBase);
@@ -31,17 +34,9 @@ class IStorageQueryResultBase extends IInspectable {
   Future<int> getItemCountAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetItemCountAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -56,17 +51,9 @@ class IStorageQueryResultBase extends IInspectable {
   StorageFolder? get folder {
     final container = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> container)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> container)>()(lpVtbl, container);
+    final hr = _vtable.get_Folder.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> container)>()(
+        lpVtbl, container);
 
     if (FAILED(hr)) {
       free(container);
@@ -85,19 +72,9 @@ class IStorageQueryResultBase extends IInspectable {
     final eventCookie = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> eventCookie)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> eventCookie)>()(
+      final hr = _vtable.add_ContentsChanged.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> eventCookie)>()(
           lpVtbl, handler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -109,14 +86,7 @@ class IStorageQueryResultBase extends IInspectable {
   }
 
   void remove_ContentsChanged(int eventCookie) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr eventCookie)>>>()
-            .value
+    final hr = _vtable.remove_ContentsChanged
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         lpVtbl, eventCookie);
 
@@ -127,21 +97,9 @@ class IStorageQueryResultBase extends IInspectable {
     final eventCookie = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer changedHandler,
-                              Pointer<IntPtr> eventCookie)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      VTablePointer changedHandler,
-                      Pointer<IntPtr> eventCookie)>()(
+      final hr = _vtable.add_OptionsChanged.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer changedHandler,
+                  Pointer<IntPtr> eventCookie)>()(
           lpVtbl, changedHandler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -153,14 +111,7 @@ class IStorageQueryResultBase extends IInspectable {
   }
 
   void remove_OptionsChanged(int eventCookie) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr eventCookie)>>>()
-            .value
+    final hr = _vtable.remove_OptionsChanged
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         lpVtbl, eventCookie);
 
@@ -170,21 +121,10 @@ class IStorageQueryResultBase extends IInspectable {
   Future<int> findStartIndexAsync(Object? value) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer value,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer value,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, value?.boxValue().lpVtbl ?? nullptr, operation);
+    final hr = _vtable.FindStartIndexAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, value?.boxValue().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -199,17 +139,9 @@ class IStorageQueryResultBase extends IInspectable {
   QueryOptions? getCurrentQueryOptions() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetCurrentQueryOptions.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -225,19 +157,52 @@ class IStorageQueryResultBase extends IInspectable {
   }
 
   void applyNewQueryOptions(QueryOptions? newQueryOptions) {
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            VTablePointer newQueryOptions)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, VTablePointer newQueryOptions)>()(
-        lpVtbl, newQueryOptions.lpVtbl);
+    final hr = _vtable.ApplyNewQueryOptions.asFunction<
+        int Function(VTablePointer lpVtbl,
+            VTablePointer newQueryOptions)>()(lpVtbl, newQueryOptions.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IStorageQueryResultBaseVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetItemCountAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> container)>> get_Folder;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> eventCookie)>> add_ContentsChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr eventCookie)>>
+      remove_ContentsChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer changedHandler,
+              Pointer<IntPtr> eventCookie)>> add_OptionsChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr eventCookie)>>
+      remove_OptionsChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<COMObject> operation)>> FindStartIndexAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetCurrentQueryOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, VTablePointer newQueryOptions)>>
+      ApplyNewQueryOptions;
 }

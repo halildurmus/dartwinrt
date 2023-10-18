@@ -24,7 +24,10 @@ import 'streams/irandomaccessstreamreference.dart';
 const IID_IStorageFileStatics = '{5984c710-daf2-43c8-8bb4-a4d3eacfd03f}';
 
 class IStorageFileStatics extends IInspectable {
-  IStorageFileStatics.fromPtr(super.ptr);
+  IStorageFileStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFileStaticsVtbl>().ref;
+
+  final _IStorageFileStaticsVtbl _vtable;
 
   factory IStorageFileStatics.from(IInspectable interface) =>
       interface.cast(IStorageFileStatics.fromPtr, IID_IStorageFileStatics);
@@ -32,17 +35,9 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr path,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int path,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetFileFromPathAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int path,
+                Pointer<COMObject> operation)>()(
         lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -58,21 +53,10 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer uri,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+    final hr = _vtable.GetFileFromApplicationUriAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -90,25 +74,13 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr displayNameWithExtension,
-                            VTablePointer dataRequested,
-                            VTablePointer thumbnail,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int displayNameWithExtension,
-                    VTablePointer dataRequested,
-                    VTablePointer thumbnail,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CreateStreamedFileAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int displayNameWithExtension,
+                VTablePointer dataRequested,
+                VTablePointer thumbnail,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         displayNameWithExtension.toHString(),
         dataRequested.ref.lpVtbl,
@@ -131,30 +103,14 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer fileToReplace,
-                            VTablePointer dataRequested,
-                            VTablePointer thumbnail,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer fileToReplace,
-                    VTablePointer dataRequested,
-                    VTablePointer thumbnail,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl,
-        fileToReplace.lpVtbl,
-        dataRequested.ref.lpVtbl,
-        thumbnail.lpVtbl,
-        operation);
+    final hr = _vtable.ReplaceWithStreamedFileAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer fileToReplace,
+                VTablePointer dataRequested,
+                VTablePointer thumbnail,
+                Pointer<COMObject> operation)>()(lpVtbl, fileToReplace.lpVtbl,
+        dataRequested.ref.lpVtbl, thumbnail.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -172,25 +128,13 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr displayNameWithExtension,
-                            VTablePointer uri,
-                            VTablePointer thumbnail,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int displayNameWithExtension,
-                    VTablePointer uri,
-                    VTablePointer thumbnail,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CreateStreamedFileFromUriAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int displayNameWithExtension,
+                VTablePointer uri,
+                VTablePointer thumbnail,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         displayNameWithExtension.toHString(),
         uri?.toWinRTUri().lpVtbl ?? nullptr,
@@ -213,30 +157,14 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer fileToReplace,
-                            VTablePointer uri,
-                            VTablePointer thumbnail,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer fileToReplace,
-                    VTablePointer uri,
-                    VTablePointer thumbnail,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl,
-        fileToReplace.lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr,
-        thumbnail.lpVtbl,
-        operation);
+    final hr = _vtable.ReplaceWithStreamedFileFromUriAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer fileToReplace,
+                VTablePointer uri,
+                VTablePointer thumbnail,
+                Pointer<COMObject> operation)>()(lpVtbl, fileToReplace.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr, thumbnail.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -247,4 +175,49 @@ class IStorageFileStatics extends IInspectable {
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFileStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr path,
+              Pointer<COMObject> operation)>> GetFileFromPathAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> operation)>> GetFileFromApplicationUriAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr displayNameWithExtension,
+              VTablePointer dataRequested,
+              VTablePointer thumbnail,
+              Pointer<COMObject> operation)>> CreateStreamedFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer fileToReplace,
+              VTablePointer dataRequested,
+              VTablePointer thumbnail,
+              Pointer<COMObject> operation)>> ReplaceWithStreamedFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr displayNameWithExtension,
+              VTablePointer uri,
+              VTablePointer thumbnail,
+              Pointer<COMObject> operation)>> CreateStreamedFileFromUriAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer fileToReplace,
+                  VTablePointer uri,
+                  VTablePointer thumbnail,
+                  Pointer<COMObject> operation)>>
+      ReplaceWithStreamedFileFromUriAsync;
 }

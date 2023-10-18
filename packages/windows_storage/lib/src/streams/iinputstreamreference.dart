@@ -22,7 +22,10 @@ import 'iinputstream.dart';
 const IID_IInputStreamReference = '{43929d18-5ec9-4b5a-919c-4205b0c804b6}';
 
 class IInputStreamReference extends IInspectable {
-  IInputStreamReference.fromPtr(super.ptr);
+  IInputStreamReference.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IInputStreamReferenceVtbl>().ref;
+
+  final _IInputStreamReferenceVtbl _vtable;
 
   factory IInputStreamReference.from(IInspectable interface) =>
       interface.cast(IInputStreamReference.fromPtr, IID_IInputStreamReference);
@@ -30,17 +33,9 @@ class IInputStreamReference extends IInspectable {
   Future<IInputStream?> openSequentialReadAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.OpenSequentialReadAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -51,4 +46,13 @@ class IInputStreamReference extends IInspectable {
         creator: IInputStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IInputStreamReferenceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      OpenSequentialReadAsync;
 }

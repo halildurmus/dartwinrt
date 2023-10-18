@@ -11,7 +11,7 @@ void main() {
     // Insert some items
     ..insert('England', 'London')
     ..insert('France', 'Paris')
-    ..insert('Turkey', 'Istanbul')
+    ..insert('Türkiye', 'Istanbul')
     ..insert('United States', 'Washington DC');
 
   // You can also use the `fromMap` constructor to create an IMap from an
@@ -19,7 +19,7 @@ void main() {
   // final map = IMap<String, String>.fromMap({
   //   'England': 'London',
   //   'France': 'Paris',
-  //   'Turkey': 'Istanbul',
+  //   'Türkiye': 'Istanbul',
   //   'United States': 'Washington DC'
   // });
 
@@ -40,7 +40,7 @@ void main() {
   }
 
   // Check if IMap contains a specific key
-  print(map.hasKey('Turkey'));
+  print(map.hasKey('Türkiye'));
 
   // Update an existing item using insert method
   map.insert('United States', 'Washington, DC');

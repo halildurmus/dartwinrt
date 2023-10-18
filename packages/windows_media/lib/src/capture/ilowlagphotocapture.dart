@@ -22,7 +22,10 @@ import 'capturedphoto.dart';
 const IID_ILowLagPhotoCapture = '{a37251b7-6b44-473d-8f24-f703d6c0ec44}';
 
 class ILowLagPhotoCapture extends IInspectable {
-  ILowLagPhotoCapture.fromPtr(super.ptr);
+  ILowLagPhotoCapture.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILowLagPhotoCaptureVtbl>().ref;
+
+  final _ILowLagPhotoCaptureVtbl _vtable;
 
   factory ILowLagPhotoCapture.from(IInspectable interface) =>
       interface.cast(ILowLagPhotoCapture.fromPtr, IID_ILowLagPhotoCapture);
@@ -30,17 +33,9 @@ class ILowLagPhotoCapture extends IInspectable {
   Future<CapturedPhoto?> captureAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.CaptureAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -55,17 +50,9 @@ class ILowLagPhotoCapture extends IInspectable {
   Future<void> finishAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FinishAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -74,4 +61,17 @@ class ILowLagPhotoCapture extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _ILowLagPhotoCaptureVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      CaptureAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> FinishAsync;
 }

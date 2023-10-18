@@ -24,7 +24,10 @@ import 'storagelibrarychangetype.dart';
 const IID_IStorageLibraryChange = '{00980b23-2be2-4909-aa48-159f5203a51e}';
 
 class IStorageLibraryChange extends IInspectable {
-  IStorageLibraryChange.fromPtr(super.ptr);
+  IStorageLibraryChange.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageLibraryChangeVtbl>().ref;
+
+  final _IStorageLibraryChangeVtbl _vtable;
 
   factory IStorageLibraryChange.from(IInspectable interface) =>
       interface.cast(IStorageLibraryChange.fromPtr, IID_IStorageLibraryChange);
@@ -33,17 +36,9 @@ class IStorageLibraryChange extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ChangeType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IStorageLibraryChange extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Path.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +68,9 @@ class IStorageLibraryChange extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_PreviousPath.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +84,9 @@ class IStorageLibraryChange extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 type,
-                          Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int type,
-                  Pointer<Bool> value)>()(lpVtbl, type.value, value);
+      final hr = _vtable.IsOfType.asFunction<
+          int Function(VTablePointer lpVtbl, int type,
+              Pointer<Bool> value)>()(lpVtbl, type.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -128,17 +99,9 @@ class IStorageLibraryChange extends IInspectable {
   Future<IStorageItem?> getStorageItemAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetStorageItemAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -149,4 +112,30 @@ class IStorageLibraryChange extends IInspectable {
         creator: IStorageItem.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageLibraryChangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ChangeType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Path;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_PreviousPath;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 type, Pointer<Bool> value)>>
+      IsOfType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetStorageItemAsync;
 }

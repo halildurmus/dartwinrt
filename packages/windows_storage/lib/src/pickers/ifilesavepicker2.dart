@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFileSavePicker2 = '{0ec313a2-d24b-449a-8197-e89104fd42cc}';
 
 class IFileSavePicker2 extends IInspectable {
-  IFileSavePicker2.fromPtr(super.ptr);
+  IFileSavePicker2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFileSavePicker2Vtbl>().ref;
+
+  final _IFileSavePicker2Vtbl _vtable;
 
   factory IFileSavePicker2.from(IInspectable interface) =>
       interface.cast(IFileSavePicker2.fromPtr, IID_IFileSavePicker2);
@@ -28,17 +31,9 @@ class IFileSavePicker2 extends IInspectable {
   ValueSet? get continuationData {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ContinuationData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -55,12 +50,19 @@ class IFileSavePicker2 extends IInspectable {
 
   @Deprecated("Instead, use PickSaveFileAsync")
   void pickSaveFileAndContinue() {
-    final hr = vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.PickSaveFileAndContinue.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFileSavePicker2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ContinuationData;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      PickSaveFileAndContinue;
 }

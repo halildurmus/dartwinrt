@@ -22,7 +22,10 @@ import 'pdfpage.dart';
 const IID_IPdfDocument = '{ac7ebedd-80fa-4089-846e-81b77ff5a86c}';
 
 class IPdfDocument extends IInspectable {
-  IPdfDocument.fromPtr(super.ptr);
+  IPdfDocument.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPdfDocumentVtbl>().ref;
+
+  final _IPdfDocumentVtbl _vtable;
 
   factory IPdfDocument.from(IInspectable interface) =>
       interface.cast(IPdfDocument.fromPtr, IID_IPdfDocument);
@@ -30,17 +33,9 @@ class IPdfDocument extends IInspectable {
   PdfPage? getPage(int pageIndex) {
     final pdfPage = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 pageIndex,
-                        Pointer<COMObject> pdfPage)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int pageIndex,
-                Pointer<COMObject> pdfPage)>()(lpVtbl, pageIndex, pdfPage);
+    final hr = _vtable.GetPage.asFunction<
+        int Function(VTablePointer lpVtbl, int pageIndex,
+            Pointer<COMObject> pdfPage)>()(lpVtbl, pageIndex, pdfPage);
 
     if (FAILED(hr)) {
       free(pdfPage);
@@ -59,17 +54,9 @@ class IPdfDocument extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_PageCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +70,9 @@ class IPdfDocument extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsPasswordProtected.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -102,4 +81,20 @@ class IPdfDocument extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPdfDocumentVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 pageIndex,
+              Pointer<COMObject> pdfPage)>> GetPage;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_PageCount;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsPasswordProtected;
 }

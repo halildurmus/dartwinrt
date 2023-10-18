@@ -23,7 +23,11 @@ const IID_IPackageUpdateAvailabilityResult =
     '{114e5009-199a-48a1-a079-313c45634a71}';
 
 class IPackageUpdateAvailabilityResult extends IInspectable {
-  IPackageUpdateAvailabilityResult.fromPtr(super.ptr);
+  IPackageUpdateAvailabilityResult.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IPackageUpdateAvailabilityResultVtbl>().ref;
+
+  final _IPackageUpdateAvailabilityResultVtbl _vtable;
 
   factory IPackageUpdateAvailabilityResult.from(IInspectable interface) =>
       interface.cast(IPackageUpdateAvailabilityResult.fromPtr,
@@ -33,17 +37,9 @@ class IPackageUpdateAvailabilityResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Availability.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +53,9 @@ class IPackageUpdateAvailabilityResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ExtendedError.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -76,4 +64,16 @@ class IPackageUpdateAvailabilityResult extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPackageUpdateAvailabilityResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Availability;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ExtendedError;
 }

@@ -23,7 +23,12 @@ const IID_INetworkOperatorTetheringAccessPointConfiguration2 =
     '{b1809142-7238-59a0-928b-74ab46fd64b6}';
 
 class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
-  INetworkOperatorTetheringAccessPointConfiguration2.fromPtr(super.ptr);
+  INetworkOperatorTetheringAccessPointConfiguration2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringAccessPointConfiguration2Vtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringAccessPointConfiguration2Vtbl _vtable;
 
   factory INetworkOperatorTetheringAccessPointConfiguration2.from(
           IInspectable interface) =>
@@ -34,17 +39,9 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 band,
-                          Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int band,
-                  Pointer<Bool> result)>()(lpVtbl, band.value, result);
+      final hr = _vtable.IsBandSupported.asFunction<
+          int Function(VTablePointer lpVtbl, int band,
+              Pointer<Bool> result)>()(lpVtbl, band.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +54,9 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
   Future<bool> isBandSupportedAsync(TetheringWiFiBand band) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 band,
-                        Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int band,
-                Pointer<COMObject> operation)>()(lpVtbl, band.value, operation);
+    final hr = _vtable.IsBandSupportedAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int band,
+            Pointer<COMObject> operation)>()(lpVtbl, band.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -82,17 +71,9 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Band.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,16 +84,31 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
   }
 
   set band(TetheringWiFiBand value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Band
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _INetworkOperatorTetheringAccessPointConfiguration2Vtbl
+    extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 band, Pointer<Bool> result)>>
+      IsBandSupported;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 band,
+              Pointer<COMObject> operation)>> IsBandSupportedAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Band;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Band;
 }

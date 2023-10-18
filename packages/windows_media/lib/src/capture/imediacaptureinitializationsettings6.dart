@@ -21,7 +21,12 @@ const IID_IMediaCaptureInitializationSettings6 =
     '{b2e26b47-3db1-4d33-ab63-0ffa09056585}';
 
 class IMediaCaptureInitializationSettings6 extends IInspectable {
-  IMediaCaptureInitializationSettings6.fromPtr(super.ptr);
+  IMediaCaptureInitializationSettings6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IMediaCaptureInitializationSettings6Vtbl>()
+            .ref;
+
+  final _IMediaCaptureInitializationSettings6Vtbl _vtable;
 
   factory IMediaCaptureInitializationSettings6.from(IInspectable interface) =>
       interface.cast(IMediaCaptureInitializationSettings6.fromPtr,
@@ -31,17 +36,9 @@ class IMediaCaptureInitializationSettings6 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AlwaysPlaySystemShutterSound.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,16 +49,21 @@ class IMediaCaptureInitializationSettings6 extends IInspectable {
   }
 
   set alwaysPlaySystemShutterSound(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_AlwaysPlaySystemShutterSound
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaCaptureInitializationSettings6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AlwaysPlaySystemShutterSound;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_AlwaysPlaySystemShutterSound;
 }

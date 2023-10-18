@@ -23,7 +23,10 @@ const IID_IMediaFrameSourceGroupStatics =
     '{1c48bfc5-436f-4508-94cf-d5d8b7326445}';
 
 class IMediaFrameSourceGroupStatics extends IInspectable {
-  IMediaFrameSourceGroupStatics.fromPtr(super.ptr);
+  IMediaFrameSourceGroupStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceGroupStaticsVtbl>().ref;
+
+  final _IMediaFrameSourceGroupStaticsVtbl _vtable;
 
   factory IMediaFrameSourceGroupStatics.from(IInspectable interface) =>
       interface.cast(IMediaFrameSourceGroupStatics.fromPtr,
@@ -32,17 +35,9 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
   Future<List<MediaFrameSourceGroup?>> findAllAsync() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.FindAllAsync.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
   Future<MediaFrameSourceGroup?> fromIdAsync(String id) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr id,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int id,
-                Pointer<COMObject> value)>()(lpVtbl, id.toHString(), value);
+    final hr = _vtable.FromIdAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int id,
+            Pointer<COMObject> value)>()(lpVtbl, id.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -87,17 +74,9 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetDeviceSelector.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -106,4 +85,21 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaFrameSourceGroupStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      FindAllAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr id, Pointer<COMObject> value)>>
+      FromIdAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetDeviceSelector;
 }

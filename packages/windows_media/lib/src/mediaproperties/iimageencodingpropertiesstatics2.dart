@@ -24,7 +24,11 @@ const IID_IImageEncodingPropertiesStatics2 =
     '{f6c25b29-3824-46b0-956e-501329e1be3c}';
 
 class IImageEncodingPropertiesStatics2 extends IInspectable {
-  IImageEncodingPropertiesStatics2.fromPtr(super.ptr);
+  IImageEncodingPropertiesStatics2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IImageEncodingPropertiesStatics2Vtbl>().ref;
+
+  final _IImageEncodingPropertiesStatics2Vtbl _vtable;
 
   factory IImageEncodingPropertiesStatics2.from(IInspectable interface) =>
       interface.cast(IImageEncodingPropertiesStatics2.fromPtr,
@@ -33,17 +37,9 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
   ImageEncodingProperties? createUncompressed(MediaPixelFormat format) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 format,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int format,
-                Pointer<COMObject> value)>()(lpVtbl, format.value, value);
+    final hr = _vtable.CreateUncompressed.asFunction<
+        int Function(VTablePointer lpVtbl, int format,
+            Pointer<COMObject> value)>()(lpVtbl, format.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,17 +57,9 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
   ImageEncodingProperties? createBmp() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateBmp.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -85,4 +73,16 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
 
     return ImageEncodingProperties.fromPtr(value);
   }
+}
+
+final class _IImageEncodingPropertiesStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 format,
+              Pointer<COMObject> value)>> CreateUncompressed;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateBmp;
 }

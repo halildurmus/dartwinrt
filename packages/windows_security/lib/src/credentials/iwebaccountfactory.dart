@@ -24,7 +24,10 @@ import 'webaccountstate.dart';
 const IID_IWebAccountFactory = '{ac9afb39-1de9-4e92-b78f-0581a87f6e5c}';
 
 class IWebAccountFactory extends IInspectable {
-  IWebAccountFactory.fromPtr(super.ptr);
+  IWebAccountFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountFactoryVtbl>().ref;
+
+  final _IWebAccountFactoryVtbl _vtable;
 
   factory IWebAccountFactory.from(IInspectable interface) =>
       interface.cast(IWebAccountFactory.fromPtr, IID_IWebAccountFactory);
@@ -33,25 +36,9 @@ class IWebAccountFactory extends IInspectable {
       String userName, WebAccountState state) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer webAccountProvider,
-                            IntPtr userName,
-                            Int32 state,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer webAccountProvider,
-                    int userName,
-                    int state,
-                    Pointer<COMObject> instance)>()(lpVtbl,
+    final hr = _vtable.CreateWebAccount.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer webAccountProvider,
+                int userName, int state, Pointer<COMObject> instance)>()(lpVtbl,
         webAccountProvider.lpVtbl, userName.toHString(), state.value, instance);
 
     if (FAILED(hr)) {
@@ -61,4 +48,16 @@ class IWebAccountFactory extends IInspectable {
 
     return WebAccount.fromPtr(instance);
   }
+}
+
+final class _IWebAccountFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer webAccountProvider,
+              IntPtr userName,
+              Int32 state,
+              Pointer<COMObject> instance)>> CreateWebAccount;
 }

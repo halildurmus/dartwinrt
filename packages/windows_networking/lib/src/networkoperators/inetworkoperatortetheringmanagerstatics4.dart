@@ -21,7 +21,12 @@ const IID_INetworkOperatorTetheringManagerStatics4 =
     '{b3b9f9d0-ebff-46a4-a847-d663d8b0977e}';
 
 class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
-  INetworkOperatorTetheringManagerStatics4.fromPtr(super.ptr);
+  INetworkOperatorTetheringManagerStatics4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringManagerStatics4Vtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringManagerStatics4Vtbl _vtable;
 
   factory INetworkOperatorTetheringManagerStatics4.from(
           IInspectable interface) =>
@@ -32,17 +37,9 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Bool> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.IsNoConnectionsTimeoutEnabled.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,11 +50,8 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   }
 
   void enableNoConnectionsTimeout() {
-    final hr = vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.EnableNoConnectionsTimeout.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -65,17 +59,9 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   Future<void> enableNoConnectionsTimeoutAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.EnableNoConnectionsTimeoutAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -86,11 +72,8 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   }
 
   void disableNoConnectionsTimeout() {
-    final hr = vtable
-        .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.DisableNoConnectionsTimeout.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -98,17 +81,9 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
   Future<void> disableNoConnectionsTimeoutAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.DisableNoConnectionsTimeoutAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -117,4 +92,26 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _INetworkOperatorTetheringManagerStatics4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> result)>>
+      IsNoConnectionsTimeoutEnabled;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      EnableNoConnectionsTimeout;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      EnableNoConnectionsTimeoutAsync;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      DisableNoConnectionsTimeout;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      DisableNoConnectionsTimeoutAsync;
 }

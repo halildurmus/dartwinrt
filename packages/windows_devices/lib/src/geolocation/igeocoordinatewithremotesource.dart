@@ -21,7 +21,11 @@ const IID_IGeocoordinateWithRemoteSource =
     '{397cebd7-ee38-5f3b-8900-c4a7bc9cf953}';
 
 class IGeocoordinateWithRemoteSource extends IInspectable {
-  IGeocoordinateWithRemoteSource.fromPtr(super.ptr);
+  IGeocoordinateWithRemoteSource.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IGeocoordinateWithRemoteSourceVtbl>().ref;
+
+  final _IGeocoordinateWithRemoteSourceVtbl _vtable;
 
   factory IGeocoordinateWithRemoteSource.from(IInspectable interface) =>
       interface.cast(IGeocoordinateWithRemoteSource.fromPtr,
@@ -31,17 +35,9 @@ class IGeocoordinateWithRemoteSource extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsRemoteSource.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +46,12 @@ class IGeocoordinateWithRemoteSource extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IGeocoordinateWithRemoteSourceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsRemoteSource;
 }

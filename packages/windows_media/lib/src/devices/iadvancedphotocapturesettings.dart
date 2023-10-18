@@ -23,7 +23,10 @@ const IID_IAdvancedPhotoCaptureSettings =
     '{08f3863a-0018-445b-93d2-646d1c5ed05c}';
 
 class IAdvancedPhotoCaptureSettings extends IInspectable {
-  IAdvancedPhotoCaptureSettings.fromPtr(super.ptr);
+  IAdvancedPhotoCaptureSettings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAdvancedPhotoCaptureSettingsVtbl>().ref;
+
+  final _IAdvancedPhotoCaptureSettingsVtbl _vtable;
 
   factory IAdvancedPhotoCaptureSettings.from(IInspectable interface) =>
       interface.cast(IAdvancedPhotoCaptureSettings.fromPtr,
@@ -33,17 +36,9 @@ class IAdvancedPhotoCaptureSettings extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Mode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,16 +49,21 @@ class IAdvancedPhotoCaptureSettings extends IInspectable {
   }
 
   set mode(AdvancedPhotoMode value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Mode
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IAdvancedPhotoCaptureSettingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Mode;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Mode;
 }

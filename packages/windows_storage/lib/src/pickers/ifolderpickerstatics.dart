@@ -23,7 +23,10 @@ import 'folderpicker.dart';
 const IID_IFolderPickerStatics = '{9be34740-7ca1-5942-a3c8-46f2551ecff3}';
 
 class IFolderPickerStatics extends IInspectable {
-  IFolderPickerStatics.fromPtr(super.ptr);
+  IFolderPickerStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFolderPickerStaticsVtbl>().ref;
+
+  final _IFolderPickerStaticsVtbl _vtable;
 
   factory IFolderPickerStatics.from(IInspectable interface) =>
       interface.cast(IFolderPickerStatics.fromPtr, IID_IFolderPickerStatics);
@@ -31,17 +34,9 @@ class IFolderPickerStatics extends IInspectable {
   FolderPicker? createForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer user,
-                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
+    final hr = _vtable.CreateForUser.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer user,
+            Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -55,4 +50,12 @@ class IFolderPickerStatics extends IInspectable {
 
     return FolderPicker.fromPtr(result);
   }
+}
+
+final class _IFolderPickerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> result)>> CreateForUser;
 }

@@ -22,7 +22,10 @@ import 'currencyformatter.dart';
 const IID_ICurrencyFormatterFactory = '{86c7537e-b938-4aa2-84b0-2c33dc5b1450}';
 
 class ICurrencyFormatterFactory extends IInspectable {
-  ICurrencyFormatterFactory.fromPtr(super.ptr);
+  ICurrencyFormatterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICurrencyFormatterFactoryVtbl>().ref;
+
+  final _ICurrencyFormatterFactoryVtbl _vtable;
 
   factory ICurrencyFormatterFactory.from(IInspectable interface) => interface
       .cast(ICurrencyFormatterFactory.fromPtr, IID_ICurrencyFormatterFactory);
@@ -30,20 +33,10 @@ class ICurrencyFormatterFactory extends IInspectable {
   CurrencyFormatter createCurrencyFormatterCode(String currencyCode) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr currencyCode,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int currencyCode,
-                Pointer<COMObject>
-                    result)>()(lpVtbl, currencyCode.toHString(), result);
+    final hr = _vtable.CreateCurrencyFormatterCode.asFunction<
+            int Function(VTablePointer lpVtbl, int currencyCode,
+                Pointer<COMObject> result)>()(
+        lpVtbl, currencyCode.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -57,30 +50,14 @@ class ICurrencyFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr currencyCode,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int currencyCode,
-                    VTablePointer languages,
-                    int geographicRegion,
-                    Pointer<COMObject> result)>()(
-        lpVtbl,
-        currencyCode.toHString(),
-        languages.lpVtbl,
-        geographicRegion.toHString(),
-        result);
+    final hr = _vtable.CreateCurrencyFormatterCodeContext.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int currencyCode,
+                VTablePointer languages,
+                int geographicRegion,
+                Pointer<COMObject> result)>()(lpVtbl, currencyCode.toHString(),
+        languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -89,4 +66,20 @@ class ICurrencyFormatterFactory extends IInspectable {
 
     return CurrencyFormatter.fromPtr(result);
   }
+}
+
+final class _ICurrencyFormatterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr currencyCode,
+              Pointer<COMObject> result)>> CreateCurrencyFormatterCode;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr currencyCode,
+              VTablePointer languages,
+              IntPtr geographicRegion,
+              Pointer<COMObject> result)>> CreateCurrencyFormatterCodeContext;
 }

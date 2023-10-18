@@ -23,7 +23,10 @@ import 'tensorboolean.dart';
 const IID_ITensorBooleanStatics2 = '{a3a4a501-6a2d-52d7-b04b-c435baee0115}';
 
 class ITensorBooleanStatics2 extends IInspectable {
-  ITensorBooleanStatics2.fromPtr(super.ptr);
+  ITensorBooleanStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorBooleanStatics2Vtbl>().ref;
+
+  final _ITensorBooleanStatics2Vtbl _vtable;
 
   factory ITensorBooleanStatics2.from(IInspectable interface) => interface.cast(
       ITensorBooleanStatics2.fromPtr, IID_ITensorBooleanStatics2);
@@ -34,27 +37,14 @@ class ITensorBooleanStatics2 extends IInspectable {
     final shapeArray = shape.toArray<Int64>();
     final dataArray = data.toArray();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 shapeSize,
-                            Pointer<Int64> shape,
-                            Uint32 dataSize,
-                            Pointer<Bool> data,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int shapeSize,
-                    Pointer<Int64> shape,
-                    int dataSize,
-                    Pointer<Bool> data,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromShapeArrayAndDataArray.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int shapeSize,
+                Pointer<Int64> shape,
+                int dataSize,
+                Pointer<Bool> data,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.length, shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
@@ -77,25 +67,13 @@ class ITensorBooleanStatics2 extends IInspectable {
     final result = calloc<COMObject>();
     final shapeArray = shape.toArray<Int64>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 shapeSize,
-                            Pointer<Int64> shape,
-                            VTablePointer buffer,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int shapeSize,
-                    Pointer<Int64> shape,
-                    VTablePointer buffer,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromBuffer.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int shapeSize,
+                Pointer<Int64> shape,
+                VTablePointer buffer,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.length, shapeArray, buffer.lpVtbl, result);
 
     free(shapeArray);
@@ -112,4 +90,25 @@ class ITensorBooleanStatics2 extends IInspectable {
 
     return TensorBoolean.fromPtr(result);
   }
+}
+
+final class _ITensorBooleanStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 shapeSize,
+              Pointer<Int64> shape,
+              Uint32 dataSize,
+              Pointer<Bool> data,
+              Pointer<COMObject> result)>> CreateFromShapeArrayAndDataArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 shapeSize,
+              Pointer<Int64> shape,
+              VTablePointer buffer,
+              Pointer<COMObject> result)>> CreateFromBuffer;
 }

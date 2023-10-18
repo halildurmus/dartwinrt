@@ -22,7 +22,10 @@ import 'ocrword.dart';
 const IID_IOcrLine = '{0043a16f-e31f-3a24-899c-d444bd088124}';
 
 class IOcrLine extends IInspectable {
-  IOcrLine.fromPtr(super.ptr);
+  IOcrLine.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IOcrLineVtbl>().ref;
+
+  final _IOcrLineVtbl _vtable;
 
   factory IOcrLine.from(IInspectable interface) =>
       interface.cast(IOcrLine.fromPtr, IID_IOcrLine);
@@ -30,17 +33,9 @@ class IOcrLine extends IInspectable {
   List<OcrWord?>? get words {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Words.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,17 +57,9 @@ class IOcrLine extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Text.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,4 +68,16 @@ class IOcrLine extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IOcrLineVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Words;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Text;
 }

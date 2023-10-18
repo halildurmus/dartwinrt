@@ -22,7 +22,10 @@ import '../mediacapturevideoprofilemediadescription.dart';
 const IID_IMediaFrameSourceInfo2 = '{195a7855-6457-42c6-a769-19b65bd32e6e}';
 
 class IMediaFrameSourceInfo2 extends IInspectable {
-  IMediaFrameSourceInfo2.fromPtr(super.ptr);
+  IMediaFrameSourceInfo2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceInfo2Vtbl>().ref;
+
+  final _IMediaFrameSourceInfo2Vtbl _vtable;
 
   factory IMediaFrameSourceInfo2.from(IInspectable interface) => interface.cast(
       IMediaFrameSourceInfo2.fromPtr, IID_IMediaFrameSourceInfo2);
@@ -31,17 +34,9 @@ class IMediaFrameSourceInfo2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ProfileId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IMediaFrameSourceInfo2 extends IInspectable {
       get videoProfileMediaDescription {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoProfileMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -82,4 +69,16 @@ class IMediaFrameSourceInfo2 extends IInspectable {
             creator: MediaCaptureVideoProfileMediaDescription.fromPtr)
         .toList();
   }
+}
+
+final class _IMediaFrameSourceInfo2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ProfileId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoProfileMediaDescription;
 }

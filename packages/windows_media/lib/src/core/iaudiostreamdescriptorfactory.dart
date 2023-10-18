@@ -24,7 +24,10 @@ const IID_IAudioStreamDescriptorFactory =
     '{4a86ce9e-4cb1-4380-8e0c-83504b7f5bf3}';
 
 class IAudioStreamDescriptorFactory extends IInspectable {
-  IAudioStreamDescriptorFactory.fromPtr(super.ptr);
+  IAudioStreamDescriptorFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioStreamDescriptorFactoryVtbl>().ref;
+
+  final _IAudioStreamDescriptorFactoryVtbl _vtable;
 
   factory IAudioStreamDescriptorFactory.from(IInspectable interface) =>
       interface.cast(IAudioStreamDescriptorFactory.fromPtr,
@@ -33,21 +36,9 @@ class IAudioStreamDescriptorFactory extends IInspectable {
   AudioStreamDescriptor create(AudioEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProperties,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProperties,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProperties,
+                Pointer<COMObject> result)>()(
         lpVtbl, encodingProperties.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -57,4 +48,14 @@ class IAudioStreamDescriptorFactory extends IInspectable {
 
     return AudioStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _IAudioStreamDescriptorFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer encodingProperties,
+              Pointer<COMObject> result)>> Create;
 }

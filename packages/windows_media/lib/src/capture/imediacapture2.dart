@@ -31,7 +31,10 @@ import 'mediastreamtype.dart';
 const IID_IMediaCapture2 = '{9cc68260-7da1-4043-b652-21b8878daff9}';
 
 class IMediaCapture2 extends IInspectable {
-  IMediaCapture2.fromPtr(super.ptr);
+  IMediaCapture2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapture2Vtbl>().ref;
+
+  final _IMediaCapture2Vtbl _vtable;
 
   factory IMediaCapture2.from(IInspectable interface) =>
       interface.cast(IMediaCapture2.fromPtr, IID_IMediaCapture2);
@@ -40,23 +43,9 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IStorageFile? file) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProfile,
-                            VTablePointer file,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProfile,
-                    VTablePointer file,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.PrepareLowLagRecordToStorageFileAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProfile,
+                VTablePointer file, Pointer<COMObject> operation)>()(
         lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -74,23 +63,9 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IRandomAccessStream? stream) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProfile,
-                            VTablePointer stream,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProfile,
-                    VTablePointer stream,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.PrepareLowLagRecordToStreamAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProfile,
+                VTablePointer stream, Pointer<COMObject> operation)>()(
         lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -108,23 +83,9 @@ class IMediaCapture2 extends IInspectable {
       MediaEncodingProfile? encodingProfile, IMediaExtension? customMediaSink) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProfile,
-                            VTablePointer customMediaSink,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProfile,
-                    VTablePointer customMediaSink,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.PrepareLowLagRecordToCustomSinkAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProfile,
+                VTablePointer customMediaSink, Pointer<COMObject> operation)>()(
         lpVtbl, encodingProfile.lpVtbl, customMediaSink.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -144,25 +105,13 @@ class IMediaCapture2 extends IInspectable {
       IPropertySet? customSinkSettings) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProfile,
-                            IntPtr customSinkActivationId,
-                            VTablePointer customSinkSettings,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProfile,
-                    int customSinkActivationId,
-                    VTablePointer customSinkSettings,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.PrepareLowLagRecordToCustomSinkIdAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer encodingProfile,
+                int customSinkActivationId,
+                VTablePointer customSinkSettings,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         encodingProfile.lpVtbl,
         customSinkActivationId.toHString(),
@@ -184,21 +133,9 @@ class IMediaCapture2 extends IInspectable {
       ImageEncodingProperties? type) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer type,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer type,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, type.lpVtbl, operation);
+    final hr = _vtable.PrepareLowLagPhotoCaptureAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer type,
+            Pointer<COMObject> operation)>()(lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -215,21 +152,9 @@ class IMediaCapture2 extends IInspectable {
       ImageEncodingProperties? type) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer type,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer type,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, type.lpVtbl, operation);
+    final hr = _vtable.PrepareLowLagPhotoSequenceCaptureAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer type,
+            Pointer<COMObject> operation)>()(lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -248,30 +173,14 @@ class IMediaCapture2 extends IInspectable {
       MediaPropertySet? encoderProperties) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 mediaStreamType,
-                            VTablePointer mediaEncodingProperties,
-                            VTablePointer encoderProperties,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int mediaStreamType,
-                    VTablePointer mediaEncodingProperties,
-                    VTablePointer encoderProperties,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl,
-        mediaStreamType.value,
-        mediaEncodingProperties.lpVtbl,
-        encoderProperties.lpVtbl,
-        operation);
+    final hr = _vtable.SetEncodingPropertiesAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int mediaStreamType,
+                VTablePointer mediaEncodingProperties,
+                VTablePointer encoderProperties,
+                Pointer<COMObject> operation)>()(lpVtbl, mediaStreamType.value,
+        mediaEncodingProperties.lpVtbl, encoderProperties.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -280,4 +189,57 @@ class IMediaCapture2 extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IMediaCapture2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer encodingProfile,
+                  VTablePointer file,
+                  Pointer<COMObject> operation)>>
+      PrepareLowLagRecordToStorageFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer encodingProfile,
+              VTablePointer stream,
+              Pointer<COMObject> operation)>> PrepareLowLagRecordToStreamAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer encodingProfile,
+                  VTablePointer customMediaSink,
+                  Pointer<COMObject> operation)>>
+      PrepareLowLagRecordToCustomSinkAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer encodingProfile,
+                  IntPtr customSinkActivationId,
+                  VTablePointer customSinkSettings,
+                  Pointer<COMObject> operation)>>
+      PrepareLowLagRecordToCustomSinkIdAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer type,
+              Pointer<COMObject> operation)>> PrepareLowLagPhotoCaptureAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer type,
+                  Pointer<COMObject> operation)>>
+      PrepareLowLagPhotoSequenceCaptureAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 mediaStreamType,
+              VTablePointer mediaEncodingProperties,
+              VTablePointer encoderProperties,
+              Pointer<COMObject> operation)>> SetEncodingPropertiesAsync;
 }

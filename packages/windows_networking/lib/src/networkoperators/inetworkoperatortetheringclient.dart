@@ -23,7 +23,11 @@ const IID_INetworkOperatorTetheringClient =
     '{709d254c-595f-4847-bb30-646935542918}';
 
 class INetworkOperatorTetheringClient extends IInspectable {
-  INetworkOperatorTetheringClient.fromPtr(super.ptr);
+  INetworkOperatorTetheringClient.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_INetworkOperatorTetheringClientVtbl>().ref;
+
+  final _INetworkOperatorTetheringClientVtbl _vtable;
 
   factory INetworkOperatorTetheringClient.from(IInspectable interface) =>
       interface.cast(INetworkOperatorTetheringClient.fromPtr,
@@ -33,17 +37,9 @@ class INetworkOperatorTetheringClient extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MacAddress.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +52,9 @@ class INetworkOperatorTetheringClient extends IInspectable {
   List<HostName?>? get hostNames {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_HostNames.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,4 +71,16 @@ class INetworkOperatorTetheringClient extends IInspectable {
             creator: HostName.fromPtr)
         .toList();
   }
+}
+
+final class _INetworkOperatorTetheringClientVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_MacAddress;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_HostNames;
 }

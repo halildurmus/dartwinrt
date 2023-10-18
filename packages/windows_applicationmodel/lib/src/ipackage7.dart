@@ -21,7 +21,10 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_IPackage7 = '{86ff8d31-a2e4-45e0-9732-283a6d88fde1}';
 
 class IPackage7 extends IInspectable {
-  IPackage7.fromPtr(super.ptr);
+  IPackage7.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackage7Vtbl>().ref;
+
+  final _IPackage7Vtbl _vtable;
 
   factory IPackage7.from(IInspectable interface) =>
       interface.cast(IPackage7.fromPtr, IID_IPackage7);
@@ -29,17 +32,9 @@ class IPackage7 extends IInspectable {
   StorageFolder? get mutableLocation {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_MutableLocation.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,17 +52,9 @@ class IPackage7 extends IInspectable {
   StorageFolder? get effectiveLocation {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_EffectiveLocation.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -81,4 +68,16 @@ class IPackage7 extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IPackage7Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_MutableLocation;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_EffectiveLocation;
 }

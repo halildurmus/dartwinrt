@@ -25,7 +25,10 @@ import 'userwatcher.dart';
 const IID_IUserStatics = '{155eb23b-242a-45e0-a2e9-3171fc6a7fdd}';
 
 class IUserStatics extends IInspectable {
-  IUserStatics.fromPtr(super.ptr);
+  IUserStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUserStaticsVtbl>().ref;
+
+  final _IUserStaticsVtbl _vtable;
 
   factory IUserStatics.from(IInspectable interface) =>
       interface.cast(IUserStatics.fromPtr, IID_IUserStatics);
@@ -33,17 +36,9 @@ class IUserStatics extends IInspectable {
   UserWatcher? createWatcher() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.CreateWatcher.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -61,17 +56,9 @@ class IUserStatics extends IInspectable {
   Future<List<User?>> findAllAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FindAllAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -91,17 +78,9 @@ class IUserStatics extends IInspectable {
   Future<List<User?>> findAllAsyncByType(UserType type) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                        Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int type,
-                Pointer<COMObject> operation)>()(lpVtbl, type.value, operation);
+    final hr = _vtable.FindAllAsyncByType.asFunction<
+        int Function(VTablePointer lpVtbl, int type,
+            Pointer<COMObject> operation)>()(lpVtbl, type.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -122,17 +101,9 @@ class IUserStatics extends IInspectable {
       UserType type, UserAuthenticationStatus status) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                            Int32 status, Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int type, int status,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.FindAllAsyncByTypeAndStatus.asFunction<
+            int Function(VTablePointer lpVtbl, int type, int status,
+                Pointer<COMObject> operation)>()(
         lpVtbl, type.value, status.value, operation);
 
     if (FAILED(hr)) {
@@ -151,21 +122,10 @@ class IUserStatics extends IInspectable {
   User? getFromId(String nonRoamableId) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr nonRoamableId,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int nonRoamableId,
-                        Pointer<COMObject> result)>()(
-            lpVtbl, nonRoamableId.toHString(), result);
+    final hr = _vtable.GetFromId.asFunction<
+            int Function(VTablePointer lpVtbl, int nonRoamableId,
+                Pointer<COMObject> result)>()(
+        lpVtbl, nonRoamableId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -179,4 +139,29 @@ class IUserStatics extends IInspectable {
 
     return User.fromPtr(result);
   }
+}
+
+final class _IUserStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> CreateWatcher;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      FindAllAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 type,
+              Pointer<COMObject> operation)>> FindAllAsyncByType;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 type, Int32 status,
+              Pointer<COMObject> operation)>> FindAllAsyncByTypeAndStatus;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr nonRoamableId,
+              Pointer<COMObject> result)>> GetFromId;
 }

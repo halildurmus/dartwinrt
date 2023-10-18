@@ -23,7 +23,10 @@ import 'tensorkind.dart';
 const IID_IMapFeatureDescriptor = '{530424bd-a257-436d-9e60-c2981f7cc5c4}';
 
 class IMapFeatureDescriptor extends IInspectable {
-  IMapFeatureDescriptor.fromPtr(super.ptr);
+  IMapFeatureDescriptor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMapFeatureDescriptorVtbl>().ref;
+
+  final _IMapFeatureDescriptorVtbl _vtable;
 
   factory IMapFeatureDescriptor.from(IInspectable interface) =>
       interface.cast(IMapFeatureDescriptor.fromPtr, IID_IMapFeatureDescriptor);
@@ -32,17 +35,9 @@ class IMapFeatureDescriptor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_KeyKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IMapFeatureDescriptor extends IInspectable {
   ILearningModelFeatureDescriptor? get valueDescriptor {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ValueDescriptor.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -79,4 +66,16 @@ class IMapFeatureDescriptor extends IInspectable {
 
     return ILearningModelFeatureDescriptor.fromPtr(value);
   }
+}
+
+final class _IMapFeatureDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_KeyKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ValueDescriptor;
 }

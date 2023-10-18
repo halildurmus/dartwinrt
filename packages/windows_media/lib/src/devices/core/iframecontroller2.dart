@@ -22,7 +22,10 @@ import 'frameflashcontrol.dart';
 const IID_IFrameController2 = '{00d3bc75-d87c-485b-8a09-5c358568b427}';
 
 class IFrameController2 extends IInspectable {
-  IFrameController2.fromPtr(super.ptr);
+  IFrameController2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFrameController2Vtbl>().ref;
+
+  final _IFrameController2Vtbl _vtable;
 
   factory IFrameController2.from(IInspectable interface) =>
       interface.cast(IFrameController2.fromPtr, IID_IFrameController2);
@@ -30,17 +33,9 @@ class IFrameController2 extends IInspectable {
   FrameFlashControl? get flashControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FlashControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IFrameController2 extends IInspectable {
 
     return FrameFlashControl.fromPtr(value);
   }
+}
+
+final class _IFrameController2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FlashControl;
 }

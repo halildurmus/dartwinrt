@@ -22,7 +22,10 @@ import 'istorageprovider.dart';
 const IID_IStorageProvider2 = '{010d1917-3404-414b-9fd7-cd44472eaa39}';
 
 class IStorageProvider2 extends IInspectable implements IStorageProvider {
-  IStorageProvider2.fromPtr(super.ptr);
+  IStorageProvider2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageProvider2Vtbl>().ref;
+
+  final _IStorageProvider2Vtbl _vtable;
 
   factory IStorageProvider2.from(IInspectable interface) =>
       interface.cast(IStorageProvider2.fromPtr, IID_IStorageProvider2);
@@ -31,19 +34,9 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
       String propertyCanonicalName) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr propertyCanonicalName,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int propertyCanonicalName,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.IsPropertySupportedForPartialFileAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int propertyCanonicalName,
+                Pointer<COMObject> operation)>()(
         lpVtbl, propertyCanonicalName.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -62,4 +55,13 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
 
   @override
   String get displayName => _iStorageProvider.displayName;
+}
+
+final class _IStorageProvider2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl,
+                  IntPtr propertyCanonicalName, Pointer<COMObject> operation)>>
+      IsPropertySupportedForPartialFileAsync;
 }

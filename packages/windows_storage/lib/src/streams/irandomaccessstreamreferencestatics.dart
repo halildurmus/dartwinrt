@@ -25,7 +25,11 @@ const IID_IRandomAccessStreamReferenceStatics =
     '{857309dc-3fbf-4e7d-986f-ef3b1a07a964}';
 
 class IRandomAccessStreamReferenceStatics extends IInspectable {
-  IRandomAccessStreamReferenceStatics.fromPtr(super.ptr);
+  IRandomAccessStreamReferenceStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IRandomAccessStreamReferenceStaticsVtbl>().ref;
+
+  final _IRandomAccessStreamReferenceStaticsVtbl _vtable;
 
   factory IRandomAccessStreamReferenceStatics.from(IInspectable interface) =>
       interface.cast(IRandomAccessStreamReferenceStatics.fromPtr,
@@ -34,21 +38,10 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
   RandomAccessStreamReference? createFromFile(IStorageFile? file) {
     final streamReference = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> streamReference)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> streamReference)>()(
-            lpVtbl, file.lpVtbl, streamReference);
+    final hr = _vtable.CreateFromFile.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer file,
+                Pointer<COMObject> streamReference)>()(
+        lpVtbl, file.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -66,21 +59,10 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
   RandomAccessStreamReference? createFromUri(Uri? uri) {
     final streamReference = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer uri,
-                                Pointer<COMObject> streamReference)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> streamReference)>()(
-            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, streamReference);
+    final hr = _vtable.CreateFromUri.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> streamReference)>()(
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -98,21 +80,10 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
   RandomAccessStreamReference? createFromStream(IRandomAccessStream? stream) {
     final streamReference = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer stream,
-                                Pointer<COMObject> streamReference)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> streamReference)>()(
-            lpVtbl, stream.lpVtbl, streamReference);
+    final hr = _vtable.CreateFromStream.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer stream,
+                Pointer<COMObject> streamReference)>()(
+        lpVtbl, stream.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -126,4 +97,20 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
 
     return RandomAccessStreamReference.fromPtr(streamReference);
   }
+}
+
+final class _IRandomAccessStreamReferenceStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> streamReference)>> CreateFromFile;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> streamReference)>> CreateFromUri;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer stream,
+              Pointer<COMObject> streamReference)>> CreateFromStream;
 }

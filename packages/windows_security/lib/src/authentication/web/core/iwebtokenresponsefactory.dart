@@ -24,7 +24,10 @@ import 'webtokenresponse.dart';
 const IID_IWebTokenResponseFactory = '{ab6bf7f8-5450-4ef6-97f7-052b0431c0f0}';
 
 class IWebTokenResponseFactory extends IInspectable {
-  IWebTokenResponseFactory.fromPtr(super.ptr);
+  IWebTokenResponseFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebTokenResponseFactoryVtbl>().ref;
+
+  final _IWebTokenResponseFactoryVtbl _vtable;
 
   factory IWebTokenResponseFactory.from(IInspectable interface) => interface
       .cast(IWebTokenResponseFactory.fromPtr, IID_IWebTokenResponseFactory);
@@ -32,17 +35,9 @@ class IWebTokenResponseFactory extends IInspectable {
   WebTokenResponse createWithToken(String token) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr token,
-                            Pointer<COMObject> webTokenResponse)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int token,
-                    Pointer<COMObject> webTokenResponse)>()(
+    final hr = _vtable.CreateWithToken.asFunction<
+            int Function(VTablePointer lpVtbl, int token,
+                Pointer<COMObject> webTokenResponse)>()(
         lpVtbl, token.toHString(), webTokenResponse);
 
     if (FAILED(hr)) {
@@ -57,23 +52,12 @@ class IWebTokenResponseFactory extends IInspectable {
       String token, WebAccount? webAccount) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr token,
-                            VTablePointer webAccount,
-                            Pointer<COMObject> webTokenResponse)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int token,
-                    VTablePointer webAccount,
-                    Pointer<COMObject> webTokenResponse)>()(
+    final hr = _vtable.CreateWithTokenAndAccount.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int token,
+                VTablePointer webAccount,
+                Pointer<COMObject> webTokenResponse)>()(
         lpVtbl, token.toHString(), webAccount.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {
@@ -88,25 +72,13 @@ class IWebTokenResponseFactory extends IInspectable {
       String token, WebAccount? webAccount, WebProviderError? error) {
     final webTokenResponse = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr token,
-                            VTablePointer webAccount,
-                            VTablePointer error,
-                            Pointer<COMObject> webTokenResponse)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int token,
-                    VTablePointer webAccount,
-                    VTablePointer error,
-                    Pointer<COMObject> webTokenResponse)>()(lpVtbl,
+    final hr = _vtable.CreateWithTokenAccountAndError.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int token,
+                VTablePointer webAccount,
+                VTablePointer error,
+                Pointer<COMObject> webTokenResponse)>()(lpVtbl,
         token.toHString(), webAccount.lpVtbl, error.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {
@@ -116,4 +88,28 @@ class IWebTokenResponseFactory extends IInspectable {
 
     return WebTokenResponse.fromPtr(webTokenResponse);
   }
+}
+
+final class _IWebTokenResponseFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr token,
+              Pointer<COMObject> webTokenResponse)>> CreateWithToken;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr token,
+              VTablePointer webAccount,
+              Pointer<COMObject> webTokenResponse)>> CreateWithTokenAndAccount;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr token,
+                  VTablePointer webAccount,
+                  VTablePointer error,
+                  Pointer<COMObject> webTokenResponse)>>
+      CreateWithTokenAccountAndError;
 }

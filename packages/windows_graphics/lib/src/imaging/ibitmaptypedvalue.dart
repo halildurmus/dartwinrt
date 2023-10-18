@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBitmapTypedValue = '{cd8044a9-2443-4000-b0cd-79316c56f589}';
 
 class IBitmapTypedValue extends IInspectable {
-  IBitmapTypedValue.fromPtr(super.ptr);
+  IBitmapTypedValue.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapTypedValueVtbl>().ref;
+
+  final _IBitmapTypedValueVtbl _vtable;
 
   factory IBitmapTypedValue.from(IInspectable interface) =>
       interface.cast(IBitmapTypedValue.fromPtr, IID_IBitmapTypedValue);
@@ -28,17 +31,9 @@ class IBitmapTypedValue extends IInspectable {
   Object? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,17 +52,9 @@ class IBitmapTypedValue extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Type.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -76,4 +63,16 @@ class IBitmapTypedValue extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IBitmapTypedValueVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Type;
 }

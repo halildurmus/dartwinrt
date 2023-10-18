@@ -23,7 +23,10 @@ import 'webtokenrequestprompttype.dart';
 const IID_IWebTokenRequest = '{b77b4d68-adcb-4673-b364-0cf7b35caf97}';
 
 class IWebTokenRequest extends IInspectable {
-  IWebTokenRequest.fromPtr(super.ptr);
+  IWebTokenRequest.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebTokenRequestVtbl>().ref;
+
+  final _IWebTokenRequestVtbl _vtable;
 
   factory IWebTokenRequest.from(IInspectable interface) =>
       interface.cast(IWebTokenRequest.fromPtr, IID_IWebTokenRequest);
@@ -31,17 +34,9 @@ class IWebTokenRequest extends IInspectable {
   WebAccountProvider? get webAccountProvider {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WebAccountProvider.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IWebTokenRequest extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Scope.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,17 +71,9 @@ class IWebTokenRequest extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ClientId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -108,17 +87,9 @@ class IWebTokenRequest extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PromptType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -131,18 +102,9 @@ class IWebTokenRequest extends IInspectable {
   IMap<String, String>? get properties {
     final requestProperties = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> requestProperties)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    Pointer<COMObject> requestProperties)>()(
-        lpVtbl, requestProperties);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> requestProperties)>()(lpVtbl, requestProperties);
 
     if (FAILED(hr)) {
       free(requestProperties);
@@ -157,4 +119,29 @@ class IWebTokenRequest extends IInspectable {
     return IMap.fromPtr(requestProperties,
         iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
   }
+}
+
+final class _IWebTokenRequestVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WebAccountProvider;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Scope;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ClientId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_PromptType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> requestProperties)>>
+      get_Properties;
 }

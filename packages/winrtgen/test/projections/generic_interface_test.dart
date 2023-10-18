@@ -396,10 +396,18 @@ void main() {
       });
     });
 
+    test('has correct fields', () {
+      expect(
+          asyncOperationBoolProjection.fields,
+          equals({
+            'late final __IAsyncOperationBoolVtbl _vtable = ptr.ref.vtable.cast<__IAsyncOperationBoolVtbl>().ref;'
+          }));
+    });
+
     group('has correct number of methods', () {
       test('(1)', () {
         expect(
-            asyncOperationBoolProjection.methodProjections.length, equals(1));
+            asyncOperationBoolProjection.methodProjections.length, equals(3));
       });
 
       test('(2)', () {
@@ -411,7 +419,7 @@ void main() {
       test('(3)', () {
         final projection = GenericInterfaceProjection.fromTypeAndTypeArgs(
             'Windows.Foundation.Collections.IIterator`1', TypeArgKind.string);
-        expect(projection.methodProjections.length, equals(2));
+        expect(projection.methodProjections.length, equals(4));
       });
 
       test('(4)', () {
@@ -427,7 +435,7 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArgKind.string,
             TypeArgKind.string);
-        expect(projection.methodProjections.length, equals(4));
+        expect(projection.methodProjections.length, equals(7));
       });
 
       test('(6)', () {
@@ -435,26 +443,26 @@ void main() {
             'Windows.Foundation.Collections.IMapView`2',
             TypeArgKind.string,
             TypeArgKind.string);
-        expect(projection.methodProjections.length, equals(2));
+        expect(projection.methodProjections.length, equals(4));
       });
 
       test('(7)', () {
         final projection = GenericInterfaceProjection.fromTypeAndTypeArgs(
             'Windows.Foundation.Collections.IVector`1', TypeArgKind.string);
-        expect(projection.methodProjections.length, equals(7));
+        expect(projection.methodProjections.length, equals(12));
       });
 
       test('(8)', () {
         final projection = GenericInterfaceProjection.fromTypeAndTypeArgs(
             'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.string);
-        expect(projection.methodProjections.length, equals(3));
+        expect(projection.methodProjections.length, equals(4));
       });
     });
 
     group('has correct first method', () {
       test('(1)', () {
         expect(asyncOperationBoolProjection.methodProjections.first.name,
-            equals('GetResults'));
+            equals('put_Completed'));
       });
 
       test('(2)', () {
@@ -526,7 +534,7 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArgKind.string,
             TypeArgKind.string);
-        expect(projection.methodProjections.last.name, equals('Remove'));
+        expect(projection.methodProjections.last.name, equals('Clear'));
       });
 
       test('(4)', () {
@@ -534,7 +542,7 @@ void main() {
             'Windows.Foundation.Collections.IMapView`2',
             TypeArgKind.string,
             TypeArgKind.string);
-        expect(projection.methodProjections.last.name, equals('HasKey'));
+        expect(projection.methodProjections.last.name, equals('Split'));
       });
 
       test('(5)', () {
@@ -548,6 +556,19 @@ void main() {
             'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('GetMany'));
       });
+    });
+
+    test('has correct v-table', () {
+      expect(
+        asyncOperationBoolProjection.vtable,
+        equals('''
+final class __IAsyncOperationBoolVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, VTablePointer handler)>> put_Completed;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> get_Completed;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>> GetResults;
+}'''),
+      );
     });
   });
 }

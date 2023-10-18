@@ -24,7 +24,10 @@ import 'jsonvaluetype.dart';
 const IID_IJsonValue = '{a3219ecb-f0b3-4dcd-beee-19d48cd3ed1e}';
 
 class IJsonValue extends IInspectable {
-  IJsonValue.fromPtr(super.ptr);
+  IJsonValue.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IJsonValueVtbl>().ref;
+
+  final _IJsonValueVtbl _vtable;
 
   factory IJsonValue.from(IInspectable interface) =>
       interface.cast(IJsonValue.fromPtr, IID_IJsonValue);
@@ -33,17 +36,9 @@ class IJsonValue extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ValueType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IJsonValue extends IInspectable {
     final returnValue = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> returnValue)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> returnValue)>()(lpVtbl, returnValue);
+      final hr = _vtable.Stringify.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<IntPtr> returnValue)>()(lpVtbl, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +68,9 @@ class IJsonValue extends IInspectable {
     final returnValue = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> returnValue)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> returnValue)>()(lpVtbl, returnValue);
+      final hr = _vtable.GetString.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<IntPtr> returnValue)>()(lpVtbl, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +84,9 @@ class IJsonValue extends IInspectable {
     final returnValue = calloc<Double>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> returnValue)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> returnValue)>()(lpVtbl, returnValue);
+      final hr = _vtable.GetNumber.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Double> returnValue)>()(lpVtbl, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -129,17 +100,9 @@ class IJsonValue extends IInspectable {
     final returnValue = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> returnValue)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> returnValue)>()(lpVtbl, returnValue);
+      final hr = _vtable.GetBoolean.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Bool> returnValue)>()(
+          lpVtbl, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -152,17 +115,9 @@ class IJsonValue extends IInspectable {
   JsonArray getArray() {
     final returnValue = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> returnValue)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> returnValue)>()(lpVtbl, returnValue);
+    final hr = _vtable.GetArray.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> returnValue)>()(lpVtbl, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -175,17 +130,9 @@ class IJsonValue extends IInspectable {
   JsonObject getObject() {
     final returnValue = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> returnValue)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> returnValue)>()(lpVtbl, returnValue);
+    final hr = _vtable.GetObject.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> returnValue)>()(lpVtbl, returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -194,4 +141,36 @@ class IJsonValue extends IInspectable {
 
     return JsonObject.fromPtr(returnValue);
   }
+}
+
+final class _IJsonValueVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ValueType;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> returnValue)>> Stringify;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> returnValue)>> GetString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Double> returnValue)>> GetNumber;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Bool> returnValue)>> GetBoolean;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> returnValue)>> GetArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> returnValue)>> GetObject;
 }

@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController7 =
     '{8d2927f0-a054-50e7-b7df-7c04234d10f0}';
 
 class IAdvancedVideoCaptureDeviceController7 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController7.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController7.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController7Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController7Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController7.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController7.fromPtr,
@@ -32,17 +37,9 @@ class IAdvancedVideoCaptureDeviceController7 extends IInspectable {
   InfraredTorchControl? get infraredTorchControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_InfraredTorchControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +53,12 @@ class IAdvancedVideoCaptureDeviceController7 extends IInspectable {
 
     return InfraredTorchControl.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController7Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_InfraredTorchControl;
 }

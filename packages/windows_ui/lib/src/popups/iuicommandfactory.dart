@@ -22,7 +22,10 @@ import 'uicommand.dart';
 const IID_IUICommandFactory = '{a21a8189-26b0-4676-ae94-54041bc125e8}';
 
 class IUICommandFactory extends IInspectable {
-  IUICommandFactory.fromPtr(super.ptr);
+  IUICommandFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUICommandFactoryVtbl>().ref;
+
+  final _IUICommandFactoryVtbl _vtable;
 
   factory IUICommandFactory.from(IInspectable interface) =>
       interface.cast(IUICommandFactory.fromPtr, IID_IUICommandFactory);
@@ -30,17 +33,9 @@ class IUICommandFactory extends IInspectable {
   UICommand create(String label) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr label,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int label,
-                    Pointer<COMObject> instance)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int label,
+                Pointer<COMObject> instance)>()(
         lpVtbl, label.toHString(), instance);
 
     if (FAILED(hr)) {
@@ -54,22 +49,10 @@ class IUICommandFactory extends IInspectable {
   UICommand createWithHandler(String label, Pointer<COMObject> action) {
     final instance = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr label,
-                                VTablePointer action,
-                                Pointer<COMObject> instance)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int label,
-                        VTablePointer action, Pointer<COMObject> instance)>()(
-            lpVtbl, label.toHString(), action.ref.lpVtbl, instance);
+    final hr = _vtable.CreateWithHandler.asFunction<
+            int Function(VTablePointer lpVtbl, int label, VTablePointer action,
+                Pointer<COMObject> instance)>()(
+        lpVtbl, label.toHString(), action.ref.lpVtbl, instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -83,26 +66,14 @@ class IUICommandFactory extends IInspectable {
       String label, Pointer<COMObject> action, Object? commandId) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr label,
-                            VTablePointer action,
-                            VTablePointer commandId,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int label,
-                    VTablePointer action,
-                    VTablePointer commandId,
-                    Pointer<COMObject> instance)>()(lpVtbl, label.toHString(),
-        action.ref.lpVtbl, commandId?.boxValue().lpVtbl ?? nullptr, instance);
+    final hr = _vtable.CreateWithHandlerAndId.asFunction<
+            int Function(VTablePointer lpVtbl, int label, VTablePointer action,
+                VTablePointer commandId, Pointer<COMObject> instance)>()(
+        lpVtbl,
+        label.toHString(),
+        action.ref.lpVtbl,
+        commandId?.boxValue().lpVtbl ?? nullptr,
+        instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -111,4 +82,27 @@ class IUICommandFactory extends IInspectable {
 
     return UICommand.fromPtr(instance);
   }
+}
+
+final class _IUICommandFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr label,
+              Pointer<COMObject> instance)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr label,
+              VTablePointer action,
+              Pointer<COMObject> instance)>> CreateWithHandler;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr label,
+              VTablePointer action,
+              VTablePointer commandId,
+              Pointer<COMObject> instance)>> CreateWithHandlerAndId;
 }

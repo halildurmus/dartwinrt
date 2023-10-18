@@ -24,7 +24,10 @@ import 'igamepadstatics.dart';
 const IID_IGamepadStatics2 = '{42676dc5-0856-47c4-9213-b395504c3a3c}';
 
 class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
-  IGamepadStatics2.fromPtr(super.ptr);
+  IGamepadStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGamepadStatics2Vtbl>().ref;
+
+  final _IGamepadStatics2Vtbl _vtable;
 
   factory IGamepadStatics2.from(IInspectable interface) =>
       interface.cast(IGamepadStatics2.fromPtr, IID_IGamepadStatics2);
@@ -32,20 +35,9 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
   Gamepad? fromGameController(IGameController? gameController) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer gameController,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer gameController,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, gameController.lpVtbl, value);
+    final hr = _vtable.FromGameController.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer gameController,
+            Pointer<COMObject> value)>()(lpVtbl, gameController.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -80,4 +72,12 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
 
   @override
   List<Gamepad?>? get gamepads => _iGamepadStatics.gamepads;
+}
+
+final class _IGamepadStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer gameController,
+              Pointer<COMObject> value)>> FromGameController;
 }

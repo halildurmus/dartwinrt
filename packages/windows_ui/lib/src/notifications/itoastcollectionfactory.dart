@@ -22,7 +22,10 @@ import 'toastcollection.dart';
 const IID_IToastCollectionFactory = '{164dd3d7-73c4-44f7-b4ff-fb6d4bf1f4c6}';
 
 class IToastCollectionFactory extends IInspectable {
-  IToastCollectionFactory.fromPtr(super.ptr);
+  IToastCollectionFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastCollectionFactoryVtbl>().ref;
+
+  final _IToastCollectionFactoryVtbl _vtable;
 
   factory IToastCollectionFactory.from(IInspectable interface) => interface
       .cast(IToastCollectionFactory.fromPtr, IID_IToastCollectionFactory);
@@ -31,27 +34,14 @@ class IToastCollectionFactory extends IInspectable {
       String launchArgs, Uri? iconUri) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr collectionId,
-                            IntPtr displayName,
-                            IntPtr launchArgs,
-                            VTablePointer iconUri,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int collectionId,
-                    int displayName,
-                    int launchArgs,
-                    VTablePointer iconUri,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateInstance.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int collectionId,
+                int displayName,
+                int launchArgs,
+                VTablePointer iconUri,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         collectionId.toHString(),
         displayName.toHString(),
@@ -66,4 +56,17 @@ class IToastCollectionFactory extends IInspectable {
 
     return ToastCollection.fromPtr(value);
   }
+}
+
+final class _IToastCollectionFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr collectionId,
+              IntPtr displayName,
+              IntPtr launchArgs,
+              VTablePointer iconUri,
+              Pointer<COMObject> value)>> CreateInstance;
 }

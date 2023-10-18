@@ -23,7 +23,10 @@ const IID_IContainerEncodingProperties2 =
     '{b272c029-ae26-4819-baad-ad7a49b0a876}';
 
 class IContainerEncodingProperties2 extends IInspectable {
-  IContainerEncodingProperties2.fromPtr(super.ptr);
+  IContainerEncodingProperties2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IContainerEncodingProperties2Vtbl>().ref;
+
+  final _IContainerEncodingProperties2Vtbl _vtable;
 
   factory IContainerEncodingProperties2.from(IInspectable interface) =>
       interface.cast(IContainerEncodingProperties2.fromPtr,
@@ -32,17 +35,9 @@ class IContainerEncodingProperties2 extends IInspectable {
   ContainerEncodingProperties? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -56,4 +51,12 @@ class IContainerEncodingProperties2 extends IInspectable {
 
     return ContainerEncodingProperties.fromPtr(result);
   }
+}
+
+final class _IContainerEncodingProperties2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITensorDouble = '{91e41252-7a8f-4f0e-a28f-9637ffc8a3d0}';
 
 class ITensorDouble extends IInspectable {
-  ITensorDouble.fromPtr(super.ptr);
+  ITensorDouble.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorDoubleVtbl>().ref;
+
+  final _ITensorDoubleVtbl _vtable;
 
   factory ITensorDouble.from(IInspectable interface) =>
       interface.cast(ITensorDouble.fromPtr, IID_ITensorDouble);
@@ -28,17 +31,9 @@ class ITensorDouble extends IInspectable {
   List<double> getAsVectorView() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetAsVectorView.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -50,4 +45,13 @@ class ITensorDouble extends IInspectable {
             doubleType: DoubleType.double)
         .toList();
   }
+}
+
+final class _ITensorDoubleVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      GetAsVectorView;
 }

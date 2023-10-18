@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILauncherOptions3 = '{f0770655-4b63-4e3a-9107-4e687841923a}';
 
 class ILauncherOptions3 extends IInspectable {
-  ILauncherOptions3.fromPtr(super.ptr);
+  ILauncherOptions3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherOptions3Vtbl>().ref;
+
+  final _ILauncherOptions3Vtbl _vtable;
 
   factory ILauncherOptions3.from(IInspectable interface) =>
       interface.cast(ILauncherOptions3.fromPtr, IID_ILauncherOptions3);
@@ -29,17 +32,9 @@ class ILauncherOptions3 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IgnoreAppUriHandlers.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,16 +45,21 @@ class ILauncherOptions3 extends IInspectable {
   }
 
   set ignoreAppUriHandlers(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IgnoreAppUriHandlers
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILauncherOptions3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IgnoreAppUriHandlers;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IgnoreAppUriHandlers;
 }

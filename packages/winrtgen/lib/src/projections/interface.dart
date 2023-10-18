@@ -87,6 +87,9 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   @override
+  String get className => shortName;
+
+  @override
   String get classHeader {
     final implementsClause =
         inheritsFrom.isNotEmpty ? ' implements $inheritsFrom' : '';
@@ -99,7 +102,14 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
   @override
   String get constructor => '';
 
-  String get namedConstructor => '$shortName.fromPtr(super.ptr);';
+  String get namedConstructor => switch (typeDef) {
+        final t when t.isInterface && methodProjections.isNotEmpty =>
+          '$shortName.fromPtr(super.ptr) : _vtable = ptr.ref.vtable.cast<_${shortName}Vtbl>().ref;',
+        _ => '$shortName.fromPtr(super.ptr);',
+      };
+
+  String get vtableField =>
+      methodProjections.isNotEmpty ? 'final _${shortName}Vtbl _vtable;' : '';
 
   String get fromFactoryConstructor => '''
   factory $shortName.from(IInspectable interface) =>
@@ -151,6 +161,21 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
           .map((interface) => MethodForwardersProjection(interface, this))
           .toList();
 
+  String get vtable => methodProjections.isEmpty
+      ? ''
+      : [
+          'final class _${className}Vtbl extends Struct {',
+          if (vtableStart == 3)
+            '  external IUnknownVtbl baseVtbl;'
+          else if (vtableStart == 6)
+            '  external IInspectableVtbl baseVtbl;',
+          methodProjections
+              .map((m) =>
+                  '  external Pointer<NativeFunction<${m.nativePrototype}>> ${m.name};')
+              .join('\n'),
+          '}'
+        ].join('\n');
+
   @override
   String get projection => '''
 $header
@@ -162,10 +187,14 @@ $classPreamble
 $classHeader {
   $namedConstructor
 
+  $vtableField
+
   $fromFactoryConstructor
 
 ${methodProjections.join('\n')}
 ${methodForwarders.join('\n')}
 }
+
+$vtable
 ''';
 }

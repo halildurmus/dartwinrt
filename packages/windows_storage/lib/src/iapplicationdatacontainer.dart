@@ -24,7 +24,10 @@ import 'applicationdatalocality.dart';
 const IID_IApplicationDataContainer = '{c5aefd1e-f467-40ba-8566-ab640a441e1d}';
 
 class IApplicationDataContainer extends IInspectable {
-  IApplicationDataContainer.fromPtr(super.ptr);
+  IApplicationDataContainer.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationDataContainerVtbl>().ref;
+
+  final _IApplicationDataContainerVtbl _vtable;
 
   factory IApplicationDataContainer.from(IInspectable interface) => interface
       .cast(IApplicationDataContainer.fromPtr, IID_IApplicationDataContainer);
@@ -33,17 +36,9 @@ class IApplicationDataContainer extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Name.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IApplicationDataContainer extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Locality.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,17 +67,9 @@ class IApplicationDataContainer extends IInspectable {
   IPropertySet? get values {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Values.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -108,17 +87,9 @@ class IApplicationDataContainer extends IInspectable {
   Map<String, ApplicationDataContainer?>? get containers {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Containers.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -140,22 +111,10 @@ class IApplicationDataContainer extends IInspectable {
       String name, ApplicationDataCreateDisposition disposition) {
     final container = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr name,
-                                Int32 disposition,
-                                Pointer<COMObject> container)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int name,
-                        int disposition, Pointer<COMObject> container)>()(
-            lpVtbl, name.toHString(), disposition.value, container);
+    final hr = _vtable.CreateContainer.asFunction<
+            int Function(VTablePointer lpVtbl, int name, int disposition,
+                Pointer<COMObject> container)>()(
+        lpVtbl, name.toHString(), disposition.value, container);
 
     if (FAILED(hr)) {
       free(container);
@@ -171,16 +130,37 @@ class IApplicationDataContainer extends IInspectable {
   }
 
   void deleteContainer(String name) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int name)>()(
-        lpVtbl, name.toHString());
+    final hr = _vtable.DeleteContainer.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int name)>()(lpVtbl, name.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IApplicationDataContainerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Name;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Locality;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Values;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Containers;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name, Int32 disposition,
+              Pointer<COMObject> container)>> CreateContainer;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr name)>>
+      DeleteContainer;
 }

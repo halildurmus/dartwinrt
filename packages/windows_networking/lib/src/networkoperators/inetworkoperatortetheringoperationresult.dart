@@ -23,7 +23,12 @@ const IID_INetworkOperatorTetheringOperationResult =
     '{ebd203a1-01ba-476d-b4b3-bf3d12c8f80c}';
 
 class INetworkOperatorTetheringOperationResult extends IInspectable {
-  INetworkOperatorTetheringOperationResult.fromPtr(super.ptr);
+  INetworkOperatorTetheringOperationResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringOperationResultVtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringOperationResultVtbl _vtable;
 
   factory INetworkOperatorTetheringOperationResult.from(
           IInspectable interface) =>
@@ -34,17 +39,9 @@ class INetworkOperatorTetheringOperationResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +55,9 @@ class INetworkOperatorTetheringOperationResult extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AdditionalErrorMessage.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,4 +66,16 @@ class INetworkOperatorTetheringOperationResult extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _INetworkOperatorTetheringOperationResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Status;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AdditionalErrorMessage;
 }

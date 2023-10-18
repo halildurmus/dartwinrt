@@ -221,13 +221,8 @@ base class MethodProjection {
         if (!typeProjection.isVoid) paramLocalIdentifier,
       ].join(', ');
 
-  String get ffiCall => '''
-    final hr = vtable
-        .elementAt($vtableOffset)
-        .cast<Pointer<NativeFunction<$nativePrototype>>>()
-        .value
-        .asFunction<$dartPrototype>()($identifiers);
-''';
+  String get ffiCall =>
+      'final hr = _vtable.$name.asFunction<$dartPrototype>()($identifiers);';
 
   bool get freeRetValOnFailure =>
       paramProjection.type != 'void' && !useTryFinallyBlock;

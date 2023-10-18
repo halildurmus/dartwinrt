@@ -25,7 +25,10 @@ const IID_ILearningModelSessionFactory =
     '{0f6b881d-1c9b-47b6-bfe0-f1cf62a67579}';
 
 class ILearningModelSessionFactory extends IInspectable {
-  ILearningModelSessionFactory.fromPtr(super.ptr);
+  ILearningModelSessionFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionFactoryVtbl>().ref;
+
+  final _ILearningModelSessionFactoryVtbl _vtable;
 
   factory ILearningModelSessionFactory.from(IInspectable interface) =>
       interface.cast(ILearningModelSessionFactory.fromPtr,
@@ -34,17 +37,9 @@ class ILearningModelSessionFactory extends IInspectable {
   LearningModelSession createFromModel(LearningModel? model) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer model,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer model,
-                Pointer<COMObject> value)>()(lpVtbl, model.lpVtbl, value);
+    final hr = _vtable.CreateFromModel.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer model,
+            Pointer<COMObject> value)>()(lpVtbl, model.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,20 +53,9 @@ class ILearningModelSessionFactory extends IInspectable {
       LearningModel? model, LearningModelDevice? deviceToRunOn) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer model,
-                            VTablePointer deviceToRunOn,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer model,
-                    VTablePointer deviceToRunOn, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateFromModelOnDevice.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer model,
+                VTablePointer deviceToRunOn, Pointer<COMObject> value)>()(
         lpVtbl, model.lpVtbl, deviceToRunOn.lpVtbl, value);
 
     if (FAILED(hr)) {
@@ -81,4 +65,19 @@ class ILearningModelSessionFactory extends IInspectable {
 
     return LearningModelSession.fromPtr(value);
   }
+}
+
+final class _ILearningModelSessionFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer model,
+              Pointer<COMObject> value)>> CreateFromModel;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer model,
+              VTablePointer deviceToRunOn,
+              Pointer<COMObject> value)>> CreateFromModelOnDevice;
 }

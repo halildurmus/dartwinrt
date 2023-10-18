@@ -23,7 +23,12 @@ const IID_IVideoDeviceControllerGetDevicePropertyResult =
     '{c5d88395-6ed5-4790-8b5d-0ef13935d0f8}';
 
 class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
-  IVideoDeviceControllerGetDevicePropertyResult.fromPtr(super.ptr);
+  IVideoDeviceControllerGetDevicePropertyResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IVideoDeviceControllerGetDevicePropertyResultVtbl>()
+            .ref;
+
+  final _IVideoDeviceControllerGetDevicePropertyResultVtbl _vtable;
 
   factory IVideoDeviceControllerGetDevicePropertyResult.from(
           IInspectable interface) =>
@@ -34,17 +39,9 @@ class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +54,9 @@ class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
   Object? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -81,4 +70,16 @@ class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
 
     return IPropertyValue.fromPtr(value).value;
   }
+}
+
+final class _IVideoDeviceControllerGetDevicePropertyResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Status;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
 }

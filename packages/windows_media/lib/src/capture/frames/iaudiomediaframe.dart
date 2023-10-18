@@ -24,7 +24,10 @@ import 'mediaframereference.dart';
 const IID_IAudioMediaFrame = '{a3a9feff-8021-441b-9a46-e7f0137b7981}';
 
 class IAudioMediaFrame extends IInspectable {
-  IAudioMediaFrame.fromPtr(super.ptr);
+  IAudioMediaFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioMediaFrameVtbl>().ref;
+
+  final _IAudioMediaFrameVtbl _vtable;
 
   factory IAudioMediaFrame.from(IInspectable interface) =>
       interface.cast(IAudioMediaFrame.fromPtr, IID_IAudioMediaFrame);
@@ -32,17 +35,9 @@ class IAudioMediaFrame extends IInspectable {
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameReference.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IAudioMediaFrame extends IInspectable {
   AudioEncodingProperties? get audioEncodingProperties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_AudioEncodingProperties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -88,17 +75,9 @@ class IAudioMediaFrame extends IInspectable {
   AudioFrame? getAudioFrame() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetAudioFrame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -112,4 +91,20 @@ class IAudioMediaFrame extends IInspectable {
 
     return AudioFrame.fromPtr(value);
   }
+}
+
+final class _IAudioMediaFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameReference;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_AudioEncodingProperties;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetAudioFrame;
 }

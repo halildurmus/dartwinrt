@@ -24,7 +24,10 @@ import 'webtokenrequestprompttype.dart';
 const IID_IWebTokenRequestFactory = '{6cf2141c-0ff0-4c67-b84f-99ddbe4a72c9}';
 
 class IWebTokenRequestFactory extends IInspectable {
-  IWebTokenRequestFactory.fromPtr(super.ptr);
+  IWebTokenRequestFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebTokenRequestFactoryVtbl>().ref;
+
+  final _IWebTokenRequestFactoryVtbl _vtable;
 
   factory IWebTokenRequestFactory.from(IInspectable interface) => interface
       .cast(IWebTokenRequestFactory.fromPtr, IID_IWebTokenRequestFactory);
@@ -33,25 +36,9 @@ class IWebTokenRequestFactory extends IInspectable {
       WebAccountProvider? provider, String scope, String clientId) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer provider,
-                            IntPtr scope,
-                            IntPtr clientId,
-                            Pointer<COMObject> webTokenRequest)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer provider,
-                    int scope,
-                    int clientId,
-                    Pointer<COMObject> webTokenRequest)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer provider,
+                int scope, int clientId, Pointer<COMObject> webTokenRequest)>()(
         lpVtbl,
         provider.lpVtbl,
         scope.toHString(),
@@ -70,27 +57,14 @@ class IWebTokenRequestFactory extends IInspectable {
       String scope, String clientId, WebTokenRequestPromptType promptType) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer provider,
-                            IntPtr scope,
-                            IntPtr clientId,
-                            Int32 promptType,
-                            Pointer<COMObject> webTokenRequest)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer provider,
-                    int scope,
-                    int clientId,
-                    int promptType,
-                    Pointer<COMObject> webTokenRequest)>()(
+    final hr = _vtable.CreateWithPromptType.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer provider,
+                int scope,
+                int clientId,
+                int promptType,
+                Pointer<COMObject> webTokenRequest)>()(
         lpVtbl,
         provider.lpVtbl,
         scope.toHString(),
@@ -109,19 +83,9 @@ class IWebTokenRequestFactory extends IInspectable {
   WebTokenRequest createWithProvider(WebAccountProvider? provider) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer provider,
-                            Pointer<COMObject> webTokenRequest)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> webTokenRequest)>()(
+    final hr = _vtable.CreateWithProvider.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer provider,
+                Pointer<COMObject> webTokenRequest)>()(
         lpVtbl, provider.lpVtbl, webTokenRequest);
 
     if (FAILED(hr)) {
@@ -135,20 +99,9 @@ class IWebTokenRequestFactory extends IInspectable {
   WebTokenRequest createWithScope(WebAccountProvider? provider, String scope) {
     final webTokenRequest = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer provider,
-                            IntPtr scope,
-                            Pointer<COMObject> webTokenRequest)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    int scope, Pointer<COMObject> webTokenRequest)>()(
+    final hr = _vtable.CreateWithScope.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer provider,
+                int scope, Pointer<COMObject> webTokenRequest)>()(
         lpVtbl, provider.lpVtbl, scope.toHString(), webTokenRequest);
 
     if (FAILED(hr)) {
@@ -158,4 +111,36 @@ class IWebTokenRequestFactory extends IInspectable {
 
     return WebTokenRequest.fromPtr(webTokenRequest);
   }
+}
+
+final class _IWebTokenRequestFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer provider,
+              IntPtr scope,
+              IntPtr clientId,
+              Pointer<COMObject> webTokenRequest)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer provider,
+              IntPtr scope,
+              IntPtr clientId,
+              Int32 promptType,
+              Pointer<COMObject> webTokenRequest)>> CreateWithPromptType;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer provider,
+              Pointer<COMObject> webTokenRequest)>> CreateWithProvider;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer provider,
+              IntPtr scope,
+              Pointer<COMObject> webTokenRequest)>> CreateWithScope;
 }

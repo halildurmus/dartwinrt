@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFileSavePicker3 = '{698aec69-ba3c-4e51-bd90-4abcbbf4cfaf}';
 
 class IFileSavePicker3 extends IInspectable {
-  IFileSavePicker3.fromPtr(super.ptr);
+  IFileSavePicker3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFileSavePicker3Vtbl>().ref;
+
+  final _IFileSavePicker3Vtbl _vtable;
 
   factory IFileSavePicker3.from(IInspectable interface) =>
       interface.cast(IFileSavePicker3.fromPtr, IID_IFileSavePicker3);
@@ -29,17 +32,9 @@ class IFileSavePicker3 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_EnterpriseId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,18 +45,21 @@ class IFileSavePicker3 extends IInspectable {
   }
 
   set enterpriseId(String value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_EnterpriseId
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFileSavePicker3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_EnterpriseId;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_EnterpriseId;
 }

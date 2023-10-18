@@ -22,7 +22,10 @@ import 'passwordcredential.dart';
 const IID_ICredentialFactory = '{54ef13a1-bf26-47b5-97dd-de779b7cad58}';
 
 class ICredentialFactory extends IInspectable {
-  ICredentialFactory.fromPtr(super.ptr);
+  ICredentialFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICredentialFactoryVtbl>().ref;
+
+  final _ICredentialFactoryVtbl _vtable;
 
   factory ICredentialFactory.from(IInspectable interface) =>
       interface.cast(ICredentialFactory.fromPtr, IID_ICredentialFactory);
@@ -31,21 +34,9 @@ class ICredentialFactory extends IInspectable {
       String resource, String userName, String password) {
     final credential = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr resource,
-                            IntPtr userName,
-                            IntPtr password,
-                            Pointer<COMObject> credential)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int resource, int userName,
-                    int password, Pointer<COMObject> credential)>()(
+    final hr = _vtable.CreatePasswordCredential.asFunction<
+            int Function(VTablePointer lpVtbl, int resource, int userName,
+                int password, Pointer<COMObject> credential)>()(
         lpVtbl,
         resource.toHString(),
         userName.toHString(),
@@ -59,4 +50,16 @@ class ICredentialFactory extends IInspectable {
 
     return PasswordCredential.fromPtr(credential);
   }
+}
+
+final class _ICredentialFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr resource,
+              IntPtr userName,
+              IntPtr password,
+              Pointer<COMObject> credential)>> CreatePasswordCredential;
 }

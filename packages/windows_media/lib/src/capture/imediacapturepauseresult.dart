@@ -22,7 +22,10 @@ import '../videoframe.dart';
 const IID_IMediaCapturePauseResult = '{aec47ca3-4477-4b04-a06f-2c1c5182fe9d}';
 
 class IMediaCapturePauseResult extends IInspectable {
-  IMediaCapturePauseResult.fromPtr(super.ptr);
+  IMediaCapturePauseResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapturePauseResultVtbl>().ref;
+
+  final _IMediaCapturePauseResultVtbl _vtable;
 
   factory IMediaCapturePauseResult.from(IInspectable interface) => interface
       .cast(IMediaCapturePauseResult.fromPtr, IID_IMediaCapturePauseResult);
@@ -30,17 +33,9 @@ class IMediaCapturePauseResult extends IInspectable {
   VideoFrame? get lastFrame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LastFrame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IMediaCapturePauseResult extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RecordDuration.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,4 +65,16 @@ class IMediaCapturePauseResult extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaCapturePauseResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LastFrame;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_RecordDuration;
 }

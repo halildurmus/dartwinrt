@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IBitmapDecoderStatics2 = '{50ba68ea-99a1-40c4-80d9-aef0dafa6c3f}';
 
 class IBitmapDecoderStatics2 extends IInspectable {
-  IBitmapDecoderStatics2.fromPtr(super.ptr);
+  IBitmapDecoderStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapDecoderStatics2Vtbl>().ref;
+
+  final _IBitmapDecoderStatics2Vtbl _vtable;
 
   factory IBitmapDecoderStatics2.from(IInspectable interface) => interface.cast(
       IBitmapDecoderStatics2.fromPtr, IID_IBitmapDecoderStatics2);
@@ -29,17 +32,9 @@ class IBitmapDecoderStatics2 extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_HeifDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IBitmapDecoderStatics2 extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_WebpDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IBitmapDecoderStatics2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IBitmapDecoderStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_HeifDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_WebpDecoderId;
 }

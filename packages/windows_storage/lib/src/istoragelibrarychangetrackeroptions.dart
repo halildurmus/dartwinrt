@@ -21,7 +21,11 @@ const IID_IStorageLibraryChangeTrackerOptions =
     '{bb52bcd4-1a6d-59c0-ad2a-823a20532483}';
 
 class IStorageLibraryChangeTrackerOptions extends IInspectable {
-  IStorageLibraryChangeTrackerOptions.fromPtr(super.ptr);
+  IStorageLibraryChangeTrackerOptions.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IStorageLibraryChangeTrackerOptionsVtbl>().ref;
+
+  final _IStorageLibraryChangeTrackerOptionsVtbl _vtable;
 
   factory IStorageLibraryChangeTrackerOptions.from(IInspectable interface) =>
       interface.cast(IStorageLibraryChangeTrackerOptions.fromPtr,
@@ -31,17 +35,9 @@ class IStorageLibraryChangeTrackerOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_TrackChangeDetails.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,16 +48,21 @@ class IStorageLibraryChangeTrackerOptions extends IInspectable {
   }
 
   set trackChangeDetails(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_TrackChangeDetails
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IStorageLibraryChangeTrackerOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_TrackChangeDetails;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_TrackChangeDetails;
 }

@@ -22,24 +22,28 @@ const IID_IMediaExtension = '{07915118-45df-442b-8a3f-f7826a6370ab}';
 /// Encapsulates the method needed to set the configuration properties on a
 /// registered media parser or codec.
 class IMediaExtension extends IInspectable {
-  IMediaExtension.fromPtr(super.ptr);
+  IMediaExtension.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaExtensionVtbl>().ref;
+
+  final _IMediaExtensionVtbl _vtable;
 
   factory IMediaExtension.from(IInspectable interface) =>
       interface.cast(IMediaExtension.fromPtr, IID_IMediaExtension);
 
   void setProperties(IPropertySet? configuration) {
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, VTablePointer configuration)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                VTablePointer configuration)>()(lpVtbl, configuration.lpVtbl);
+    final hr = _vtable.SetProperties.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer configuration)>()(
+        lpVtbl, configuration.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaExtensionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, VTablePointer configuration)>>
+      SetProperties;
 }

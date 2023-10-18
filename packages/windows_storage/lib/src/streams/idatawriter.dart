@@ -26,7 +26,10 @@ import 'unicodeencoding.dart';
 const IID_IDataWriter = '{64b89265-d341-4922-b38a-dd4af8808c4e}';
 
 class IDataWriter extends IInspectable {
-  IDataWriter.fromPtr(super.ptr);
+  IDataWriter.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataWriterVtbl>().ref;
+
+  final _IDataWriterVtbl _vtable;
 
   factory IDataWriter.from(IInspectable interface) =>
       interface.cast(IDataWriter.fromPtr, IID_IDataWriter);
@@ -35,17 +38,9 @@ class IDataWriter extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_UnstoredBufferLength.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +54,9 @@ class IDataWriter extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_UnicodeEncoding.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,13 +67,7 @@ class IDataWriter extends IInspectable {
   }
 
   set unicodeEncoding(UnicodeEncoding value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_UnicodeEncoding
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -97,17 +78,9 @@ class IDataWriter extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ByteOrder.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -118,13 +91,7 @@ class IDataWriter extends IInspectable {
   }
 
   set byteOrder(ByteOrder value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_ByteOrder
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -132,15 +99,8 @@ class IDataWriter extends IInspectable {
   }
 
   void writeByte(int value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint8 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteByte.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -148,17 +108,9 @@ class IDataWriter extends IInspectable {
   void writeBytes(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                        Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int valueSize,
-                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
+    final hr = _vtable.WriteBytes.asFunction<
+        int Function(VTablePointer lpVtbl, int valueSize,
+            Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -166,47 +118,24 @@ class IDataWriter extends IInspectable {
   }
 
   void writeBuffer(IBuffer? buffer) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer buffer)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
+    final hr = _vtable.WriteBuffer.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBufferRange(IBuffer? buffer, int start, int count) {
-    final hr = vtable
-        .elementAt(14)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Uint32 start, Uint32 count)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer buffer, int start,
-                int count)>()(lpVtbl, buffer.lpVtbl, start, count);
+    final hr = _vtable.WriteBufferRange.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer buffer, int start,
+            int count)>()(lpVtbl, buffer.lpVtbl, start, count);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBoolean(bool value) {
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteBoolean.asFunction<
+        int Function(VTablePointer lpVtbl, bool value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -214,14 +143,8 @@ class IDataWriter extends IInspectable {
   void writeGuid(Guid value) {
     final valueNativeStructPtr = value.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, GUID value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
+    final hr = _vtable.WriteGuid.asFunction<
+            int Function(VTablePointer lpVtbl, GUID value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -230,148 +153,72 @@ class IDataWriter extends IInspectable {
   }
 
   void writeInt16(int value) {
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int16 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteInt16.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeInt32(int value) {
-    final hr = vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteInt32.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeInt64(int value) {
-    final hr = vtable
-            .elementAt(19)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteInt64.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt16(int value) {
-    final hr =
-        vtable
-                .elementAt(20)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint16 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.WriteUInt16.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt32(int value) {
-    final hr =
-        vtable
-                .elementAt(21)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.WriteUInt32.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt64(int value) {
-    final hr =
-        vtable
-                .elementAt(22)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint64 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.WriteUInt64.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeSingle(double value) {
-    final hr = vtable
-            .elementAt(23)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Float value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-        lpVtbl, value);
+    final hr = _vtable.WriteSingle.asFunction<
+        int Function(VTablePointer lpVtbl, double value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeDouble(double value) {
-    final hr =
-        vtable
-                .elementAt(24)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.WriteDouble.asFunction<
+        int Function(VTablePointer lpVtbl, double value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeDateTime(DateTime value) {
-    final hr = vtable
-            .elementAt(25)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.WriteDateTime.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.toWinRTDateTime());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeTimeSpan(Duration value) {
-    final hr = vtable
-            .elementAt(26)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.WriteTimeSpan.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.toWinRTDuration());
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -381,17 +228,9 @@ class IDataWriter extends IInspectable {
     final codeUnitCount = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(27)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                              Pointer<Uint32> codeUnitCount)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint32> codeUnitCount)>()(
+      final hr = _vtable.WriteString.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> codeUnitCount)>()(
           lpVtbl, value.toHString(), codeUnitCount);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -406,17 +245,9 @@ class IDataWriter extends IInspectable {
     final codeUnitCount = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(28)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                              Pointer<Uint32> codeUnitCount)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint32> codeUnitCount)>()(
+      final hr = _vtable.MeasureString.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> codeUnitCount)>()(
           lpVtbl, value.toHString(), codeUnitCount);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -430,17 +261,9 @@ class IDataWriter extends IInspectable {
   Future<int> storeAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(29)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.StoreAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -455,17 +278,9 @@ class IDataWriter extends IInspectable {
   Future<bool> flushAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(30)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FlushAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -479,17 +294,9 @@ class IDataWriter extends IInspectable {
   IBuffer? detachBuffer() {
     final buffer = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(31)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> buffer)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> buffer)>()(lpVtbl, buffer);
+    final hr = _vtable.DetachBuffer.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> buffer)>()(lpVtbl, buffer);
 
     if (FAILED(hr)) {
       free(buffer);
@@ -507,17 +314,9 @@ class IDataWriter extends IInspectable {
   IOutputStream? detachStream() {
     final outputStream = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(32)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> outputStream)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> outputStream)>()(lpVtbl, outputStream);
+    final hr = _vtable.DetachStream.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> outputStream)>()(lpVtbl, outputStream);
 
     if (FAILED(hr)) {
       free(outputStream);
@@ -531,4 +330,102 @@ class IDataWriter extends IInspectable {
 
     return IOutputStream.fromPtr(outputStream);
   }
+}
+
+final class _IDataWriterVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_UnstoredBufferLength;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_UnicodeEncoding;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_UnicodeEncoding;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ByteOrder;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_ByteOrder;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint8 value)>>
+      WriteByte;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+              Pointer<Uint8> value)>> WriteBytes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer)>>
+      WriteBuffer;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
+              Uint32 start, Uint32 count)>> WriteBufferRange;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      WriteBoolean;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, GUID value)>>
+      WriteGuid;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int16 value)>>
+      WriteInt16;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      WriteInt32;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      WriteInt64;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint16 value)>>
+      WriteUInt16;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      WriteUInt32;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint64 value)>>
+      WriteUInt64;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Float value)>>
+      WriteSingle;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      WriteDouble;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      WriteDateTime;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      WriteTimeSpan;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr value,
+              Pointer<Uint32> codeUnitCount)>> WriteString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr value,
+              Pointer<Uint32> codeUnitCount)>> MeasureString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> StoreAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> FlushAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> buffer)>> DetachBuffer;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> outputStream)>>
+      DetachStream;
 }

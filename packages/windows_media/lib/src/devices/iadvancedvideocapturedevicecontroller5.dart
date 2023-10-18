@@ -24,7 +24,12 @@ const IID_IAdvancedVideoCaptureDeviceController5 =
     '{33512b17-b9cb-4a23-b875-f9eaab535492}';
 
 class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController5.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController5.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController5Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController5Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController5.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController5.fromPtr,
@@ -34,17 +39,9 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,23 +55,12 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
       String propertyId, int? maxPropertyValueSize) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr propertyId,
-                            VTablePointer maxPropertyValueSize,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int propertyId,
-                    VTablePointer maxPropertyValueSize,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetDevicePropertyById.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int propertyId,
+                VTablePointer maxPropertyValueSize,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         propertyId.toHString(),
         maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
@@ -98,20 +84,9 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr propertyId,
-                              VTablePointer propertyValue,
-                              Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int propertyId,
-                      VTablePointer propertyValue, Pointer<Int32> value)>()(
+      final hr = _vtable.SetDevicePropertyById.asFunction<
+              int Function(VTablePointer lpVtbl, int propertyId,
+                  VTablePointer propertyValue, Pointer<Int32> value)>()(
           lpVtbl,
           propertyId.toHString(),
           propertyValue?.boxValue().lpVtbl ?? nullptr,
@@ -130,25 +105,13 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<COMObject>();
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 extendedPropertyIdSize,
-                            Pointer<Uint8> extendedPropertyId,
-                            VTablePointer maxPropertyValueSize,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int extendedPropertyIdSize,
-                    Pointer<Uint8> extendedPropertyId,
-                    VTablePointer maxPropertyValueSize,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetDevicePropertyByExtendedId.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int extendedPropertyIdSize,
+                Pointer<Uint8> extendedPropertyId,
+                VTablePointer maxPropertyValueSize,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
@@ -178,27 +141,14 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
       final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
       final propertyValueArray = propertyValue.toArray<Uint8>();
 
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 extendedPropertyIdSize,
-                              Pointer<Uint8> extendedPropertyId,
-                              Uint32 propertyValueSize,
-                              Pointer<Uint8> propertyValue,
-                              Pointer<Int32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int extendedPropertyIdSize,
-                      Pointer<Uint8> extendedPropertyId,
-                      int propertyValueSize,
-                      Pointer<Uint8> propertyValue,
-                      Pointer<Int32> value)>()(
+      final hr = _vtable.SetDevicePropertyByExtendedId.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int extendedPropertyIdSize,
+                  Pointer<Uint8> extendedPropertyId,
+                  int propertyValueSize,
+                  Pointer<Uint8> propertyValue,
+                  Pointer<Int32> value)>()(
           lpVtbl,
           extendedPropertyId.length,
           extendedPropertyIdArray,
@@ -216,4 +166,43 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr propertyId,
+              VTablePointer maxPropertyValueSize,
+              Pointer<COMObject> value)>> GetDevicePropertyById;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr propertyId,
+              VTablePointer propertyValue,
+              Pointer<Int32> value)>> SetDevicePropertyById;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 extendedPropertyIdSize,
+              Pointer<Uint8> extendedPropertyId,
+              VTablePointer maxPropertyValueSize,
+              Pointer<COMObject> value)>> GetDevicePropertyByExtendedId;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 extendedPropertyIdSize,
+              Pointer<Uint8> extendedPropertyId,
+              Uint32 propertyValueSize,
+              Pointer<Uint8> propertyValue,
+              Pointer<Int32> value)>> SetDevicePropertyByExtendedId;
 }

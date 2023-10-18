@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPackageWithMetadata = '{95949780-1de9-40f2-b452-0de9f1910012}';
 
 class IPackageWithMetadata extends IInspectable {
-  IPackageWithMetadata.fromPtr(super.ptr);
+  IPackageWithMetadata.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackageWithMetadataVtbl>().ref;
+
+  final _IPackageWithMetadataVtbl _vtable;
 
   factory IPackageWithMetadata.from(IInspectable interface) =>
       interface.cast(IPackageWithMetadata.fromPtr, IID_IPackageWithMetadata);
@@ -29,17 +32,9 @@ class IPackageWithMetadata extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_InstallDate.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IPackageWithMetadata extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetThumbnailToken.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -76,17 +63,25 @@ class IPackageWithMetadata extends IInspectable {
   @Deprecated(
       "Launch may be altered or unavailable for releases after Windows 8.1. Instead, for SmartCardTrigger scenarios use SmartCardTriggerDetails.TryLaunchSelfAsync")
   void launch(String parameters) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr parameters)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int parameters)>()(
+    final hr = _vtable.Launch.asFunction<
+            int Function(VTablePointer lpVtbl, int parameters)>()(
         lpVtbl, parameters.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IPackageWithMetadataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_InstallDate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetThumbnailToken;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr parameters)>> Launch;
 }

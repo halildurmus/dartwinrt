@@ -22,7 +22,10 @@ import 'videomediaframeformat.dart';
 const IID_IDepthMediaFrameFormat = '{c312cf40-d729-453e-8780-2e04f140d28e}';
 
 class IDepthMediaFrameFormat extends IInspectable {
-  IDepthMediaFrameFormat.fromPtr(super.ptr);
+  IDepthMediaFrameFormat.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDepthMediaFrameFormatVtbl>().ref;
+
+  final _IDepthMediaFrameFormatVtbl _vtable;
 
   factory IDepthMediaFrameFormat.from(IInspectable interface) => interface.cast(
       IDepthMediaFrameFormat.fromPtr, IID_IDepthMediaFrameFormat);
@@ -30,17 +33,9 @@ class IDepthMediaFrameFormat extends IInspectable {
   VideoMediaFrameFormat? get videoFormat {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoFormat.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IDepthMediaFrameFormat extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DepthScaleInMeters.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,4 +65,16 @@ class IDepthMediaFrameFormat extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDepthMediaFrameFormatVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoFormat;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_DepthScaleInMeters;
 }

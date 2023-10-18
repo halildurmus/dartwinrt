@@ -21,7 +21,11 @@ const IID_IPrinting3DMultiplePropertyMaterial =
     '{25a6254b-c6e9-484d-a214-a25e5776ba62}';
 
 class IPrinting3DMultiplePropertyMaterial extends IInspectable {
-  IPrinting3DMultiplePropertyMaterial.fromPtr(super.ptr);
+  IPrinting3DMultiplePropertyMaterial.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IPrinting3DMultiplePropertyMaterialVtbl>().ref;
+
+  final _IPrinting3DMultiplePropertyMaterialVtbl _vtable;
 
   factory IPrinting3DMultiplePropertyMaterial.from(IInspectable interface) =>
       interface.cast(IPrinting3DMultiplePropertyMaterial.fromPtr,
@@ -30,17 +34,9 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
   IVector<int>? get materialIndices {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_MaterialIndices.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +52,12 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
         iterableIid: '{421d4b91-b13b-5f37-ae54-b5249bd80539}',
         intType: IntType.uint32);
   }
+}
+
+final class _IPrinting3DMultiplePropertyMaterialVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_MaterialIndices;
 }

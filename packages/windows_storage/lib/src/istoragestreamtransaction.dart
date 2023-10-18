@@ -22,7 +22,10 @@ import 'streams/irandomaccessstream.dart';
 const IID_IStorageStreamTransaction = '{f67cf363-a53d-4d94-ae2c-67232d93acdd}';
 
 class IStorageStreamTransaction extends IInspectable implements IClosable {
-  IStorageStreamTransaction.fromPtr(super.ptr);
+  IStorageStreamTransaction.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageStreamTransactionVtbl>().ref;
+
+  final _IStorageStreamTransactionVtbl _vtable;
 
   factory IStorageStreamTransaction.from(IInspectable interface) => interface
       .cast(IStorageStreamTransaction.fromPtr, IID_IStorageStreamTransaction);
@@ -30,17 +33,9 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
   IRandomAccessStream? get stream {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Stream.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,17 +53,9 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
   Future<void> commitAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.CommitAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -82,4 +69,16 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IStorageStreamTransactionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Stream;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> CommitAsync;
 }

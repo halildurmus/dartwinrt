@@ -24,7 +24,10 @@ const IID_ILearningModelDeviceFactory =
     '{9cffd74d-b1e5-4f20-80ad-0a56690db06b}';
 
 class ILearningModelDeviceFactory extends IInspectable {
-  ILearningModelDeviceFactory.fromPtr(super.ptr);
+  ILearningModelDeviceFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelDeviceFactoryVtbl>().ref;
+
+  final _ILearningModelDeviceFactoryVtbl _vtable;
 
   factory ILearningModelDeviceFactory.from(IInspectable interface) =>
       interface.cast(
@@ -33,17 +36,9 @@ class ILearningModelDeviceFactory extends IInspectable {
   LearningModelDevice create(LearningModelDeviceKind deviceKind) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 deviceKind,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int deviceKind,
-                Pointer<COMObject> value)>()(lpVtbl, deviceKind.value, value);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, int deviceKind,
+            Pointer<COMObject> value)>()(lpVtbl, deviceKind.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -52,4 +47,12 @@ class ILearningModelDeviceFactory extends IInspectable {
 
     return LearningModelDevice.fromPtr(value);
   }
+}
+
+final class _ILearningModelDeviceFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 deviceKind,
+              Pointer<COMObject> value)>> Create;
 }

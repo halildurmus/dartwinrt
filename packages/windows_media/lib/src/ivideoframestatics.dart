@@ -23,7 +23,10 @@ import 'videoframe.dart';
 const IID_IVideoFrameStatics = '{ab2a556f-6111-4b33-8ec3-2b209a02e17a}';
 
 class IVideoFrameStatics extends IInspectable {
-  IVideoFrameStatics.fromPtr(super.ptr);
+  IVideoFrameStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoFrameStaticsVtbl>().ref;
+
+  final _IVideoFrameStaticsVtbl _vtable;
 
   factory IVideoFrameStatics.from(IInspectable interface) =>
       interface.cast(IVideoFrameStatics.fromPtr, IID_IVideoFrameStatics);
@@ -32,21 +35,9 @@ class IVideoFrameStatics extends IInspectable {
       DirectXPixelFormat format, int width, int height) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateAsDirect3D11SurfaceBacked.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, Pointer<COMObject> result)>()(
         lpVtbl, format.value, width, height, result);
 
     if (FAILED(hr)) {
@@ -69,27 +60,9 @@ class IVideoFrameStatics extends IInspectable {
       IDirect3DDevice? device) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            VTablePointer device,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int format,
-                    int width,
-                    int height,
-                    VTablePointer device,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateAsDirect3D11SurfaceBackedWithDevice.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, VTablePointer device, Pointer<COMObject> result)>()(
         lpVtbl, format.value, width, height, device.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -108,17 +81,9 @@ class IVideoFrameStatics extends IInspectable {
   VideoFrame? createWithSoftwareBitmap(SoftwareBitmap? bitmap) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                Pointer<COMObject> result)>()(lpVtbl, bitmap.lpVtbl, result);
+    final hr = _vtable.CreateWithSoftwareBitmap.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer bitmap,
+            Pointer<COMObject> result)>()(lpVtbl, bitmap.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -136,17 +101,9 @@ class IVideoFrameStatics extends IInspectable {
   VideoFrame? createWithDirect3D11Surface(IDirect3DSurface? surface) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer surface, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer surface,
-                Pointer<COMObject> result)>()(lpVtbl, surface.lpVtbl, result);
+    final hr = _vtable.CreateWithDirect3D11Surface.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer surface,
+            Pointer<COMObject> result)>()(lpVtbl, surface.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -160,4 +117,34 @@ class IVideoFrameStatics extends IInspectable {
 
     return VideoFrame.fromPtr(result);
   }
+}
+
+final class _IVideoFrameStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 format,
+              Int32 width,
+              Int32 height,
+              Pointer<COMObject> result)>> CreateAsDirect3D11SurfaceBacked;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  Int32 format,
+                  Int32 width,
+                  Int32 height,
+                  VTablePointer device,
+                  Pointer<COMObject> result)>>
+      CreateAsDirect3D11SurfaceBackedWithDevice;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer bitmap,
+              Pointer<COMObject> result)>> CreateWithSoftwareBitmap;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer surface,
+              Pointer<COMObject> result)>> CreateWithDirect3D11Surface;
 }

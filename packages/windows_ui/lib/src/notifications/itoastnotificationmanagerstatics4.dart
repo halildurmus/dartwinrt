@@ -25,7 +25,11 @@ const IID_IToastNotificationManagerStatics4 =
     '{8f993fd3-e516-45fb-8130-398e93fa52c3}';
 
 class IToastNotificationManagerStatics4 extends IInspectable {
-  IToastNotificationManagerStatics4.fromPtr(super.ptr);
+  IToastNotificationManagerStatics4.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IToastNotificationManagerStatics4Vtbl>().ref;
+
+  final _IToastNotificationManagerStatics4Vtbl _vtable;
 
   factory IToastNotificationManagerStatics4.from(IInspectable interface) =>
       interface.cast(IToastNotificationManagerStatics4.fromPtr,
@@ -34,17 +38,9 @@ class IToastNotificationManagerStatics4 extends IInspectable {
   ToastNotificationManagerForUser? getForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer user,
-                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
+    final hr = _vtable.GetForUser.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer user,
+            Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -60,16 +56,20 @@ class IToastNotificationManagerStatics4 extends IInspectable {
   }
 
   void configureNotificationMirroring(NotificationMirroring value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value.value);
+    final hr = _vtable.ConfigureNotificationMirroring.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IToastNotificationManagerStatics4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> result)>> GetForUser;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      ConfigureNotificationMirroring;
 }

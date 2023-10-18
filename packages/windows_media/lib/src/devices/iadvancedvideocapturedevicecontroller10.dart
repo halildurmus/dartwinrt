@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController10 =
     '{c621b82d-d6f0-5c1b-a388-a6e938407146}';
 
 class IAdvancedVideoCaptureDeviceController10 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController10.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController10.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController10Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController10Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController10.from(
           IInspectable interface) =>
@@ -33,17 +38,9 @@ class IAdvancedVideoCaptureDeviceController10 extends IInspectable {
   CameraOcclusionInfo? get cameraOcclusionInfo {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_CameraOcclusionInfo.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,4 +54,12 @@ class IAdvancedVideoCaptureDeviceController10 extends IInspectable {
 
     return CameraOcclusionInfo.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController10Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_CameraOcclusionInfo;
 }

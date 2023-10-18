@@ -23,7 +23,10 @@ import 'helpers.dart';
 const IID_IWwwFormUrlDecoderEntry = '{125e7431-f678-4e8e-b670-20a9b06c512d}';
 
 class IWwwFormUrlDecoderEntry extends IInspectable {
-  IWwwFormUrlDecoderEntry.fromPtr(super.ptr);
+  IWwwFormUrlDecoderEntry.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWwwFormUrlDecoderEntryVtbl>().ref;
+
+  final _IWwwFormUrlDecoderEntryVtbl _vtable;
 
   factory IWwwFormUrlDecoderEntry.from(IInspectable interface) => interface
       .cast(IWwwFormUrlDecoderEntry.fromPtr, IID_IWwwFormUrlDecoderEntry);
@@ -32,17 +35,9 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Name.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Value.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,4 +62,16 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IWwwFormUrlDecoderEntryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Name;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Value;
 }

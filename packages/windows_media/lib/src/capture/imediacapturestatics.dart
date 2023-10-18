@@ -23,7 +23,10 @@ import 'mediacapturevideoprofile.dart';
 const IID_IMediaCaptureStatics = '{acef81ff-99ed-4645-965e-1925cfc63834}';
 
 class IMediaCaptureStatics extends IInspectable {
-  IMediaCaptureStatics.fromPtr(super.ptr);
+  IMediaCaptureStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCaptureStaticsVtbl>().ref;
+
+  final _IMediaCaptureStaticsVtbl _vtable;
 
   factory IMediaCaptureStatics.from(IInspectable interface) =>
       interface.cast(IMediaCaptureStatics.fromPtr, IID_IMediaCaptureStatics);
@@ -32,18 +35,9 @@ class IMediaCaptureStatics extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              IntPtr videoDeviceId, Pointer<Bool> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int videoDeviceId,
-                      Pointer<Bool> value)>()(
-          lpVtbl, videoDeviceId.toHString(), value);
+      final hr = _vtable.IsVideoProfileSupported.asFunction<
+          int Function(VTablePointer lpVtbl, int videoDeviceId,
+              Pointer<Bool> value)>()(lpVtbl, videoDeviceId.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,20 +50,10 @@ class IMediaCaptureStatics extends IInspectable {
   List<MediaCaptureVideoProfile?> findAllVideoProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int videoDeviceId,
-                Pointer<COMObject>
-                    value)>()(lpVtbl, videoDeviceId.toHString(), value);
+    final hr = _vtable.FindAllVideoProfiles.asFunction<
+            int Function(VTablePointer lpVtbl, int videoDeviceId,
+                Pointer<COMObject> value)>()(
+        lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -85,20 +69,10 @@ class IMediaCaptureStatics extends IInspectable {
   List<MediaCaptureVideoProfile?> findConcurrentProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int videoDeviceId,
-                Pointer<COMObject>
-                    value)>()(lpVtbl, videoDeviceId.toHString(), value);
+    final hr = _vtable.FindConcurrentProfiles.asFunction<
+            int Function(VTablePointer lpVtbl, int videoDeviceId,
+                Pointer<COMObject> value)>()(
+        lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -115,22 +89,10 @@ class IMediaCaptureStatics extends IInspectable {
       String videoDeviceId, KnownVideoProfile name) {
     final value = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr videoDeviceId,
-                                Int32 name,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int videoDeviceId,
-                        int name, Pointer<COMObject> value)>()(
-            lpVtbl, videoDeviceId.toHString(), name.value, value);
+    final hr = _vtable.FindKnownVideoProfiles.asFunction<
+            int Function(VTablePointer lpVtbl, int videoDeviceId, int name,
+                Pointer<COMObject> value)>()(
+        lpVtbl, videoDeviceId.toHString(), name.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -142,4 +104,24 @@ class IMediaCaptureStatics extends IInspectable {
             creator: MediaCaptureVideoProfile.fromPtr)
         .toList();
   }
+}
+
+final class _IMediaCaptureStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
+              Pointer<Bool> value)>> IsVideoProfileSupported;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
+              Pointer<COMObject> value)>> FindAllVideoProfiles;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
+              Pointer<COMObject> value)>> FindConcurrentProfiles;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr videoDeviceId,
+              Int32 name, Pointer<COMObject> value)>> FindKnownVideoProfiles;
 }

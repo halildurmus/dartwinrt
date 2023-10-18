@@ -25,7 +25,11 @@ const IID_IToastNotificationManagerStatics =
     '{50ac103f-d235-4598-bbef-98fe4d1a3ad4}';
 
 class IToastNotificationManagerStatics extends IInspectable {
-  IToastNotificationManagerStatics.fromPtr(super.ptr);
+  IToastNotificationManagerStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IToastNotificationManagerStaticsVtbl>().ref;
+
+  final _IToastNotificationManagerStaticsVtbl _vtable;
 
   factory IToastNotificationManagerStatics.from(IInspectable interface) =>
       interface.cast(IToastNotificationManagerStatics.fromPtr,
@@ -34,17 +38,9 @@ class IToastNotificationManagerStatics extends IInspectable {
   ToastNotifier? createToastNotifier() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.CreateToastNotifier.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,21 +58,10 @@ class IToastNotificationManagerStatics extends IInspectable {
   ToastNotifier? createToastNotifierWithId(String applicationId) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr applicationId,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int applicationId,
-                        Pointer<COMObject> result)>()(
-            lpVtbl, applicationId.toHString(), result);
+    final hr = _vtable.CreateToastNotifierWithId.asFunction<
+            int Function(VTablePointer lpVtbl, int applicationId,
+                Pointer<COMObject> result)>()(
+        lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -94,17 +79,9 @@ class IToastNotificationManagerStatics extends IInspectable {
   XmlDocument? getTemplateContent(ToastTemplateType type) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int type,
-                Pointer<COMObject> result)>()(lpVtbl, type.value, result);
+    final hr = _vtable.GetTemplateContent.asFunction<
+        int Function(VTablePointer lpVtbl, int type,
+            Pointer<COMObject> result)>()(lpVtbl, type.value, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -118,4 +95,22 @@ class IToastNotificationManagerStatics extends IInspectable {
 
     return XmlDocument.fromPtr(result);
   }
+}
+
+final class _IToastNotificationManagerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      CreateToastNotifier;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr applicationId,
+              Pointer<COMObject> result)>> CreateToastNotifierWithId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 type, Pointer<COMObject> result)>>
+      GetTemplateContent;
 }

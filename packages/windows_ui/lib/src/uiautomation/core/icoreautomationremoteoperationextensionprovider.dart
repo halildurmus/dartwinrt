@@ -26,7 +26,12 @@ const IID_ICoreAutomationRemoteOperationExtensionProvider =
 /// Provides support for implementing one or more pattern extensions for a UI
 /// Automation provider.
 class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
-  ICoreAutomationRemoteOperationExtensionProvider.fromPtr(super.ptr);
+  ICoreAutomationRemoteOperationExtensionProvider.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_ICoreAutomationRemoteOperationExtensionProviderVtbl>()
+            .ref;
+
+  final _ICoreAutomationRemoteOperationExtensionProviderVtbl _vtable;
 
   factory ICoreAutomationRemoteOperationExtensionProvider.from(
           IInspectable interface) =>
@@ -41,27 +46,14 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
     final allocator = Arena();
     final operandIdsArray = operandIds.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            GUID extensionId,
-                            VTablePointer context,
-                            Uint32 operandIdsSize,
-                            Pointer<NativeAutomationRemoteOperationOperandId>
-                                operandIds)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    GUID extensionId,
-                    VTablePointer context,
-                    int operandIdsSize,
-                    Pointer<NativeAutomationRemoteOperationOperandId>
-                        operandIds)>()(lpVtbl, extensionIdNativeStructPtr.ref,
+    final hr = _vtable.CallExtension.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                GUID extensionId,
+                VTablePointer context,
+                int operandIdsSize,
+                Pointer<NativeAutomationRemoteOperationOperandId>
+                    operandIds)>()(lpVtbl, extensionIdNativeStructPtr.ref,
         context.lpVtbl, operandIds.length, operandIdsArray);
 
     free(extensionIdNativeStructPtr);
@@ -76,19 +68,10 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
     try {
       final extensionIdNativeStructPtr = extensionId.toNativeGUID();
 
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  GUID extensionId, Pointer<Bool> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, GUID extensionId,
-                          Pointer<Bool> result)>()(
-              lpVtbl, extensionIdNativeStructPtr.ref, result);
+      final hr = _vtable.IsExtensionSupported.asFunction<
+              int Function(VTablePointer lpVtbl, GUID extensionId,
+                  Pointer<Bool> result)>()(
+          lpVtbl, extensionIdNativeStructPtr.ref, result);
 
       free(extensionIdNativeStructPtr);
 
@@ -99,4 +82,22 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _ICoreAutomationRemoteOperationExtensionProviderVtbl
+    extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              GUID extensionId,
+              VTablePointer context,
+              Uint32 operandIdsSize,
+              Pointer<NativeAutomationRemoteOperationOperandId>
+                  operandIds)>> CallExtension;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, GUID extensionId,
+              Pointer<Bool> result)>> IsExtensionSupported;
 }

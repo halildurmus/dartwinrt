@@ -22,7 +22,10 @@ import '../appinfo.dart';
 const IID_IAppListEntry4 = '{2a131ed2-56f5-487c-8697-5166f3b33da0}';
 
 class IAppListEntry4 extends IInspectable {
-  IAppListEntry4.fromPtr(super.ptr);
+  IAppListEntry4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppListEntry4Vtbl>().ref;
+
+  final _IAppListEntry4Vtbl _vtable;
 
   factory IAppListEntry4.from(IInspectable interface) =>
       interface.cast(IAppListEntry4.fromPtr, IID_IAppListEntry4);
@@ -30,17 +33,9 @@ class IAppListEntry4 extends IInspectable {
   AppInfo? get appInfo {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_AppInfo.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IAppListEntry4 extends IInspectable {
 
     return AppInfo.fromPtr(value);
   }
+}
+
+final class _IAppListEntry4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_AppInfo;
 }

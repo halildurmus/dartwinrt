@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguageStatics2 = '{30199f6e-914b-4b2a-9d6e-e3b0e27dbe4f}';
 
 class ILanguageStatics2 extends IInspectable {
-  ILanguageStatics2.fromPtr(super.ptr);
+  ILanguageStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguageStatics2Vtbl>().ref;
+
+  final _ILanguageStatics2Vtbl _vtable;
 
   factory ILanguageStatics2.from(IInspectable interface) =>
       interface.cast(ILanguageStatics2.fromPtr, IID_ILanguageStatics2);
@@ -29,19 +32,9 @@ class ILanguageStatics2 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  IntPtr languageTag, Pointer<Bool> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int languageTag,
-                          Pointer<Bool> result)>()(
-              lpVtbl, languageTag.toHString(), result);
+      final hr = _vtable.TrySetInputMethodLanguageTag.asFunction<
+          int Function(VTablePointer lpVtbl, int languageTag,
+              Pointer<Bool> result)>()(lpVtbl, languageTag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +43,12 @@ class ILanguageStatics2 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _ILanguageStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr languageTag,
+              Pointer<Bool> result)>> TrySetInputMethodLanguageTag;
 }

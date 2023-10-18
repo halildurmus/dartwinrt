@@ -25,7 +25,10 @@ const IID_IMediaEncodingProfileStatics2 =
     '{ce8de74f-6af4-4288-8fe2-79adf1f79a43}';
 
 class IMediaEncodingProfileStatics2 extends IInspectable {
-  IMediaEncodingProfileStatics2.fromPtr(super.ptr);
+  IMediaEncodingProfileStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaEncodingProfileStatics2Vtbl>().ref;
+
+  final _IMediaEncodingProfileStatics2Vtbl _vtable;
 
   factory IMediaEncodingProfileStatics2.from(IInspectable interface) =>
       interface.cast(IMediaEncodingProfileStatics2.fromPtr,
@@ -34,17 +37,9 @@ class IMediaEncodingProfileStatics2 extends IInspectable {
   MediaEncodingProfile? createWav(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateWav.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,17 +57,9 @@ class IMediaEncodingProfileStatics2 extends IInspectable {
   MediaEncodingProfile? createAvi(VideoEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateAvi.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -86,4 +73,16 @@ class IMediaEncodingProfileStatics2 extends IInspectable {
 
     return MediaEncodingProfile.fromPtr(value);
   }
+}
+
+final class _IMediaEncodingProfileStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateWav;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateAvi;
 }

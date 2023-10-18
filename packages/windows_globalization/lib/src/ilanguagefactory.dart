@@ -22,7 +22,10 @@ import 'language.dart';
 const IID_ILanguageFactory = '{9b0252ac-0c27-44f8-b792-9793fb66c63e}';
 
 class ILanguageFactory extends IInspectable {
-  ILanguageFactory.fromPtr(super.ptr);
+  ILanguageFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguageFactoryVtbl>().ref;
+
+  final _ILanguageFactoryVtbl _vtable;
 
   factory ILanguageFactory.from(IInspectable interface) =>
       interface.cast(ILanguageFactory.fromPtr, IID_ILanguageFactory);
@@ -30,20 +33,10 @@ class ILanguageFactory extends IInspectable {
   Language createLanguage(String languageTag) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr languageTag,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int languageTag,
-                Pointer<COMObject>
-                    result)>()(lpVtbl, languageTag.toHString(), result);
+    final hr = _vtable.CreateLanguage.asFunction<
+            int Function(VTablePointer lpVtbl, int languageTag,
+                Pointer<COMObject> result)>()(
+        lpVtbl, languageTag.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -52,4 +45,12 @@ class ILanguageFactory extends IInspectable {
 
     return Language.fromPtr(result);
   }
+}
+
+final class _ILanguageFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr languageTag,
+              Pointer<COMObject> result)>> CreateLanguage;
 }

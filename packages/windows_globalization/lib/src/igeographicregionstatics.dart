@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeographicRegionStatics = '{29e28974-7ad9-4ef4-8799-b3b44fadec08}';
 
 class IGeographicRegionStatics extends IInspectable {
-  IGeographicRegionStatics.fromPtr(super.ptr);
+  IGeographicRegionStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeographicRegionStaticsVtbl>().ref;
+
+  final _IGeographicRegionStaticsVtbl _vtable;
 
   factory IGeographicRegionStatics.from(IInspectable interface) => interface
       .cast(IGeographicRegionStatics.fromPtr, IID_IGeographicRegionStatics);
@@ -29,19 +32,9 @@ class IGeographicRegionStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr geographicRegionCode,
-                              Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int geographicRegionCode,
-                      Pointer<Bool> result)>()(
+      final hr = _vtable.IsSupported.asFunction<
+              int Function(VTablePointer lpVtbl, int geographicRegionCode,
+                  Pointer<Bool> result)>()(
           lpVtbl, geographicRegionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -51,4 +44,12 @@ class IGeographicRegionStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IGeographicRegionStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr geographicRegionCode,
+              Pointer<Bool> result)>> IsSupported;
 }

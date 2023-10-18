@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IToastNotification6 = '{43ebfe53-89ae-5c1e-a279-3aecfe9b6f54}';
 
 class IToastNotification6 extends IInspectable {
-  IToastNotification6.fromPtr(super.ptr);
+  IToastNotification6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotification6Vtbl>().ref;
+
+  final _IToastNotification6Vtbl _vtable;
 
   factory IToastNotification6.from(IInspectable interface) =>
       interface.cast(IToastNotification6.fromPtr, IID_IToastNotification6);
@@ -29,17 +32,9 @@ class IToastNotification6 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ExpiresOnReboot.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,16 +45,21 @@ class IToastNotification6 extends IInspectable {
   }
 
   set expiresOnReboot(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_ExpiresOnReboot
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IToastNotification6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ExpiresOnReboot;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_ExpiresOnReboot;
 }

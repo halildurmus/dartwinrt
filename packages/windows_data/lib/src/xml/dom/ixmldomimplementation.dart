@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IXmlDomImplementation = '{6de58132-f11d-4fbb-8cc6-583cba93112f}';
 
 class IXmlDomImplementation extends IInspectable {
-  IXmlDomImplementation.fromPtr(super.ptr);
+  IXmlDomImplementation.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDomImplementationVtbl>().ref;
+
+  final _IXmlDomImplementationVtbl _vtable;
 
   factory IXmlDomImplementation.from(IInspectable interface) =>
       interface.cast(IXmlDomImplementation.fromPtr, IID_IXmlDomImplementation);
@@ -29,20 +32,9 @@ class IXmlDomImplementation extends IInspectable {
     final featureSupported = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr feature,
-                              VTablePointer version,
-                              Pointer<Bool> featureSupported)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int feature,
-                      VTablePointer version, Pointer<Bool> featureSupported)>()(
+      final hr = _vtable.HasFeature.asFunction<
+              int Function(VTablePointer lpVtbl, int feature,
+                  VTablePointer version, Pointer<Bool> featureSupported)>()(
           lpVtbl,
           feature.toHString(),
           version?.boxValue().lpVtbl ?? nullptr,
@@ -55,4 +47,15 @@ class IXmlDomImplementation extends IInspectable {
       free(featureSupported);
     }
   }
+}
+
+final class _IXmlDomImplementationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr feature,
+              VTablePointer version,
+              Pointer<Bool> featureSupported)>> HasFeature;
 }

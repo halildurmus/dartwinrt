@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDepthMediaFrame2 = '{6cca473d-c4a4-4176-b0cd-33eae3b35aa3}';
 
 class IDepthMediaFrame2 extends IInspectable {
-  IDepthMediaFrame2.fromPtr(super.ptr);
+  IDepthMediaFrame2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDepthMediaFrame2Vtbl>().ref;
+
+  final _IDepthMediaFrame2Vtbl _vtable;
 
   factory IDepthMediaFrame2.from(IInspectable interface) =>
       interface.cast(IDepthMediaFrame2.fromPtr, IID_IDepthMediaFrame2);
@@ -29,17 +32,9 @@ class IDepthMediaFrame2 extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaxReliableDepth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IDepthMediaFrame2 extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MinReliableDepth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IDepthMediaFrame2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDepthMediaFrame2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaxReliableDepth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MinReliableDepth;
 }

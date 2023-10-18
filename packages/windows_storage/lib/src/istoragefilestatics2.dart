@@ -23,7 +23,10 @@ import 'storagefile.dart';
 const IID_IStorageFileStatics2 = '{5c76a781-212e-4af9-8f04-740cae108974}';
 
 class IStorageFileStatics2 extends IInspectable {
-  IStorageFileStatics2.fromPtr(super.ptr);
+  IStorageFileStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFileStatics2Vtbl>().ref;
+
+  final _IStorageFileStatics2Vtbl _vtable;
 
   factory IStorageFileStatics2.from(IInspectable interface) =>
       interface.cast(IStorageFileStatics2.fromPtr, IID_IStorageFileStatics2);
@@ -31,22 +34,10 @@ class IStorageFileStatics2 extends IInspectable {
   Future<StorageFile?> getFileFromPathForUserAsync(User? user, String path) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr path,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int path, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, path.toHString(), operation);
+    final hr = _vtable.GetFileFromPathForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int path,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -57,4 +48,15 @@ class IStorageFileStatics2 extends IInspectable {
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFileStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr path,
+              Pointer<COMObject> operation)>> GetFileFromPathForUserAsync;
 }

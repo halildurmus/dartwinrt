@@ -29,7 +29,10 @@ import 'igamepad.dart';
 const IID_IGamepad2 = '{3c1689bd-5915-4245-b0c0-c89fae0308ff}';
 
 class IGamepad2 extends IInspectable implements IGamepad, IGameController {
-  IGamepad2.fromPtr(super.ptr);
+  IGamepad2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGamepad2Vtbl>().ref;
+
+  final _IGamepad2Vtbl _vtable;
 
   factory IGamepad2.from(IInspectable interface) =>
       interface.cast(IGamepad2.fromPtr, IID_IGamepad2);
@@ -38,17 +41,9 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 button,
-                          Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int button,
-                  Pointer<Int32> value)>()(lpVtbl, button.value, value);
+      final hr = _vtable.GetButtonLabel.asFunction<
+          int Function(VTablePointer lpVtbl, int button,
+              Pointer<Int32> value)>()(lpVtbl, button.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,4 +98,13 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
 
   @override
   User? get user => _iGameController.user;
+}
+
+final class _IGamepad2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 button, Pointer<Int32> value)>>
+      GetButtonLabel;
 }

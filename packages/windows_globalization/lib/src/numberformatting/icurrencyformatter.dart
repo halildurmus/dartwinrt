@@ -25,7 +25,10 @@ const IID_ICurrencyFormatter = '{11730ca5-4b00-41b2-b332-73b12a497d54}';
 
 class ICurrencyFormatter extends IInspectable
     implements INumberFormatterOptions, INumberFormatter, INumberParser {
-  ICurrencyFormatter.fromPtr(super.ptr);
+  ICurrencyFormatter.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICurrencyFormatterVtbl>().ref;
+
+  final _ICurrencyFormatterVtbl _vtable;
 
   factory ICurrencyFormatter.from(IInspectable interface) =>
       interface.cast(ICurrencyFormatter.fromPtr, IID_ICurrencyFormatter);
@@ -34,17 +37,9 @@ class ICurrencyFormatter extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Currency.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class ICurrencyFormatter extends IInspectable
   @Deprecated(
       "Currency may be read-only for releases after Windows 8.1. Instead, use a new CurrencyFormatter.")
   set currency(String value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Currency
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -143,4 +130,15 @@ class ICurrencyFormatter extends IInspectable
 
   @override
   double? parseDouble(String text) => _iNumberParser.parseDouble(text);
+}
+
+final class _ICurrencyFormatterVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Currency;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Currency;
 }

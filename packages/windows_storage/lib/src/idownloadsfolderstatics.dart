@@ -24,7 +24,10 @@ import 'storagefolder.dart';
 const IID_IDownloadsFolderStatics = '{27862ed0-404e-47df-a1e2-e37308be7b37}';
 
 class IDownloadsFolderStatics extends IInspectable {
-  IDownloadsFolderStatics.fromPtr(super.ptr);
+  IDownloadsFolderStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDownloadsFolderStaticsVtbl>().ref;
+
+  final _IDownloadsFolderStaticsVtbl _vtable;
 
   factory IDownloadsFolderStatics.from(IInspectable interface) => interface
       .cast(IDownloadsFolderStatics.fromPtr, IID_IDownloadsFolderStatics);
@@ -32,21 +35,10 @@ class IDownloadsFolderStatics extends IInspectable {
   Future<StorageFile?> createFileAsync(String desiredName) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), operation);
+    final hr = _vtable.CreateFileAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -61,21 +53,10 @@ class IDownloadsFolderStatics extends IInspectable {
   Future<StorageFolder?> createFolderAsync(String desiredName) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), operation);
+    final hr = _vtable.CreateFolderAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -91,22 +72,10 @@ class IDownloadsFolderStatics extends IInspectable {
       String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Int32 option,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        int option, Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), option.value, operation);
+    final hr = _vtable.CreateFileWithCollisionOptionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName, int option,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -122,22 +91,10 @@ class IDownloadsFolderStatics extends IInspectable {
       String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Int32 option,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        int option, Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), option.value, operation);
+    final hr = _vtable.CreateFolderWithCollisionOptionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName, int option,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -148,4 +105,26 @@ class IDownloadsFolderStatics extends IInspectable {
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IDownloadsFolderStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+              Pointer<COMObject> operation)>> CreateFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+              Pointer<COMObject> operation)>> CreateFolderAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+                  Int32 option, Pointer<COMObject> operation)>>
+      CreateFileWithCollisionOptionAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+                  Int32 option, Pointer<COMObject> operation)>>
+      CreateFolderWithCollisionOptionAsync;
 }

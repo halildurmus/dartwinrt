@@ -26,7 +26,10 @@ const IID_ILearningModelSessionFactory2 =
     '{4e5c88bf-0a1f-5fec-ade0-2fd91e4ef29b}';
 
 class ILearningModelSessionFactory2 extends IInspectable {
-  ILearningModelSessionFactory2.fromPtr(super.ptr);
+  ILearningModelSessionFactory2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionFactory2Vtbl>().ref;
+
+  final _ILearningModelSessionFactory2Vtbl _vtable;
 
   factory ILearningModelSessionFactory2.from(IInspectable interface) =>
       interface.cast(ILearningModelSessionFactory2.fromPtr,
@@ -38,25 +41,13 @@ class ILearningModelSessionFactory2 extends IInspectable {
       LearningModelSessionOptions? learningModelSessionOptions) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer model,
-                            VTablePointer deviceToRunOn,
-                            VTablePointer learningModelSessionOptions,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer model,
-                    VTablePointer deviceToRunOn,
-                    VTablePointer learningModelSessionOptions,
-                    Pointer<COMObject> value)>()(lpVtbl, model.lpVtbl,
+    final hr = _vtable.CreateFromModelOnDeviceWithSessionOptions.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer model,
+                VTablePointer deviceToRunOn,
+                VTablePointer learningModelSessionOptions,
+                Pointer<COMObject> value)>()(lpVtbl, model.lpVtbl,
         deviceToRunOn.lpVtbl, learningModelSessionOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
@@ -66,4 +57,17 @@ class ILearningModelSessionFactory2 extends IInspectable {
 
     return LearningModelSession.fromPtr(value);
   }
+}
+
+final class _ILearningModelSessionFactory2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer model,
+                  VTablePointer deviceToRunOn,
+                  VTablePointer learningModelSessionOptions,
+                  Pointer<COMObject> value)>>
+      CreateFromModelOnDeviceWithSessionOptions;
 }

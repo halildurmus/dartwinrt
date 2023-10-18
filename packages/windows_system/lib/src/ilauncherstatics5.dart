@@ -23,7 +23,10 @@ import 'user.dart';
 const IID_ILauncherStatics5 = '{5b24ef84-d895-5fea-9153-1ac49aed9ba9}';
 
 class ILauncherStatics5 extends IInspectable {
-  ILauncherStatics5.fromPtr(super.ptr);
+  ILauncherStatics5.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherStatics5Vtbl>().ref;
+
+  final _ILauncherStatics5Vtbl _vtable;
 
   factory ILauncherStatics5.from(IInspectable interface) =>
       interface.cast(ILauncherStatics5.fromPtr, IID_ILauncherStatics5);
@@ -31,17 +34,9 @@ class ILauncherStatics5 extends IInspectable {
   Future<bool> launchFolderPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr path,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int path,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchFolderPathAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int path,
+                Pointer<COMObject> operation)>()(
         lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -57,20 +52,9 @@ class ILauncherStatics5 extends IInspectable {
       String path, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr path,
-                            VTablePointer options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int path,
-                    VTablePointer options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchFolderPathWithOptionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int path, VTablePointer options,
+                Pointer<COMObject> operation)>()(
         lpVtbl, path.toHString(), options.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -85,22 +69,10 @@ class ILauncherStatics5 extends IInspectable {
   Future<bool> launchFolderPathForUserAsync(User? user, String path) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr path,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int path, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, path.toHString(), operation);
+    final hr = _vtable.LaunchFolderPathForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int path,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -115,21 +87,9 @@ class ILauncherStatics5 extends IInspectable {
       User? user, String path, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr path,
-                            VTablePointer options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer user, int path,
-                    VTablePointer options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchFolderPathWithOptionsForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int path,
+                VTablePointer options, Pointer<COMObject> operation)>()(
         lpVtbl, user.lpVtbl, path.toHString(), options.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -140,4 +100,35 @@ class ILauncherStatics5 extends IInspectable {
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _ILauncherStatics5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr path,
+              Pointer<COMObject> operation)>> LaunchFolderPathAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr path,
+              VTablePointer options,
+              Pointer<COMObject> operation)>> LaunchFolderPathWithOptionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr path,
+              Pointer<COMObject> operation)>> LaunchFolderPathForUserAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer user,
+                  IntPtr path,
+                  VTablePointer options,
+                  Pointer<COMObject> operation)>>
+      LaunchFolderPathWithOptionsForUserAsync;
 }

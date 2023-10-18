@@ -25,7 +25,10 @@ const IID_IMemoryBufferReference = '{fbc4dd29-245b-11e4-af98-689423260cf8}';
 
 /// Represents a reference to an IMemoryBuffer object.
 class IMemoryBufferReference extends IInspectable implements IClosable {
-  IMemoryBufferReference.fromPtr(super.ptr);
+  IMemoryBufferReference.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMemoryBufferReferenceVtbl>().ref;
+
+  final _IMemoryBufferReferenceVtbl _vtable;
 
   factory IMemoryBufferReference.from(IInspectable interface) => interface.cast(
       IMemoryBufferReference.fromPtr, IID_IMemoryBufferReference);
@@ -34,17 +37,9 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Capacity.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,21 +53,9 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
     final cookie = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer handler,
-                                  Pointer<IntPtr> cookie)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer handler,
-                          Pointer<IntPtr> cookie)>()(
-              lpVtbl, handler.ref.lpVtbl, cookie);
+      final hr = _vtable.add_Closed.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>()(lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +66,9 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
   }
 
   void remove_Closed(int cookie) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr cookie)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            lpVtbl, cookie);
+    final hr = _vtable.remove_Closed
+            .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
+        lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -102,4 +77,19 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IMemoryBufferReferenceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Capacity;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>> add_Closed;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr cookie)>>
+      remove_Closed;
 }

@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IOcrWord = '{3c2a477a-5cd9-3525-ba2a-23d1e0a68a1d}';
 
 class IOcrWord extends IInspectable {
-  IOcrWord.fromPtr(super.ptr);
+  IOcrWord.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IOcrWordVtbl>().ref;
+
+  final _IOcrWordVtbl _vtable;
 
   factory IOcrWord.from(IInspectable interface) =>
       interface.cast(IOcrWord.fromPtr, IID_IOcrWord);
@@ -29,17 +32,9 @@ class IOcrWord extends IInspectable {
     final value = calloc<NativeRect>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeRect> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeRect> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BoundingRect.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeRect> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IOcrWord extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Text.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,17 @@ class IOcrWord extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IOcrWordVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeRect> value)>>
+      get_BoundingRect;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Text;
 }

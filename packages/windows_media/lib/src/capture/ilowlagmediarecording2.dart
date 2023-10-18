@@ -22,7 +22,10 @@ import '../devices/mediacapturepausebehavior.dart';
 const IID_ILowLagMediaRecording2 = '{6369c758-5644-41e2-97af-8ef56a25e225}';
 
 class ILowLagMediaRecording2 extends IInspectable {
-  ILowLagMediaRecording2.fromPtr(super.ptr);
+  ILowLagMediaRecording2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILowLagMediaRecording2Vtbl>().ref;
+
+  final _ILowLagMediaRecording2Vtbl _vtable;
 
   factory ILowLagMediaRecording2.from(IInspectable interface) => interface.cast(
       ILowLagMediaRecording2.fromPtr, IID_ILowLagMediaRecording2);
@@ -30,18 +33,9 @@ class ILowLagMediaRecording2 extends IInspectable {
   Future<void> pauseAsync(MediaCapturePauseBehavior behavior) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 behavior,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int behavior,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, behavior.value, operation);
+    final hr = _vtable.PauseAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int behavior,
+            Pointer<COMObject> operation)>()(lpVtbl, behavior.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -54,17 +48,9 @@ class ILowLagMediaRecording2 extends IInspectable {
   Future<void> resumeAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.ResumeAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -73,4 +59,16 @@ class ILowLagMediaRecording2 extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _ILowLagMediaRecording2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 behavior,
+              Pointer<COMObject> operation)>> PauseAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> ResumeAsync;
 }

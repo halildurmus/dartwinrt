@@ -23,7 +23,10 @@ const IID_IMediaFrameSourceController3 =
     '{1f0cf815-2464-4651-b1e8-4a82dbdb54de}';
 
 class IMediaFrameSourceController3 extends IInspectable {
-  IMediaFrameSourceController3.fromPtr(super.ptr);
+  IMediaFrameSourceController3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceController3Vtbl>().ref;
+
+  final _IMediaFrameSourceController3Vtbl _vtable;
 
   factory IMediaFrameSourceController3.from(IInspectable interface) =>
       interface.cast(IMediaFrameSourceController3.fromPtr,
@@ -32,17 +35,9 @@ class IMediaFrameSourceController3 extends IInspectable {
   AudioDeviceController? get audioDeviceController {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_AudioDeviceController.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +51,12 @@ class IMediaFrameSourceController3 extends IInspectable {
 
     return AudioDeviceController.fromPtr(value);
   }
+}
+
+final class _IMediaFrameSourceController3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_AudioDeviceController;
 }

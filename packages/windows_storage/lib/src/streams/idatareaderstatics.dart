@@ -23,7 +23,10 @@ import 'ibuffer.dart';
 const IID_IDataReaderStatics = '{11fcbfc8-f93a-471b-b121-f379e349313c}';
 
 class IDataReaderStatics extends IInspectable {
-  IDataReaderStatics.fromPtr(super.ptr);
+  IDataReaderStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataReaderStaticsVtbl>().ref;
+
+  final _IDataReaderStaticsVtbl _vtable;
 
   factory IDataReaderStatics.from(IInspectable interface) =>
       interface.cast(IDataReaderStatics.fromPtr, IID_IDataReaderStatics);
@@ -31,21 +34,10 @@ class IDataReaderStatics extends IInspectable {
   DataReader? fromBuffer(IBuffer? buffer) {
     final dataReader = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer buffer,
-                                Pointer<COMObject> dataReader)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> dataReader)>()(
-            lpVtbl, buffer.lpVtbl, dataReader);
+    final hr = _vtable.FromBuffer.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                Pointer<COMObject> dataReader)>()(
+        lpVtbl, buffer.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);
@@ -59,4 +51,12 @@ class IDataReaderStatics extends IInspectable {
 
     return DataReader.fromPtr(dataReader);
   }
+}
+
+final class _IDataReaderStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
+              Pointer<COMObject> dataReader)>> FromBuffer;
 }

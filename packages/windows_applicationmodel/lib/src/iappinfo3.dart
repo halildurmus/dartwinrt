@@ -22,7 +22,10 @@ import 'appexecutioncontext.dart';
 const IID_IAppInfo3 = '{09a78e46-93a4-46de-9397-0843b57115ea}';
 
 class IAppInfo3 extends IInspectable {
-  IAppInfo3.fromPtr(super.ptr);
+  IAppInfo3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppInfo3Vtbl>().ref;
+
+  final _IAppInfo3Vtbl _vtable;
 
   factory IAppInfo3.from(IInspectable interface) =>
       interface.cast(IAppInfo3.fromPtr, IID_IAppInfo3);
@@ -31,17 +34,9 @@ class IAppInfo3 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ExecutionContext.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IAppInfo3 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAppInfo3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ExecutionContext;
 }

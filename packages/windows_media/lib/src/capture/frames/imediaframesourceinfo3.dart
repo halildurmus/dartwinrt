@@ -22,7 +22,10 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_IMediaFrameSourceInfo3 = '{ca824ab6-66ea-5885-a2b6-26c0eeec3c7b}';
 
 class IMediaFrameSourceInfo3 extends IInspectable {
-  IMediaFrameSourceInfo3.fromPtr(super.ptr);
+  IMediaFrameSourceInfo3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceInfo3Vtbl>().ref;
+
+  final _IMediaFrameSourceInfo3Vtbl _vtable;
 
   factory IMediaFrameSourceInfo3.from(IInspectable interface) => interface.cast(
       IMediaFrameSourceInfo3.fromPtr, IID_IMediaFrameSourceInfo3);
@@ -31,20 +34,9 @@ class IMediaFrameSourceInfo3 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer displayRegion,
-                              Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      VTablePointer displayRegion, Pointer<Int32> result)>()(
-          lpVtbl, displayRegion.lpVtbl, result);
+      final hr = _vtable.GetRelativePanel.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer displayRegion,
+              Pointer<Int32> result)>()(lpVtbl, displayRegion.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,4 +45,12 @@ class IMediaFrameSourceInfo3 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IMediaFrameSourceInfo3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer displayRegion,
+              Pointer<Int32> result)>> GetRelativePanel;
 }

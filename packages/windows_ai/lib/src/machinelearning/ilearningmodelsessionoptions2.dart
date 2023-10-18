@@ -21,7 +21,10 @@ const IID_ILearningModelSessionOptions2 =
     '{6fcd1dc4-175f-5bd2-8de5-2f2006a25adf}';
 
 class ILearningModelSessionOptions2 extends IInspectable {
-  ILearningModelSessionOptions2.fromPtr(super.ptr);
+  ILearningModelSessionOptions2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionOptions2Vtbl>().ref;
+
+  final _ILearningModelSessionOptions2Vtbl _vtable;
 
   factory ILearningModelSessionOptions2.from(IInspectable interface) =>
       interface.cast(ILearningModelSessionOptions2.fromPtr,
@@ -31,17 +34,9 @@ class ILearningModelSessionOptions2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CloseModelOnSessionCreation.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,16 +47,21 @@ class ILearningModelSessionOptions2 extends IInspectable {
   }
 
   set closeModelOnSessionCreation(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_CloseModelOnSessionCreation
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILearningModelSessionOptions2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CloseModelOnSessionCreation;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_CloseModelOnSessionCreation;
 }

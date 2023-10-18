@@ -23,7 +23,11 @@ const IID_IMediaFrameSourceGetPropertyResult =
     '{088616c2-3a64-4bd5-bd2b-e7c898d2f37a}';
 
 class IMediaFrameSourceGetPropertyResult extends IInspectable {
-  IMediaFrameSourceGetPropertyResult.fromPtr(super.ptr);
+  IMediaFrameSourceGetPropertyResult.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IMediaFrameSourceGetPropertyResultVtbl>().ref;
+
+  final _IMediaFrameSourceGetPropertyResultVtbl _vtable;
 
   factory IMediaFrameSourceGetPropertyResult.from(IInspectable interface) =>
       interface.cast(IMediaFrameSourceGetPropertyResult.fromPtr,
@@ -33,17 +37,9 @@ class IMediaFrameSourceGetPropertyResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +52,9 @@ class IMediaFrameSourceGetPropertyResult extends IInspectable {
   Object? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -80,4 +68,16 @@ class IMediaFrameSourceGetPropertyResult extends IInspectable {
 
     return IPropertyValue.fromPtr(value).value;
   }
+}
+
+final class _IMediaFrameSourceGetPropertyResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Status;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
 }

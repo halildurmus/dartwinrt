@@ -22,7 +22,10 @@ import 'webaccountmonitor.dart';
 const IID_IWebAccountMonitor2 = '{a7adc1f8-24b8-4f01-9ae5-24545e71233a}';
 
 class IWebAccountMonitor2 extends IInspectable {
-  IWebAccountMonitor2.fromPtr(super.ptr);
+  IWebAccountMonitor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountMonitor2Vtbl>().ref;
+
+  final _IWebAccountMonitor2Vtbl _vtable;
 
   factory IWebAccountMonitor2.from(IInspectable interface) =>
       interface.cast(IWebAccountMonitor2.fromPtr, IID_IWebAccountMonitor2);
@@ -31,17 +34,9 @@ class IWebAccountMonitor2 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_AccountPictureUpdated.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,18 +47,21 @@ class IWebAccountMonitor2 extends IInspectable {
   }
 
   void remove_AccountPictureUpdated(int token) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_AccountPictureUpdated
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IWebAccountMonitor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_AccountPictureUpdated;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_AccountPictureUpdated;
 }

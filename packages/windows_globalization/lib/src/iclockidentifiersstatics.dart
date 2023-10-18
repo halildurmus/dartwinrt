@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IClockIdentifiersStatics = '{523805bb-12ec-4f83-bc31-b1b4376b0808}';
 
 class IClockIdentifiersStatics extends IInspectable {
-  IClockIdentifiersStatics.fromPtr(super.ptr);
+  IClockIdentifiersStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IClockIdentifiersStaticsVtbl>().ref;
+
+  final _IClockIdentifiersStaticsVtbl _vtable;
 
   factory IClockIdentifiersStatics.from(IInspectable interface) => interface
       .cast(IClockIdentifiersStatics.fromPtr, IID_IClockIdentifiersStatics);
@@ -29,17 +32,9 @@ class IClockIdentifiersStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_TwelveHour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IClockIdentifiersStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_TwentyFourHour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IClockIdentifiersStatics extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IClockIdentifiersStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_TwelveHour;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_TwentyFourHour;
 }

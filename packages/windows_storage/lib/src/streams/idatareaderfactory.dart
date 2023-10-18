@@ -23,7 +23,10 @@ import 'iinputstream.dart';
 const IID_IDataReaderFactory = '{d7527847-57da-4e15-914c-06806699a098}';
 
 class IDataReaderFactory extends IInspectable {
-  IDataReaderFactory.fromPtr(super.ptr);
+  IDataReaderFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataReaderFactoryVtbl>().ref;
+
+  final _IDataReaderFactoryVtbl _vtable;
 
   factory IDataReaderFactory.from(IInspectable interface) =>
       interface.cast(IDataReaderFactory.fromPtr, IID_IDataReaderFactory);
@@ -31,19 +34,9 @@ class IDataReaderFactory extends IInspectable {
   DataReader createDataReader(IInputStream? inputStream) {
     final dataReader = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputStream,
-                            Pointer<COMObject> dataReader)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer inputStream,
-                    Pointer<COMObject> dataReader)>()(
+    final hr = _vtable.CreateDataReader.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer inputStream,
+                Pointer<COMObject> dataReader)>()(
         lpVtbl, inputStream.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
@@ -53,4 +46,12 @@ class IDataReaderFactory extends IInspectable {
 
     return DataReader.fromPtr(dataReader);
   }
+}
+
+final class _IDataReaderFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputStream,
+              Pointer<COMObject> dataReader)>> CreateDataReader;
 }

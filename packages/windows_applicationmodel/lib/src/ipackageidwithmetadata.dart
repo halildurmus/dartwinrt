@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPackageIdWithMetadata = '{40577a7c-0c9e-443d-9074-855f5ce0a08d}';
 
 class IPackageIdWithMetadata extends IInspectable {
-  IPackageIdWithMetadata.fromPtr(super.ptr);
+  IPackageIdWithMetadata.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackageIdWithMetadataVtbl>().ref;
+
+  final _IPackageIdWithMetadataVtbl _vtable;
 
   factory IPackageIdWithMetadata.from(IInspectable interface) => interface.cast(
       IPackageIdWithMetadata.fromPtr, IID_IPackageIdWithMetadata);
@@ -29,17 +32,9 @@ class IPackageIdWithMetadata extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ProductId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IPackageIdWithMetadata extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Author.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IPackageIdWithMetadata extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPackageIdWithMetadataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ProductId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Author;
 }

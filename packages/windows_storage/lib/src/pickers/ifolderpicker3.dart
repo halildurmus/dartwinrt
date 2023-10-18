@@ -21,7 +21,10 @@ import 'package:windows_system/windows_system.dart';
 const IID_IFolderPicker3 = '{673b1e29-d326-53c0-bd24-a25c714cee36}';
 
 class IFolderPicker3 extends IInspectable {
-  IFolderPicker3.fromPtr(super.ptr);
+  IFolderPicker3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFolderPicker3Vtbl>().ref;
+
+  final _IFolderPicker3Vtbl _vtable;
 
   factory IFolderPicker3.from(IInspectable interface) =>
       interface.cast(IFolderPicker3.fromPtr, IID_IFolderPicker3);
@@ -29,17 +32,9 @@ class IFolderPicker3 extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_User.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IFolderPicker3 extends IInspectable {
 
     return User.fromPtr(value);
   }
+}
+
+final class _IFolderPicker3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_User;
 }

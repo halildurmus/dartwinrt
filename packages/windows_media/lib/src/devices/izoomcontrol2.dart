@@ -23,7 +23,10 @@ import 'zoomtransitionmode.dart';
 const IID_IZoomControl2 = '{69843db0-2e99-4641-8529-184f319d1671}';
 
 class IZoomControl2 extends IInspectable {
-  IZoomControl2.fromPtr(super.ptr);
+  IZoomControl2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IZoomControl2Vtbl>().ref;
+
+  final _IZoomControl2Vtbl _vtable;
 
   factory IZoomControl2.from(IInspectable interface) =>
       interface.cast(IZoomControl2.fromPtr, IID_IZoomControl2);
@@ -31,17 +34,9 @@ class IZoomControl2 extends IInspectable {
   List<ZoomTransitionMode>? get supportedModes {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedModes.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,17 +58,9 @@ class IZoomControl2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Mode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,18 +71,26 @@ class IZoomControl2 extends IInspectable {
   }
 
   void configure(ZoomSettings? settings) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer settings)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer settings)>()(
+    final hr = _vtable.Configure.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer settings)>()(
         lpVtbl, settings.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IZoomControl2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedModes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Mode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer settings)>>
+      Configure;
 }

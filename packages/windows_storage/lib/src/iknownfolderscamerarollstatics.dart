@@ -23,7 +23,11 @@ const IID_IKnownFoldersCameraRollStatics =
     '{5d115e66-27e8-492f-b8e5-2f90896cd4cd}';
 
 class IKnownFoldersCameraRollStatics extends IInspectable {
-  IKnownFoldersCameraRollStatics.fromPtr(super.ptr);
+  IKnownFoldersCameraRollStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IKnownFoldersCameraRollStaticsVtbl>().ref;
+
+  final _IKnownFoldersCameraRollStaticsVtbl _vtable;
 
   factory IKnownFoldersCameraRollStatics.from(IInspectable interface) =>
       interface.cast(IKnownFoldersCameraRollStatics.fromPtr,
@@ -32,17 +36,9 @@ class IKnownFoldersCameraRollStatics extends IInspectable {
   StorageFolder? get cameraRoll {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_CameraRoll.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +52,12 @@ class IKnownFoldersCameraRollStatics extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IKnownFoldersCameraRollStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_CameraRoll;
 }

@@ -22,7 +22,10 @@ import 'spatialcoordinatesystem.dart';
 const IID_ISpatialCoordinateSystem = '{69ebca4b-60a3-3586-a653-59a7bd676d07}';
 
 class ISpatialCoordinateSystem extends IInspectable {
-  ISpatialCoordinateSystem.fromPtr(super.ptr);
+  ISpatialCoordinateSystem.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISpatialCoordinateSystemVtbl>().ref;
+
+  final _ISpatialCoordinateSystemVtbl _vtable;
 
   factory ISpatialCoordinateSystem.from(IInspectable interface) => interface
       .cast(ISpatialCoordinateSystem.fromPtr, IID_ISpatialCoordinateSystem);
@@ -30,17 +33,9 @@ class ISpatialCoordinateSystem extends IInspectable {
   Matrix4x4? tryGetTransformTo(SpatialCoordinateSystem? target) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer target,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer target,
-                Pointer<COMObject> value)>()(lpVtbl, target.lpVtbl, value);
+    final hr = _vtable.TryGetTransformTo.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer target,
+            Pointer<COMObject> value)>()(lpVtbl, target.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +51,12 @@ class ISpatialCoordinateSystem extends IInspectable {
             referenceIid: '{dacbffdc-68ef-5fd0-b657-782d0ac9807e}')
         .value;
   }
+}
+
+final class _ISpatialCoordinateSystemVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer target,
+              Pointer<COMObject> value)>> TryGetTransformTo;
 }

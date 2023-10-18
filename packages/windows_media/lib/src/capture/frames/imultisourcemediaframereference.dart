@@ -24,7 +24,11 @@ const IID_IMultiSourceMediaFrameReference =
 
 class IMultiSourceMediaFrameReference extends IInspectable
     implements IClosable {
-  IMultiSourceMediaFrameReference.fromPtr(super.ptr);
+  IMultiSourceMediaFrameReference.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IMultiSourceMediaFrameReferenceVtbl>().ref;
+
+  final _IMultiSourceMediaFrameReferenceVtbl _vtable;
 
   factory IMultiSourceMediaFrameReference.from(IInspectable interface) =>
       interface.cast(IMultiSourceMediaFrameReference.fromPtr,
@@ -33,18 +37,9 @@ class IMultiSourceMediaFrameReference extends IInspectable
   MediaFrameReference? tryGetFrameReferenceBySourceId(String sourceId) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr sourceId,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sourceId,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, sourceId.toHString(), value);
+    final hr = _vtable.TryGetFrameReferenceBySourceId.asFunction<
+        int Function(VTablePointer lpVtbl, int sourceId,
+            Pointer<COMObject> value)>()(lpVtbl, sourceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,4 +58,12 @@ class IMultiSourceMediaFrameReference extends IInspectable
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IMultiSourceMediaFrameReferenceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr sourceId,
+              Pointer<COMObject> value)>> TryGetFrameReferenceBySourceId;
 }

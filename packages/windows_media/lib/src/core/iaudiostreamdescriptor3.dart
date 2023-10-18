@@ -22,7 +22,10 @@ import 'audiostreamdescriptor.dart';
 const IID_IAudioStreamDescriptor3 = '{4d220da1-8e83-44ef-8973-2f63e993f36b}';
 
 class IAudioStreamDescriptor3 extends IInspectable {
-  IAudioStreamDescriptor3.fromPtr(super.ptr);
+  IAudioStreamDescriptor3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioStreamDescriptor3Vtbl>().ref;
+
+  final _IAudioStreamDescriptor3Vtbl _vtable;
 
   factory IAudioStreamDescriptor3.from(IInspectable interface) => interface
       .cast(IAudioStreamDescriptor3.fromPtr, IID_IAudioStreamDescriptor3);
@@ -30,17 +33,9 @@ class IAudioStreamDescriptor3 extends IInspectable {
   AudioStreamDescriptor? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,12 @@ class IAudioStreamDescriptor3 extends IInspectable {
 
     return AudioStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _IAudioStreamDescriptor3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

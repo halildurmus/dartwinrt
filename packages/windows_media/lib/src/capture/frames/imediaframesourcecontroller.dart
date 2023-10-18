@@ -25,7 +25,10 @@ const IID_IMediaFrameSourceController =
     '{6d076635-316d-4b8f-b7b6-eeb04a8c6525}';
 
 class IMediaFrameSourceController extends IInspectable {
-  IMediaFrameSourceController.fromPtr(super.ptr);
+  IMediaFrameSourceController.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceControllerVtbl>().ref;
+
+  final _IMediaFrameSourceControllerVtbl _vtable;
 
   factory IMediaFrameSourceController.from(IInspectable interface) =>
       interface.cast(
@@ -35,20 +38,9 @@ class IMediaFrameSourceController extends IInspectable {
       String propertyId) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr propertyId,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int propertyId,
-                Pointer<COMObject>
-                    value)>()(lpVtbl, propertyId.toHString(), value);
+    final hr = _vtable.GetPropertyAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int propertyId,
+            Pointer<COMObject> value)>()(lpVtbl, propertyId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -65,20 +57,9 @@ class IMediaFrameSourceController extends IInspectable {
       String propertyId, Object? propertyValue) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr propertyId,
-                            VTablePointer propertyValue,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int propertyId,
-                    VTablePointer propertyValue, Pointer<COMObject> value)>()(
+    final hr = _vtable.SetPropertyAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int propertyId,
+                VTablePointer propertyValue, Pointer<COMObject> value)>()(
         lpVtbl,
         propertyId.toHString(),
         propertyValue?.boxValue().lpVtbl ?? nullptr,
@@ -98,17 +79,9 @@ class IMediaFrameSourceController extends IInspectable {
   VideoDeviceController? get videoDeviceController {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoDeviceController.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -122,4 +95,23 @@ class IMediaFrameSourceController extends IInspectable {
 
     return VideoDeviceController.fromPtr(value);
   }
+}
+
+final class _IMediaFrameSourceControllerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr propertyId,
+              Pointer<COMObject> value)>> GetPropertyAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr propertyId,
+              VTablePointer propertyValue,
+              Pointer<COMObject> value)>> SetPropertyAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoDeviceController;
 }

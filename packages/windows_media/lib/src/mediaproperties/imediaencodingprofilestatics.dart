@@ -26,7 +26,10 @@ const IID_IMediaEncodingProfileStatics =
     '{197f352c-2ede-4a45-a896-817a4854f8fe}';
 
 class IMediaEncodingProfileStatics extends IInspectable {
-  IMediaEncodingProfileStatics.fromPtr(super.ptr);
+  IMediaEncodingProfileStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaEncodingProfileStaticsVtbl>().ref;
+
+  final _IMediaEncodingProfileStaticsVtbl _vtable;
 
   factory IMediaEncodingProfileStatics.from(IInspectable interface) =>
       interface.cast(IMediaEncodingProfileStatics.fromPtr,
@@ -35,17 +38,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   MediaEncodingProfile? createM4a(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateM4a.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,17 +58,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   MediaEncodingProfile? createMp3(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateMp3.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,17 +78,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   MediaEncodingProfile? createWma(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateWma.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -119,17 +98,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   MediaEncodingProfile? createMp4(VideoEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateMp4.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -147,17 +118,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   MediaEncodingProfile? createWmv(VideoEncodingQuality quality) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 quality,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int quality,
-                Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
+    final hr = _vtable.CreateWmv.asFunction<
+        int Function(VTablePointer lpVtbl, int quality,
+            Pointer<COMObject> value)>()(lpVtbl, quality.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -175,21 +138,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
   Future<MediaEncodingProfile?> createFromFileAsync(IStorageFile? file) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, file.lpVtbl, operation);
+    final hr = _vtable.CreateFromFileAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer file,
+            Pointer<COMObject> operation)>()(lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -206,21 +157,9 @@ class IMediaEncodingProfileStatics extends IInspectable {
       IRandomAccessStream? stream) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer stream,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, stream.lpVtbl, operation);
+    final hr = _vtable.CreateFromStreamAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer stream,
+            Pointer<COMObject> operation)>()(lpVtbl, stream.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -232,4 +171,36 @@ class IMediaEncodingProfileStatics extends IInspectable {
         creator: MediaEncodingProfile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IMediaEncodingProfileStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateM4a;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateMp3;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateWma;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateMp4;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 quality,
+              Pointer<COMObject> value)>> CreateWmv;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> operation)>> CreateFromFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer stream,
+              Pointer<COMObject> operation)>> CreateFromStreamAsync;
 }

@@ -163,6 +163,9 @@ abstract interface class IIterator<T> extends IInspectable {
     throw UnsupportedError('Unsupported type argument: $T');
   }
 
+  late final _IIteratorVtbl __vtable =
+      ptr.ref.vtable.cast<_IIteratorVtbl>().ref;
+
   /// Gets the current item in the collection.
   T get current;
 
@@ -172,17 +175,9 @@ abstract interface class IIterator<T> extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.get_HasCurrent.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -197,17 +192,9 @@ abstract interface class IIterator<T> extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.MoveNext.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -219,4 +206,29 @@ abstract interface class IIterator<T> extends IInspectable {
 
   /// Retrieves multiple items from the iterator.
   (int, {List<T> items}) getMany(int capacity);
+}
+
+final class _IIteratorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl /* ,
+              Pointer<T> retValuePtr */
+              )>> get_Current;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>> get_HasCurrent;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>> MoveNext;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 itemsSize,
+              /*    Pointer<T> items, */
+              Pointer<Uint32> retValuePtr)>> GetMany;
 }

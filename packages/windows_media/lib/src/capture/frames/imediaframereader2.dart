@@ -22,19 +22,16 @@ import 'mediaframereaderacquisitionmode.dart';
 const IID_IMediaFrameReader2 = '{871127b3-8531-4050-87cc-a13733cf3e9b}';
 
 class IMediaFrameReader2 extends IInspectable {
-  IMediaFrameReader2.fromPtr(super.ptr);
+  IMediaFrameReader2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameReader2Vtbl>().ref;
+
+  final _IMediaFrameReader2Vtbl _vtable;
 
   factory IMediaFrameReader2.from(IInspectable interface) =>
       interface.cast(IMediaFrameReader2.fromPtr, IID_IMediaFrameReader2);
 
   set acquisitionMode(MediaFrameReaderAcquisitionMode value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_AcquisitionMode
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -45,17 +42,9 @@ class IMediaFrameReader2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AcquisitionMode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -64,4 +53,15 @@ class IMediaFrameReader2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaFrameReader2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_AcquisitionMode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_AcquisitionMode;
 }

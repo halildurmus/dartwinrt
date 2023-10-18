@@ -22,7 +22,11 @@ const IID_ICapturedFrameWithSoftwareBitmap =
     '{b58e8b6e-8503-49b5-9e86-897d26a3ff3d}';
 
 class ICapturedFrameWithSoftwareBitmap extends IInspectable {
-  ICapturedFrameWithSoftwareBitmap.fromPtr(super.ptr);
+  ICapturedFrameWithSoftwareBitmap.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ICapturedFrameWithSoftwareBitmapVtbl>().ref;
+
+  final _ICapturedFrameWithSoftwareBitmapVtbl _vtable;
 
   factory ICapturedFrameWithSoftwareBitmap.from(IInspectable interface) =>
       interface.cast(ICapturedFrameWithSoftwareBitmap.fromPtr,
@@ -31,17 +35,9 @@ class ICapturedFrameWithSoftwareBitmap extends IInspectable {
   SoftwareBitmap? get softwareBitmap {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SoftwareBitmap.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -55,4 +51,12 @@ class ICapturedFrameWithSoftwareBitmap extends IInspectable {
 
     return SoftwareBitmap.fromPtr(value);
   }
+}
+
+final class _ICapturedFrameWithSoftwareBitmapVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SoftwareBitmap;
 }

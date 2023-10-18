@@ -28,7 +28,10 @@ import 'mediacapturestopresult.dart';
 const IID_IMediaCapture5 = '{da787c22-3a9b-4720-a71e-97900a316e5a}';
 
 class IMediaCapture5 extends IInspectable {
-  IMediaCapture5.fromPtr(super.ptr);
+  IMediaCapture5.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapture5Vtbl>().ref;
+
+  final _IMediaCapture5Vtbl _vtable;
 
   factory IMediaCapture5.from(IInspectable interface) =>
       interface.cast(IMediaCapture5.fromPtr, IID_IMediaCapture5);
@@ -36,21 +39,9 @@ class IMediaCapture5 extends IInspectable {
   Future<void> removeEffectAsync(IMediaExtension? effect) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer effect,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer effect,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, effect.lpVtbl, asyncInfo);
+    final hr = _vtable.RemoveEffectAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer effect,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, effect.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -64,18 +55,9 @@ class IMediaCapture5 extends IInspectable {
       MediaCapturePauseBehavior behavior) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 behavior,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int behavior,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, behavior.value, operation);
+    final hr = _vtable.PauseRecordWithResultAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int behavior,
+            Pointer<COMObject> operation)>()(lpVtbl, behavior.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -91,17 +73,9 @@ class IMediaCapture5 extends IInspectable {
   Future<MediaCaptureStopResult?> stopRecordWithResultAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.StopRecordWithResultAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -117,17 +91,9 @@ class IMediaCapture5 extends IInspectable {
   Map<String, MediaFrameSource?>? get frameSources {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameSources.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -149,19 +115,9 @@ class IMediaCapture5 extends IInspectable {
       MediaFrameSource? inputSource) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl,
-                        VTablePointer inputSource,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer inputSource,
-                Pointer<COMObject> value)>()(lpVtbl, inputSource.lpVtbl, value);
+    final hr = _vtable.CreateFrameReaderAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer inputSource,
+            Pointer<COMObject> value)>()(lpVtbl, inputSource.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -177,20 +133,9 @@ class IMediaCapture5 extends IInspectable {
       MediaFrameSource? inputSource, String outputSubtype) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputSource,
-                            IntPtr outputSubtype,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer inputSource,
-                    int outputSubtype, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateFrameReaderWithSubtypeAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer inputSource,
+                int outputSubtype, Pointer<COMObject> value)>()(
         lpVtbl, inputSource.lpVtbl, outputSubtype.toHString(), value);
 
     if (FAILED(hr)) {
@@ -210,25 +155,13 @@ class IMediaCapture5 extends IInspectable {
     final value = calloc<COMObject>();
     final outputSizeNativeStructPtr = outputSize.toNative();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputSource,
-                            IntPtr outputSubtype,
-                            NativeBitmapSize outputSize,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer inputSource,
-                    int outputSubtype,
-                    NativeBitmapSize outputSize,
-                    Pointer<COMObject> value)>()(lpVtbl, inputSource.lpVtbl,
+    final hr = _vtable.CreateFrameReaderWithSubtypeAndSizeAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer inputSource,
+                int outputSubtype,
+                NativeBitmapSize outputSize,
+                Pointer<COMObject> value)>()(lpVtbl, inputSource.lpVtbl,
         outputSubtype.toHString(), outputSizeNativeStructPtr.ref, value);
 
     free(outputSizeNativeStructPtr);
@@ -242,4 +175,45 @@ class IMediaCapture5 extends IInspectable {
         creator: MediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IMediaCapture5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer effect,
+              Pointer<COMObject> asyncInfo)>> RemoveEffectAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 behavior,
+              Pointer<COMObject> operation)>> PauseRecordWithResultAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      StopRecordWithResultAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameSources;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputSource,
+              Pointer<COMObject> value)>> CreateFrameReaderAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer inputSource,
+              IntPtr outputSubtype,
+              Pointer<COMObject> value)>> CreateFrameReaderWithSubtypeAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer inputSource,
+                  IntPtr outputSubtype,
+                  NativeBitmapSize outputSize,
+                  Pointer<COMObject> value)>>
+      CreateFrameReaderWithSubtypeAndSizeAsync;
 }

@@ -24,7 +24,10 @@ import 'learningmodel.dart';
 const IID_ILearningModelStatics = '{e3b977e8-6952-4e47-8ef4-1f7f07897c6d}';
 
 class ILearningModelStatics extends IInspectable {
-  ILearningModelStatics.fromPtr(super.ptr);
+  ILearningModelStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelStaticsVtbl>().ref;
+
+  final _ILearningModelStaticsVtbl _vtable;
 
   factory ILearningModelStatics.from(IInspectable interface) =>
       interface.cast(ILearningModelStatics.fromPtr, IID_ILearningModelStatics);
@@ -32,19 +35,9 @@ class ILearningModelStatics extends IInspectable {
   Future<LearningModel?> loadFromStorageFileAsync(IStorageFile? modelFile) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelFile,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer modelFile,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LoadFromStorageFileAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer modelFile,
+                Pointer<COMObject> operation)>()(
         lpVtbl, modelFile.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -61,19 +54,9 @@ class ILearningModelStatics extends IInspectable {
       IRandomAccessStreamReference? modelStream) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelStream,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LoadFromStreamAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer modelStream,
+                Pointer<COMObject> operation)>()(
         lpVtbl, modelStream.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -89,18 +72,9 @@ class ILearningModelStatics extends IInspectable {
   LearningModel? loadFromFilePath(String filePath) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int filePath,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, filePath.toHString(), result);
+    final hr = _vtable.LoadFromFilePath.asFunction<
+        int Function(VTablePointer lpVtbl, int filePath,
+            Pointer<COMObject> result)>()(lpVtbl, filePath.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -118,20 +92,9 @@ class ILearningModelStatics extends IInspectable {
   LearningModel? loadFromStream(IRandomAccessStreamReference? modelStream) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelStream,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, modelStream.lpVtbl, result);
+    final hr = _vtable.LoadFromStream.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer modelStream,
+            Pointer<COMObject> result)>()(lpVtbl, modelStream.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -151,23 +114,12 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelFile,
-                            VTablePointer operatorProvider,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer modelFile,
-                    VTablePointer operatorProvider,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LoadFromStorageFileWithOperatorProviderAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer modelFile,
+                VTablePointer operatorProvider,
+                Pointer<COMObject> operation)>()(
         lpVtbl, modelFile.lpVtbl, operatorProvider.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -185,23 +137,12 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelStream,
-                            VTablePointer operatorProvider,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer modelStream,
-                    VTablePointer operatorProvider,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LoadFromStreamWithOperatorProviderAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer modelStream,
+                VTablePointer operatorProvider,
+                Pointer<COMObject> operation)>()(
         lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -218,23 +159,9 @@ class ILearningModelStatics extends IInspectable {
       String filePath, ILearningModelOperatorProvider? operatorProvider) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr filePath,
-                            VTablePointer operatorProvider,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int filePath,
-                    VTablePointer operatorProvider,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.LoadFromFilePathWithOperatorProvider.asFunction<
+            int Function(VTablePointer lpVtbl, int filePath,
+                VTablePointer operatorProvider, Pointer<COMObject> result)>()(
         lpVtbl, filePath.toHString(), operatorProvider.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -255,23 +182,9 @@ class ILearningModelStatics extends IInspectable {
       ILearningModelOperatorProvider? operatorProvider) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer modelStream,
-                            VTablePointer operatorProvider,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer modelStream,
-                    VTablePointer operatorProvider,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.LoadFromStreamWithOperatorProvider.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer modelStream,
+                VTablePointer operatorProvider, Pointer<COMObject> result)>()(
         lpVtbl, modelStream.lpVtbl, operatorProvider.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -286,4 +199,54 @@ class ILearningModelStatics extends IInspectable {
 
     return LearningModel.fromPtr(result);
   }
+}
+
+final class _ILearningModelStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer modelFile,
+              Pointer<COMObject> operation)>> LoadFromStorageFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer modelStream,
+              Pointer<COMObject> operation)>> LoadFromStreamAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
+              Pointer<COMObject> result)>> LoadFromFilePath;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer modelStream,
+              Pointer<COMObject> result)>> LoadFromStream;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer modelFile,
+                  VTablePointer operatorProvider,
+                  Pointer<COMObject> operation)>>
+      LoadFromStorageFileWithOperatorProviderAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer modelStream,
+                  VTablePointer operatorProvider,
+                  Pointer<COMObject> operation)>>
+      LoadFromStreamWithOperatorProviderAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr filePath,
+              VTablePointer operatorProvider,
+              Pointer<COMObject> result)>> LoadFromFilePathWithOperatorProvider;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer modelStream,
+              VTablePointer operatorProvider,
+              Pointer<COMObject> result)>> LoadFromStreamWithOperatorProvider;
 }

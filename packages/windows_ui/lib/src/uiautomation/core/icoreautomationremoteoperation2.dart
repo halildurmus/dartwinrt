@@ -24,7 +24,11 @@ const IID_ICoreAutomationRemoteOperation2 =
     '{eefaf86f-e953-5099-8ce9-dca813482ba0}';
 
 class ICoreAutomationRemoteOperation2 extends IInspectable {
-  ICoreAutomationRemoteOperation2.fromPtr(super.ptr);
+  ICoreAutomationRemoteOperation2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ICoreAutomationRemoteOperation2Vtbl>().ref;
+
+  final _ICoreAutomationRemoteOperation2Vtbl _vtable;
 
   factory ICoreAutomationRemoteOperation2.from(IInspectable interface) =>
       interface.cast(ICoreAutomationRemoteOperation2.fromPtr,
@@ -34,25 +38,26 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
       AutomationConnectionBoundObject? connectionBoundObject) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeAutomationRemoteOperationOperandId operandId,
-                            VTablePointer connectionBoundObject)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer connectionBoundObject)>()(
+    final hr = _vtable.ImportConnectionBoundObject.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                NativeAutomationRemoteOperationOperandId operandId,
+                VTablePointer connectionBoundObject)>()(
         lpVtbl, operandIdNativeStructPtr.ref, connectionBoundObject.lpVtbl);
 
     free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ICoreAutomationRemoteOperation2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  NativeAutomationRemoteOperationOperandId operandId,
+                  VTablePointer connectionBoundObject)>>
+      ImportConnectionBoundObject;
 }

@@ -23,7 +23,10 @@ import 'folderlauncheroptions.dart';
 const IID_ILauncherStatics3 = '{234261a8-9db3-4683-aa42-dc6f51d33847}';
 
 class ILauncherStatics3 extends IInspectable {
-  ILauncherStatics3.fromPtr(super.ptr);
+  ILauncherStatics3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherStatics3Vtbl>().ref;
+
+  final _ILauncherStatics3Vtbl _vtable;
 
   factory ILauncherStatics3.from(IInspectable interface) =>
       interface.cast(ILauncherStatics3.fromPtr, IID_ILauncherStatics3);
@@ -31,21 +34,9 @@ class ILauncherStatics3 extends IInspectable {
   Future<bool> launchFolderAsync(IStorageFolder? folder) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer folder,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer folder,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, folder.lpVtbl, operation);
+    final hr = _vtable.LaunchFolderAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer folder,
+            Pointer<COMObject> operation)>()(lpVtbl, folder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -60,20 +51,9 @@ class ILauncherStatics3 extends IInspectable {
       IStorageFolder? folder, FolderLauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer folder,
-                            VTablePointer options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer folder,
-                    VTablePointer options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchFolderWithOptionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer folder,
+                VTablePointer options, Pointer<COMObject> operation)>()(
         lpVtbl, folder.lpVtbl, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -84,4 +64,19 @@ class ILauncherStatics3 extends IInspectable {
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _ILauncherStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer folder,
+              Pointer<COMObject> operation)>> LaunchFolderAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer folder,
+              VTablePointer options,
+              Pointer<COMObject> operation)>> LaunchFolderWithOptionsAsync;
 }

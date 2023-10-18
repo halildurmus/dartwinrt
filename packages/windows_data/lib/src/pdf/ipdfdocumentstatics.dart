@@ -23,7 +23,10 @@ import 'pdfdocument.dart';
 const IID_IPdfDocumentStatics = '{433a0b5f-c007-4788-90f2-08143d922599}';
 
 class IPdfDocumentStatics extends IInspectable {
-  IPdfDocumentStatics.fromPtr(super.ptr);
+  IPdfDocumentStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPdfDocumentStaticsVtbl>().ref;
+
+  final _IPdfDocumentStaticsVtbl _vtable;
 
   factory IPdfDocumentStatics.from(IInspectable interface) =>
       interface.cast(IPdfDocumentStatics.fromPtr, IID_IPdfDocumentStatics);
@@ -31,21 +34,9 @@ class IPdfDocumentStatics extends IInspectable {
   Future<PdfDocument?> loadFromFileAsync(IStorageFile? file) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, file.lpVtbl, asyncInfo);
+    final hr = _vtable.LoadFromFileAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer file,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -61,22 +52,10 @@ class IPdfDocumentStatics extends IInspectable {
       IStorageFile? file, String password) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                IntPtr password,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        int password, Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, file.lpVtbl, password.toHString(), asyncInfo);
+    final hr = _vtable.LoadFromFileWithPasswordAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer file, int password,
+                Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, file.lpVtbl, password.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -91,19 +70,9 @@ class IPdfDocumentStatics extends IInspectable {
   Future<PdfDocument?> loadFromStreamAsync(IRandomAccessStream? inputStream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputStream,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer inputStream,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.LoadFromStreamAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer inputStream,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, inputStream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -120,20 +89,9 @@ class IPdfDocumentStatics extends IInspectable {
       IRandomAccessStream? inputStream, String password) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputStream,
-                            IntPtr password,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer inputStream,
-                    int password, Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.LoadFromStreamWithPasswordAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer inputStream,
+                int password, Pointer<COMObject> asyncInfo)>()(
         lpVtbl, inputStream.lpVtbl, password.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
@@ -145,4 +103,30 @@ class IPdfDocumentStatics extends IInspectable {
         creator: PdfDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IPdfDocumentStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> asyncInfo)>> LoadFromFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer file,
+              IntPtr password,
+              Pointer<COMObject> asyncInfo)>> LoadFromFileWithPasswordAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputStream,
+              Pointer<COMObject> asyncInfo)>> LoadFromStreamAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer inputStream,
+              IntPtr password,
+              Pointer<COMObject> asyncInfo)>> LoadFromStreamWithPasswordAsync;
 }

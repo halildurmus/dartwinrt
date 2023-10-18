@@ -23,7 +23,11 @@ const IID_IDeviceInformationPairingStatics =
     '{e915c408-36d4-49a1-bf13-514173799b6b}';
 
 class IDeviceInformationPairingStatics extends IInspectable {
-  IDeviceInformationPairingStatics.fromPtr(super.ptr);
+  IDeviceInformationPairingStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IDeviceInformationPairingStaticsVtbl>().ref;
+
+  final _IDeviceInformationPairingStaticsVtbl _vtable;
 
   factory IDeviceInformationPairingStatics.from(IInspectable interface) =>
       interface.cast(IDeviceInformationPairingStatics.fromPtr,
@@ -34,19 +38,9 @@ class IDeviceInformationPairingStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 pairingKindsSupported,
-                              Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int pairingKindsSupported,
-                      Pointer<Bool> result)>()(
+      final hr = _vtable.TryRegisterForAllInboundPairingRequests.asFunction<
+              int Function(VTablePointer lpVtbl, int pairingKindsSupported,
+                  Pointer<Bool> result)>()(
           lpVtbl, pairingKindsSupported.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -56,4 +50,12 @@ class IDeviceInformationPairingStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IDeviceInformationPairingStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 pairingKindsSupported,
+              Pointer<Bool> result)>> TryRegisterForAllInboundPairingRequests;
 }

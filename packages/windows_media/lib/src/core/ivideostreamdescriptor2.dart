@@ -22,7 +22,10 @@ import 'videostreamdescriptor.dart';
 const IID_IVideoStreamDescriptor2 = '{8b306e10-453e-4088-832d-c36fa4f94af3}';
 
 class IVideoStreamDescriptor2 extends IInspectable {
-  IVideoStreamDescriptor2.fromPtr(super.ptr);
+  IVideoStreamDescriptor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoStreamDescriptor2Vtbl>().ref;
+
+  final _IVideoStreamDescriptor2Vtbl _vtable;
 
   factory IVideoStreamDescriptor2.from(IInspectable interface) => interface
       .cast(IVideoStreamDescriptor2.fromPtr, IID_IVideoStreamDescriptor2);
@@ -30,17 +33,9 @@ class IVideoStreamDescriptor2 extends IInspectable {
   VideoStreamDescriptor? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,12 @@ class IVideoStreamDescriptor2 extends IInspectable {
 
     return VideoStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _IVideoStreamDescriptor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

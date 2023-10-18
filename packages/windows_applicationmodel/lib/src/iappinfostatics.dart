@@ -23,7 +23,10 @@ import 'appinfo.dart';
 const IID_IAppInfoStatics = '{cf1f782a-e48b-4f0c-9b0b-79c3f8957dd7}';
 
 class IAppInfoStatics extends IInspectable {
-  IAppInfoStatics.fromPtr(super.ptr);
+  IAppInfoStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppInfoStaticsVtbl>().ref;
+
+  final _IAppInfoStaticsVtbl _vtable;
 
   factory IAppInfoStatics.from(IInspectable interface) =>
       interface.cast(IAppInfoStatics.fromPtr, IID_IAppInfoStatics);
@@ -31,17 +34,9 @@ class IAppInfoStatics extends IInspectable {
   AppInfo? get current {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Current.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,21 +54,10 @@ class IAppInfoStatics extends IInspectable {
   AppInfo? getFromAppUserModelId(String appUserModelId) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr appUserModelId,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int appUserModelId,
-                        Pointer<COMObject> result)>()(
-            lpVtbl, appUserModelId.toHString(), result);
+    final hr = _vtable.GetFromAppUserModelId.asFunction<
+            int Function(VTablePointer lpVtbl, int appUserModelId,
+                Pointer<COMObject> result)>()(
+        lpVtbl, appUserModelId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -91,22 +75,10 @@ class IAppInfoStatics extends IInspectable {
   AppInfo? getFromAppUserModelIdForUser(User? user, String appUserModelId) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr appUserModelId,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int appUserModelId, Pointer<COMObject> result)>()(
-            lpVtbl, user.lpVtbl, appUserModelId.toHString(), result);
+    final hr = _vtable.GetFromAppUserModelIdForUser.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                int appUserModelId, Pointer<COMObject> result)>()(
+        lpVtbl, user.lpVtbl, appUserModelId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -120,4 +92,23 @@ class IAppInfoStatics extends IInspectable {
 
     return AppInfo.fromPtr(result);
   }
+}
+
+final class _IAppInfoStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Current;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr appUserModelId,
+              Pointer<COMObject> result)>> GetFromAppUserModelId;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr appUserModelId,
+              Pointer<COMObject> result)>> GetFromAppUserModelIdForUser;
 }

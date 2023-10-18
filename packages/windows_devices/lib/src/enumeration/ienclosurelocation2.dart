@@ -23,7 +23,10 @@ import 'panel.dart';
 const IID_IEnclosureLocation2 = '{2885995b-e07d-485d-8a9e-bdf29aef4f66}';
 
 class IEnclosureLocation2 extends IInspectable implements IEnclosureLocation {
-  IEnclosureLocation2.fromPtr(super.ptr);
+  IEnclosureLocation2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IEnclosureLocation2Vtbl>().ref;
+
+  final _IEnclosureLocation2Vtbl _vtable;
 
   factory IEnclosureLocation2.from(IInspectable interface) =>
       interface.cast(IEnclosureLocation2.fromPtr, IID_IEnclosureLocation2);
@@ -32,17 +35,9 @@ class IEnclosureLocation2 extends IInspectable implements IEnclosureLocation {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_RotationAngleInDegreesClockwise.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -62,4 +57,12 @@ class IEnclosureLocation2 extends IInspectable implements IEnclosureLocation {
 
   @override
   Panel get panel => _iEnclosureLocation.panel;
+}
+
+final class _IEnclosureLocation2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_RotationAngleInDegreesClockwise;
 }

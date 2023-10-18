@@ -22,7 +22,10 @@ import 'webprovidererror.dart';
 const IID_IWebProviderErrorFactory = '{e3c40a2d-89ef-4e37-847f-a8b9d5a32910}';
 
 class IWebProviderErrorFactory extends IInspectable {
-  IWebProviderErrorFactory.fromPtr(super.ptr);
+  IWebProviderErrorFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebProviderErrorFactoryVtbl>().ref;
+
+  final _IWebProviderErrorFactoryVtbl _vtable;
 
   factory IWebProviderErrorFactory.from(IInspectable interface) => interface
       .cast(IWebProviderErrorFactory.fromPtr, IID_IWebProviderErrorFactory);
@@ -30,20 +33,9 @@ class IWebProviderErrorFactory extends IInspectable {
   WebProviderError create(int errorCode, String errorMessage) {
     final webProviderError = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 errorCode,
-                            IntPtr errorMessage,
-                            Pointer<COMObject> webProviderError)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int errorCode,
-                    int errorMessage, Pointer<COMObject> webProviderError)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int errorCode, int errorMessage,
+                Pointer<COMObject> webProviderError)>()(
         lpVtbl, errorCode, errorMessage.toHString(), webProviderError);
 
     if (FAILED(hr)) {
@@ -53,4 +45,15 @@ class IWebProviderErrorFactory extends IInspectable {
 
     return WebProviderError.fromPtr(webProviderError);
   }
+}
+
+final class _IWebProviderErrorFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 errorCode,
+              IntPtr errorMessage,
+              Pointer<COMObject> webProviderError)>> Create;
 }

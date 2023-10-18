@@ -22,7 +22,10 @@ import 'cameraocclusionkind.dart';
 const IID_ICameraOcclusionState = '{430adeb8-6842-5e55-9bde-04b4ef3a8a57}';
 
 class ICameraOcclusionState extends IInspectable {
-  ICameraOcclusionState.fromPtr(super.ptr);
+  ICameraOcclusionState.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICameraOcclusionStateVtbl>().ref;
+
+  final _ICameraOcclusionStateVtbl _vtable;
 
   factory ICameraOcclusionState.from(IInspectable interface) =>
       interface.cast(ICameraOcclusionState.fromPtr, IID_ICameraOcclusionState);
@@ -31,17 +34,9 @@ class ICameraOcclusionState extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsOccluded.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class ICameraOcclusionState extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Int32 occlusionKind, Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int occlusionKind,
-                  Pointer<Bool> result)>()(lpVtbl, occlusionKind.value, result);
+      final hr = _vtable.IsOcclusionKind.asFunction<
+          int Function(VTablePointer lpVtbl, int occlusionKind,
+              Pointer<Bool> result)>()(lpVtbl, occlusionKind.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,4 +61,16 @@ class ICameraOcclusionState extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _ICameraOcclusionStateVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsOccluded;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 occlusionKind,
+              Pointer<Bool> result)>> IsOcclusionKind;
 }

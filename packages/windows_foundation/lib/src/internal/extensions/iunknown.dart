@@ -12,9 +12,6 @@ extension IUnknownHelpers on IUnknown {
   /// Returns the [VTablePointer] associated with the object.
   VTablePointer get lpVtbl => ptr.ref.lpVtbl;
 
-  /// Returns the v-table associated with the object.
-  Pointer<IntPtr> get vtable => lpVtbl.value;
-
   /// Detaches the object from the `Finalizer`, decrements its reference count
   /// and frees its memory.
   void free() {

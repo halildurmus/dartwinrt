@@ -70,6 +70,9 @@ final class EnumProjection extends BaseProjection {
       };
 
   @override
+  String get className => shortName;
+
+  @override
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
         'enum $shortName implements WinRTEnum'

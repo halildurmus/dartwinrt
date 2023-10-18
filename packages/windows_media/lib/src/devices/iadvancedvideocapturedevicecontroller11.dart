@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController11 =
     '{d5b65ae2-3772-580c-a630-e75de9106904}';
 
 class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController11.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController11.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController11Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController11Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController11.from(
           IInspectable interface) =>
@@ -35,22 +40,10 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr deviceId,
-                                  Int32 mode,
-                                  Pointer<Bool> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int deviceId, int mode,
-                          Pointer<Bool> result)>()(
-              lpVtbl, deviceId.toHString(), mode.value, result);
+      final hr = _vtable.TryAcquireExclusiveControl.asFunction<
+              int Function(VTablePointer lpVtbl, int deviceId, int mode,
+                  Pointer<Bool> result)>()(
+          lpVtbl, deviceId.toHString(), mode.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,4 +52,12 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController11Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId, Int32 mode,
+              Pointer<Bool> result)>> TryAcquireExclusiveControl;
 }

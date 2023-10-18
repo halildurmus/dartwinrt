@@ -23,7 +23,11 @@ const IID_IAudioEncodingPropertiesStatics =
     '{0cad332c-ebe9-4527-b36d-e42a13cf38db}';
 
 class IAudioEncodingPropertiesStatics extends IInspectable {
-  IAudioEncodingPropertiesStatics.fromPtr(super.ptr);
+  IAudioEncodingPropertiesStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IAudioEncodingPropertiesStaticsVtbl>().ref;
+
+  final _IAudioEncodingPropertiesStaticsVtbl _vtable;
 
   factory IAudioEncodingPropertiesStatics.from(IInspectable interface) =>
       interface.cast(IAudioEncodingPropertiesStatics.fromPtr,
@@ -33,21 +37,9 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitrate,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sampleRate,
-                    int channelCount, int bitrate, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateAac.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitrate, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
@@ -67,21 +59,9 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitrate,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sampleRate,
-                    int channelCount, int bitrate, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateAacAdts.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitrate, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
@@ -101,21 +81,9 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitrate,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sampleRate,
-                    int channelCount, int bitrate, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateMp3.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitrate, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
@@ -135,25 +103,9 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitsPerSample,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int sampleRate,
-                    int channelCount,
-                    int bitsPerSample,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.CreatePcm.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitsPerSample, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
@@ -173,21 +125,9 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
       int sampleRate, int channelCount, int bitrate) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitrate,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sampleRate,
-                    int channelCount, int bitrate, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateWma.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitrate, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitrate, value);
 
     if (FAILED(hr)) {
@@ -202,4 +142,48 @@ class IAudioEncodingPropertiesStatics extends IInspectable {
 
     return AudioEncodingProperties.fromPtr(value);
   }
+}
+
+final class _IAudioEncodingPropertiesStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitrate,
+              Pointer<COMObject> value)>> CreateAac;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitrate,
+              Pointer<COMObject> value)>> CreateAacAdts;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitrate,
+              Pointer<COMObject> value)>> CreateMp3;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitsPerSample,
+              Pointer<COMObject> value)>> CreatePcm;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitrate,
+              Pointer<COMObject> value)>> CreateWma;
 }

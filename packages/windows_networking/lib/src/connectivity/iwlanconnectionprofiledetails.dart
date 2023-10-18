@@ -21,7 +21,10 @@ const IID_IWlanConnectionProfileDetails =
     '{562098cb-b35a-4bf1-a884-b7557e88ff86}';
 
 class IWlanConnectionProfileDetails extends IInspectable {
-  IWlanConnectionProfileDetails.fromPtr(super.ptr);
+  IWlanConnectionProfileDetails.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWlanConnectionProfileDetailsVtbl>().ref;
+
+  final _IWlanConnectionProfileDetailsVtbl _vtable;
 
   factory IWlanConnectionProfileDetails.from(IInspectable interface) =>
       interface.cast(IWlanConnectionProfileDetails.fromPtr,
@@ -31,17 +34,9 @@ class IWlanConnectionProfileDetails extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetConnectedSsid.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IWlanConnectionProfileDetails extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IWlanConnectionProfileDetailsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetConnectedSsid;
 }

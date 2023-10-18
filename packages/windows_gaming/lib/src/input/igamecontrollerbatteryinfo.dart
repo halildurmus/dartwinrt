@@ -21,7 +21,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGameControllerBatteryInfo = '{dcecc681-3963-4da6-955d-553f3b6f6161}';
 
 class IGameControllerBatteryInfo extends IInspectable {
-  IGameControllerBatteryInfo.fromPtr(super.ptr);
+  IGameControllerBatteryInfo.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGameControllerBatteryInfoVtbl>().ref;
+
+  final _IGameControllerBatteryInfoVtbl _vtable;
 
   factory IGameControllerBatteryInfo.from(IInspectable interface) => interface
       .cast(IGameControllerBatteryInfo.fromPtr, IID_IGameControllerBatteryInfo);
@@ -29,17 +32,9 @@ class IGameControllerBatteryInfo extends IInspectable {
   BatteryReport? tryGetBatteryReport() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.TryGetBatteryReport.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IGameControllerBatteryInfo extends IInspectable {
 
     return BatteryReport.fromPtr(value);
   }
+}
+
+final class _IGameControllerBatteryInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      TryGetBatteryReport;
 }

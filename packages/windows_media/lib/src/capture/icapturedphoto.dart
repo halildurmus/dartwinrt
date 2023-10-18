@@ -22,7 +22,10 @@ import 'capturedframe.dart';
 const IID_ICapturedPhoto = '{b0ce7e5a-cfcc-4d6c-8ad1-0869208aca16}';
 
 class ICapturedPhoto extends IInspectable {
-  ICapturedPhoto.fromPtr(super.ptr);
+  ICapturedPhoto.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICapturedPhotoVtbl>().ref;
+
+  final _ICapturedPhotoVtbl _vtable;
 
   factory ICapturedPhoto.from(IInspectable interface) =>
       interface.cast(ICapturedPhoto.fromPtr, IID_ICapturedPhoto);
@@ -30,17 +33,9 @@ class ICapturedPhoto extends IInspectable {
   CapturedFrame? get frame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Frame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,17 +53,9 @@ class ICapturedPhoto extends IInspectable {
   CapturedFrame? get thumbnail {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Thumbnail.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -82,4 +69,16 @@ class ICapturedPhoto extends IInspectable {
 
     return CapturedFrame.fromPtr(value);
   }
+}
+
+final class _ICapturedPhotoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Frame;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Thumbnail;
 }

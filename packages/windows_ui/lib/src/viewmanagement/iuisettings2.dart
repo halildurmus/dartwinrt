@@ -22,7 +22,10 @@ import 'uisettings.dart';
 const IID_IUISettings2 = '{bad82401-2721-44f9-bb91-2bb228be442f}';
 
 class IUISettings2 extends IInspectable {
-  IUISettings2.fromPtr(super.ptr);
+  IUISettings2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUISettings2Vtbl>().ref;
+
+  final _IUISettings2Vtbl _vtable;
 
   factory IUISettings2.from(IInspectable interface) =>
       interface.cast(IUISettings2.fromPtr, IID_IUISettings2);
@@ -31,17 +34,9 @@ class IUISettings2 extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_TextScaleFactor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,21 +50,9 @@ class IUISettings2 extends IInspectable {
     final cookie = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer handler,
-                                  Pointer<IntPtr> cookie)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer handler,
-                          Pointer<IntPtr> cookie)>()(
-              lpVtbl, handler.ref.lpVtbl, cookie);
+      final hr = _vtable.add_TextScaleFactorChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>()(lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,18 +63,25 @@ class IUISettings2 extends IInspectable {
   }
 
   void remove_TextScaleFactorChanged(int cookie) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr cookie)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            lpVtbl, cookie);
+    final hr = _vtable.remove_TextScaleFactorChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
+        lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IUISettings2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_TextScaleFactor;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>> add_TextScaleFactorChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr cookie)>>
+      remove_TextScaleFactorChanged;
 }

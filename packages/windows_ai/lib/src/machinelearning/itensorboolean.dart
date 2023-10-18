@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITensorBoolean = '{50f311ed-29e9-4a5c-a44d-8fc512584eed}';
 
 class ITensorBoolean extends IInspectable {
-  ITensorBoolean.fromPtr(super.ptr);
+  ITensorBoolean.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorBooleanVtbl>().ref;
+
+  final _ITensorBooleanVtbl _vtable;
 
   factory ITensorBoolean.from(IInspectable interface) =>
       interface.cast(ITensorBoolean.fromPtr, IID_ITensorBoolean);
@@ -28,17 +31,9 @@ class ITensorBoolean extends IInspectable {
   List<bool> getAsVectorView() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetAsVectorView.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -49,4 +44,13 @@ class ITensorBoolean extends IInspectable {
             iterableIid: '{30160817-1d7d-54e9-99db-d7636266a476}')
         .toList();
   }
+}
+
+final class _ITensorBooleanVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      GetAsVectorView;
 }

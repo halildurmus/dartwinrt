@@ -21,7 +21,10 @@ const IID_IStorageItemExtraProperties =
     '{c54361b2-54cd-432b-bdbc-4b19c4b470d7}';
 
 class IStorageItemExtraProperties extends IInspectable {
-  IStorageItemExtraProperties.fromPtr(super.ptr);
+  IStorageItemExtraProperties.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemExtraPropertiesVtbl>().ref;
+
+  final _IStorageItemExtraPropertiesVtbl _vtable;
 
   factory IStorageItemExtraProperties.from(IInspectable interface) =>
       interface.cast(
@@ -31,21 +34,11 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<String>? propertiesToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer propertiesToRetrieve,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer propertiesToRetrieve,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.RetrievePropertiesAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer propertiesToRetrieve,
+                Pointer<COMObject> operation)>()(
         lpVtbl, propertiesToRetrieve.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -64,21 +57,9 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<IKeyValuePair<String, Object?>>? propertiesToSave) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer propertiesToSave,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer propertiesToSave,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.SavePropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer propertiesToSave,
+                Pointer<COMObject> operation)>()(
         lpVtbl, propertiesToSave.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -92,17 +73,9 @@ class IStorageItemExtraProperties extends IInspectable {
   Future<void> savePropertiesAsyncOverloadDefault() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.SavePropertiesAsyncOverloadDefault.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -111,4 +84,23 @@ class IStorageItemExtraProperties extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IStorageItemExtraPropertiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer propertiesToRetrieve,
+              Pointer<COMObject> operation)>> RetrievePropertiesAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer propertiesToSave,
+              Pointer<COMObject> operation)>> SavePropertiesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      SavePropertiesAsyncOverloadDefault;
 }

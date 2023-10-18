@@ -22,7 +22,10 @@ import 'learningmodelpixelrange.dart';
 const IID_IImageFeatureDescriptor2 = '{2b27cca7-d533-5862-bb98-1611b155b0e1}';
 
 class IImageFeatureDescriptor2 extends IInspectable {
-  IImageFeatureDescriptor2.fromPtr(super.ptr);
+  IImageFeatureDescriptor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IImageFeatureDescriptor2Vtbl>().ref;
+
+  final _IImageFeatureDescriptor2Vtbl _vtable;
 
   factory IImageFeatureDescriptor2.from(IInspectable interface) => interface
       .cast(IImageFeatureDescriptor2.fromPtr, IID_IImageFeatureDescriptor2);
@@ -31,17 +34,9 @@ class IImageFeatureDescriptor2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PixelRange.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IImageFeatureDescriptor2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IImageFeatureDescriptor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_PixelRange;
 }

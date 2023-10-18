@@ -23,7 +23,10 @@ import '../mediaproperties/imediaencodingproperties.dart';
 const IID_IMediaDeviceController = '{f6f8f5ce-209a-48fb-86fc-d44578f317e6}';
 
 class IMediaDeviceController extends IInspectable {
-  IMediaDeviceController.fromPtr(super.ptr);
+  IMediaDeviceController.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaDeviceControllerVtbl>().ref;
+
+  final _IMediaDeviceControllerVtbl _vtable;
 
   factory IMediaDeviceController.from(IInspectable interface) => interface.cast(
       IMediaDeviceController.fromPtr, IID_IMediaDeviceController);
@@ -32,21 +35,9 @@ class IMediaDeviceController extends IInspectable {
       MediaStreamType mediaStreamType) {
     final value = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 mediaStreamType,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int mediaStreamType,
-                        Pointer<COMObject> value)>()(
-            lpVtbl, mediaStreamType.value, value);
+    final hr = _vtable.GetAvailableMediaStreamProperties.asFunction<
+        int Function(VTablePointer lpVtbl, int mediaStreamType,
+            Pointer<COMObject> value)>()(lpVtbl, mediaStreamType.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,21 +54,9 @@ class IMediaDeviceController extends IInspectable {
       MediaStreamType mediaStreamType) {
     final value = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 mediaStreamType,
-                                Pointer<COMObject> value)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int mediaStreamType,
-                        Pointer<COMObject> value)>()(
-            lpVtbl, mediaStreamType.value, value);
+    final hr = _vtable.GetMediaStreamProperties.asFunction<
+        int Function(VTablePointer lpVtbl, int mediaStreamType,
+            Pointer<COMObject> value)>()(lpVtbl, mediaStreamType.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -96,24 +75,13 @@ class IMediaDeviceController extends IInspectable {
       IMediaEncodingProperties? mediaEncodingProperties) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 mediaStreamType,
-                            VTablePointer mediaEncodingProperties,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int mediaStreamType,
-                    VTablePointer mediaEncodingProperties,
-                    Pointer<COMObject> asyncInfo)>()(lpVtbl,
-        mediaStreamType.value, mediaEncodingProperties.lpVtbl, asyncInfo);
+    final hr = _vtable.SetMediaStreamPropertiesAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int mediaStreamType,
+                VTablePointer mediaEncodingProperties,
+                Pointer<COMObject> asyncInfo)>()(lpVtbl, mediaStreamType.value,
+        mediaEncodingProperties.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -122,4 +90,23 @@ class IMediaDeviceController extends IInspectable {
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
+}
+
+final class _IMediaDeviceControllerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 mediaStreamType,
+              Pointer<COMObject> value)>> GetAvailableMediaStreamProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 mediaStreamType,
+              Pointer<COMObject> value)>> GetMediaStreamProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 mediaStreamType,
+              VTablePointer mediaEncodingProperties,
+              Pointer<COMObject> asyncInfo)>> SetMediaStreamPropertiesAsync;
 }

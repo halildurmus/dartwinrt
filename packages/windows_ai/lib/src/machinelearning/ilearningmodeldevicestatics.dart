@@ -24,7 +24,10 @@ const IID_ILearningModelDeviceStatics =
     '{49f32107-a8bf-42bb-92c7-10b12dc5d21f}';
 
 class ILearningModelDeviceStatics extends IInspectable {
-  ILearningModelDeviceStatics.fromPtr(super.ptr);
+  ILearningModelDeviceStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelDeviceStaticsVtbl>().ref;
+
+  final _ILearningModelDeviceStaticsVtbl _vtable;
 
   factory ILearningModelDeviceStatics.from(IInspectable interface) =>
       interface.cast(
@@ -33,17 +36,9 @@ class ILearningModelDeviceStatics extends IInspectable {
   LearningModelDevice? createFromDirect3D11Device(IDirect3DDevice? device) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer device,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer device,
-                Pointer<COMObject> result)>()(lpVtbl, device.lpVtbl, result);
+    final hr = _vtable.CreateFromDirect3D11Device.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer device,
+            Pointer<COMObject> result)>()(lpVtbl, device.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -57,4 +52,12 @@ class ILearningModelDeviceStatics extends IInspectable {
 
     return LearningModelDevice.fromPtr(result);
   }
+}
+
+final class _ILearningModelDeviceStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer device,
+              Pointer<COMObject> result)>> CreateFromDirect3D11Device;
 }

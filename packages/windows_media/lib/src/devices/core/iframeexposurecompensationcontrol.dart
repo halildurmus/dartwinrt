@@ -21,7 +21,11 @@ const IID_IFrameExposureCompensationControl =
     '{e95896c9-f7f9-48ca-8591-a26531cb1578}';
 
 class IFrameExposureCompensationControl extends IInspectable {
-  IFrameExposureCompensationControl.fromPtr(super.ptr);
+  IFrameExposureCompensationControl.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IFrameExposureCompensationControlVtbl>().ref;
+
+  final _IFrameExposureCompensationControlVtbl _vtable;
 
   factory IFrameExposureCompensationControl.from(IInspectable interface) =>
       interface.cast(IFrameExposureCompensationControl.fromPtr,
@@ -30,17 +34,9 @@ class IFrameExposureCompensationControl extends IInspectable {
   double? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,18 +54,22 @@ class IFrameExposureCompensationControl extends IInspectable {
   }
 
   set value(double? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_Value.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(DoubleType.float).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFrameExposureCompensationControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_Value;
 }

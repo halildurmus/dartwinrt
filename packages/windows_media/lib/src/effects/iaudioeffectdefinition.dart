@@ -22,7 +22,10 @@ const IID_IAudioEffectDefinition = '{e4d7f974-7d80-4f73-9089-e31c9db9c294}';
 /// Exposes the methods and properties of an AudioEffectDefinition object.
 /// Implement this interface when you create a custom audio effect definition.
 class IAudioEffectDefinition extends IInspectable {
-  IAudioEffectDefinition.fromPtr(super.ptr);
+  IAudioEffectDefinition.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioEffectDefinitionVtbl>().ref;
+
+  final _IAudioEffectDefinitionVtbl _vtable;
 
   factory IAudioEffectDefinition.from(IInspectable interface) => interface.cast(
       IAudioEffectDefinition.fromPtr, IID_IAudioEffectDefinition);
@@ -31,17 +34,9 @@ class IAudioEffectDefinition extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ActivatableClassId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class IAudioEffectDefinition extends IInspectable {
   IPropertySet? get properties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -78,4 +65,16 @@ class IAudioEffectDefinition extends IInspectable {
 
     return IPropertySet.fromPtr(value);
   }
+}
+
+final class _IAudioEffectDefinitionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ActivatableClassId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Properties;
 }

@@ -22,7 +22,10 @@ import 'cameraintrinsics.dart';
 const IID_ICameraIntrinsicsFactory = '{c0ddc486-2132-4a34-a659-9bfe2a055712}';
 
 class ICameraIntrinsicsFactory extends IInspectable {
-  ICameraIntrinsicsFactory.fromPtr(super.ptr);
+  ICameraIntrinsicsFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICameraIntrinsicsFactoryVtbl>().ref;
+
+  final _ICameraIntrinsicsFactoryVtbl _vtable;
 
   factory ICameraIntrinsicsFactory.from(IInspectable interface) => interface
       .cast(ICameraIntrinsicsFactory.fromPtr, IID_ICameraIntrinsicsFactory);
@@ -40,31 +43,16 @@ class ICameraIntrinsicsFactory extends IInspectable {
     final radialDistortionNativeStructPtr = radialDistortion.toNative();
     final tangentialDistortionNativeStructPtr = tangentialDistortion.toNative();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeVector2 focalLength,
-                            NativeVector2 principalPoint,
-                            NativeVector3 radialDistortion,
-                            NativeVector2 tangentialDistortion,
-                            Uint32 imageWidth,
-                            Uint32 imageHeight,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeVector2 focalLength,
-                    NativeVector2 principalPoint,
-                    NativeVector3 radialDistortion,
-                    NativeVector2 tangentialDistortion,
-                    int imageWidth,
-                    int imageHeight,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                NativeVector2 focalLength,
+                NativeVector2 principalPoint,
+                NativeVector3 radialDistortion,
+                NativeVector2 tangentialDistortion,
+                int imageWidth,
+                int imageHeight,
+                Pointer<COMObject> result)>()(
         lpVtbl,
         focalLengthNativeStructPtr.ref,
         principalPointNativeStructPtr.ref,
@@ -86,4 +74,19 @@ class ICameraIntrinsicsFactory extends IInspectable {
 
     return CameraIntrinsics.fromPtr(result);
   }
+}
+
+final class _ICameraIntrinsicsFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeVector2 focalLength,
+              NativeVector2 principalPoint,
+              NativeVector3 radialDistortion,
+              NativeVector2 tangentialDistortion,
+              Uint32 imageWidth,
+              Uint32 imageHeight,
+              Pointer<COMObject> result)>> Create;
 }

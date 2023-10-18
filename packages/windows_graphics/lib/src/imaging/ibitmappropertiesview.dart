@@ -22,7 +22,10 @@ import 'bitmappropertyset.dart';
 const IID_IBitmapPropertiesView = '{7e0fe87a-3a70-48f8-9c55-196cf5a545f5}';
 
 class IBitmapPropertiesView extends IInspectable {
-  IBitmapPropertiesView.fromPtr(super.ptr);
+  IBitmapPropertiesView.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapPropertiesViewVtbl>().ref;
+
+  final _IBitmapPropertiesViewVtbl _vtable;
 
   factory IBitmapPropertiesView.from(IInspectable interface) =>
       interface.cast(IBitmapPropertiesView.fromPtr, IID_IBitmapPropertiesView);
@@ -31,21 +34,11 @@ class IBitmapPropertiesView extends IInspectable {
       IIterable<String>? propertiesToRetrieve) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer propertiesToRetrieve,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer propertiesToRetrieve,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.GetPropertiesAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer propertiesToRetrieve,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, propertiesToRetrieve.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -57,4 +50,14 @@ class IBitmapPropertiesView extends IInspectable {
         creator: BitmapPropertySet.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IBitmapPropertiesViewVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer propertiesToRetrieve,
+              Pointer<COMObject> asyncInfo)>> GetPropertiesAsync;
 }

@@ -21,25 +21,22 @@ const IID_IAdvancedVideoCaptureDeviceController =
     '{de6ff4d3-2b96-4583-80ab-b5b01dc6a8d7}';
 
 class IAdvancedVideoCaptureDeviceController extends IInspectable {
-  IAdvancedVideoCaptureDeviceController.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceControllerVtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceControllerVtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController.fromPtr,
           IID_IAdvancedVideoCaptureDeviceController);
 
   void setDeviceProperty(String propertyId, Object? propertyValue) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr propertyId,
-                            VTablePointer propertyValue)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int propertyId,
-                    VTablePointer propertyValue)>()(lpVtbl,
-        propertyId.toHString(), propertyValue?.boxValue().lpVtbl ?? nullptr);
+    final hr = _vtable.SetDeviceProperty.asFunction<
+            int Function(VTablePointer lpVtbl, int propertyId,
+                VTablePointer propertyValue)>()(lpVtbl, propertyId.toHString(),
+        propertyValue?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -47,21 +44,10 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
   Object? getDeviceProperty(String propertyId) {
     final propertyValue = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr propertyId,
-                                Pointer<COMObject> propertyValue)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int propertyId,
-                        Pointer<COMObject> propertyValue)>()(
-            lpVtbl, propertyId.toHString(), propertyValue);
+    final hr = _vtable.GetDeviceProperty.asFunction<
+            int Function(VTablePointer lpVtbl, int propertyId,
+                Pointer<COMObject> propertyValue)>()(
+        lpVtbl, propertyId.toHString(), propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -75,4 +61,16 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
 
     return IPropertyValue.fromPtr(propertyValue).value;
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceControllerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr propertyId,
+              VTablePointer propertyValue)>> SetDeviceProperty;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr propertyId,
+              Pointer<COMObject> propertyValue)>> GetDeviceProperty;
 }

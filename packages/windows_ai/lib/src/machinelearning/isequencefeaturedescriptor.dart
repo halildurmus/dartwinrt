@@ -22,7 +22,10 @@ import 'ilearningmodelfeaturedescriptor.dart';
 const IID_ISequenceFeatureDescriptor = '{84f6945a-562b-4d62-a851-739aced96668}';
 
 class ISequenceFeatureDescriptor extends IInspectable {
-  ISequenceFeatureDescriptor.fromPtr(super.ptr);
+  ISequenceFeatureDescriptor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISequenceFeatureDescriptorVtbl>().ref;
+
+  final _ISequenceFeatureDescriptorVtbl _vtable;
 
   factory ISequenceFeatureDescriptor.from(IInspectable interface) => interface
       .cast(ISequenceFeatureDescriptor.fromPtr, IID_ISequenceFeatureDescriptor);
@@ -30,17 +33,9 @@ class ISequenceFeatureDescriptor extends IInspectable {
   ILearningModelFeatureDescriptor? get elementDescriptor {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ElementDescriptor.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class ISequenceFeatureDescriptor extends IInspectable {
 
     return ILearningModelFeatureDescriptor.fromPtr(value);
   }
+}
+
+final class _ISequenceFeatureDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ElementDescriptor;
 }

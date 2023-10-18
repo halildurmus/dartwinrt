@@ -24,7 +24,10 @@ import 'bitmapdecoder.dart';
 const IID_IBitmapDecoderStatics = '{438ccb26-bcef-4e95-bad6-23a822e58d01}';
 
 class IBitmapDecoderStatics extends IInspectable {
-  IBitmapDecoderStatics.fromPtr(super.ptr);
+  IBitmapDecoderStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapDecoderStaticsVtbl>().ref;
+
+  final _IBitmapDecoderStaticsVtbl _vtable;
 
   factory IBitmapDecoderStatics.from(IInspectable interface) =>
       interface.cast(IBitmapDecoderStatics.fromPtr, IID_IBitmapDecoderStatics);
@@ -33,17 +36,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BmpDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_JpegDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +68,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PngDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +84,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_TiffDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -129,17 +100,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_GifDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -153,17 +116,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_JpegXRDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -177,17 +132,9 @@ class IBitmapDecoderStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IcoDecoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -200,21 +147,10 @@ class IBitmapDecoderStatics extends IInspectable {
   List<BitmapCodecInformation?> getDecoderInformationEnumerator() {
     final decoderInformationEnumerator = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Pointer<COMObject>
-                                    decoderInformationEnumerator)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> decoderInformationEnumerator)>()(
-            lpVtbl, decoderInformationEnumerator);
+    final hr = _vtable.GetDecoderInformationEnumerator.asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> decoderInformationEnumerator)>()(
+        lpVtbl, decoderInformationEnumerator);
 
     if (FAILED(hr)) {
       free(decoderInformationEnumerator);
@@ -231,21 +167,9 @@ class IBitmapDecoderStatics extends IInspectable {
   Future<BitmapDecoder?> createAsync(IRandomAccessStream? stream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(14)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer stream,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, stream.lpVtbl, asyncInfo);
+    final hr = _vtable.CreateAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer stream,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -262,22 +186,10 @@ class IBitmapDecoderStatics extends IInspectable {
     final asyncInfo = calloc<COMObject>();
     final decoderIdNativeStructPtr = decoderId.toNativeGUID();
 
-    final hr =
-        vtable
-                .elementAt(15)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                GUID decoderId,
-                                VTablePointer stream,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, GUID decoderId,
-                        VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, decoderIdNativeStructPtr.ref, stream.lpVtbl, asyncInfo);
+    final hr = _vtable.CreateWithIdAsync.asFunction<
+            int Function(VTablePointer lpVtbl, GUID decoderId,
+                VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, decoderIdNativeStructPtr.ref, stream.lpVtbl, asyncInfo);
 
     free(decoderIdNativeStructPtr);
 
@@ -290,4 +202,52 @@ class IBitmapDecoderStatics extends IInspectable {
         creator: BitmapDecoder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IBitmapDecoderStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_BmpDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_JpegDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_PngDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_TiffDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_GifDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_JpegXRDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_IcoDecoderId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl,
+                  Pointer<COMObject> decoderInformationEnumerator)>>
+      GetDecoderInformationEnumerator;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer stream,
+              Pointer<COMObject> asyncInfo)>> CreateAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              GUID decoderId,
+              VTablePointer stream,
+              Pointer<COMObject> asyncInfo)>> CreateWithIdAsync;
 }

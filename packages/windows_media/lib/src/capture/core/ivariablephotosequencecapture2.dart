@@ -21,7 +21,11 @@ const IID_IVariablePhotoSequenceCapture2 =
     '{fe2c62bc-50b0-43e3-917c-e3b92798942f}';
 
 class IVariablePhotoSequenceCapture2 extends IInspectable {
-  IVariablePhotoSequenceCapture2.fromPtr(super.ptr);
+  IVariablePhotoSequenceCapture2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IVariablePhotoSequenceCapture2Vtbl>().ref;
+
+  final _IVariablePhotoSequenceCapture2Vtbl _vtable;
 
   factory IVariablePhotoSequenceCapture2.from(IInspectable interface) =>
       interface.cast(IVariablePhotoSequenceCapture2.fromPtr,
@@ -30,17 +34,9 @@ class IVariablePhotoSequenceCapture2 extends IInspectable {
   Future<void> updateSettingsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.UpdateSettingsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -49,4 +45,13 @@ class IVariablePhotoSequenceCapture2 extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IVariablePhotoSequenceCapture2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      UpdateSettingsAsync;
 }

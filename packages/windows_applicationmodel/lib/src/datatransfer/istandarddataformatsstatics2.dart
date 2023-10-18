@@ -21,7 +21,10 @@ const IID_IStandardDataFormatsStatics2 =
     '{42a254f4-9d76-42e8-861b-47c25dd0cf71}';
 
 class IStandardDataFormatsStatics2 extends IInspectable {
-  IStandardDataFormatsStatics2.fromPtr(super.ptr);
+  IStandardDataFormatsStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStandardDataFormatsStatics2Vtbl>().ref;
+
+  final _IStandardDataFormatsStatics2Vtbl _vtable;
 
   factory IStandardDataFormatsStatics2.from(IInspectable interface) =>
       interface.cast(IStandardDataFormatsStatics2.fromPtr,
@@ -31,17 +34,9 @@ class IStandardDataFormatsStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_WebLink.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IStandardDataFormatsStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ApplicationLink.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,4 +61,16 @@ class IStandardDataFormatsStatics2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStandardDataFormatsStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_WebLink;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ApplicationLink;
 }

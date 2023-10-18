@@ -25,7 +25,10 @@ import 'storagefolder.dart';
 const IID_IDownloadsFolderStatics2 = '{e93045bd-8ef8-4f8e-8d15-ac0e265f390d}';
 
 class IDownloadsFolderStatics2 extends IInspectable {
-  IDownloadsFolderStatics2.fromPtr(super.ptr);
+  IDownloadsFolderStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDownloadsFolderStatics2Vtbl>().ref;
+
+  final _IDownloadsFolderStatics2Vtbl _vtable;
 
   factory IDownloadsFolderStatics2.from(IInspectable interface) => interface
       .cast(IDownloadsFolderStatics2.fromPtr, IID_IDownloadsFolderStatics2);
@@ -33,22 +36,10 @@ class IDownloadsFolderStatics2 extends IInspectable {
   Future<StorageFile?> createFileForUserAsync(User? user, String desiredName) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr desiredName,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int desiredName, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
+    final hr = _vtable.CreateFileForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                int desiredName, Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -64,22 +55,10 @@ class IDownloadsFolderStatics2 extends IInspectable {
       User? user, String desiredName) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr desiredName,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int desiredName, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
+    final hr = _vtable.CreateFolderForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                int desiredName, Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -95,25 +74,9 @@ class IDownloadsFolderStatics2 extends IInspectable {
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr desiredName,
-                            Int32 option,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    int desiredName,
-                    int option,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CreateFileForUserWithCollisionOptionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                int desiredName, int option, Pointer<COMObject> operation)>()(
         lpVtbl, user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
@@ -130,25 +93,9 @@ class IDownloadsFolderStatics2 extends IInspectable {
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr desiredName,
-                            Int32 option,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    int desiredName,
-                    int option,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CreateFolderForUserWithCollisionOptionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                int desiredName, int option, Pointer<COMObject> operation)>()(
         lpVtbl, user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
@@ -160,4 +107,40 @@ class IDownloadsFolderStatics2 extends IInspectable {
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IDownloadsFolderStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr desiredName,
+              Pointer<COMObject> operation)>> CreateFileForUserAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr desiredName,
+              Pointer<COMObject> operation)>> CreateFolderForUserAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer user,
+                  IntPtr desiredName,
+                  Int32 option,
+                  Pointer<COMObject> operation)>>
+      CreateFileForUserWithCollisionOptionAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer user,
+                  IntPtr desiredName,
+                  Int32 option,
+                  Pointer<COMObject> operation)>>
+      CreateFolderForUserWithCollisionOptionAsync;
 }

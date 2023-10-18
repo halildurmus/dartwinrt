@@ -24,7 +24,11 @@ const IID_IFindRelatedPackagesOptionsFactory =
     '{d7d17254-a4fd-55c4-98cf-f2710b7d8be2}';
 
 class IFindRelatedPackagesOptionsFactory extends IInspectable {
-  IFindRelatedPackagesOptionsFactory.fromPtr(super.ptr);
+  IFindRelatedPackagesOptionsFactory.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IFindRelatedPackagesOptionsFactoryVtbl>().ref;
+
+  final _IFindRelatedPackagesOptionsFactoryVtbl _vtable;
 
   factory IFindRelatedPackagesOptionsFactory.from(IInspectable interface) =>
       interface.cast(IFindRelatedPackagesOptionsFactory.fromPtr,
@@ -33,17 +37,9 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
   FindRelatedPackagesOptions createInstance(PackageRelationship relationship) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 relationship,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int relationship,
-                Pointer<COMObject> value)>()(lpVtbl, relationship.value, value);
+    final hr = _vtable.CreateInstance.asFunction<
+        int Function(VTablePointer lpVtbl, int relationship,
+            Pointer<COMObject> value)>()(lpVtbl, relationship.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -52,4 +48,12 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
 
     return FindRelatedPackagesOptions.fromPtr(value);
   }
+}
+
+final class _IFindRelatedPackagesOptionsFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 relationship,
+              Pointer<COMObject> value)>> CreateInstance;
 }

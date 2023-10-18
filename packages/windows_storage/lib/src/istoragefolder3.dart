@@ -22,7 +22,10 @@ import 'storagelibrarychangetracker.dart';
 const IID_IStorageFolder3 = '{9f617899-bde1-4124-aeb3-b06ad96f98d4}';
 
 class IStorageFolder3 extends IInspectable {
-  IStorageFolder3.fromPtr(super.ptr);
+  IStorageFolder3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFolder3Vtbl>().ref;
+
+  final _IStorageFolder3Vtbl _vtable;
 
   factory IStorageFolder3.from(IInspectable interface) =>
       interface.cast(IStorageFolder3.fromPtr, IID_IStorageFolder3);
@@ -30,17 +33,9 @@ class IStorageFolder3 extends IInspectable {
   StorageLibraryChangeTracker? tryGetChangeTracker() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.TryGetChangeTracker.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,13 @@ class IStorageFolder3 extends IInspectable {
 
     return StorageLibraryChangeTracker.fromPtr(result);
   }
+}
+
+final class _IStorageFolder3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      TryGetChangeTracker;
 }

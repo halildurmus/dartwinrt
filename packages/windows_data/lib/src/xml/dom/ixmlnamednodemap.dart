@@ -23,7 +23,10 @@ const IID_IXmlNamedNodeMap = '{b3a69eb0-aab0-4b82-a6fa-b1453f7c021b}';
 
 class IXmlNamedNodeMap extends IInspectable
     implements IVectorView<IXmlNode?>, IIterable<IXmlNode?> {
-  IXmlNamedNodeMap.fromPtr(super.ptr);
+  IXmlNamedNodeMap.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlNamedNodeMapVtbl>().ref;
+
+  final _IXmlNamedNodeMapVtbl _vtable;
 
   factory IXmlNamedNodeMap.from(IInspectable interface) =>
       interface.cast(IXmlNamedNodeMap.fromPtr, IID_IXmlNamedNodeMap);
@@ -32,17 +35,9 @@ class IXmlNamedNodeMap extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Length.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? item(int index) {
     final node = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        Pointer<COMObject> node)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                Pointer<COMObject> node)>()(lpVtbl, index, node);
+    final hr = _vtable.Item.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            Pointer<COMObject> node)>()(lpVtbl, index, node);
 
     if (FAILED(hr)) {
       free(node);
@@ -83,17 +70,9 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? getNamedItem(String name) {
     final node = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                        Pointer<COMObject> node)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int name,
-                Pointer<COMObject> node)>()(lpVtbl, name.toHString(), node);
+    final hr = _vtable.GetNamedItem.asFunction<
+        int Function(VTablePointer lpVtbl, int name,
+            Pointer<COMObject> node)>()(lpVtbl, name.toHString(), node);
 
     if (FAILED(hr)) {
       free(node);
@@ -111,21 +90,10 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? setNamedItem(IXmlNode? node) {
     final previousNode = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer node,
-                                Pointer<COMObject> previousNode)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer node,
-                        Pointer<COMObject> previousNode)>()(
-            lpVtbl, node.lpVtbl, previousNode);
+    final hr = _vtable.SetNamedItem.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer node,
+                Pointer<COMObject> previousNode)>()(
+        lpVtbl, node.lpVtbl, previousNode);
 
     if (FAILED(hr)) {
       free(previousNode);
@@ -143,17 +111,9 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? removeNamedItem(String name) {
     final previousNode = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> previousNode)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> previousNode)>()(
+    final hr = _vtable.RemoveNamedItem.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                Pointer<COMObject> previousNode)>()(
         lpVtbl, name.toHString(), previousNode);
 
     if (FAILED(hr)) {
@@ -172,20 +132,9 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? getNamedItemNS(Object? namespaceUri, String name) {
     final node = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer namespaceUri,
-                            IntPtr name,
-                            Pointer<COMObject> node)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
-                    int name, Pointer<COMObject> node)>()(lpVtbl,
+    final hr = _vtable.GetNamedItemNS.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                int name, Pointer<COMObject> node)>()(lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr, name.toHString(), node);
 
     if (FAILED(hr)) {
@@ -204,20 +153,9 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? removeNamedItemNS(Object? namespaceUri, String name) {
     final previousNode = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer namespaceUri,
-                            IntPtr name,
-                            Pointer<COMObject> previousNode)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
-                    int name, Pointer<COMObject> previousNode)>()(
+    final hr = _vtable.RemoveNamedItemNS.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                int name, Pointer<COMObject> previousNode)>()(
         lpVtbl,
         namespaceUri?.boxValue().lpVtbl ?? nullptr,
         name.toHString(),
@@ -239,21 +177,10 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? setNamedItemNS(IXmlNode? node) {
     final previousNode = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer node,
-                                Pointer<COMObject> previousNode)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer node,
-                        Pointer<COMObject> previousNode)>()(
-            lpVtbl, node.lpVtbl, previousNode);
+    final hr = _vtable.SetNamedItemNS.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer node,
+                Pointer<COMObject> previousNode)>()(
+        lpVtbl, node.lpVtbl, previousNode);
 
     if (FAILED(hr)) {
       free(previousNode);
@@ -297,4 +224,42 @@ class IXmlNamedNodeMap extends IInspectable
 
   @override
   List<IXmlNode?> operator +(List<IXmlNode?> other) => toList() + other;
+}
+
+final class _IXmlNamedNodeMapVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Length;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, Pointer<COMObject> node)>>
+      Item;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr name, Pointer<COMObject> node)>>
+      GetNamedItem;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer node,
+              Pointer<COMObject> previousNode)>> SetNamedItem;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              Pointer<COMObject> previousNode)>> RemoveNamedItem;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+              IntPtr name, Pointer<COMObject> node)>> GetNamedItemNS;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+              IntPtr name, Pointer<COMObject> previousNode)>> RemoveNamedItemNS;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer node,
+              Pointer<COMObject> previousNode)>> SetNamedItemNS;
 }

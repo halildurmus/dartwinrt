@@ -23,7 +23,10 @@ import 'roundingalgorithm.dart';
 const IID_ICurrencyFormatter2 = '{072c2f1d-e7ba-4197-920e-247c92f7dea6}';
 
 class ICurrencyFormatter2 extends IInspectable {
-  ICurrencyFormatter2.fromPtr(super.ptr);
+  ICurrencyFormatter2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICurrencyFormatter2Vtbl>().ref;
+
+  final _ICurrencyFormatter2Vtbl _vtable;
 
   factory ICurrencyFormatter2.from(IInspectable interface) =>
       interface.cast(ICurrencyFormatter2.fromPtr, IID_ICurrencyFormatter2);
@@ -32,17 +35,9 @@ class ICurrencyFormatter2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Mode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,13 +48,7 @@ class ICurrencyFormatter2 extends IInspectable {
   }
 
   set mode(CurrencyFormatterMode value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Mode
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -67,18 +56,25 @@ class ICurrencyFormatter2 extends IInspectable {
   }
 
   void applyRoundingForCurrency(RoundingAlgorithm roundingAlgorithm) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Int32 roundingAlgorithm)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int roundingAlgorithm)>()(
+    final hr = _vtable.ApplyRoundingForCurrency.asFunction<
+            int Function(VTablePointer lpVtbl, int roundingAlgorithm)>()(
         lpVtbl, roundingAlgorithm.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ICurrencyFormatter2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Mode;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Mode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 roundingAlgorithm)>>
+      ApplyRoundingForCurrency;
 }

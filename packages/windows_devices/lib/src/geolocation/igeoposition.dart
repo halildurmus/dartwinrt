@@ -23,7 +23,10 @@ import 'geocoordinate.dart';
 const IID_IGeoposition = '{c18d0454-7d41-4ff7-a957-9dffb4ef7f5b}';
 
 class IGeoposition extends IInspectable {
-  IGeoposition.fromPtr(super.ptr);
+  IGeoposition.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeopositionVtbl>().ref;
+
+  final _IGeopositionVtbl _vtable;
 
   factory IGeoposition.from(IInspectable interface) =>
       interface.cast(IGeoposition.fromPtr, IID_IGeoposition);
@@ -31,17 +34,9 @@ class IGeoposition extends IInspectable {
   Geocoordinate? get coordinate {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Coordinate.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IGeoposition extends IInspectable {
   CivicAddress? get civicAddress {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_CivicAddress.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,4 +70,16 @@ class IGeoposition extends IInspectable {
 
     return CivicAddress.fromPtr(value);
   }
+}
+
+final class _IGeopositionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Coordinate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_CivicAddress;
 }

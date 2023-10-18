@@ -28,7 +28,10 @@ import 'storageitemtypes.dart';
 const IID_IStorageItem2 = '{53f926d2-083c-4283-b45b-81c007237e44}';
 
 class IStorageItem2 extends IInspectable implements IStorageItem {
-  IStorageItem2.fromPtr(super.ptr);
+  IStorageItem2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItem2Vtbl>().ref;
+
+  final _IStorageItem2Vtbl _vtable;
 
   factory IStorageItem2.from(IInspectable interface) =>
       interface.cast(IStorageItem2.fromPtr, IID_IStorageItem2);
@@ -36,17 +39,9 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
   Future<StorageFolder?> getParentAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetParentAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -62,17 +57,9 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, VTablePointer item,
-                          Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer item,
-                  Pointer<Bool> value)>()(lpVtbl, item.lpVtbl, value);
+      final hr = _vtable.IsEqual.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer item,
+              Pointer<Bool> value)>()(lpVtbl, item.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -118,4 +105,17 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
   @override
   bool isOfType(StorageItemTypes type) => _iStorageItem.isOfType(type);
+}
+
+final class _IStorageItem2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetParentAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer item,
+              Pointer<Bool> value)>> IsEqual;
 }

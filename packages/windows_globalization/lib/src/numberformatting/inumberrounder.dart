@@ -22,7 +22,10 @@ const IID_INumberRounder = '{5473c375-38ed-4631-b80c-ef34fc48b7f5}';
 /// An interface that returns rounded results for provided numbers of several
 /// data types.
 class INumberRounder extends IInspectable {
-  INumberRounder.fromPtr(super.ptr);
+  INumberRounder.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INumberRounderVtbl>().ref;
+
+  final _INumberRounderVtbl _vtable;
 
   factory INumberRounder.from(IInspectable interface) =>
       interface.cast(INumberRounder.fromPtr, IID_INumberRounder);
@@ -31,17 +34,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 value,
-                          Pointer<Int32> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Int32> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundInt32.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<Int32> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 value,
-                          Pointer<Uint32> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Uint32> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundUInt32.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<Uint32> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,17 +66,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int64 value,
-                          Pointer<Int64> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Int64> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundInt64.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<Int64> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,17 +82,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Uint64>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint64 value,
-                          Pointer<Uint64> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int value,
-                  Pointer<Uint64> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundUInt64.asFunction<
+          int Function(VTablePointer lpVtbl, int value,
+              Pointer<Uint64> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -127,17 +98,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Float value,
-                          Pointer<Float> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Float> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundSingle.asFunction<
+          int Function(VTablePointer lpVtbl, double value,
+              Pointer<Float> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -151,17 +114,9 @@ class INumberRounder extends IInspectable {
     final result = calloc<Double>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Double value,
-                          Pointer<Double> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, double value,
-                  Pointer<Double> result)>()(lpVtbl, value, result);
+      final hr = _vtable.RoundDouble.asFunction<
+          int Function(VTablePointer lpVtbl, double value,
+              Pointer<Double> result)>()(lpVtbl, value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -170,4 +125,38 @@ class INumberRounder extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _INumberRounderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 value, Pointer<Int32> result)>>
+      RoundInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 value, Pointer<Uint32> result)>>
+      RoundUInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int64 value, Pointer<Int64> result)>>
+      RoundInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint64 value, Pointer<Uint64> result)>>
+      RoundUInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Float value, Pointer<Float> result)>>
+      RoundSingle;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Double value, Pointer<Double> result)>>
+      RoundDouble;
 }

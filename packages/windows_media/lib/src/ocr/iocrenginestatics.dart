@@ -23,7 +23,10 @@ import 'ocrengine.dart';
 const IID_IOcrEngineStatics = '{5bffa85a-3384-3540-9940-699120d428a8}';
 
 class IOcrEngineStatics extends IInspectable {
-  IOcrEngineStatics.fromPtr(super.ptr);
+  IOcrEngineStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IOcrEngineStaticsVtbl>().ref;
+
+  final _IOcrEngineStaticsVtbl _vtable;
 
   factory IOcrEngineStatics.from(IInspectable interface) =>
       interface.cast(IOcrEngineStatics.fromPtr, IID_IOcrEngineStatics);
@@ -32,17 +35,9 @@ class IOcrEngineStatics extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaxImageDimension.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IOcrEngineStatics extends IInspectable {
   List<Language?>? get availableRecognizerLanguages {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_AvailableRecognizerLanguages.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -87,17 +74,9 @@ class IOcrEngineStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer language, Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer language,
-                  Pointer<Bool> result)>()(lpVtbl, language.lpVtbl, result);
+      final hr = _vtable.IsLanguageSupported.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer language,
+              Pointer<Bool> result)>()(lpVtbl, language.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,17 +89,9 @@ class IOcrEngineStatics extends IInspectable {
   OcrEngine? tryCreateFromLanguage(Language? language) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer language, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer language,
-                Pointer<COMObject> result)>()(lpVtbl, language.lpVtbl, result);
+    final hr = _vtable.TryCreateFromLanguage.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer language,
+            Pointer<COMObject> result)>()(lpVtbl, language.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -138,17 +109,9 @@ class IOcrEngineStatics extends IInspectable {
   OcrEngine? tryCreateFromUserProfileLanguages() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.TryCreateFromUserProfileLanguages.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -162,4 +125,29 @@ class IOcrEngineStatics extends IInspectable {
 
     return OcrEngine.fromPtr(result);
   }
+}
+
+final class _IOcrEngineStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaxImageDimension;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_AvailableRecognizerLanguages;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer language,
+              Pointer<Bool> result)>> IsLanguageSupported;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer language,
+              Pointer<COMObject> result)>> TryCreateFromLanguage;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      TryCreateFromUserProfileLanguages;
 }

@@ -28,22 +28,17 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// Runtime asynchronous methods that don't have a result object, and don't
 /// report ongoing progress.
 class IAsyncAction extends IInspectable implements IAsyncInfo {
-  IAsyncAction.fromPtr(super.ptr);
+  IAsyncAction.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAsyncActionVtbl>().ref;
+
+  final _IAsyncActionVtbl _vtable;
 
   factory IAsyncAction.from(IInspectable interface) =>
       interface.cast(IAsyncAction.fromPtr, IID_IAsyncAction);
 
   set completed(Pointer<COMObject> handler) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer handler)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer handler)>()(
+    final hr = _vtable.put_Completed.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer handler)>()(
         lpVtbl, handler.ref.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -52,17 +47,9 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   Pointer<COMObject> get completed {
     final handler = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> handler)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> handler)>()(lpVtbl, handler);
+    final hr = _vtable.get_Completed.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> handler)>()(
+        lpVtbl, handler);
 
     if (FAILED(hr)) {
       free(handler);
@@ -73,11 +60,9 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   }
 
   void getResults() {
-    final hr = vtable
-        .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.GetResults.asFunction<int Function(VTablePointer lpVtbl)>()(
+            lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -98,4 +83,18 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
 
   @override
   void close() => _iAsyncInfo.close();
+}
+
+final class _IAsyncActionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer handler)>>
+      put_Completed;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> handler)>> get_Completed;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      GetResults;
 }

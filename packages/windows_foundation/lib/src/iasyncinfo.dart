@@ -29,7 +29,10 @@ const IID_IAsyncInfo = '{00000036-0000-0000-c000-000000000046}';
 /// `IAsyncOperationWithProgress<TResult,TProgress>`, each of which support
 /// combinations of return type and progress for an asynchronous method.
 class IAsyncInfo extends IInspectable {
-  IAsyncInfo.fromPtr(super.ptr);
+  IAsyncInfo.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAsyncInfoVtbl>().ref;
+
+  final _IAsyncInfoVtbl _vtable;
 
   factory IAsyncInfo.from(IInspectable interface) =>
       interface.cast(IAsyncInfo.fromPtr, IID_IAsyncInfo);
@@ -38,17 +41,9 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -62,17 +57,9 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = _vtable.get_Status.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>()(
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -86,17 +73,9 @@ class IAsyncInfo extends IInspectable {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = _vtable.get_ErrorCode.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>()(
+          lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -107,22 +86,36 @@ class IAsyncInfo extends IInspectable {
   }
 
   void cancel() {
-    final hr = vtable
-        .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Cancel.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void close() {
-    final hr = vtable
-        .elementAt(10)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Close.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IAsyncInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Id;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>> get_Status;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>> get_ErrorCode;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Cancel;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Close;
 }

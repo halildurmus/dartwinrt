@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanIdentifierData = '{a74e83c3-d639-45be-a36a-c4e4aeaf6d9b}';
 
 class ILanIdentifierData extends IInspectable {
-  ILanIdentifierData.fromPtr(super.ptr);
+  ILanIdentifierData.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanIdentifierDataVtbl>().ref;
+
+  final _ILanIdentifierDataVtbl _vtable;
 
   factory ILanIdentifierData.from(IInspectable interface) =>
       interface.cast(ILanIdentifierData.fromPtr, IID_ILanIdentifierData);
@@ -29,17 +32,9 @@ class ILanIdentifierData extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Type.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,17 +47,9 @@ class ILanIdentifierData extends IInspectable {
   List<int>? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -79,4 +66,16 @@ class ILanIdentifierData extends IInspectable {
             intType: IntType.uint8)
         .toList();
   }
+}
+
+final class _ILanIdentifierDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Type;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
 }

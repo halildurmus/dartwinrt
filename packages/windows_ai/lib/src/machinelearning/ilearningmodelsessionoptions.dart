@@ -21,7 +21,10 @@ const IID_ILearningModelSessionOptions =
     '{b8f63fa1-134d-5133-8cff-3a5c3c263beb}';
 
 class ILearningModelSessionOptions extends IInspectable {
-  ILearningModelSessionOptions.fromPtr(super.ptr);
+  ILearningModelSessionOptions.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionOptionsVtbl>().ref;
+
+  final _ILearningModelSessionOptionsVtbl _vtable;
 
   factory ILearningModelSessionOptions.from(IInspectable interface) =>
       interface.cast(ILearningModelSessionOptions.fromPtr,
@@ -31,17 +34,9 @@ class ILearningModelSessionOptions extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BatchSizeOverride.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,18 +47,21 @@ class ILearningModelSessionOptions extends IInspectable {
   }
 
   set batchSizeOverride(int value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_BatchSizeOverride
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILearningModelSessionOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_BatchSizeOverride;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_BatchSizeOverride;
 }

@@ -25,7 +25,11 @@ const IID_INetworkOperatorTetheringManager =
     '{d45a8da0-0e86-4d98-8ba4-dd70d4b764d3}';
 
 class INetworkOperatorTetheringManager extends IInspectable {
-  INetworkOperatorTetheringManager.fromPtr(super.ptr);
+  INetworkOperatorTetheringManager.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_INetworkOperatorTetheringManagerVtbl>().ref;
+
+  final _INetworkOperatorTetheringManagerVtbl _vtable;
 
   factory INetworkOperatorTetheringManager.from(IInspectable interface) =>
       interface.cast(INetworkOperatorTetheringManager.fromPtr,
@@ -35,17 +39,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaxClientCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +55,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ClientCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +71,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_TetheringOperationalState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -107,17 +87,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
       getCurrentAccessPointConfiguration() {
     final configuration = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> configuration)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> configuration)>()(lpVtbl, configuration);
+    final hr = _vtable.GetCurrentAccessPointConfiguration.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> configuration)>()(lpVtbl, configuration);
 
     if (FAILED(hr)) {
       free(configuration);
@@ -137,19 +109,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
       NetworkOperatorTetheringAccessPointConfiguration? configuration) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer configuration,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer configuration,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.ConfigureAccessPointAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer configuration,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, configuration.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -163,17 +125,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
   Future<NetworkOperatorTetheringOperationResult?> startTetheringAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.StartTetheringAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -190,17 +144,9 @@ class INetworkOperatorTetheringManager extends IInspectable {
   Future<NetworkOperatorTetheringOperationResult?> stopTetheringAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.StopTetheringAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -213,4 +159,39 @@ class INetworkOperatorTetheringManager extends IInspectable {
             creator: NetworkOperatorTetheringOperationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _INetworkOperatorTetheringManagerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaxClientCount;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_ClientCount;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_TetheringOperationalState;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> configuration)>>
+      GetCurrentAccessPointConfiguration;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer configuration,
+              Pointer<COMObject> asyncInfo)>> ConfigureAccessPointAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      StartTetheringAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      StopTetheringAsync;
 }

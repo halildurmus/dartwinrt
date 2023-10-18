@@ -23,7 +23,10 @@ import 'videoframe.dart';
 const IID_IVideoFrameFactory = '{014b6d69-2228-4c92-92ff-50c380d3e776}';
 
 class IVideoFrameFactory extends IInspectable {
-  IVideoFrameFactory.fromPtr(super.ptr);
+  IVideoFrameFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoFrameFactoryVtbl>().ref;
+
+  final _IVideoFrameFactoryVtbl _vtable;
 
   factory IVideoFrameFactory.from(IInspectable interface) =>
       interface.cast(IVideoFrameFactory.fromPtr, IID_IVideoFrameFactory);
@@ -31,21 +34,9 @@ class IVideoFrameFactory extends IInspectable {
   VideoFrame create(BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, Pointer<COMObject> value)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, Pointer<COMObject> value)>()(
         lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
@@ -60,22 +51,9 @@ class IVideoFrameFactory extends IInspectable {
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            Int32 alpha,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, int alpha, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateWithAlpha.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, int alpha, Pointer<COMObject> value)>()(
         lpVtbl, format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
@@ -85,4 +63,21 @@ class IVideoFrameFactory extends IInspectable {
 
     return VideoFrame.fromPtr(value);
   }
+}
+
+final class _IVideoFrameFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 format, Int32 width,
+              Int32 height, Pointer<COMObject> value)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 format,
+              Int32 width,
+              Int32 height,
+              Int32 alpha,
+              Pointer<COMObject> value)>> CreateWithAlpha;
 }

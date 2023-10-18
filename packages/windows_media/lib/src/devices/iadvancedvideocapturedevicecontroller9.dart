@@ -23,7 +23,12 @@ const IID_IAdvancedVideoCaptureDeviceController9 =
     '{8bdca95d-0255-51bc-a10d-5a169ec1625a}';
 
 class IAdvancedVideoCaptureDeviceController9 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController9.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController9.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController9Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController9Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController9.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController9.fromPtr,
@@ -32,17 +37,9 @@ class IAdvancedVideoCaptureDeviceController9 extends IInspectable {
   DigitalWindowControl? get digitalWindowControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DigitalWindowControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +53,12 @@ class IAdvancedVideoCaptureDeviceController9 extends IInspectable {
 
     return DigitalWindowControl.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController9Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DigitalWindowControl;
 }

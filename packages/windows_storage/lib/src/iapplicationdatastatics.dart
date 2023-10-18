@@ -22,7 +22,10 @@ import 'applicationdata.dart';
 const IID_IApplicationDataStatics = '{5612147b-e843-45e3-94d8-06169e3c8e17}';
 
 class IApplicationDataStatics extends IInspectable {
-  IApplicationDataStatics.fromPtr(super.ptr);
+  IApplicationDataStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationDataStaticsVtbl>().ref;
+
+  final _IApplicationDataStaticsVtbl _vtable;
 
   factory IApplicationDataStatics.from(IInspectable interface) => interface
       .cast(IApplicationDataStatics.fromPtr, IID_IApplicationDataStatics);
@@ -30,17 +33,9 @@ class IApplicationDataStatics extends IInspectable {
   ApplicationData? get current {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Current.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IApplicationDataStatics extends IInspectable {
 
     return ApplicationData.fromPtr(value);
   }
+}
+
+final class _IApplicationDataStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Current;
 }

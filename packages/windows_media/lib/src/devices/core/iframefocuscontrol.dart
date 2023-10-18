@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFrameFocusControl = '{272df1d0-d912-4214-a67b-e38a8d48d8c6}';
 
 class IFrameFocusControl extends IInspectable {
-  IFrameFocusControl.fromPtr(super.ptr);
+  IFrameFocusControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFrameFocusControlVtbl>().ref;
+
+  final _IFrameFocusControlVtbl _vtable;
 
   factory IFrameFocusControl.from(IInspectable interface) =>
       interface.cast(IFrameFocusControl.fromPtr, IID_IFrameFocusControl);
@@ -28,17 +31,9 @@ class IFrameFocusControl extends IInspectable {
   int? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,18 +51,22 @@ class IFrameFocusControl extends IInspectable {
   }
 
   set value(int? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_Value.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFrameFocusControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_Value;
 }

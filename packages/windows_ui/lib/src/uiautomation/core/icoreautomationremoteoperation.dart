@@ -26,7 +26,11 @@ const IID_ICoreAutomationRemoteOperation =
     '{3ac656f4-e2bc-5c6e-b8e7-b224fb74b060}';
 
 class ICoreAutomationRemoteOperation extends IInspectable {
-  ICoreAutomationRemoteOperation.fromPtr(super.ptr);
+  ICoreAutomationRemoteOperation.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ICoreAutomationRemoteOperationVtbl>().ref;
+
+  final _ICoreAutomationRemoteOperationVtbl _vtable;
 
   factory ICoreAutomationRemoteOperation.from(IInspectable interface) =>
       interface.cast(ICoreAutomationRemoteOperation.fromPtr,
@@ -36,17 +40,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 opcode,
-                          Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int opcode,
-                  Pointer<Bool> result)>()(lpVtbl, opcode, result);
+      final hr = _vtable.IsOpcodeSupported.asFunction<
+          int Function(VTablePointer lpVtbl, int opcode,
+              Pointer<Bool> result)>()(lpVtbl, opcode, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,21 +56,11 @@ class ICoreAutomationRemoteOperation extends IInspectable {
       AutomationElement? element) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeAutomationRemoteOperationOperandId operandId,
-                            VTablePointer element)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer element)>()(
+    final hr = _vtable.ImportElement.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                NativeAutomationRemoteOperationOperandId operandId,
+                VTablePointer element)>()(
         lpVtbl, operandIdNativeStructPtr.ref, element.lpVtbl);
 
     free(operandIdNativeStructPtr);
@@ -86,21 +72,11 @@ class ICoreAutomationRemoteOperation extends IInspectable {
       AutomationTextRange? textRange) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            NativeAutomationRemoteOperationOperandId operandId,
-                            VTablePointer textRange)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer textRange)>()(
+    final hr = _vtable.ImportTextRange.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                NativeAutomationRemoteOperationOperandId operandId,
+                VTablePointer textRange)>()(
         lpVtbl, operandIdNativeStructPtr.ref, textRange.lpVtbl);
 
     free(operandIdNativeStructPtr);
@@ -111,19 +87,10 @@ class ICoreAutomationRemoteOperation extends IInspectable {
   void addToResults(AutomationRemoteOperationOperandId operandId) {
     final operandIdNativeStructPtr = operandId.toNative();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        NativeAutomationRemoteOperationOperandId operandId)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                NativeAutomationRemoteOperationOperandId
-                    operandId)>()(lpVtbl, operandIdNativeStructPtr.ref);
+    final hr = _vtable.AddToResults.asFunction<
+            int Function(VTablePointer lpVtbl,
+                NativeAutomationRemoteOperationOperandId operandId)>()(
+        lpVtbl, operandIdNativeStructPtr.ref);
 
     free(operandIdNativeStructPtr);
 
@@ -134,23 +101,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
     final result = calloc<COMObject>();
     final bytecodeBufferArray = bytecodeBuffer.toArray<Uint8>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 bytecodeBufferSize,
-                            Pointer<Uint8> bytecodeBuffer,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int bytecodeBufferSize,
-                    Pointer<Uint8> bytecodeBuffer,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Execute.asFunction<
+            int Function(VTablePointer lpVtbl, int bytecodeBufferSize,
+                Pointer<Uint8> bytecodeBuffer, Pointer<COMObject> result)>()(
         lpVtbl, bytecodeBuffer.length, bytecodeBufferArray, result);
 
     free(bytecodeBufferArray);
@@ -167,4 +120,37 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
     return AutomationRemoteOperationResult.fromPtr(result);
   }
+}
+
+final class _ICoreAutomationRemoteOperationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 opcode, Pointer<Bool> result)>>
+      IsOpcodeSupported;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeAutomationRemoteOperationOperandId operandId,
+              VTablePointer element)>> ImportElement;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeAutomationRemoteOperationOperandId operandId,
+              VTablePointer textRange)>> ImportTextRange;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl,
+                  NativeAutomationRemoteOperationOperandId operandId)>>
+      AddToResults;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 bytecodeBufferSize,
+              Pointer<Uint8> bytecodeBuffer,
+              Pointer<COMObject> result)>> Execute;
 }

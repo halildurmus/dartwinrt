@@ -23,7 +23,10 @@ import 'capturedframecontrolvalues.dart';
 const IID_ICapturedFrame2 = '{543fa6d1-bd78-4866-adda-24314bc65dea}';
 
 class ICapturedFrame2 extends IInspectable {
-  ICapturedFrame2.fromPtr(super.ptr);
+  ICapturedFrame2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICapturedFrame2Vtbl>().ref;
+
+  final _ICapturedFrame2Vtbl _vtable;
 
   factory ICapturedFrame2.from(IInspectable interface) =>
       interface.cast(ICapturedFrame2.fromPtr, IID_ICapturedFrame2);
@@ -31,17 +34,9 @@ class ICapturedFrame2 extends IInspectable {
   CapturedFrameControlValues? get controlValues {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ControlValues.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class ICapturedFrame2 extends IInspectable {
   BitmapPropertySet? get bitmapProperties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_BitmapProperties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,4 +70,16 @@ class ICapturedFrame2 extends IInspectable {
 
     return BitmapPropertySet.fromPtr(value);
   }
+}
+
+final class _ICapturedFrame2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ControlValues;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_BitmapProperties;
 }

@@ -25,7 +25,12 @@ const IID_INetworkOperatorTetheringManagerStatics2 =
     '{5b235412-35f0-49e7-9b08-16d278fbaa42}';
 
 class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
-  INetworkOperatorTetheringManagerStatics2.fromPtr(super.ptr);
+  INetworkOperatorTetheringManagerStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringManagerStatics2Vtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringManagerStatics2Vtbl _vtable;
 
   factory INetworkOperatorTetheringManagerStatics2.from(
           IInspectable interface) =>
@@ -37,17 +42,9 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer profile, Pointer<Int32> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer profile,
-                  Pointer<Int32> result)>()(lpVtbl, profile.lpVtbl, result);
+      final hr = _vtable.GetTetheringCapabilityFromConnectionProfile.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer profile,
+              Pointer<Int32> result)>()(lpVtbl, profile.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,20 +58,9 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
       ConnectionProfile? profile) {
     final ppManager = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer profile,
-                            Pointer<COMObject> ppManager)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer profile,
-                    Pointer<COMObject> ppManager)>()(
-        lpVtbl, profile.lpVtbl, ppManager);
+    final hr = _vtable.CreateFromConnectionProfile.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer profile,
+            Pointer<COMObject> ppManager)>()(lpVtbl, profile.lpVtbl, ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);
@@ -88,4 +74,17 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
 
     return NetworkOperatorTetheringManager.fromPtr(ppManager);
   }
+}
+
+final class _INetworkOperatorTetheringManagerStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer profile,
+                  Pointer<Int32> result)>>
+      GetTetheringCapabilityFromConnectionProfile;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer profile,
+              Pointer<COMObject> ppManager)>> CreateFromConnectionProfile;
 }

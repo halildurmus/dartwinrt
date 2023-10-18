@@ -24,7 +24,10 @@ const IID_IDirect3DSurface = '{0bf4a146-13c1-4694-bee3-7abf15eaf586}';
 /// This represents an IDXGISurface and can be used to interop between Windows
 /// Runtime components that need to exchange IDXGISurface references.
 class IDirect3DSurface extends IInspectable implements IClosable {
-  IDirect3DSurface.fromPtr(super.ptr);
+  IDirect3DSurface.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDirect3DSurfaceVtbl>().ref;
+
+  final _IDirect3DSurfaceVtbl _vtable;
 
   factory IDirect3DSurface.from(IInspectable interface) =>
       interface.cast(IDirect3DSurface.fromPtr, IID_IDirect3DSurface);
@@ -33,19 +36,10 @@ class IDirect3DSurface extends IInspectable implements IClosable {
     final value = calloc<NativeDirect3DSurfaceDescription>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeDirect3DSurfaceDescription> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<NativeDirect3DSurfaceDescription>
-                      value)>()(lpVtbl, value);
+      final hr = _vtable.get_Description.asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeDirect3DSurfaceDescription> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,4 +53,13 @@ class IDirect3DSurface extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IDirect3DSurfaceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl,
+                  Pointer<NativeDirect3DSurfaceDescription> value)>>
+      get_Description;
 }

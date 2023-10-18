@@ -12,22 +12,17 @@ part of 'ivector.dart';
 final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   _IVectorAccessListEntry.fromPtr(super.ptr, {required super.iterableIid});
 
+  late final __IVectorAccessListEntryVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorAccessListEntryVtbl>().ref;
+
   @override
   AccessListEntry getAt(int index) {
     final retValuePtr = calloc<NativeAccessListEntry>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeAccessListEntry> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeAccessListEntry> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeAccessListEntry> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -45,23 +40,9 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeAccessListEntry value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativeAccessListEntry value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeAccessListEntry value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -78,17 +59,9 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   void setAt(int index, AccessListEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeAccessListEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeAccessListEntry value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeAccessListEntry value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -100,17 +73,9 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   void insertAt(int index, AccessListEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeAccessListEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeAccessListEntry value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeAccessListEntry value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -122,17 +87,8 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   void append(AccessListEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeAccessListEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativeAccessListEntry value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeAccessListEntry value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -146,25 +102,13 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
     final items = calloc<NativeAccessListEntry>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeAccessListEntry> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeAccessListEntry> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeAccessListEntry> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -184,17 +128,9 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeAccessListEntry> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeAccessListEntry> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeAccessListEntry> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -203,33 +139,74 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   }
 }
 
+final class __IVectorAccessListEntryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeAccessListEntry> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeAccessListEntry value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeAccessListEntry value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeAccessListEntry value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, NativeAccessListEntry value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeAccessListEntry> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeAccessListEntry> items)>> ReplaceAll;
+}
+
 final class _IVectorBackgroundTransferFileRange
     extends IVector<BackgroundTransferFileRange> {
   _IVectorBackgroundTransferFileRange.fromPtr(super.ptr,
       {required super.iterableIid});
+
+  late final __IVectorBackgroundTransferFileRangeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorBackgroundTransferFileRangeVtbl>().ref;
 
   @override
   BackgroundTransferFileRange getAt(int index) {
     final retValuePtr = calloc<NativeBackgroundTransferFileRange>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Uint32 index,
-                          Pointer<NativeBackgroundTransferFileRange>
-                              retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  int index,
-                  Pointer<NativeBackgroundTransferFileRange>
-                      retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeBackgroundTransferFileRange> retValuePtr)>()(
+          lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -246,23 +223,12 @@ final class _IVectorBackgroundTransferFileRange
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeBackgroundTransferFileRange value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativeBackgroundTransferFileRange value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  NativeBackgroundTransferFileRange value,
+                  Pointer<Uint32> index,
+                  Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -279,17 +245,9 @@ final class _IVectorBackgroundTransferFileRange
   void setAt(int index, BackgroundTransferFileRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeBackgroundTransferFileRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeBackgroundTransferFileRange value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeBackgroundTransferFileRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -301,17 +259,9 @@ final class _IVectorBackgroundTransferFileRange
   void insertAt(int index, BackgroundTransferFileRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeBackgroundTransferFileRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeBackgroundTransferFileRange value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeBackgroundTransferFileRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -323,17 +273,9 @@ final class _IVectorBackgroundTransferFileRange
   void append(BackgroundTransferFileRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeBackgroundTransferFileRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    NativeBackgroundTransferFileRange value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl,
+                NativeBackgroundTransferFileRange value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -348,25 +290,13 @@ final class _IVectorBackgroundTransferFileRange
     final items = calloc<NativeBackgroundTransferFileRange>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeBackgroundTransferFileRange> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeBackgroundTransferFileRange> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeBackgroundTransferFileRange> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -386,20 +316,10 @@ final class _IVectorBackgroundTransferFileRange
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<NativeBackgroundTransferFileRange> items)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int itemsSize,
-                Pointer<NativeBackgroundTransferFileRange>
-                    items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeBackgroundTransferFileRange> items)>()(
+        lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -407,25 +327,74 @@ final class _IVectorBackgroundTransferFileRange
   }
 }
 
+final class __IVectorBackgroundTransferFileRangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeBackgroundTransferFileRange> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeBackgroundTransferFileRange value,
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeBackgroundTransferFileRange value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeBackgroundTransferFileRange value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              NativeBackgroundTransferFileRange value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeBackgroundTransferFileRange> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeBackgroundTransferFileRange> items)>> ReplaceAll;
+}
+
 final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   _IVectorBasicGeoposition.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorBasicGeopositionVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorBasicGeopositionVtbl>().ref;
 
   @override
   BasicGeoposition getAt(int index) {
     final retValuePtr = calloc<NativeBasicGeoposition>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeBasicGeoposition> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeBasicGeoposition> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeBasicGeoposition> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -443,23 +412,9 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeBasicGeoposition value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativeBasicGeoposition value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeBasicGeoposition value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -476,17 +431,9 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   void setAt(int index, BasicGeoposition value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeBasicGeoposition value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeBasicGeoposition value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeBasicGeoposition value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -498,17 +445,9 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   void insertAt(int index, BasicGeoposition value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeBasicGeoposition value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeBasicGeoposition value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeBasicGeoposition value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -520,17 +459,8 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   void append(BasicGeoposition value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeBasicGeoposition value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativeBasicGeoposition value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeBasicGeoposition value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -544,25 +474,13 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
     final items = calloc<NativeBasicGeoposition>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeBasicGeoposition> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeBasicGeoposition> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeBasicGeoposition> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -582,17 +500,9 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeBasicGeoposition> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeBasicGeoposition> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeBasicGeoposition> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -601,25 +511,71 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   }
 }
 
+final class __IVectorBasicGeopositionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeBasicGeoposition> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeBasicGeoposition value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeBasicGeoposition value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeBasicGeoposition value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, NativeBasicGeoposition value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeBasicGeoposition> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeBasicGeoposition> items)>> ReplaceAll;
+}
+
 final class _IVectorBool extends IVector<bool> {
   _IVectorBool.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorBoolVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorBoolVtbl>().ref;
 
   @override
   bool getAt(int index) {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -635,22 +591,9 @@ final class _IVectorBool extends IVector<bool> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Bool value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, bool value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, bool value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -663,16 +606,8 @@ final class _IVectorBool extends IVector<bool> {
 
   @override
   void setAt(int index, bool value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Uint32 index, Bool value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index, bool value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, bool value)>()(
         lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -680,16 +615,8 @@ final class _IVectorBool extends IVector<bool> {
 
   @override
   void insertAt(int index, bool value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Uint32 index, Bool value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index, bool value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, bool value)>()(
         lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -697,15 +624,8 @@ final class _IVectorBool extends IVector<bool> {
 
   @override
   void append(bool value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, bool value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -716,25 +636,9 @@ final class _IVectorBool extends IVector<bool> {
     final items = calloc<Bool>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Bool> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Bool> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Bool> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -753,17 +657,9 @@ final class _IVectorBool extends IVector<bool> {
   void replaceAll(List<bool> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Bool> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Bool> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Bool> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -771,26 +667,71 @@ final class _IVectorBool extends IVector<bool> {
   }
 }
 
+final class __IVectorBoolVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Bool> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Bool value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 index, Bool value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 index, Bool value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Bool> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 itemsSize, Pointer<Bool> items)>>
+      ReplaceAll;
+}
+
 final class _IVectorColor extends IVector<Color> {
   _IVectorColor.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorColorVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorColorVtbl>().ref;
 
   @override
   Color getAt(int index) {
     final retValuePtr = calloc<NativeColor>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeColor> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeColor> retValuePtr)>()(
-          lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<NativeColor> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -807,22 +748,10 @@ final class _IVectorColor extends IVector<Color> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativeColor value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativeColor value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeColor value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -838,17 +767,9 @@ final class _IVectorColor extends IVector<Color> {
   void setAt(int index, Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeColor value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeColor value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeColor value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -859,17 +780,9 @@ final class _IVectorColor extends IVector<Color> {
   void insertAt(int index, Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeColor value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeColor value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeColor value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -880,16 +793,8 @@ final class _IVectorColor extends IVector<Color> {
   void append(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeColor value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeColor value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeColor value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -903,25 +808,9 @@ final class _IVectorColor extends IVector<Color> {
     final items = calloc<NativeColor>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeColor> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeColor> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<NativeColor> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -941,18 +830,9 @@ final class _IVectorColor extends IVector<Color> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeColor> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeColor> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativeColor> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -960,25 +840,70 @@ final class _IVectorColor extends IVector<Color> {
   }
 }
 
+final class __IVectorColorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeColor> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeColor value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeColor value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeColor value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeColor value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeColor> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeColor> items)>> ReplaceAll;
+}
+
 final class _IVectorDateTime extends IVector<DateTime> {
   _IVectorDateTime.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorDateTimeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorDateTimeVtbl>().ref;
 
   @override
   DateTime getAt(int index) {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -994,22 +919,10 @@ final class _IVectorDateTime extends IVector<DateTime> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int64 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value.toWinRTDateTime(), index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, value.toWinRTDateTime(), index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1022,48 +935,26 @@ final class _IVectorDateTime extends IVector<DateTime> {
 
   @override
   void setAt(int index, DateTime value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toWinRTDateTime());
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toWinRTDateTime());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, DateTime value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toWinRTDateTime());
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toWinRTDateTime());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(DateTime value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.toWinRTDateTime());
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -1075,25 +966,9 @@ final class _IVectorDateTime extends IVector<DateTime> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int64> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int64> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1112,17 +987,9 @@ final class _IVectorDateTime extends IVector<DateTime> {
   void replaceAll(List<DateTime> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int64> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -1130,26 +997,71 @@ final class _IVectorDateTime extends IVector<DateTime> {
   }
 }
 
+final class __IVectorDateTimeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int64> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int64> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int64> items)>> ReplaceAll;
+}
+
 final class _IVectorDouble extends IVector<double> {
   _IVectorDouble.fromPtr(super.ptr,
       {required super.iterableIid, super.doubleType});
+
+  late final __IVectorDoubleVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorDoubleVtbl>().ref;
 
   @override
   double getAt(int index) {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Double> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Double> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1165,22 +1077,12 @@ final class _IVectorDouble extends IVector<double> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Double value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, double value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(
+              VTablePointer lpVtbl,
+              double value,
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1193,51 +1095,26 @@ final class _IVectorDouble extends IVector<double> {
 
   @override
   void setAt(int index, double value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Double value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                double value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, double value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, double value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Double value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                double value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, double value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(double value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, double value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1248,25 +1125,9 @@ final class _IVectorDouble extends IVector<double> {
     final items = calloc<Double>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Double> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Double> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Double> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1285,17 +1146,9 @@ final class _IVectorDouble extends IVector<double> {
   void replaceAll(List<double> items) {
     final itemsArray = items.toArray<Double>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Double> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Double> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Double> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -1303,25 +1156,70 @@ final class _IVectorDouble extends IVector<double> {
   }
 }
 
+final class __IVectorDoubleVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Double> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Double value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Double value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Double value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Double> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Double> items)>> ReplaceAll;
+}
+
 final class _IVectorDuration extends IVector<Duration> {
   _IVectorDuration.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorDurationVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorDurationVtbl>().ref;
 
   @override
   Duration getAt(int index) {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1337,22 +1235,10 @@ final class _IVectorDuration extends IVector<Duration> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int64 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value.toWinRTDuration(), index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, value.toWinRTDuration(), index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1365,48 +1251,26 @@ final class _IVectorDuration extends IVector<Duration> {
 
   @override
   void setAt(int index, Duration value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toWinRTDuration());
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toWinRTDuration());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, Duration value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toWinRTDuration());
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toWinRTDuration());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(Duration value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.toWinRTDuration());
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -1418,25 +1282,9 @@ final class _IVectorDuration extends IVector<Duration> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int64> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int64> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1455,17 +1303,9 @@ final class _IVectorDuration extends IVector<Duration> {
   void replaceAll(List<Duration> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int64> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -1473,26 +1313,71 @@ final class _IVectorDuration extends IVector<Duration> {
   }
 }
 
+final class __IVectorDurationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int64> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int64> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int64> items)>> ReplaceAll;
+}
+
 final class _IVectorFloat extends IVector<double> {
   _IVectorFloat.fromPtr(super.ptr,
       {required super.iterableIid, super.doubleType});
+
+  late final __IVectorFloatVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorFloatVtbl>().ref;
 
   @override
   double getAt(int index) {
     final retValuePtr = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Float> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Float> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Float> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1508,22 +1393,12 @@ final class _IVectorFloat extends IVector<double> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Float value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, double value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(
+              VTablePointer lpVtbl,
+              double value,
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1536,49 +1411,26 @@ final class _IVectorFloat extends IVector<double> {
 
   @override
   void setAt(int index, double value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Float value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                double value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, double value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, double value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Float value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                double value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, double value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(double value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Float value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, double value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1589,25 +1441,9 @@ final class _IVectorFloat extends IVector<double> {
     final items = calloc<Float>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Float> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Float> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Float> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1626,17 +1462,9 @@ final class _IVectorFloat extends IVector<double> {
   void replaceAll(List<double> items) {
     final itemsArray = items.toArray<Float>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Float> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Float> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Float> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -1644,25 +1472,70 @@ final class _IVectorFloat extends IVector<double> {
   }
 }
 
+final class __IVectorFloatVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Float> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Float value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Float value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Float value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Float value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Float> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Float> items)>> ReplaceAll;
+}
+
 final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   _IVectorGpioChangeRecord.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorGpioChangeRecordVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorGpioChangeRecordVtbl>().ref;
 
   @override
   GpioChangeRecord getAt(int index) {
     final retValuePtr = calloc<NativeGpioChangeRecord>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeGpioChangeRecord> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeGpioChangeRecord> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeGpioChangeRecord> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1680,23 +1553,9 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeGpioChangeRecord value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativeGpioChangeRecord value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeGpioChangeRecord value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1713,17 +1572,9 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   void setAt(int index, GpioChangeRecord value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeGpioChangeRecord value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeGpioChangeRecord value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeGpioChangeRecord value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1735,17 +1586,9 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   void insertAt(int index, GpioChangeRecord value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeGpioChangeRecord value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeGpioChangeRecord value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeGpioChangeRecord value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1757,17 +1600,8 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   void append(GpioChangeRecord value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeGpioChangeRecord value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativeGpioChangeRecord value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeGpioChangeRecord value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1781,25 +1615,13 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
     final items = calloc<NativeGpioChangeRecord>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeGpioChangeRecord> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeGpioChangeRecord> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeGpioChangeRecord> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1819,17 +1641,9 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeGpioChangeRecord> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeGpioChangeRecord> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeGpioChangeRecord> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -1838,25 +1652,71 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   }
 }
 
+final class __IVectorGpioChangeRecordVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeGpioChangeRecord> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeGpioChangeRecord value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeGpioChangeRecord value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeGpioChangeRecord value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, NativeGpioChangeRecord value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeGpioChangeRecord> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeGpioChangeRecord> items)>> ReplaceAll;
+}
+
 final class _IVectorGuid extends IVector<Guid> {
   _IVectorGuid.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorGuidVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorGuidVtbl>().ref;
 
   @override
   Guid getAt(int index) {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<GUID> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<GUID> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1873,22 +1733,10 @@ final class _IVectorGuid extends IVector<Guid> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  GUID value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, GUID value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, GUID value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1904,16 +1752,8 @@ final class _IVectorGuid extends IVector<Guid> {
   void setAt(int index, Guid value) {
     final valueNativeStructPtr = value.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Uint32 index, GUID value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index, GUID value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1925,16 +1765,8 @@ final class _IVectorGuid extends IVector<Guid> {
   void insertAt(int index, Guid value) {
     final valueNativeStructPtr = value.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Uint32 index, GUID value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index, GUID value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1946,14 +1778,8 @@ final class _IVectorGuid extends IVector<Guid> {
   void append(Guid value) {
     final valueNativeStructPtr = value.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, GUID value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, GUID value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -1967,25 +1793,9 @@ final class _IVectorGuid extends IVector<Guid> {
     final items = calloc<GUID>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<GUID> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<GUID> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<GUID> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2005,17 +1815,9 @@ final class _IVectorGuid extends IVector<Guid> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<GUID> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<GUID> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<GUID> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -2023,25 +1825,71 @@ final class _IVectorGuid extends IVector<Guid> {
   }
 }
 
+final class __IVectorGuidVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<GUID> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, GUID value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 index, GUID value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 index, GUID value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, GUID value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<GUID> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 itemsSize, Pointer<GUID> items)>>
+      ReplaceAll;
+}
+
 final class _IVectorInt16 extends IVector<int> {
   _IVectorInt16.fromPtr(super.ptr, {required super.iterableIid, super.intType});
+
+  late final __IVectorInt16Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorInt16Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Int16>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int16> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int16> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int16> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2057,22 +1905,9 @@ final class _IVectorInt16 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int16 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2085,49 +1920,26 @@ final class _IVectorInt16 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int16 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int16 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int16 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2138,25 +1950,9 @@ final class _IVectorInt16 extends IVector<int> {
     final items = calloc<Int16>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int16> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int16> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int16> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2175,17 +1971,9 @@ final class _IVectorInt16 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Int16>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int16> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int16> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int16> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -2193,25 +1981,70 @@ final class _IVectorInt16 extends IVector<int> {
   }
 }
 
+final class __IVectorInt16Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int16> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int16 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int16 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int16 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int16 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int16> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int16> items)>> ReplaceAll;
+}
+
 final class _IVectorInt32 extends IVector<int> {
   _IVectorInt32.fromPtr(super.ptr, {required super.iterableIid, super.intType});
+
+  late final __IVectorInt32Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorInt32Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int32> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int32> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2227,22 +2060,9 @@ final class _IVectorInt32 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int32 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2255,49 +2075,26 @@ final class _IVectorInt32 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2308,25 +2105,9 @@ final class _IVectorInt32 extends IVector<int> {
     final items = calloc<Int32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2345,17 +2126,9 @@ final class _IVectorInt32 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Int32>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int32> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int32> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int32> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -2363,25 +2136,70 @@ final class _IVectorInt32 extends IVector<int> {
   }
 }
 
+final class __IVectorInt32Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int32 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int32 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int32> items)>> ReplaceAll;
+}
+
 final class _IVectorInt64 extends IVector<int> {
   _IVectorInt64.fromPtr(super.ptr, {required super.iterableIid, super.intType});
+
+  late final __IVectorInt64Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorInt64Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int64> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2397,22 +2215,9 @@ final class _IVectorInt64 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int64 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2425,49 +2230,26 @@ final class _IVectorInt64 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2478,25 +2260,9 @@ final class _IVectorInt64 extends IVector<int> {
     final items = calloc<Int64>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int64> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int64> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2515,17 +2281,9 @@ final class _IVectorInt64 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Int64>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int64> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int64> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -2533,25 +2291,70 @@ final class _IVectorInt64 extends IVector<int> {
   }
 }
 
+final class __IVectorInt64Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int64> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int64 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int64> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int64> items)>> ReplaceAll;
+}
+
 final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   _IVectorMediaTimeRange.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorMediaTimeRangeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorMediaTimeRangeVtbl>().ref;
 
   @override
   MediaTimeRange getAt(int index) {
     final retValuePtr = calloc<NativeMediaTimeRange>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeMediaTimeRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeMediaTimeRange> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeMediaTimeRange> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2569,20 +2372,9 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeMediaTimeRange value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeMediaTimeRange value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeMediaTimeRange value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2599,17 +2391,9 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   void setAt(int index, MediaTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeMediaTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeMediaTimeRange value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeMediaTimeRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2621,17 +2405,9 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   void insertAt(int index, MediaTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeMediaTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeMediaTimeRange value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeMediaTimeRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2643,17 +2419,8 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   void append(MediaTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeMediaTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativeMediaTimeRange value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeMediaTimeRange value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2667,25 +2434,13 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
     final items = calloc<NativeMediaTimeRange>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeMediaTimeRange> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeMediaTimeRange> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeMediaTimeRange> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2705,17 +2460,9 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeMediaTimeRange> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeMediaTimeRange> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeMediaTimeRange> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -2724,25 +2471,71 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   }
 }
 
+final class __IVectorMediaTimeRangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeMediaTimeRange> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeMediaTimeRange value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeMediaTimeRange value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeMediaTimeRange value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, NativeMediaTimeRange value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeMediaTimeRange> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeMediaTimeRange> items)>> ReplaceAll;
+}
+
 final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   _IVectorMseTimeRange.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorMseTimeRangeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorMseTimeRangeVtbl>().ref;
 
   @override
   MseTimeRange getAt(int index) {
     final retValuePtr = calloc<NativeMseTimeRange>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeMseTimeRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeMseTimeRange> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeMseTimeRange> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2760,20 +2553,9 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeMseTimeRange value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeMseTimeRange value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeMseTimeRange value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2790,17 +2572,9 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   void setAt(int index, MseTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeMseTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeMseTimeRange value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeMseTimeRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2812,17 +2586,9 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   void insertAt(int index, MseTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeMseTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeMseTimeRange value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeMseTimeRange value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2834,16 +2600,8 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   void append(MseTimeRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeMseTimeRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeMseTimeRange value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeMseTimeRange value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -2857,25 +2615,13 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
     final items = calloc<NativeMseTimeRange>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeMseTimeRange> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeMseTimeRange> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeMseTimeRange> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2895,17 +2641,9 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeMseTimeRange> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeMseTimeRange> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeMseTimeRange> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -2914,25 +2652,71 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   }
 }
 
+final class __IVectorMseTimeRangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeMseTimeRange> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeMseTimeRange value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeMseTimeRange value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeMseTimeRange value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeMseTimeRange value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeMseTimeRange> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeMseTimeRange> items)>> ReplaceAll;
+}
+
 final class _IVectorNitRange extends IVector<NitRange> {
   _IVectorNitRange.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorNitRangeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorNitRangeVtbl>().ref;
 
   @override
   NitRange getAt(int index) {
     final retValuePtr = calloc<NativeNitRange>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeNitRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeNitRange> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeNitRange> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2950,20 +2734,9 @@ final class _IVectorNitRange extends IVector<NitRange> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeNitRange value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeNitRange value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeNitRange value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -2980,18 +2753,9 @@ final class _IVectorNitRange extends IVector<NitRange> {
   void setAt(int index, NitRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeNitRange value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeNitRange value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeNitRange value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -3002,18 +2766,9 @@ final class _IVectorNitRange extends IVector<NitRange> {
   void insertAt(int index, NitRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeNitRange value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeNitRange value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeNitRange value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -3024,16 +2779,8 @@ final class _IVectorNitRange extends IVector<NitRange> {
   void append(NitRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeNitRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeNitRange value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeNitRange value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -3047,25 +2794,13 @@ final class _IVectorNitRange extends IVector<NitRange> {
     final items = calloc<NativeNitRange>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeNitRange> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeNitRange> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeNitRange> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3085,18 +2820,9 @@ final class _IVectorNitRange extends IVector<NitRange> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeNitRange> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeNitRange> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativeNitRange> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -3104,28 +2830,73 @@ final class _IVectorNitRange extends IVector<NitRange> {
   }
 }
 
+final class __IVectorNitRangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeNitRange> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeNitRange value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeNitRange value)>> SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeNitRange value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeNitRange value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeNitRange> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeNitRange> items)>> ReplaceAll;
+}
+
 final class _IVectorInspectable<T> extends IVector<T> {
   _IVectorInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
+  late final __IVectorInspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorInspectableVtbl>().ref;
   final COMObjectCreator<T> creator;
 
   @override
   T getAt(int index) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
+    final hr = _vtable.GetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -3146,20 +2917,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, (value as IInspectable).lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3173,17 +2933,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
   @override
   void setAt(int index, T value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3191,17 +2943,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
   @override
   void insertAt(int index, T value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3209,16 +2953,8 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
   @override
   void append(T value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3230,25 +2966,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<COMObject> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<COMObject> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3267,18 +2987,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
   void replaceAll(List<T> items) {
     final itemsArray = items.cast<IInspectable>().toArray();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<VTablePointer> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<VTablePointer> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<VTablePointer> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -3286,24 +2997,70 @@ final class _IVectorInspectable<T> extends IVector<T> {
   }
 }
 
+final class __IVectorInspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<COMObject> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, VTablePointer value)>> SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, VTablePointer value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<COMObject> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<VTablePointer> items)>> ReplaceAll;
+}
+
 final class _IVectorObject extends IVector<Object?> {
   _IVectorObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorObjectVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorObjectVtbl>().ref;
 
   @override
   Object? getAt(int index) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
+    final hr = _vtable.GetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -3324,20 +3081,9 @@ final class _IVectorObject extends IVector<Object?> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, value?.boxValue().lpVtbl ?? nullptr, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3351,17 +3097,9 @@ final class _IVectorObject extends IVector<Object?> {
 
   @override
   void setAt(int index, Object? value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3369,17 +3107,9 @@ final class _IVectorObject extends IVector<Object?> {
 
   @override
   void insertAt(int index, Object? value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3387,16 +3117,8 @@ final class _IVectorObject extends IVector<Object?> {
 
   @override
   void append(Object? value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3408,25 +3130,9 @@ final class _IVectorObject extends IVector<Object?> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<COMObject> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<COMObject> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3445,18 +3151,9 @@ final class _IVectorObject extends IVector<Object?> {
   void replaceAll(List<Object?> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<VTablePointer> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<VTablePointer> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<VTablePointer> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -3464,24 +3161,70 @@ final class _IVectorObject extends IVector<Object?> {
   }
 }
 
+final class __IVectorObjectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<COMObject> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, VTablePointer value)>> SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, VTablePointer value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<COMObject> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<VTablePointer> items)>> ReplaceAll;
+}
+
 final class _IVectorUri extends IVector<Uri?> {
   _IVectorUri.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorUriVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorUriVtbl>().ref;
 
   @override
   Uri? getAt(int index) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
+    final hr = _vtable.GetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -3502,20 +3245,9 @@ final class _IVectorUri extends IVector<Uri?> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3529,17 +3261,9 @@ final class _IVectorUri extends IVector<Uri?> {
 
   @override
   void setAt(int index, Uri? value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3547,17 +3271,9 @@ final class _IVectorUri extends IVector<Uri?> {
 
   @override
   void insertAt(int index, Uri? value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, VTablePointer value)>()(
         lpVtbl, index, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3565,16 +3281,8 @@ final class _IVectorUri extends IVector<Uri?> {
 
   @override
   void append(Uri? value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3586,25 +3294,9 @@ final class _IVectorUri extends IVector<Uri?> {
     final items = calloc<COMObject>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<COMObject> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<COMObject> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3623,18 +3315,9 @@ final class _IVectorUri extends IVector<Uri?> {
   void replaceAll(List<Uri?> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<VTablePointer> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<VTablePointer> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<VTablePointer> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -3642,26 +3325,71 @@ final class _IVectorUri extends IVector<Uri?> {
   }
 }
 
+final class __IVectorUriVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<COMObject> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, VTablePointer value)>> SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, VTablePointer value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<COMObject> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<VTablePointer> items)>> ReplaceAll;
+}
+
 final class _IVectorPoint extends IVector<Point> {
   _IVectorPoint.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorPointVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorPointVtbl>().ref;
 
   @override
   Point getAt(int index) {
     final retValuePtr = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativePoint> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativePoint> retValuePtr)>()(
-          lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<NativePoint> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -3678,22 +3406,10 @@ final class _IVectorPoint extends IVector<Point> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativePoint value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativePoint value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativePoint value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -3709,17 +3425,9 @@ final class _IVectorPoint extends IVector<Point> {
   void setAt(int index, Point value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativePoint value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativePoint value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativePoint value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -3730,17 +3438,9 @@ final class _IVectorPoint extends IVector<Point> {
   void insertAt(int index, Point value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativePoint value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativePoint value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativePoint value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -3751,16 +3451,8 @@ final class _IVectorPoint extends IVector<Point> {
   void append(Point value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativePoint value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativePoint value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativePoint value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -3774,25 +3466,9 @@ final class _IVectorPoint extends IVector<Point> {
     final items = calloc<NativePoint>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativePoint> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativePoint> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<NativePoint> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3812,18 +3488,9 @@ final class _IVectorPoint extends IVector<Point> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativePoint> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativePoint> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativePoint> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -3831,28 +3498,71 @@ final class _IVectorPoint extends IVector<Point> {
   }
 }
 
+final class __IVectorPointVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativePoint> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativePoint value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativePoint value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativePoint value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativePoint value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativePoint> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativePoint> items)>> ReplaceAll;
+}
+
 final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   _IVectorPointerDeviceUsage.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorPointerDeviceUsageVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorPointerDeviceUsageVtbl>().ref;
 
   @override
   PointerDeviceUsage getAt(int index) {
     final retValuePtr = calloc<NativePointerDeviceUsage>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<NativePointerDeviceUsage> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  int index,
-                  Pointer<NativePointerDeviceUsage>
-                      retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativePointerDeviceUsage> retValuePtr)>()(
+          lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -3869,23 +3579,9 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativePointerDeviceUsage value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativePointerDeviceUsage value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativePointerDeviceUsage value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -3902,17 +3598,9 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   void setAt(int index, PointerDeviceUsage value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativePointerDeviceUsage value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativePointerDeviceUsage value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativePointerDeviceUsage value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -3924,17 +3612,9 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   void insertAt(int index, PointerDeviceUsage value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativePointerDeviceUsage value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativePointerDeviceUsage value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativePointerDeviceUsage value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -3946,17 +3626,9 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   void append(PointerDeviceUsage value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativePointerDeviceUsage value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativePointerDeviceUsage value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(
+                VTablePointer lpVtbl, NativePointerDeviceUsage value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -3971,25 +3643,13 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
     final items = calloc<NativePointerDeviceUsage>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativePointerDeviceUsage> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativePointerDeviceUsage> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativePointerDeviceUsage> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4009,17 +3669,9 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativePointerDeviceUsage> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativePointerDeviceUsage> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativePointerDeviceUsage> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -4028,26 +3680,71 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   }
 }
 
+final class __IVectorPointerDeviceUsageVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativePointerDeviceUsage> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativePointerDeviceUsage value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativePointerDeviceUsage value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativePointerDeviceUsage value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, NativePointerDeviceUsage value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativePointerDeviceUsage> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativePointerDeviceUsage> items)>> ReplaceAll;
+}
+
 final class _IVectorRect extends IVector<Rect> {
   _IVectorRect.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorRectVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorRectVtbl>().ref;
 
   @override
   Rect getAt(int index) {
     final retValuePtr = calloc<NativeRect>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeRect> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeRect> retValuePtr)>()(
-          lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<NativeRect> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -4064,22 +3761,10 @@ final class _IVectorRect extends IVector<Rect> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativeRect value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativeRect value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeRect value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -4095,17 +3780,9 @@ final class _IVectorRect extends IVector<Rect> {
   void setAt(int index, Rect value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeRect value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeRect value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeRect value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4116,17 +3793,9 @@ final class _IVectorRect extends IVector<Rect> {
   void insertAt(int index, Rect value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeRect value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeRect value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeRect value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4137,15 +3806,8 @@ final class _IVectorRect extends IVector<Rect> {
   void append(Rect value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeRect value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeRect value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -4159,25 +3821,9 @@ final class _IVectorRect extends IVector<Rect> {
     final items = calloc<NativeRect>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeRect> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeRect> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<NativeRect> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4197,17 +3843,9 @@ final class _IVectorRect extends IVector<Rect> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<NativeRect> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<NativeRect> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativeRect> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -4215,25 +3853,70 @@ final class _IVectorRect extends IVector<Rect> {
   }
 }
 
+final class __IVectorRectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeRect> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeRect value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeRect value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeRect value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeRect value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeRect> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeRect> items)>> ReplaceAll;
+}
+
 final class _IVectorRectInt32 extends IVector<RectInt32> {
   _IVectorRectInt32.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorRectInt32Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorRectInt32Vtbl>().ref;
 
   @override
   RectInt32 getAt(int index) {
     final retValuePtr = calloc<NativeRectInt32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeRectInt32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeRectInt32> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeRectInt32> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4251,20 +3934,9 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeRectInt32 value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeRectInt32 value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeRectInt32 value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4281,18 +3953,9 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   void setAt(int index, RectInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeRectInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeRectInt32 value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4303,18 +3966,9 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   void insertAt(int index, RectInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeRectInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeRectInt32 value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4325,16 +3979,8 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   void append(RectInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeRectInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeRectInt32 value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeRectInt32 value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -4348,25 +3994,13 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
     final items = calloc<NativeRectInt32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeRectInt32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeRectInt32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeRectInt32> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4386,17 +4020,9 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeRectInt32> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeRectInt32> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeRectInt32> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -4405,26 +4031,73 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   }
 }
 
+final class __IVectorRectInt32Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeRectInt32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeRectInt32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeRectInt32 value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeRectInt32 value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeRectInt32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeRectInt32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeRectInt32> items)>> ReplaceAll;
+}
+
 final class _IVectorSize extends IVector<Size> {
   _IVectorSize.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorSizeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorSizeVtbl>().ref;
 
   @override
   Size getAt(int index) {
     final retValuePtr = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeSize> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeSize> retValuePtr)>()(
-          lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<NativeSize> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -4441,22 +4114,10 @@ final class _IVectorSize extends IVector<Size> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  NativeSize value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, NativeSize value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeSize value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -4472,17 +4133,9 @@ final class _IVectorSize extends IVector<Size> {
   void setAt(int index, Size value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeSize value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeSize value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeSize value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4493,17 +4146,9 @@ final class _IVectorSize extends IVector<Size> {
   void insertAt(int index, Size value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                        NativeSize value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                NativeSize value)>()(lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, NativeSize value)>()(
+        lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4514,15 +4159,8 @@ final class _IVectorSize extends IVector<Size> {
   void append(Size value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeSize value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, NativeSize value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeSize value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -4536,25 +4174,9 @@ final class _IVectorSize extends IVector<Size> {
     final items = calloc<NativeSize>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeSize> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeSize> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<NativeSize> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4574,17 +4196,9 @@ final class _IVectorSize extends IVector<Size> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<NativeSize> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<NativeSize> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativeSize> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -4592,25 +4206,70 @@ final class _IVectorSize extends IVector<Size> {
   }
 }
 
+final class __IVectorSizeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeSize> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeSize value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeSize value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeSize value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeSize value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeSize> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeSize> items)>> ReplaceAll;
+}
+
 final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   _IVectorSizeUInt32.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorSizeUInt32Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorSizeUInt32Vtbl>().ref;
 
   @override
   SizeUInt32 getAt(int index) {
     final retValuePtr = calloc<NativeSizeUInt32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeSizeUInt32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeSizeUInt32> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeSizeUInt32> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4628,20 +4287,9 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeSizeUInt32 value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeSizeUInt32 value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeSizeUInt32 value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4658,18 +4306,9 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   void setAt(int index, SizeUInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeSizeUInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeSizeUInt32 value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4680,18 +4319,9 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   void insertAt(int index, SizeUInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeSizeUInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeSizeUInt32 value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4702,16 +4332,8 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   void append(SizeUInt32 value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeSizeUInt32 value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeSizeUInt32 value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeSizeUInt32 value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -4725,25 +4347,13 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
     final items = calloc<NativeSizeUInt32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeSizeUInt32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeSizeUInt32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeSizeUInt32> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4763,17 +4373,9 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeSizeUInt32> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeSizeUInt32> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeSizeUInt32> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -4782,25 +4384,73 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   }
 }
 
+final class __IVectorSizeUInt32Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeSizeUInt32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeSizeUInt32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeSizeUInt32 value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeSizeUInt32 value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeSizeUInt32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeSizeUInt32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeSizeUInt32> items)>> ReplaceAll;
+}
+
 final class _IVectorSortEntry extends IVector<SortEntry> {
   _IVectorSortEntry.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorSortEntryVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorSortEntryVtbl>().ref;
 
   @override
   SortEntry getAt(int index) {
     final retValuePtr = calloc<NativeSortEntry>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeSortEntry> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeSortEntry> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeSortEntry> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4818,20 +4468,9 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeSortEntry value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeSortEntry value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeSortEntry value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4848,18 +4487,9 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   void setAt(int index, SortEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeSortEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeSortEntry value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4870,18 +4500,9 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   void insertAt(int index, SortEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeSortEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeSortEntry value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -4892,16 +4513,8 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   void append(SortEntry value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeSortEntry value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeSortEntry value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeSortEntry value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -4915,25 +4528,13 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
     final items = calloc<NativeSortEntry>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeSortEntry> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeSortEntry> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeSortEntry> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -4953,17 +4554,9 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeSortEntry> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeSortEntry> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeSortEntry> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -4972,30 +4565,75 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   }
 }
 
+final class __IVectorSortEntryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeSortEntry> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeSortEntry value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeSortEntry value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeSortEntry value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeSortEntry value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeSortEntry> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeSortEntry> items)>> ReplaceAll;
+}
+
 final class _IVectorStorePackageUpdateStatus
     extends IVector<StorePackageUpdateStatus> {
   _IVectorStorePackageUpdateStatus.fromPtr(super.ptr,
       {required super.iterableIid});
+
+  late final __IVectorStorePackageUpdateStatusVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorStorePackageUpdateStatusVtbl>().ref;
 
   @override
   StorePackageUpdateStatus getAt(int index) {
     final retValuePtr = calloc<NativeStorePackageUpdateStatus>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 index,
-                              Pointer<NativeStorePackageUpdateStatus>
-                                  retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeStorePackageUpdateStatus> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeStorePackageUpdateStatus> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5013,23 +4651,12 @@ final class _IVectorStorePackageUpdateStatus
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeStorePackageUpdateStatus value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativeStorePackageUpdateStatus value,
-                      Pointer<Uint32> index,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  NativeStorePackageUpdateStatus value,
+                  Pointer<Uint32> index,
+                  Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5046,17 +4673,9 @@ final class _IVectorStorePackageUpdateStatus
   void setAt(int index, StorePackageUpdateStatus value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeStorePackageUpdateStatus value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeStorePackageUpdateStatus value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeStorePackageUpdateStatus value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5068,17 +4687,9 @@ final class _IVectorStorePackageUpdateStatus
   void insertAt(int index, StorePackageUpdateStatus value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeStorePackageUpdateStatus value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeStorePackageUpdateStatus value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                NativeStorePackageUpdateStatus value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5090,17 +4701,9 @@ final class _IVectorStorePackageUpdateStatus
   void append(StorePackageUpdateStatus value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeStorePackageUpdateStatus value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    NativeStorePackageUpdateStatus value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(
+                VTablePointer lpVtbl, NativeStorePackageUpdateStatus value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5115,25 +4718,13 @@ final class _IVectorStorePackageUpdateStatus
     final items = calloc<NativeStorePackageUpdateStatus>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeStorePackageUpdateStatus> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeStorePackageUpdateStatus> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeStorePackageUpdateStatus> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5153,17 +4744,9 @@ final class _IVectorStorePackageUpdateStatus
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeStorePackageUpdateStatus> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeStorePackageUpdateStatus> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeStorePackageUpdateStatus> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -5172,25 +4755,75 @@ final class _IVectorStorePackageUpdateStatus
   }
 }
 
+final class __IVectorStorePackageUpdateStatusVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeStorePackageUpdateStatus> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativeStorePackageUpdateStatus value,
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeStorePackageUpdateStatus value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              NativeStorePackageUpdateStatus value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, NativeStorePackageUpdateStatus value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeStorePackageUpdateStatus> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeStorePackageUpdateStatus> items)>> ReplaceAll;
+}
+
 final class _IVectorString extends IVector<String> {
   _IVectorString.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorStringVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorStringVtbl>().ref;
 
   @override
   String getAt(int index) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<IntPtr> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<IntPtr> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5206,22 +4839,10 @@ final class _IVectorString extends IVector<String> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value.toHString(), index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, value.toHString(), index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5234,51 +4855,27 @@ final class _IVectorString extends IVector<String> {
 
   @override
   void setAt(int index, String value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, IntPtr value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toHString());
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, String value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, IntPtr value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value.toHString());
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(String value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.Append.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int value)>()(lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5289,25 +4886,9 @@ final class _IVectorString extends IVector<String> {
     final items = calloc<IntPtr>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<IntPtr> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<IntPtr> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<IntPtr> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5326,17 +4907,9 @@ final class _IVectorString extends IVector<String> {
   void replaceAll(List<String> items) {
     final itemsArray = items.toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<IntPtr> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<IntPtr> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<IntPtr> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -5344,25 +4917,70 @@ final class _IVectorString extends IVector<String> {
   }
 }
 
+final class __IVectorStringVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<IntPtr> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, IntPtr value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, IntPtr value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<IntPtr> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<IntPtr> items)>> ReplaceAll;
+}
+
 final class _IVectorTextRange extends IVector<TextRange> {
   _IVectorTextRange.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorTextRangeVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorTextRangeVtbl>().ref;
 
   @override
   TextRange getAt(int index) {
     final retValuePtr = calloc<NativeTextRange>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeTextRange> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeTextRange> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeTextRange> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5380,20 +4998,9 @@ final class _IVectorTextRange extends IVector<TextRange> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeTextRange value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeTextRange value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeTextRange value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5410,18 +5017,9 @@ final class _IVectorTextRange extends IVector<TextRange> {
   void setAt(int index, TextRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeTextRange value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeTextRange value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeTextRange value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -5432,18 +5030,9 @@ final class _IVectorTextRange extends IVector<TextRange> {
   void insertAt(int index, TextRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeTextRange value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeTextRange value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeTextRange value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -5454,16 +5043,8 @@ final class _IVectorTextRange extends IVector<TextRange> {
   void append(TextRange value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeTextRange value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeTextRange value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeTextRange value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5477,25 +5058,13 @@ final class _IVectorTextRange extends IVector<TextRange> {
     final items = calloc<NativeTextRange>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeTextRange> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeTextRange> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeTextRange> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5515,17 +5084,9 @@ final class _IVectorTextRange extends IVector<TextRange> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeTextRange> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeTextRange> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeTextRange> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -5534,25 +5095,73 @@ final class _IVectorTextRange extends IVector<TextRange> {
   }
 }
 
+final class __IVectorTextRangeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeTextRange> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeTextRange value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeTextRange value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeTextRange value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeTextRange value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeTextRange> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeTextRange> items)>> ReplaceAll;
+}
+
 final class _IVectorTextSegment extends IVector<TextSegment> {
   _IVectorTextSegment.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorTextSegmentVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorTextSegmentVtbl>().ref;
 
   @override
   TextSegment getAt(int index) {
     final retValuePtr = calloc<NativeTextSegment>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeTextSegment> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeTextSegment> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeTextSegment> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5570,20 +5179,9 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeTextSegment value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeTextSegment value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeTextSegment value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5600,17 +5198,9 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   void setAt(int index, TextSegment value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeTextSegment value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeTextSegment value)>()(
+    final hr = _vtable.SetAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeTextSegment value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5622,17 +5212,9 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   void insertAt(int index, TextSegment value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeTextSegment value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    NativeTextSegment value)>()(
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int index, NativeTextSegment value)>()(
         lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5644,16 +5226,8 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   void append(TextSegment value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeTextSegment value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeTextSegment value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeTextSegment value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -5667,25 +5241,13 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
     final items = calloc<NativeTextSegment>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeTextSegment> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeTextSegment> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeTextSegment> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5705,17 +5267,9 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeTextSegment> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeTextSegment> items)>()(
+    final hr = _vtable.ReplaceAll.asFunction<
+            int Function(VTablePointer lpVtbl, int itemsSize,
+                Pointer<NativeTextSegment> items)>()(
         lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
@@ -5724,25 +5278,73 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   }
 }
 
+final class __IVectorTextSegmentVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeTextSegment> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeTextSegment value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeTextSegment value)>>
+      SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeTextSegment value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeTextSegment value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeTextSegment> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeTextSegment> items)>> ReplaceAll;
+}
+
 final class _IVectorUint8 extends IVector<int> {
   _IVectorUint8.fromPtr(super.ptr, {required super.iterableIid, super.intType});
+
+  late final __IVectorUint8Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorUint8Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Uint8>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Uint8> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Uint8> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Uint8> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5758,22 +5360,9 @@ final class _IVectorUint8 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Uint8 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5786,49 +5375,26 @@ final class _IVectorUint8 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint8 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint8 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint8 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5839,25 +5405,9 @@ final class _IVectorUint8 extends IVector<int> {
     final items = calloc<Uint8>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Uint8> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Uint8> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Uint8> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -5876,17 +5426,9 @@ final class _IVectorUint8 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Uint8>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Uint8> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Uint8> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Uint8> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -5894,26 +5436,71 @@ final class _IVectorUint8 extends IVector<int> {
   }
 }
 
+final class __IVectorUint8Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Uint8> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint8 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint8 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint8 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint8 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Uint8> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Uint8> items)>> ReplaceAll;
+}
+
 final class _IVectorUint16 extends IVector<int> {
   _IVectorUint16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
+
+  late final __IVectorUint16Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorUint16Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Uint16>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Uint16> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Uint16> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Uint16> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5929,22 +5516,9 @@ final class _IVectorUint16 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Uint16 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -5957,51 +5531,26 @@ final class _IVectorUint16 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint16 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint16 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint16 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6012,25 +5561,9 @@ final class _IVectorUint16 extends IVector<int> {
     final items = calloc<Uint16>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Uint16> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Uint16> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Uint16> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6049,17 +5582,9 @@ final class _IVectorUint16 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Uint16>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Uint16> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Uint16> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Uint16> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -6067,26 +5592,71 @@ final class _IVectorUint16 extends IVector<int> {
   }
 }
 
+final class __IVectorUint16Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Uint16> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint16 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint16 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint16 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint16 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Uint16> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Uint16> items)>> ReplaceAll;
+}
+
 final class _IVectorUint32 extends IVector<int> {
   _IVectorUint32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
+
+  late final __IVectorUint32Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorUint32Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6102,22 +5672,9 @@ final class _IVectorUint32 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Uint32 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6130,51 +5687,26 @@ final class _IVectorUint32 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6185,25 +5717,9 @@ final class _IVectorUint32 extends IVector<int> {
     final items = calloc<Uint32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Uint32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Uint32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6222,17 +5738,9 @@ final class _IVectorUint32 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Uint32>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Uint32> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Uint32> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Uint32> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -6240,26 +5748,71 @@ final class _IVectorUint32 extends IVector<int> {
   }
 }
 
+final class __IVectorUint32Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Uint32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint32 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint32 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Uint32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Uint32> items)>> ReplaceAll;
+}
+
 final class _IVectorUint64 extends IVector<int> {
   _IVectorUint64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
+
+  late final __IVectorUint64Vtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorUint64Vtbl>().ref;
 
   @override
   int getAt(int index) {
     final retValuePtr = calloc<Uint64>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Uint64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Uint64> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Uint64> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6275,22 +5828,9 @@ final class _IVectorUint64 extends IVector<int> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Uint64 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+          int Function(VTablePointer lpVtbl, int value, Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6303,51 +5843,26 @@ final class _IVectorUint64 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint64 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(int value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint64 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.Append.asFunction<
+        int Function(VTablePointer lpVtbl, int value)>()(lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6358,25 +5873,9 @@ final class _IVectorUint64 extends IVector<int> {
     final items = calloc<Uint64>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Uint64> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Uint64> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Uint64> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6395,17 +5894,9 @@ final class _IVectorUint64 extends IVector<int> {
   void replaceAll(List<int> items) {
     final itemsArray = items.toArray<Uint64>();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Uint64> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Uint64> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Uint64> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -6413,25 +5904,70 @@ final class _IVectorUint64 extends IVector<int> {
   }
 }
 
+final class __IVectorUint64Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Uint64> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint64 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint64 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint64 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint64 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Uint64> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Uint64> items)>> ReplaceAll;
+}
+
 final class _IVectorWindowId extends IVector<WindowId> {
   _IVectorWindowId.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IVectorWindowIdVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorWindowIdVtbl>().ref;
 
   @override
   WindowId getAt(int index) {
     final retValuePtr = calloc<NativeWindowId>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<NativeWindowId> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeWindowId> retValuePtr)>()(
+      final hr = _vtable.GetAt.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeWindowId> retValuePtr)>()(
           lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6449,20 +5985,9 @@ final class _IVectorWindowId extends IVector<WindowId> {
     final index = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativeWindowId value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, NativeWindowId value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, NativeWindowId value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6479,18 +6004,9 @@ final class _IVectorWindowId extends IVector<WindowId> {
   void setAt(int index, WindowId value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeWindowId value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeWindowId value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.SetAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeWindowId value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -6501,18 +6017,9 @@ final class _IVectorWindowId extends IVector<WindowId> {
   void insertAt(int index, WindowId value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            NativeWindowId value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int index, NativeWindowId value)>()(
-        lpVtbl, index, valueNativeStructPtr.ref);
+    final hr = _vtable.InsertAt.asFunction<
+        int Function(VTablePointer lpVtbl, int index,
+            NativeWindowId value)>()(lpVtbl, index, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
 
@@ -6523,16 +6030,8 @@ final class _IVectorWindowId extends IVector<WindowId> {
   void append(WindowId value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeWindowId value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeWindowId value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, NativeWindowId value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -6546,25 +6045,13 @@ final class _IVectorWindowId extends IVector<WindowId> {
     final items = calloc<NativeWindowId>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<NativeWindowId> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<NativeWindowId> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int startIndex,
+                  int itemsSize,
+                  Pointer<NativeWindowId> items,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6584,18 +6071,9 @@ final class _IVectorWindowId extends IVector<WindowId> {
     final allocator = Arena();
     final itemsArray = items.toArray(allocator: allocator);
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                            Pointer<NativeWindowId> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int itemsSize,
-                    Pointer<NativeWindowId> items)>()(
-        lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<NativeWindowId> items)>()(lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
 
@@ -6603,11 +6081,64 @@ final class _IVectorWindowId extends IVector<WindowId> {
   }
 }
 
+final class __IVectorWindowIdVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<NativeWindowId> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeWindowId value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, NativeWindowId value)>> SetAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 index, NativeWindowId value)>>
+      InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, NativeWindowId value)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<NativeWindowId> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<NativeWindowId> items)>> ReplaceAll;
+}
+
 final class _IVectorWinRTEnum<T> extends IVector<T> {
   _IVectorWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
+  late final __IVectorWinRTEnumVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorWinRTEnumVtbl>().ref;
   final EnumCreator<T> enumCreator;
 
   @override
@@ -6615,17 +6146,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Int32> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Int32> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6641,22 +6164,10 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int32 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6669,48 +6180,26 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
 
   @override
   void setAt(int index, T value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, (value as WinRTEnum).value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, T value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, (value as WinRTEnum).value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(T value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -6722,25 +6211,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
     final items = calloc<Int32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Int32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Int32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6759,17 +6232,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
   void replaceAll(List<T> items) {
     final itemsArray = items.cast<WinRTEnum>().toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Int32> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Int32> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Int32> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
@@ -6777,11 +6242,63 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
   }
 }
 
+final class __IVectorWinRTEnumVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Int32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int32 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Int32 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Int32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Int32> items)>> ReplaceAll;
+}
+
 final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   _IVectorWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
+  late final __IVectorWinRTFlagsEnumVtbl _vtable =
+      ptr.ref.vtable.cast<__IVectorWinRTFlagsEnumVtbl>().ref;
   final EnumCreator<T> enumCreator;
 
   @override
@@ -6789,17 +6306,9 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int index,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, index, retValuePtr);
+      final hr = _vtable.GetAt.asFunction<
+          int Function(VTablePointer lpVtbl, int index,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6815,22 +6324,10 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
     final index = calloc<Uint32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Uint32 value,
-                                  Pointer<Uint32> index,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int value,
-                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
+      final hr = _vtable.IndexOf.asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -6843,51 +6340,27 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
 
   @override
   void setAt(int index, T value) {
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, (value as WinRTEnum).value);
+    final hr = _vtable.SetAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, T value) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 index, Uint32 value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int index,
-                int value)>()(lpVtbl, index, (value as WinRTEnum).value);
+    final hr = _vtable.InsertAt.asFunction<
+            int Function(VTablePointer lpVtbl, int index, int value)>()(
+        lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(T value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, (value as WinRTEnum).value);
+    final hr = _vtable.Append.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6898,25 +6371,9 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
     final items = calloc<Uint32>(itemsSize);
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<Uint32> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<Uint32> items,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.GetMany.asFunction<
+              int Function(VTablePointer lpVtbl, int startIndex, int itemsSize,
+                  Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
           lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -6935,20 +6392,62 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   void replaceAll(List<T> items) {
     final itemsArray = items.cast<WinRTFlagsEnum>().toArray();
 
-    final hr = vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
-                        Pointer<Uint32> items)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int itemsSize,
-                Pointer<Uint32> items)>()(lpVtbl, items.length, itemsArray);
+    final hr = _vtable.ReplaceAll.asFunction<
+        int Function(VTablePointer lpVtbl, int itemsSize,
+            Pointer<Uint32> items)>()(lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class __IVectorWinRTFlagsEnumVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+              Pointer<Uint32> retValuePtr)>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 value,
+              Pointer<Uint32> index, Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint32 value)>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index, Uint32 value)>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              Pointer<Uint32> items,
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+              Pointer<Uint32> items)>> ReplaceAll;
 }

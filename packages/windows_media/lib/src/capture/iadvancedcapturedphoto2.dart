@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAdvancedCapturedPhoto2 = '{18cf6cd8-cffe-42d8-8104-017bb318f4a1}';
 
 class IAdvancedCapturedPhoto2 extends IInspectable {
-  IAdvancedCapturedPhoto2.fromPtr(super.ptr);
+  IAdvancedCapturedPhoto2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAdvancedCapturedPhoto2Vtbl>().ref;
+
+  final _IAdvancedCapturedPhoto2Vtbl _vtable;
 
   factory IAdvancedCapturedPhoto2.from(IInspectable interface) => interface
       .cast(IAdvancedCapturedPhoto2.fromPtr, IID_IAdvancedCapturedPhoto2);
@@ -28,17 +31,9 @@ class IAdvancedCapturedPhoto2 extends IInspectable {
   Rect? get frameBoundsRelativeToReferencePhoto {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameBoundsRelativeToReferencePhoto.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IAdvancedCapturedPhoto2 extends IInspectable {
             referenceIid: '{80423f11-054f-5eac-afd3-63b6ce15e77b}')
         .value;
   }
+}
+
+final class _IAdvancedCapturedPhoto2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameBoundsRelativeToReferencePhoto;
 }

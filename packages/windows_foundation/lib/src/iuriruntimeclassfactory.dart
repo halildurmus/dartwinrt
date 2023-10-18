@@ -24,7 +24,10 @@ import 'uri.dart';
 const IID_IUriRuntimeClassFactory = '{44a9796f-723e-4fdf-a218-033e75b0c084}';
 
 class IUriRuntimeClassFactory extends IInspectable {
-  IUriRuntimeClassFactory.fromPtr(super.ptr);
+  IUriRuntimeClassFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUriRuntimeClassFactoryVtbl>().ref;
+
+  final _IUriRuntimeClassFactoryVtbl _vtable;
 
   factory IUriRuntimeClassFactory.from(IInspectable interface) => interface
       .cast(IUriRuntimeClassFactory.fromPtr, IID_IUriRuntimeClassFactory);
@@ -32,18 +35,9 @@ class IUriRuntimeClassFactory extends IInspectable {
   Uri createUri(String uri) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr uri,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int uri,
-                    Pointer<COMObject> instance)>()(
-        lpVtbl, uri.toHString(), instance);
+    final hr = _vtable.CreateUri.asFunction<
+        int Function(VTablePointer lpVtbl, int uri,
+            Pointer<COMObject> instance)>()(lpVtbl, uri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -56,22 +50,10 @@ class IUriRuntimeClassFactory extends IInspectable {
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
     final instance = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr baseUri,
-                                IntPtr relativeUri,
-                                Pointer<COMObject> instance)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int baseUri,
-                        int relativeUri, Pointer<COMObject> instance)>()(
-            lpVtbl, baseUri.toHString(), relativeUri.toHString(), instance);
+    final hr = _vtable.CreateWithRelativeUri.asFunction<
+            int Function(VTablePointer lpVtbl, int baseUri, int relativeUri,
+                Pointer<COMObject> instance)>()(
+        lpVtbl, baseUri.toHString(), relativeUri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -80,4 +62,19 @@ class IUriRuntimeClassFactory extends IInspectable {
 
     return Uri.fromPtr(instance);
   }
+}
+
+final class _IUriRuntimeClassFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr uri,
+              Pointer<COMObject> instance)>> CreateUri;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr baseUri,
+              IntPtr relativeUri,
+              Pointer<COMObject> instance)>> CreateWithRelativeUri;
 }

@@ -23,23 +23,18 @@ import '../core/videostreamdescriptor.dart';
 const IID_IMediaEncodingProfile2 = '{349b3e0a-4035-488e-9877-85632865ed10}';
 
 class IMediaEncodingProfile2 extends IInspectable {
-  IMediaEncodingProfile2.fromPtr(super.ptr);
+  IMediaEncodingProfile2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaEncodingProfile2Vtbl>().ref;
+
+  final _IMediaEncodingProfile2Vtbl _vtable;
 
   factory IMediaEncodingProfile2.from(IInspectable interface) => interface.cast(
       IMediaEncodingProfile2.fromPtr, IID_IMediaEncodingProfile2);
 
   void setAudioTracks(IIterable<AudioStreamDescriptor?>? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.SetAudioTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -47,17 +42,9 @@ class IMediaEncodingProfile2 extends IInspectable {
   IVector<AudioStreamDescriptor?> getAudioTracks() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetAudioTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -70,17 +57,9 @@ class IMediaEncodingProfile2 extends IInspectable {
   }
 
   void setVideoTracks(IIterable<VideoStreamDescriptor?>? value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.SetVideoTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -88,17 +67,9 @@ class IMediaEncodingProfile2 extends IInspectable {
   IVector<VideoStreamDescriptor?> getVideoTracks() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetVideoTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -109,4 +80,24 @@ class IMediaEncodingProfile2 extends IInspectable {
         iterableIid: '{3acbf03c-0a79-5823-aaa9-d88bc3f8f594}',
         creator: VideoStreamDescriptor.fromPtr);
   }
+}
+
+final class _IMediaEncodingProfile2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      SetAudioTracks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetAudioTracks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      SetVideoTracks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetVideoTracks;
 }

@@ -22,7 +22,10 @@ import 'decimalformatter.dart';
 const IID_IDecimalFormatterFactory = '{0d018c9a-e393-46b8-b830-7a69c8f89fbb}';
 
 class IDecimalFormatterFactory extends IInspectable {
-  IDecimalFormatterFactory.fromPtr(super.ptr);
+  IDecimalFormatterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDecimalFormatterFactoryVtbl>().ref;
+
+  final _IDecimalFormatterFactoryVtbl _vtable;
 
   factory IDecimalFormatterFactory.from(IInspectable interface) => interface
       .cast(IDecimalFormatterFactory.fromPtr, IID_IDecimalFormatterFactory);
@@ -31,20 +34,9 @@ class IDecimalFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer languages,
-                    int geographicRegion, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateDecimalFormatter.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer languages,
+                int geographicRegion, Pointer<COMObject> result)>()(
         lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
@@ -54,4 +46,15 @@ class IDecimalFormatterFactory extends IInspectable {
 
     return DecimalFormatter.fromPtr(result);
   }
+}
+
+final class _IDecimalFormatterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer languages,
+              IntPtr geographicRegion,
+              Pointer<COMObject> result)>> CreateDecimalFormatter;
 }

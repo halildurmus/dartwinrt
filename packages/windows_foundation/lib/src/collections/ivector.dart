@@ -259,6 +259,8 @@ abstract interface class IVector<T> extends IInspectable
     throw UnsupportedError('Unsupported type argument: $T');
   }
 
+  late final _IVectorVtbl __vtable = ptr.ref.vtable.cast<_IVectorVtbl>().ref;
+
   /// Returns the item at the specified index in the vector view.
   T getAt(int index);
 
@@ -267,17 +269,9 @@ abstract interface class IVector<T> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.get_Size.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -291,17 +285,9 @@ abstract interface class IVector<T> extends IInspectable
   List<T> getView() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
+    final hr = __vtable.GetView.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -330,14 +316,9 @@ abstract interface class IVector<T> extends IInspectable
 
   /// Removes the item at the specified index in the vector.
   void removeAt(int index) {
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl, int)>()(lpVtbl, index);
+    final hr =
+        __vtable.RemoveAt.asFunction<int Function(VTablePointer lpVtbl, int)>()(
+            lpVtbl, index);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -347,22 +328,17 @@ abstract interface class IVector<T> extends IInspectable
 
   /// Removes the last item from the vector.
   void removeAtEnd() {
-    final hr = vtable
-        .elementAt(14)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        __vtable.RemoveAtEnd.asFunction<int Function(VTablePointer lpVtbl)>()(
+            lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Removes all items from the vector.
   void clear() {
-    final hr = vtable
-        .elementAt(15)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        __vtable.Clear.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -418,4 +394,65 @@ abstract interface class IVector<T> extends IInspectable
   ///
   /// The default behavior is to return a normal growable list.
   List<T> operator +(List<T> other) => toList() + other;
+}
+
+final class _IVectorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Uint32 index /* ,
+              Pointer<T> retValuePtr */
+              )>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              /* T value, */
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index /* ,
+              T value */
+              )>> SetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 index /* ,
+             T value */
+              )>> InsertAt;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 index)>>
+      RemoveAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl /* , T value */)>> Append;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      RemoveAtEnd;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              /* Pointer<T> items, */
+              Pointer<Uint32> retValuePtr)>> GetMany;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Uint32 itemsSize /* ,
+              Pointer<T> items */
+              )>> ReplaceAll;
 }

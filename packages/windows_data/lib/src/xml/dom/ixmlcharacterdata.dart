@@ -29,7 +29,10 @@ const IID_IXmlCharacterData = '{132e42ab-4e36-4df6-b1c8-0ce62fd88b26}';
 
 class IXmlCharacterData extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  IXmlCharacterData.fromPtr(super.ptr);
+  IXmlCharacterData.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlCharacterDataVtbl>().ref;
+
+  final _IXmlCharacterDataVtbl _vtable;
 
   factory IXmlCharacterData.from(IInspectable interface) =>
       interface.cast(IXmlCharacterData.fromPtr, IID_IXmlCharacterData);
@@ -38,17 +41,9 @@ class IXmlCharacterData extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Data.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +54,9 @@ class IXmlCharacterData extends IInspectable
   }
 
   set data(String value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Data
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -78,17 +65,9 @@ class IXmlCharacterData extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Length.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -102,17 +81,9 @@ class IXmlCharacterData extends IInspectable
     final data = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
-                          Uint32 count, Pointer<IntPtr> data)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int offset, int count,
-                  Pointer<IntPtr> data)>()(lpVtbl, offset, count, data);
+      final hr = _vtable.SubstringData.asFunction<
+          int Function(VTablePointer lpVtbl, int offset, int count,
+              Pointer<IntPtr> data)>()(lpVtbl, offset, count, data);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -123,63 +94,33 @@ class IXmlCharacterData extends IInspectable
   }
 
   void appendData(String data) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr data)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int data)>()(
-        lpVtbl, data.toHString());
+    final hr = _vtable.AppendData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int data)>()(lpVtbl, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void insertData(int offset, String data) {
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 offset, IntPtr data)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int offset,
-                int data)>()(lpVtbl, offset, data.toHString());
+    final hr = _vtable.InsertData.asFunction<
+            int Function(VTablePointer lpVtbl, int offset, int data)>()(
+        lpVtbl, offset, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void deleteData(int offset, int count) {
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Uint32 offset, Uint32 count)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int offset,
-                int count)>()(lpVtbl, offset, count);
+    final hr = _vtable.DeleteData.asFunction<
+            int Function(VTablePointer lpVtbl, int offset, int count)>()(
+        lpVtbl, offset, count);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void replaceData(int offset, int count, String data) {
-    final hr = vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
-                        Uint32 count, IntPtr data)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int offset, int count,
-                int data)>()(lpVtbl, offset, count, data.toHString());
+    final hr = _vtable.ReplaceData.asFunction<
+        int Function(VTablePointer lpVtbl, int offset, int count,
+            int data)>()(lpVtbl, offset, count, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -285,4 +226,38 @@ class IXmlCharacterData extends IInspectable
 
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
+}
+
+final class _IXmlCharacterDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Data;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Data;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Length;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 offset, Uint32 count,
+              Pointer<IntPtr> data)>> SubstringData;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr data)>>
+      AppendData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 offset, IntPtr data)>> InsertData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Uint32 offset, Uint32 count)>> DeleteData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 offset, Uint32 count,
+              IntPtr data)>> ReplaceData;
 }

@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IMediaFrameSourceInfo4 = '{4817d721-85eb-470c-8f37-43ca5498e41d}';
 
 class IMediaFrameSourceInfo4 extends IInspectable {
-  IMediaFrameSourceInfo4.fromPtr(super.ptr);
+  IMediaFrameSourceInfo4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceInfo4Vtbl>().ref;
+
+  final _IMediaFrameSourceInfo4Vtbl _vtable;
 
   factory IMediaFrameSourceInfo4.from(IInspectable interface) => interface.cast(
       IMediaFrameSourceInfo4.fromPtr, IID_IMediaFrameSourceInfo4);
@@ -29,17 +32,9 @@ class IMediaFrameSourceInfo4 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsShareable.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IMediaFrameSourceInfo4 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaFrameSourceInfo4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsShareable;
 }

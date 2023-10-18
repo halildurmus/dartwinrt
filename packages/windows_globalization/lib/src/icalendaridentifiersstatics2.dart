@@ -21,7 +21,10 @@ const IID_ICalendarIdentifiersStatics2 =
     '{7df4d488-5fd0-42a7-95b5-7d98d823075f}';
 
 class ICalendarIdentifiersStatics2 extends IInspectable {
-  ICalendarIdentifiersStatics2.fromPtr(super.ptr);
+  ICalendarIdentifiersStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICalendarIdentifiersStatics2Vtbl>().ref;
+
+  final _ICalendarIdentifiersStatics2Vtbl _vtable;
 
   factory ICalendarIdentifiersStatics2.from(IInspectable interface) =>
       interface.cast(ICalendarIdentifiersStatics2.fromPtr,
@@ -31,17 +34,9 @@ class ICalendarIdentifiersStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Persian.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class ICalendarIdentifiersStatics2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ICalendarIdentifiersStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Persian;
 }

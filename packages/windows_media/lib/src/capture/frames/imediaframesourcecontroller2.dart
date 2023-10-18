@@ -24,7 +24,10 @@ const IID_IMediaFrameSourceController2 =
     '{efc49fd4-fcf2-4a03-b4e4-ac9628739bee}';
 
 class IMediaFrameSourceController2 extends IInspectable {
-  IMediaFrameSourceController2.fromPtr(super.ptr);
+  IMediaFrameSourceController2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceController2Vtbl>().ref;
+
+  final _IMediaFrameSourceController2Vtbl _vtable;
 
   factory IMediaFrameSourceController2.from(IInspectable interface) =>
       interface.cast(IMediaFrameSourceController2.fromPtr,
@@ -35,25 +38,13 @@ class IMediaFrameSourceController2 extends IInspectable {
     final operation = calloc<COMObject>();
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 extendedPropertyIdSize,
-                            Pointer<Uint8> extendedPropertyId,
-                            VTablePointer maxPropertyValueSize,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int extendedPropertyIdSize,
-                    Pointer<Uint8> extendedPropertyId,
-                    VTablePointer maxPropertyValueSize,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetPropertyByExtendedIdAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int extendedPropertyIdSize,
+                Pointer<Uint8> extendedPropertyId,
+                VTablePointer maxPropertyValueSize,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
@@ -79,27 +70,14 @@ class IMediaFrameSourceController2 extends IInspectable {
     final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
     final propertyValueArray = propertyValue.toArray<Uint8>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 extendedPropertyIdSize,
-                            Pointer<Uint8> extendedPropertyId,
-                            Uint32 propertyValueSize,
-                            Pointer<Uint8> propertyValue,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int extendedPropertyIdSize,
-                    Pointer<Uint8> extendedPropertyId,
-                    int propertyValueSize,
-                    Pointer<Uint8> propertyValue,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.SetPropertyByExtendedIdAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int extendedPropertyIdSize,
+                Pointer<Uint8> extendedPropertyId,
+                int propertyValueSize,
+                Pointer<Uint8> propertyValue,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
@@ -120,4 +98,25 @@ class IMediaFrameSourceController2 extends IInspectable {
             enumCreator: MediaFrameSourceSetPropertyStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IMediaFrameSourceController2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 extendedPropertyIdSize,
+              Pointer<Uint8> extendedPropertyId,
+              VTablePointer maxPropertyValueSize,
+              Pointer<COMObject> operation)>> GetPropertyByExtendedIdAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 extendedPropertyIdSize,
+              Pointer<Uint8> extendedPropertyId,
+              Uint32 propertyValueSize,
+              Pointer<Uint8> propertyValue,
+              Pointer<COMObject> operation)>> SetPropertyByExtendedIdAsync;
 }

@@ -22,7 +22,10 @@ import 'toastnotifier.dart';
 const IID_IToastNotifier3 = '{ae75a04a-3b0c-51ad-b7e8-b08ab6052549}';
 
 class IToastNotifier3 extends IInspectable {
-  IToastNotifier3.fromPtr(super.ptr);
+  IToastNotifier3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotifier3Vtbl>().ref;
+
+  final _IToastNotifier3Vtbl _vtable;
 
   factory IToastNotifier3.from(IInspectable interface) =>
       interface.cast(IToastNotifier3.fromPtr, IID_IToastNotifier3);
@@ -31,17 +34,9 @@ class IToastNotifier3 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_ScheduledToastNotificationShowing.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,18 +47,21 @@ class IToastNotifier3 extends IInspectable {
   }
 
   void remove_ScheduledToastNotificationShowing(int token) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_ScheduledToastNotificationShowing
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IToastNotifier3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_ScheduledToastNotificationShowing;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_ScheduledToastNotificationShowing;
 }

@@ -23,7 +23,9 @@ import 'userageconsentresult.dart';
 const IID_IUser2 = '{98ba5628-a6e3-518e-89d9-d3b2b1991a10}';
 
 class IUser2 extends IInspectable {
-  IUser2.fromPtr(super.ptr);
+  IUser2.fromPtr(super.ptr) : _vtable = ptr.ref.vtable.cast<_IUser2Vtbl>().ref;
+
+  final _IUser2Vtbl _vtable;
 
   factory IUser2.from(IInspectable interface) =>
       interface.cast(IUser2.fromPtr, IID_IUser2);
@@ -32,21 +34,10 @@ class IUser2 extends IInspectable {
       UserAgeConsentGroup consentGroup) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 consentGroup,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int consentGroup,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, consentGroup.value, operation);
+    final hr = _vtable.CheckUserAgeConsentGroupAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int consentGroup,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, consentGroup.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -58,4 +49,12 @@ class IUser2 extends IInspectable {
         enumCreator: UserAgeConsentResult.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IUser2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 consentGroup,
+              Pointer<COMObject> operation)>> CheckUserAgeConsentGroupAsync;
 }

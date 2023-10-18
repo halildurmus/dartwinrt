@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAudioEncodingProperties2 = '{c45d54da-80bd-4c23-80d5-72d4a181e894}';
 
 class IAudioEncodingProperties2 extends IInspectable {
-  IAudioEncodingProperties2.fromPtr(super.ptr);
+  IAudioEncodingProperties2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioEncodingProperties2Vtbl>().ref;
+
+  final _IAudioEncodingProperties2Vtbl _vtable;
 
   factory IAudioEncodingProperties2.from(IInspectable interface) => interface
       .cast(IAudioEncodingProperties2.fromPtr, IID_IAudioEncodingProperties2);
@@ -29,17 +32,9 @@ class IAudioEncodingProperties2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsSpatial.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IAudioEncodingProperties2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAudioEncodingProperties2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsSpatial;
 }

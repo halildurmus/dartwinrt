@@ -23,7 +23,11 @@ const IID_INumeralSystemTranslatorFactory =
     '{9630c8da-36ef-4d88-a85c-6f0d98d620a6}';
 
 class INumeralSystemTranslatorFactory extends IInspectable {
-  INumeralSystemTranslatorFactory.fromPtr(super.ptr);
+  INumeralSystemTranslatorFactory.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_INumeralSystemTranslatorFactoryVtbl>().ref;
+
+  final _INumeralSystemTranslatorFactoryVtbl _vtable;
 
   factory INumeralSystemTranslatorFactory.from(IInspectable interface) =>
       interface.cast(INumeralSystemTranslatorFactory.fromPtr,
@@ -32,17 +36,9 @@ class INumeralSystemTranslatorFactory extends IInspectable {
   NumeralSystemTranslator create(IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer languages, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer languages,
-                Pointer<COMObject> result)>()(lpVtbl, languages.lpVtbl, result);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer languages,
+            Pointer<COMObject> result)>()(lpVtbl, languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -51,4 +47,12 @@ class INumeralSystemTranslatorFactory extends IInspectable {
 
     return NumeralSystemTranslator.fromPtr(result);
   }
+}
+
+final class _INumeralSystemTranslatorFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer languages,
+              Pointer<COMObject> result)>> Create;
 }

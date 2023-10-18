@@ -22,7 +22,10 @@ import 'frameflashcapabilities.dart';
 const IID_IFrameControlCapabilities2 = '{ce9b0464-4730-440f-bd3e-efe8a8f230a8}';
 
 class IFrameControlCapabilities2 extends IInspectable {
-  IFrameControlCapabilities2.fromPtr(super.ptr);
+  IFrameControlCapabilities2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFrameControlCapabilities2Vtbl>().ref;
+
+  final _IFrameControlCapabilities2Vtbl _vtable;
 
   factory IFrameControlCapabilities2.from(IInspectable interface) => interface
       .cast(IFrameControlCapabilities2.fromPtr, IID_IFrameControlCapabilities2);
@@ -30,17 +33,9 @@ class IFrameControlCapabilities2 extends IInspectable {
   FrameFlashCapabilities? get flash {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Flash.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IFrameControlCapabilities2 extends IInspectable {
 
     return FrameFlashCapabilities.fromPtr(value);
   }
+}
+
+final class _IFrameControlCapabilities2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Flash;
 }

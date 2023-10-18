@@ -25,7 +25,10 @@ const IID_IWebAccountProvider3 = '{da1c518b-970d-4d49-825c-f2706f8ca7fe}';
 
 class IWebAccountProvider3 extends IInspectable
     implements IWebAccountProvider2, IWebAccountProvider {
-  IWebAccountProvider3.fromPtr(super.ptr);
+  IWebAccountProvider3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebAccountProvider3Vtbl>().ref;
+
+  final _IWebAccountProvider3Vtbl _vtable;
 
   factory IWebAccountProvider3.from(IInspectable interface) =>
       interface.cast(IWebAccountProvider3.fromPtr, IID_IWebAccountProvider3);
@@ -33,17 +36,9 @@ class IWebAccountProvider3 extends IInspectable
   User? get user {
     final user = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> user)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl, Pointer<COMObject> user)>()(lpVtbl, user);
+    final hr = _vtable.get_User.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> user)>()(lpVtbl, user);
 
     if (FAILED(hr)) {
       free(user);
@@ -78,4 +73,12 @@ class IWebAccountProvider3 extends IInspectable
       "IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.")
   @override
   Uri? get iconUri => _iWebAccountProvider.iconUri;
+}
+
+final class _IWebAccountProvider3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> user)>>
+      get_User;
 }
