@@ -24,7 +24,12 @@ const IID_IMediaCaptureInitializationSettings4 =
     '{f502a537-4cb7-4d28-95ed-4f9f012e0518}';
 
 class IMediaCaptureInitializationSettings4 extends IInspectable {
-  IMediaCaptureInitializationSettings4.fromPtr(super.ptr);
+  IMediaCaptureInitializationSettings4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IMediaCaptureInitializationSettings4Vtbl>()
+            .ref;
+
+  final _IMediaCaptureInitializationSettings4Vtbl _vtable;
 
   factory IMediaCaptureInitializationSettings4.from(IInspectable interface) =>
       interface.cast(IMediaCaptureInitializationSettings4.fromPtr,
@@ -33,17 +38,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   MediaCaptureVideoProfile? get videoProfile {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoProfile.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +56,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   }
 
   set videoProfile(MediaCaptureVideoProfile? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_VideoProfile.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -77,17 +66,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   MediaCaptureVideoProfileMediaDescription? get previewMediaDescription {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PreviewMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -103,17 +84,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   }
 
   set previewMediaDescription(MediaCaptureVideoProfileMediaDescription? value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_PreviewMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -121,17 +94,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   MediaCaptureVideoProfileMediaDescription? get recordMediaDescription {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RecordMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -147,17 +112,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   }
 
   set recordMediaDescription(MediaCaptureVideoProfileMediaDescription? value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_RecordMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -165,17 +122,9 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   MediaCaptureVideoProfileMediaDescription? get photoMediaDescription {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PhotoMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -191,18 +140,46 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   }
 
   set photoMediaDescription(MediaCaptureVideoProfileMediaDescription? value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_PhotoMediaDescription.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaCaptureInitializationSettings4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoProfile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_VideoProfile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PreviewMediaDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_PreviewMediaDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RecordMediaDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_RecordMediaDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PhotoMediaDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_PhotoMediaDescription;
 }

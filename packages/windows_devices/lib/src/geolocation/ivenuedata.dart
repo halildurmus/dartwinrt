@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IVenueData = '{66f39187-60e3-4b2f-b527-4f53f1c3c677}';
 
 class IVenueData extends IInspectable {
-  IVenueData.fromPtr(super.ptr);
+  IVenueData.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVenueDataVtbl>().ref;
+
+  final _IVenueDataVtbl _vtable;
 
   factory IVenueData.from(IInspectable interface) =>
       interface.cast(IVenueData.fromPtr, IID_IVenueData);
@@ -29,17 +32,9 @@ class IVenueData extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IVenueData extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Level.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IVenueData extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IVenueDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Level;
 }

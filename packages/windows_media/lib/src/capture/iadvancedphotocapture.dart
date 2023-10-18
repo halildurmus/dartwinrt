@@ -23,7 +23,10 @@ import 'advancedphotocapture.dart';
 const IID_IAdvancedPhotoCapture = '{83ffaafa-6667-44dc-973c-a6bce596aa0f}';
 
 class IAdvancedPhotoCapture extends IInspectable {
-  IAdvancedPhotoCapture.fromPtr(super.ptr);
+  IAdvancedPhotoCapture.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAdvancedPhotoCaptureVtbl>().ref;
+
+  final _IAdvancedPhotoCaptureVtbl _vtable;
 
   factory IAdvancedPhotoCapture.from(IInspectable interface) =>
       interface.cast(IAdvancedPhotoCapture.fromPtr, IID_IAdvancedPhotoCapture);
@@ -31,17 +34,9 @@ class IAdvancedPhotoCapture extends IInspectable {
   Future<AdvancedCapturedPhoto?> captureAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.CaptureAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -57,19 +52,9 @@ class IAdvancedPhotoCapture extends IInspectable {
   Future<AdvancedCapturedPhoto?> captureWithContextAsync(Object? context) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer context,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer context,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CaptureWithContextAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer context,
+                Pointer<COMObject> operation)>()(
         lpVtbl, context?.boxValue().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
@@ -87,17 +72,9 @@ class IAdvancedPhotoCapture extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_OptionalReferencePhotoCaptured.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -108,17 +85,9 @@ class IAdvancedPhotoCapture extends IInspectable {
   }
 
   void remove_OptionalReferencePhotoCaptured(int token) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_OptionalReferencePhotoCaptured
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -127,17 +96,9 @@ class IAdvancedPhotoCapture extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_AllPhotosCaptured.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -148,17 +109,9 @@ class IAdvancedPhotoCapture extends IInspectable {
   }
 
   void remove_AllPhotosCaptured(int token) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_AllPhotosCaptured
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -166,17 +119,9 @@ class IAdvancedPhotoCapture extends IInspectable {
   Future<void> finishAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FinishAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -185,4 +130,35 @@ class IAdvancedPhotoCapture extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IAdvancedPhotoCaptureVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      CaptureAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer context,
+              Pointer<COMObject> operation)>> CaptureWithContextAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_OptionalReferencePhotoCaptured;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_OptionalReferencePhotoCaptured;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_AllPhotosCaptured;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_AllPhotosCaptured;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> FinishAsync;
 }

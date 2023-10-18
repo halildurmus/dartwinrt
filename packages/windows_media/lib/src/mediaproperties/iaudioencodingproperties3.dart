@@ -22,7 +22,10 @@ import 'audioencodingproperties.dart';
 const IID_IAudioEncodingProperties3 = '{87600341-748c-4f8d-b0fd-10caf08ff087}';
 
 class IAudioEncodingProperties3 extends IInspectable {
-  IAudioEncodingProperties3.fromPtr(super.ptr);
+  IAudioEncodingProperties3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioEncodingProperties3Vtbl>().ref;
+
+  final _IAudioEncodingProperties3Vtbl _vtable;
 
   factory IAudioEncodingProperties3.from(IInspectable interface) => interface
       .cast(IAudioEncodingProperties3.fromPtr, IID_IAudioEncodingProperties3);
@@ -30,17 +33,9 @@ class IAudioEncodingProperties3 extends IInspectable {
   AudioEncodingProperties? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,12 @@ class IAudioEncodingProperties3 extends IInspectable {
 
     return AudioEncodingProperties.fromPtr(result);
   }
+}
+
+final class _IAudioEncodingProperties3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

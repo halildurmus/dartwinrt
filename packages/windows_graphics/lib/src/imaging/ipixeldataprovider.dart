@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPixelDataProvider = '{dd831f25-185c-4595-9fb9-ccbe6ec18a6f}';
 
 class IPixelDataProvider extends IInspectable {
-  IPixelDataProvider.fromPtr(super.ptr);
+  IPixelDataProvider.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPixelDataProviderVtbl>().ref;
+
+  final _IPixelDataProviderVtbl _vtable;
 
   factory IPixelDataProvider.from(IInspectable interface) =>
       interface.cast(IPixelDataProvider.fromPtr, IID_IPixelDataProvider);
@@ -30,21 +33,9 @@ class IPixelDataProvider extends IInspectable {
     final pixelData = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> pixelDataSize,
-                              Pointer<Pointer<Uint8>> pixelData)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      Pointer<Uint32> pixelDataSize,
-                      Pointer<Pointer<Uint8>> pixelData)>()(
+      final hr = _vtable.DetachPixelData.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> pixelDataSize,
+                  Pointer<Pointer<Uint8>> pixelData)>()(
           lpVtbl, pixelDataSize, pixelData);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -55,4 +46,12 @@ class IPixelDataProvider extends IInspectable {
       free(pixelData);
     }
   }
+}
+
+final class _IPixelDataProviderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pixelDataSize,
+              Pointer<Pointer<Uint8>> pixelData)>> DetachPixelData;
 }

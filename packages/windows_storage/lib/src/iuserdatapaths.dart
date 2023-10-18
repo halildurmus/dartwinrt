@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IUserDataPaths = '{f9c53912-abc4-46ff-8a2b-dc9d7fa6e52f}';
 
 class IUserDataPaths extends IInspectable {
-  IUserDataPaths.fromPtr(super.ptr);
+  IUserDataPaths.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUserDataPathsVtbl>().ref;
+
+  final _IUserDataPathsVtbl _vtable;
 
   factory IUserDataPaths.from(IInspectable interface) =>
       interface.cast(IUserDataPaths.fromPtr, IID_IUserDataPaths);
@@ -29,17 +32,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_CameraRoll.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Cookies.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,17 +64,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Desktop.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -101,17 +80,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Documents.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -125,17 +96,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Downloads.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -149,17 +112,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Favorites.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -173,17 +128,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_History.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -197,17 +144,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_InternetCache.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -221,17 +160,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_LocalAppData.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -245,17 +176,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_LocalAppDataLow.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -269,17 +192,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Music.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -293,17 +208,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Pictures.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -317,17 +224,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Profile.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -341,17 +240,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Recent.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -365,17 +256,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(20)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_RoamingAppData.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -389,17 +272,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(21)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_SavedPictures.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -413,17 +288,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(22)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Screenshots.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -437,17 +304,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Templates.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -461,17 +320,9 @@ class IUserDataPaths extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Videos.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -480,4 +331,84 @@ class IUserDataPaths extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IUserDataPathsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_CameraRoll;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Cookies;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Desktop;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Documents;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Downloads;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Favorites;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_History;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_InternetCache;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_LocalAppData;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_LocalAppDataLow;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Music;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Pictures;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Profile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Recent;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_RoamingAppData;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_SavedPictures;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Screenshots;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Templates;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Videos;
 }

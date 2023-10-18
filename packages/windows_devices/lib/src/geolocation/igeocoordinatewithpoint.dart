@@ -22,7 +22,10 @@ import 'geopoint.dart';
 const IID_IGeocoordinateWithPoint = '{feea0525-d22c-4d46-b527-0b96066fc7db}';
 
 class IGeocoordinateWithPoint extends IInspectable {
-  IGeocoordinateWithPoint.fromPtr(super.ptr);
+  IGeocoordinateWithPoint.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeocoordinateWithPointVtbl>().ref;
+
+  final _IGeocoordinateWithPointVtbl _vtable;
 
   factory IGeocoordinateWithPoint.from(IInspectable interface) => interface
       .cast(IGeocoordinateWithPoint.fromPtr, IID_IGeocoordinateWithPoint);
@@ -30,17 +33,9 @@ class IGeocoordinateWithPoint extends IInspectable {
   Geopoint? get point {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Point.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IGeocoordinateWithPoint extends IInspectable {
 
     return Geopoint.fromPtr(value);
   }
+}
+
+final class _IGeocoordinateWithPointVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Point;
 }

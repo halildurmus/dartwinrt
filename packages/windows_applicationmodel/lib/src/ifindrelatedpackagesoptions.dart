@@ -23,7 +23,10 @@ const IID_IFindRelatedPackagesOptions =
     '{41dd7eea-b335-521f-b96c-5ea07f5b7329}';
 
 class IFindRelatedPackagesOptions extends IInspectable {
-  IFindRelatedPackagesOptions.fromPtr(super.ptr);
+  IFindRelatedPackagesOptions.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFindRelatedPackagesOptionsVtbl>().ref;
+
+  final _IFindRelatedPackagesOptionsVtbl _vtable;
 
   factory IFindRelatedPackagesOptions.from(IInspectable interface) =>
       interface.cast(
@@ -33,17 +36,9 @@ class IFindRelatedPackagesOptions extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Relationship.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,13 +49,7 @@ class IFindRelatedPackagesOptions extends IInspectable {
   }
 
   set relationship(PackageRelationship value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Relationship
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -71,17 +60,9 @@ class IFindRelatedPackagesOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IncludeFrameworks.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -92,13 +73,7 @@ class IFindRelatedPackagesOptions extends IInspectable {
   }
 
   set includeFrameworks(bool value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IncludeFrameworks
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -109,17 +84,9 @@ class IFindRelatedPackagesOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IncludeHostRuntimes.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -130,13 +97,7 @@ class IFindRelatedPackagesOptions extends IInspectable {
   }
 
   set includeHostRuntimes(bool value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IncludeHostRuntimes
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -147,17 +108,9 @@ class IFindRelatedPackagesOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IncludeOptionals.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -168,13 +121,7 @@ class IFindRelatedPackagesOptions extends IInspectable {
   }
 
   set includeOptionals(bool value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IncludeOptionals
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -185,17 +132,9 @@ class IFindRelatedPackagesOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IncludeResources.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -206,16 +145,49 @@ class IFindRelatedPackagesOptions extends IInspectable {
   }
 
   set includeResources(bool value) {
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IncludeResources
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFindRelatedPackagesOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Relationship;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Relationship;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IncludeFrameworks;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IncludeFrameworks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IncludeHostRuntimes;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IncludeHostRuntimes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IncludeOptionals;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IncludeOptionals;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IncludeResources;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IncludeResources;
 }

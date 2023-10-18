@@ -24,20 +24,19 @@ const IID_IMediaCaptureInitializationSettings2 =
     '{404e0626-c9dc-43e9-aee4-e6bf1b57b44c}';
 
 class IMediaCaptureInitializationSettings2 extends IInspectable {
-  IMediaCaptureInitializationSettings2.fromPtr(super.ptr);
+  IMediaCaptureInitializationSettings2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IMediaCaptureInitializationSettings2Vtbl>()
+            .ref;
+
+  final _IMediaCaptureInitializationSettings2Vtbl _vtable;
 
   factory IMediaCaptureInitializationSettings2.from(IInspectable interface) =>
       interface.cast(IMediaCaptureInitializationSettings2.fromPtr,
           IID_IMediaCaptureInitializationSettings2);
 
   set mediaCategory(MediaCategory value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_MediaCategory
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -48,17 +47,9 @@ class IMediaCaptureInitializationSettings2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_MediaCategory.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -69,13 +60,7 @@ class IMediaCaptureInitializationSettings2 extends IInspectable {
   }
 
   set audioProcessing(AudioProcessing value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_AudioProcessing
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -86,17 +71,9 @@ class IMediaCaptureInitializationSettings2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AudioProcessing.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,4 +82,22 @@ class IMediaCaptureInitializationSettings2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaCaptureInitializationSettings2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_MediaCategory;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_MediaCategory;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_AudioProcessing;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_AudioProcessing;
 }

@@ -20,52 +20,50 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILearningModelBinding = '{ea312f20-168f-4f8c-94fe-2e7ac31b4aa8}';
 
 class ILearningModelBinding extends IInspectable {
-  ILearningModelBinding.fromPtr(super.ptr);
+  ILearningModelBinding.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelBindingVtbl>().ref;
+
+  final _ILearningModelBindingVtbl _vtable;
 
   factory ILearningModelBinding.from(IInspectable interface) =>
       interface.cast(ILearningModelBinding.fromPtr, IID_ILearningModelBinding);
 
   void bind(String name, Object? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, int name, VTablePointer value)>()(
+    final hr = _vtable.Bind.asFunction<
+            int Function(
+                VTablePointer lpVtbl, int name, VTablePointer value)>()(
         lpVtbl, name.toHString(), value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void bindWithProperties(String name, Object? value, IPropertySet? props) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            VTablePointer value, VTablePointer props)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    VTablePointer value, VTablePointer props)>()(lpVtbl,
-        name.toHString(), value?.boxValue().lpVtbl ?? nullptr, props.lpVtbl);
+    final hr = _vtable.BindWithProperties.asFunction<
+            int Function(VTablePointer lpVtbl, int name, VTablePointer value,
+                VTablePointer props)>()(lpVtbl, name.toHString(),
+        value?.boxValue().lpVtbl ?? nullptr, props.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clear() {
-    final hr = vtable
-        .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Clear.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILearningModelBindingVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, IntPtr name, VTablePointer value)>> Bind;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              VTablePointer value, VTablePointer props)>> BindWithProperties;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
 }

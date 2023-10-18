@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITimeZoneOnCalendar = '{bb3c25e5-46cf-4317-a3f5-02621ad54478}';
 
 class ITimeZoneOnCalendar extends IInspectable {
-  ITimeZoneOnCalendar.fromPtr(super.ptr);
+  ITimeZoneOnCalendar.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITimeZoneOnCalendarVtbl>().ref;
+
+  final _ITimeZoneOnCalendarVtbl _vtable;
 
   factory ITimeZoneOnCalendar.from(IInspectable interface) =>
       interface.cast(ITimeZoneOnCalendar.fromPtr, IID_ITimeZoneOnCalendar);
@@ -29,17 +32,9 @@ class ITimeZoneOnCalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetTimeZone.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,15 +45,8 @@ class ITimeZoneOnCalendar extends IInspectable {
   }
 
   void changeTimeZone(String timeZoneId) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr timeZoneId)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int timeZoneId)>()(
+    final hr = _vtable.ChangeTimeZone.asFunction<
+            int Function(VTablePointer lpVtbl, int timeZoneId)>()(
         lpVtbl, timeZoneId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -68,17 +56,9 @@ class ITimeZoneOnCalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.TimeZoneAsFullString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -92,17 +72,9 @@ class ITimeZoneOnCalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.TimeZoneAsString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -111,4 +83,24 @@ class ITimeZoneOnCalendar extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _ITimeZoneOnCalendarVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetTimeZone;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr timeZoneId)>>
+      ChangeTimeZone;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      TimeZoneAsFullString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> TimeZoneAsString;
 }

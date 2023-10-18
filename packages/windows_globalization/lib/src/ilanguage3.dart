@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguage3 = '{c6af3d10-641a-5ba4-bb43-5e12aed75954}';
 
 class ILanguage3 extends IInspectable {
-  ILanguage3.fromPtr(super.ptr);
+  ILanguage3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguage3Vtbl>().ref;
+
+  final _ILanguage3Vtbl _vtable;
 
   factory ILanguage3.from(IInspectable interface) =>
       interface.cast(ILanguage3.fromPtr, IID_ILanguage3);
@@ -29,17 +32,9 @@ class ILanguage3 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AbbreviatedName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class ILanguage3 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ILanguage3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AbbreviatedName;
 }

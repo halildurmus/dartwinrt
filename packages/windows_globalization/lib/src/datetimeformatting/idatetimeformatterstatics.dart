@@ -22,7 +22,10 @@ import 'datetimeformatter.dart';
 const IID_IDateTimeFormatterStatics = '{bfcde7c0-df4c-4a2e-9012-f47daf3f1212}';
 
 class IDateTimeFormatterStatics extends IInspectable {
-  IDateTimeFormatterStatics.fromPtr(super.ptr);
+  IDateTimeFormatterStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDateTimeFormatterStaticsVtbl>().ref;
+
+  final _IDateTimeFormatterStaticsVtbl _vtable;
 
   factory IDateTimeFormatterStatics.from(IInspectable interface) => interface
       .cast(IDateTimeFormatterStatics.fromPtr, IID_IDateTimeFormatterStatics);
@@ -30,17 +33,9 @@ class IDateTimeFormatterStatics extends IInspectable {
   DateTimeFormatter? get longDate {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LongDate.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,17 +53,9 @@ class IDateTimeFormatterStatics extends IInspectable {
   DateTimeFormatter? get longTime {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LongTime.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -86,17 +73,9 @@ class IDateTimeFormatterStatics extends IInspectable {
   DateTimeFormatter? get shortDate {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ShortDate.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -114,17 +93,9 @@ class IDateTimeFormatterStatics extends IInspectable {
   DateTimeFormatter? get shortTime {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ShortTime.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -138,4 +109,24 @@ class IDateTimeFormatterStatics extends IInspectable {
 
     return DateTimeFormatter.fromPtr(value);
   }
+}
+
+final class _IDateTimeFormatterStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LongDate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LongTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ShortDate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ShortTime;
 }

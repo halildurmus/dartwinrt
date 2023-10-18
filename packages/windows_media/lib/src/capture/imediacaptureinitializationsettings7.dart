@@ -22,7 +22,12 @@ const IID_IMediaCaptureInitializationSettings7 =
     '{41546967-f58a-5d82-9ef4-ed572fb5e34e}';
 
 class IMediaCaptureInitializationSettings7 extends IInspectable {
-  IMediaCaptureInitializationSettings7.fromPtr(super.ptr);
+  IMediaCaptureInitializationSettings7.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IMediaCaptureInitializationSettings7Vtbl>()
+            .ref;
+
+  final _IMediaCaptureInitializationSettings7Vtbl _vtable;
 
   factory IMediaCaptureInitializationSettings7.from(IInspectable interface) =>
       interface.cast(IMediaCaptureInitializationSettings7.fromPtr,
@@ -31,17 +36,9 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   PasswordCredential? get deviceUriPasswordCredential {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DeviceUriPasswordCredential.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,17 +54,9 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   }
 
   set deviceUriPasswordCredential(PasswordCredential? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_DeviceUriPasswordCredential.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -75,17 +64,9 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   Uri? get deviceUri {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DeviceUri.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -101,18 +82,30 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   }
 
   set deviceUri(Uri? value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_DeviceUri.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaCaptureInitializationSettings7Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DeviceUriPasswordCredential;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_DeviceUriPasswordCredential;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DeviceUri;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_DeviceUri;
 }

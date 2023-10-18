@@ -25,7 +25,10 @@ const IID_ICapturedFrameControlValues2 =
     '{500b2b88-06d2-4aa7-a7db-d37af73321d8}';
 
 class ICapturedFrameControlValues2 extends IInspectable {
-  ICapturedFrameControlValues2.fromPtr(super.ptr);
+  ICapturedFrameControlValues2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICapturedFrameControlValues2Vtbl>().ref;
+
+  final _ICapturedFrameControlValues2Vtbl _vtable;
 
   factory ICapturedFrameControlValues2.from(IInspectable interface) =>
       interface.cast(ICapturedFrameControlValues2.fromPtr,
@@ -34,17 +37,9 @@ class ICapturedFrameControlValues2 extends IInspectable {
   MediaCaptureFocusState? get focusState {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FocusState.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -65,17 +60,9 @@ class ICapturedFrameControlValues2 extends IInspectable {
   double? get isoDigitalGain {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsoDigitalGain.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -95,17 +82,9 @@ class ICapturedFrameControlValues2 extends IInspectable {
   double? get isoAnalogGain {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsoAnalogGain.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -125,17 +104,9 @@ class ICapturedFrameControlValues2 extends IInspectable {
   MediaRatio? get sensorFrameRate {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SensorFrameRate.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -153,17 +124,9 @@ class ICapturedFrameControlValues2 extends IInspectable {
   WhiteBalanceGain? get whiteBalanceGain {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WhiteBalanceGain.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -179,4 +142,28 @@ class ICapturedFrameControlValues2 extends IInspectable {
             referenceIid: '{79c7838a-39e2-5287-ac3b-b118db251002}')
         .value;
   }
+}
+
+final class _ICapturedFrameControlValues2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FocusState;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsoDigitalGain;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsoAnalogGain;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SensorFrameRate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WhiteBalanceGain;
 }

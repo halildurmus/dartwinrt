@@ -27,7 +27,10 @@ import 'proxyconfiguration.dart';
 const IID_INetworkInformationStatics = '{5074f851-950d-4165-9c15-365619481eea}';
 
 class INetworkInformationStatics extends IInspectable {
-  INetworkInformationStatics.fromPtr(super.ptr);
+  INetworkInformationStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INetworkInformationStaticsVtbl>().ref;
+
+  final _INetworkInformationStaticsVtbl _vtable;
 
   factory INetworkInformationStatics.from(IInspectable interface) => interface
       .cast(INetworkInformationStatics.fromPtr, IID_INetworkInformationStatics);
@@ -35,17 +38,9 @@ class INetworkInformationStatics extends IInspectable {
   List<ConnectionProfile?> getConnectionProfiles() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetConnectionProfiles.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,17 +56,9 @@ class INetworkInformationStatics extends IInspectable {
   ConnectionProfile? getInternetConnectionProfile() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetInternetConnectionProfile.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,17 +76,9 @@ class INetworkInformationStatics extends IInspectable {
   List<LanIdentifier?> getLanIdentifiers() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetLanIdentifiers.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -115,17 +94,9 @@ class INetworkInformationStatics extends IInspectable {
   List<HostName?> getHostNames() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetHostNames.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -141,17 +112,9 @@ class INetworkInformationStatics extends IInspectable {
   Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer uri,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetProxyConfigurationAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> value)>()(
         lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
@@ -169,23 +132,9 @@ class INetworkInformationStatics extends IInspectable {
       HostNameSortOptions sortOptions) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer destinationList,
-                            Uint32 sortOptions,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer destinationList,
-                    int sortOptions,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetSortedEndpointPairs.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer destinationList,
+                int sortOptions, Pointer<COMObject> value)>()(
         lpVtbl, destinationList.lpVtbl, sortOptions.value, value);
 
     if (FAILED(hr)) {
@@ -203,21 +152,11 @@ class INetworkInformationStatics extends IInspectable {
     final eventCookie = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer networkStatusHandler,
-                              Pointer<IntPtr> eventCookie)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      VTablePointer networkStatusHandler,
-                      Pointer<IntPtr> eventCookie)>()(
+      final hr = _vtable.add_NetworkStatusChanged.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer networkStatusHandler,
+                  Pointer<IntPtr> eventCookie)>()(
           lpVtbl, networkStatusHandler.ref.lpVtbl, eventCookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -229,17 +168,51 @@ class INetworkInformationStatics extends IInspectable {
   }
 
   void remove_NetworkStatusChanged(int eventCookie) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, IntPtr eventCookie)>>>()
-            .value
+    final hr = _vtable.remove_NetworkStatusChanged
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         lpVtbl, eventCookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _INetworkInformationStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetConnectionProfiles;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetInternetConnectionProfile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetLanIdentifiers;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetHostNames;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> value)>> GetProxyConfigurationAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer destinationList,
+              Uint32 sortOptions,
+              Pointer<COMObject> value)>> GetSortedEndpointPairs;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer networkStatusHandler,
+              Pointer<IntPtr> eventCookie)>> add_NetworkStatusChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr eventCookie)>>
+      remove_NetworkStatusChanged;
 }

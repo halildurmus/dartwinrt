@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDeviceInformationUpdate = '{8f315305-d972-44b7-a37e-9e822c78213b}';
 
 class IDeviceInformationUpdate extends IInspectable {
-  IDeviceInformationUpdate.fromPtr(super.ptr);
+  IDeviceInformationUpdate.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceInformationUpdateVtbl>().ref;
+
+  final _IDeviceInformationUpdateVtbl _vtable;
 
   factory IDeviceInformationUpdate.from(IInspectable interface) => interface
       .cast(IDeviceInformationUpdate.fromPtr, IID_IDeviceInformationUpdate);
@@ -29,17 +32,9 @@ class IDeviceInformationUpdate extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,17 +47,9 @@ class IDeviceInformationUpdate extends IInspectable {
   Map<String, Object?>? get properties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -78,4 +65,16 @@ class IDeviceInformationUpdate extends IInspectable {
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}')
         .toMap();
   }
+}
+
+final class _IDeviceInformationUpdateVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Properties;
 }

@@ -22,7 +22,10 @@ import 'networkadapter.dart';
 const IID_IIPInformation = '{d85145e0-138f-47d7-9b3a-36bb488cef33}';
 
 class IIPInformation extends IInspectable {
-  IIPInformation.fromPtr(super.ptr);
+  IIPInformation.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IIPInformationVtbl>().ref;
+
+  final _IIPInformationVtbl _vtable;
 
   factory IIPInformation.from(IInspectable interface) =>
       interface.cast(IIPInformation.fromPtr, IID_IIPInformation);
@@ -30,17 +33,9 @@ class IIPInformation extends IInspectable {
   NetworkAdapter? get networkAdapter {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_NetworkAdapter.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,17 +53,9 @@ class IIPInformation extends IInspectable {
   int? get prefixLength {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PrefixLength.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -84,4 +71,16 @@ class IIPInformation extends IInspectable {
             referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}')
         .value;
   }
+}
+
+final class _IIPInformationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_NetworkAdapter;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PrefixLength;
 }

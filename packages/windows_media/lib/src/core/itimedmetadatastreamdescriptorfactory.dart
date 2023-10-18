@@ -24,7 +24,12 @@ const IID_ITimedMetadataStreamDescriptorFactory =
     '{c027de30-7362-4ff9-98b1-2dfd0b8d1cae}';
 
 class ITimedMetadataStreamDescriptorFactory extends IInspectable {
-  ITimedMetadataStreamDescriptorFactory.fromPtr(super.ptr);
+  ITimedMetadataStreamDescriptorFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_ITimedMetadataStreamDescriptorFactoryVtbl>()
+            .ref;
+
+  final _ITimedMetadataStreamDescriptorFactoryVtbl _vtable;
 
   factory ITimedMetadataStreamDescriptorFactory.from(IInspectable interface) =>
       interface.cast(ITimedMetadataStreamDescriptorFactory.fromPtr,
@@ -34,21 +39,9 @@ class ITimedMetadataStreamDescriptorFactory extends IInspectable {
       TimedMetadataEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer encodingProperties,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer encodingProperties,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer encodingProperties,
+                Pointer<COMObject> result)>()(
         lpVtbl, encodingProperties.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -58,4 +51,14 @@ class ITimedMetadataStreamDescriptorFactory extends IInspectable {
 
     return TimedMetadataStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _ITimedMetadataStreamDescriptorFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer encodingProperties,
+              Pointer<COMObject> result)>> Create;
 }

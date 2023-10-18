@@ -23,7 +23,11 @@ const IID_IImageEncodingPropertiesStatics3 =
     '{48f4814d-a2ff-48dc-8ea0-e90680663656}';
 
 class IImageEncodingPropertiesStatics3 extends IInspectable {
-  IImageEncodingPropertiesStatics3.fromPtr(super.ptr);
+  IImageEncodingPropertiesStatics3.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IImageEncodingPropertiesStatics3Vtbl>().ref;
+
+  final _IImageEncodingPropertiesStatics3Vtbl _vtable;
 
   factory IImageEncodingPropertiesStatics3.from(IInspectable interface) =>
       interface.cast(IImageEncodingPropertiesStatics3.fromPtr,
@@ -32,17 +36,9 @@ class IImageEncodingPropertiesStatics3 extends IInspectable {
   ImageEncodingProperties? createHeif() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.CreateHeif.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -56,4 +52,12 @@ class IImageEncodingPropertiesStatics3 extends IInspectable {
 
     return ImageEncodingProperties.fromPtr(result);
   }
+}
+
+final class _IImageEncodingPropertiesStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> CreateHeif;
 }

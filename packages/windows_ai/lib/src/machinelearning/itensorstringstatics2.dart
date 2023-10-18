@@ -22,7 +22,10 @@ import 'tensorstring.dart';
 const IID_ITensorStringStatics2 = '{9e355ed0-c8e2-5254-9137-0193a3668fd8}';
 
 class ITensorStringStatics2 extends IInspectable {
-  ITensorStringStatics2.fromPtr(super.ptr);
+  ITensorStringStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorStringStatics2Vtbl>().ref;
+
+  final _ITensorStringStatics2Vtbl _vtable;
 
   factory ITensorStringStatics2.from(IInspectable interface) =>
       interface.cast(ITensorStringStatics2.fromPtr, IID_ITensorStringStatics2);
@@ -33,27 +36,14 @@ class ITensorStringStatics2 extends IInspectable {
     final shapeArray = shape.toArray<Int64>();
     final dataArray = data.toArray();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 shapeSize,
-                            Pointer<Int64> shape,
-                            Uint32 dataSize,
-                            Pointer<IntPtr> data,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int shapeSize,
-                    Pointer<Int64> shape,
-                    int dataSize,
-                    Pointer<IntPtr> data,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromShapeArrayAndDataArray.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int shapeSize,
+                Pointer<Int64> shape,
+                int dataSize,
+                Pointer<IntPtr> data,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.length, shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
@@ -71,4 +61,17 @@ class ITensorStringStatics2 extends IInspectable {
 
     return TensorString.fromPtr(result);
   }
+}
+
+final class _ITensorStringStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 shapeSize,
+              Pointer<Int64> shape,
+              Uint32 dataSize,
+              Pointer<IntPtr> data,
+              Pointer<COMObject> result)>> CreateFromShapeArrayAndDataArray;
 }

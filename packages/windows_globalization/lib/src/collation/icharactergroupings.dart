@@ -23,7 +23,10 @@ const IID_ICharacterGroupings = '{b8d20a75-d4cf-4055-80e5-ce169c226496}';
 
 class ICharacterGroupings extends IInspectable
     implements IVectorView<CharacterGrouping?>, IIterable<CharacterGrouping?> {
-  ICharacterGroupings.fromPtr(super.ptr);
+  ICharacterGroupings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICharacterGroupingsVtbl>().ref;
+
+  final _ICharacterGroupingsVtbl _vtable;
 
   factory ICharacterGroupings.from(IInspectable interface) =>
       interface.cast(ICharacterGroupings.fromPtr, IID_ICharacterGroupings);
@@ -32,17 +35,9 @@ class ICharacterGroupings extends IInspectable
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int text,
-                  Pointer<IntPtr> result)>()(lpVtbl, text.toHString(), result);
+      final hr = _vtable.Lookup.asFunction<
+          int Function(VTablePointer lpVtbl, int text,
+              Pointer<IntPtr> result)>()(lpVtbl, text.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,4 +79,13 @@ class ICharacterGroupings extends IInspectable
   @override
   List<CharacterGrouping?> operator +(List<CharacterGrouping?> other) =>
       toList() + other;
+}
+
+final class _ICharacterGroupingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr text, Pointer<IntPtr> result)>>
+      Lookup;
 }

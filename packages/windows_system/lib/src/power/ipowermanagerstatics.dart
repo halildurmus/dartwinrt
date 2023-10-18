@@ -24,7 +24,10 @@ import 'powersupplystatus.dart';
 const IID_IPowerManagerStatics = '{1394825d-62ce-4364-98d5-aa28c7fbd15b}';
 
 class IPowerManagerStatics extends IInspectable {
-  IPowerManagerStatics.fromPtr(super.ptr);
+  IPowerManagerStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPowerManagerStaticsVtbl>().ref;
+
+  final _IPowerManagerStaticsVtbl _vtable;
 
   factory IPowerManagerStatics.from(IInspectable interface) =>
       interface.cast(IPowerManagerStatics.fromPtr, IID_IPowerManagerStatics);
@@ -33,17 +36,9 @@ class IPowerManagerStatics extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_EnergySaverStatus.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IPowerManagerStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_EnergySaverStatusChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,17 +65,9 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   void remove_EnergySaverStatusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_EnergySaverStatusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -97,17 +76,9 @@ class IPowerManagerStatics extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BatteryStatus.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -121,17 +92,9 @@ class IPowerManagerStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_BatteryStatusChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -142,17 +105,9 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   void remove_BatteryStatusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_BatteryStatusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -161,17 +116,9 @@ class IPowerManagerStatics extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PowerSupplyStatus.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -185,17 +132,9 @@ class IPowerManagerStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_PowerSupplyStatusChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -206,17 +145,9 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   void remove_PowerSupplyStatusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(14)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_PowerSupplyStatusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -225,17 +156,9 @@ class IPowerManagerStatics extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RemainingChargePercent.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -249,17 +172,9 @@ class IPowerManagerStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_RemainingChargePercentChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -270,17 +185,9 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   void remove_RemainingChargePercentChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(17)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_RemainingChargePercentChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -289,17 +196,9 @@ class IPowerManagerStatics extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RemainingDischargeTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -313,17 +212,9 @@ class IPowerManagerStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_RemainingDischargeTimeChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -334,18 +225,69 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   void remove_RemainingDischargeTimeChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(20)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_RemainingDischargeTimeChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IPowerManagerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_EnergySaverStatus;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_EnergySaverStatusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_EnergySaverStatusChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_BatteryStatus;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_BatteryStatusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_BatteryStatusChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_PowerSupplyStatus;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_PowerSupplyStatusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_PowerSupplyStatusChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_RemainingChargePercent;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_RemainingChargePercentChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_RemainingChargePercentChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_RemainingDischargeTime;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_RemainingDischargeTimeChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_RemainingDischargeTimeChanged;
 }

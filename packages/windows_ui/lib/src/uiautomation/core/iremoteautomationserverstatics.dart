@@ -21,7 +21,11 @@ const IID_IRemoteAutomationServerStatics =
     '{e6e8945e-0c11-5028-9ae3-c2771288b6b7}';
 
 class IRemoteAutomationServerStatics extends IInspectable {
-  IRemoteAutomationServerStatics.fromPtr(super.ptr);
+  IRemoteAutomationServerStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IRemoteAutomationServerStaticsVtbl>().ref;
+
+  final _IRemoteAutomationServerStaticsVtbl _vtable;
 
   factory IRemoteAutomationServerStatics.from(IInspectable interface) =>
       interface.cast(IRemoteAutomationServerStatics.fromPtr,
@@ -30,19 +34,20 @@ class IRemoteAutomationServerStatics extends IInspectable {
   void reportSession(Guid sessionId) {
     final sessionIdNativeStructPtr = sessionId.toNativeGUID();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, GUID sessionId)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                GUID sessionId)>()(lpVtbl, sessionIdNativeStructPtr.ref);
+    final hr = _vtable.ReportSession.asFunction<
+            int Function(VTablePointer lpVtbl, GUID sessionId)>()(
+        lpVtbl, sessionIdNativeStructPtr.ref);
 
     free(sessionIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IRemoteAutomationServerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, GUID sessionId)>>
+      ReportSession;
 }

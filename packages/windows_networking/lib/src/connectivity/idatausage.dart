@@ -22,7 +22,10 @@ const IID_IDataUsage = '{c1431dd3-b146-4d39-b959-0c69b096c512}';
 @Deprecated(
     "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")
 class IDataUsage extends IInspectable {
-  IDataUsage.fromPtr(super.ptr);
+  IDataUsage.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataUsageVtbl>().ref;
+
+  final _IDataUsageVtbl _vtable;
 
   factory IDataUsage.from(IInspectable interface) =>
       interface.cast(IDataUsage.fromPtr, IID_IDataUsage);
@@ -33,17 +36,9 @@ class IDataUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BytesSent.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +54,9 @@ class IDataUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BytesReceived.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,4 +65,16 @@ class IDataUsage extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDataUsageVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_BytesSent;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_BytesReceived;
 }

@@ -22,7 +22,10 @@ import 'networkcosttype.dart';
 const IID_IConnectionCost = '{bad7d829-3416-4b10-a202-bac0b075bdae}';
 
 class IConnectionCost extends IInspectable {
-  IConnectionCost.fromPtr(super.ptr);
+  IConnectionCost.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionCostVtbl>().ref;
+
+  final _IConnectionCostVtbl _vtable;
 
   factory IConnectionCost.from(IInspectable interface) =>
       interface.cast(IConnectionCost.fromPtr, IID_IConnectionCost);
@@ -31,17 +34,9 @@ class IConnectionCost extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NetworkCostType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IConnectionCost extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Roaming.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,17 +66,9 @@ class IConnectionCost extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_OverDataLimit.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,17 +82,9 @@ class IConnectionCost extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ApproachingDataLimit.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -122,4 +93,24 @@ class IConnectionCost extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IConnectionCostVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NetworkCostType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Roaming;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_OverDataLimit;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ApproachingDataLimit;
 }

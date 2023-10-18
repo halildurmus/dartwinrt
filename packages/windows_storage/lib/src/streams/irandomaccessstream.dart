@@ -27,7 +27,10 @@ const IID_IRandomAccessStream = '{905a0fe1-bc53-11df-8c49-001e4fc686da}';
 /// Supports random access of data in input and output streams.
 class IRandomAccessStream extends IInspectable
     implements IClosable, IInputStream, IOutputStream {
-  IRandomAccessStream.fromPtr(super.ptr);
+  IRandomAccessStream.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IRandomAccessStreamVtbl>().ref;
+
+  final _IRandomAccessStreamVtbl _vtable;
 
   factory IRandomAccessStream.from(IInspectable interface) =>
       interface.cast(IRandomAccessStream.fromPtr, IID_IRandomAccessStream);
@@ -36,17 +39,9 @@ class IRandomAccessStream extends IInspectable
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Size.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IRandomAccessStream extends IInspectable
   }
 
   set size(int value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint64 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_Size
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -75,17 +62,9 @@ class IRandomAccessStream extends IInspectable
   IInputStream? getInputStreamAt(int position) {
     final stream = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint64 position,
-                        Pointer<COMObject> stream)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int position,
-                Pointer<COMObject> stream)>()(lpVtbl, position, stream);
+    final hr = _vtable.GetInputStreamAt.asFunction<
+        int Function(VTablePointer lpVtbl, int position,
+            Pointer<COMObject> stream)>()(lpVtbl, position, stream);
 
     if (FAILED(hr)) {
       free(stream);
@@ -103,17 +82,9 @@ class IRandomAccessStream extends IInspectable
   IOutputStream? getOutputStreamAt(int position) {
     final stream = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint64 position,
-                        Pointer<COMObject> stream)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int position,
-                Pointer<COMObject> stream)>()(lpVtbl, position, stream);
+    final hr = _vtable.GetOutputStreamAt.asFunction<
+        int Function(VTablePointer lpVtbl, int position,
+            Pointer<COMObject> stream)>()(lpVtbl, position, stream);
 
     if (FAILED(hr)) {
       free(stream);
@@ -132,17 +103,9 @@ class IRandomAccessStream extends IInspectable
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Position.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -153,17 +116,8 @@ class IRandomAccessStream extends IInspectable
   }
 
   void seek(int position) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint64 position)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int position)>()(
-            lpVtbl, position);
+    final hr = _vtable.Seek.asFunction<
+        int Function(VTablePointer lpVtbl, int position)>()(lpVtbl, position);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -171,17 +125,9 @@ class IRandomAccessStream extends IInspectable
   IRandomAccessStream? cloneStream() {
     final stream = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> stream)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> stream)>()(lpVtbl, stream);
+    final hr = _vtable.CloneStream.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> stream)>()(lpVtbl, stream);
 
     if (FAILED(hr)) {
       free(stream);
@@ -200,17 +146,9 @@ class IRandomAccessStream extends IInspectable
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CanRead.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -224,17 +162,9 @@ class IRandomAccessStream extends IInspectable
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CanWrite.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -264,4 +194,42 @@ class IRandomAccessStream extends IInspectable
 
   @override
   Future<bool> flushAsync() => _iOutputStream.flushAsync();
+}
+
+final class _IRandomAccessStreamVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_Size;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint64 value)>>
+      put_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint64 position,
+              Pointer<COMObject> stream)>> GetInputStreamAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint64 position,
+              Pointer<COMObject> stream)>> GetOutputStreamAt;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_Position;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint64 position)>> Seek;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> stream)>> CloneStream;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CanRead;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CanWrite;
 }

@@ -23,7 +23,10 @@ import 'deviceinformationpairing.dart';
 const IID_IDeviceInformation2 = '{f156a638-7997-48d9-a10c-269d46533f48}';
 
 class IDeviceInformation2 extends IInspectable {
-  IDeviceInformation2.fromPtr(super.ptr);
+  IDeviceInformation2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceInformation2Vtbl>().ref;
+
+  final _IDeviceInformation2Vtbl _vtable;
 
   factory IDeviceInformation2.from(IInspectable interface) =>
       interface.cast(IDeviceInformation2.fromPtr, IID_IDeviceInformation2);
@@ -32,17 +35,9 @@ class IDeviceInformation2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Kind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IDeviceInformation2 extends IInspectable {
   DeviceInformationPairing? get pairing {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Pairing.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -79,4 +66,16 @@ class IDeviceInformation2 extends IInspectable {
 
     return DeviceInformationPairing.fromPtr(value);
   }
+}
+
+final class _IDeviceInformation2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Kind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Pairing;
 }

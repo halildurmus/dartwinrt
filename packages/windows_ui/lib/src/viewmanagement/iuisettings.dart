@@ -24,7 +24,10 @@ import 'uielementtype.dart';
 const IID_IUISettings = '{85361600-1c63-4627-bcb1-3a89e0bc9c55}';
 
 class IUISettings extends IInspectable {
-  IUISettings.fromPtr(super.ptr);
+  IUISettings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUISettingsVtbl>().ref;
+
+  final _IUISettingsVtbl _vtable;
 
   factory IUISettings.from(IInspectable interface) =>
       interface.cast(IUISettings.fromPtr, IID_IUISettings);
@@ -33,17 +36,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_HandPreference.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IUISettings extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CursorSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +68,9 @@ class IUISettings extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ScrollBarSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +84,9 @@ class IUISettings extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ScrollBarArrowSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -129,17 +100,9 @@ class IUISettings extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ScrollBarThumbBoxSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -153,17 +116,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MessageDuration.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -177,17 +132,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AnimationsEnabled.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -201,17 +148,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CaretBrowsingEnabled.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -225,17 +164,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_CaretBlinkRate.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -249,17 +180,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_CaretWidth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -273,17 +196,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DoubleClickTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -297,17 +212,9 @@ class IUISettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MouseHoverTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -321,21 +228,10 @@ class IUISettings extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(18)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int32 desiredElement,
-                                  Pointer<NativeColor> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int desiredElement,
-                          Pointer<NativeColor> value)>()(
-              lpVtbl, desiredElement.value, value);
+      final hr = _vtable.UIElementColor.asFunction<
+              int Function(VTablePointer lpVtbl, int desiredElement,
+                  Pointer<NativeColor> value)>()(
+          lpVtbl, desiredElement.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -344,4 +240,63 @@ class IUISettings extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IUISettingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_HandPreference;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativeSize> value)>> get_CursorSize;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeSize> value)>>
+      get_ScrollBarSize;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeSize> value)>>
+      get_ScrollBarArrowSize;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeSize> value)>>
+      get_ScrollBarThumbBoxSize;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MessageDuration;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AnimationsEnabled;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CaretBrowsingEnabled;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_CaretBlinkRate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_CaretWidth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_DoubleClickTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MouseHoverTime;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 desiredElement,
+              Pointer<NativeColor> value)>> UIElementColor;
 }

@@ -23,7 +23,11 @@ const IID_ILearningModelFeatureDescriptor =
     '{bc08cf7c-6ed0-4004-97ba-b9a2eecd2b4f}';
 
 class ILearningModelFeatureDescriptor extends IInspectable {
-  ILearningModelFeatureDescriptor.fromPtr(super.ptr);
+  ILearningModelFeatureDescriptor.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ILearningModelFeatureDescriptorVtbl>().ref;
+
+  final _ILearningModelFeatureDescriptorVtbl _vtable;
 
   factory ILearningModelFeatureDescriptor.from(IInspectable interface) =>
       interface.cast(ILearningModelFeatureDescriptor.fromPtr,
@@ -33,17 +37,9 @@ class ILearningModelFeatureDescriptor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Name.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +53,9 @@ class ILearningModelFeatureDescriptor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Description.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +69,9 @@ class ILearningModelFeatureDescriptor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Kind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +85,9 @@ class ILearningModelFeatureDescriptor extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsRequired.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -124,4 +96,24 @@ class ILearningModelFeatureDescriptor extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ILearningModelFeatureDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Name;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Description;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Kind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsRequired;
 }

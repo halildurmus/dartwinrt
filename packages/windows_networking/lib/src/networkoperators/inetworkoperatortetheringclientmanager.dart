@@ -23,7 +23,12 @@ const IID_INetworkOperatorTetheringClientManager =
     '{91b14016-8dca-4225-bbed-eef8b8d718d7}';
 
 class INetworkOperatorTetheringClientManager extends IInspectable {
-  INetworkOperatorTetheringClientManager.fromPtr(super.ptr);
+  INetworkOperatorTetheringClientManager.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringClientManagerVtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringClientManagerVtbl _vtable;
 
   factory INetworkOperatorTetheringClientManager.from(IInspectable interface) =>
       interface.cast(INetworkOperatorTetheringClientManager.fromPtr,
@@ -32,17 +37,9 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
   List<NetworkOperatorTetheringClient?> getTetheringClients() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetTetheringClients.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +51,12 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
             creator: NetworkOperatorTetheringClient.fromPtr)
         .toList();
   }
+}
+
+final class _INetworkOperatorTetheringClientManagerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetTetheringClients;
 }

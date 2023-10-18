@@ -24,7 +24,11 @@ const IID_IToastNotificationManagerForUser3 =
     '{3efcb176-6cc1-56dc-973b-251f7aacb1c5}';
 
 class IToastNotificationManagerForUser3 extends IInspectable {
-  IToastNotificationManagerForUser3.fromPtr(super.ptr);
+  IToastNotificationManagerForUser3.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IToastNotificationManagerForUser3Vtbl>().ref;
+
+  final _IToastNotificationManagerForUser3Vtbl _vtable;
 
   factory IToastNotificationManagerForUser3.from(IInspectable interface) =>
       interface.cast(IToastNotificationManagerForUser3.fromPtr,
@@ -34,17 +38,9 @@ class IToastNotificationManagerForUser3 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NotificationMode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +54,9 @@ class IToastNotificationManagerForUser3 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_NotificationModeChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,18 +67,25 @@ class IToastNotificationManagerForUser3 extends IInspectable {
   }
 
   void remove_NotificationModeChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_NotificationModeChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IToastNotificationManagerForUser3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NotificationMode;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_NotificationModeChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_NotificationModeChanged;
 }

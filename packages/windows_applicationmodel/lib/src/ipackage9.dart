@@ -23,7 +23,10 @@ import 'package.dart';
 const IID_IPackage9 = '{d5ab224f-d7e1-49ec-90ce-720cdbd02e9c}';
 
 class IPackage9 extends IInspectable {
-  IPackage9.fromPtr(super.ptr);
+  IPackage9.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackage9Vtbl>().ref;
+
+  final _IPackage9Vtbl _vtable;
 
   factory IPackage9.from(IInspectable interface) =>
       interface.cast(IPackage9.fromPtr, IID_IPackage9);
@@ -31,17 +34,9 @@ class IPackage9 extends IInspectable {
   IVector<Package?> findRelatedPackages(FindRelatedPackagesOptions? options) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer options, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer options,
-                Pointer<COMObject> result)>()(lpVtbl, options.lpVtbl, result);
+    final hr = _vtable.FindRelatedPackages.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer options,
+            Pointer<COMObject> result)>()(lpVtbl, options.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -57,17 +52,9 @@ class IPackage9 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_SourceUriSchemeName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -76,4 +63,16 @@ class IPackage9 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPackage9Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer options,
+              Pointer<COMObject> result)>> FindRelatedPackages;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_SourceUriSchemeName;
 }

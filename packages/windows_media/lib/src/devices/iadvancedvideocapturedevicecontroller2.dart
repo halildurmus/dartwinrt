@@ -34,7 +34,12 @@ const IID_IAdvancedVideoCaptureDeviceController2 =
     '{8bb94f8f-f11a-43db-b402-11930b80ae56}';
 
 class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController2.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController2Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController2Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController2.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController2.fromPtr,
@@ -43,17 +48,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   LowLagPhotoSequenceControl? get lowLagPhotoSequence {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LowLagPhotoSequence.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -71,17 +68,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   LowLagPhotoControl? get lowLagPhoto {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LowLagPhoto.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -99,17 +88,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   SceneModeControl? get sceneModeControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SceneModeControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -127,17 +108,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   TorchControl? get torchControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_TorchControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -155,17 +128,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   FlashControl? get flashControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FlashControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -183,17 +148,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   WhiteBalanceControl? get whiteBalanceControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WhiteBalanceControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -211,17 +168,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   ExposureControl? get exposureControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ExposureControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -239,17 +188,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   FocusControl? get focusControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FocusControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -267,17 +208,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   ExposureCompensationControl? get exposureCompensationControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ExposureCompensationControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -295,17 +228,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   IsoSpeedControl? get isoSpeedControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsoSpeedControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -323,17 +248,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   RegionsOfInterestControl? get regionsOfInterestControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RegionsOfInterestControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -352,17 +269,9 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PrimaryUse.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -373,16 +282,65 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   }
 
   set primaryUse(CaptureUse value) {
-    final hr = vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_PrimaryUse
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LowLagPhotoSequence;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LowLagPhoto;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SceneModeControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_TorchControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FlashControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WhiteBalanceControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ExposureControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FocusControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ExposureCompensationControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsoSpeedControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RegionsOfInterestControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_PrimaryUse;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_PrimaryUse;
 }

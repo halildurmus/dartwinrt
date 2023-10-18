@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IXmlLoadSettings = '{58aa07a8-fed6-46f7-b4c5-fb1ba72108d6}';
 
 class IXmlLoadSettings extends IInspectable {
-  IXmlLoadSettings.fromPtr(super.ptr);
+  IXmlLoadSettings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlLoadSettingsVtbl>().ref;
+
+  final _IXmlLoadSettingsVtbl _vtable;
 
   factory IXmlLoadSettings.from(IInspectable interface) =>
       interface.cast(IXmlLoadSettings.fromPtr, IID_IXmlLoadSettings);
@@ -29,17 +32,9 @@ class IXmlLoadSettings extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaxElementDepth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,17 +45,9 @@ class IXmlLoadSettings extends IInspectable {
   }
 
   set maxElementDepth(int value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_MaxElementDepth
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -69,17 +56,9 @@ class IXmlLoadSettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ProhibitDtd.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -90,13 +69,7 @@ class IXmlLoadSettings extends IInspectable {
   }
 
   set prohibitDtd(bool value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_ProhibitDtd
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -107,17 +80,9 @@ class IXmlLoadSettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ResolveExternals.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -128,13 +93,7 @@ class IXmlLoadSettings extends IInspectable {
   }
 
   set resolveExternals(bool value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_ResolveExternals
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -145,17 +104,9 @@ class IXmlLoadSettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ValidateOnParse.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -166,13 +117,7 @@ class IXmlLoadSettings extends IInspectable {
   }
 
   set validateOnParse(bool value) {
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_ValidateOnParse
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -183,17 +128,9 @@ class IXmlLoadSettings extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ElementContentWhiteSpace.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -204,16 +141,49 @@ class IXmlLoadSettings extends IInspectable {
   }
 
   set elementContentWhiteSpace(bool value) {
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_ElementContentWhiteSpace
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IXmlLoadSettingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaxElementDepth;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_MaxElementDepth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ProhibitDtd;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_ProhibitDtd;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ResolveExternals;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_ResolveExternals;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ValidateOnParse;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_ValidateOnParse;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_ElementContentWhiteSpace;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_ElementContentWhiteSpace;
 }

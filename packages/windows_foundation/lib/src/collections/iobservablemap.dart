@@ -16,25 +16,17 @@ import '../../internal.dart';
 interface class IObservableMap<K, V> extends IInspectable {
   IObservableMap.fromPtr(super.ptr);
 
+  late final _IObservableMapVtbl __vtable =
+      ptr.ref.vtable.cast<_IObservableMapVtbl>().ref;
+
   int add_MapChanged(Pointer<COMObject> vhnd) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer vhnd,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer vhnd,
-                          Pointer<IntPtr> retValuePtr)>()(
-              lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
+      final hr = __vtable.add_MapChanged.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer vhnd,
+                  Pointer<IntPtr> retValuePtr)>()(
+          lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -45,18 +37,21 @@ interface class IObservableMap<K, V> extends IInspectable {
   }
 
   void remove_MapChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = __vtable.remove_MapChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IObservableMapVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer vhnd,
+              Pointer<IntPtr> retValuePtr)>> add_MapChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_MapChanged;
 }

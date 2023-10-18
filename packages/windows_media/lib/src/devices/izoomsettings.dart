@@ -22,7 +22,10 @@ import 'zoomtransitionmode.dart';
 const IID_IZoomSettings = '{6ad66b24-14b4-4bfd-b18f-88fe24463b52}';
 
 class IZoomSettings extends IInspectable {
-  IZoomSettings.fromPtr(super.ptr);
+  IZoomSettings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IZoomSettingsVtbl>().ref;
+
+  final _IZoomSettingsVtbl _vtable;
 
   factory IZoomSettings.from(IInspectable interface) =>
       interface.cast(IZoomSettings.fromPtr, IID_IZoomSettings);
@@ -31,17 +34,9 @@ class IZoomSettings extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Mode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,13 +47,7 @@ class IZoomSettings extends IInspectable {
   }
 
   set mode(ZoomTransitionMode value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Mode
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -69,17 +58,9 @@ class IZoomSettings extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Value.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -90,16 +71,28 @@ class IZoomSettings extends IInspectable {
   }
 
   set value(double value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Float value)>>>()
-            .value
+    final hr = _vtable.put_Value
             .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IZoomSettingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Mode;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Mode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_Value;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Float value)>>
+      put_Value;
 }

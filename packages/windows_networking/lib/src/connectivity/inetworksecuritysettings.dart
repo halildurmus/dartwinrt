@@ -23,7 +23,10 @@ import 'networkencryptiontype.dart';
 const IID_INetworkSecuritySettings = '{7ca07e8d-917b-4b5f-b84d-28f7a5ac5402}';
 
 class INetworkSecuritySettings extends IInspectable {
-  INetworkSecuritySettings.fromPtr(super.ptr);
+  INetworkSecuritySettings.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INetworkSecuritySettingsVtbl>().ref;
+
+  final _INetworkSecuritySettingsVtbl _vtable;
 
   factory INetworkSecuritySettings.from(IInspectable interface) => interface
       .cast(INetworkSecuritySettings.fromPtr, IID_INetworkSecuritySettings);
@@ -32,17 +35,9 @@ class INetworkSecuritySettings extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NetworkAuthenticationType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class INetworkSecuritySettings extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NetworkEncryptionType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,4 +62,16 @@ class INetworkSecuritySettings extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _INetworkSecuritySettingsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NetworkAuthenticationType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NetworkEncryptionType;
 }

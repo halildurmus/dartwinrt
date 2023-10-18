@@ -23,7 +23,10 @@ import 'inputstreamoptions.dart';
 const IID_IInputStream = '{905a0fe2-bc53-11df-8c49-001e4fc686da}';
 
 class IInputStream extends IInspectable implements IClosable {
-  IInputStream.fromPtr(super.ptr);
+  IInputStream.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IInputStreamVtbl>().ref;
+
+  final _IInputStreamVtbl _vtable;
 
   factory IInputStream.from(IInspectable interface) =>
       interface.cast(IInputStream.fromPtr, IID_IInputStream);
@@ -32,21 +35,9 @@ class IInputStream extends IInspectable implements IClosable {
       IBuffer? buffer, int count, InputStreamOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer buffer,
-                            Uint32 count,
-                            Uint32 options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                    int count, int options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.ReadAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer, int count,
+                int options, Pointer<COMObject> operation)>()(
         lpVtbl, buffer.lpVtbl, count, options.value, operation);
 
     if (FAILED(hr)) {
@@ -61,4 +52,16 @@ class IInputStream extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IInputStreamVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer buffer,
+              Uint32 count,
+              Uint32 options,
+              Pointer<COMObject> operation)>> ReadAsync;
 }

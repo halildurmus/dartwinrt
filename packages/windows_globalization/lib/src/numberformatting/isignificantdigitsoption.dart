@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ISignificantDigitsOption = '{1d4dfcdd-2d43-4ee8-bbf1-c1b26a711a58}';
 
 class ISignificantDigitsOption extends IInspectable {
-  ISignificantDigitsOption.fromPtr(super.ptr);
+  ISignificantDigitsOption.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISignificantDigitsOptionVtbl>().ref;
+
+  final _ISignificantDigitsOptionVtbl _vtable;
 
   factory ISignificantDigitsOption.from(IInspectable interface) => interface
       .cast(ISignificantDigitsOption.fromPtr, IID_ISignificantDigitsOption);
@@ -29,17 +32,9 @@ class ISignificantDigitsOption extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_SignificantDigits.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,16 +45,21 @@ class ISignificantDigitsOption extends IInspectable {
   }
 
   set significantDigits(int value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_SignificantDigits
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ISignificantDigitsOptionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_SignificantDigits;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_SignificantDigits;
 }

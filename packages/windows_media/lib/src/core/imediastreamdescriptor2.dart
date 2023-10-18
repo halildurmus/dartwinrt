@@ -23,23 +23,18 @@ const IID_IMediaStreamDescriptor2 = '{5073010f-e8b2-4071-b00b-ebf337a76b58}';
 
 class IMediaStreamDescriptor2 extends IInspectable
     implements IMediaStreamDescriptor {
-  IMediaStreamDescriptor2.fromPtr(super.ptr);
+  IMediaStreamDescriptor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaStreamDescriptor2Vtbl>().ref;
+
+  final _IMediaStreamDescriptor2Vtbl _vtable;
 
   factory IMediaStreamDescriptor2.from(IInspectable interface) => interface
       .cast(IMediaStreamDescriptor2.fromPtr, IID_IMediaStreamDescriptor2);
 
   set label(String value) {
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Label
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -48,17 +43,9 @@ class IMediaStreamDescriptor2 extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Label.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,4 +71,15 @@ class IMediaStreamDescriptor2 extends IInspectable
 
   @override
   String get language => _iMediaStreamDescriptor.language;
+}
+
+final class _IMediaStreamDescriptor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Label;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Label;
 }

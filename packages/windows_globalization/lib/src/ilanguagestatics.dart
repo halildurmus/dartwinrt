@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguageStatics = '{b23cd557-0865-46d4-89b8-d59be8990f0d}';
 
 class ILanguageStatics extends IInspectable {
-  ILanguageStatics.fromPtr(super.ptr);
+  ILanguageStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguageStaticsVtbl>().ref;
+
+  final _ILanguageStaticsVtbl _vtable;
 
   factory ILanguageStatics.from(IInspectable interface) =>
       interface.cast(ILanguageStatics.fromPtr, IID_ILanguageStatics);
@@ -29,19 +32,9 @@ class ILanguageStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  IntPtr languageTag, Pointer<Bool> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int languageTag,
-                          Pointer<Bool> result)>()(
-              lpVtbl, languageTag.toHString(), result);
+      final hr = _vtable.IsWellFormed.asFunction<
+          int Function(VTablePointer lpVtbl, int languageTag,
+              Pointer<Bool> result)>()(lpVtbl, languageTag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +48,9 @@ class ILanguageStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_CurrentInputMethodLanguageTag.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,4 +59,16 @@ class ILanguageStatics extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ILanguageStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr languageTag,
+              Pointer<Bool> result)>> IsWellFormed;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_CurrentInputMethodLanguageTag;
 }

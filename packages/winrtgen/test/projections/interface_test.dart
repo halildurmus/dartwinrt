@@ -45,6 +45,10 @@ void main() {
       expect(icalendarProjection.classPreamble, isEmpty);
     });
 
+    test('has correct class name', () {
+      expect(icalendarProjection.className, equals('ICalendar'));
+    });
+
     test('has correct short name', () {
       expect(icalendarProjection.shortName, equals('ICalendar'));
     });
@@ -138,8 +142,13 @@ void main() {
       );
     });
 
-    test('has correct vtable start', () {
+    test('has correct v-table start', () {
       expect(icalendarProjection.vtableStart, equals(6));
+    });
+
+    test('has correct v-table field', () {
+      expect(icalendarProjection.vtableField,
+          equals('final _ICalendarVtbl _vtable;'));
     });
 
     test('has correct IID', () {
@@ -155,8 +164,11 @@ void main() {
     });
 
     test('has named constructor', () {
-      expect(icalendarProjection.namedConstructor,
-          equals('ICalendar.fromPtr(super.ptr);'));
+      expect(
+        icalendarProjection.namedConstructor,
+        equals(
+            'ICalendar.fromPtr(super.ptr) : _vtable = ptr.ref.vtable.cast<_ICalendarVtbl>().ref;'),
+      );
     });
 
     test('has correct number of methods', () {
@@ -170,6 +182,23 @@ void main() {
     test('has correct last method', () {
       expect(icalendarProjection.methodProjections.last.name,
           equals('get_IsDaylightSavingTime'));
+    });
+
+    test('has correct v-table', () {
+      final projection =
+          InterfaceProjection.fromType('Windows.Foundation.IAsyncInfo');
+      expect(
+        projection.vtable,
+        equals('''
+final class _IAsyncInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Id;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>> get_Status;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>> get_ErrorCode;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Cancel;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Close;
+}'''),
+      );
     });
   });
 }

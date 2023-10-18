@@ -22,17 +22,17 @@ const IID_IDirect3DDevice = '{a37624ab-8d5f-4650-9d3e-9eae3d9bc670}';
 /// This represents an IDXGIDevice, and can be used to interop between Windows
 /// Runtime components that need to exchange IDXGIDevice references.
 class IDirect3DDevice extends IInspectable implements IClosable {
-  IDirect3DDevice.fromPtr(super.ptr);
+  IDirect3DDevice.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDirect3DDeviceVtbl>().ref;
+
+  final _IDirect3DDeviceVtbl _vtable;
 
   factory IDirect3DDevice.from(IInspectable interface) =>
       interface.cast(IDirect3DDevice.fromPtr, IID_IDirect3DDevice);
 
   void trim() {
-    final hr = vtable
-        .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Trim.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -41,4 +41,9 @@ class IDirect3DDevice extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IDirect3DDeviceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Trim;
 }

@@ -21,7 +21,10 @@ import 'package:windows_system/windows_system.dart';
 const IID_IAppListEntry3 = '{6099f28d-fc32-470a-bc69-4b061a76ef2e}';
 
 class IAppListEntry3 extends IInspectable {
-  IAppListEntry3.fromPtr(super.ptr);
+  IAppListEntry3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppListEntry3Vtbl>().ref;
+
+  final _IAppListEntry3Vtbl _vtable;
 
   factory IAppListEntry3.from(IInspectable interface) =>
       interface.cast(IAppListEntry3.fromPtr, IID_IAppListEntry3);
@@ -29,21 +32,9 @@ class IAppListEntry3 extends IInspectable {
   Future<bool> launchForUserAsync(User? user) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, operation);
+    final hr = _vtable.LaunchForUserAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer user,
+            Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -53,4 +44,12 @@ class IAppListEntry3 extends IInspectable {
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IAppListEntry3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> operation)>> LaunchForUserAsync;
 }

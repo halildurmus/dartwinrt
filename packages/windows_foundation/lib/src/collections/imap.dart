@@ -214,6 +214,8 @@ abstract interface class IMap<K, V> extends IInspectable
     throw UnsupportedError('Unsupported key-value pair: ($K, $V)');
   }
 
+  late final _IMapVtbl __vtable = ptr.ref.vtable.cast<_IMapVtbl>().ref;
+
   /// Returns the item at the specified key in the map.
   V lookup(K key);
 
@@ -222,17 +224,9 @@ abstract interface class IMap<K, V> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.get_Size.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -249,17 +243,9 @@ abstract interface class IMap<K, V> extends IInspectable
   Map<K, V> getView() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
+    final hr = __vtable.GetView.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -283,11 +269,8 @@ abstract interface class IMap<K, V> extends IInspectable
 
   /// Removes all items from the map.
   void clear() {
-    final hr = vtable
-        .elementAt(12)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        __vtable.Clear.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -318,4 +301,37 @@ abstract interface class IMap<K, V> extends IInspectable
   /// If the key was already in the map, its associated value is changed.
   /// Otherwise the key/value pair is added to the map.
   void operator []=(K key, V value) => insert(key, value);
+}
+
+final class _IMapVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              /* T key, */
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              /* T key, */ Pointer<Bool> retValuePtr)>> HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> GetView;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              /* T key, */ VTablePointer value,
+              Pointer<Bool> retValuePtr)>> Insert;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl /* , T key */)>>
+      Remove;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
 }

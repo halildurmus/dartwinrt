@@ -24,7 +24,10 @@ const IID_IVideoStreamDescriptor = '{12ee0d55-9c2b-4440-8057-2c7a90f0cbec}';
 
 class IVideoStreamDescriptor extends IInspectable
     implements IMediaStreamDescriptor {
-  IVideoStreamDescriptor.fromPtr(super.ptr);
+  IVideoStreamDescriptor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoStreamDescriptorVtbl>().ref;
+
+  final _IVideoStreamDescriptorVtbl _vtable;
 
   factory IVideoStreamDescriptor.from(IInspectable interface) => interface.cast(
       IVideoStreamDescriptor.fromPtr, IID_IVideoStreamDescriptor);
@@ -32,17 +35,9 @@ class IVideoStreamDescriptor extends IInspectable
   VideoEncodingProperties? get encodingProperties {
     final encodingProperties = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> encodingProperties)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    Pointer<COMObject> encodingProperties)>()(
+    final hr = _vtable.get_EncodingProperties.asFunction<
+            int Function(
+                VTablePointer lpVtbl, Pointer<COMObject> encodingProperties)>()(
         lpVtbl, encodingProperties);
 
     if (FAILED(hr)) {
@@ -74,4 +69,13 @@ class IVideoStreamDescriptor extends IInspectable
 
   @override
   String get language => _iMediaStreamDescriptor.language;
+}
+
+final class _IVideoStreamDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> encodingProperties)>>
+      get_EncodingProperties;
 }

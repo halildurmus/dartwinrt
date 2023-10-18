@@ -22,7 +22,10 @@ import 'sphericalvideoframeformat.dart';
 const IID_IVideoEncodingProperties4 = '{724ef014-c10c-40f2-9d72-3ee13b45fa8e}';
 
 class IVideoEncodingProperties4 extends IInspectable {
-  IVideoEncodingProperties4.fromPtr(super.ptr);
+  IVideoEncodingProperties4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoEncodingProperties4Vtbl>().ref;
+
+  final _IVideoEncodingProperties4Vtbl _vtable;
 
   factory IVideoEncodingProperties4.from(IInspectable interface) => interface
       .cast(IVideoEncodingProperties4.fromPtr, IID_IVideoEncodingProperties4);
@@ -31,17 +34,9 @@ class IVideoEncodingProperties4 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_SphericalVideoFrameFormat.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IVideoEncodingProperties4 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IVideoEncodingProperties4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_SphericalVideoFrameFormat;
 }

@@ -23,7 +23,10 @@ const IID_IRandomAccessStreamReference =
     '{33ee3134-1dd6-4e3a-8067-d1c162e8642b}';
 
 class IRandomAccessStreamReference extends IInspectable {
-  IRandomAccessStreamReference.fromPtr(super.ptr);
+  IRandomAccessStreamReference.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IRandomAccessStreamReferenceVtbl>().ref;
+
+  final _IRandomAccessStreamReferenceVtbl _vtable;
 
   factory IRandomAccessStreamReference.from(IInspectable interface) =>
       interface.cast(IRandomAccessStreamReference.fromPtr,
@@ -32,17 +35,9 @@ class IRandomAccessStreamReference extends IInspectable {
   Future<IRandomAccessStreamWithContentType?> openReadAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.OpenReadAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -54,4 +49,13 @@ class IRandomAccessStreamReference extends IInspectable {
             creator: IRandomAccessStreamWithContentType.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IRandomAccessStreamReferenceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      OpenReadAsync;
 }

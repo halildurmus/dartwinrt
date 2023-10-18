@@ -28,7 +28,11 @@ const IID_IFileRandomAccessStreamStatics =
     '{73550107-3b57-4b5d-8345-554d2fc621f0}';
 
 class IFileRandomAccessStreamStatics extends IInspectable {
-  IFileRandomAccessStreamStatics.fromPtr(super.ptr);
+  IFileRandomAccessStreamStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IFileRandomAccessStreamStaticsVtbl>().ref;
+
+  final _IFileRandomAccessStreamStaticsVtbl _vtable;
 
   factory IFileRandomAccessStreamStatics.from(IInspectable interface) =>
       interface.cast(IFileRandomAccessStreamStatics.fromPtr,
@@ -38,17 +42,9 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
-                            Int32 accessMode, Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int filePath, int accessMode,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int filePath, int accessMode,
+                Pointer<COMObject> operation)>()(
         lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
@@ -69,27 +65,14 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr filePath,
-                            Int32 accessMode,
-                            Uint32 sharingOptions,
-                            Int32 openDisposition,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int filePath,
-                    int accessMode,
-                    int sharingOptions,
-                    int openDisposition,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenWithOptionsAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int filePath,
+                int accessMode,
+                int sharingOptions,
+                int openDisposition,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         filePath.toHString(),
         accessMode.value,
@@ -111,17 +94,9 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   Future<StorageStreamTransaction?> openTransactedWriteAsync(String filePath) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int filePath,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenTransactedWriteAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int filePath,
+                Pointer<COMObject> operation)>()(
         lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -141,25 +116,9 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr filePath,
-                            Uint32 openOptions,
-                            Int32 openDisposition,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int filePath,
-                    int openOptions,
-                    int openDisposition,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenTransactedWriteWithOptionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int filePath, int openOptions,
+                int openDisposition, Pointer<COMObject> operation)>()(
         lpVtbl,
         filePath.toHString(),
         openOptions.value,
@@ -181,25 +140,9 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       User? user, String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr filePath,
-                            Int32 accessMode,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    int filePath,
-                    int accessMode,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int filePath,
+                int accessMode, Pointer<COMObject> operation)>()(
         lpVtbl, user.lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
@@ -221,29 +164,15 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr filePath,
-                            Int32 accessMode,
-                            Uint32 sharingOptions,
-                            Int32 openDisposition,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    int filePath,
-                    int accessMode,
-                    int sharingOptions,
-                    int openDisposition,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenForUserWithOptionsAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                int filePath,
+                int accessMode,
+                int sharingOptions,
+                int openDisposition,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         user.lpVtbl,
         filePath.toHString(),
@@ -267,22 +196,10 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       User? user, String filePath) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                IntPtr filePath,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int filePath, Pointer<COMObject> operation)>()(
-            lpVtbl, user.lpVtbl, filePath.toHString(), operation);
+    final hr = _vtable.OpenTransactedWriteForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user, int filePath,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -302,27 +219,14 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr filePath,
-                            Uint32 openOptions,
-                            Int32 openDisposition,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    int filePath,
-                    int openOptions,
-                    int openDisposition,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenTransactedWriteForUserWithOptionsAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                int filePath,
+                int openOptions,
+                int openDisposition,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         user.lpVtbl,
         filePath.toHString(),
@@ -340,4 +244,69 @@ class IFileRandomAccessStreamStatics extends IInspectable {
         creator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IFileRandomAccessStreamStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
+              Int32 accessMode, Pointer<COMObject> operation)>> OpenAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr filePath,
+              Int32 accessMode,
+              Uint32 sharingOptions,
+              Int32 openDisposition,
+              Pointer<COMObject> operation)>> OpenWithOptionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
+              Pointer<COMObject> operation)>> OpenTransactedWriteAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr filePath,
+                  Uint32 openOptions,
+                  Int32 openDisposition,
+                  Pointer<COMObject> operation)>>
+      OpenTransactedWriteWithOptionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr filePath,
+              Int32 accessMode,
+              Pointer<COMObject> operation)>> OpenForUserAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr filePath,
+              Int32 accessMode,
+              Uint32 sharingOptions,
+              Int32 openDisposition,
+              Pointer<COMObject> operation)>> OpenForUserWithOptionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              IntPtr filePath,
+              Pointer<COMObject> operation)>> OpenTransactedWriteForUserAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer user,
+                  IntPtr filePath,
+                  Uint32 openOptions,
+                  Int32 openDisposition,
+                  Pointer<COMObject> operation)>>
+      OpenTransactedWriteForUserWithOptionsAsync;
 }

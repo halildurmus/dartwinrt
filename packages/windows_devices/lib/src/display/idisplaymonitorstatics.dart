@@ -22,7 +22,10 @@ import 'displaymonitor.dart';
 const IID_IDisplayMonitorStatics = '{6eae698f-a228-4c05-821d-b695d667de8e}';
 
 class IDisplayMonitorStatics extends IInspectable {
-  IDisplayMonitorStatics.fromPtr(super.ptr);
+  IDisplayMonitorStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDisplayMonitorStaticsVtbl>().ref;
+
+  final _IDisplayMonitorStaticsVtbl _vtable;
 
   factory IDisplayMonitorStatics.from(IInspectable interface) => interface.cast(
       IDisplayMonitorStatics.fromPtr, IID_IDisplayMonitorStatics);
@@ -31,17 +34,9 @@ class IDisplayMonitorStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetDeviceSelector.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class IDisplayMonitorStatics extends IInspectable {
   Future<DisplayMonitor?> fromIdAsync(String deviceId) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int deviceId,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.FromIdAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int deviceId,
+                Pointer<COMObject> operation)>()(
         lpVtbl, deviceId.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -80,19 +67,9 @@ class IDisplayMonitorStatics extends IInspectable {
   Future<DisplayMonitor?> fromInterfaceIdAsync(String deviceInterfaceId) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr deviceInterfaceId,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int deviceInterfaceId,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.FromInterfaceIdAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int deviceInterfaceId,
+                Pointer<COMObject> operation)>()(
         lpVtbl, deviceInterfaceId.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -104,4 +81,20 @@ class IDisplayMonitorStatics extends IInspectable {
         creator: DisplayMonitor.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IDisplayMonitorStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      GetDeviceSelector;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId,
+              Pointer<COMObject> operation)>> FromIdAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr deviceInterfaceId,
+              Pointer<COMObject> operation)>> FromInterfaceIdAsync;
 }

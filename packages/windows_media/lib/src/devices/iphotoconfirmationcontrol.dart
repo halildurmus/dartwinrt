@@ -22,7 +22,10 @@ import '../mediaproperties/mediapixelformat.dart';
 const IID_IPhotoConfirmationControl = '{c8f3f363-ff5e-4582-a9a8-0550f85a4a76}';
 
 class IPhotoConfirmationControl extends IInspectable {
-  IPhotoConfirmationControl.fromPtr(super.ptr);
+  IPhotoConfirmationControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhotoConfirmationControlVtbl>().ref;
+
+  final _IPhotoConfirmationControlVtbl _vtable;
 
   factory IPhotoConfirmationControl.from(IInspectable interface) => interface
       .cast(IPhotoConfirmationControl.fromPtr, IID_IPhotoConfirmationControl);
@@ -31,17 +34,9 @@ class IPhotoConfirmationControl extends IInspectable {
     final pbSupported = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> pbSupported)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> pbSupported)>()(lpVtbl, pbSupported);
+      final hr = _vtable.get_Supported.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Bool> pbSupported)>()(
+          lpVtbl, pbSupported);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IPhotoConfirmationControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Enabled.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -76,13 +63,7 @@ class IPhotoConfirmationControl extends IInspectable {
   }
 
   set enabled(bool value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_Enabled
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -93,17 +74,9 @@ class IPhotoConfirmationControl extends IInspectable {
     final format = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> format)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> format)>()(
-          lpVtbl, format);
+      final hr = _vtable.get_PixelFormat.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> format)>()(lpVtbl, format);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -114,18 +87,32 @@ class IPhotoConfirmationControl extends IInspectable {
   }
 
   set pixelFormat(MediaPixelFormat format) {
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Int32 format)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int format)>()(
-            lpVtbl, format.value);
+    final hr = _vtable.put_PixelFormat
+            .asFunction<int Function(VTablePointer lpVtbl, int format)>()(
+        lpVtbl, format.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IPhotoConfirmationControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Bool> pbSupported)>> get_Supported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Enabled;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_Enabled;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> format)>>
+      get_PixelFormat;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 format)>>
+      put_PixelFormat;
 }

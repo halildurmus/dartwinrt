@@ -23,7 +23,11 @@ const IID_IJapanesePhoneticAnalyzerStatics =
     '{88ab9e90-93de-41b2-b4d5-8edb227fd1c2}';
 
 class IJapanesePhoneticAnalyzerStatics extends IInspectable {
-  IJapanesePhoneticAnalyzerStatics.fromPtr(super.ptr);
+  IJapanesePhoneticAnalyzerStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IJapanesePhoneticAnalyzerStaticsVtbl>().ref;
+
+  final _IJapanesePhoneticAnalyzerStaticsVtbl _vtable;
 
   factory IJapanesePhoneticAnalyzerStatics.from(IInspectable interface) =>
       interface.cast(IJapanesePhoneticAnalyzerStatics.fromPtr,
@@ -32,18 +36,9 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
   List<JapanesePhoneme?> getWords(String input) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, input.toHString(), result);
+    final hr = _vtable.GetWords.asFunction<
+        int Function(VTablePointer lpVtbl, int input,
+            Pointer<COMObject> result)>()(lpVtbl, input.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -60,17 +55,9 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
       String input, bool monoRuby) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Bool monoRuby, Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int input, bool monoRuby,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.GetWordsWithMonoRubyOption.asFunction<
+            int Function(VTablePointer lpVtbl, int input, bool monoRuby,
+                Pointer<COMObject> result)>()(
         lpVtbl, input.toHString(), monoRuby, result);
 
     if (FAILED(hr)) {
@@ -83,4 +70,16 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             creator: JapanesePhoneme.fromPtr)
         .toList();
   }
+}
+
+final class _IJapanesePhoneticAnalyzerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr input,
+              Pointer<COMObject> result)>> GetWords;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr input, Bool monoRuby,
+              Pointer<COMObject> result)>> GetWordsWithMonoRubyOption;
 }

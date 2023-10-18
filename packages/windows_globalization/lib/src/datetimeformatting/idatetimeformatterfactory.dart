@@ -29,7 +29,10 @@ import 'yearformat.dart';
 const IID_IDateTimeFormatterFactory = '{ec8d8a53-1a2e-412d-8815-3b745fb1a2a0}';
 
 class IDateTimeFormatterFactory extends IInspectable {
-  IDateTimeFormatterFactory.fromPtr(super.ptr);
+  IDateTimeFormatterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDateTimeFormatterFactoryVtbl>().ref;
+
+  final _IDateTimeFormatterFactoryVtbl _vtable;
 
   factory IDateTimeFormatterFactory.from(IInspectable interface) => interface
       .cast(IDateTimeFormatterFactory.fromPtr, IID_IDateTimeFormatterFactory);
@@ -37,21 +40,10 @@ class IDateTimeFormatterFactory extends IInspectable {
   DateTimeFormatter createDateTimeFormatter(String formatTemplate) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr formatTemplate,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int formatTemplate,
-                        Pointer<COMObject> result)>()(
-            lpVtbl, formatTemplate.toHString(), result);
+    final hr = _vtable.CreateDateTimeFormatter.asFunction<
+            int Function(VTablePointer lpVtbl, int formatTemplate,
+                Pointer<COMObject> result)>()(
+        lpVtbl, formatTemplate.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -65,20 +57,9 @@ class IDateTimeFormatterFactory extends IInspectable {
       String formatTemplate, IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr formatTemplate,
-                            VTablePointer languages,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int formatTemplate,
-                    VTablePointer languages, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateDateTimeFormatterLanguages.asFunction<
+            int Function(VTablePointer lpVtbl, int formatTemplate,
+                VTablePointer languages, Pointer<COMObject> result)>()(
         lpVtbl, formatTemplate.toHString(), languages.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -97,29 +78,15 @@ class IDateTimeFormatterFactory extends IInspectable {
       String clock) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr formatTemplate,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            IntPtr calendar,
-                            IntPtr clock,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int formatTemplate,
-                    VTablePointer languages,
-                    int geographicRegion,
-                    int calendar,
-                    int clock,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateDateTimeFormatterContext.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int formatTemplate,
+                VTablePointer languages,
+                int geographicRegion,
+                int calendar,
+                int clock,
+                Pointer<COMObject> result)>()(
         lpVtbl,
         formatTemplate.toHString(),
         languages.lpVtbl,
@@ -143,27 +110,14 @@ class IDateTimeFormatterFactory extends IInspectable {
       DayOfWeekFormat dayOfWeekFormat) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 yearFormat,
-                            Int32 monthFormat,
-                            Int32 dayFormat,
-                            Int32 dayOfWeekFormat,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int yearFormat,
-                    int monthFormat,
-                    int dayFormat,
-                    int dayOfWeekFormat,
-                    Pointer<COMObject> result)>()(lpVtbl, yearFormat.value,
+    final hr = _vtable.CreateDateTimeFormatterDate.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int yearFormat,
+                int monthFormat,
+                int dayFormat,
+                int dayOfWeekFormat,
+                Pointer<COMObject> result)>()(lpVtbl, yearFormat.value,
         monthFormat.value, dayFormat.value, dayOfWeekFormat.value, result);
 
     if (FAILED(hr)) {
@@ -178,26 +132,10 @@ class IDateTimeFormatterFactory extends IInspectable {
       MinuteFormat minuteFormat, SecondFormat secondFormat) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 hourFormat,
-                            Int32 minuteFormat,
-                            Int32 secondFormat,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int hourFormat,
-                    int minuteFormat,
-                    int secondFormat,
-                    Pointer<COMObject> result)>()(lpVtbl, hourFormat.value,
-        minuteFormat.value, secondFormat.value, result);
+    final hr = _vtable.CreateDateTimeFormatterTime.asFunction<
+            int Function(VTablePointer lpVtbl, int hourFormat, int minuteFormat,
+                int secondFormat, Pointer<COMObject> result)>()(lpVtbl,
+        hourFormat.value, minuteFormat.value, secondFormat.value, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -218,35 +156,18 @@ class IDateTimeFormatterFactory extends IInspectable {
       IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 yearFormat,
-                            Int32 monthFormat,
-                            Int32 dayFormat,
-                            Int32 dayOfWeekFormat,
-                            Int32 hourFormat,
-                            Int32 minuteFormat,
-                            Int32 secondFormat,
-                            VTablePointer languages,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int yearFormat,
-                    int monthFormat,
-                    int dayFormat,
-                    int dayOfWeekFormat,
-                    int hourFormat,
-                    int minuteFormat,
-                    int secondFormat,
-                    VTablePointer languages,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateDateTimeFormatterDateTimeLanguages.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int yearFormat,
+                int monthFormat,
+                int dayFormat,
+                int dayOfWeekFormat,
+                int hourFormat,
+                int minuteFormat,
+                int secondFormat,
+                VTablePointer languages,
+                Pointer<COMObject> result)>()(
         lpVtbl,
         yearFormat.value,
         monthFormat.value,
@@ -280,41 +201,21 @@ class IDateTimeFormatterFactory extends IInspectable {
       String clock) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 yearFormat,
-                            Int32 monthFormat,
-                            Int32 dayFormat,
-                            Int32 dayOfWeekFormat,
-                            Int32 hourFormat,
-                            Int32 minuteFormat,
-                            Int32 secondFormat,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            IntPtr calendar,
-                            IntPtr clock,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int yearFormat,
-                    int monthFormat,
-                    int dayFormat,
-                    int dayOfWeekFormat,
-                    int hourFormat,
-                    int minuteFormat,
-                    int secondFormat,
-                    VTablePointer languages,
-                    int geographicRegion,
-                    int calendar,
-                    int clock,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateDateTimeFormatterDateTimeContext.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int yearFormat,
+                int monthFormat,
+                int dayFormat,
+                int dayOfWeekFormat,
+                int hourFormat,
+                int minuteFormat,
+                int secondFormat,
+                VTablePointer languages,
+                int geographicRegion,
+                int calendar,
+                int clock,
+                Pointer<COMObject> result)>()(
         lpVtbl,
         yearFormat.value,
         monthFormat.value,
@@ -336,4 +237,77 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     return DateTimeFormatter.fromPtr(result);
   }
+}
+
+final class _IDateTimeFormatterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr formatTemplate,
+              Pointer<COMObject> result)>> CreateDateTimeFormatter;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr formatTemplate,
+              VTablePointer languages,
+              Pointer<COMObject> result)>> CreateDateTimeFormatterLanguages;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr formatTemplate,
+              VTablePointer languages,
+              IntPtr geographicRegion,
+              IntPtr calendar,
+              IntPtr clock,
+              Pointer<COMObject> result)>> CreateDateTimeFormatterContext;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 yearFormat,
+              Int32 monthFormat,
+              Int32 dayFormat,
+              Int32 dayOfWeekFormat,
+              Pointer<COMObject> result)>> CreateDateTimeFormatterDate;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 hourFormat,
+              Int32 minuteFormat,
+              Int32 secondFormat,
+              Pointer<COMObject> result)>> CreateDateTimeFormatterTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  Int32 yearFormat,
+                  Int32 monthFormat,
+                  Int32 dayFormat,
+                  Int32 dayOfWeekFormat,
+                  Int32 hourFormat,
+                  Int32 minuteFormat,
+                  Int32 secondFormat,
+                  VTablePointer languages,
+                  Pointer<COMObject> result)>>
+      CreateDateTimeFormatterDateTimeLanguages;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  Int32 yearFormat,
+                  Int32 monthFormat,
+                  Int32 dayFormat,
+                  Int32 dayOfWeekFormat,
+                  Int32 hourFormat,
+                  Int32 minuteFormat,
+                  Int32 secondFormat,
+                  VTablePointer languages,
+                  IntPtr geographicRegion,
+                  IntPtr calendar,
+                  IntPtr clock,
+                  Pointer<COMObject> result)>>
+      CreateDateTimeFormatterDateTimeContext;
 }

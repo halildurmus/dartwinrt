@@ -23,7 +23,10 @@ import 'imagefeaturevalue.dart';
 const IID_IImageFeatureValueStatics = '{1bc317fd-23cb-4610-b085-c8e1c87ebaa0}';
 
 class IImageFeatureValueStatics extends IInspectable {
-  IImageFeatureValueStatics.fromPtr(super.ptr);
+  IImageFeatureValueStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IImageFeatureValueStaticsVtbl>().ref;
+
+  final _IImageFeatureValueStaticsVtbl _vtable;
 
   factory IImageFeatureValueStatics.from(IInspectable interface) => interface
       .cast(IImageFeatureValueStatics.fromPtr, IID_IImageFeatureValueStatics);
@@ -31,17 +34,9 @@ class IImageFeatureValueStatics extends IInspectable {
   ImageFeatureValue? createFromVideoFrame(VideoFrame? image) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer image,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer image,
-                Pointer<COMObject> result)>()(lpVtbl, image.lpVtbl, result);
+    final hr = _vtable.CreateFromVideoFrame.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer image,
+            Pointer<COMObject> result)>()(lpVtbl, image.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -55,4 +50,12 @@ class IImageFeatureValueStatics extends IInspectable {
 
     return ImageFeatureValue.fromPtr(result);
   }
+}
+
+final class _IImageFeatureValueStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer image,
+              Pointer<COMObject> result)>> CreateFromVideoFrame;
 }

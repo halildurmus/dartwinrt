@@ -25,7 +25,12 @@ const IID_IWwwFormUrlDecoderRuntimeClassFactory =
     '{5b8c6b3d-24ae-41b5-a1bf-f0c3d544845b}';
 
 class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
-  IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(super.ptr);
+  IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IWwwFormUrlDecoderRuntimeClassFactoryVtbl>()
+            .ref;
+
+  final _IWwwFormUrlDecoderRuntimeClassFactoryVtbl _vtable;
 
   factory IWwwFormUrlDecoderRuntimeClassFactory.from(IInspectable interface) =>
       interface.cast(IWwwFormUrlDecoderRuntimeClassFactory.fromPtr,
@@ -34,17 +39,9 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final instance = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr query,
-                            Pointer<COMObject> instance)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> instance)>()(
+    final hr = _vtable.CreateWwwFormUrlDecoder.asFunction<
+            int Function(VTablePointer lpVtbl, int query,
+                Pointer<COMObject> instance)>()(
         lpVtbl, query.toHString(), instance);
 
     if (FAILED(hr)) {
@@ -54,4 +51,12 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
 
     return WwwFormUrlDecoder.fromPtr(instance);
   }
+}
+
+final class _IWwwFormUrlDecoderRuntimeClassFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr query,
+              Pointer<COMObject> instance)>> CreateWwwFormUrlDecoder;
 }

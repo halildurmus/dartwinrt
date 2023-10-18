@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWebTokenRequest2 = '{d700c079-30c8-4397-9654-961c3be8b855}';
 
 class IWebTokenRequest2 extends IInspectable {
-  IWebTokenRequest2.fromPtr(super.ptr);
+  IWebTokenRequest2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebTokenRequest2Vtbl>().ref;
+
+  final _IWebTokenRequest2Vtbl _vtable;
 
   factory IWebTokenRequest2.from(IInspectable interface) =>
       interface.cast(IWebTokenRequest2.fromPtr, IID_IWebTokenRequest2);
@@ -28,18 +31,9 @@ class IWebTokenRequest2 extends IInspectable {
   IMap<String, String>? get appProperties {
     final requestProperties = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> requestProperties)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    Pointer<COMObject> requestProperties)>()(
-        lpVtbl, requestProperties);
+    final hr = _vtable.get_AppProperties.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> requestProperties)>()(lpVtbl, requestProperties);
 
     if (FAILED(hr)) {
       free(requestProperties);
@@ -54,4 +48,13 @@ class IWebTokenRequest2 extends IInspectable {
     return IMap.fromPtr(requestProperties,
         iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
   }
+}
+
+final class _IWebTokenRequest2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> requestProperties)>>
+      get_AppProperties;
 }

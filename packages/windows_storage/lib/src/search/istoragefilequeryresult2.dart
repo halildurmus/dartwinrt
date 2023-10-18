@@ -27,7 +27,10 @@ const IID_IStorageFileQueryResult2 = '{4e5db9dd-7141-46c4-8be3-e9dc9e27275c}';
 
 class IStorageFileQueryResult2 extends IInspectable
     implements IStorageQueryResultBase {
-  IStorageFileQueryResult2.fromPtr(super.ptr);
+  IStorageFileQueryResult2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFileQueryResult2Vtbl>().ref;
+
+  final _IStorageFileQueryResult2Vtbl _vtable;
 
   factory IStorageFileQueryResult2.from(IInspectable interface) => interface
       .cast(IStorageFileQueryResult2.fromPtr, IID_IStorageFileQueryResult2);
@@ -36,17 +39,9 @@ class IStorageFileQueryResult2 extends IInspectable
       StorageFile? file) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer file,
-                Pointer<COMObject> result)>()(lpVtbl, file.lpVtbl, result);
+    final hr = _vtable.GetMatchingPropertiesWithRanges.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer file,
+            Pointer<COMObject> result)>()(lpVtbl, file.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -95,4 +90,12 @@ class IStorageFileQueryResult2 extends IInspectable
   @override
   void applyNewQueryOptions(QueryOptions? newQueryOptions) =>
       _iStorageQueryResultBase.applyNewQueryOptions(newQueryOptions);
+}
+
+final class _IStorageFileQueryResult2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> result)>> GetMatchingPropertiesWithRanges;
 }

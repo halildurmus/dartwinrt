@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IFrameIsoSpeedControl = '{1a03efed-786a-4c75-a557-7ab9a85f588c}';
 
 class IFrameIsoSpeedControl extends IInspectable {
-  IFrameIsoSpeedControl.fromPtr(super.ptr);
+  IFrameIsoSpeedControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFrameIsoSpeedControlVtbl>().ref;
+
+  final _IFrameIsoSpeedControlVtbl _vtable;
 
   factory IFrameIsoSpeedControl.from(IInspectable interface) =>
       interface.cast(IFrameIsoSpeedControl.fromPtr, IID_IFrameIsoSpeedControl);
@@ -29,17 +32,9 @@ class IFrameIsoSpeedControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Auto.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,13 +45,7 @@ class IFrameIsoSpeedControl extends IInspectable {
   }
 
   set auto(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_Auto
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -66,17 +55,9 @@ class IFrameIsoSpeedControl extends IInspectable {
   int? get value {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Value.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -94,18 +75,29 @@ class IFrameIsoSpeedControl extends IInspectable {
   }
 
   set value(int? value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_Value.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IFrameIsoSpeedControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Auto;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_Auto;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Value;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_Value;
 }

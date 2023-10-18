@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IProxyConfiguration = '{ef3a60b4-9004-4dd6-b7d8-b3e502f4aad0}';
 
 class IProxyConfiguration extends IInspectable {
-  IProxyConfiguration.fromPtr(super.ptr);
+  IProxyConfiguration.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IProxyConfigurationVtbl>().ref;
+
+  final _IProxyConfigurationVtbl _vtable;
 
   factory IProxyConfiguration.from(IInspectable interface) =>
       interface.cast(IProxyConfiguration.fromPtr, IID_IProxyConfiguration);
@@ -28,17 +31,9 @@ class IProxyConfiguration extends IInspectable {
   List<Uri?>? get proxyUris {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ProxyUris.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IProxyConfiguration extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CanConnectDirectly.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,4 +65,16 @@ class IProxyConfiguration extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IProxyConfigurationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ProxyUris;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CanConnectDirectly;
 }

@@ -23,7 +23,10 @@ import 'devicewatchereventkind.dart';
 const IID_IDeviceWatcher2 = '{ff08456e-ed14-49e9-9a69-8117c54ae971}';
 
 class IDeviceWatcher2 extends IInspectable {
-  IDeviceWatcher2.fromPtr(super.ptr);
+  IDeviceWatcher2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceWatcher2Vtbl>().ref;
+
+  final _IDeviceWatcher2Vtbl _vtable;
 
   factory IDeviceWatcher2.from(IInspectable interface) =>
       interface.cast(IDeviceWatcher2.fromPtr, IID_IDeviceWatcher2);
@@ -32,21 +35,11 @@ class IDeviceWatcher2 extends IInspectable {
       IIterable<DeviceWatcherEventKind>? requestedEventKinds) {
     final trigger = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer requestedEventKinds,
-                            Pointer<COMObject> trigger)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer requestedEventKinds,
-                    Pointer<COMObject> trigger)>()(
+    final hr = _vtable.GetBackgroundTrigger.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer requestedEventKinds,
+                Pointer<COMObject> trigger)>()(
         lpVtbl, requestedEventKinds.lpVtbl, trigger);
 
     if (FAILED(hr)) {
@@ -61,4 +54,14 @@ class IDeviceWatcher2 extends IInspectable {
 
     return DeviceWatcherTrigger.fromPtr(trigger);
   }
+}
+
+final class _IDeviceWatcher2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer requestedEventKinds,
+              Pointer<COMObject> trigger)>> GetBackgroundTrigger;
 }

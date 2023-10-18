@@ -23,7 +23,10 @@ import 'videoframe.dart';
 const IID_IVideoFrame2 = '{3837840d-336c-4366-8d46-060798736c5d}';
 
 class IVideoFrame2 extends IInspectable {
-  IVideoFrame2.fromPtr(super.ptr);
+  IVideoFrame2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoFrame2Vtbl>().ref;
+
+  final _IVideoFrame2Vtbl _vtable;
 
   factory IVideoFrame2.from(IInspectable interface) =>
       interface.cast(IVideoFrame2.fromPtr, IID_IVideoFrame2);
@@ -32,25 +35,13 @@ class IVideoFrame2 extends IInspectable {
       BitmapBounds? sourceBounds, BitmapBounds? destinationBounds) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer frame,
-                            VTablePointer sourceBounds,
-                            VTablePointer destinationBounds,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer frame,
-                    VTablePointer sourceBounds,
-                    VTablePointer destinationBounds,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CopyToWithBoundsAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer frame,
+                VTablePointer sourceBounds,
+                VTablePointer destinationBounds,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         frame.lpVtbl,
         sourceBounds?.toReference().lpVtbl ?? nullptr,
@@ -64,4 +55,16 @@ class IVideoFrame2 extends IInspectable {
 
     return IAsyncAction.fromPtr(operation).toFuture();
   }
+}
+
+final class _IVideoFrame2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer frame,
+              VTablePointer sourceBounds,
+              VTablePointer destinationBounds,
+              Pointer<COMObject> operation)>> CopyToWithBoundsAsync;
 }

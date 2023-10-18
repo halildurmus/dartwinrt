@@ -23,7 +23,11 @@ const IID_ITimedMetadataEncodingProperties =
     '{51cd30d3-d690-4cfa-97f4-4a398e9db420}';
 
 class ITimedMetadataEncodingProperties extends IInspectable {
-  ITimedMetadataEncodingProperties.fromPtr(super.ptr);
+  ITimedMetadataEncodingProperties.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ITimedMetadataEncodingPropertiesVtbl>().ref;
+
+  final _ITimedMetadataEncodingPropertiesVtbl _vtable;
 
   factory ITimedMetadataEncodingProperties.from(IInspectable interface) =>
       interface.cast(ITimedMetadataEncodingProperties.fromPtr,
@@ -32,17 +36,9 @@ class ITimedMetadataEncodingProperties extends IInspectable {
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                        Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int valueSize,
-                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
+    final hr = _vtable.SetFormatUserData.asFunction<
+        int Function(VTablePointer lpVtbl, int valueSize,
+            Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -54,19 +50,9 @@ class ITimedMetadataEncodingProperties extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint8>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetFormatUserData.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,17 +66,9 @@ class ITimedMetadataEncodingProperties extends IInspectable {
   TimedMetadataEncodingProperties? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -104,4 +82,20 @@ class ITimedMetadataEncodingProperties extends IInspectable {
 
     return TimedMetadataEncodingProperties.fromPtr(result);
   }
+}
+
+final class _ITimedMetadataEncodingPropertiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+              Pointer<Uint8> value)>> SetFormatUserData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>> GetFormatUserData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

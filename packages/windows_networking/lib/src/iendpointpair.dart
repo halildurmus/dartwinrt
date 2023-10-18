@@ -22,7 +22,10 @@ import 'hostname.dart';
 const IID_IEndpointPair = '{33a0aa36-f8fa-4b30-b856-76517c3bd06d}';
 
 class IEndpointPair extends IInspectable {
-  IEndpointPair.fromPtr(super.ptr);
+  IEndpointPair.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IEndpointPairVtbl>().ref;
+
+  final _IEndpointPairVtbl _vtable;
 
   factory IEndpointPair.from(IInspectable interface) =>
       interface.cast(IEndpointPair.fromPtr, IID_IEndpointPair);
@@ -30,17 +33,9 @@ class IEndpointPair extends IInspectable {
   HostName? get localHostName {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LocalHostName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,17 +51,9 @@ class IEndpointPair extends IInspectable {
   }
 
   set localHostName(HostName? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_LocalHostName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -75,17 +62,9 @@ class IEndpointPair extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_LocalServiceName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -96,17 +75,9 @@ class IEndpointPair extends IInspectable {
   }
 
   set localServiceName(String value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_LocalServiceName
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -114,17 +85,9 @@ class IEndpointPair extends IInspectable {
   HostName? get remoteHostName {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RemoteHostName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -140,17 +103,9 @@ class IEndpointPair extends IInspectable {
   }
 
   set remoteHostName(HostName? value) {
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_RemoteHostName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -159,17 +114,9 @@ class IEndpointPair extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_RemoteServiceName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -180,18 +127,44 @@ class IEndpointPair extends IInspectable {
   }
 
   set remoteServiceName(String value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_RemoteServiceName
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IEndpointPairVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LocalHostName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_LocalHostName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_LocalServiceName;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_LocalServiceName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RemoteHostName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_RemoteHostName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_RemoteServiceName;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_RemoteServiceName;
 }

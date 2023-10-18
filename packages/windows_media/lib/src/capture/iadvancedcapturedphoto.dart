@@ -23,7 +23,10 @@ import 'capturedframe.dart';
 const IID_IAdvancedCapturedPhoto = '{f072728b-b292-4491-9d41-99807a550bbf}';
 
 class IAdvancedCapturedPhoto extends IInspectable {
-  IAdvancedCapturedPhoto.fromPtr(super.ptr);
+  IAdvancedCapturedPhoto.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAdvancedCapturedPhotoVtbl>().ref;
+
+  final _IAdvancedCapturedPhotoVtbl _vtable;
 
   factory IAdvancedCapturedPhoto.from(IInspectable interface) => interface.cast(
       IAdvancedCapturedPhoto.fromPtr, IID_IAdvancedCapturedPhoto);
@@ -31,17 +34,9 @@ class IAdvancedCapturedPhoto extends IInspectable {
   CapturedFrame? get frame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Frame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IAdvancedCapturedPhoto extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Mode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +70,9 @@ class IAdvancedCapturedPhoto extends IInspectable {
   Object? get context {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Context.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -107,4 +86,20 @@ class IAdvancedCapturedPhoto extends IInspectable {
 
     return IPropertyValue.fromPtr(value).value;
   }
+}
+
+final class _IAdvancedCapturedPhotoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Frame;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Mode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Context;
 }

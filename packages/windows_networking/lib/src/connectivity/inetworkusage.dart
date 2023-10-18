@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INetworkUsage = '{49da8fce-9985-4927-bf5b-072b5c65f8d9}';
 
 class INetworkUsage extends IInspectable {
-  INetworkUsage.fromPtr(super.ptr);
+  INetworkUsage.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INetworkUsageVtbl>().ref;
+
+  final _INetworkUsageVtbl _vtable;
 
   factory INetworkUsage.from(IInspectable interface) =>
       interface.cast(INetworkUsage.fromPtr, IID_INetworkUsage);
@@ -29,17 +32,9 @@ class INetworkUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BytesSent.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class INetworkUsage extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BytesReceived.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -77,17 +64,9 @@ class INetworkUsage extends IInspectable {
     final duration = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> duration)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> duration)>()(lpVtbl, duration);
+      final hr = _vtable.get_ConnectionDuration.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Int64> duration)>()(
+          lpVtbl, duration);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -96,4 +75,20 @@ class INetworkUsage extends IInspectable {
       free(duration);
     }
   }
+}
+
+final class _INetworkUsageVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_BytesSent;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_BytesReceived;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> duration)>>
+      get_ConnectionDuration;
 }

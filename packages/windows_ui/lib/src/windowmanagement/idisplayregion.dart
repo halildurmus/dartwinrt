@@ -23,7 +23,10 @@ import 'windowingenvironment.dart';
 const IID_IDisplayRegion = '{db50c3a2-4094-5f47-8cb1-ea01ddafaa94}';
 
 class IDisplayRegion extends IInspectable {
-  IDisplayRegion.fromPtr(super.ptr);
+  IDisplayRegion.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDisplayRegionVtbl>().ref;
+
+  final _IDisplayRegionVtbl _vtable;
 
   factory IDisplayRegion.from(IInspectable interface) =>
       interface.cast(IDisplayRegion.fromPtr, IID_IDisplayRegion);
@@ -32,17 +35,9 @@ class IDisplayRegion extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayMonitorDeviceId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class IDisplayRegion extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsVisible.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -80,17 +67,9 @@ class IDisplayRegion extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.get_WorkAreaOffset.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -104,17 +83,9 @@ class IDisplayRegion extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_WorkAreaSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -127,17 +98,9 @@ class IDisplayRegion extends IInspectable {
   WindowingEnvironment? get windowingEnvironment {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WindowingEnvironment.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -156,17 +119,9 @@ class IDisplayRegion extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_Changed.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -177,18 +132,43 @@ class IDisplayRegion extends IInspectable {
   }
 
   void remove_Changed(int token) {
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_Changed
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IDisplayRegionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayMonitorDeviceId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsVisible;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativePoint> value)>>
+      get_WorkAreaOffset;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeSize> value)>>
+      get_WorkAreaSize;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WindowingEnvironment;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_Changed;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_Changed;
 }

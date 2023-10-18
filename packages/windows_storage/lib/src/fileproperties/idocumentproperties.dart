@@ -23,7 +23,10 @@ const IID_IDocumentProperties = '{7eab19bc-1821-4923-b4a9-0aea404d0070}';
 
 class IDocumentProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  IDocumentProperties.fromPtr(super.ptr);
+  IDocumentProperties.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDocumentPropertiesVtbl>().ref;
+
+  final _IDocumentPropertiesVtbl _vtable;
 
   factory IDocumentProperties.from(IInspectable interface) =>
       interface.cast(IDocumentProperties.fromPtr, IID_IDocumentProperties);
@@ -31,17 +34,9 @@ class IDocumentProperties extends IInspectable
   IVector<String>? get author {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Author.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,17 +56,9 @@ class IDocumentProperties extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Title.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -82,17 +69,9 @@ class IDocumentProperties extends IInspectable
   }
 
   set title(String value) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Title
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -100,17 +79,9 @@ class IDocumentProperties extends IInspectable
   IVector<String>? get keywords {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Keywords.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -130,17 +101,9 @@ class IDocumentProperties extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Comment.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -151,17 +114,9 @@ class IDocumentProperties extends IInspectable
   }
 
   set comment(String value) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Comment
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -183,4 +138,30 @@ class IDocumentProperties extends IInspectable
   @override
   Future<void> savePropertiesAsyncOverloadDefault() =>
       _iStorageItemExtraProperties.savePropertiesAsyncOverloadDefault();
+}
+
+final class _IDocumentPropertiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Author;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Title;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Title;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Keywords;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Comment;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Comment;
 }

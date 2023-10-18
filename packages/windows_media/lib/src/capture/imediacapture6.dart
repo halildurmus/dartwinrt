@@ -24,7 +24,10 @@ import 'mediacapture.dart';
 const IID_IMediaCapture6 = '{228948bd-4b20-4bb1-9fd6-a583212a1012}';
 
 class IMediaCapture6 extends IInspectable {
-  IMediaCapture6.fromPtr(super.ptr);
+  IMediaCapture6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapture6Vtbl>().ref;
+
+  final _IMediaCapture6Vtbl _vtable;
 
   factory IMediaCapture6.from(IInspectable interface) =>
       interface.cast(IMediaCapture6.fromPtr, IID_IMediaCapture6);
@@ -34,14 +37,7 @@ class IMediaCapture6 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
+      final hr = _vtable.add_CaptureDeviceExclusiveControlStatusChanged
           .asFunction<
               int Function(VTablePointer lpVtbl, VTablePointer handler,
                   Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
@@ -55,17 +51,9 @@ class IMediaCapture6 extends IInspectable {
   }
 
   void remove_CaptureDeviceExclusiveControlStatusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_CaptureDeviceExclusiveControlStatusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -74,20 +62,9 @@ class IMediaCapture6 extends IInspectable {
       IIterable<MediaFrameSource?>? inputSources) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer inputSources,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer inputSources,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, inputSources.lpVtbl, value);
+    final hr = _vtable.CreateMultiSourceFrameReaderAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer inputSources,
+            Pointer<COMObject> value)>()(lpVtbl, inputSources.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -99,4 +76,20 @@ class IMediaCapture6 extends IInspectable {
             creator: MultiSourceMediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IMediaCapture6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+                  Pointer<IntPtr> token)>>
+      add_CaptureDeviceExclusiveControlStatusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_CaptureDeviceExclusiveControlStatusChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputSources,
+              Pointer<COMObject> value)>> CreateMultiSourceFrameReaderAsync;
 }

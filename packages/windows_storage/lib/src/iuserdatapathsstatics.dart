@@ -23,7 +23,10 @@ import 'userdatapaths.dart';
 const IID_IUserDataPathsStatics = '{01b29def-e062-48a1-8b0c-f2c7a9ca56c0}';
 
 class IUserDataPathsStatics extends IInspectable {
-  IUserDataPathsStatics.fromPtr(super.ptr);
+  IUserDataPathsStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUserDataPathsStaticsVtbl>().ref;
+
+  final _IUserDataPathsStaticsVtbl _vtable;
 
   factory IUserDataPathsStatics.from(IInspectable interface) =>
       interface.cast(IUserDataPathsStatics.fromPtr, IID_IUserDataPathsStatics);
@@ -31,17 +34,9 @@ class IUserDataPathsStatics extends IInspectable {
   UserDataPaths? getForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer user,
-                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
+    final hr = _vtable.GetForUser.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer user,
+            Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -59,17 +54,9 @@ class IUserDataPathsStatics extends IInspectable {
   UserDataPaths? getDefault() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetDefault.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -83,4 +70,16 @@ class IUserDataPathsStatics extends IInspectable {
 
     return UserDataPaths.fromPtr(result);
   }
+}
+
+final class _IUserDataPathsStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> result)>> GetForUser;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> GetDefault;
 }

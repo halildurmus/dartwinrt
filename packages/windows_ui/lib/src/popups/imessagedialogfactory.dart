@@ -22,7 +22,10 @@ import 'messagedialog.dart';
 const IID_IMessageDialogFactory = '{2d161777-a66f-4ea5-bb87-793ffa4941f2}';
 
 class IMessageDialogFactory extends IInspectable {
-  IMessageDialogFactory.fromPtr(super.ptr);
+  IMessageDialogFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMessageDialogFactoryVtbl>().ref;
+
+  final _IMessageDialogFactoryVtbl _vtable;
 
   factory IMessageDialogFactory.from(IInspectable interface) =>
       interface.cast(IMessageDialogFactory.fromPtr, IID_IMessageDialogFactory);
@@ -30,17 +33,9 @@ class IMessageDialogFactory extends IInspectable {
   MessageDialog create(String content) {
     final messageDialog = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr content,
-                            Pointer<COMObject> messageDialog)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int content,
-                    Pointer<COMObject> messageDialog)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int content,
+                Pointer<COMObject> messageDialog)>()(
         lpVtbl, content.toHString(), messageDialog);
 
     if (FAILED(hr)) {
@@ -54,17 +49,9 @@ class IMessageDialogFactory extends IInspectable {
   MessageDialog createWithTitle(String content, String title) {
     final messageDialog = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr content,
-                            IntPtr title, Pointer<COMObject> messageDialog)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int content, int title,
-                    Pointer<COMObject> messageDialog)>()(
+    final hr = _vtable.CreateWithTitle.asFunction<
+            int Function(VTablePointer lpVtbl, int content, int title,
+                Pointer<COMObject> messageDialog)>()(
         lpVtbl, content.toHString(), title.toHString(), messageDialog);
 
     if (FAILED(hr)) {
@@ -74,4 +61,16 @@ class IMessageDialogFactory extends IInspectable {
 
     return MessageDialog.fromPtr(messageDialog);
   }
+}
+
+final class _IMessageDialogFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr content,
+              Pointer<COMObject> messageDialog)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr content, IntPtr title,
+              Pointer<COMObject> messageDialog)>> CreateWithTitle;
 }

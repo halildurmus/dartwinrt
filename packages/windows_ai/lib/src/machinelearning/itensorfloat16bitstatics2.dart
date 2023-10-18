@@ -23,7 +23,10 @@ import 'tensorfloat16bit.dart';
 const IID_ITensorFloat16BitStatics2 = '{68545726-2dc7-51bf-b470-0b344cc2a1bc}';
 
 class ITensorFloat16BitStatics2 extends IInspectable {
-  ITensorFloat16BitStatics2.fromPtr(super.ptr);
+  ITensorFloat16BitStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorFloat16BitStatics2Vtbl>().ref;
+
+  final _ITensorFloat16BitStatics2Vtbl _vtable;
 
   factory ITensorFloat16BitStatics2.from(IInspectable interface) => interface
       .cast(ITensorFloat16BitStatics2.fromPtr, IID_ITensorFloat16BitStatics2);
@@ -34,27 +37,14 @@ class ITensorFloat16BitStatics2 extends IInspectable {
     final shapeArray = shape.toArray<Int64>();
     final dataArray = data.toArray<Float>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 shapeSize,
-                            Pointer<Int64> shape,
-                            Uint32 dataSize,
-                            Pointer<Float> data,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int shapeSize,
-                    Pointer<Int64> shape,
-                    int dataSize,
-                    Pointer<Float> data,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromShapeArrayAndDataArray.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int shapeSize,
+                Pointer<Int64> shape,
+                int dataSize,
+                Pointer<Float> data,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.length, shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
@@ -77,25 +67,13 @@ class ITensorFloat16BitStatics2 extends IInspectable {
     final result = calloc<COMObject>();
     final shapeArray = shape.toArray<Int64>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 shapeSize,
-                            Pointer<Int64> shape,
-                            VTablePointer buffer,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int shapeSize,
-                    Pointer<Int64> shape,
-                    VTablePointer buffer,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromBuffer.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int shapeSize,
+                Pointer<Int64> shape,
+                VTablePointer buffer,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.length, shapeArray, buffer.lpVtbl, result);
 
     free(shapeArray);
@@ -112,4 +90,25 @@ class ITensorFloat16BitStatics2 extends IInspectable {
 
     return TensorFloat16Bit.fromPtr(result);
   }
+}
+
+final class _ITensorFloat16BitStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 shapeSize,
+              Pointer<Int64> shape,
+              Uint32 dataSize,
+              Pointer<Float> data,
+              Pointer<COMObject> result)>> CreateFromShapeArrayAndDataArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 shapeSize,
+              Pointer<Int64> shape,
+              VTablePointer buffer,
+              Pointer<COMObject> result)>> CreateFromBuffer;
 }

@@ -22,7 +22,10 @@ import 'packagesignaturekind.dart';
 const IID_IPackage4 = '{65aed1ae-b95b-450c-882b-6255187f397e}';
 
 class IPackage4 extends IInspectable {
-  IPackage4.fromPtr(super.ptr);
+  IPackage4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackage4Vtbl>().ref;
+
+  final _IPackage4Vtbl _vtable;
 
   factory IPackage4.from(IInspectable interface) =>
       interface.cast(IPackage4.fromPtr, IID_IPackage4);
@@ -31,17 +34,9 @@ class IPackage4 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_SignatureKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IPackage4 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsOptional.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,17 +65,9 @@ class IPackage4 extends IInspectable {
   Future<bool> verifyContentIntegrityAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.VerifyContentIntegrityAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -98,4 +77,21 @@ class IPackage4 extends IInspectable {
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IPackage4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_SignatureKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsOptional;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      VerifyContentIntegrityAsync;
 }

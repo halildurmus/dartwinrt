@@ -27,7 +27,10 @@ const IID_IStorageItemProperties2 = '{8e86a951-04b9-4bd2-929d-fef3f71621d0}';
 
 class IStorageItemProperties2 extends IInspectable
     implements IStorageItemProperties {
-  IStorageItemProperties2.fromPtr(super.ptr);
+  IStorageItemProperties2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemProperties2Vtbl>().ref;
+
+  final _IStorageItemProperties2Vtbl _vtable;
 
   factory IStorageItemProperties2.from(IInspectable interface) => interface
       .cast(IStorageItemProperties2.fromPtr, IID_IStorageItemProperties2);
@@ -37,14 +40,8 @@ class IStorageItemProperties2 extends IInspectable
           ThumbnailMode mode) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 mode,
-                        Pointer<COMObject> operation)>>>()
-        .value
+    final hr = _vtable
+            .GetScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions
         .asFunction<
             int Function(VTablePointer lpVtbl, int mode,
                 Pointer<COMObject> operation)>()(lpVtbl, mode.value, operation);
@@ -66,20 +63,9 @@ class IStorageItemProperties2 extends IInspectable
     final operation = calloc<COMObject>();
 
     final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 mode,
-                                Uint32 requestedSize,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int mode,
-                        int requestedSize, Pointer<COMObject> operation)>()(
+        _vtable.GetScaledImageAsThumbnailAsyncOverloadDefaultOptions.asFunction<
+                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
+                    Pointer<COMObject> operation)>()(
             lpVtbl, mode.value, requestedSize, operation);
 
     if (FAILED(hr)) {
@@ -97,21 +83,9 @@ class IStorageItemProperties2 extends IInspectable
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 mode,
-                            Uint32 requestedSize,
-                            Uint32 options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
-                    int options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetScaledImageAsThumbnailAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int mode, int requestedSize,
+                int options, Pointer<COMObject> operation)>()(
         lpVtbl, mode.value, requestedSize, options.value, operation);
 
     if (FAILED(hr)) {
@@ -156,4 +130,26 @@ class IStorageItemProperties2 extends IInspectable
   @override
   StorageItemContentProperties? get properties =>
       _iStorageItemProperties.properties;
+}
+
+final class _IStorageItemProperties2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 mode,
+                  Pointer<COMObject> operation)>>
+      GetScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 mode,
+                  Uint32 requestedSize, Pointer<COMObject> operation)>>
+      GetScaledImageAsThumbnailAsyncOverloadDefaultOptions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 mode,
+              Uint32 requestedSize,
+              Uint32 options,
+              Pointer<COMObject> operation)>> GetScaledImageAsThumbnailAsync;
 }

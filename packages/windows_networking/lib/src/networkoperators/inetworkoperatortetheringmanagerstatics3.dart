@@ -25,7 +25,12 @@ const IID_INetworkOperatorTetheringManagerStatics3 =
     '{8fdaadb6-4af9-4f21-9b58-d53e9f24231e}';
 
 class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
-  INetworkOperatorTetheringManagerStatics3.fromPtr(super.ptr);
+  INetworkOperatorTetheringManagerStatics3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringManagerStatics3Vtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringManagerStatics3Vtbl _vtable;
 
   factory INetworkOperatorTetheringManagerStatics3.from(
           IInspectable interface) =>
@@ -36,20 +41,9 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
       ConnectionProfile? profile, NetworkAdapter? adapter) {
     final ppManager = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer profile,
-                            VTablePointer adapter,
-                            Pointer<COMObject> ppManager)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer profile,
-                    VTablePointer adapter, Pointer<COMObject> ppManager)>()(
+    final hr = _vtable.CreateFromConnectionProfileWithTargetAdapter.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer profile,
+                VTablePointer adapter, Pointer<COMObject> ppManager)>()(
         lpVtbl, profile.lpVtbl, adapter.lpVtbl, ppManager);
 
     if (FAILED(hr)) {
@@ -64,4 +58,13 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
 
     return NetworkOperatorTetheringManager.fromPtr(ppManager);
   }
+}
+
+final class _INetworkOperatorTetheringManagerStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer profile,
+                  VTablePointer adapter, Pointer<COMObject> ppManager)>>
+      CreateFromConnectionProfileWithTargetAdapter;
 }

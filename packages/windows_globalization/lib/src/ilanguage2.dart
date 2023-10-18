@@ -22,7 +22,10 @@ import 'languagelayoutdirection.dart';
 const IID_ILanguage2 = '{6a47e5b5-d94d-4886-a404-a5a5b9d5b494}';
 
 class ILanguage2 extends IInspectable {
-  ILanguage2.fromPtr(super.ptr);
+  ILanguage2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguage2Vtbl>().ref;
+
+  final _ILanguage2Vtbl _vtable;
 
   factory ILanguage2.from(IInspectable interface) =>
       interface.cast(ILanguage2.fromPtr, IID_ILanguage2);
@@ -31,17 +34,9 @@ class ILanguage2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LayoutDirection.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class ILanguage2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ILanguage2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LayoutDirection;
 }

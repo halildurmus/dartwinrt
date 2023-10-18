@@ -24,7 +24,10 @@ import 'webtokenresponse.dart';
 const IID_IWebTokenRequestResult = '{c12a8305-d1f8-4483-8d54-38fe292784ff}';
 
 class IWebTokenRequestResult extends IInspectable {
-  IWebTokenRequestResult.fromPtr(super.ptr);
+  IWebTokenRequestResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IWebTokenRequestResultVtbl>().ref;
+
+  final _IWebTokenRequestResultVtbl _vtable;
 
   factory IWebTokenRequestResult.from(IInspectable interface) => interface.cast(
       IWebTokenRequestResult.fromPtr, IID_IWebTokenRequestResult);
@@ -32,17 +35,9 @@ class IWebTokenRequestResult extends IInspectable {
   List<WebTokenResponse?>? get responseData {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ResponseData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -64,17 +59,9 @@ class IWebTokenRequestResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ResponseStatus.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,17 +74,9 @@ class IWebTokenRequestResult extends IInspectable {
   WebProviderError? get responseError {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ResponseError.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -115,17 +94,9 @@ class IWebTokenRequestResult extends IInspectable {
   Future<void> invalidateCacheAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.InvalidateCacheAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -134,4 +105,25 @@ class IWebTokenRequestResult extends IInspectable {
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
+}
+
+final class _IWebTokenRequestResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ResponseData;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ResponseStatus;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ResponseError;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      InvalidateCacheAsync;
 }

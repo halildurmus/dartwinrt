@@ -22,7 +22,10 @@ const IID_IScheduledToastNotification =
     '{79f577f8-0de7-48cd-9740-9b370490c838}';
 
 class IScheduledToastNotification extends IInspectable {
-  IScheduledToastNotification.fromPtr(super.ptr);
+  IScheduledToastNotification.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IScheduledToastNotificationVtbl>().ref;
+
+  final _IScheduledToastNotificationVtbl _vtable;
 
   factory IScheduledToastNotification.from(IInspectable interface) =>
       interface.cast(
@@ -31,17 +34,9 @@ class IScheduledToastNotification extends IInspectable {
   XmlDocument? get content {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Content.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IScheduledToastNotification extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DeliveryTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +70,9 @@ class IScheduledToastNotification extends IInspectable {
   Duration? get snoozeInterval {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SnoozeInterval.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -114,17 +93,9 @@ class IScheduledToastNotification extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaximumSnoozeCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -135,17 +106,9 @@ class IScheduledToastNotification extends IInspectable {
   }
 
   set id(String value) {
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Id
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -154,17 +117,9 @@ class IScheduledToastNotification extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -173,4 +128,31 @@ class IScheduledToastNotification extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IScheduledToastNotificationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Content;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_DeliveryTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SnoozeInterval;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaximumSnoozeCount;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Id;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
 }

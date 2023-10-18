@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IContentTypeProvider = '{97d098a5-3b99-4de9-88a5-e11d2f50c795}';
 
 class IContentTypeProvider extends IInspectable {
-  IContentTypeProvider.fromPtr(super.ptr);
+  IContentTypeProvider.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IContentTypeProviderVtbl>().ref;
+
+  final _IContentTypeProviderVtbl _vtable;
 
   factory IContentTypeProvider.from(IInspectable interface) =>
       interface.cast(IContentTypeProvider.fromPtr, IID_IContentTypeProvider);
@@ -29,17 +32,9 @@ class IContentTypeProvider extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ContentType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IContentTypeProvider extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IContentTypeProviderVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ContentType;
 }

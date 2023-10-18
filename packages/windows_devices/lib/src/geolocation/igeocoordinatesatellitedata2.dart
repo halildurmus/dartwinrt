@@ -21,7 +21,10 @@ const IID_IGeocoordinateSatelliteData2 =
     '{761c8cfd-a19d-5a51-80f5-71676115483e}';
 
 class IGeocoordinateSatelliteData2 extends IInspectable {
-  IGeocoordinateSatelliteData2.fromPtr(super.ptr);
+  IGeocoordinateSatelliteData2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeocoordinateSatelliteData2Vtbl>().ref;
+
+  final _IGeocoordinateSatelliteData2Vtbl _vtable;
 
   factory IGeocoordinateSatelliteData2.from(IInspectable interface) =>
       interface.cast(IGeocoordinateSatelliteData2.fromPtr,
@@ -30,17 +33,9 @@ class IGeocoordinateSatelliteData2 extends IInspectable {
   double? get geometricDilutionOfPrecision {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_GeometricDilutionOfPrecision.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IGeocoordinateSatelliteData2 extends IInspectable {
   double? get timeDilutionOfPrecision {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_TimeDilutionOfPrecision.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -86,4 +73,16 @@ class IGeocoordinateSatelliteData2 extends IInspectable {
             referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
         .value;
   }
+}
+
+final class _IGeocoordinateSatelliteData2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_GeometricDilutionOfPrecision;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_TimeDilutionOfPrecision;
 }

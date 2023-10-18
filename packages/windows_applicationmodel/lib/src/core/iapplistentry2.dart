@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAppListEntry2 = '{d0a618ad-bf35-42ac-ac06-86eeeb41d04b}';
 
 class IAppListEntry2 extends IInspectable {
-  IAppListEntry2.fromPtr(super.ptr);
+  IAppListEntry2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppListEntry2Vtbl>().ref;
+
+  final _IAppListEntry2Vtbl _vtable;
 
   factory IAppListEntry2.from(IInspectable interface) =>
       interface.cast(IAppListEntry2.fromPtr, IID_IAppListEntry2);
@@ -29,17 +32,9 @@ class IAppListEntry2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AppUserModelId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IAppListEntry2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAppListEntry2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AppUserModelId;
 }

@@ -24,7 +24,10 @@ import 'uisettings.dart';
 const IID_IUISettings3 = '{03021be4-5254-4781-8194-5168f7d06d7b}';
 
 class IUISettings3 extends IInspectable {
-  IUISettings3.fromPtr(super.ptr);
+  IUISettings3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUISettings3Vtbl>().ref;
+
+  final _IUISettings3Vtbl _vtable;
 
   factory IUISettings3.from(IInspectable interface) =>
       interface.cast(IUISettings3.fromPtr, IID_IUISettings3);
@@ -33,21 +36,9 @@ class IUISettings3 extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int32 desiredColor,
-                                  Pointer<NativeColor> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int desiredColor,
-                          Pointer<NativeColor> value)>()(
-              lpVtbl, desiredColor.value, value);
+      final hr = _vtable.GetColorValue.asFunction<
+          int Function(VTablePointer lpVtbl, int desiredColor,
+              Pointer<NativeColor> value)>()(lpVtbl, desiredColor.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,21 +52,9 @@ class IUISettings3 extends IInspectable {
     final cookie = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer handler,
-                                  Pointer<IntPtr> cookie)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer handler,
-                          Pointer<IntPtr> cookie)>()(
-              lpVtbl, handler.ref.lpVtbl, cookie);
+      final hr = _vtable.add_ColorValuesChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>()(lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -86,18 +65,25 @@ class IUISettings3 extends IInspectable {
   }
 
   void remove_ColorValuesChanged(int cookie) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr cookie)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
-            lpVtbl, cookie);
+    final hr = _vtable.remove_ColorValuesChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
+        lpVtbl, cookie);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IUISettings3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 desiredColor,
+              Pointer<NativeColor> value)>> GetColorValue;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> cookie)>> add_ColorValuesChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr cookie)>>
+      remove_ColorValuesChanged;
 }

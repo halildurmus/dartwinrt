@@ -262,6 +262,9 @@ abstract interface class IVectorView<T> extends IInspectable
     throw UnsupportedError('Unsupported type argument: $T');
   }
 
+  late final _IVectorViewVtbl __vtable =
+      ptr.ref.vtable.cast<_IVectorViewVtbl>().ref;
+
   /// Returns the item at the specified index in the vector view.
   T getAt(int index);
 
@@ -270,17 +273,9 @@ abstract interface class IVectorView<T> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.get_Size.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -334,4 +329,33 @@ abstract interface class IVectorView<T> extends IInspectable
   ///
   /// The default behavior is to return a normal growable list.
   List<T> operator +(List<T> other) => toList() + other;
+}
+
+final class _IVectorViewVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Uint32 index /* ,
+              Pointer<T> retValuePtr */
+              )>> GetAt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              /* T value, */
+              Pointer<Uint32> index,
+              Pointer<Bool> retValuePtr)>> IndexOf;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 itemsSize,
+              /*    Pointer<T> items, */
+              Pointer<Uint32> retValuePtr)>> GetMany;
 }

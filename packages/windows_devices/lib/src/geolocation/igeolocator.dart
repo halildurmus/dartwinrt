@@ -25,7 +25,10 @@ import 'positionstatus.dart';
 const IID_IGeolocator = '{a9c3bf62-4524-4989-8aa9-de019d2e551f}';
 
 class IGeolocator extends IInspectable {
-  IGeolocator.fromPtr(super.ptr);
+  IGeolocator.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeolocatorVtbl>().ref;
+
+  final _IGeolocatorVtbl _vtable;
 
   factory IGeolocator.from(IInspectable interface) =>
       interface.cast(IGeolocator.fromPtr, IID_IGeolocator);
@@ -34,17 +37,9 @@ class IGeolocator extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DesiredAccuracy.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,13 +50,7 @@ class IGeolocator extends IInspectable {
   }
 
   set desiredAccuracy(PositionAccuracy value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_DesiredAccuracy
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
@@ -72,17 +61,9 @@ class IGeolocator extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MovementThreshold.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -93,17 +74,9 @@ class IGeolocator extends IInspectable {
   }
 
   set movementThreshold(double value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_MovementThreshold
+            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -112,17 +85,9 @@ class IGeolocator extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ReportInterval.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,17 +98,9 @@ class IGeolocator extends IInspectable {
   }
 
   set reportInterval(int value) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_ReportInterval
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -152,17 +109,9 @@ class IGeolocator extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LocationStatus.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -175,17 +124,9 @@ class IGeolocator extends IInspectable {
   Future<Geoposition?> getGeopositionAsync() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetGeopositionAsync.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -201,17 +142,9 @@ class IGeolocator extends IInspectable {
       Duration maximumAge, Duration timeout) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 maximumAge,
-                            Int64 timeout, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int maximumAge, int timeout,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetGeopositionAsyncWithAgeAndTimeout.asFunction<
+            int Function(VTablePointer lpVtbl, int maximumAge, int timeout,
+                Pointer<COMObject> value)>()(
         lpVtbl, maximumAge.toWinRTDuration(), timeout.toWinRTDuration(), value);
 
     if (FAILED(hr)) {
@@ -228,17 +161,9 @@ class IGeolocator extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_PositionChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -249,17 +174,9 @@ class IGeolocator extends IInspectable {
   }
 
   void remove_PositionChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(16)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_PositionChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -268,17 +185,9 @@ class IGeolocator extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_StatusChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -289,18 +198,64 @@ class IGeolocator extends IInspectable {
   }
 
   void remove_StatusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(18)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_StatusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IGeolocatorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_DesiredAccuracy;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_DesiredAccuracy;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_MovementThreshold;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      put_MovementThreshold;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_ReportInterval;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_ReportInterval;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LocationStatus;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetGeopositionAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int64 maximumAge,
+              Int64 timeout,
+              Pointer<COMObject> value)>> GetGeopositionAsyncWithAgeAndTimeout;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_PositionChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_PositionChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_StatusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_StatusChanged;
 }

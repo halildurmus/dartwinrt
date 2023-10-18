@@ -24,7 +24,10 @@ import 'memorybuffer.dart';
 const IID_IMemoryBufferFactory = '{fbc4dd2b-245b-11e4-af98-689423260cf8}';
 
 class IMemoryBufferFactory extends IInspectable {
-  IMemoryBufferFactory.fromPtr(super.ptr);
+  IMemoryBufferFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMemoryBufferFactoryVtbl>().ref;
+
+  final _IMemoryBufferFactoryVtbl _vtable;
 
   factory IMemoryBufferFactory.from(IInspectable interface) =>
       interface.cast(IMemoryBufferFactory.fromPtr, IID_IMemoryBufferFactory);
@@ -32,17 +35,9 @@ class IMemoryBufferFactory extends IInspectable {
   MemoryBuffer create(int capacity) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int capacity,
-                Pointer<COMObject> value)>()(lpVtbl, capacity, value);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, int capacity,
+            Pointer<COMObject> value)>()(lpVtbl, capacity, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -51,4 +46,12 @@ class IMemoryBufferFactory extends IInspectable {
 
     return MemoryBuffer.fromPtr(value);
   }
+}
+
+final class _IMemoryBufferFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
+              Pointer<COMObject> value)>> Create;
 }

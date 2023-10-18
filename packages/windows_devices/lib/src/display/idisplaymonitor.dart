@@ -26,7 +26,10 @@ import 'displaymonitorusagekind.dart';
 const IID_IDisplayMonitor = '{1f6b15d4-1d01-4c51-87e2-6f954a772b59}';
 
 class IDisplayMonitor extends IInspectable {
-  IDisplayMonitor.fromPtr(super.ptr);
+  IDisplayMonitor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDisplayMonitorVtbl>().ref;
+
+  final _IDisplayMonitorVtbl _vtable;
 
   factory IDisplayMonitor.from(IInspectable interface) =>
       interface.cast(IDisplayMonitor.fromPtr, IID_IDisplayMonitor);
@@ -35,17 +38,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DeviceId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +54,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,17 +70,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ConnectionKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -107,17 +86,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PhysicalConnector.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -131,17 +102,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayAdapterDeviceId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -155,17 +118,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativeDisplayAdapterId>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeDisplayAdapterId> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeDisplayAdapterId> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DisplayAdapterId.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeDisplayAdapterId> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -179,17 +134,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayAdapterTargetId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -203,17 +150,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_UsageKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -227,17 +166,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativeSizeInt32>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeSizeInt32> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSizeInt32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NativeResolutionInRawPixels.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeSizeInt32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -250,17 +181,9 @@ class IDisplayMonitor extends IInspectable {
   Size? get physicalSizeInInches {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PhysicalSizeInInches.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -281,17 +204,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RawDpiX.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -305,17 +220,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RawDpiY.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -329,17 +236,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RedPrimary.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -353,17 +252,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.get_GreenPrimary.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -377,17 +268,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BluePrimary.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -401,17 +284,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.get_WhitePoint.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -425,17 +300,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_MaxLuminanceInNits.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -449,17 +316,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(23)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_MinLuminanceInNits.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -473,17 +332,9 @@ class IDisplayMonitor extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(24)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_MaxAverageFullFrameLuminanceInNits.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -498,23 +349,12 @@ class IDisplayMonitor extends IInspectable {
     final result = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-              .elementAt(25)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Int32 descriptorKind,
-                              Pointer<Uint32> resultSize,
-                              Pointer<Pointer<Uint8>> result)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int descriptorKind,
-                      Pointer<Uint32> resultSize,
-                      Pointer<Pointer<Uint8>> result)>()(
+      final hr = _vtable.GetDescriptor.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int descriptorKind,
+                  Pointer<Uint32> resultSize,
+                  Pointer<Pointer<Uint8>> result)>()(
           lpVtbl, descriptorKind.value, resultSize, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -525,4 +365,97 @@ class IDisplayMonitor extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IDisplayMonitorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DeviceId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ConnectionKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_PhysicalConnector;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayAdapterDeviceId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeDisplayAdapterId> value)>>
+      get_DisplayAdapterId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_DisplayAdapterTargetId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_UsageKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeSizeInt32> value)>>
+      get_NativeResolutionInRawPixels;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PhysicalSizeInInches;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_RawDpiX;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_RawDpiY;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativePoint> value)>>
+      get_RedPrimary;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativePoint> value)>>
+      get_GreenPrimary;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativePoint> value)>>
+      get_BluePrimary;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativePoint> value)>>
+      get_WhitePoint;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_MaxLuminanceInNits;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_MinLuminanceInNits;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_MaxAverageFullFrameLuminanceInNits;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 descriptorKind,
+              Pointer<Uint32> resultSize,
+              Pointer<Pointer<Uint8>> result)>> GetDescriptor;
 }

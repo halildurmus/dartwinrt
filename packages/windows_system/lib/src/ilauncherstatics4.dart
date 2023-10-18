@@ -27,7 +27,10 @@ import 'user.dart';
 const IID_ILauncherStatics4 = '{b9ec819f-b5a5-41c6-b3b3-dd1b3178bcf2}';
 
 class ILauncherStatics4 extends IInspectable {
-  ILauncherStatics4.fromPtr(super.ptr);
+  ILauncherStatics4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherStatics4Vtbl>().ref;
+
+  final _ILauncherStatics4Vtbl _vtable;
 
   factory ILauncherStatics4.from(IInspectable interface) =>
       interface.cast(ILauncherStatics4.fromPtr, IID_ILauncherStatics4);
@@ -35,21 +38,10 @@ class ILauncherStatics4 extends IInspectable {
   Future<LaunchQuerySupportStatus> queryAppUriSupportAsync(Uri? uri) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer uri,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+    final hr = _vtable.QueryAppUriSupportAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -66,20 +58,9 @@ class ILauncherStatics4 extends IInspectable {
       Uri? uri, String packageFamilyName) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer uri,
-                            IntPtr packageFamilyName,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer uri,
-                    int packageFamilyName, Pointer<COMObject> operation)>()(
+    final hr = _vtable.QueryAppUriSupportWithPackageFamilyNameAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                int packageFamilyName, Pointer<COMObject> operation)>()(
         lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
         packageFamilyName.toHString(),
@@ -99,21 +80,10 @@ class ILauncherStatics4 extends IInspectable {
   Future<List<AppInfo?>> findAppUriHandlersAsync(Uri? uri) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer uri,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
+    final hr = _vtable.FindAppUriHandlersAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -131,25 +101,10 @@ class ILauncherStatics4 extends IInspectable {
   Future<LaunchUriStatus> launchUriForUserAsync(User? user, Uri? uri) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                VTablePointer uri,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        VTablePointer uri, Pointer<COMObject> operation)>()(
-            lpVtbl,
-            user.lpVtbl,
-            uri?.toWinRTUri().lpVtbl ?? nullptr,
-            operation);
+    final hr = _vtable.LaunchUriForUserAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer user,
+                VTablePointer uri, Pointer<COMObject> operation)>()(
+        lpVtbl, user.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -165,25 +120,13 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            VTablePointer uri,
-                            VTablePointer options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    VTablePointer uri,
-                    VTablePointer options,
-                    Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
+    final hr = _vtable.LaunchUriWithOptionsForUserAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                VTablePointer uri,
+                VTablePointer options,
+                Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -200,27 +143,14 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            VTablePointer uri,
-                            VTablePointer options,
-                            VTablePointer inputData,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    VTablePointer uri,
-                    VTablePointer options,
-                    VTablePointer inputData,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchUriWithDataForUserAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                VTablePointer uri,
+                VTablePointer options,
+                VTablePointer inputData,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
@@ -242,25 +172,13 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            VTablePointer uri,
-                            VTablePointer options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    VTablePointer uri,
-                    VTablePointer options,
-                    Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
+    final hr = _vtable.LaunchUriForResultsForUserAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                VTablePointer uri,
+                VTablePointer options,
+                Pointer<COMObject> operation)>()(lpVtbl, user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -277,27 +195,14 @@ class ILauncherStatics4 extends IInspectable {
       User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            VTablePointer uri,
-                            VTablePointer options,
-                            VTablePointer inputData,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer user,
-                    VTablePointer uri,
-                    VTablePointer options,
-                    VTablePointer inputData,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.LaunchUriForResultsWithDataForUserAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer user,
+                VTablePointer uri,
+                VTablePointer options,
+                VTablePointer inputData,
+                Pointer<COMObject> operation)>()(
         lpVtbl,
         user.lpVtbl,
         uri?.toWinRTUri().lpVtbl ?? nullptr,
@@ -314,4 +219,63 @@ class ILauncherStatics4 extends IInspectable {
         creator: LaunchUriResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _ILauncherStatics4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> operation)>> QueryAppUriSupportAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+                  IntPtr packageFamilyName, Pointer<COMObject> operation)>>
+      QueryAppUriSupportWithPackageFamilyNameAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> operation)>> FindAppUriHandlersAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              VTablePointer uri,
+              Pointer<COMObject> operation)>> LaunchUriForUserAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              VTablePointer uri,
+              VTablePointer options,
+              Pointer<COMObject> operation)>> LaunchUriWithOptionsForUserAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              VTablePointer uri,
+              VTablePointer options,
+              VTablePointer inputData,
+              Pointer<COMObject> operation)>> LaunchUriWithDataForUserAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer user,
+              VTablePointer uri,
+              VTablePointer options,
+              Pointer<COMObject> operation)>> LaunchUriForResultsForUserAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer user,
+                  VTablePointer uri,
+                  VTablePointer options,
+                  VTablePointer inputData,
+                  Pointer<COMObject> operation)>>
+      LaunchUriForResultsWithDataForUserAsync;
 }

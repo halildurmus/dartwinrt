@@ -23,7 +23,10 @@ import 'helpers.dart';
 const IID_IUriEscapeStatics = '{c1d432ba-c824-4452-a7fd-512bc3bbe9a1}';
 
 class IUriEscapeStatics extends IInspectable {
-  IUriEscapeStatics.fromPtr(super.ptr);
+  IUriEscapeStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUriEscapeStaticsVtbl>().ref;
+
+  final _IUriEscapeStaticsVtbl _vtable;
 
   factory IUriEscapeStatics.from(IInspectable interface) =>
       interface.cast(IUriEscapeStatics.fromPtr, IID_IUriEscapeStatics);
@@ -32,19 +35,9 @@ class IUriEscapeStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  IntPtr toUnescape, Pointer<IntPtr> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int toUnescape,
-                          Pointer<IntPtr> value)>()(
-              lpVtbl, toUnescape.toHString(), value);
+      final hr = _vtable.UnescapeComponent.asFunction<
+          int Function(VTablePointer lpVtbl, int toUnescape,
+              Pointer<IntPtr> value)>()(lpVtbl, toUnescape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,19 +51,9 @@ class IUriEscapeStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  IntPtr toEscape, Pointer<IntPtr> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int toEscape,
-                          Pointer<IntPtr> value)>()(
-              lpVtbl, toEscape.toHString(), value);
+      final hr = _vtable.EscapeComponent.asFunction<
+          int Function(VTablePointer lpVtbl, int toEscape,
+              Pointer<IntPtr> value)>()(lpVtbl, toEscape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,4 +62,16 @@ class IUriEscapeStatics extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IUriEscapeStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr toUnescape,
+              Pointer<IntPtr> value)>> UnescapeComponent;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr toEscape,
+              Pointer<IntPtr> value)>> EscapeComponent;
 }

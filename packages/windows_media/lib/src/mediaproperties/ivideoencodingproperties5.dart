@@ -22,7 +22,10 @@ import 'videoencodingproperties.dart';
 const IID_IVideoEncodingProperties5 = '{4959080f-272f-4ece-a4df-c0ccdb33d840}';
 
 class IVideoEncodingProperties5 extends IInspectable {
-  IVideoEncodingProperties5.fromPtr(super.ptr);
+  IVideoEncodingProperties5.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoEncodingProperties5Vtbl>().ref;
+
+  final _IVideoEncodingProperties5Vtbl _vtable;
 
   factory IVideoEncodingProperties5.from(IInspectable interface) => interface
       .cast(IVideoEncodingProperties5.fromPtr, IID_IVideoEncodingProperties5);
@@ -30,17 +33,9 @@ class IVideoEncodingProperties5 extends IInspectable {
   VideoEncodingProperties? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,12 @@ class IVideoEncodingProperties5 extends IInspectable {
 
     return VideoEncodingProperties.fromPtr(result);
   }
+}
+
+final class _IVideoEncodingProperties5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

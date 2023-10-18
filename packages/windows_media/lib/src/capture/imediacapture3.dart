@@ -24,7 +24,10 @@ import 'mediacapture.dart';
 const IID_IMediaCapture3 = '{d4136f30-1564-466e-bc0a-af94e02ab016}';
 
 class IMediaCapture3 extends IInspectable {
-  IMediaCapture3.fromPtr(super.ptr);
+  IMediaCapture3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapture3Vtbl>().ref;
+
+  final _IMediaCapture3Vtbl _vtable;
 
   factory IMediaCapture3.from(IInspectable interface) =>
       interface.cast(IMediaCapture3.fromPtr, IID_IMediaCapture3);
@@ -33,21 +36,9 @@ class IMediaCapture3 extends IInspectable {
       prepareVariablePhotoSequenceCaptureAsync(ImageEncodingProperties? type) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer type,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer type,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, type.lpVtbl, operation);
+    final hr = _vtable.PrepareVariablePhotoSequenceCaptureAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer type,
+            Pointer<COMObject> operation)>()(lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -64,17 +55,9 @@ class IMediaCapture3 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_FocusChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +68,9 @@ class IMediaCapture3 extends IInspectable {
   }
 
   void remove_FocusChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_FocusChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -104,17 +79,9 @@ class IMediaCapture3 extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_PhotoConfirmationCaptured.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -125,18 +92,33 @@ class IMediaCapture3 extends IInspectable {
   }
 
   void remove_PhotoConfirmationCaptured(int token) {
-    final hr =
-        vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_PhotoConfirmationCaptured
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaCapture3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer type,
+                  Pointer<COMObject> operation)>>
+      PrepareVariablePhotoSequenceCaptureAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_FocusChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_FocusChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_PhotoConfirmationCaptured;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_PhotoConfirmationCaptured;
 }

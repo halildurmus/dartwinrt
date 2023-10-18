@@ -23,7 +23,11 @@ const IID_IAutomationConnectionBoundObject =
     '{5e8558fb-ca52-5b65-9830-dd2905816093}';
 
 class IAutomationConnectionBoundObject extends IInspectable {
-  IAutomationConnectionBoundObject.fromPtr(super.ptr);
+  IAutomationConnectionBoundObject.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IAutomationConnectionBoundObjectVtbl>().ref;
+
+  final _IAutomationConnectionBoundObjectVtbl _vtable;
 
   factory IAutomationConnectionBoundObject.from(IInspectable interface) =>
       interface.cast(IAutomationConnectionBoundObject.fromPtr,
@@ -32,17 +36,9 @@ class IAutomationConnectionBoundObject extends IInspectable {
   AutomationConnection? get connection {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Connection.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +52,12 @@ class IAutomationConnectionBoundObject extends IInspectable {
 
     return AutomationConnection.fromPtr(value);
   }
+}
+
+final class _IAutomationConnectionBoundObjectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Connection;
 }

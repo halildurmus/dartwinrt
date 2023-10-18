@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ISignedZeroOption = '{fd1cdd31-0a3c-49c4-a642-96a1564f4f30}';
 
 class ISignedZeroOption extends IInspectable {
-  ISignedZeroOption.fromPtr(super.ptr);
+  ISignedZeroOption.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISignedZeroOptionVtbl>().ref;
+
+  final _ISignedZeroOptionVtbl _vtable;
 
   factory ISignedZeroOption.from(IInspectable interface) =>
       interface.cast(ISignedZeroOption.fromPtr, IID_ISignedZeroOption);
@@ -29,17 +32,9 @@ class ISignedZeroOption extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsZeroSigned.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,16 +45,21 @@ class ISignedZeroOption extends IInspectable {
   }
 
   set isZeroSigned(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IsZeroSigned
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ISignedZeroOptionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsZeroSigned;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IsZeroSigned;
 }

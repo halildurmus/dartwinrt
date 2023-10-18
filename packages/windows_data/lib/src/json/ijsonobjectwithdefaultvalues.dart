@@ -29,7 +29,10 @@ const IID_IJsonObjectWithDefaultValues =
 
 class IJsonObjectWithDefaultValues extends IInspectable
     implements IJsonObject, IJsonValue {
-  IJsonObjectWithDefaultValues.fromPtr(super.ptr);
+  IJsonObjectWithDefaultValues.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IJsonObjectWithDefaultValuesVtbl>().ref;
+
+  final _IJsonObjectWithDefaultValuesVtbl _vtable;
 
   factory IJsonObjectWithDefaultValues.from(IInspectable interface) =>
       interface.cast(IJsonObjectWithDefaultValues.fromPtr,
@@ -38,23 +41,9 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr name,
-                            VTablePointer defaultValue,
-                            Pointer<COMObject> returnValue)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int name,
-                    VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
+    final hr = _vtable.GetNamedValueOrDefault.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                VTablePointer defaultValue, Pointer<COMObject> returnValue)>()(
         lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
@@ -73,23 +62,9 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonObject getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr name,
-                            VTablePointer defaultValue,
-                            Pointer<COMObject> returnValue)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int name,
-                    VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
+    final hr = _vtable.GetNamedObjectOrDefault.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                VTablePointer defaultValue, Pointer<COMObject> returnValue)>()(
         lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
@@ -104,22 +79,10 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final returnValue = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(8)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr name,
-                                  IntPtr defaultValue,
-                                  Pointer<IntPtr> returnValue)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int name,
-                          int defaultValue, Pointer<IntPtr> returnValue)>()(
-              lpVtbl, name.toHString(), defaultValue.toHString(), returnValue);
+      final hr = _vtable.GetNamedStringOrDefault.asFunction<
+              int Function(VTablePointer lpVtbl, int name, int defaultValue,
+                  Pointer<IntPtr> returnValue)>()(
+          lpVtbl, name.toHString(), defaultValue.toHString(), returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -132,23 +95,9 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonArray getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final returnValue = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr name,
-                            VTablePointer defaultValue,
-                            Pointer<COMObject> returnValue)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int name,
-                    VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
+    final hr = _vtable.GetNamedArrayOrDefault.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                VTablePointer defaultValue, Pointer<COMObject> returnValue)>()(
         lpVtbl, name.toHString(), defaultValue.lpVtbl, returnValue);
 
     if (FAILED(hr)) {
@@ -163,22 +112,10 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final returnValue = calloc<Double>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(10)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr name,
-                                  Double defaultValue,
-                                  Pointer<Double> returnValue)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int name,
-                          double defaultValue, Pointer<Double> returnValue)>()(
-              lpVtbl, name.toHString(), defaultValue, returnValue);
+      final hr = _vtable.GetNamedNumberOrDefault.asFunction<
+              int Function(VTablePointer lpVtbl, int name, double defaultValue,
+                  Pointer<Double> returnValue)>()(
+          lpVtbl, name.toHString(), defaultValue, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -192,17 +129,9 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final returnValue = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Bool defaultValue, Pointer<Bool> returnValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int name,
-                      bool defaultValue, Pointer<Bool> returnValue)>()(
+      final hr = _vtable.GetNamedBooleanOrDefault.asFunction<
+              int Function(VTablePointer lpVtbl, int name, bool defaultValue,
+                  Pointer<Bool> returnValue)>()(
           lpVtbl, name.toHString(), defaultValue, returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -259,4 +188,47 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   @override
   JsonObject getObject() => _iJsonValue.getObject();
+}
+
+final class _IJsonObjectWithDefaultValuesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr name,
+              VTablePointer defaultValue,
+              Pointer<COMObject> returnValue)>> GetNamedValueOrDefault;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr name,
+              VTablePointer defaultValue,
+              Pointer<COMObject> returnValue)>> GetNamedObjectOrDefault;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr name,
+              IntPtr defaultValue,
+              Pointer<IntPtr> returnValue)>> GetNamedStringOrDefault;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr name,
+              VTablePointer defaultValue,
+              Pointer<COMObject> returnValue)>> GetNamedArrayOrDefault;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr name,
+              Double defaultValue,
+              Pointer<Double> returnValue)>> GetNamedNumberOrDefault;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name, Bool defaultValue,
+              Pointer<Bool> returnValue)>> GetNamedBooleanOrDefault;
 }

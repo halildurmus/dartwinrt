@@ -22,7 +22,10 @@ import 'capturescenemode.dart';
 const IID_ISceneModeControl = '{d48e5af7-8d59-4854-8c62-12c70ba89b7c}';
 
 class ISceneModeControl extends IInspectable {
-  ISceneModeControl.fromPtr(super.ptr);
+  ISceneModeControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISceneModeControlVtbl>().ref;
+
+  final _ISceneModeControlVtbl _vtable;
 
   factory ISceneModeControl.from(IInspectable interface) =>
       interface.cast(ISceneModeControl.fromPtr, IID_ISceneModeControl);
@@ -30,17 +33,9 @@ class ISceneModeControl extends IInspectable {
   List<CaptureSceneMode>? get supportedModes {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedModes.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,17 +57,9 @@ class ISceneModeControl extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Value.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +72,9 @@ class ISceneModeControl extends IInspectable {
   Future<void> setValueAsync(CaptureSceneMode sceneMode) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 sceneMode,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int sceneMode,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.SetValueAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int sceneMode,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, sceneMode.value, asyncInfo);
 
     if (FAILED(hr)) {
@@ -105,4 +84,20 @@ class ISceneModeControl extends IInspectable {
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
+}
+
+final class _ISceneModeControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedModes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Value;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 sceneMode,
+              Pointer<COMObject> asyncInfo)>> SetValueAsync;
 }

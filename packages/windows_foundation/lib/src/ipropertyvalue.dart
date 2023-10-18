@@ -28,7 +28,10 @@ const IID_IPropertyValue = '{4bd682dd-7554-40e9-9a9b-82654ede7e62}';
 
 /// Represents a value in a property store.
 class IPropertyValue extends IInspectable {
-  IPropertyValue.fromPtr(super.ptr);
+  IPropertyValue.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPropertyValueVtbl>().ref;
+
+  final _IPropertyValueVtbl _vtable;
 
   factory IPropertyValue.from(IInspectable interface) =>
       interface.cast(IPropertyValue.fromPtr, IID_IPropertyValue);
@@ -37,17 +40,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Type.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +56,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsNumericScalar.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +72,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Uint8>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Uint8> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Uint8> value)>()(lpVtbl, value);
+      final hr = _vtable.GetUInt8.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint8> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -109,17 +88,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int16>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int16> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int16> value)>()(lpVtbl, value);
+      final hr = _vtable.GetInt16.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int16> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -133,17 +104,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Uint16>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint16> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetUInt16.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint16> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -157,17 +120,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.GetInt32.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -181,17 +136,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetUInt32.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -205,17 +152,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.GetInt64.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -229,17 +168,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetUInt64.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -253,17 +184,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.GetSingle.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -277,17 +200,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetDouble.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -301,17 +216,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Uint16>();
 
     try {
-      final hr = vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint16> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetChar16.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint16> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -325,17 +232,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.GetBoolean.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -349,17 +248,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -373,17 +264,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.GetGuid.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -397,17 +280,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.GetDateTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -421,17 +296,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.GetTimeSpan.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -445,17 +312,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<NativePoint>();
 
     try {
-      final hr = vtable
-          .elementAt(23)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativePoint> value)>()(lpVtbl, value);
+      final hr = _vtable.GetPoint.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativePoint> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -469,17 +328,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(24)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.GetSize.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -493,17 +344,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<NativeRect>();
 
     try {
-      final hr = vtable
-          .elementAt(25)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeRect> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeRect> value)>()(lpVtbl, value);
+      final hr = _vtable.GetRect.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeRect> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -518,19 +361,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-          .elementAt(26)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint8>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetUInt8Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -546,19 +379,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Int16>>();
 
     try {
-      final hr = vtable
-          .elementAt(27)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Int16>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Int16>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetInt16Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int16>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -574,19 +397,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Uint16>>();
 
     try {
-      final hr = vtable
-          .elementAt(28)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint16>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint16>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetUInt16Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint16>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -602,19 +415,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Int32>>();
 
     try {
-      final hr = vtable
-          .elementAt(29)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Int32>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Int32>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetInt32Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int32>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -630,19 +433,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Uint32>>();
 
     try {
-      final hr = vtable
-          .elementAt(30)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint32>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint32>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetUInt32Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint32>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -658,19 +451,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Int64>>();
 
     try {
-      final hr = vtable
-          .elementAt(31)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Int64>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetInt64Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -686,19 +469,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Uint64>>();
 
     try {
-      final hr = vtable
-          .elementAt(32)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint64>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint64>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetUInt64Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint64>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -714,19 +487,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Float>>();
 
     try {
-      final hr = vtable
-          .elementAt(33)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Float>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Float>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetSingleArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Float>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -742,19 +505,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Double>>();
 
     try {
-      final hr = vtable
-          .elementAt(34)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Double>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Double>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetDoubleArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Double>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -770,19 +523,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Uint16>>();
 
     try {
-      final hr = vtable
-          .elementAt(35)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint16>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint16>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetChar16Array.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint16>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -798,19 +541,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Bool>>();
 
     try {
-      final hr = vtable
-          .elementAt(36)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Bool>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Bool>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetBooleanArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Bool>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -826,19 +559,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<IntPtr>>();
 
     try {
-      final hr = vtable
-          .elementAt(37)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<IntPtr>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<IntPtr>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetStringArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<IntPtr>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -854,20 +577,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<COMObject>>();
 
     try {
-      final hr = vtable
-              .elementAt(38)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<COMObject>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<COMObject>> value)>()(
-          lpVtbl, valueSize, value);
+      final hr = _vtable.GetInspectableArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<COMObject>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -883,19 +595,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<GUID>>();
 
     try {
-      final hr = vtable
-          .elementAt(39)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<GUID>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<GUID>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetGuidArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<GUID>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -911,19 +613,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Int64>>();
 
     try {
-      final hr = vtable
-          .elementAt(40)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Int64>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetDateTimeArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -939,19 +631,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<Int64>>();
 
     try {
-      final hr = vtable
-          .elementAt(41)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Int64>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetTimeSpanArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -967,20 +649,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<NativePoint>>();
 
     try {
-      final hr = vtable
-              .elementAt(42)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<NativePoint>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<NativePoint>> value)>()(
-          lpVtbl, valueSize, value);
+      final hr = _vtable.GetPointArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativePoint>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -996,20 +667,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<NativeSize>>();
 
     try {
-      final hr = vtable
-              .elementAt(43)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<NativeSize>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<NativeSize>> value)>()(
-          lpVtbl, valueSize, value);
+      final hr = _vtable.GetSizeArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativeSize>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1025,20 +685,9 @@ class IPropertyValue extends IInspectable {
     final value = calloc<Pointer<NativeRect>>();
 
     try {
-      final hr = vtable
-              .elementAt(44)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<Uint32> valueSize,
-                              Pointer<Pointer<NativeRect>> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                      Pointer<Pointer<NativeRect>> value)>()(
-          lpVtbl, valueSize, value);
+      final hr = _vtable.GetRectArray.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativeRect>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1048,4 +697,163 @@ class IPropertyValue extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPropertyValueVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Type;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsNumericScalar;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint8> value)>>
+      GetUInt8;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int16> value)>>
+      GetInt16;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> value)>>
+      GetUInt16;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      GetInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      GetUInt32;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      GetInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      GetUInt64;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      GetSingle;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      GetDouble;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> value)>>
+      GetChar16;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      GetBoolean;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>> GetGuid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      GetDateTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      GetTimeSpan;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativePoint> value)>> GetPoint;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativeSize> value)>> GetSize;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativeRect> value)>> GetRect;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>> GetUInt8Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int16>> value)>> GetInt16Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint16>> value)>> GetUInt16Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int32>> value)>> GetInt32Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint32>> value)>> GetUInt32Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>> GetInt64Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint64>> value)>> GetUInt64Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Float>> value)>> GetSingleArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Double>> value)>> GetDoubleArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint16>> value)>> GetChar16Array;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Bool>> value)>> GetBooleanArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<IntPtr>> value)>> GetStringArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<COMObject>> value)>> GetInspectableArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<GUID>> value)>> GetGuidArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>> GetDateTimeArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Int64>> value)>> GetTimeSpanArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativePoint>> value)>> GetPointArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativeSize>> value)>> GetSizeArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<NativeRect>> value)>> GetRectArray;
 }

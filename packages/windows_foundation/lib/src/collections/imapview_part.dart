@@ -14,6 +14,8 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewGuidInspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewGuidInspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
@@ -21,17 +23,9 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
     final retValuePtr = calloc<COMObject>();
     final keyNativeStructPtr = key.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, GUID key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, GUID key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, GUID key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
     free(keyNativeStructPtr);
@@ -56,17 +50,9 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
     try {
       final keyNativeStructPtr = key.toNativeGUID();
 
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, GUID key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, GUID key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
       free(keyNativeStructPtr);
@@ -80,25 +66,41 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
   }
 }
 
+final class __IMapViewGuidInspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, GUID key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, GUID key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
   _IMapViewGuidObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IMapViewGuidObjectVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewGuidObjectVtbl>().ref;
 
   @override
   Object? lookup(Guid key) {
     final retValuePtr = calloc<COMObject>();
     final keyNativeStructPtr = key.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, GUID key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, GUID key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, GUID key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
     free(keyNativeStructPtr);
@@ -123,17 +125,9 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
     try {
       final keyNativeStructPtr = key.toNativeGUID();
 
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, GUID key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, GUID key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
       free(keyNativeStructPtr);
@@ -147,28 +141,43 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
   }
 }
 
+final class __IMapViewGuidObjectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, GUID key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, GUID key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt16Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewInt16InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewInt16InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int16 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -188,17 +197,9 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int16 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -207,6 +208,27 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewInt16InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int16 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int16 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
@@ -214,23 +236,17 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewInt32InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewInt32InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -250,17 +266,9 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -269,6 +277,27 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewInt32InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
@@ -276,23 +305,17 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewInt64InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewInt64InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int64 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -312,17 +335,9 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int64 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -333,28 +348,41 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
   }
 }
 
+final class __IMapViewInt64InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int64 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewObjectObject extends IMapView<Object, Object?> {
   _IMapViewObjectObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IMapViewObjectObjectVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewObjectObjectVtbl>().ref;
 
   @override
   Object? lookup(Object key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer key,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer key,
-                        Pointer<COMObject> retValuePtr)>()(
-            lpVtbl, key.boxValue().lpVtbl, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer key,
+                Pointer<COMObject> retValuePtr)>()(
+        lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -374,20 +402,10 @@ final class _IMapViewObjectObject extends IMapView<Object, Object?> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  VTablePointer key,
-                  Pointer<Bool>
-                      retValuePtr)>()(lpVtbl, key.boxValue().lpVtbl, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer key,
+                  Pointer<Bool> retValuePtr)>()(
+          lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -398,28 +416,42 @@ final class _IMapViewObjectObject extends IMapView<Object, Object?> {
   }
 }
 
+final class __IMapViewObjectObjectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+              Pointer<Bool> retValuePtr)>> HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   _IMapViewStringInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewStringInspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewStringInspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(String key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, int key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, key.toHString(), retValuePtr);
 
     if (FAILED(hr)) {
@@ -440,17 +472,9 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -462,24 +486,40 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   }
 }
 
+final class __IMapViewStringInspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewStringObject extends IMapView<String, Object?> {
   _IMapViewStringObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IMapViewStringObjectVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewStringObjectVtbl>().ref;
 
   @override
   Object? lookup(String key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, int key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, key.toHString(), retValuePtr);
 
     if (FAILED(hr)) {
@@ -500,17 +540,9 @@ final class _IMapViewStringObject extends IMapView<String, Object?> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -522,25 +554,41 @@ final class _IMapViewStringObject extends IMapView<String, Object?> {
   }
 }
 
+final class __IMapViewStringObjectVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewStringString extends IMapView<String, String> {
   _IMapViewStringString.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IMapViewStringStringVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewStringStringVtbl>().ref;
 
   @override
   String lookup(String key) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<IntPtr> retValuePtr)>()(
+      final hr = _vtable.Lookup.asFunction<
+              int Function(VTablePointer lpVtbl, int key,
+                  Pointer<IntPtr> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -556,17 +604,9 @@ final class _IMapViewStringString extends IMapView<String, String> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -576,6 +616,27 @@ final class _IMapViewStringString extends IMapView<String, String> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewStringStringVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
+              Pointer<IntPtr> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
@@ -583,6 +644,8 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
+  late final __IMapViewStringWinRTEnumVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewStringWinRTEnumVtbl>().ref;
   final EnumCreator<V> enumCreator;
 
   @override
@@ -590,17 +653,9 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Int32> retValuePtr)>()(
+      final hr = _vtable.Lookup.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Int32> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -616,17 +671,9 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -636,6 +683,27 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewStringWinRTEnumVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
+              Pointer<Int32> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
@@ -643,6 +711,8 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
+  late final __IMapViewStringWinRTFlagsEnumVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewStringWinRTFlagsEnumVtbl>().ref;
   final EnumCreator<V> enumCreator;
 
   @override
@@ -650,17 +720,9 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Uint32> retValuePtr)>()(
+      final hr = _vtable.Lookup.asFunction<
+              int Function(VTablePointer lpVtbl, int key,
+                  Pointer<Uint32> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -676,17 +738,9 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toHString(), retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -698,28 +752,43 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   }
 }
 
+final class __IMapViewStringWinRTFlagsEnumVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr key,
+              Pointer<Uint32> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint8Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewUint8InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewUint8InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint8 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -739,17 +808,9 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint8 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -758,6 +819,27 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewUint8InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint8 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint8 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
@@ -765,23 +847,17 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewUint16InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewUint16InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint16 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -801,17 +877,9 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint16 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -820,6 +888,27 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewUint16InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint16 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint16 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
@@ -827,23 +916,17 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewUint32InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewUint32InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -863,17 +946,9 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -882,6 +957,27 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewUint32InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }
 
 final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
@@ -889,23 +985,17 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
+  late final __IMapViewUint64InspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewUint64InspectableVtbl>().ref;
   final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint64 key,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int key,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
+    final hr = _vtable.Lookup.asFunction<
+        int Function(VTablePointer lpVtbl, int key,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -925,17 +1015,9 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint64 key,
-                          Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int key,
-                  Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
+      final hr = _vtable.HasKey.asFunction<
+          int Function(VTablePointer lpVtbl, int key,
+              Pointer<Bool> retValuePtr)>()(lpVtbl, key, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -946,29 +1028,42 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
   }
 }
 
+final class __IMapViewUint64InspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint64 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint64 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewUriString extends IMapView<Uri, String> {
   _IMapViewUriString.fromPtr(super.ptr, {required super.iterableIid});
+
+  late final __IMapViewUriStringVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewUriStringVtbl>().ref;
 
   @override
   String lookup(Uri key) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer key,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer key,
-                          Pointer<IntPtr> retValuePtr)>()(
-              lpVtbl, key.toWinRTUri().lpVtbl, retValuePtr);
+      final hr = _vtable.Lookup.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer key,
+                  Pointer<IntPtr> retValuePtr)>()(
+          lpVtbl, key.toWinRTUri().lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -983,17 +1078,9 @@ final class _IMapViewUriString extends IMapView<Uri, String> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer key,
+                  Pointer<Bool> retValuePtr)>()(
           lpVtbl, key.toWinRTUri().lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1005,6 +1092,26 @@ final class _IMapViewUriString extends IMapView<Uri, String> {
   }
 }
 
+final class __IMapViewUriStringVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+              Pointer<IntPtr> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+              Pointer<Bool> retValuePtr)>> HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
@@ -1012,6 +1119,8 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
       required this.creator})
       : super(enumKeyCreator: enumKeyCreator, creator: creator);
 
+  late final __IMapViewWinRTEnumInspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewWinRTEnumInspectableVtbl>().ref;
   final EnumCreator<K> enumKeyCreator;
   final COMObjectCreator<V> creator;
 
@@ -1019,17 +1128,9 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
   V lookup(K key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, int key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -1050,17 +1151,9 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int32 key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1072,6 +1165,27 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
   }
 }
 
+final class __IMapViewWinRTEnumInspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
+}
+
 final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
@@ -1079,6 +1193,8 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       required this.creator})
       : super(enumKeyCreator: enumKeyCreator, creator: creator);
 
+  late final __IMapViewWinRTFlagsEnumInspectableVtbl _vtable =
+      ptr.ref.vtable.cast<__IMapViewWinRTFlagsEnumInspectableVtbl>().ref;
   final EnumCreator<K> enumKeyCreator;
   final COMObjectCreator<V> creator;
 
@@ -1086,17 +1202,9 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
   V lookup(K key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 key,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int key,
-                    Pointer<COMObject> retValuePtr)>()(
+    final hr = _vtable.Lookup.asFunction<
+            int Function(VTablePointer lpVtbl, int key,
+                Pointer<COMObject> retValuePtr)>()(
         lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -1117,17 +1225,9 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 key,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int key,
-                      Pointer<Bool> retValuePtr)>()(
+      final hr = _vtable.HasKey.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1137,4 +1237,25 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       free(retValuePtr);
     }
   }
+}
+
+final class __IMapViewWinRTFlagsEnumInspectableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 key,
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 key, Pointer<Bool> retValuePtr)>>
+      HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }

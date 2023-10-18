@@ -23,7 +23,10 @@ const IID_IPhoneNumberFormatterStatics =
     '{5ca6f931-84d9-414b-ab4e-a0552c878602}';
 
 class IPhoneNumberFormatterStatics extends IInspectable {
-  IPhoneNumberFormatterStatics.fromPtr(super.ptr);
+  IPhoneNumberFormatterStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhoneNumberFormatterStaticsVtbl>().ref;
+
+  final _IPhoneNumberFormatterStaticsVtbl _vtable;
 
   factory IPhoneNumberFormatterStatics.from(IInspectable interface) =>
       interface.cast(IPhoneNumberFormatterStatics.fromPtr,
@@ -33,21 +36,10 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final phoneNumber = calloc<COMObject>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr regionCode,
-                                  Pointer<COMObject> phoneNumber)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int regionCode,
-                          Pointer<COMObject> phoneNumber)>()(
-              lpVtbl, regionCode.toHString(), phoneNumber);
+      final hr = _vtable.TryCreate.asFunction<
+              int Function(VTablePointer lpVtbl, int regionCode,
+                  Pointer<COMObject> phoneNumber)>()(
+          lpVtbl, regionCode.toHString(), phoneNumber);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -67,19 +59,9 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  IntPtr regionCode, Pointer<Int32> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int regionCode,
-                          Pointer<Int32> result)>()(
-              lpVtbl, regionCode.toHString(), result);
+      final hr = _vtable.GetCountryCodeForRegion.asFunction<
+          int Function(VTablePointer lpVtbl, int regionCode,
+              Pointer<Int32> result)>()(lpVtbl, regionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -94,22 +76,10 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(8)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr regionCode,
-                                  Bool stripNonDigit,
-                                  Pointer<IntPtr> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int regionCode,
-                          bool stripNonDigit, Pointer<IntPtr> result)>()(
-              lpVtbl, regionCode.toHString(), stripNonDigit, result);
+      final hr = _vtable.GetNationalDirectDialingPrefixForRegion.asFunction<
+              int Function(VTablePointer lpVtbl, int regionCode,
+                  bool stripNonDigit, Pointer<IntPtr> result)>()(
+          lpVtbl, regionCode.toHString(), stripNonDigit, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -123,18 +93,9 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> result)>()(
-          lpVtbl, number.toHString(), result);
+      final hr = _vtable.WrapWithLeftToRightMarkers.asFunction<
+          int Function(VTablePointer lpVtbl, int number,
+              Pointer<IntPtr> result)>()(lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -143,4 +104,28 @@ class IPhoneNumberFormatterStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IPhoneNumberFormatterStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr regionCode,
+              Pointer<COMObject> phoneNumber)>> TryCreate;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr regionCode,
+              Pointer<Int32> result)>> GetCountryCodeForRegion;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr regionCode,
+              Bool stripNonDigit,
+              Pointer<IntPtr> result)>> GetNationalDirectDialingPrefixForRegion;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr number, Pointer<IntPtr> result)>>
+      WrapWithLeftToRightMarkers;
 }

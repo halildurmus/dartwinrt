@@ -23,7 +23,10 @@ import 'providernetworkusage.dart';
 const IID_IConnectionProfile4 = '{7a2d42cd-81e0-4ae6-abed-ab9ca13eb714}';
 
 class IConnectionProfile4 extends IInspectable {
-  IConnectionProfile4.fromPtr(super.ptr);
+  IConnectionProfile4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfile4Vtbl>().ref;
+
+  final _IConnectionProfile4Vtbl _vtable;
 
   factory IConnectionProfile4.from(IInspectable interface) =>
       interface.cast(IConnectionProfile4.fromPtr, IID_IConnectionProfile4);
@@ -33,25 +36,9 @@ class IConnectionProfile4 extends IInspectable {
     final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int64 startTime,
-                            Int64 endTime,
-                            NativeNetworkUsageStates states,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int startTime,
-                    int endTime,
-                    NativeNetworkUsageStates states,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetProviderNetworkUsageAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime, int endTime,
+                NativeNetworkUsageStates states, Pointer<COMObject> value)>()(
         lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
@@ -72,4 +59,16 @@ class IConnectionProfile4 extends IInspectable {
                 iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}'));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
+}
+
+final class _IConnectionProfile4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int64 startTime,
+              Int64 endTime,
+              NativeNetworkUsageStates states,
+              Pointer<COMObject> value)>> GetProviderNetworkUsageAsync;
 }

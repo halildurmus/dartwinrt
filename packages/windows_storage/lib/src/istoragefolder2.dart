@@ -22,7 +22,10 @@ import 'istorageitem.dart';
 const IID_IStorageFolder2 = '{e827e8b9-08d9-4a8e-a0ac-fe5ed3cbbbd3}';
 
 class IStorageFolder2 extends IInspectable {
-  IStorageFolder2.fromPtr(super.ptr);
+  IStorageFolder2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFolder2Vtbl>().ref;
+
+  final _IStorageFolder2Vtbl _vtable;
 
   factory IStorageFolder2.from(IInspectable interface) =>
       interface.cast(IStorageFolder2.fromPtr, IID_IStorageFolder2);
@@ -30,17 +33,9 @@ class IStorageFolder2 extends IInspectable {
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.TryGetItemAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                Pointer<COMObject> operation)>()(
         lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -52,4 +47,12 @@ class IStorageFolder2 extends IInspectable {
         creator: IStorageItem.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFolder2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              Pointer<COMObject> operation)>> TryGetItemAsync;
 }

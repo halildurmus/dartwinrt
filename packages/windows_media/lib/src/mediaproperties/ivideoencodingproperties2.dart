@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IVideoEncodingProperties2 = '{f743a1ef-d465-4290-a94b-ef0f1528f8e3}';
 
 class IVideoEncodingProperties2 extends IInspectable {
-  IVideoEncodingProperties2.fromPtr(super.ptr);
+  IVideoEncodingProperties2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoEncodingProperties2Vtbl>().ref;
+
+  final _IVideoEncodingProperties2Vtbl _vtable;
 
   factory IVideoEncodingProperties2.from(IInspectable interface) => interface
       .cast(IVideoEncodingProperties2.fromPtr, IID_IVideoEncodingProperties2);
@@ -28,17 +31,9 @@ class IVideoEncodingProperties2 extends IInspectable {
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                        Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int valueSize,
-                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
+    final hr = _vtable.SetFormatUserData.asFunction<
+        int Function(VTablePointer lpVtbl, int valueSize,
+            Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -50,19 +45,9 @@ class IVideoEncodingProperties2 extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint8>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetFormatUserData.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,13 +59,7 @@ class IVideoEncodingProperties2 extends IInspectable {
   }
 
   set profileId(int value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_ProfileId
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -91,17 +70,9 @@ class IVideoEncodingProperties2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_ProfileId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,4 +81,23 @@ class IVideoEncodingProperties2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IVideoEncodingProperties2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+              Pointer<Uint8> value)>> SetFormatUserData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>> GetFormatUserData;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_ProfileId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_ProfileId;
 }

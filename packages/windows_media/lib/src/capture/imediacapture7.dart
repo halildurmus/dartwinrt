@@ -24,7 +24,10 @@ import 'streamingcapturemode.dart';
 const IID_IMediaCapture7 = '{9169f102-8888-541a-95bc-24e4d462542a}';
 
 class IMediaCapture7 extends IInspectable {
-  IMediaCapture7.fromPtr(super.ptr);
+  IMediaCapture7.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCapture7Vtbl>().ref;
+
+  final _IMediaCapture7Vtbl _vtable;
 
   factory IMediaCapture7.from(IInspectable interface) =>
       interface.cast(IMediaCapture7.fromPtr, IID_IMediaCapture7);
@@ -33,20 +36,9 @@ class IMediaCapture7 extends IInspectable {
       StreamingCaptureMode captureMode, DisplayRegion? displayRegion) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 captureMode,
-                            VTablePointer displayRegion,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int captureMode,
-                    VTablePointer displayRegion, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateRelativePanelWatcher.asFunction<
+            int Function(VTablePointer lpVtbl, int captureMode,
+                VTablePointer displayRegion, Pointer<COMObject> result)>()(
         lpVtbl, captureMode.value, displayRegion.lpVtbl, result);
 
     if (FAILED(hr)) {
@@ -61,4 +53,15 @@ class IMediaCapture7 extends IInspectable {
 
     return MediaCaptureRelativePanelWatcher.fromPtr(result);
   }
+}
+
+final class _IMediaCapture7Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 captureMode,
+              VTablePointer displayRegion,
+              Pointer<COMObject> result)>> CreateRelativePanelWatcher;
 }

@@ -24,7 +24,10 @@ const IID_IAudioStreamDescriptor = '{1e3692e4-4027-4847-a70b-df1d9a2a7b04}';
 
 class IAudioStreamDescriptor extends IInspectable
     implements IMediaStreamDescriptor {
-  IAudioStreamDescriptor.fromPtr(super.ptr);
+  IAudioStreamDescriptor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioStreamDescriptorVtbl>().ref;
+
+  final _IAudioStreamDescriptorVtbl _vtable;
 
   factory IAudioStreamDescriptor.from(IInspectable interface) => interface.cast(
       IAudioStreamDescriptor.fromPtr, IID_IAudioStreamDescriptor);
@@ -32,17 +35,9 @@ class IAudioStreamDescriptor extends IInspectable
   AudioEncodingProperties? get encodingProperties {
     final encodingProperties = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            Pointer<COMObject> encodingProperties)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl,
-                    Pointer<COMObject> encodingProperties)>()(
+    final hr = _vtable.get_EncodingProperties.asFunction<
+            int Function(
+                VTablePointer lpVtbl, Pointer<COMObject> encodingProperties)>()(
         lpVtbl, encodingProperties);
 
     if (FAILED(hr)) {
@@ -74,4 +69,13 @@ class IAudioStreamDescriptor extends IInspectable
 
   @override
   String get language => _iMediaStreamDescriptor.language;
+}
+
+final class _IAudioStreamDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> encodingProperties)>>
+      get_EncodingProperties;
 }

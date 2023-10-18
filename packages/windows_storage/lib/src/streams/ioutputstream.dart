@@ -22,7 +22,10 @@ import 'ibuffer.dart';
 const IID_IOutputStream = '{905a0fe6-bc53-11df-8c49-001e4fc686da}';
 
 class IOutputStream extends IInspectable implements IClosable {
-  IOutputStream.fromPtr(super.ptr);
+  IOutputStream.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IOutputStreamVtbl>().ref;
+
+  final _IOutputStreamVtbl _vtable;
 
   factory IOutputStream.from(IInspectable interface) =>
       interface.cast(IOutputStream.fromPtr, IID_IOutputStream);
@@ -30,21 +33,9 @@ class IOutputStream extends IInspectable implements IClosable {
   Pointer<COMObject> writeAsync(IBuffer? buffer) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer buffer,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, buffer.lpVtbl, operation);
+    final hr = _vtable.WriteAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer buffer,
+            Pointer<COMObject> operation)>()(lpVtbl, buffer.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -57,17 +48,9 @@ class IOutputStream extends IInspectable implements IClosable {
   Future<bool> flushAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FlushAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -82,4 +65,16 @@ class IOutputStream extends IInspectable implements IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IOutputStreamVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
+              Pointer<COMObject> operation)>> WriteAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> FlushAsync;
 }

@@ -20,18 +20,24 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeolocator2 = '{d1b42e6d-8891-43b4-ad36-27c6fe9a97b1}';
 
 class IGeolocator2 extends IInspectable {
-  IGeolocator2.fromPtr(super.ptr);
+  IGeolocator2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeolocator2Vtbl>().ref;
+
+  final _IGeolocator2Vtbl _vtable;
 
   factory IGeolocator2.from(IInspectable interface) =>
       interface.cast(IGeolocator2.fromPtr, IID_IGeolocator2);
 
   void allowFallbackToConsentlessPositions() {
-    final hr = vtable
-        .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.AllowFallbackToConsentlessPositions.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IGeolocator2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      AllowFallbackToConsentlessPositions;
 }

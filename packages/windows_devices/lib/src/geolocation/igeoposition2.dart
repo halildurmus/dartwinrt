@@ -25,7 +25,10 @@ import 'venuedata.dart';
 const IID_IGeoposition2 = '{7f62f697-8671-4b0d-86f8-474a8496187c}';
 
 class IGeoposition2 extends IInspectable implements IGeoposition {
-  IGeoposition2.fromPtr(super.ptr);
+  IGeoposition2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeoposition2Vtbl>().ref;
+
+  final _IGeoposition2Vtbl _vtable;
 
   factory IGeoposition2.from(IInspectable interface) =>
       interface.cast(IGeoposition2.fromPtr, IID_IGeoposition2);
@@ -33,17 +36,9 @@ class IGeoposition2 extends IInspectable implements IGeoposition {
   VenueData? get venueData {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VenueData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -65,4 +60,12 @@ class IGeoposition2 extends IInspectable implements IGeoposition {
 
   @override
   CivicAddress? get civicAddress => _iGeoposition.civicAddress;
+}
+
+final class _IGeoposition2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VenueData;
 }

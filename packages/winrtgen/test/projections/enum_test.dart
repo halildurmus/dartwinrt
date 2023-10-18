@@ -74,6 +74,10 @@ void main() {
       expect(asyncStatusProjection.classPreamble, isEmpty);
     });
 
+    test('has correct class name', () {
+      expect(asyncStatusProjection.className, equals('AsyncStatus'));
+    });
+
     test('has correct short name', () {
       expect(asyncStatusProjection.shortName, equals('AsyncStatus'));
     });
@@ -154,6 +158,10 @@ void main() {
     test('includes correct dartdoc category comment', () {
       expect(fileAttributesProjection.category, isEmpty);
       expect(fileAttributesProjection.classPreamble, isEmpty);
+    });
+
+    test('has correct class name', () {
+      expect(fileAttributesProjection.className, equals('FileAttributes'));
     });
 
     test('has correct short name', () {

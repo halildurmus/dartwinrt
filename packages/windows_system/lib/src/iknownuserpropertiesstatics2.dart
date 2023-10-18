@@ -21,7 +21,10 @@ const IID_IKnownUserPropertiesStatics2 =
     '{5b450782-f620-577e-b1b3-dd56644d79b1}';
 
 class IKnownUserPropertiesStatics2 extends IInspectable {
-  IKnownUserPropertiesStatics2.fromPtr(super.ptr);
+  IKnownUserPropertiesStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IKnownUserPropertiesStatics2Vtbl>().ref;
+
+  final _IKnownUserPropertiesStatics2Vtbl _vtable;
 
   factory IKnownUserPropertiesStatics2.from(IInspectable interface) =>
       interface.cast(IKnownUserPropertiesStatics2.fromPtr,
@@ -31,17 +34,9 @@ class IKnownUserPropertiesStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AgeEnforcementRegion.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IKnownUserPropertiesStatics2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IKnownUserPropertiesStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AgeEnforcementRegion;
 }

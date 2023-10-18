@@ -22,7 +22,10 @@ const IID_IVideoEffectDefinition = '{39f38cf0-8d0f-4f3e-84fc-2d46a5297943}';
 /// Exposes the methods and properties of a VideoEffectDefinition object.
 /// Implement this interface when you create a custom video effect definition.
 class IVideoEffectDefinition extends IInspectable {
-  IVideoEffectDefinition.fromPtr(super.ptr);
+  IVideoEffectDefinition.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoEffectDefinitionVtbl>().ref;
+
+  final _IVideoEffectDefinitionVtbl _vtable;
 
   factory IVideoEffectDefinition.from(IInspectable interface) => interface.cast(
       IVideoEffectDefinition.fromPtr, IID_IVideoEffectDefinition);
@@ -31,17 +34,9 @@ class IVideoEffectDefinition extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ActivatableClassId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class IVideoEffectDefinition extends IInspectable {
   IPropertySet? get properties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -78,4 +65,16 @@ class IVideoEffectDefinition extends IInspectable {
 
     return IPropertySet.fromPtr(value);
   }
+}
+
+final class _IVideoEffectDefinitionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ActivatableClassId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Properties;
 }

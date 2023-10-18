@@ -28,7 +28,10 @@ class ICapturedFrame extends IInspectable
         IInputStream,
         IOutputStream,
         IContentTypeProvider {
-  ICapturedFrame.fromPtr(super.ptr);
+  ICapturedFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICapturedFrameVtbl>().ref;
+
+  final _ICapturedFrameVtbl _vtable;
 
   factory ICapturedFrame.from(IInspectable interface) =>
       interface.cast(ICapturedFrame.fromPtr, IID_ICapturedFrame);
@@ -37,17 +40,9 @@ class ICapturedFrame extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Width.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +56,9 @@ class ICapturedFrame extends IInspectable
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Height.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -137,4 +124,16 @@ class ICapturedFrame extends IInspectable
 
   @override
   String get contentType => _iContentTypeProvider.contentType;
+}
+
+final class _ICapturedFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Width;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Height;
 }

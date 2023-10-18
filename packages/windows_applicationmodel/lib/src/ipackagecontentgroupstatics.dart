@@ -21,7 +21,10 @@ const IID_IPackageContentGroupStatics =
     '{70ee7619-5f12-4b92-b9ea-6ccada13bc75}';
 
 class IPackageContentGroupStatics extends IInspectable {
-  IPackageContentGroupStatics.fromPtr(super.ptr);
+  IPackageContentGroupStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackageContentGroupStaticsVtbl>().ref;
+
+  final _IPackageContentGroupStaticsVtbl _vtable;
 
   factory IPackageContentGroupStatics.from(IInspectable interface) =>
       interface.cast(
@@ -31,17 +34,9 @@ class IPackageContentGroupStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_RequiredGroupName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class IPackageContentGroupStatics extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPackageContentGroupStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_RequiredGroupName;
 }

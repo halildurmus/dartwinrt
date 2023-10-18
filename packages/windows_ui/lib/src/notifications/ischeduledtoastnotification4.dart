@@ -21,7 +21,10 @@ const IID_IScheduledToastNotification4 =
     '{1d4761fd-bdef-4e4a-96be-0101369b58d2}';
 
 class IScheduledToastNotification4 extends IInspectable {
-  IScheduledToastNotification4.fromPtr(super.ptr);
+  IScheduledToastNotification4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IScheduledToastNotification4Vtbl>().ref;
+
+  final _IScheduledToastNotification4Vtbl _vtable;
 
   factory IScheduledToastNotification4.from(IInspectable interface) =>
       interface.cast(IScheduledToastNotification4.fromPtr,
@@ -30,17 +33,9 @@ class IScheduledToastNotification4 extends IInspectable {
   DateTime? get expirationTime {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ExpirationTime.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,18 +53,22 @@ class IScheduledToastNotification4 extends IInspectable {
   }
 
   set expirationTime(DateTime? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_ExpirationTime.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IScheduledToastNotification4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ExpirationTime;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_ExpirationTime;
 }

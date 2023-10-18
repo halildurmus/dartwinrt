@@ -24,7 +24,11 @@ const IID_IMediaCaptureRelativePanelWatcher =
     '{7d896566-04be-5b89-b30e-bd34a9f12db0}';
 
 class IMediaCaptureRelativePanelWatcher extends IInspectable {
-  IMediaCaptureRelativePanelWatcher.fromPtr(super.ptr);
+  IMediaCaptureRelativePanelWatcher.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IMediaCaptureRelativePanelWatcherVtbl>().ref;
+
+  final _IMediaCaptureRelativePanelWatcherVtbl _vtable;
 
   factory IMediaCaptureRelativePanelWatcher.from(IInspectable interface) =>
       interface.cast(IMediaCaptureRelativePanelWatcher.fromPtr,
@@ -34,17 +38,9 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_RelativePanel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +54,9 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_Changed.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,38 +67,42 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
   }
 
   void remove_Changed(int token) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_Changed
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void start() {
-    final hr = vtable
-        .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Start.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
-    final hr = vtable
-        .elementAt(10)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.Stop.asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IMediaCaptureRelativePanelWatcherVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_RelativePanel;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_Changed;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_Changed;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Start;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Stop;
 }

@@ -24,7 +24,10 @@ import 'ocrresult.dart';
 const IID_IOcrEngine = '{5a14bc41-5b76-3140-b680-8825562683ac}';
 
 class IOcrEngine extends IInspectable {
-  IOcrEngine.fromPtr(super.ptr);
+  IOcrEngine.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IOcrEngineVtbl>().ref;
+
+  final _IOcrEngineVtbl _vtable;
 
   factory IOcrEngine.from(IInspectable interface) =>
       interface.cast(IOcrEngine.fromPtr, IID_IOcrEngine);
@@ -32,17 +35,9 @@ class IOcrEngine extends IInspectable {
   Future<OcrResult?> recognizeAsync(SoftwareBitmap? bitmap) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                Pointer<COMObject> result)>()(lpVtbl, bitmap.lpVtbl, result);
+    final hr = _vtable.RecognizeAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer bitmap,
+            Pointer<COMObject> result)>()(lpVtbl, bitmap.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -57,17 +52,9 @@ class IOcrEngine extends IInspectable {
   Language? get recognizerLanguage {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RecognizerLanguage.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -81,4 +68,16 @@ class IOcrEngine extends IInspectable {
 
     return Language.fromPtr(value);
   }
+}
+
+final class _IOcrEngineVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer bitmap,
+              Pointer<COMObject> result)>> RecognizeAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RecognizerLanguage;
 }

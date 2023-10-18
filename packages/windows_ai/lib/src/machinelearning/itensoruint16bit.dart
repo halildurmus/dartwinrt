@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ITensorUInt16Bit = '{68140f4b-23c0-42f3-81f6-a891c011bc3f}';
 
 class ITensorUInt16Bit extends IInspectable {
-  ITensorUInt16Bit.fromPtr(super.ptr);
+  ITensorUInt16Bit.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorUInt16BitVtbl>().ref;
+
+  final _ITensorUInt16BitVtbl _vtable;
 
   factory ITensorUInt16Bit.from(IInspectable interface) =>
       interface.cast(ITensorUInt16Bit.fromPtr, IID_ITensorUInt16Bit);
@@ -28,17 +31,9 @@ class ITensorUInt16Bit extends IInspectable {
   List<int> getAsVectorView() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetAsVectorView.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -50,4 +45,13 @@ class ITensorUInt16Bit extends IInspectable {
             intType: IntType.uint16)
         .toList();
   }
+}
+
+final class _ITensorUInt16BitVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      GetAsVectorView;
 }

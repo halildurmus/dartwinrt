@@ -23,7 +23,10 @@ import 'packageupdateavailabilityresult.dart';
 const IID_IPackage6 = '{8b1ad942-12d7-4754-ae4e-638cbc0e3a2e}';
 
 class IPackage6 extends IInspectable {
-  IPackage6.fromPtr(super.ptr);
+  IPackage6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPackage6Vtbl>().ref;
+
+  final _IPackage6Vtbl _vtable;
 
   factory IPackage6.from(IInspectable interface) =>
       interface.cast(IPackage6.fromPtr, IID_IPackage6);
@@ -31,17 +34,9 @@ class IPackage6 extends IInspectable {
   AppInstallerInfo? getAppInstallerInfo() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetAppInstallerInfo.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IPackage6 extends IInspectable {
   Future<PackageUpdateAvailabilityResult?> checkUpdateAvailabilityAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.CheckUpdateAvailabilityAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -81,4 +68,17 @@ class IPackage6 extends IInspectable {
             creator: PackageUpdateAvailabilityResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IPackage6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetAppInstallerInfo;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      CheckUpdateAvailabilityAsync;
 }

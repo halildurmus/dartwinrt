@@ -29,7 +29,12 @@ const IID_IWebAuthenticationCoreManagerStatics3 =
 
 class IWebAuthenticationCoreManagerStatics3 extends IInspectable
     implements IWebAuthenticationCoreManagerStatics {
-  IWebAuthenticationCoreManagerStatics3.fromPtr(super.ptr);
+  IWebAuthenticationCoreManagerStatics3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IWebAuthenticationCoreManagerStatics3Vtbl>()
+            .ref;
+
+  final _IWebAuthenticationCoreManagerStatics3Vtbl _vtable;
 
   factory IWebAuthenticationCoreManagerStatics3.from(IInspectable interface) =>
       interface.cast(IWebAuthenticationCoreManagerStatics3.fromPtr,
@@ -39,20 +44,9 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
       IIterable<WebAccount?>? webAccounts) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer webAccounts,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer webAccounts,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, webAccounts.lpVtbl, result);
+    final hr = _vtable.CreateWebAccountMonitor.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer webAccounts,
+            Pointer<COMObject> result)>()(lpVtbl, webAccounts.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -109,4 +103,12 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
       _iWebAuthenticationCoreManagerStatics
           .findAccountProviderWithAuthorityAsync(
               webAccountProviderId, authority);
+}
+
+final class _IWebAuthenticationCoreManagerStatics3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer webAccounts,
+              Pointer<COMObject> result)>> CreateWebAccountMonitor;
 }

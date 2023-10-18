@@ -25,7 +25,10 @@ import 'storagefolder.dart';
 const IID_IApplicationData = '{c3da6fb7-b744-4b45-b0b8-223a0938d0dc}';
 
 class IApplicationData extends IInspectable {
-  IApplicationData.fromPtr(super.ptr);
+  IApplicationData.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationDataVtbl>().ref;
+
+  final _IApplicationDataVtbl _vtable;
 
   factory IApplicationData.from(IInspectable interface) =>
       interface.cast(IApplicationData.fromPtr, IID_IApplicationData);
@@ -34,17 +37,9 @@ class IApplicationData extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Version.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,23 +52,12 @@ class IApplicationData extends IInspectable {
   Future<void> setVersionAsync(int desiredVersion, Pointer<COMObject> handler) {
     final setVersionOperation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 desiredVersion,
-                            VTablePointer handler,
-                            Pointer<COMObject> setVersionOperation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int desiredVersion,
-                    VTablePointer handler,
-                    Pointer<COMObject> setVersionOperation)>()(
+    final hr = _vtable.SetVersionAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int desiredVersion,
+                VTablePointer handler,
+                Pointer<COMObject> setVersionOperation)>()(
         lpVtbl, desiredVersion, handler.ref.lpVtbl, setVersionOperation);
 
     if (FAILED(hr)) {
@@ -87,17 +71,9 @@ class IApplicationData extends IInspectable {
   Future<void> clearAllAsync() {
     final clearOperation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> clearOperation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> clearOperation)>()(lpVtbl, clearOperation);
+    final hr = _vtable.ClearAllAsync.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> clearOperation)>()(lpVtbl, clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);
@@ -110,17 +86,9 @@ class IApplicationData extends IInspectable {
   Future<void> clearAsync(ApplicationDataLocality locality) {
     final clearOperation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 locality,
-                            Pointer<COMObject> clearOperation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int locality,
-                    Pointer<COMObject> clearOperation)>()(
+    final hr = _vtable.ClearAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int locality,
+                Pointer<COMObject> clearOperation)>()(
         lpVtbl, locality.value, clearOperation);
 
     if (FAILED(hr)) {
@@ -134,17 +102,9 @@ class IApplicationData extends IInspectable {
   ApplicationDataContainer? get localSettings {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LocalSettings.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -162,17 +122,9 @@ class IApplicationData extends IInspectable {
   ApplicationDataContainer? get roamingSettings {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RoamingSettings.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -190,17 +142,9 @@ class IApplicationData extends IInspectable {
   StorageFolder? get localFolder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LocalFolder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -218,17 +162,9 @@ class IApplicationData extends IInspectable {
   StorageFolder? get roamingFolder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RoamingFolder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -246,17 +182,9 @@ class IApplicationData extends IInspectable {
   StorageFolder? get temporaryFolder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_TemporaryFolder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -275,17 +203,9 @@ class IApplicationData extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_DataChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -296,27 +216,16 @@ class IApplicationData extends IInspectable {
   }
 
   void remove_DataChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(16)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_DataChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void signalDataChanged() {
-    final hr = vtable
-        .elementAt(17)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr = _vtable.SignalDataChanged.asFunction<
+        int Function(VTablePointer lpVtbl)>()(lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -325,17 +234,9 @@ class IApplicationData extends IInspectable {
     final value = calloc<Uint64>();
 
     try {
-      final hr = vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_RoamingStorageQuota.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -344,4 +245,61 @@ class IApplicationData extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IApplicationDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Version;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 desiredVersion,
+              VTablePointer handler,
+              Pointer<COMObject> setVersionOperation)>> SetVersionAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> clearOperation)>>
+      ClearAllAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 locality,
+              Pointer<COMObject> clearOperation)>> ClearAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LocalSettings;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RoamingSettings;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LocalFolder;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RoamingFolder;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_TemporaryFolder;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_DataChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_DataChanged;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      SignalDataChanged;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> value)>>
+      get_RoamingStorageQuota;
 }

@@ -24,7 +24,11 @@ const IID_IDeviceInformationPairingStatics2 =
     '{04de5372-b7b7-476b-a74f-c5836a704d98}';
 
 class IDeviceInformationPairingStatics2 extends IInspectable {
-  IDeviceInformationPairingStatics2.fromPtr(super.ptr);
+  IDeviceInformationPairingStatics2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IDeviceInformationPairingStatics2Vtbl>().ref;
+
+  final _IDeviceInformationPairingStatics2Vtbl _vtable;
 
   factory IDeviceInformationPairingStatics2.from(IInspectable interface) =>
       interface.cast(IDeviceInformationPairingStatics2.fromPtr,
@@ -36,21 +40,15 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 pairingKindsSupported,
-                              Int32 minProtectionLevel,
-                              Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int pairingKindsSupported,
-                      int minProtectionLevel, Pointer<Bool> result)>()(lpVtbl,
-          pairingKindsSupported.value, minProtectionLevel.value, result);
+      final hr =
+          _vtable.TryRegisterForAllInboundPairingRequestsWithProtectionLevel
+                  .asFunction<
+                      int Function(
+                          VTablePointer lpVtbl,
+                          int pairingKindsSupported,
+                          int minProtectionLevel,
+                          Pointer<Bool> result)>()(lpVtbl,
+              pairingKindsSupported.value, minProtectionLevel.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,4 +57,16 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IDeviceInformationPairingStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  Uint32 pairingKindsSupported,
+                  Int32 minProtectionLevel,
+                  Pointer<Bool> result)>>
+      TryRegisterForAllInboundPairingRequestsWithProtectionLevel;
 }

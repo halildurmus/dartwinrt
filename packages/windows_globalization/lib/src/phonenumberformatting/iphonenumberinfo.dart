@@ -24,7 +24,10 @@ import 'predictedphonenumberkind.dart';
 const IID_IPhoneNumberInfo = '{1c7ce4dd-c8b4-4ea3-9aef-b342e2c5b417}';
 
 class IPhoneNumberInfo extends IInspectable {
-  IPhoneNumberInfo.fromPtr(super.ptr);
+  IPhoneNumberInfo.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhoneNumberInfoVtbl>().ref;
+
+  final _IPhoneNumberInfoVtbl _vtable;
 
   factory IPhoneNumberInfo.from(IInspectable interface) =>
       interface.cast(IPhoneNumberInfo.fromPtr, IID_IPhoneNumberInfo);
@@ -33,17 +36,9 @@ class IPhoneNumberInfo extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CountryCode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,17 +52,9 @@ class IPhoneNumberInfo extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_PhoneNumber.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -81,17 +68,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetLengthOfGeographicalAreaCode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,17 +84,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetNationalSignificantNumber.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -129,17 +100,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetLengthOfNationalDestinationCode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -153,17 +116,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.PredictNumberKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -177,17 +132,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetGeographicRegionCode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -201,17 +148,9 @@ class IPhoneNumberInfo extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer otherNumber, Pointer<Int32> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer otherNumber,
-                  Pointer<Int32> result)>()(lpVtbl, otherNumber.lpVtbl, result);
+      final hr = _vtable.CheckNumberMatch.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer otherNumber,
+              Pointer<Int32> result)>()(lpVtbl, otherNumber.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -220,4 +159,40 @@ class IPhoneNumberInfo extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IPhoneNumberInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_CountryCode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_PhoneNumber;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> result)>>
+      GetLengthOfGeographicalAreaCode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      GetNationalSignificantNumber;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> result)>>
+      GetLengthOfNationalDestinationCode;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> result)>>
+      PredictNumberKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      GetGeographicRegionCode;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer otherNumber,
+              Pointer<Int32> result)>> CheckNumberMatch;
 }

@@ -28,7 +28,10 @@ import 'wwanconnectionprofiledetails.dart';
 const IID_IConnectionProfile2 = '{e2045145-4c9f-400c-9150-7ec7d6e2888a}';
 
 class IConnectionProfile2 extends IInspectable {
-  IConnectionProfile2.fromPtr(super.ptr);
+  IConnectionProfile2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfile2Vtbl>().ref;
+
+  final _IConnectionProfile2Vtbl _vtable;
 
   factory IConnectionProfile2.from(IInspectable interface) =>
       interface.cast(IConnectionProfile2.fromPtr, IID_IConnectionProfile2);
@@ -37,17 +40,9 @@ class IConnectionProfile2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsWwanConnectionProfile.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +56,9 @@ class IConnectionProfile2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsWlanConnectionProfile.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,17 +71,9 @@ class IConnectionProfile2 extends IInspectable {
   WwanConnectionProfileDetails? get wwanConnectionProfileDetails {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WwanConnectionProfileDetails.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -112,17 +91,9 @@ class IConnectionProfile2 extends IInspectable {
   WlanConnectionProfileDetails? get wlanConnectionProfileDetails {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_WlanConnectionProfileDetails.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -140,17 +111,9 @@ class IConnectionProfile2 extends IInspectable {
   Guid? get serviceProviderGuid {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ServiceProviderGuid.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -170,17 +133,9 @@ class IConnectionProfile2 extends IInspectable {
   int? getSignalBars() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetSignalBars.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -201,17 +156,9 @@ class IConnectionProfile2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.GetDomainConnectivityLevel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -229,27 +176,14 @@ class IConnectionProfile2 extends IInspectable {
     final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int64 startTime,
-                            Int64 endTime,
-                            Int32 granularity,
-                            NativeNetworkUsageStates states,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int startTime,
-                    int endTime,
-                    int granularity,
-                    NativeNetworkUsageStates states,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetNetworkUsageAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int startTime,
+                int endTime,
+                int granularity,
+                NativeNetworkUsageStates states,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
@@ -277,25 +211,9 @@ class IConnectionProfile2 extends IInspectable {
     final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int64 startTime,
-                            Int64 endTime,
-                            NativeNetworkUsageStates states,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int startTime,
-                    int endTime,
-                    NativeNetworkUsageStates states,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetConnectivityIntervalsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime, int endTime,
+                NativeNetworkUsageStates states, Pointer<COMObject> value)>()(
         lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
@@ -316,4 +234,53 @@ class IConnectionProfile2 extends IInspectable {
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
+}
+
+final class _IConnectionProfile2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsWwanConnectionProfile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsWlanConnectionProfile;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WwanConnectionProfileDetails;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_WlanConnectionProfileDetails;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ServiceProviderGuid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetSignalBars;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      GetDomainConnectivityLevel;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int64 startTime,
+              Int64 endTime,
+              Int32 granularity,
+              NativeNetworkUsageStates states,
+              Pointer<COMObject> value)>> GetNetworkUsageAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int64 startTime,
+              Int64 endTime,
+              NativeNetworkUsageStates states,
+              Pointer<COMObject> value)>> GetConnectivityIntervalsAsync;
 }

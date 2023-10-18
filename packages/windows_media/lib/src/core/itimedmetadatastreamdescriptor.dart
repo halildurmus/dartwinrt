@@ -24,7 +24,11 @@ const IID_ITimedMetadataStreamDescriptor =
     '{133336bf-296a-463e-9ff9-01cd25691408}';
 
 class ITimedMetadataStreamDescriptor extends IInspectable {
-  ITimedMetadataStreamDescriptor.fromPtr(super.ptr);
+  ITimedMetadataStreamDescriptor.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_ITimedMetadataStreamDescriptorVtbl>().ref;
+
+  final _ITimedMetadataStreamDescriptorVtbl _vtable;
 
   factory ITimedMetadataStreamDescriptor.from(IInspectable interface) =>
       interface.cast(ITimedMetadataStreamDescriptor.fromPtr,
@@ -33,17 +37,9 @@ class ITimedMetadataStreamDescriptor extends IInspectable {
   TimedMetadataEncodingProperties? get encodingProperties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_EncodingProperties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,17 +57,9 @@ class ITimedMetadataStreamDescriptor extends IInspectable {
   TimedMetadataStreamDescriptor? copy() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Copy.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -85,4 +73,16 @@ class ITimedMetadataStreamDescriptor extends IInspectable {
 
     return TimedMetadataStreamDescriptor.fromPtr(result);
   }
+}
+
+final class _ITimedMetadataStreamDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_EncodingProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Copy;
 }

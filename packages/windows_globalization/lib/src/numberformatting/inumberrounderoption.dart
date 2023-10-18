@@ -22,7 +22,10 @@ import 'inumberrounder.dart';
 const IID_INumberRounderOption = '{3b088433-646f-4efe-8d48-66eb2e49e736}';
 
 class INumberRounderOption extends IInspectable {
-  INumberRounderOption.fromPtr(super.ptr);
+  INumberRounderOption.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INumberRounderOptionVtbl>().ref;
+
+  final _INumberRounderOptionVtbl _vtable;
 
   factory INumberRounderOption.from(IInspectable interface) =>
       interface.cast(INumberRounderOption.fromPtr, IID_INumberRounderOption);
@@ -30,17 +33,9 @@ class INumberRounderOption extends IInspectable {
   INumberRounder? get numberRounder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_NumberRounder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,18 +51,22 @@ class INumberRounderOption extends IInspectable {
   }
 
   set numberRounder(INumberRounder? value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.put_NumberRounder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _INumberRounderOptionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_NumberRounder;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_NumberRounder;
 }

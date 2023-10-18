@@ -21,7 +21,10 @@ import 'package:windows_media/windows_media.dart';
 const IID_IImageFeatureValue = '{f0414fd9-c9aa-4405-b7fb-94f87c8a3037}';
 
 class IImageFeatureValue extends IInspectable {
-  IImageFeatureValue.fromPtr(super.ptr);
+  IImageFeatureValue.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IImageFeatureValueVtbl>().ref;
+
+  final _IImageFeatureValueVtbl _vtable;
 
   factory IImageFeatureValue.from(IInspectable interface) =>
       interface.cast(IImageFeatureValue.fromPtr, IID_IImageFeatureValue);
@@ -29,17 +32,9 @@ class IImageFeatureValue extends IInspectable {
   VideoFrame? get videoFrame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoFrame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IImageFeatureValue extends IInspectable {
 
     return VideoFrame.fromPtr(value);
   }
+}
+
+final class _IImageFeatureValueVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoFrame;
 }

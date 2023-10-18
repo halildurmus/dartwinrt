@@ -22,24 +22,19 @@ import '../core/timedmetadatastreamdescriptor.dart';
 const IID_IMediaEncodingProfile3 = '{ba6ebe88-7570-4e69-accf-5611ad015f88}';
 
 class IMediaEncodingProfile3 extends IInspectable {
-  IMediaEncodingProfile3.fromPtr(super.ptr);
+  IMediaEncodingProfile3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaEncodingProfile3Vtbl>().ref;
+
+  final _IMediaEncodingProfile3Vtbl _vtable;
 
   factory IMediaEncodingProfile3.from(IInspectable interface) => interface.cast(
       IMediaEncodingProfile3.fromPtr, IID_IMediaEncodingProfile3);
 
   void setTimedMetadataTracks(
       IIterable<TimedMetadataStreamDescriptor?>? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        lpVtbl, value.lpVtbl);
+    final hr = _vtable.SetTimedMetadataTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer value)>()(lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -47,17 +42,9 @@ class IMediaEncodingProfile3 extends IInspectable {
   IVector<TimedMetadataStreamDescriptor?> getTimedMetadataTracks() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetTimedMetadataTracks.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -68,4 +55,17 @@ class IMediaEncodingProfile3 extends IInspectable {
         iterableIid: '{f3d07841-3852-509d-a12b-a9f2ac89da93}',
         creator: TimedMetadataStreamDescriptor.fromPtr);
   }
+}
+
+final class _IMediaEncodingProfile3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      SetTimedMetadataTracks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      GetTimedMetadataTracks;
 }

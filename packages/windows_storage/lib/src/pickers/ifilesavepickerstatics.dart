@@ -23,7 +23,10 @@ import 'filesavepicker.dart';
 const IID_IFileSavePickerStatics = '{28e3cf9e-961c-5e2c-aed7-e64737f4ce37}';
 
 class IFileSavePickerStatics extends IInspectable {
-  IFileSavePickerStatics.fromPtr(super.ptr);
+  IFileSavePickerStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFileSavePickerStaticsVtbl>().ref;
+
+  final _IFileSavePickerStaticsVtbl _vtable;
 
   factory IFileSavePickerStatics.from(IInspectable interface) => interface.cast(
       IFileSavePickerStatics.fromPtr, IID_IFileSavePickerStatics);
@@ -31,17 +34,9 @@ class IFileSavePickerStatics extends IInspectable {
   FileSavePicker? createForUser(User? user) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer user,
-                Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
+    final hr = _vtable.CreateForUser.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer user,
+            Pointer<COMObject> result)>()(lpVtbl, user.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -55,4 +50,12 @@ class IFileSavePickerStatics extends IInspectable {
 
     return FileSavePicker.fromPtr(result);
   }
+}
+
+final class _IFileSavePickerStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+              Pointer<COMObject> result)>> CreateForUser;
 }

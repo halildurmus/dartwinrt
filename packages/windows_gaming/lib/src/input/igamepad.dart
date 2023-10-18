@@ -26,7 +26,10 @@ import 'igamecontroller.dart';
 const IID_IGamepad = '{bc7bb43c-0a69-3903-9e9d-a50f86a45de5}';
 
 class IGamepad extends IInspectable implements IGameController {
-  IGamepad.fromPtr(super.ptr);
+  IGamepad.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGamepadVtbl>().ref;
+
+  final _IGamepadVtbl _vtable;
 
   factory IGamepad.from(IInspectable interface) =>
       interface.cast(IGamepad.fromPtr, IID_IGamepad);
@@ -35,17 +38,9 @@ class IGamepad extends IInspectable implements IGameController {
     final value = calloc<NativeGamepadVibration>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeGamepadVibration> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeGamepadVibration> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Vibration.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeGamepadVibration> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -58,17 +53,8 @@ class IGamepad extends IInspectable implements IGameController {
   set vibration(GamepadVibration value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl,
-                            NativeGamepadVibration value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl, NativeGamepadVibration value)>()(
+    final hr = _vtable.put_Vibration.asFunction<
+            int Function(VTablePointer lpVtbl, NativeGamepadVibration value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -80,17 +66,9 @@ class IGamepad extends IInspectable implements IGameController {
     final value = calloc<NativeGamepadReading>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeGamepadReading> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeGamepadReading> value)>()(lpVtbl, value);
+      final hr = _vtable.GetCurrentReading.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeGamepadReading> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -134,4 +112,23 @@ class IGamepad extends IInspectable implements IGameController {
 
   @override
   User? get user => _iGameController.user;
+}
+
+final class _IGamepadVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeGamepadVibration> value)>>
+      get_Vibration;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, NativeGamepadVibration value)>>
+      put_Vibration;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeGamepadReading> value)>>
+      GetCurrentReading;
 }

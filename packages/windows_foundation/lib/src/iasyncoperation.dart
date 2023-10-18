@@ -20,6 +20,9 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
   IAsyncOperation(super.ptr);
 
+  late final _IAsyncOperationVtbl __vtable =
+      ptr.ref.vtable.cast<_IAsyncOperationVtbl>().ref;
+
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///
   /// [TResult] must be of type `bool`, `double`, `Guid`, `int`, `Object?`,
@@ -128,17 +131,9 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
 
   /// Sets the method that handles the operation completed notification.
   set completed(Pointer<COMObject> value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value.ref.lpVtbl);
+    final hr = __vtable.put_Completed.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+        lpVtbl, value.ref.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -147,17 +142,9 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   Pointer<COMObject> get completed {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
+    final hr = __vtable.get_Completed.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
 
@@ -183,4 +170,22 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
 
   @override
   void close() => _iAsyncInfo.close();
+}
+
+final class _IAsyncOperationVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_Completed;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>>
+      get_Completed;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl
+              /*, TResult*/
+              )>> GetResults;
 }

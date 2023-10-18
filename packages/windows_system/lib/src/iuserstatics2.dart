@@ -22,7 +22,10 @@ import 'user.dart';
 const IID_IUserStatics2 = '{74a37e11-2eb5-4487-b0d5-2c6790e013e9}';
 
 class IUserStatics2 extends IInspectable {
-  IUserStatics2.fromPtr(super.ptr);
+  IUserStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IUserStatics2Vtbl>().ref;
+
+  final _IUserStatics2Vtbl _vtable;
 
   factory IUserStatics2.from(IInspectable interface) =>
       interface.cast(IUserStatics2.fromPtr, IID_IUserStatics2);
@@ -30,17 +33,9 @@ class IUserStatics2 extends IInspectable {
   User? getDefault() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetDefault.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -54,4 +49,12 @@ class IUserStatics2 extends IInspectable {
 
     return User.fromPtr(result);
   }
+}
+
+final class _IUserStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> GetDefault;
 }

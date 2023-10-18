@@ -24,7 +24,10 @@ import 'videoframe.dart';
 const IID_IVideoFrame = '{0cc06625-90fc-4c92-bd95-7ded21819d1c}';
 
 class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
-  IVideoFrame.fromPtr(super.ptr);
+  IVideoFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IVideoFrameVtbl>().ref;
+
+  final _IVideoFrameVtbl _vtable;
 
   factory IVideoFrame.from(IInspectable interface) =>
       interface.cast(IVideoFrame.fromPtr, IID_IVideoFrame);
@@ -32,17 +35,9 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   SoftwareBitmap? get softwareBitmap {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SoftwareBitmap.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   Future<void> copyToAsync(VideoFrame? frame) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer frame,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer frame,
-                Pointer<COMObject> value)>()(lpVtbl, frame.lpVtbl, value);
+    final hr = _vtable.CopyToAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer frame,
+            Pointer<COMObject> value)>()(lpVtbl, frame.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,17 +70,9 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   IDirect3DSurface? get direct3DSurface {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Direct3DSurface.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -148,4 +127,20 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IVideoFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SoftwareBitmap;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer frame,
+              Pointer<COMObject> value)>> CopyToAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Direct3DSurface;
 }

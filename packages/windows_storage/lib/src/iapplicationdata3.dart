@@ -22,7 +22,10 @@ import 'storagefolder.dart';
 const IID_IApplicationData3 = '{dc222cf4-2772-4c1d-aa2c-c9f743ade8d1}';
 
 class IApplicationData3 extends IInspectable {
-  IApplicationData3.fromPtr(super.ptr);
+  IApplicationData3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationData3Vtbl>().ref;
+
+  final _IApplicationData3Vtbl _vtable;
 
   factory IApplicationData3.from(IInspectable interface) =>
       interface.cast(IApplicationData3.fromPtr, IID_IApplicationData3);
@@ -30,20 +33,9 @@ class IApplicationData3 extends IInspectable {
   StorageFolder? getPublisherCacheFolder(String folderName) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr folderName,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int folderName,
-                Pointer<COMObject>
-                    value)>()(lpVtbl, folderName.toHString(), value);
+    final hr = _vtable.GetPublisherCacheFolder.asFunction<
+        int Function(VTablePointer lpVtbl, int folderName,
+            Pointer<COMObject> value)>()(lpVtbl, folderName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,21 +53,10 @@ class IApplicationData3 extends IInspectable {
   Future<void> clearPublisherCacheFolderAsync(String folderName) {
     final clearOperation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr folderName,
-                                Pointer<COMObject> clearOperation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int folderName,
-                        Pointer<COMObject> clearOperation)>()(
-            lpVtbl, folderName.toHString(), clearOperation);
+    final hr = _vtable.ClearPublisherCacheFolderAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int folderName,
+                Pointer<COMObject> clearOperation)>()(
+        lpVtbl, folderName.toHString(), clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);
@@ -88,17 +69,9 @@ class IApplicationData3 extends IInspectable {
   StorageFolder? get sharedLocalFolder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SharedLocalFolder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -112,4 +85,21 @@ class IApplicationData3 extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IApplicationData3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr folderName,
+              Pointer<COMObject> value)>> GetPublisherCacheFolder;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, IntPtr folderName,
+                  Pointer<COMObject> clearOperation)>>
+      ClearPublisherCacheFolderAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SharedLocalFolder;
 }

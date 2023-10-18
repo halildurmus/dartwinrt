@@ -22,7 +22,10 @@ import 'notificationdata.dart';
 const IID_INotificationDataFactory = '{23c1e33a-1c10-46fb-8040-dec384621cf8}';
 
 class INotificationDataFactory extends IInspectable {
-  INotificationDataFactory.fromPtr(super.ptr);
+  INotificationDataFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INotificationDataFactoryVtbl>().ref;
+
+  final _INotificationDataFactoryVtbl _vtable;
 
   factory INotificationDataFactory.from(IInspectable interface) => interface
       .cast(INotificationDataFactory.fromPtr, IID_INotificationDataFactory);
@@ -32,21 +35,11 @@ class INotificationDataFactory extends IInspectable {
       int sequenceNumber) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer initialValues,
-                            Uint32 sequenceNumber,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
+    final hr =
+        _vtable.CreateNotificationDataWithValuesAndSequenceNumber.asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     int sequenceNumber, Pointer<COMObject> value)>()(
-        lpVtbl, initialValues.lpVtbl, sequenceNumber, value);
+            lpVtbl, initialValues.lpVtbl, sequenceNumber, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,20 +53,9 @@ class INotificationDataFactory extends IInspectable {
       IIterable<IKeyValuePair<String, String>>? initialValues) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer initialValues,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer initialValues,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, initialValues.lpVtbl, value);
+    final hr = _vtable.CreateNotificationDataWithValues.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer initialValues,
+            Pointer<COMObject> value)>()(lpVtbl, initialValues.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -82,4 +64,20 @@ class INotificationDataFactory extends IInspectable {
 
     return NotificationData.fromPtr(value);
   }
+}
+
+final class _INotificationDataFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer initialValues,
+                  Uint32 sequenceNumber,
+                  Pointer<COMObject> value)>>
+      CreateNotificationDataWithValuesAndSequenceNumber;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer initialValues,
+              Pointer<COMObject> value)>> CreateNotificationDataWithValues;
 }

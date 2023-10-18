@@ -26,7 +26,11 @@ const IID_IVariablePhotoSequenceController =
     '{7fbff880-ed8c-43fd-a7c3-b35809e4229a}';
 
 class IVariablePhotoSequenceController extends IInspectable {
-  IVariablePhotoSequenceController.fromPtr(super.ptr);
+  IVariablePhotoSequenceController.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IVariablePhotoSequenceControllerVtbl>().ref;
+
+  final _IVariablePhotoSequenceControllerVtbl _vtable;
 
   factory IVariablePhotoSequenceController.from(IInspectable interface) =>
       interface.cast(IVariablePhotoSequenceController.fromPtr,
@@ -36,17 +40,9 @@ class IVariablePhotoSequenceController extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Supported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,17 +56,9 @@ class IVariablePhotoSequenceController extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_MaxPhotosPerSecond.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,17 +72,9 @@ class IVariablePhotoSequenceController extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PhotosPerSecondLimit.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -105,13 +85,7 @@ class IVariablePhotoSequenceController extends IInspectable {
   }
 
   set photosPerSecondLimit(double value) {
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Float value)>>>()
-            .value
+    final hr = _vtable.put_PhotosPerSecondLimit
             .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
         lpVtbl, value);
 
@@ -122,21 +96,9 @@ class IVariablePhotoSequenceController extends IInspectable {
       IMediaEncodingProperties? captureProperties) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer captureProperties,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer captureProperties,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetHighestConcurrentFrameRate.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer captureProperties,
+                Pointer<COMObject> value)>()(
         lpVtbl, captureProperties.lpVtbl, value);
 
     if (FAILED(hr)) {
@@ -155,17 +117,9 @@ class IVariablePhotoSequenceController extends IInspectable {
   MediaRatio? getCurrentFrameRate() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetCurrentFrameRate.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -183,17 +137,9 @@ class IVariablePhotoSequenceController extends IInspectable {
   FrameControlCapabilities? get frameCapabilities {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameCapabilities.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -211,17 +157,9 @@ class IVariablePhotoSequenceController extends IInspectable {
   IVector<FrameController?>? get desiredFrameControllers {
     final items = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> items)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> items)>()(
-        lpVtbl, items);
+    final hr = _vtable.get_DesiredFrameControllers.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> items)>()(lpVtbl, items);
 
     if (FAILED(hr)) {
       free(items);
@@ -237,4 +175,41 @@ class IVariablePhotoSequenceController extends IInspectable {
         iterableIid: '{bd8eeadc-2dd9-5ad8-ac5d-f3b13b94b9c2}',
         creator: FrameController.fromPtr);
   }
+}
+
+final class _IVariablePhotoSequenceControllerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Supported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_MaxPhotosPerSecond;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_PhotosPerSecondLimit;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Float value)>>
+      put_PhotosPerSecondLimit;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer captureProperties,
+              Pointer<COMObject> value)>> GetHighestConcurrentFrameRate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetCurrentFrameRate;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameCapabilities;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> items)>>
+      get_DesiredFrameControllers;
 }

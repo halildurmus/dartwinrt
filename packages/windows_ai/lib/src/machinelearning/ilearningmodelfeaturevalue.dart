@@ -22,7 +22,10 @@ import 'learningmodelfeaturekind.dart';
 const IID_ILearningModelFeatureValue = '{f51005db-4085-4dfe-9fed-95eb0c0cf75c}';
 
 class ILearningModelFeatureValue extends IInspectable {
-  ILearningModelFeatureValue.fromPtr(super.ptr);
+  ILearningModelFeatureValue.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelFeatureValueVtbl>().ref;
+
+  final _ILearningModelFeatureValueVtbl _vtable;
 
   factory ILearningModelFeatureValue.from(IInspectable interface) => interface
       .cast(ILearningModelFeatureValue.fromPtr, IID_ILearningModelFeatureValue);
@@ -31,17 +34,9 @@ class ILearningModelFeatureValue extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Kind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class ILearningModelFeatureValue extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ILearningModelFeatureValueVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Kind;
 }

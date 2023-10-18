@@ -21,7 +21,10 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_IPdfPageRenderOptions = '{3c98056f-b7cf-4c29-9a04-52d90267f425}';
 
 class IPdfPageRenderOptions extends IInspectable {
-  IPdfPageRenderOptions.fromPtr(super.ptr);
+  IPdfPageRenderOptions.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPdfPageRenderOptionsVtbl>().ref;
+
+  final _IPdfPageRenderOptionsVtbl _vtable;
 
   factory IPdfPageRenderOptions.from(IInspectable interface) =>
       interface.cast(IPdfPageRenderOptions.fromPtr, IID_IPdfPageRenderOptions);
@@ -30,17 +33,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<NativeRect>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeRect> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeRect> value)>()(lpVtbl, value);
+      final hr = _vtable.get_SourceRect.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeRect> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,14 +48,7 @@ class IPdfPageRenderOptions extends IInspectable {
   set sourceRect(Rect value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeRect value)>>>()
-            .value
+    final hr = _vtable.put_SourceRect
             .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
@@ -73,17 +61,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DestinationWidth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -94,17 +74,9 @@ class IPdfPageRenderOptions extends IInspectable {
   }
 
   set destinationWidth(int value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_DestinationWidth
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -113,17 +85,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DestinationHeight.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -134,17 +98,9 @@ class IPdfPageRenderOptions extends IInspectable {
   }
 
   set destinationHeight(int value) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Uint32 value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_DestinationHeight
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -153,17 +109,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<NativeColor>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeColor> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeColor> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BackgroundColor.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeColor> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -176,16 +124,8 @@ class IPdfPageRenderOptions extends IInspectable {
   set backgroundColor(Color value) {
     final valueNativeStructPtr = value.toNative();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, NativeColor value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, NativeColor value)>()(
+    final hr = _vtable.put_BackgroundColor.asFunction<
+            int Function(VTablePointer lpVtbl, NativeColor value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
     free(valueNativeStructPtr);
@@ -197,17 +137,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsIgnoringHighContrast.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -218,13 +150,7 @@ class IPdfPageRenderOptions extends IInspectable {
   }
 
   set isIgnoringHighContrast(bool value) {
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_IsIgnoringHighContrast
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
@@ -235,17 +161,9 @@ class IPdfPageRenderOptions extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BitmapEncoderId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -258,13 +176,7 @@ class IPdfPageRenderOptions extends IInspectable {
   set bitmapEncoderId(Guid value) {
     final valueNativeStructPtr = value.toNativeGUID();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, GUID value)>>>()
-            .value
+    final hr = _vtable.put_BitmapEncoderId
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
         lpVtbl, valueNativeStructPtr.ref);
 
@@ -272,4 +184,53 @@ class IPdfPageRenderOptions extends IInspectable {
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IPdfPageRenderOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativeRect> value)>> get_SourceRect;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeRect value)>>
+      put_SourceRect;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_DestinationWidth;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_DestinationWidth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_DestinationHeight;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 value)>>
+      put_DestinationHeight;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeColor> value)>>
+      get_BackgroundColor;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, NativeColor value)>>
+      put_BackgroundColor;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsIgnoringHighContrast;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_IsIgnoringHighContrast;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_BitmapEncoderId;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, GUID value)>>
+      put_BitmapEncoderId;
 }

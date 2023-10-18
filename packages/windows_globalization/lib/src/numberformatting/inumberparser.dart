@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INumberParser = '{e6659412-4a13-4a53-83a1-392fbe4cff9f}';
 
 class INumberParser extends IInspectable {
-  INumberParser.fromPtr(super.ptr);
+  INumberParser.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INumberParserVtbl>().ref;
+
+  final _INumberParserVtbl _vtable;
 
   factory INumberParser.from(IInspectable interface) =>
       interface.cast(INumberParser.fromPtr, IID_INumberParser);
@@ -28,17 +31,9 @@ class INumberParser extends IInspectable {
   int? parseInt(String text) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int text,
-                Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
+    final hr = _vtable.ParseInt.asFunction<
+        int Function(VTablePointer lpVtbl, int text,
+            Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -58,17 +53,9 @@ class INumberParser extends IInspectable {
   int? parseUInt(String text) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int text,
-                Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
+    final hr = _vtable.ParseUInt.asFunction<
+        int Function(VTablePointer lpVtbl, int text,
+            Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -88,17 +75,9 @@ class INumberParser extends IInspectable {
   double? parseDouble(String text) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int text,
-                Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
+    final hr = _vtable.ParseDouble.asFunction<
+        int Function(VTablePointer lpVtbl, int text,
+            Pointer<COMObject> result)>()(lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -114,4 +93,20 @@ class INumberParser extends IInspectable {
             referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
         .value;
   }
+}
+
+final class _INumberParserVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr text,
+              Pointer<COMObject> result)>> ParseInt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr text,
+              Pointer<COMObject> result)>> ParseUInt;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr text,
+              Pointer<COMObject> result)>> ParseDouble;
 }

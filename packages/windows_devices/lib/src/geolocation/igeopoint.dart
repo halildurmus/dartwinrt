@@ -25,7 +25,10 @@ import 'igeoshape.dart';
 const IID_IGeopoint = '{6bfa00eb-e56e-49bb-9caf-cbaa78a8bcef}';
 
 class IGeopoint extends IInspectable implements IGeoshape {
-  IGeopoint.fromPtr(super.ptr);
+  IGeopoint.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeopointVtbl>().ref;
+
+  final _IGeopointVtbl _vtable;
 
   factory IGeopoint.from(IInspectable interface) =>
       interface.cast(IGeopoint.fromPtr, IID_IGeopoint);
@@ -34,17 +37,9 @@ class IGeopoint extends IInspectable implements IGeoshape {
     final value = calloc<NativeBasicGeoposition>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeBasicGeoposition> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeBasicGeoposition> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Position.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeBasicGeoposition> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -65,4 +60,13 @@ class IGeopoint extends IInspectable implements IGeoshape {
   @override
   AltitudeReferenceSystem get altitudeReferenceSystem =>
       _iGeoshape.altitudeReferenceSystem;
+}
+
+final class _IGeopointVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeBasicGeoposition> value)>>
+      get_Position;
 }

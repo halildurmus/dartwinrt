@@ -23,7 +23,10 @@ import 'devicepairingresult.dart';
 const IID_IDeviceInformationPairing = '{2c4769f5-f684-40d5-8469-e8dbaab70485}';
 
 class IDeviceInformationPairing extends IInspectable {
-  IDeviceInformationPairing.fromPtr(super.ptr);
+  IDeviceInformationPairing.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceInformationPairingVtbl>().ref;
+
+  final _IDeviceInformationPairingVtbl _vtable;
 
   factory IDeviceInformationPairing.from(IInspectable interface) => interface
       .cast(IDeviceInformationPairing.fromPtr, IID_IDeviceInformationPairing);
@@ -32,17 +35,9 @@ class IDeviceInformationPairing extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsPaired.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class IDeviceInformationPairing extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CanPair.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,17 +66,9 @@ class IDeviceInformationPairing extends IInspectable {
   Future<DevicePairingResult?> pairAsync() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.PairAsync.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -105,19 +84,9 @@ class IDeviceInformationPairing extends IInspectable {
       DevicePairingProtectionLevel minProtectionLevel) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 minProtectionLevel,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int minProtectionLevel,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.PairWithProtectionLevelAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int minProtectionLevel,
+                Pointer<COMObject> result)>()(
         lpVtbl, minProtectionLevel.value, result);
 
     if (FAILED(hr)) {
@@ -129,4 +98,24 @@ class IDeviceInformationPairing extends IInspectable {
         creator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IDeviceInformationPairingVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsPaired;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CanPair;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> PairAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minProtectionLevel,
+              Pointer<COMObject> result)>> PairWithProtectionLevelAsync;
 }

@@ -96,6 +96,9 @@ final class NativeStructProjection extends BaseProjection {
   String get constructor => '';
 
   @override
+  String get className => structName;
+
+  @override
   String get classHeader => [
         '/// @nodoc',
         if (isDeprecated) typeDef.deprecatedAnnotation,

@@ -22,7 +22,10 @@ import 'storagefolder.dart';
 const IID_IStorageFolderStatics = '{08f327ff-85d5-48b9-aee9-28511e339f9f}';
 
 class IStorageFolderStatics extends IInspectable {
-  IStorageFolderStatics.fromPtr(super.ptr);
+  IStorageFolderStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFolderStaticsVtbl>().ref;
+
+  final _IStorageFolderStaticsVtbl _vtable;
 
   factory IStorageFolderStatics.from(IInspectable interface) =>
       interface.cast(IStorageFolderStatics.fromPtr, IID_IStorageFolderStatics);
@@ -30,17 +33,9 @@ class IStorageFolderStatics extends IInspectable {
   Future<StorageFolder?> getFolderFromPathAsync(String path) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr path,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int path,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetFolderFromPathAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int path,
+                Pointer<COMObject> operation)>()(
         lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -52,4 +47,12 @@ class IStorageFolderStatics extends IInspectable {
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFolderStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr path,
+              Pointer<COMObject> operation)>> GetFolderFromPathAsync;
 }

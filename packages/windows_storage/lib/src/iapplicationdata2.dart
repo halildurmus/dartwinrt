@@ -22,7 +22,10 @@ import 'storagefolder.dart';
 const IID_IApplicationData2 = '{9e65cd69-0ba3-4e32-be29-b02de6607638}';
 
 class IApplicationData2 extends IInspectable {
-  IApplicationData2.fromPtr(super.ptr);
+  IApplicationData2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IApplicationData2Vtbl>().ref;
+
+  final _IApplicationData2Vtbl _vtable;
 
   factory IApplicationData2.from(IInspectable interface) =>
       interface.cast(IApplicationData2.fromPtr, IID_IApplicationData2);
@@ -30,17 +33,9 @@ class IApplicationData2 extends IInspectable {
   StorageFolder? get localCacheFolder {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LocalCacheFolder.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -54,4 +49,12 @@ class IApplicationData2 extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IApplicationData2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LocalCacheFolder;
 }

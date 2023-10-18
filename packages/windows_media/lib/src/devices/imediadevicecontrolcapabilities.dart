@@ -21,7 +21,11 @@ const IID_IMediaDeviceControlCapabilities =
     '{23005816-eb85-43e2-b92b-8240d5ee70ec}';
 
 class IMediaDeviceControlCapabilities extends IInspectable {
-  IMediaDeviceControlCapabilities.fromPtr(super.ptr);
+  IMediaDeviceControlCapabilities.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IMediaDeviceControlCapabilitiesVtbl>().ref;
+
+  final _IMediaDeviceControlCapabilitiesVtbl _vtable;
 
   factory IMediaDeviceControlCapabilities.from(IInspectable interface) =>
       interface.cast(IMediaDeviceControlCapabilities.fromPtr,
@@ -31,17 +35,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Supported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +51,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Min.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -79,17 +67,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Max.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -103,17 +83,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Step.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -127,17 +99,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Default.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -151,17 +115,9 @@ class IMediaDeviceControlCapabilities extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AutoModeSupported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -170,4 +126,32 @@ class IMediaDeviceControlCapabilities extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IMediaDeviceControlCapabilitiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Supported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_Min;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_Max;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_Step;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_Default;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AutoModeSupported;
 }

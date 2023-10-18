@@ -25,7 +25,10 @@ import 'streams/irandomaccessstream.dart';
 const IID_IStorageFile2 = '{954e4bcf-0a77-42fb-b777-c2ed58a52e44}';
 
 class IStorageFile2 extends IInspectable {
-  IStorageFile2.fromPtr(super.ptr);
+  IStorageFile2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFile2Vtbl>().ref;
+
+  final _IStorageFile2Vtbl _vtable;
 
   factory IStorageFile2.from(IInspectable interface) =>
       interface.cast(IStorageFile2.fromPtr, IID_IStorageFile2);
@@ -34,17 +37,9 @@ class IStorageFile2 extends IInspectable {
       FileAccessMode accessMode, StorageOpenOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 accessMode,
-                            Uint32 options, Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int accessMode, int options,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.OpenWithOptionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int accessMode, int options,
+                Pointer<COMObject> operation)>()(
         lpVtbl, accessMode.value, options.value, operation);
 
     if (FAILED(hr)) {
@@ -62,18 +57,9 @@ class IStorageFile2 extends IInspectable {
       StorageOpenOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int options,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, options.value, operation);
+    final hr = _vtable.OpenTransactedWriteWithOptionsAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int options,
+            Pointer<COMObject> operation)>()(lpVtbl, options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -85,4 +71,20 @@ class IStorageFile2 extends IInspectable {
         creator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IStorageFile2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 accessMode,
+              Uint32 options,
+              Pointer<COMObject> operation)>> OpenWithOptionsAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 options,
+                  Pointer<COMObject> operation)>>
+      OpenTransactedWriteWithOptionsAsync;
 }

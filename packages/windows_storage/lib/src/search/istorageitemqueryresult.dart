@@ -26,7 +26,10 @@ const IID_IStorageItemQueryResult = '{e8948079-9d58-47b8-b2b2-41b07f4795f9}';
 
 class IStorageItemQueryResult extends IInspectable
     implements IStorageQueryResultBase {
-  IStorageItemQueryResult.fromPtr(super.ptr);
+  IStorageItemQueryResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemQueryResultVtbl>().ref;
+
+  final _IStorageItemQueryResultVtbl _vtable;
 
   factory IStorageItemQueryResult.from(IInspectable interface) => interface
       .cast(IStorageItemQueryResult.fromPtr, IID_IStorageItemQueryResult);
@@ -35,20 +38,9 @@ class IStorageItemQueryResult extends IInspectable
       int startIndex, int maxNumberOfItems) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 startIndex,
-                            Uint32 maxNumberOfItems,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startIndex,
-                    int maxNumberOfItems, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetItemsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startIndex,
+                int maxNumberOfItems, Pointer<COMObject> operation)>()(
         lpVtbl, startIndex, maxNumberOfItems, operation);
 
     if (FAILED(hr)) {
@@ -67,17 +59,9 @@ class IStorageItemQueryResult extends IInspectable
   Future<List<IStorageItem?>> getItemsAsyncDefaultStartAndCount() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetItemsAsyncDefaultStartAndCount.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -128,4 +112,20 @@ class IStorageItemQueryResult extends IInspectable
   @override
   void applyNewQueryOptions(QueryOptions? newQueryOptions) =>
       _iStorageQueryResultBase.applyNewQueryOptions(newQueryOptions);
+}
+
+final class _IStorageItemQueryResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 maxNumberOfItems,
+              Pointer<COMObject> operation)>> GetItemsAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetItemsAsyncDefaultStartAndCount;
 }

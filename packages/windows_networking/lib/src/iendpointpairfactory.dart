@@ -23,7 +23,10 @@ import 'hostname.dart';
 const IID_IEndpointPairFactory = '{b609d971-64e0-442b-aa6f-cc8c8f181f78}';
 
 class IEndpointPairFactory extends IInspectable {
-  IEndpointPairFactory.fromPtr(super.ptr);
+  IEndpointPairFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IEndpointPairFactoryVtbl>().ref;
+
+  final _IEndpointPairFactoryVtbl _vtable;
 
   factory IEndpointPairFactory.from(IInspectable interface) =>
       interface.cast(IEndpointPairFactory.fromPtr, IID_IEndpointPairFactory);
@@ -35,27 +38,14 @@ class IEndpointPairFactory extends IInspectable {
       String remoteServiceName) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer localHostName,
-                            IntPtr localServiceName,
-                            VTablePointer remoteHostName,
-                            IntPtr remoteServiceName,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer localHostName,
-                    int localServiceName,
-                    VTablePointer remoteHostName,
-                    int remoteServiceName,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateEndpointPair.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer localHostName,
+                int localServiceName,
+                VTablePointer remoteHostName,
+                int remoteServiceName,
+                Pointer<COMObject> value)>()(
         lpVtbl,
         localHostName.lpVtbl,
         localServiceName.toHString(),
@@ -70,4 +60,17 @@ class IEndpointPairFactory extends IInspectable {
 
     return EndpointPair.fromPtr(value);
   }
+}
+
+final class _IEndpointPairFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer localHostName,
+              IntPtr localServiceName,
+              VTablePointer remoteHostName,
+              IntPtr remoteServiceName,
+              Pointer<COMObject> value)>> CreateEndpointPair;
 }

@@ -21,7 +21,12 @@ const IID_INetworkOperatorTetheringAccessPointConfiguration =
     '{0bcc0284-412e-403d-acc6-b757e34774a4}';
 
 class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
-  INetworkOperatorTetheringAccessPointConfiguration.fromPtr(super.ptr);
+  INetworkOperatorTetheringAccessPointConfiguration.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_INetworkOperatorTetheringAccessPointConfigurationVtbl>()
+            .ref;
+
+  final _INetworkOperatorTetheringAccessPointConfigurationVtbl _vtable;
 
   factory INetworkOperatorTetheringAccessPointConfiguration.from(
           IInspectable interface) =>
@@ -32,17 +37,9 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Ssid.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +50,9 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
   }
 
   set ssid(String value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Ssid
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -72,17 +61,9 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Passphrase.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -93,18 +74,29 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
   }
 
   set passphrase(String value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_Passphrase
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _INetworkOperatorTetheringAccessPointConfigurationVtbl
+    extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Ssid;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Ssid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Passphrase;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_Passphrase;
 }

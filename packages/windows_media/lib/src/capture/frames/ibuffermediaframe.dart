@@ -23,7 +23,10 @@ import 'mediaframereference.dart';
 const IID_IBufferMediaFrame = '{b5b153c7-9b84-4062-b79c-a365b2596854}';
 
 class IBufferMediaFrame extends IInspectable {
-  IBufferMediaFrame.fromPtr(super.ptr);
+  IBufferMediaFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBufferMediaFrameVtbl>().ref;
+
+  final _IBufferMediaFrameVtbl _vtable;
 
   factory IBufferMediaFrame.from(IInspectable interface) =>
       interface.cast(IBufferMediaFrame.fromPtr, IID_IBufferMediaFrame);
@@ -31,17 +34,9 @@ class IBufferMediaFrame extends IInspectable {
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameReference.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IBufferMediaFrame extends IInspectable {
   IBuffer? get buffer {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Buffer.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,4 +70,16 @@ class IBufferMediaFrame extends IInspectable {
 
     return IBuffer.fromPtr(value);
   }
+}
+
+final class _IBufferMediaFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameReference;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Buffer;
 }

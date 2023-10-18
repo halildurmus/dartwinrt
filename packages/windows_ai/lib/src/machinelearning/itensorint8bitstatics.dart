@@ -22,7 +22,10 @@ import 'tensorint8bit.dart';
 const IID_ITensorInt8BitStatics = '{b1a12284-095c-4c76-a661-ac4cee1f3e8b}';
 
 class ITensorInt8BitStatics extends IInspectable {
-  ITensorInt8BitStatics.fromPtr(super.ptr);
+  ITensorInt8BitStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorInt8BitStaticsVtbl>().ref;
+
+  final _ITensorInt8BitStaticsVtbl _vtable;
 
   factory ITensorInt8BitStatics.from(IInspectable interface) =>
       interface.cast(ITensorInt8BitStatics.fromPtr, IID_ITensorInt8BitStatics);
@@ -30,17 +33,9 @@ class ITensorInt8BitStatics extends IInspectable {
   TensorInt8Bit? create() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.Create.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -58,17 +53,9 @@ class ITensorInt8BitStatics extends IInspectable {
   TensorInt8Bit? create2(IIterable<int>? shape) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
-                        Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer shape,
-                Pointer<COMObject> result)>()(lpVtbl, shape.lpVtbl, result);
+    final hr = _vtable.Create2.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer shape,
+            Pointer<COMObject> result)>()(lpVtbl, shape.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -87,25 +74,13 @@ class ITensorInt8BitStatics extends IInspectable {
     final result = calloc<COMObject>();
     final dataArray = data.toArray<Uint8>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer shape,
-                            Uint32 dataSize,
-                            Pointer<Uint8> data,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer shape,
-                    int dataSize,
-                    Pointer<Uint8> data,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateFromArray.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer shape,
+                int dataSize,
+                Pointer<Uint8> data,
+                Pointer<COMObject> result)>()(
         lpVtbl, shape.lpVtbl, data.length, dataArray, result);
 
     free(dataArray);
@@ -127,22 +102,10 @@ class ITensorInt8BitStatics extends IInspectable {
       IIterable<int>? shape, IIterable<int>? data) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer shape,
-                                VTablePointer data,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer shape,
-                        VTablePointer data, Pointer<COMObject> result)>()(
-            lpVtbl, shape.lpVtbl, data.lpVtbl, result);
+    final hr = _vtable.CreateFromIterable.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer shape,
+                VTablePointer data, Pointer<COMObject> result)>()(
+        lpVtbl, shape.lpVtbl, data.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -156,4 +119,31 @@ class ITensorInt8BitStatics extends IInspectable {
 
     return TensorInt8Bit.fromPtr(result);
   }
+}
+
+final class _ITensorInt8BitStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
+              Pointer<COMObject> result)>> Create2;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer shape,
+              Uint32 dataSize,
+              Pointer<Uint8> data,
+              Pointer<COMObject> result)>> CreateFromArray;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer shape,
+              VTablePointer data,
+              Pointer<COMObject> result)>> CreateFromIterable;
 }

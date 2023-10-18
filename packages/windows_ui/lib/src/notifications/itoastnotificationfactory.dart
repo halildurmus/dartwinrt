@@ -23,7 +23,10 @@ import 'toastnotification.dart';
 const IID_IToastNotificationFactory = '{04124b20-82c6-4229-b109-fd9ed4662b53}';
 
 class IToastNotificationFactory extends IInspectable {
-  IToastNotificationFactory.fromPtr(super.ptr);
+  IToastNotificationFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotificationFactoryVtbl>().ref;
+
+  final _IToastNotificationFactoryVtbl _vtable;
 
   factory IToastNotificationFactory.from(IInspectable interface) => interface
       .cast(IToastNotificationFactory.fromPtr, IID_IToastNotificationFactory);
@@ -31,17 +34,9 @@ class IToastNotificationFactory extends IInspectable {
   ToastNotification createToastNotification(XmlDocument? content) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer content, Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer content,
-                Pointer<COMObject> value)>()(lpVtbl, content.lpVtbl, value);
+    final hr = _vtable.CreateToastNotification.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer content,
+            Pointer<COMObject> value)>()(lpVtbl, content.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -50,4 +45,12 @@ class IToastNotificationFactory extends IInspectable {
 
     return ToastNotification.fromPtr(value);
   }
+}
+
+final class _IToastNotificationFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer content,
+              Pointer<COMObject> value)>> CreateToastNotification;
 }

@@ -24,7 +24,10 @@ import 'imediaframe.dart';
 const IID_IAudioFrame = '{e36ac304-aab2-4277-9ed0-43cedf8e29c6}';
 
 class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
-  IAudioFrame.fromPtr(super.ptr);
+  IAudioFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioFrameVtbl>().ref;
+
+  final _IAudioFrameVtbl _vtable;
 
   factory IAudioFrame.from(IInspectable interface) =>
       interface.cast(IAudioFrame.fromPtr, IID_IAudioFrame);
@@ -32,17 +35,9 @@ class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
   AudioBuffer? lockBuffer(AudioBufferAccessMode mode) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 mode,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int mode,
-                Pointer<COMObject> value)>()(lpVtbl, mode.value, value);
+    final hr = _vtable.LockBuffer.asFunction<
+        int Function(VTablePointer lpVtbl, int mode,
+            Pointer<COMObject> value)>()(lpVtbl, mode.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -97,4 +92,13 @@ class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IAudioFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 mode, Pointer<COMObject> value)>>
+      LockBuffer;
 }

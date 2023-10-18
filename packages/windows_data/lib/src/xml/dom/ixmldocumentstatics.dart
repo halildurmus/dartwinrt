@@ -24,7 +24,10 @@ import 'xmlloadsettings.dart';
 const IID_IXmlDocumentStatics = '{5543d254-d757-4b79-9539-232b18f50bf1}';
 
 class IXmlDocumentStatics extends IInspectable {
-  IXmlDocumentStatics.fromPtr(super.ptr);
+  IXmlDocumentStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDocumentStaticsVtbl>().ref;
+
+  final _IXmlDocumentStaticsVtbl _vtable;
 
   factory IXmlDocumentStatics.from(IInspectable interface) =>
       interface.cast(IXmlDocumentStatics.fromPtr, IID_IXmlDocumentStatics);
@@ -32,21 +35,10 @@ class IXmlDocumentStatics extends IInspectable {
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer uri,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, asyncInfo);
+    final hr = _vtable.LoadFromUriAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -62,24 +54,13 @@ class IXmlDocumentStatics extends IInspectable {
       Uri? uri, XmlLoadSettings? loadSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer uri,
-                            VTablePointer loadSettings,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer uri,
-                    VTablePointer loadSettings,
-                    Pointer<COMObject> asyncInfo)>()(lpVtbl,
-        uri?.toWinRTUri().lpVtbl ?? nullptr, loadSettings.lpVtbl, asyncInfo);
+    final hr = _vtable.LoadFromUriWithSettingsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer uri,
+                VTablePointer loadSettings, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        loadSettings.lpVtbl,
+        asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -94,21 +75,9 @@ class IXmlDocumentStatics extends IInspectable {
   Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> asyncInfo)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> asyncInfo)>()(
-            lpVtbl, file.lpVtbl, asyncInfo);
+    final hr = _vtable.LoadFromFileAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer file,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -124,23 +93,9 @@ class IXmlDocumentStatics extends IInspectable {
       IStorageFile? file, XmlLoadSettings? loadSettings) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer file,
-                            VTablePointer loadSettings,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer file,
-                    VTablePointer loadSettings,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.LoadFromFileWithSettingsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer file,
+                VTablePointer loadSettings, Pointer<COMObject> asyncInfo)>()(
         lpVtbl, file.lpVtbl, loadSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -152,4 +107,30 @@ class IXmlDocumentStatics extends IInspectable {
         creator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IXmlDocumentStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer uri,
+              Pointer<COMObject> asyncInfo)>> LoadFromUriAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer uri,
+              VTablePointer loadSettings,
+              Pointer<COMObject> asyncInfo)>> LoadFromUriWithSettingsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+              Pointer<COMObject> asyncInfo)>> LoadFromFileAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer file,
+              VTablePointer loadSettings,
+              Pointer<COMObject> asyncInfo)>> LoadFromFileWithSettingsAsync;
 }

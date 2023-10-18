@@ -123,6 +123,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
 
   /// The class name of the interface (e.g., `_IMapStringString`,
   /// `_IVectorIInspectable`).
+  @override
   String get className {
     final args = typeArgs
         .map((arg) => arg.name.capitalize().stripQuestionMarkSuffix())
@@ -190,6 +191,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   Set<String> get fields {
     final genericParams = typeDef.genericParams;
     return {
+      'late final _${className}Vtbl _vtable = ptr.ref.vtable.cast<_${className}Vtbl>().ref;',
       if (typeArgs case [final typeArg1, final typeArg2]) ...{
         if (typeArg1.isEnum)
           'final EnumCreator<${genericParams[0].name}> enumKeyCreator;',
@@ -316,23 +318,34 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   List<MethodProjection> get methodProjections {
     final projections = <MethodProjection>[];
 
-    for (final method in methodsToOverride) {
+    for (var method in typeDef.methods) {
+      if (methodsToOverride.where((m) => m.name == method.name).firstOrNull
+          case final overriddenMethod?) {
+        method = overriddenMethod;
+      }
+
       final vtableOffset = vtableStart +
           typeDef.methods.indexWhere((m) => m.token == method.token);
 
-      if (method.isGetProperty) {
-        projections.add(GetterProjection.create(method, vtableOffset));
-      } else if (method.isSetProperty) {
-        projections.add(SetterProjection.create(method, vtableOffset));
-      } else {
-        projections.add(MethodProjection.create(method, vtableOffset));
-      }
+      final projection = switch (method) {
+        final m when m.isGetProperty =>
+          GetterProjection.create(method, vtableOffset),
+        final m when m.isSetProperty =>
+          SetterProjection.create(method, vtableOffset),
+        _ => MethodProjection.create(method, vtableOffset),
+      };
+      projections.add(projection);
     }
 
     return projections;
   }
 
   String get formattedMethodProjections {
+    final methodProjections = methodsToOverride
+        .map((m) =>
+            this.methodProjections.firstWhere((p) => p.method.name == m.name))
+        .toList();
+
     // IReference's getters should be treated specially as they are nullable
     // regardless of the type argument
     if (shortName == 'IReference') {
@@ -375,6 +388,8 @@ final class GenericInterfaceProjection extends InterfaceProjection {
 
   $formattedMethodProjections
 }
+
+$vtable
 ''';
 
   @override

@@ -21,7 +21,12 @@ const IID_IGeocoordinateWithPositionSourceTimestamp =
     '{8543fc02-c9f1-4610-afe0-8bc3a6a87036}';
 
 class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
-  IGeocoordinateWithPositionSourceTimestamp.fromPtr(super.ptr);
+  IGeocoordinateWithPositionSourceTimestamp.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IGeocoordinateWithPositionSourceTimestampVtbl>()
+            .ref;
+
+  final _IGeocoordinateWithPositionSourceTimestampVtbl _vtable;
 
   factory IGeocoordinateWithPositionSourceTimestamp.from(
           IInspectable interface) =>
@@ -31,17 +36,9 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
   DateTime? get positionSourceTimestamp {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PositionSourceTimestamp.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,4 +54,12 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
             referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}')
         .value;
   }
+}
+
+final class _IGeocoordinateWithPositionSourceTimestampVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PositionSourceTimestamp;
 }

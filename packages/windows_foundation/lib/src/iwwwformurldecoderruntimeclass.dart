@@ -30,7 +30,11 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     implements
         IIterable<IWwwFormUrlDecoderEntry?>,
         IVectorView<IWwwFormUrlDecoderEntry?> {
-  IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr);
+  IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IWwwFormUrlDecoderRuntimeClassVtbl>().ref;
+
+  final _IWwwFormUrlDecoderRuntimeClassVtbl _vtable;
 
   factory IWwwFormUrlDecoderRuntimeClass.from(IInspectable interface) =>
       interface.cast(IWwwFormUrlDecoderRuntimeClass.fromPtr,
@@ -40,17 +44,9 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     final phstrValue = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Pointer<IntPtr> phstrValue)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int name,
-                      Pointer<IntPtr> phstrValue)>()(
+      final hr = _vtable.GetFirstValueByName.asFunction<
+              int Function(VTablePointer lpVtbl, int name,
+                  Pointer<IntPtr> phstrValue)>()(
           lpVtbl, name.toHString(), phstrValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -94,4 +90,12 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
   List<IWwwFormUrlDecoderEntry?> operator +(
           List<IWwwFormUrlDecoderEntry?> other) =>
       toList() + other;
+}
+
+final class _IWwwFormUrlDecoderRuntimeClassVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+              Pointer<IntPtr> phstrValue)>> GetFirstValueByName;
 }

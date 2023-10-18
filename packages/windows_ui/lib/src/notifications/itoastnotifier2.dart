@@ -23,7 +23,10 @@ import 'notificationupdateresult.dart';
 const IID_IToastNotifier2 = '{354389c6-7c01-4bd5-9c20-604340cd2b74}';
 
 class IToastNotifier2 extends IInspectable {
-  IToastNotifier2.fromPtr(super.ptr);
+  IToastNotifier2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotifier2Vtbl>().ref;
+
+  final _IToastNotifier2Vtbl _vtable;
 
   factory IToastNotifier2.from(IInspectable interface) =>
       interface.cast(IToastNotifier2.fromPtr, IID_IToastNotifier2);
@@ -33,23 +36,10 @@ class IToastNotifier2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer data,
-                                  IntPtr tag,
-                                  IntPtr group,
-                                  Pointer<Int32> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer data,
-                          int tag, int group, Pointer<Int32> result)>()(
-              lpVtbl, data.lpVtbl, tag.toHString(), group.toHString(), result);
+      final hr = _vtable.UpdateWithTagAndGroup.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer data, int tag,
+                  int group, Pointer<Int32> result)>()(
+          lpVtbl, data.lpVtbl, tag.toHString(), group.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -63,22 +53,10 @@ class IToastNotifier2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr =
-          vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer data,
-                                  IntPtr tag,
-                                  Pointer<Int32> result)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer data,
-                          int tag, Pointer<Int32> result)>()(
-              lpVtbl, data.lpVtbl, tag.toHString(), result);
+      final hr = _vtable.UpdateWithTag.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer data, int tag,
+                  Pointer<Int32> result)>()(
+          lpVtbl, data.lpVtbl, tag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,4 +65,16 @@ class IToastNotifier2 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IToastNotifier2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer data, IntPtr tag,
+              IntPtr group, Pointer<Int32> result)>> UpdateWithTagAndGroup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer data, IntPtr tag,
+              Pointer<Int32> result)>> UpdateWithTag;
 }

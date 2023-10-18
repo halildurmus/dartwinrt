@@ -28,7 +28,10 @@ import 'roamingstates.dart';
 const IID_IConnectionProfile = '{71ba143c-598e-49d0-84eb-8febaedcc195}';
 
 class IConnectionProfile extends IInspectable {
-  IConnectionProfile.fromPtr(super.ptr);
+  IConnectionProfile.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfileVtbl>().ref;
+
+  final _IConnectionProfileVtbl _vtable;
 
   factory IConnectionProfile.from(IInspectable interface) =>
       interface.cast(IConnectionProfile.fromPtr, IID_IConnectionProfile);
@@ -37,17 +40,9 @@ class IConnectionProfile extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ProfileName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +56,9 @@ class IConnectionProfile extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.GetNetworkConnectivityLevel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -84,17 +71,9 @@ class IConnectionProfile extends IInspectable {
   List<String> getNetworkNames() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetNetworkNames.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -109,17 +88,9 @@ class IConnectionProfile extends IInspectable {
   ConnectionCost? getConnectionCost() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetConnectionCost.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -137,17 +108,9 @@ class IConnectionProfile extends IInspectable {
   DataPlanStatus? getDataPlanStatus() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.GetDataPlanStatus.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -165,17 +128,9 @@ class IConnectionProfile extends IInspectable {
   NetworkAdapter? get networkAdapter {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_NetworkAdapter.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -195,17 +150,9 @@ class IConnectionProfile extends IInspectable {
   DataUsage? getLocalUsage(DateTime startTime, DateTime endTime) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
-                            Int64 endTime, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startTime, int endTime,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.GetLocalUsage.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime, int endTime,
+                Pointer<COMObject> value)>()(
         lpVtbl, startTime.toWinRTDateTime(), endTime.toWinRTDateTime(), value);
 
     if (FAILED(hr)) {
@@ -227,21 +174,9 @@ class IConnectionProfile extends IInspectable {
       DateTime startTime, DateTime endTime, RoamingStates states) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int64 startTime,
-                            Int64 endTime,
-                            Uint32 states,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startTime, int endTime,
-                    int states, Pointer<COMObject> value)>()(
+    final hr = _vtable.GetLocalUsagePerRoamingStates.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime, int endTime,
+                int states, Pointer<COMObject> value)>()(
         lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
@@ -264,17 +199,9 @@ class IConnectionProfile extends IInspectable {
   NetworkSecuritySettings? get networkSecuritySettings {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_NetworkSecuritySettings.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -288,4 +215,48 @@ class IConnectionProfile extends IInspectable {
 
     return NetworkSecuritySettings.fromPtr(value);
   }
+}
+
+final class _IConnectionProfileVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ProfileName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      GetNetworkConnectivityLevel;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetNetworkNames;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetConnectionCost;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      GetDataPlanStatus;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_NetworkAdapter;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 startTime, Int64 endTime,
+              Pointer<COMObject> value)>> GetLocalUsage;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int64 startTime,
+              Int64 endTime,
+              Uint32 states,
+              Pointer<COMObject> value)>> GetLocalUsagePerRoamingStates;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_NetworkSecuritySettings;
 }

@@ -21,7 +21,10 @@ const IID_ICurrencyIdentifiersStatics2 =
     '{1814797f-c3b2-4c33-9591-980011950d37}';
 
 class ICurrencyIdentifiersStatics2 extends IInspectable {
-  ICurrencyIdentifiersStatics2.fromPtr(super.ptr);
+  ICurrencyIdentifiersStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICurrencyIdentifiersStatics2Vtbl>().ref;
+
+  final _ICurrencyIdentifiersStatics2Vtbl _vtable;
 
   factory ICurrencyIdentifiersStatics2.from(IInspectable interface) =>
       interface.cast(ICurrencyIdentifiersStatics2.fromPtr,
@@ -31,17 +34,9 @@ class ICurrencyIdentifiersStatics2 extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_BYN.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,12 @@ class ICurrencyIdentifiersStatics2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ICurrencyIdentifiersStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_BYN;
 }

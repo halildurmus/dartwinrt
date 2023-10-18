@@ -22,7 +22,10 @@ import 'connectionprofiledeletestatus.dart';
 const IID_IConnectionProfile5 = '{85361ec7-9c73-4be0-8f14-578eec71ee0e}';
 
 class IConnectionProfile5 extends IInspectable {
-  IConnectionProfile5.fromPtr(super.ptr);
+  IConnectionProfile5.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfile5Vtbl>().ref;
+
+  final _IConnectionProfile5Vtbl _vtable;
 
   factory IConnectionProfile5.from(IInspectable interface) =>
       interface.cast(IConnectionProfile5.fromPtr, IID_IConnectionProfile5);
@@ -31,17 +34,9 @@ class IConnectionProfile5 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_CanDelete.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class IConnectionProfile5 extends IInspectable {
   Future<ConnectionProfileDeleteStatus> tryDeleteAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.TryDeleteAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -76,4 +63,17 @@ class IConnectionProfile5 extends IInspectable {
             enumCreator: ConnectionProfileDeleteStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IConnectionProfile5Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_CanDelete;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      TryDeleteAsync;
 }

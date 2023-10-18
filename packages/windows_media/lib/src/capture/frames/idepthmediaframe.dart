@@ -27,7 +27,10 @@ import 'videomediaframe.dart';
 const IID_IDepthMediaFrame = '{47135e4f-8549-45c0-925b-80d35efdb10a}';
 
 class IDepthMediaFrame extends IInspectable {
-  IDepthMediaFrame.fromPtr(super.ptr);
+  IDepthMediaFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDepthMediaFrameVtbl>().ref;
+
+  final _IDepthMediaFrameVtbl _vtable;
 
   factory IDepthMediaFrame.from(IInspectable interface) =>
       interface.cast(IDepthMediaFrame.fromPtr, IID_IDepthMediaFrame);
@@ -35,17 +38,9 @@ class IDepthMediaFrame extends IInspectable {
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameReference.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,17 +58,9 @@ class IDepthMediaFrame extends IInspectable {
   VideoMediaFrame? get videoMediaFrame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoMediaFrame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -91,17 +78,9 @@ class IDepthMediaFrame extends IInspectable {
   DepthMediaFrameFormat? get depthFormat {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DepthFormat.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -121,23 +100,9 @@ class IDepthMediaFrame extends IInspectable {
       SpatialCoordinateSystem? coordinateSystem) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer cameraIntrinsics,
-                            VTablePointer coordinateSystem,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer cameraIntrinsics,
-                    VTablePointer coordinateSystem,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.TryCreateCoordinateMapper.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer cameraIntrinsics,
+                VTablePointer coordinateSystem, Pointer<COMObject> value)>()(
         lpVtbl, cameraIntrinsics.lpVtbl, coordinateSystem.lpVtbl, value);
 
     if (FAILED(hr)) {
@@ -152,4 +117,27 @@ class IDepthMediaFrame extends IInspectable {
 
     return DepthCorrelatedCoordinateMapper.fromPtr(value);
   }
+}
+
+final class _IDepthMediaFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameReference;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoMediaFrame;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DepthFormat;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer cameraIntrinsics,
+              VTablePointer coordinateSystem,
+              Pointer<COMObject> value)>> TryCreateCoordinateMapper;
 }

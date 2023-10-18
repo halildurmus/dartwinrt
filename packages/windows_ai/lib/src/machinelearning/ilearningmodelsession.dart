@@ -25,7 +25,10 @@ import 'learningmodelevaluationresult.dart';
 const IID_ILearningModelSession = '{8e58f8f6-b787-4c11-90f0-7129aeca74a9}';
 
 class ILearningModelSession extends IInspectable {
-  ILearningModelSession.fromPtr(super.ptr);
+  ILearningModelSession.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelSessionVtbl>().ref;
+
+  final _ILearningModelSessionVtbl _vtable;
 
   factory ILearningModelSession.from(IInspectable interface) =>
       interface.cast(ILearningModelSession.fromPtr, IID_ILearningModelSession);
@@ -33,17 +36,9 @@ class ILearningModelSession extends IInspectable {
   LearningModel? get model {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Model.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -61,17 +56,9 @@ class ILearningModelSession extends IInspectable {
   LearningModelDevice? get device {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Device.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,17 +76,9 @@ class ILearningModelSession extends IInspectable {
   IPropertySet? get evaluationProperties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_EvaluationProperties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -118,20 +97,9 @@ class ILearningModelSession extends IInspectable {
       LearningModelBinding? bindings, String correlationId) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer bindings,
-                            IntPtr correlationId,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer bindings,
-                    int correlationId, Pointer<COMObject> operation)>()(
+    final hr = _vtable.EvaluateAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer bindings,
+                int correlationId, Pointer<COMObject> operation)>()(
         lpVtbl, bindings.lpVtbl, correlationId.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -149,20 +117,9 @@ class ILearningModelSession extends IInspectable {
       IMap<String, Object?>? features, String correlationId) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer features,
-                            IntPtr correlationId,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer features,
-                    int correlationId, Pointer<COMObject> operation)>()(
+    final hr = _vtable.EvaluateFeaturesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer features,
+                int correlationId, Pointer<COMObject> operation)>()(
         lpVtbl, features.lpVtbl, correlationId.toHString(), operation);
 
     if (FAILED(hr)) {
@@ -180,20 +137,9 @@ class ILearningModelSession extends IInspectable {
       LearningModelBinding? bindings, String correlationId) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer bindings,
-                            IntPtr correlationId,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer bindings,
-                    int correlationId, Pointer<COMObject> result)>()(
+    final hr = _vtable.Evaluate.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer bindings,
+                int correlationId, Pointer<COMObject> result)>()(
         lpVtbl, bindings.lpVtbl, correlationId.toHString(), result);
 
     if (FAILED(hr)) {
@@ -213,20 +159,9 @@ class ILearningModelSession extends IInspectable {
       IMap<String, Object?>? features, String correlationId) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer features,
-                            IntPtr correlationId,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer features,
-                    int correlationId, Pointer<COMObject> result)>()(
+    final hr = _vtable.EvaluateFeatures.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer features,
+                int correlationId, Pointer<COMObject> result)>()(
         lpVtbl, features.lpVtbl, correlationId.toHString(), result);
 
     if (FAILED(hr)) {
@@ -241,4 +176,45 @@ class ILearningModelSession extends IInspectable {
 
     return LearningModelEvaluationResult.fromPtr(result);
   }
+}
+
+final class _ILearningModelSessionVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Model;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Device;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_EvaluationProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer bindings,
+              IntPtr correlationId,
+              Pointer<COMObject> operation)>> EvaluateAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer features,
+              IntPtr correlationId,
+              Pointer<COMObject> operation)>> EvaluateFeaturesAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer bindings,
+              IntPtr correlationId, Pointer<COMObject> result)>> Evaluate;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer features,
+              IntPtr correlationId,
+              Pointer<COMObject> result)>> EvaluateFeatures;
 }

@@ -24,7 +24,10 @@ import 'queryoptions.dart';
 const IID_IQueryOptionsFactory = '{032e1f8c-a9c1-4e71-8011-0dee9d4811a3}';
 
 class IQueryOptionsFactory extends IInspectable {
-  IQueryOptionsFactory.fromPtr(super.ptr);
+  IQueryOptionsFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IQueryOptionsFactoryVtbl>().ref;
+
+  final _IQueryOptionsFactoryVtbl _vtable;
 
   factory IQueryOptionsFactory.from(IInspectable interface) =>
       interface.cast(IQueryOptionsFactory.fromPtr, IID_IQueryOptionsFactory);
@@ -33,23 +36,12 @@ class IQueryOptionsFactory extends IInspectable {
       CommonFileQuery query, IIterable<String>? fileTypeFilter) {
     final queryOptions = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 query,
-                            VTablePointer fileTypeFilter,
-                            Pointer<COMObject> queryOptions)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int query,
-                    VTablePointer fileTypeFilter,
-                    Pointer<COMObject> queryOptions)>()(
+    final hr = _vtable.CreateCommonFileQuery.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int query,
+                VTablePointer fileTypeFilter,
+                Pointer<COMObject> queryOptions)>()(
         lpVtbl, query.value, fileTypeFilter.lpVtbl, queryOptions);
 
     if (FAILED(hr)) {
@@ -63,17 +55,9 @@ class IQueryOptionsFactory extends IInspectable {
   QueryOptions createCommonFolderQuery(CommonFolderQuery query) {
     final queryOptions = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> queryOptions)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> queryOptions)>()(
+    final hr = _vtable.CreateCommonFolderQuery.asFunction<
+            int Function(VTablePointer lpVtbl, int query,
+                Pointer<COMObject> queryOptions)>()(
         lpVtbl, query.value, queryOptions);
 
     if (FAILED(hr)) {
@@ -83,4 +67,19 @@ class IQueryOptionsFactory extends IInspectable {
 
     return QueryOptions.fromPtr(queryOptions);
   }
+}
+
+final class _IQueryOptionsFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 query,
+              VTablePointer fileTypeFilter,
+              Pointer<COMObject> queryOptions)>> CreateCommonFileQuery;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 query,
+              Pointer<COMObject> queryOptions)>> CreateCommonFolderQuery;
 }

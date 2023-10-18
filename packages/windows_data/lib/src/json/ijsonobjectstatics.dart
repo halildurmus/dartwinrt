@@ -22,7 +22,10 @@ import 'jsonobject.dart';
 const IID_IJsonObjectStatics = '{2289f159-54de-45d8-abcc-22603fa066a0}';
 
 class IJsonObjectStatics extends IInspectable {
-  IJsonObjectStatics.fromPtr(super.ptr);
+  IJsonObjectStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IJsonObjectStaticsVtbl>().ref;
+
+  final _IJsonObjectStaticsVtbl _vtable;
 
   factory IJsonObjectStatics.from(IInspectable interface) =>
       interface.cast(IJsonObjectStatics.fromPtr, IID_IJsonObjectStatics);
@@ -30,17 +33,9 @@ class IJsonObjectStatics extends IInspectable {
   JsonObject parse(String input) {
     final jsonObject = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> jsonObject)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> jsonObject)>()(
+    final hr = _vtable.Parse.asFunction<
+            int Function(VTablePointer lpVtbl, int input,
+                Pointer<COMObject> jsonObject)>()(
         lpVtbl, input.toHString(), jsonObject);
 
     if (FAILED(hr)) {
@@ -56,20 +51,9 @@ class IJsonObjectStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr input,
-                              Pointer<COMObject> result,
-                              Pointer<Bool> succeeded)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int input,
-                      Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
+      final hr = _vtable.TryParse.asFunction<
+              int Function(VTablePointer lpVtbl, int input,
+                  Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
           lpVtbl, input.toHString(), result, succeeded);
 
       if (FAILED(hr)) {
@@ -91,4 +75,16 @@ class IJsonObjectStatics extends IInspectable {
       free(succeeded);
     }
   }
+}
+
+final class _IJsonObjectStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr input,
+              Pointer<COMObject> jsonObject)>> Parse;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr input,
+              Pointer<COMObject> result, Pointer<Bool> succeeded)>> TryParse;
 }

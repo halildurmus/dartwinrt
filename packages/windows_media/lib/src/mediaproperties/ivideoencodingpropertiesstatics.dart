@@ -23,7 +23,11 @@ const IID_IVideoEncodingPropertiesStatics =
     '{3ce14d44-1dc5-43db-9f38-ebebf90152cb}';
 
 class IVideoEncodingPropertiesStatics extends IInspectable {
-  IVideoEncodingPropertiesStatics.fromPtr(super.ptr);
+  IVideoEncodingPropertiesStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IVideoEncodingPropertiesStaticsVtbl>().ref;
+
+  final _IVideoEncodingPropertiesStaticsVtbl _vtable;
 
   factory IVideoEncodingPropertiesStatics.from(IInspectable interface) =>
       interface.cast(IVideoEncodingPropertiesStatics.fromPtr,
@@ -32,17 +36,9 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
   VideoEncodingProperties? createH264() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateH264.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +56,9 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
   VideoEncodingProperties? createMpeg2() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateMpeg2.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,21 +77,9 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
       String subtype, int width, int height) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr subtype,
-                            Uint32 width,
-                            Uint32 height,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int subtype, int width,
-                    int height, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateUncompressed.asFunction<
+            int Function(VTablePointer lpVtbl, int subtype, int width,
+                int height, Pointer<COMObject> value)>()(
         lpVtbl, subtype.toHString(), width, height, value);
 
     if (FAILED(hr)) {
@@ -118,4 +94,20 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
 
     return VideoEncodingProperties.fromPtr(value);
   }
+}
+
+final class _IVideoEncodingPropertiesStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateH264;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateMpeg2;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr subtype, Uint32 width,
+              Uint32 height, Pointer<COMObject> value)>> CreateUncompressed;
 }

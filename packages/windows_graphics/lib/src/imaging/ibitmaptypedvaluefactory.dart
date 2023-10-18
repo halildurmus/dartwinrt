@@ -22,7 +22,10 @@ import 'bitmaptypedvalue.dart';
 const IID_IBitmapTypedValueFactory = '{92dbb599-ce13-46bb-9545-cb3a3f63eb8b}';
 
 class IBitmapTypedValueFactory extends IInspectable {
-  IBitmapTypedValueFactory.fromPtr(super.ptr);
+  IBitmapTypedValueFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapTypedValueFactoryVtbl>().ref;
+
+  final _IBitmapTypedValueFactoryVtbl _vtable;
 
   factory IBitmapTypedValueFactory.from(IInspectable interface) => interface
       .cast(IBitmapTypedValueFactory.fromPtr, IID_IBitmapTypedValueFactory);
@@ -30,25 +33,10 @@ class IBitmapTypedValueFactory extends IInspectable {
   BitmapTypedValue create(Object? value, PropertyType type) {
     final bitmapTypedValue = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer value,
-                                Int32 type,
-                                Pointer<COMObject> bitmapTypedValue)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer value,
-                        int type, Pointer<COMObject> bitmapTypedValue)>()(
-            lpVtbl,
-            value?.boxValue().lpVtbl ?? nullptr,
-            type.value,
-            bitmapTypedValue);
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value, int type,
+                Pointer<COMObject> bitmapTypedValue)>()(lpVtbl,
+        value?.boxValue().lpVtbl ?? nullptr, type.value, bitmapTypedValue);
 
     if (FAILED(hr)) {
       free(bitmapTypedValue);
@@ -57,4 +45,12 @@ class IBitmapTypedValueFactory extends IInspectable {
 
     return BitmapTypedValue.fromPtr(bitmapTypedValue);
   }
+}
+
+final class _IBitmapTypedValueFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Int32 type, Pointer<COMObject> bitmapTypedValue)>> Create;
 }

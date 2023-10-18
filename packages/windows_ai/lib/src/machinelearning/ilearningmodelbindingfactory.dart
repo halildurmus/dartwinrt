@@ -24,7 +24,10 @@ const IID_ILearningModelBindingFactory =
     '{c95f7a7a-e788-475e-8917-23aa381faf0b}';
 
 class ILearningModelBindingFactory extends IInspectable {
-  ILearningModelBindingFactory.fromPtr(super.ptr);
+  ILearningModelBindingFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelBindingFactoryVtbl>().ref;
+
+  final _ILearningModelBindingFactoryVtbl _vtable;
 
   factory ILearningModelBindingFactory.from(IInspectable interface) =>
       interface.cast(ILearningModelBindingFactory.fromPtr,
@@ -33,17 +36,9 @@ class ILearningModelBindingFactory extends IInspectable {
   LearningModelBinding createFromSession(LearningModelSession? session) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        VTablePointer session, Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer session,
-                Pointer<COMObject> value)>()(lpVtbl, session.lpVtbl, value);
+    final hr = _vtable.CreateFromSession.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer session,
+            Pointer<COMObject> value)>()(lpVtbl, session.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -52,4 +47,12 @@ class ILearningModelBindingFactory extends IInspectable {
 
     return LearningModelBinding.fromPtr(value);
   }
+}
+
+final class _ILearningModelBindingFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer session,
+              Pointer<COMObject> value)>> CreateFromSession;
 }

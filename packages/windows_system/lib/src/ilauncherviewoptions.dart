@@ -21,7 +21,10 @@ import 'package:windows_ui/windows_ui.dart';
 const IID_ILauncherViewOptions = '{8a9b29f1-7ca7-49de-9bd3-3c5b7184f616}';
 
 class ILauncherViewOptions extends IInspectable {
-  ILauncherViewOptions.fromPtr(super.ptr);
+  ILauncherViewOptions.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherViewOptionsVtbl>().ref;
+
+  final _ILauncherViewOptionsVtbl _vtable;
 
   factory ILauncherViewOptions.from(IInspectable interface) =>
       interface.cast(ILauncherViewOptions.fromPtr, IID_ILauncherViewOptions);
@@ -30,17 +33,9 @@ class ILauncherViewOptions extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DesiredRemainingView.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -51,16 +46,21 @@ class ILauncherViewOptions extends IInspectable {
   }
 
   set desiredRemainingView(ViewSizePreference value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_DesiredRemainingView
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILauncherViewOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_DesiredRemainingView;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_DesiredRemainingView;
 }

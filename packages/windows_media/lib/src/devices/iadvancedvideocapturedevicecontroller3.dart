@@ -25,7 +25,12 @@ const IID_IAdvancedVideoCaptureDeviceController3 =
     '{a98b8f34-ee0d-470c-b9f0-4229c4bbd089}';
 
 class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
-  IAdvancedVideoCaptureDeviceController3.fromPtr(super.ptr);
+  IAdvancedVideoCaptureDeviceController3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAdvancedVideoCaptureDeviceController3Vtbl>()
+            .ref;
+
+  final _IAdvancedVideoCaptureDeviceController3Vtbl _vtable;
 
   factory IAdvancedVideoCaptureDeviceController3.from(IInspectable interface) =>
       interface.cast(IAdvancedVideoCaptureDeviceController3.fromPtr,
@@ -34,17 +39,9 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   VariablePhotoSequenceController? get variablePhotoSequenceController {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VariablePhotoSequenceController.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,17 +59,9 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   PhotoConfirmationControl? get photoConfirmationControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PhotoConfirmationControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -90,17 +79,9 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   ZoomControl? get zoomControl {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ZoomControl.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -114,4 +95,20 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
 
     return ZoomControl.fromPtr(value);
   }
+}
+
+final class _IAdvancedVideoCaptureDeviceController3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VariablePhotoSequenceController;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PhotoConfirmationControl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ZoomControl;
 }

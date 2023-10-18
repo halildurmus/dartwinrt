@@ -23,7 +23,10 @@ import 'xmlnodelist.dart';
 const IID_IXmlNodeSelector = '{63dbba8b-d0db-4fe1-b745-f9433afdc25b}';
 
 class IXmlNodeSelector extends IInspectable {
-  IXmlNodeSelector.fromPtr(super.ptr);
+  IXmlNodeSelector.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlNodeSelectorVtbl>().ref;
+
+  final _IXmlNodeSelectorVtbl _vtable;
 
   factory IXmlNodeSelector.from(IInspectable interface) =>
       interface.cast(IXmlNodeSelector.fromPtr, IID_IXmlNodeSelector);
@@ -31,17 +34,9 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNode? selectSingleNode(String xpath) {
     final node = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                        Pointer<COMObject> node)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int xpath,
-                Pointer<COMObject> node)>()(lpVtbl, xpath.toHString(), node);
+    final hr = _vtable.SelectSingleNode.asFunction<
+        int Function(VTablePointer lpVtbl, int xpath,
+            Pointer<COMObject> node)>()(lpVtbl, xpath.toHString(), node);
 
     if (FAILED(hr)) {
       free(node);
@@ -59,17 +54,9 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList selectNodes(String xpath) {
     final nodelist = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                            Pointer<COMObject> nodelist)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int xpath,
-                    Pointer<COMObject> nodelist)>()(
+    final hr = _vtable.SelectNodes.asFunction<
+            int Function(VTablePointer lpVtbl, int xpath,
+                Pointer<COMObject> nodelist)>()(
         lpVtbl, xpath.toHString(), nodelist);
 
     if (FAILED(hr)) {
@@ -83,25 +70,10 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
     final node = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr xpath,
-                                VTablePointer namespaces,
-                                Pointer<COMObject> node)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int xpath,
-                        VTablePointer namespaces, Pointer<COMObject> node)>()(
-            lpVtbl,
-            xpath.toHString(),
-            namespaces?.boxValue().lpVtbl ?? nullptr,
-            node);
+    final hr = _vtable.SelectSingleNodeNS.asFunction<
+            int Function(VTablePointer lpVtbl, int xpath,
+                VTablePointer namespaces, Pointer<COMObject> node)>()(lpVtbl,
+        xpath.toHString(), namespaces?.boxValue().lpVtbl ?? nullptr, node);
 
     if (FAILED(hr)) {
       free(node);
@@ -119,20 +91,9 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList selectNodesNS(String xpath, Object? namespaces) {
     final nodelist = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr xpath,
-                            VTablePointer namespaces,
-                            Pointer<COMObject> nodelist)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int xpath,
-                    VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
+    final hr = _vtable.SelectNodesNS.asFunction<
+            int Function(VTablePointer lpVtbl, int xpath,
+                VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
         lpVtbl,
         xpath.toHString(),
         namespaces?.boxValue().lpVtbl ?? nullptr,
@@ -145,4 +106,31 @@ class IXmlNodeSelector extends IInspectable {
 
     return XmlNodeList.fromPtr(nodelist);
   }
+}
+
+final class _IXmlNodeSelectorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr xpath, Pointer<COMObject> node)>>
+      SelectSingleNode;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
+              Pointer<COMObject> nodelist)>> SelectNodes;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr xpath,
+              VTablePointer namespaces,
+              Pointer<COMObject> node)>> SelectSingleNodeNS;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr xpath,
+              VTablePointer namespaces,
+              Pointer<COMObject> nodelist)>> SelectNodesNS;
 }

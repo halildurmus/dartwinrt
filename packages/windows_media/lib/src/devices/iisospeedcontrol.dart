@@ -22,7 +22,10 @@ import 'isospeedpreset.dart';
 const IID_IIsoSpeedControl = '{27b6c322-25ad-4f1b-aaab-524ab376ca33}';
 
 class IIsoSpeedControl extends IInspectable {
-  IIsoSpeedControl.fromPtr(super.ptr);
+  IIsoSpeedControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IIsoSpeedControlVtbl>().ref;
+
+  final _IIsoSpeedControlVtbl _vtable;
 
   factory IIsoSpeedControl.from(IInspectable interface) =>
       interface.cast(IIsoSpeedControl.fromPtr, IID_IIsoSpeedControl);
@@ -31,17 +34,9 @@ class IIsoSpeedControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Supported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class IIsoSpeedControl extends IInspectable {
   List<IsoSpeedPreset>? get supportedPresets {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedPresets.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -90,17 +77,9 @@ class IIsoSpeedControl extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Preset.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -115,18 +94,9 @@ class IIsoSpeedControl extends IInspectable {
   Future<void> setPresetAsync(IsoSpeedPreset preset) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 preset,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int preset,
-                    Pointer<COMObject> asyncInfo)>()(
-        lpVtbl, preset.value, asyncInfo);
+    final hr = _vtable.SetPresetAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int preset,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, preset.value, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -135,4 +105,24 @@ class IIsoSpeedControl extends IInspectable {
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
+}
+
+final class _IIsoSpeedControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_Supported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedPresets;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Preset;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 preset,
+              Pointer<COMObject> asyncInfo)>> SetPresetAsync;
 }

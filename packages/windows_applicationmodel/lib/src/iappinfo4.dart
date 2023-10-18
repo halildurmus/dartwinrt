@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAppInfo4 = '{2f34bdeb-1609-4554-9f33-12e1e803e0d4}';
 
 class IAppInfo4 extends IInspectable {
-  IAppInfo4.fromPtr(super.ptr);
+  IAppInfo4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppInfo4Vtbl>().ref;
+
+  final _IAppInfo4Vtbl _vtable;
 
   factory IAppInfo4.from(IInspectable interface) =>
       interface.cast(IAppInfo4.fromPtr, IID_IAppInfo4);
@@ -30,19 +33,9 @@ class IAppInfo4 extends IInspectable {
     final value = calloc<Pointer<IntPtr>>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<IntPtr>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<IntPtr>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.get_SupportedFileExtensions.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<IntPtr>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,4 +45,12 @@ class IAppInfo4 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAppInfo4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<IntPtr>> value)>> get_SupportedFileExtensions;
 }

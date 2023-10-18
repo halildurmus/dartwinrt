@@ -23,22 +23,17 @@ import 'xmlloadsettings.dart';
 const IID_IXmlDocumentIO2 = '{5d034661-7bd8-4ad5-9ebf-81e6347263b1}';
 
 class IXmlDocumentIO2 extends IInspectable {
-  IXmlDocumentIO2.fromPtr(super.ptr);
+  IXmlDocumentIO2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDocumentIO2Vtbl>().ref;
+
+  final _IXmlDocumentIO2Vtbl _vtable;
 
   factory IXmlDocumentIO2.from(IInspectable interface) =>
       interface.cast(IXmlDocumentIO2.fromPtr, IID_IXmlDocumentIO2);
 
   void loadXmlFromBuffer(IBuffer? buffer) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer buffer)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
+    final hr = _vtable.LoadXmlFromBuffer.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -46,22 +41,23 @@ class IXmlDocumentIO2 extends IInspectable {
 
   void loadXmlFromBufferWithSettings(
       IBuffer? buffer, XmlLoadSettings? loadSettings) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer buffer,
-                                VTablePointer loadSettings)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        VTablePointer loadSettings)>()(
-            lpVtbl, buffer.lpVtbl, loadSettings.lpVtbl);
+    final hr = _vtable.LoadXmlFromBufferWithSettings.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                VTablePointer loadSettings)>()(
+        lpVtbl, buffer.lpVtbl, loadSettings.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IXmlDocumentIO2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer)>>
+      LoadXmlFromBuffer;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
+              VTablePointer loadSettings)>> LoadXmlFromBufferWithSettings;
 }

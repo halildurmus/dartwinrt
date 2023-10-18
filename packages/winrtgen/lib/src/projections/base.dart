@@ -125,6 +125,8 @@ abstract base class BaseProjection {
 
   String get constructor;
 
+  String get className;
+
   String get classHeader;
 
   String get projection;

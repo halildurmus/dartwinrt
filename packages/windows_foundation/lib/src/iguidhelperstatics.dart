@@ -23,7 +23,10 @@ import 'helpers.dart';
 const IID_IGuidHelperStatics = '{59c7966b-ae52-5283-ad7f-a1b9e9678add}';
 
 class IGuidHelperStatics extends IInspectable {
-  IGuidHelperStatics.fromPtr(super.ptr);
+  IGuidHelperStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGuidHelperStaticsVtbl>().ref;
+
+  final _IGuidHelperStaticsVtbl _vtable;
 
   factory IGuidHelperStatics.from(IInspectable interface) =>
       interface.cast(IGuidHelperStatics.fromPtr, IID_IGuidHelperStatics);
@@ -32,17 +35,9 @@ class IGuidHelperStatics extends IInspectable {
     final result = calloc<GUID>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<GUID> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<GUID> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.CreateNewGuid.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +51,9 @@ class IGuidHelperStatics extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Empty.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -83,20 +70,9 @@ class IGuidHelperStatics extends IInspectable {
       final targetNativeStructPtr = target.toNativeGUID();
       final valueNativeStructPtr = value.toNativeGUID();
 
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<GUID> target,
-                              Pointer<GUID> value,
-                              Pointer<Bool> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<GUID> target,
-                      Pointer<GUID> value, Pointer<Bool> result)>()(
+      final hr = _vtable.Equals.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<GUID> target,
+                  Pointer<GUID> value, Pointer<Bool> result)>()(
           lpVtbl, targetNativeStructPtr, valueNativeStructPtr, result);
 
       free(targetNativeStructPtr);
@@ -109,4 +85,20 @@ class IGuidHelperStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IGuidHelperStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> result)>>
+      CreateNewGuid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_Empty;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> target,
+              Pointer<GUID> value, Pointer<Bool> result)>> Equals;
 }

@@ -21,7 +21,10 @@ import 'package:windows_system/windows_system.dart';
 const IID_IFileSavePicker4 = '{e7d83a5a-ddfa-5de0-8b70-c842c21988ec}';
 
 class IFileSavePicker4 extends IInspectable {
-  IFileSavePicker4.fromPtr(super.ptr);
+  IFileSavePicker4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFileSavePicker4Vtbl>().ref;
+
+  final _IFileSavePicker4Vtbl _vtable;
 
   factory IFileSavePicker4.from(IInspectable interface) =>
       interface.cast(IFileSavePicker4.fromPtr, IID_IFileSavePicker4);
@@ -29,17 +32,9 @@ class IFileSavePicker4 extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_User.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IFileSavePicker4 extends IInspectable {
 
     return User.fromPtr(value);
   }
+}
+
+final class _IFileSavePicker4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_User;
 }

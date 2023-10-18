@@ -22,7 +22,10 @@ import 'toastnotification.dart';
 const IID_IToastNotificationHistory2 = '{3bc3d253-2f31-4092-9129-8ad5abf067da}';
 
 class IToastNotificationHistory2 extends IInspectable {
-  IToastNotificationHistory2.fromPtr(super.ptr);
+  IToastNotificationHistory2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastNotificationHistory2Vtbl>().ref;
+
+  final _IToastNotificationHistory2Vtbl _vtable;
 
   factory IToastNotificationHistory2.from(IInspectable interface) => interface
       .cast(IToastNotificationHistory2.fromPtr, IID_IToastNotificationHistory2);
@@ -30,17 +33,9 @@ class IToastNotificationHistory2 extends IInspectable {
   List<ToastNotification?> getHistory() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetHistory.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -56,21 +51,10 @@ class IToastNotificationHistory2 extends IInspectable {
   List<ToastNotification?> getHistoryWithId(String applicationId) {
     final result = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr applicationId,
-                                Pointer<COMObject> result)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int applicationId,
-                        Pointer<COMObject> result)>()(
-            lpVtbl, applicationId.toHString(), result);
+    final hr = _vtable.GetHistoryWithId.asFunction<
+            int Function(VTablePointer lpVtbl, int applicationId,
+                Pointer<COMObject> result)>()(
+        lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -82,4 +66,16 @@ class IToastNotificationHistory2 extends IInspectable {
             creator: ToastNotification.fromPtr)
         .toList();
   }
+}
+
+final class _IToastNotificationHistory2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> GetHistory;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr applicationId,
+              Pointer<COMObject> result)>> GetHistoryWithId;
 }

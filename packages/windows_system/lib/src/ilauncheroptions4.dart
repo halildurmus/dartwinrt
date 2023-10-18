@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILauncherOptions4 = '{ef6fd10e-e6fb-4814-a44e-57e8b9d9a01b}';
 
 class ILauncherOptions4 extends IInspectable {
-  ILauncherOptions4.fromPtr(super.ptr);
+  ILauncherOptions4.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILauncherOptions4Vtbl>().ref;
+
+  final _ILauncherOptions4Vtbl _vtable;
 
   factory ILauncherOptions4.from(IInspectable interface) =>
       interface.cast(ILauncherOptions4.fromPtr, IID_ILauncherOptions4);
@@ -29,14 +32,7 @@ class ILauncherOptions4 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
+      final hr = _vtable.get_LimitPickerToCurrentAppAndAppUriHandlers
           .asFunction<
               int Function(
                   VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
@@ -50,16 +46,21 @@ class ILauncherOptions4 extends IInspectable {
   }
 
   set limitPickerToCurrentAppAndAppUriHandlers(bool value) {
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Bool value)>>>()
-            .value
+    final hr = _vtable.put_LimitPickerToCurrentAppAndAppUriHandlers
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ILauncherOptions4Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_LimitPickerToCurrentAppAndAppUriHandlers;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Bool value)>>
+      put_LimitPickerToCurrentAppAndAppUriHandlers;
 }

@@ -24,7 +24,10 @@ import 'cameraocclusionstate.dart';
 const IID_ICameraOcclusionInfo = '{af6c4ad0-a84d-5db6-be58-a5da21cfe011}';
 
 class ICameraOcclusionInfo extends IInspectable {
-  ICameraOcclusionInfo.fromPtr(super.ptr);
+  ICameraOcclusionInfo.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICameraOcclusionInfoVtbl>().ref;
+
+  final _ICameraOcclusionInfoVtbl _vtable;
 
   factory ICameraOcclusionInfo.from(IInspectable interface) =>
       interface.cast(ICameraOcclusionInfo.fromPtr, IID_ICameraOcclusionInfo);
@@ -32,17 +35,9 @@ class ICameraOcclusionInfo extends IInspectable {
   CameraOcclusionState? getState() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.GetState.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -61,17 +56,9 @@ class ICameraOcclusionInfo extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Int32 occlusionKind, Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int occlusionKind,
-                  Pointer<Bool> result)>()(lpVtbl, occlusionKind.value, result);
+      final hr = _vtable.IsOcclusionKindSupported.asFunction<
+          int Function(VTablePointer lpVtbl, int occlusionKind,
+              Pointer<Bool> result)>()(lpVtbl, occlusionKind.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -85,17 +72,9 @@ class ICameraOcclusionInfo extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_StateChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -106,18 +85,29 @@ class ICameraOcclusionInfo extends IInspectable {
   }
 
   void remove_StateChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_StateChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _ICameraOcclusionInfoVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> result)>> GetState;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 occlusionKind,
+              Pointer<Bool> result)>> IsOcclusionKindSupported;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_StateChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_StateChanged;
 }

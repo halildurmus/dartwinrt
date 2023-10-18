@@ -26,7 +26,10 @@ import 'storageitemtypes.dart';
 const IID_IStorageItem = '{4207a996-ca2f-42f7-bde8-8b10457a7f30}';
 
 class IStorageItem extends IInspectable {
-  IStorageItem.fromPtr(super.ptr);
+  IStorageItem.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemVtbl>().ref;
+
+  final _IStorageItemVtbl _vtable;
 
   factory IStorageItem.from(IInspectable interface) =>
       interface.cast(IStorageItem.fromPtr, IID_IStorageItem);
@@ -34,21 +37,10 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), operation);
+    final hr = _vtable.RenameAsyncOverloadDefaultOptions.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -61,22 +53,10 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsync(String desiredName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr desiredName,
-                                Int32 option,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int desiredName,
-                        int option, Pointer<COMObject> operation)>()(
-            lpVtbl, desiredName.toHString(), option.value, operation);
+    final hr = _vtable.RenameAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int desiredName, int option,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -89,17 +69,9 @@ class IStorageItem extends IInspectable {
   Future<void> deleteAsyncOverloadDefaultOptions() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.DeleteAsyncOverloadDefaultOptions.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -112,18 +84,9 @@ class IStorageItem extends IInspectable {
   Future<void> deleteAsync(StorageDeleteOption option) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 option,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int option,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, option.value, operation);
+    final hr = _vtable.DeleteAsync.asFunction<
+        int Function(VTablePointer lpVtbl, int option,
+            Pointer<COMObject> operation)>()(lpVtbl, option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -136,17 +99,9 @@ class IStorageItem extends IInspectable {
   Future<BasicProperties?> getBasicPropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetBasicPropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -162,17 +117,9 @@ class IStorageItem extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Name.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -186,17 +133,9 @@ class IStorageItem extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Path.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -210,17 +149,9 @@ class IStorageItem extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Attributes.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -234,17 +165,9 @@ class IStorageItem extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DateCreated.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -258,17 +181,9 @@ class IStorageItem extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Uint32 type,
-                          Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int type,
-                  Pointer<Bool> value)>()(lpVtbl, type.value, value);
+      final hr = _vtable.IsOfType.asFunction<
+          int Function(VTablePointer lpVtbl, int type,
+              Pointer<Bool> value)>()(lpVtbl, type.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -277,4 +192,51 @@ class IStorageItem extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStorageItemVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+              Pointer<COMObject> operation)>> RenameAsyncOverloadDefaultOptions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr desiredName,
+              Int32 option, Pointer<COMObject> operation)>> RenameAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      DeleteAsyncOverloadDefaultOptions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 option,
+              Pointer<COMObject> operation)>> DeleteAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetBasicPropertiesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Name;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Path;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Attributes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_DateCreated;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Uint32 type, Pointer<Bool> value)>>
+      IsOfType;
 }

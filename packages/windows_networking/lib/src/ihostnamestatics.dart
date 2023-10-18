@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IHostNameStatics = '{f68cd4bf-a388-4e8b-91ea-54dd6dd901c0}';
 
 class IHostNameStatics extends IInspectable {
-  IHostNameStatics.fromPtr(super.ptr);
+  IHostNameStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IHostNameStaticsVtbl>().ref;
+
+  final _IHostNameStaticsVtbl _vtable;
 
   factory IHostNameStatics.from(IInspectable interface) =>
       interface.cast(IHostNameStatics.fromPtr, IID_IHostNameStatics);
@@ -29,17 +32,9 @@ class IHostNameStatics extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr value1,
-                              IntPtr value2, Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value1, int value2,
-                      Pointer<Int32> result)>()(
+      final hr = _vtable.Compare.asFunction<
+              int Function(VTablePointer lpVtbl, int value1, int value2,
+                  Pointer<Int32> result)>()(
           lpVtbl, value1.toHString(), value2.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -49,4 +44,12 @@ class IHostNameStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IHostNameStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr value1, IntPtr value2,
+              Pointer<Int32> result)>> Compare;
 }

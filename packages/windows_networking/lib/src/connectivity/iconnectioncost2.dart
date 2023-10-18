@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectionCost2 = '{8e113a05-e209-4549-bb25-5e0db691cb05}';
 
 class IConnectionCost2 extends IInspectable {
-  IConnectionCost2.fromPtr(super.ptr);
+  IConnectionCost2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionCost2Vtbl>().ref;
+
+  final _IConnectionCost2Vtbl _vtable;
 
   factory IConnectionCost2.from(IInspectable interface) =>
       interface.cast(IConnectionCost2.fromPtr, IID_IConnectionCost2);
@@ -29,17 +32,9 @@ class IConnectionCost2 extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_BackgroundDataUsageRestricted.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -48,4 +43,12 @@ class IConnectionCost2 extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IConnectionCost2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_BackgroundDataUsageRestricted;
 }

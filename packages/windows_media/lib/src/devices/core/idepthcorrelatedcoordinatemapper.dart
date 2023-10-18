@@ -25,7 +25,11 @@ const IID_IDepthCorrelatedCoordinateMapper =
 
 class IDepthCorrelatedCoordinateMapper extends IInspectable
     implements IClosable {
-  IDepthCorrelatedCoordinateMapper.fromPtr(super.ptr);
+  IDepthCorrelatedCoordinateMapper.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IDepthCorrelatedCoordinateMapperVtbl>().ref;
+
+  final _IDepthCorrelatedCoordinateMapperVtbl _vtable;
 
   factory IDepthCorrelatedCoordinateMapper.from(IInspectable interface) =>
       interface.cast(IDepthCorrelatedCoordinateMapper.fromPtr,
@@ -38,23 +42,12 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     try {
       final sourcePointNativeStructPtr = sourcePoint.toNative();
 
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativePoint sourcePoint,
-                              VTablePointer targetCoordinateSystem,
-                              Pointer<NativeVector3> result)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativePoint sourcePoint,
-                      VTablePointer targetCoordinateSystem,
-                      Pointer<NativeVector3> result)>()(
+      final hr = _vtable.UnprojectPoint.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  NativePoint sourcePoint,
+                  VTablePointer targetCoordinateSystem,
+                  Pointer<NativeVector3> result)>()(
           lpVtbl,
           sourcePointNativeStructPtr.ref,
           targetCoordinateSystem.lpVtbl,
@@ -77,27 +70,14 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     final results = calloc<NativeVector3>(resultsSize);
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 sourcePointsSize,
-                              Pointer<NativePoint> sourcePoints,
-                              VTablePointer targetCoordinateSystem,
-                              Uint32 resultsSize,
-                              Pointer<NativeVector3> results)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int sourcePointsSize,
-                      Pointer<NativePoint> sourcePoints,
-                      VTablePointer targetCoordinateSystem,
-                      int resultsSize,
-                      Pointer<NativeVector3> results)>()(
+      final hr = _vtable.UnprojectPoints.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int sourcePointsSize,
+                  Pointer<NativePoint> sourcePoints,
+                  VTablePointer targetCoordinateSystem,
+                  int resultsSize,
+                  Pointer<NativeVector3> results)>()(
           lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
@@ -123,25 +103,13 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     try {
       final sourcePointNativeStructPtr = sourcePoint.toNative();
 
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              NativePoint sourcePoint,
-                              VTablePointer targetCoordinateSystem,
-                              VTablePointer targetCameraIntrinsics,
-                              Pointer<NativePoint> result)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      NativePoint sourcePoint,
-                      VTablePointer targetCoordinateSystem,
-                      VTablePointer targetCameraIntrinsics,
-                      Pointer<NativePoint> result)>()(
+      final hr = _vtable.MapPoint.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  NativePoint sourcePoint,
+                  VTablePointer targetCoordinateSystem,
+                  VTablePointer targetCameraIntrinsics,
+                  Pointer<NativePoint> result)>()(
           lpVtbl,
           sourcePointNativeStructPtr.ref,
           targetCoordinateSystem.lpVtbl,
@@ -168,29 +136,15 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
     final results = calloc<NativePoint>(resultsSize);
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 sourcePointsSize,
-                              Pointer<NativePoint> sourcePoints,
-                              VTablePointer targetCoordinateSystem,
-                              VTablePointer targetCameraIntrinsics,
-                              Uint32 resultsSize,
-                              Pointer<NativePoint> results)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int sourcePointsSize,
-                      Pointer<NativePoint> sourcePoints,
-                      VTablePointer targetCoordinateSystem,
-                      VTablePointer targetCameraIntrinsics,
-                      int resultsSize,
-                      Pointer<NativePoint> results)>()(
+      final hr = _vtable.MapPoints.asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  int sourcePointsSize,
+                  Pointer<NativePoint> sourcePoints,
+                  VTablePointer targetCoordinateSystem,
+                  VTablePointer targetCameraIntrinsics,
+                  int resultsSize,
+                  Pointer<NativePoint> results)>()(
           lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
@@ -212,4 +166,42 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IDepthCorrelatedCoordinateMapperVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativePoint sourcePoint,
+              VTablePointer targetCoordinateSystem,
+              Pointer<NativeVector3> result)>> UnprojectPoint;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sourcePointsSize,
+              Pointer<NativePoint> sourcePoints,
+              VTablePointer targetCoordinateSystem,
+              Uint32 resultsSize,
+              Pointer<NativeVector3> results)>> UnprojectPoints;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              NativePoint sourcePoint,
+              VTablePointer targetCoordinateSystem,
+              VTablePointer targetCameraIntrinsics,
+              Pointer<NativePoint> result)>> MapPoint;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sourcePointsSize,
+              Pointer<NativePoint> sourcePoints,
+              VTablePointer targetCoordinateSystem,
+              VTablePointer targetCameraIntrinsics,
+              Uint32 resultsSize,
+              Pointer<NativePoint> results)>> MapPoints;
 }

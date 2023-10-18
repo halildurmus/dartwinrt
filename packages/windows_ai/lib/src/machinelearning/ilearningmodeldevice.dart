@@ -21,7 +21,10 @@ import 'package:windows_graphics/windows_graphics.dart';
 const IID_ILearningModelDevice = '{f5c2c8fe-3f56-4a8c-ac5f-fdb92d8b8252}';
 
 class ILearningModelDevice extends IInspectable {
-  ILearningModelDevice.fromPtr(super.ptr);
+  ILearningModelDevice.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILearningModelDeviceVtbl>().ref;
+
+  final _ILearningModelDeviceVtbl _vtable;
 
   factory ILearningModelDevice.from(IInspectable interface) =>
       interface.cast(ILearningModelDevice.fromPtr, IID_ILearningModelDevice);
@@ -30,17 +33,9 @@ class ILearningModelDevice extends IInspectable {
     final value = calloc<NativeDisplayAdapterId>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<NativeDisplayAdapterId> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeDisplayAdapterId> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AdapterId.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<NativeDisplayAdapterId> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class ILearningModelDevice extends IInspectable {
   IDirect3DDevice? get direct3D11Device {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Direct3D11Device.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -77,4 +64,17 @@ class ILearningModelDevice extends IInspectable {
 
     return IDirect3DDevice.fromPtr(value);
   }
+}
+
+final class _ILearningModelDeviceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<NativeDisplayAdapterId> value)>>
+      get_AdapterId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Direct3D11Device;
 }

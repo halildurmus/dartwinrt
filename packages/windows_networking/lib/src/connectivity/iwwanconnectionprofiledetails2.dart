@@ -23,7 +23,11 @@ const IID_IWwanConnectionProfileDetails2 =
     '{7a754ede-a1ed-48b2-8e92-b460033d52e2}';
 
 class IWwanConnectionProfileDetails2 extends IInspectable {
-  IWwanConnectionProfileDetails2.fromPtr(super.ptr);
+  IWwanConnectionProfileDetails2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IWwanConnectionProfileDetails2Vtbl>().ref;
+
+  final _IWwanConnectionProfileDetails2Vtbl _vtable;
 
   factory IWwanConnectionProfileDetails2.from(IInspectable interface) =>
       interface.cast(IWwanConnectionProfileDetails2.fromPtr,
@@ -33,17 +37,9 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IPKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -56,17 +52,9 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
   List<Guid>? get purposeGuids {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PurposeGuids.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -82,4 +70,16 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
             iterableIid: '{f4ca3045-5dd7-54be-982e-d88d8ca0876e}')
         .toList();
   }
+}
+
+final class _IWwanConnectionProfileDetails2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_IPKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PurposeGuids;
 }

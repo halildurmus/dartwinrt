@@ -22,7 +22,10 @@ import '../appdisplayinfo.dart';
 const IID_IAppListEntry = '{ef00f07f-2108-490a-877a-8a9f17c25fad}';
 
 class IAppListEntry extends IInspectable {
-  IAppListEntry.fromPtr(super.ptr);
+  IAppListEntry.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAppListEntryVtbl>().ref;
+
+  final _IAppListEntryVtbl _vtable;
 
   factory IAppListEntry.from(IInspectable interface) =>
       interface.cast(IAppListEntry.fromPtr, IID_IAppListEntry);
@@ -30,17 +33,9 @@ class IAppListEntry extends IInspectable {
   AppDisplayInfo? get displayInfo {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_DisplayInfo.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,17 +53,9 @@ class IAppListEntry extends IInspectable {
   Future<bool> launchAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.LaunchAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -78,4 +65,16 @@ class IAppListEntry extends IInspectable {
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
+}
+
+final class _IAppListEntryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_DisplayInfo;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> operation)>> LaunchAsync;
 }

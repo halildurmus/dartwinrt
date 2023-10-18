@@ -22,7 +22,10 @@ import 'deviceclass.dart';
 const IID_IDevicePickerFilter = '{91db92a2-57cb-48f1-9b59-a59b7a1f02a2}';
 
 class IDevicePickerFilter extends IInspectable {
-  IDevicePickerFilter.fromPtr(super.ptr);
+  IDevicePickerFilter.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDevicePickerFilterVtbl>().ref;
+
+  final _IDevicePickerFilterVtbl _vtable;
 
   factory IDevicePickerFilter.from(IInspectable interface) =>
       interface.cast(IDevicePickerFilter.fromPtr, IID_IDevicePickerFilter);
@@ -30,17 +33,9 @@ class IDevicePickerFilter extends IInspectable {
   IVector<DeviceClass>? get supportedDeviceClasses {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedDeviceClasses.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +55,9 @@ class IDevicePickerFilter extends IInspectable {
   IVector<String>? get supportedDeviceSelectors {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedDeviceSelectors.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -85,4 +72,16 @@ class IDevicePickerFilter extends IInspectable {
     return IVector.fromPtr(value,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
+}
+
+final class _IDevicePickerFilterVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedDeviceClasses;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedDeviceSelectors;
 }

@@ -28,7 +28,10 @@ const IID_IStorageItemContentProperties =
 
 class IStorageItemContentProperties extends IInspectable
     implements IStorageItemExtraProperties {
-  IStorageItemContentProperties.fromPtr(super.ptr);
+  IStorageItemContentProperties.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemContentPropertiesVtbl>().ref;
+
+  final _IStorageItemContentPropertiesVtbl _vtable;
 
   factory IStorageItemContentProperties.from(IInspectable interface) =>
       interface.cast(IStorageItemContentProperties.fromPtr,
@@ -37,17 +40,9 @@ class IStorageItemContentProperties extends IInspectable
   Future<MusicProperties?> getMusicPropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetMusicPropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -62,17 +57,9 @@ class IStorageItemContentProperties extends IInspectable
   Future<VideoProperties?> getVideoPropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetVideoPropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -87,17 +74,9 @@ class IStorageItemContentProperties extends IInspectable
   Future<ImageProperties?> getImagePropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetImagePropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -112,17 +91,9 @@ class IStorageItemContentProperties extends IInspectable
   Future<DocumentProperties?> getDocumentPropertiesAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetDocumentPropertiesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -152,4 +123,28 @@ class IStorageItemContentProperties extends IInspectable
   @override
   Future<void> savePropertiesAsyncOverloadDefault() =>
       _iStorageItemExtraProperties.savePropertiesAsyncOverloadDefault();
+}
+
+final class _IStorageItemContentPropertiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetMusicPropertiesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetVideoPropertiesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetImagePropertiesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetDocumentPropertiesAsync;
 }

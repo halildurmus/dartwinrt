@@ -22,7 +22,10 @@ import 'permilleformatter.dart';
 const IID_IPermilleFormatterFactory = '{2b37b4ac-e638-4ed5-a998-62f6b06a49ae}';
 
 class IPermilleFormatterFactory extends IInspectable {
-  IPermilleFormatterFactory.fromPtr(super.ptr);
+  IPermilleFormatterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPermilleFormatterFactoryVtbl>().ref;
+
+  final _IPermilleFormatterFactoryVtbl _vtable;
 
   factory IPermilleFormatterFactory.from(IInspectable interface) => interface
       .cast(IPermilleFormatterFactory.fromPtr, IID_IPermilleFormatterFactory);
@@ -31,20 +34,9 @@ class IPermilleFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer languages,
-                    int geographicRegion, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreatePermilleFormatter.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer languages,
+                int geographicRegion, Pointer<COMObject> result)>()(
         lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
@@ -54,4 +46,15 @@ class IPermilleFormatterFactory extends IInspectable {
 
     return PermilleFormatter.fromPtr(result);
   }
+}
+
+final class _IPermilleFormatterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer languages,
+              IntPtr geographicRegion,
+              Pointer<COMObject> result)>> CreatePermilleFormatter;
 }

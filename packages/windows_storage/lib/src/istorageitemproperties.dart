@@ -25,7 +25,10 @@ import 'fileproperties/thumbnailoptions.dart';
 const IID_IStorageItemProperties = '{86664478-8029-46fe-a789-1c2f3e2ffb5c}';
 
 class IStorageItemProperties extends IInspectable {
-  IStorageItemProperties.fromPtr(super.ptr);
+  IStorageItemProperties.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageItemPropertiesVtbl>().ref;
+
+  final _IStorageItemPropertiesVtbl _vtable;
 
   factory IStorageItemProperties.from(IInspectable interface) => interface.cast(
       IStorageItemProperties.fromPtr, IID_IStorageItemProperties);
@@ -34,15 +37,8 @@ class IStorageItemProperties extends IInspectable {
       getThumbnailAsyncOverloadDefaultSizeDefaultOptions(ThumbnailMode mode) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 mode,
-                        Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
+    final hr =
+        _vtable.GetThumbnailAsyncOverloadDefaultSizeDefaultOptions.asFunction<
             int Function(VTablePointer lpVtbl, int mode,
                 Pointer<COMObject> operation)>()(lpVtbl, mode.value, operation);
 
@@ -61,22 +57,10 @@ class IStorageItemProperties extends IInspectable {
       ThumbnailMode mode, int requestedSize) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 mode,
-                                Uint32 requestedSize,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int mode,
-                        int requestedSize, Pointer<COMObject> operation)>()(
-            lpVtbl, mode.value, requestedSize, operation);
+    final hr = _vtable.GetThumbnailAsyncOverloadDefaultOptions.asFunction<
+            int Function(VTablePointer lpVtbl, int mode, int requestedSize,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, mode.value, requestedSize, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -93,21 +77,9 @@ class IStorageItemProperties extends IInspectable {
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 mode,
-                            Uint32 requestedSize,
-                            Uint32 options,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
-                    int options, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetThumbnailAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int mode, int requestedSize,
+                int options, Pointer<COMObject> operation)>()(
         lpVtbl, mode.value, requestedSize, options.value, operation);
 
     if (FAILED(hr)) {
@@ -125,17 +97,9 @@ class IStorageItemProperties extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -149,17 +113,9 @@ class IStorageItemProperties extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -173,17 +129,9 @@ class IStorageItemProperties extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_FolderRelativeId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -196,17 +144,9 @@ class IStorageItemProperties extends IInspectable {
   StorageItemContentProperties? get properties {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Properties.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -220,4 +160,42 @@ class IStorageItemProperties extends IInspectable {
 
     return StorageItemContentProperties.fromPtr(value);
   }
+}
+
+final class _IStorageItemPropertiesVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 mode,
+                  Pointer<COMObject> operation)>>
+      GetThumbnailAsyncOverloadDefaultSizeDefaultOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 mode,
+                  Uint32 requestedSize, Pointer<COMObject> operation)>>
+      GetThumbnailAsyncOverloadDefaultOptions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 mode,
+              Uint32 requestedSize,
+              Uint32 options,
+              Pointer<COMObject> operation)>> GetThumbnailAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayType;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_FolderRelativeId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Properties;
 }

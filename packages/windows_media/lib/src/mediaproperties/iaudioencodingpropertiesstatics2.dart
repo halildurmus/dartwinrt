@@ -23,7 +23,11 @@ const IID_IAudioEncodingPropertiesStatics2 =
     '{7489316f-77a0-433d-8ed5-4040280e8665}';
 
 class IAudioEncodingPropertiesStatics2 extends IInspectable {
-  IAudioEncodingPropertiesStatics2.fromPtr(super.ptr);
+  IAudioEncodingPropertiesStatics2.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IAudioEncodingPropertiesStatics2Vtbl>().ref;
+
+  final _IAudioEncodingPropertiesStatics2Vtbl _vtable;
 
   factory IAudioEncodingPropertiesStatics2.from(IInspectable interface) =>
       interface.cast(IAudioEncodingPropertiesStatics2.fromPtr,
@@ -33,25 +37,9 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitsPerSample,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int sampleRate,
-                    int channelCount,
-                    int bitsPerSample,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateAlac.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitsPerSample, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
@@ -71,25 +59,9 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
       int sampleRate, int channelCount, int bitsPerSample) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 sampleRate,
-                            Uint32 channelCount,
-                            Uint32 bitsPerSample,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int sampleRate,
-                    int channelCount,
-                    int bitsPerSample,
-                    Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateFlac.asFunction<
+            int Function(VTablePointer lpVtbl, int sampleRate, int channelCount,
+                int bitsPerSample, Pointer<COMObject> value)>()(
         lpVtbl, sampleRate, channelCount, bitsPerSample, value);
 
     if (FAILED(hr)) {
@@ -104,4 +76,24 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
 
     return AudioEncodingProperties.fromPtr(value);
   }
+}
+
+final class _IAudioEncodingPropertiesStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitsPerSample,
+              Pointer<COMObject> value)>> CreateAlac;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 sampleRate,
+              Uint32 channelCount,
+              Uint32 bitsPerSample,
+              Pointer<COMObject> value)>> CreateFlac;
 }

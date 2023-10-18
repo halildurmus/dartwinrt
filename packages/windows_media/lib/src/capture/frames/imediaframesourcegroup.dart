@@ -22,7 +22,10 @@ import 'mediaframesourceinfo.dart';
 const IID_IMediaFrameSourceGroup = '{7f605b87-4832-4b5f-ae3d-412faab37d34}';
 
 class IMediaFrameSourceGroup extends IInspectable {
-  IMediaFrameSourceGroup.fromPtr(super.ptr);
+  IMediaFrameSourceGroup.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceGroupVtbl>().ref;
+
+  final _IMediaFrameSourceGroupVtbl _vtable;
 
   factory IMediaFrameSourceGroup.from(IInspectable interface) => interface.cast(
       IMediaFrameSourceGroup.fromPtr, IID_IMediaFrameSourceGroup);
@@ -31,17 +34,9 @@ class IMediaFrameSourceGroup extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Id.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IMediaFrameSourceGroup extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayName.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,17 +65,9 @@ class IMediaFrameSourceGroup extends IInspectable {
   List<MediaFrameSourceInfo?>? get sourceInfos {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SourceInfos.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -105,4 +84,20 @@ class IMediaFrameSourceGroup extends IInspectable {
             creator: MediaFrameSourceInfo.fromPtr)
         .toList();
   }
+}
+
+final class _IMediaFrameSourceGroupVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Id;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SourceInfos;
 }

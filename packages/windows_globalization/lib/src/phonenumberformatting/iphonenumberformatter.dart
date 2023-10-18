@@ -23,7 +23,10 @@ import 'phonenumberinfo.dart';
 const IID_IPhoneNumberFormatter = '{1556b49e-bad4-4b4a-900d-4407adb7c981}';
 
 class IPhoneNumberFormatter extends IInspectable {
-  IPhoneNumberFormatter.fromPtr(super.ptr);
+  IPhoneNumberFormatter.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhoneNumberFormatterVtbl>().ref;
+
+  final _IPhoneNumberFormatterVtbl _vtable;
 
   factory IPhoneNumberFormatter.from(IInspectable interface) =>
       interface.cast(IPhoneNumberFormatter.fromPtr, IID_IPhoneNumberFormatter);
@@ -32,17 +35,9 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer number, Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer number,
-                  Pointer<IntPtr> result)>()(lpVtbl, number.lpVtbl, result);
+      final hr = _vtable.Format.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer number,
+              Pointer<IntPtr> result)>()(lpVtbl, number.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -57,20 +52,9 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer number,
-                              Int32 numberFormat,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer number,
-                      int numberFormat, Pointer<IntPtr> result)>()(
+      final hr = _vtable.FormatWithOutputFormat.asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer number,
+                  int numberFormat, Pointer<IntPtr> result)>()(
           lpVtbl, number.lpVtbl, numberFormat.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -85,18 +69,9 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> result)>()(
-          lpVtbl, number.toHString(), result);
+      final hr = _vtable.FormatPartialString.asFunction<
+          int Function(VTablePointer lpVtbl, int number,
+              Pointer<IntPtr> result)>()(lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -110,18 +85,9 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> result)>()(
-          lpVtbl, number.toHString(), result);
+      final hr = _vtable.FormatString.asFunction<
+          int Function(VTablePointer lpVtbl, int number,
+              Pointer<IntPtr> result)>()(lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -135,18 +101,9 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> result)>()(
-          lpVtbl, number.toHString(), result);
+      final hr = _vtable.FormatStringWithLeftToRightMarkers.asFunction<
+          int Function(VTablePointer lpVtbl, int number,
+              Pointer<IntPtr> result)>()(lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -155,4 +112,34 @@ class IPhoneNumberFormatter extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IPhoneNumberFormatterVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer number,
+              Pointer<IntPtr> result)>> Format;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer number,
+              Int32 numberFormat,
+              Pointer<IntPtr> result)>> FormatWithOutputFormat;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr number, Pointer<IntPtr> result)>>
+      FormatPartialString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr number, Pointer<IntPtr> result)>>
+      FormatString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, IntPtr number, Pointer<IntPtr> result)>>
+      FormatStringWithLeftToRightMarkers;
 }

@@ -21,22 +21,17 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_IConnectionProfileFilter2 = '{cd068ee1-c3fc-4fad-9ddc-593faa4b7885}';
 
 class IConnectionProfileFilter2 extends IInspectable {
-  IConnectionProfileFilter2.fromPtr(super.ptr);
+  IConnectionProfileFilter2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfileFilter2Vtbl>().ref;
+
+  final _IConnectionProfileFilter2Vtbl _vtable;
 
   factory IConnectionProfileFilter2.from(IInspectable interface) => interface
       .cast(IConnectionProfileFilter2.fromPtr, IID_IConnectionProfileFilter2);
 
   set isRoaming(bool? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_IsRoaming.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -45,17 +40,9 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isRoaming {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsRoaming.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -73,16 +60,8 @@ class IConnectionProfileFilter2 extends IInspectable {
   }
 
   set isOverDataLimit(bool? value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_IsOverDataLimit.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -91,17 +70,9 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isOverDataLimit {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsOverDataLimit.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -119,16 +90,8 @@ class IConnectionProfileFilter2 extends IInspectable {
   }
 
   set isBackgroundDataUsageRestricted(bool? value) {
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_IsBackgroundDataUsageRestricted.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -137,17 +100,9 @@ class IConnectionProfileFilter2 extends IInspectable {
   bool? get isBackgroundDataUsageRestricted {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_IsBackgroundDataUsageRestricted.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -167,17 +122,9 @@ class IConnectionProfileFilter2 extends IInspectable {
   IBuffer? get rawData {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_RawData.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -191,4 +138,36 @@ class IConnectionProfileFilter2 extends IInspectable {
 
     return IBuffer.fromPtr(value);
   }
+}
+
+final class _IConnectionProfileFilter2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_IsRoaming;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsRoaming;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_IsOverDataLimit;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsOverDataLimit;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_IsBackgroundDataUsageRestricted;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_IsBackgroundDataUsageRestricted;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_RawData;
 }

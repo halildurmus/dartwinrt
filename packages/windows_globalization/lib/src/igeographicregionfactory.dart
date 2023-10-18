@@ -22,7 +22,10 @@ import 'geographicregion.dart';
 const IID_IGeographicRegionFactory = '{53425270-77b4-426b-859f-81e19d512546}';
 
 class IGeographicRegionFactory extends IInspectable {
-  IGeographicRegionFactory.fromPtr(super.ptr);
+  IGeographicRegionFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeographicRegionFactoryVtbl>().ref;
+
+  final _IGeographicRegionFactoryVtbl _vtable;
 
   factory IGeographicRegionFactory.from(IInspectable interface) => interface
       .cast(IGeographicRegionFactory.fromPtr, IID_IGeographicRegionFactory);
@@ -30,19 +33,9 @@ class IGeographicRegionFactory extends IInspectable {
   GeographicRegion createGeographicRegion(String geographicRegionCode) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr geographicRegionCode,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int geographicRegionCode,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.CreateGeographicRegion.asFunction<
+            int Function(VTablePointer lpVtbl, int geographicRegionCode,
+                Pointer<COMObject> result)>()(
         lpVtbl, geographicRegionCode.toHString(), result);
 
     if (FAILED(hr)) {
@@ -52,4 +45,12 @@ class IGeographicRegionFactory extends IInspectable {
 
     return GeographicRegion.fromPtr(result);
   }
+}
+
+final class _IGeographicRegionFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr geographicRegionCode,
+              Pointer<COMObject> result)>> CreateGeographicRegion;
 }

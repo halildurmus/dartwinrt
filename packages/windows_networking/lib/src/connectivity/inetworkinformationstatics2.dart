@@ -24,7 +24,10 @@ const IID_INetworkInformationStatics2 =
     '{459ced14-2832-49b6-ba6e-e265f04786a8}';
 
 class INetworkInformationStatics2 extends IInspectable {
-  INetworkInformationStatics2.fromPtr(super.ptr);
+  INetworkInformationStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INetworkInformationStatics2Vtbl>().ref;
+
+  final _INetworkInformationStatics2Vtbl _vtable;
 
   factory INetworkInformationStatics2.from(IInspectable interface) =>
       interface.cast(
@@ -34,20 +37,9 @@ class INetworkInformationStatics2 extends IInspectable {
       ConnectionProfileFilter? pProfileFilter) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer pProfileFilter,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, pProfileFilter.lpVtbl, value);
+    final hr = _vtable.FindConnectionProfilesAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
+            Pointer<COMObject> value)>()(lpVtbl, pProfileFilter.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,4 +54,12 @@ class INetworkInformationStatics2 extends IInspectable {
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
+}
+
+final class _INetworkInformationStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
+              Pointer<COMObject> value)>> FindConnectionProfilesAsync;
 }

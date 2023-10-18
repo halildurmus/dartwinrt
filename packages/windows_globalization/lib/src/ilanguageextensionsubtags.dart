@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ILanguageExtensionSubtags = '{7d7daf45-368d-4364-852b-dec927037b85}';
 
 class ILanguageExtensionSubtags extends IInspectable {
-  ILanguageExtensionSubtags.fromPtr(super.ptr);
+  ILanguageExtensionSubtags.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILanguageExtensionSubtagsVtbl>().ref;
+
+  final _ILanguageExtensionSubtagsVtbl _vtable;
 
   factory ILanguageExtensionSubtags.from(IInspectable interface) => interface
       .cast(ILanguageExtensionSubtags.fromPtr, IID_ILanguageExtensionSubtags);
@@ -28,18 +31,9 @@ class ILanguageExtensionSubtags extends IInspectable {
   List<String> getExtensionSubtags(String singleton) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr singleton,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int singleton,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, singleton.toHString(), value);
+    final hr = _vtable.GetExtensionSubtags.asFunction<
+        int Function(VTablePointer lpVtbl, int singleton,
+            Pointer<COMObject> value)>()(lpVtbl, singleton.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -50,4 +44,12 @@ class ILanguageExtensionSubtags extends IInspectable {
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')
         .toList();
   }
+}
+
+final class _ILanguageExtensionSubtagsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr singleton,
+              Pointer<COMObject> value)>> GetExtensionSubtags;
 }

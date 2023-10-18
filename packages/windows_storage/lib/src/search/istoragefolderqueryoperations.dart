@@ -32,7 +32,10 @@ const IID_IStorageFolderQueryOperations =
     '{cb43ccc9-446b-4a4f-be97-757771be5203}';
 
 class IStorageFolderQueryOperations extends IInspectable {
-  IStorageFolderQueryOperations.fromPtr(super.ptr);
+  IStorageFolderQueryOperations.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IStorageFolderQueryOperationsVtbl>().ref;
+
+  final _IStorageFolderQueryOperationsVtbl _vtable;
 
   factory IStorageFolderQueryOperations.from(IInspectable interface) =>
       interface.cast(IStorageFolderQueryOperations.fromPtr,
@@ -41,17 +44,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   Future<IndexedState> getIndexedStateAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.GetIndexedStateAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -66,17 +61,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFileQueryResult? createFileQueryOverloadDefault() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateFileQueryOverloadDefault.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -94,17 +81,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFileQueryResult? createFileQuery(CommonFileQuery query) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int query,
-                Pointer<COMObject> value)>()(lpVtbl, query.value, value);
+    final hr = _vtable.CreateFileQuery.asFunction<
+        int Function(VTablePointer lpVtbl, int query,
+            Pointer<COMObject> value)>()(lpVtbl, query.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -123,20 +102,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer queryOptions,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, queryOptions.lpVtbl, value);
+    final hr = _vtable.CreateFileQueryWithOptions.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+            Pointer<COMObject> value)>()(lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -154,17 +122,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFolderQueryResult? createFolderQueryOverloadDefault() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateFolderQueryOverloadDefault.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -182,17 +142,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFolderQueryResult? createFolderQuery(CommonFolderQuery query) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int query,
-                Pointer<COMObject> value)>()(lpVtbl, query.value, value);
+    final hr = _vtable.CreateFolderQuery.asFunction<
+        int Function(VTablePointer lpVtbl, int query,
+            Pointer<COMObject> value)>()(lpVtbl, query.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -211,20 +163,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer queryOptions,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, queryOptions.lpVtbl, value);
+    final hr = _vtable.CreateFolderQueryWithOptions.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+            Pointer<COMObject> value)>()(lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -242,17 +183,9 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageItemQueryResult? createItemQuery() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateItemQuery.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -271,20 +204,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       QueryOptions? queryOptions) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer queryOptions,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, queryOptions.lpVtbl, value);
+    final hr = _vtable.CreateItemQueryWithOptions.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+            Pointer<COMObject> value)>()(lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -303,21 +225,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFileQuery query, int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 query,
-                            Uint32 startIndex,
-                            Uint32 maxItemsToRetrieve,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query, int startIndex,
-                    int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetFilesAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int query, int startIndex,
+                int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
         lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
@@ -337,18 +247,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFileQuery query) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, query.value, operation);
+    final hr = _vtable.GetFilesAsyncOverloadDefaultStartAndCount.asFunction<
+        int Function(VTablePointer lpVtbl, int query,
+            Pointer<COMObject> operation)>()(lpVtbl, query.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -367,21 +268,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFolderQuery query, int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 query,
-                            Uint32 startIndex,
-                            Uint32 maxItemsToRetrieve,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query, int startIndex,
-                    int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetFoldersAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int query, int startIndex,
+                int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
         lpVtbl, query.value, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
@@ -401,18 +290,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       CommonFolderQuery query) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> operation)>()(
-        lpVtbl, query.value, operation);
+    final hr = _vtable.GetFoldersAsyncOverloadDefaultStartAndCount.asFunction<
+        int Function(VTablePointer lpVtbl, int query,
+            Pointer<COMObject> operation)>()(lpVtbl, query.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -431,20 +311,9 @@ class IStorageFolderQueryOperations extends IInspectable {
       int startIndex, int maxItemsToRetrieve) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(19)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Uint32 startIndex,
-                            Uint32 maxItemsToRetrieve,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startIndex,
-                    int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
+    final hr = _vtable.GetItemsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startIndex,
+                int maxItemsToRetrieve, Pointer<COMObject> operation)>()(
         lpVtbl, startIndex, maxItemsToRetrieve, operation);
 
     if (FAILED(hr)) {
@@ -464,17 +333,9 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer queryOptions, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                  Pointer<Bool> value)>()(lpVtbl, queryOptions.lpVtbl, value);
+      final hr = _vtable.AreQueryOptionsSupported.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+              Pointer<Bool> value)>()(lpVtbl, queryOptions.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -488,17 +349,9 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                          Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int query,
-                  Pointer<Bool> value)>()(lpVtbl, query.value, value);
+      final hr = _vtable.IsCommonFolderQuerySupported.asFunction<
+          int Function(VTablePointer lpVtbl, int query,
+              Pointer<Bool> value)>()(lpVtbl, query.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -512,17 +365,9 @@ class IStorageFolderQueryOperations extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                          Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int query,
-                  Pointer<Bool> value)>()(lpVtbl, query.value, value);
+      final hr = _vtable.IsCommonFileQuerySupported.asFunction<
+          int Function(VTablePointer lpVtbl, int query,
+              Pointer<Bool> value)>()(lpVtbl, query.value, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -531,4 +376,94 @@ class IStorageFolderQueryOperations extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStorageFolderQueryOperationsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      GetIndexedStateAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateFileQueryOverloadDefault;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 query, Pointer<COMObject> value)>>
+      CreateFileQuery;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+              Pointer<COMObject> value)>> CreateFileQueryWithOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateFolderQueryOverloadDefault;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 query, Pointer<COMObject> value)>>
+      CreateFolderQuery;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+              Pointer<COMObject> value)>> CreateFolderQueryWithOptions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateItemQuery;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+              Pointer<COMObject> value)>> CreateItemQueryWithOptions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 query,
+              Uint32 startIndex,
+              Uint32 maxItemsToRetrieve,
+              Pointer<COMObject> operation)>> GetFilesAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 query,
+                  Pointer<COMObject> operation)>>
+      GetFilesAsyncOverloadDefaultStartAndCount;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 query,
+              Uint32 startIndex,
+              Uint32 maxItemsToRetrieve,
+              Pointer<COMObject> operation)>> GetFoldersAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 query,
+                  Pointer<COMObject> operation)>>
+      GetFoldersAsyncOverloadDefaultStartAndCount;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 startIndex,
+              Uint32 maxItemsToRetrieve,
+              Pointer<COMObject> operation)>> GetItemsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer queryOptions,
+              Pointer<Bool> value)>> AreQueryOptionsSupported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 query, Pointer<Bool> value)>>
+      IsCommonFolderQuerySupported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 query, Pointer<Bool> value)>>
+      IsCommonFileQuerySupported;
 }

@@ -21,7 +21,10 @@ import 'package:windows_graphics/windows_graphics.dart';
 const IID_IMediaCaptureSettings3 = '{303c67c2-8058-4b1b-b877-8c2ef3528440}';
 
 class IMediaCaptureSettings3 extends IInspectable {
-  IMediaCaptureSettings3.fromPtr(super.ptr);
+  IMediaCaptureSettings3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaCaptureSettings3Vtbl>().ref;
+
+  final _IMediaCaptureSettings3Vtbl _vtable;
 
   factory IMediaCaptureSettings3.from(IInspectable interface) => interface.cast(
       IMediaCaptureSettings3.fromPtr, IID_IMediaCaptureSettings3);
@@ -29,17 +32,9 @@ class IMediaCaptureSettings3 extends IInspectable {
   IDirect3DDevice? get direct3D11Device {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Direct3D11Device.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IMediaCaptureSettings3 extends IInspectable {
 
     return IDirect3DDevice.fromPtr(value);
   }
+}
+
+final class _IMediaCaptureSettings3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Direct3D11Device;
 }

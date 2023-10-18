@@ -22,7 +22,10 @@ import 'bitmapplanedescription.dart';
 const IID_IBitmapBuffer = '{a53e04c4-399c-438c-b28f-a63a6b83d1a1}';
 
 class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
-  IBitmapBuffer.fromPtr(super.ptr);
+  IBitmapBuffer.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IBitmapBufferVtbl>().ref;
+
+  final _IBitmapBufferVtbl _vtable;
 
   factory IBitmapBuffer.from(IInspectable interface) =>
       interface.cast(IBitmapBuffer.fromPtr, IID_IBitmapBuffer);
@@ -31,17 +34,9 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.GetPlaneCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
     final value = calloc<NativeBitmapPlaneDescription>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int32 index,
-                              Pointer<NativeBitmapPlaneDescription> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeBitmapPlaneDescription> value)>()(
+      final hr = _vtable.GetPlaneDescription.asFunction<
+              int Function(VTablePointer lpVtbl, int index,
+                  Pointer<NativeBitmapPlaneDescription> value)>()(
           lpVtbl, index, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -85,4 +72,17 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
 
   @override
   void close() => _iClosable.close();
+}
+
+final class _IBitmapBufferVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      GetPlaneCount;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 index,
+                  Pointer<NativeBitmapPlaneDescription> value)>>
+      GetPlaneDescription;
 }

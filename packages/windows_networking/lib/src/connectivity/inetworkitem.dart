@@ -22,7 +22,10 @@ import 'networktypes.dart';
 const IID_INetworkItem = '{01bc4d39-f5e0-4567-a28c-42080c831b2b}';
 
 class INetworkItem extends IInspectable {
-  INetworkItem.fromPtr(super.ptr);
+  INetworkItem.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_INetworkItemVtbl>().ref;
+
+  final _INetworkItemVtbl _vtable;
 
   factory INetworkItem.from(IInspectable interface) =>
       interface.cast(INetworkItem.fromPtr, IID_INetworkItem);
@@ -31,17 +34,9 @@ class INetworkItem extends IInspectable {
     final value = calloc<GUID>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NetworkId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<GUID> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -55,17 +50,9 @@ class INetworkItem extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetNetworkTypes.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,4 +61,16 @@ class INetworkItem extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _INetworkItemVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> value)>>
+      get_NetworkId;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      GetNetworkTypes;
 }

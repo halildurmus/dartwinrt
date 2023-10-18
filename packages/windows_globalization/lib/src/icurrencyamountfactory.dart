@@ -22,7 +22,10 @@ import 'currencyamount.dart';
 const IID_ICurrencyAmountFactory = '{48d7168f-ef3b-4aee-a6a1-4b036fe03ff0}';
 
 class ICurrencyAmountFactory extends IInspectable {
-  ICurrencyAmountFactory.fromPtr(super.ptr);
+  ICurrencyAmountFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICurrencyAmountFactoryVtbl>().ref;
+
+  final _ICurrencyAmountFactoryVtbl _vtable;
 
   factory ICurrencyAmountFactory.from(IInspectable interface) => interface.cast(
       ICurrencyAmountFactory.fromPtr, IID_ICurrencyAmountFactory);
@@ -30,17 +33,9 @@ class ICurrencyAmountFactory extends IInspectable {
   CurrencyAmount create(String amount, String currency) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr amount,
-                            IntPtr currency, Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int amount, int currency,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int amount, int currency,
+                Pointer<COMObject> result)>()(
         lpVtbl, amount.toHString(), currency.toHString(), result);
 
     if (FAILED(hr)) {
@@ -50,4 +45,12 @@ class ICurrencyAmountFactory extends IInspectable {
 
     return CurrencyAmount.fromPtr(result);
   }
+}
+
+final class _ICurrencyAmountFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr amount, IntPtr currency,
+              Pointer<COMObject> result)>> Create;
 }

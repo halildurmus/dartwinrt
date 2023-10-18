@@ -174,6 +174,8 @@ abstract interface class IMapView<K, V> extends IInspectable
     throw UnsupportedError('Unsupported key-value pair: ($K, $V)');
   }
 
+  late final _IMapViewVtbl __vtable = ptr.ref.vtable.cast<_IMapViewVtbl>().ref;
+
   /// Returns the item at the specified key in the map.
   V lookup(K key);
 
@@ -182,17 +184,9 @@ abstract interface class IMapView<K, V> extends IInspectable
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
+      final hr = __vtable.get_Size.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> retValuePtr)>()(lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -210,19 +204,9 @@ abstract interface class IMapView<K, V> extends IInspectable
     final first = calloc<COMObject>();
     final second = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl,
-                        Pointer<COMObject> first,
-                        Pointer<COMObject> second)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
-                Pointer<COMObject> second)>()(lpVtbl, first, second);
+    final hr = __vtable.Split.asFunction<
+        int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+            Pointer<COMObject> second)>()(lpVtbl, first, second);
 
     if (FAILED(hr)) {
       free(first);
@@ -281,4 +265,26 @@ abstract interface class IMapView<K, V> extends IInspectable
 
   /// The value for the given [key], or `null` if [key] is not in the map.
   V operator [](K key) => lookup(key);
+}
+
+final class _IMapViewVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              /* T key, */
+              Pointer<COMObject> retValuePtr)>> Lookup;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> retValuePtr)>> get_Size;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              /* T key, */ Pointer<Bool> retValuePtr)>> HasKey;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+              Pointer<COMObject> second)>> Split;
 }

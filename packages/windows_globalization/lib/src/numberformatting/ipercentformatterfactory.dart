@@ -22,7 +22,10 @@ import 'percentformatter.dart';
 const IID_IPercentFormatterFactory = '{b7828aef-fed4-4018-a6e2-e09961e03765}';
 
 class IPercentFormatterFactory extends IInspectable {
-  IPercentFormatterFactory.fromPtr(super.ptr);
+  IPercentFormatterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPercentFormatterFactoryVtbl>().ref;
+
+  final _IPercentFormatterFactoryVtbl _vtable;
 
   factory IPercentFormatterFactory.from(IInspectable interface) => interface
       .cast(IPercentFormatterFactory.fromPtr, IID_IPercentFormatterFactory);
@@ -31,20 +34,9 @@ class IPercentFormatterFactory extends IInspectable {
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languages,
-                            IntPtr geographicRegion,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer languages,
-                    int geographicRegion, Pointer<COMObject> result)>()(
+    final hr = _vtable.CreatePercentFormatter.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer languages,
+                int geographicRegion, Pointer<COMObject> result)>()(
         lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
@@ -54,4 +46,15 @@ class IPercentFormatterFactory extends IInspectable {
 
     return PercentFormatter.fromPtr(result);
   }
+}
+
+final class _IPercentFormatterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer languages,
+              IntPtr geographicRegion,
+              Pointer<COMObject> result)>> CreatePercentFormatter;
 }

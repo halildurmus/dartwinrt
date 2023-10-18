@@ -24,7 +24,12 @@ const IID_IUriRuntimeClassWithAbsoluteCanonicalUri =
     '{758d9661-221c-480f-a339-50656673f46f}';
 
 class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
-  IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr(super.ptr);
+  IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IUriRuntimeClassWithAbsoluteCanonicalUriVtbl>()
+            .ref;
+
+  final _IUriRuntimeClassWithAbsoluteCanonicalUriVtbl _vtable;
 
   factory IUriRuntimeClassWithAbsoluteCanonicalUri.from(
           IInspectable interface) =>
@@ -35,17 +40,9 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AbsoluteCanonicalUri.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -59,17 +56,9 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_DisplayIri.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -78,4 +67,16 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IUriRuntimeClassWithAbsoluteCanonicalUriVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AbsoluteCanonicalUri;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_DisplayIri;
 }

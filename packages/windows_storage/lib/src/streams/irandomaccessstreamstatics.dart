@@ -23,7 +23,10 @@ import 'ioutputstream.dart';
 const IID_IRandomAccessStreamStatics = '{524cedcf-6e29-4ce5-9573-6b753db66c3a}';
 
 class IRandomAccessStreamStatics extends IInspectable {
-  IRandomAccessStreamStatics.fromPtr(super.ptr);
+  IRandomAccessStreamStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IRandomAccessStreamStaticsVtbl>().ref;
+
+  final _IRandomAccessStreamStaticsVtbl _vtable;
 
   factory IRandomAccessStreamStatics.from(IInspectable interface) => interface
       .cast(IRandomAccessStreamStatics.fromPtr, IID_IRandomAccessStreamStatics);
@@ -32,20 +35,9 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer source,
-                            VTablePointer destination,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer source,
-                    VTablePointer destination, Pointer<COMObject> operation)>()(
+    final hr = _vtable.CopyAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer source,
+                VTablePointer destination, Pointer<COMObject> operation)>()(
         lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -60,25 +52,13 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination, int bytesToCopy) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer source,
-                            VTablePointer destination,
-                            Uint64 bytesToCopy,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer source,
-                    VTablePointer destination,
-                    int bytesToCopy,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.CopySizeAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer source,
+                VTablePointer destination,
+                int bytesToCopy,
+                Pointer<COMObject> operation)>()(
         lpVtbl, source.lpVtbl, destination.lpVtbl, bytesToCopy, operation);
 
     if (FAILED(hr)) {
@@ -93,20 +73,9 @@ class IRandomAccessStreamStatics extends IInspectable {
       IInputStream? source, IOutputStream? destination) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer source,
-                            VTablePointer destination,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer source,
-                    VTablePointer destination, Pointer<COMObject> operation)>()(
+    final hr = _vtable.CopyAndCloseAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer source,
+                VTablePointer destination, Pointer<COMObject> operation)>()(
         lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -116,4 +85,30 @@ class IRandomAccessStreamStatics extends IInspectable {
 
     return operation;
   }
+}
+
+final class _IRandomAccessStreamStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer source,
+              VTablePointer destination,
+              Pointer<COMObject> operation)>> CopyAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer source,
+              VTablePointer destination,
+              Uint64 bytesToCopy,
+              Pointer<COMObject> operation)>> CopySizeAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer source,
+              VTablePointer destination,
+              Pointer<COMObject> operation)>> CopyAndCloseAsync;
 }

@@ -22,7 +22,10 @@ import 'tensorkind.dart';
 const IID_ITensorFeatureDescriptor = '{74455c80-946a-4310-a19c-ee0af028fce4}';
 
 class ITensorFeatureDescriptor extends IInspectable {
-  ITensorFeatureDescriptor.fromPtr(super.ptr);
+  ITensorFeatureDescriptor.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ITensorFeatureDescriptorVtbl>().ref;
+
+  final _ITensorFeatureDescriptorVtbl _vtable;
 
   factory ITensorFeatureDescriptor.from(IInspectable interface) => interface
       .cast(ITensorFeatureDescriptor.fromPtr, IID_ITensorFeatureDescriptor);
@@ -31,17 +34,9 @@ class ITensorFeatureDescriptor extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_TensorKind.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class ITensorFeatureDescriptor extends IInspectable {
   List<int>? get shape {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Shape.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -81,4 +68,16 @@ class ITensorFeatureDescriptor extends IInspectable {
             intType: IntType.int64)
         .toList();
   }
+}
+
+final class _ITensorFeatureDescriptorVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_TensorKind;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Shape;
 }

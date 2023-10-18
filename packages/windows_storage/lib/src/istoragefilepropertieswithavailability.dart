@@ -21,7 +21,12 @@ const IID_IStorageFilePropertiesWithAvailability =
     '{afcbbe9b-582b-4133-9648-e44ca46ee491}';
 
 class IStorageFilePropertiesWithAvailability extends IInspectable {
-  IStorageFilePropertiesWithAvailability.fromPtr(super.ptr);
+  IStorageFilePropertiesWithAvailability.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IStorageFilePropertiesWithAvailabilityVtbl>()
+            .ref;
+
+  final _IStorageFilePropertiesWithAvailabilityVtbl _vtable;
 
   factory IStorageFilePropertiesWithAvailability.from(IInspectable interface) =>
       interface.cast(IStorageFilePropertiesWithAvailability.fromPtr,
@@ -31,17 +36,9 @@ class IStorageFilePropertiesWithAvailability extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsAvailable.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +47,12 @@ class IStorageFilePropertiesWithAvailability extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IStorageFilePropertiesWithAvailabilityVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsAvailable;
 }

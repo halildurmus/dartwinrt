@@ -22,7 +22,10 @@ import 'regionofinterest.dart';
 const IID_IRegionsOfInterestControl = '{c323f527-ab0b-4558-8b5b-df5693db0378}';
 
 class IRegionsOfInterestControl extends IInspectable {
-  IRegionsOfInterestControl.fromPtr(super.ptr);
+  IRegionsOfInterestControl.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IRegionsOfInterestControlVtbl>().ref;
+
+  final _IRegionsOfInterestControlVtbl _vtable;
 
   factory IRegionsOfInterestControl.from(IInspectable interface) => interface
       .cast(IRegionsOfInterestControl.fromPtr, IID_IRegionsOfInterestControl);
@@ -31,17 +34,9 @@ class IRegionsOfInterestControl extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MaxRegions.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,20 +49,9 @@ class IRegionsOfInterestControl extends IInspectable {
   Future<void> setRegionsAsync(IIterable<RegionOfInterest?>? regions) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer regions,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer regions,
-                    Pointer<COMObject> asyncInfo)>()(
-        lpVtbl, regions.lpVtbl, asyncInfo);
+    final hr = _vtable.SetRegionsAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer regions,
+            Pointer<COMObject> asyncInfo)>()(lpVtbl, regions.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -81,20 +65,9 @@ class IRegionsOfInterestControl extends IInspectable {
       IIterable<RegionOfInterest?>? regions, bool lockValues) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer regions,
-                            Bool lockValues,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer regions,
-                    bool lockValues, Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.SetRegionsWithLockAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer regions,
+                bool lockValues, Pointer<COMObject> asyncInfo)>()(
         lpVtbl, regions.lpVtbl, lockValues, asyncInfo);
 
     if (FAILED(hr)) {
@@ -108,17 +81,9 @@ class IRegionsOfInterestControl extends IInspectable {
   Future<void> clearRegionsAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.ClearRegionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -132,17 +97,9 @@ class IRegionsOfInterestControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AutoFocusSupported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -156,17 +113,9 @@ class IRegionsOfInterestControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AutoWhiteBalanceSupported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -180,17 +129,9 @@ class IRegionsOfInterestControl extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_AutoExposureSupported.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -199,4 +140,40 @@ class IRegionsOfInterestControl extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IRegionsOfInterestControlVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MaxRegions;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer regions,
+              Pointer<COMObject> asyncInfo)>> SetRegionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer regions,
+              Bool lockValues,
+              Pointer<COMObject> asyncInfo)>> SetRegionsWithLockAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      ClearRegionsAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AutoFocusSupported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AutoWhiteBalanceSupported;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_AutoExposureSupported;
 }

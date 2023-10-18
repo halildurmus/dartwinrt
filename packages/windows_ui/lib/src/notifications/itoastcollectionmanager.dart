@@ -23,7 +23,10 @@ import 'toastcollection.dart';
 const IID_IToastCollectionManager = '{2a1821fe-179d-49bc-b79d-a527920d3665}';
 
 class IToastCollectionManager extends IInspectable {
-  IToastCollectionManager.fromPtr(super.ptr);
+  IToastCollectionManager.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IToastCollectionManagerVtbl>().ref;
+
+  final _IToastCollectionManagerVtbl _vtable;
 
   factory IToastCollectionManager.from(IInspectable interface) => interface
       .cast(IToastCollectionManager.fromPtr, IID_IToastCollectionManager);
@@ -31,19 +34,9 @@ class IToastCollectionManager extends IInspectable {
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer collection,
-                            Pointer<COMObject> operation)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer collection,
-                    Pointer<COMObject> operation)>()(
+    final hr = _vtable.SaveToastCollectionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer collection,
+                Pointer<COMObject> operation)>()(
         lpVtbl, collection.lpVtbl, operation);
 
     if (FAILED(hr)) {
@@ -57,17 +50,9 @@ class IToastCollectionManager extends IInspectable {
   Future<List<ToastCollection?>> findAllToastCollectionsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.FindAllToastCollectionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -85,21 +70,10 @@ class IToastCollectionManager extends IInspectable {
   Future<ToastCollection?> getToastCollectionAsync(String collectionId) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr collectionId,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, collectionId.toHString(), operation);
+    final hr = _vtable.GetToastCollectionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int collectionId,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -114,21 +88,10 @@ class IToastCollectionManager extends IInspectable {
   Future<void> removeToastCollectionAsync(String collectionId) {
     final operation = calloc<COMObject>();
 
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr collectionId,
-                                Pointer<COMObject> operation)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> operation)>()(
-            lpVtbl, collectionId.toHString(), operation);
+    final hr = _vtable.RemoveToastCollectionAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int collectionId,
+                Pointer<COMObject> operation)>()(
+        lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -141,17 +104,9 @@ class IToastCollectionManager extends IInspectable {
   Future<void> removeAllToastCollectionsAsync() {
     final operation = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> operation)>()(lpVtbl, operation);
+    final hr = _vtable.RemoveAllToastCollectionsAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> operation)>()(
+        lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -164,17 +119,9 @@ class IToastCollectionManager extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_User.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -193,17 +140,9 @@ class IToastCollectionManager extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_AppId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -212,4 +151,38 @@ class IToastCollectionManager extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IToastCollectionManagerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer collection,
+              Pointer<COMObject> operation)>> SaveToastCollectionAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      FindAllToastCollectionsAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr collectionId,
+              Pointer<COMObject> operation)>> GetToastCollectionAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr collectionId,
+              Pointer<COMObject> operation)>> RemoveToastCollectionAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> operation)>>
+      RemoveAllToastCollectionsAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_User;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_AppId;
 }

@@ -23,7 +23,10 @@ const IID_IPropertySetSerializer = '{6e8ebf1c-ef3d-4376-b20e-5be638aeac77}';
 
 /// Provides the ability to serialize/deserialize an IPropertySet to an IBuffer.
 class IPropertySetSerializer extends IInspectable {
-  IPropertySetSerializer.fromPtr(super.ptr);
+  IPropertySetSerializer.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPropertySetSerializerVtbl>().ref;
+
+  final _IPropertySetSerializerVtbl _vtable;
 
   factory IPropertySetSerializer.from(IInspectable interface) => interface.cast(
       IPropertySetSerializer.fromPtr, IID_IPropertySetSerializer);
@@ -31,20 +34,9 @@ class IPropertySetSerializer extends IInspectable {
   IBuffer? serialize(IPropertySet? propertySet) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer propertySet,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer propertySet,
-                    Pointer<COMObject> result)>()(
-        lpVtbl, propertySet.lpVtbl, result);
+    final hr = _vtable.Serialize.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer propertySet,
+            Pointer<COMObject> result)>()(lpVtbl, propertySet.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -60,22 +52,22 @@ class IPropertySetSerializer extends IInspectable {
   }
 
   void deserialize(IPropertySet? propertySet, IBuffer? buffer) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer propertySet,
-                                VTablePointer buffer)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl,
-                        VTablePointer propertySet, VTablePointer buffer)>()(
-            lpVtbl, propertySet.lpVtbl, buffer.lpVtbl);
+    final hr = _vtable.Deserialize.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer propertySet,
+            VTablePointer buffer)>()(lpVtbl, propertySet.lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IPropertySetSerializerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer propertySet,
+              Pointer<COMObject> result)>> Serialize;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer propertySet,
+              VTablePointer buffer)>> Deserialize;
 }

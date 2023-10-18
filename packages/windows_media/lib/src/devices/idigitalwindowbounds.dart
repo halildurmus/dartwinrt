@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDigitalWindowBounds = '{dd4f21dd-d173-5c6b-8c25-bdd26d5122b1}';
 
 class IDigitalWindowBounds extends IInspectable {
-  IDigitalWindowBounds.fromPtr(super.ptr);
+  IDigitalWindowBounds.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDigitalWindowBoundsVtbl>().ref;
+
+  final _IDigitalWindowBoundsVtbl _vtable;
 
   factory IDigitalWindowBounds.from(IInspectable interface) =>
       interface.cast(IDigitalWindowBounds.fromPtr, IID_IDigitalWindowBounds);
@@ -29,17 +32,9 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_NormalizedOriginTop.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,17 +45,9 @@ class IDigitalWindowBounds extends IInspectable {
   }
 
   set normalizedOriginTop(double value) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_NormalizedOriginTop
+            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -69,17 +56,9 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_NormalizedOriginLeft.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -90,17 +69,9 @@ class IDigitalWindowBounds extends IInspectable {
   }
 
   set normalizedOriginLeft(double value) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_NormalizedOriginLeft
+            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -109,17 +80,9 @@ class IDigitalWindowBounds extends IInspectable {
     final value = calloc<Double>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Scale.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Double> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -130,18 +93,35 @@ class IDigitalWindowBounds extends IInspectable {
   }
 
   set scale(double value) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Double value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
-            lpVtbl, value);
+    final hr = _vtable.put_Scale
+            .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
+        lpVtbl, value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IDigitalWindowBoundsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_NormalizedOriginTop;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      put_NormalizedOriginTop;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_NormalizedOriginLeft;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      put_NormalizedOriginLeft;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> value)>>
+      get_Scale;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double value)>>
+      put_Scale;
 }

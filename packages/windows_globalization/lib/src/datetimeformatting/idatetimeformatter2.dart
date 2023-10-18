@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDateTimeFormatter2 = '{27c91a86-bdaa-4fd0-9e36-671d5aa5ee03}';
 
 class IDateTimeFormatter2 extends IInspectable {
-  IDateTimeFormatter2.fromPtr(super.ptr);
+  IDateTimeFormatter2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDateTimeFormatter2Vtbl>().ref;
+
+  final _IDateTimeFormatter2Vtbl _vtable;
 
   factory IDateTimeFormatter2.from(IInspectable interface) =>
       interface.cast(IDateTimeFormatter2.fromPtr, IID_IDateTimeFormatter2);
@@ -29,17 +32,9 @@ class IDateTimeFormatter2 extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int64 datetime,
-                              IntPtr timeZoneId, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int datetime,
-                      int timeZoneId, Pointer<IntPtr> result)>()(
+      final hr = _vtable.FormatUsingTimeZone.asFunction<
+              int Function(VTablePointer lpVtbl, int datetime, int timeZoneId,
+                  Pointer<IntPtr> result)>()(
           lpVtbl, datetime.toWinRTDateTime(), timeZoneId.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -49,4 +44,12 @@ class IDateTimeFormatter2 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IDateTimeFormatter2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 datetime,
+              IntPtr timeZoneId, Pointer<IntPtr> result)>> FormatUsingTimeZone;
 }

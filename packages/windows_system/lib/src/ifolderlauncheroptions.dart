@@ -21,7 +21,10 @@ import 'package:windows_storage/windows_storage.dart';
 const IID_IFolderLauncherOptions = '{bb91c27d-6b87-432a-bd04-776c6f5fb2ab}';
 
 class IFolderLauncherOptions extends IInspectable {
-  IFolderLauncherOptions.fromPtr(super.ptr);
+  IFolderLauncherOptions.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFolderLauncherOptionsVtbl>().ref;
+
+  final _IFolderLauncherOptionsVtbl _vtable;
 
   factory IFolderLauncherOptions.from(IInspectable interface) => interface.cast(
       IFolderLauncherOptions.fromPtr, IID_IFolderLauncherOptions);
@@ -29,17 +32,9 @@ class IFolderLauncherOptions extends IInspectable {
   IVector<IStorageItem?>? get itemsToSelect {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ItemsToSelect.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -55,4 +50,12 @@ class IFolderLauncherOptions extends IInspectable {
         iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}',
         creator: IStorageItem.fromPtr);
   }
+}
+
+final class _IFolderLauncherOptionsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ItemsToSelect;
 }

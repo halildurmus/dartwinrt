@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IXmlNodeSerializer = '{5cc5b382-e6dd-4991-abef-06d8d2e7bd0c}';
 
 class IXmlNodeSerializer extends IInspectable {
-  IXmlNodeSerializer.fromPtr(super.ptr);
+  IXmlNodeSerializer.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlNodeSerializerVtbl>().ref;
+
+  final _IXmlNodeSerializerVtbl _vtable;
 
   factory IXmlNodeSerializer.from(IInspectable interface) =>
       interface.cast(IXmlNodeSerializer.fromPtr, IID_IXmlNodeSerializer);
@@ -29,17 +32,9 @@ class IXmlNodeSerializer extends IInspectable {
     final outerXml = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<IntPtr> outerXml)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> outerXml)>()(lpVtbl, outerXml);
+      final hr = _vtable.GetXml.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<IntPtr> outerXml)>()(
+          lpVtbl, outerXml);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IXmlNodeSerializer extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_InnerText.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,18 +61,25 @@ class IXmlNodeSerializer extends IInspectable {
   }
 
   set innerText(String value) {
-    final hr =
-        vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_InnerText
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
+}
+
+final class _IXmlNodeSerializerVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> outerXml)>>
+      GetXml;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_InnerText;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_InnerText;
 }

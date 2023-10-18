@@ -25,7 +25,10 @@ import 'devicewatcher.dart';
 const IID_IDeviceInformationStatics = '{c17f100e-3a46-4a78-8013-769dc9b97390}';
 
 class IDeviceInformationStatics extends IInspectable {
-  IDeviceInformationStatics.fromPtr(super.ptr);
+  IDeviceInformationStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDeviceInformationStaticsVtbl>().ref;
+
+  final _IDeviceInformationStaticsVtbl _vtable;
 
   factory IDeviceInformationStatics.from(IInspectable interface) => interface
       .cast(IDeviceInformationStatics.fromPtr, IID_IDeviceInformationStatics);
@@ -33,17 +36,9 @@ class IDeviceInformationStatics extends IInspectable {
   Future<DeviceInformation?> createFromIdAsync(String deviceId) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId,
-                            Pointer<COMObject> asyncOp)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int deviceId,
-                    Pointer<COMObject> asyncOp)>()(
+    final hr = _vtable.CreateFromIdAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int deviceId,
+                Pointer<COMObject> asyncOp)>()(
         lpVtbl, deviceId.toHString(), asyncOp);
 
     if (FAILED(hr)) {
@@ -60,23 +55,12 @@ class IDeviceInformationStatics extends IInspectable {
       String deviceId, IIterable<String>? additionalProperties) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr deviceId,
-                            VTablePointer additionalProperties,
-                            Pointer<COMObject> asyncOp)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int deviceId,
-                    VTablePointer additionalProperties,
-                    Pointer<COMObject> asyncOp)>()(
+    final hr = _vtable.CreateFromIdAsyncAdditionalProperties.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int deviceId,
+                VTablePointer additionalProperties,
+                Pointer<COMObject> asyncOp)>()(
         lpVtbl, deviceId.toHString(), additionalProperties.lpVtbl, asyncOp);
 
     if (FAILED(hr)) {
@@ -92,17 +76,9 @@ class IDeviceInformationStatics extends IInspectable {
   Future<DeviceInformationCollection> findAllAsync() {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncOp)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncOp)>()(lpVtbl, asyncOp);
+    final hr = _vtable.FindAllAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncOp)>()(
+        lpVtbl, asyncOp);
 
     if (FAILED(hr)) {
       free(asyncOp);
@@ -119,20 +95,9 @@ class IDeviceInformationStatics extends IInspectable {
       DeviceClass deviceClass) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 deviceClass,
-                        Pointer<COMObject> asyncOp)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int deviceClass,
-                Pointer<COMObject>
-                    asyncOp)>()(lpVtbl, deviceClass.value, asyncOp);
+    final hr = _vtable.FindAllAsyncDeviceClass.asFunction<
+        int Function(VTablePointer lpVtbl, int deviceClass,
+            Pointer<COMObject> asyncOp)>()(lpVtbl, deviceClass.value, asyncOp);
 
     if (FAILED(hr)) {
       free(asyncOp);
@@ -148,17 +113,9 @@ class IDeviceInformationStatics extends IInspectable {
   Future<DeviceInformationCollection> findAllAsyncAqsFilter(String aqsFilter) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr aqsFilter,
-                            Pointer<COMObject> asyncOp)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int aqsFilter,
-                    Pointer<COMObject> asyncOp)>()(
+    final hr = _vtable.FindAllAsyncAqsFilter.asFunction<
+            int Function(VTablePointer lpVtbl, int aqsFilter,
+                Pointer<COMObject> asyncOp)>()(
         lpVtbl, aqsFilter.toHString(), asyncOp);
 
     if (FAILED(hr)) {
@@ -177,23 +134,12 @@ class IDeviceInformationStatics extends IInspectable {
           String aqsFilter, IIterable<String>? additionalProperties) {
     final asyncOp = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr aqsFilter,
-                            VTablePointer additionalProperties,
-                            Pointer<COMObject> asyncOp)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int aqsFilter,
-                    VTablePointer additionalProperties,
-                    Pointer<COMObject> asyncOp)>()(
+    final hr = _vtable.FindAllAsyncAqsFilterAndAdditionalProperties.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int aqsFilter,
+                VTablePointer additionalProperties,
+                Pointer<COMObject> asyncOp)>()(
         lpVtbl, aqsFilter.toHString(), additionalProperties.lpVtbl, asyncOp);
 
     if (FAILED(hr)) {
@@ -210,17 +156,9 @@ class IDeviceInformationStatics extends IInspectable {
   DeviceWatcher? createWatcher() {
     final watcher = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> watcher)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> watcher)>()(lpVtbl, watcher);
+    final hr = _vtable.CreateWatcher.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> watcher)>()(
+        lpVtbl, watcher);
 
     if (FAILED(hr)) {
       free(watcher);
@@ -238,20 +176,9 @@ class IDeviceInformationStatics extends IInspectable {
   DeviceWatcher? createWatcherDeviceClass(DeviceClass deviceClass) {
     final watcher = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Int32 deviceClass,
-                        Pointer<COMObject> watcher)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                int deviceClass,
-                Pointer<COMObject>
-                    watcher)>()(lpVtbl, deviceClass.value, watcher);
+    final hr = _vtable.CreateWatcherDeviceClass.asFunction<
+        int Function(VTablePointer lpVtbl, int deviceClass,
+            Pointer<COMObject> watcher)>()(lpVtbl, deviceClass.value, watcher);
 
     if (FAILED(hr)) {
       free(watcher);
@@ -269,17 +196,9 @@ class IDeviceInformationStatics extends IInspectable {
   DeviceWatcher? createWatcherAqsFilter(String aqsFilter) {
     final watcher = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr aqsFilter,
-                            Pointer<COMObject> watcher)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int aqsFilter,
-                    Pointer<COMObject> watcher)>()(
+    final hr = _vtable.CreateWatcherAqsFilter.asFunction<
+            int Function(VTablePointer lpVtbl, int aqsFilter,
+                Pointer<COMObject> watcher)>()(
         lpVtbl, aqsFilter.toHString(), watcher);
 
     if (FAILED(hr)) {
@@ -299,23 +218,12 @@ class IDeviceInformationStatics extends IInspectable {
       String aqsFilter, IIterable<String>? additionalProperties) {
     final watcher = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr aqsFilter,
-                            VTablePointer additionalProperties,
-                            Pointer<COMObject> watcher)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int aqsFilter,
-                    VTablePointer additionalProperties,
-                    Pointer<COMObject> watcher)>()(
+    final hr = _vtable.CreateWatcherAqsFilterAndAdditionalProperties.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int aqsFilter,
+                VTablePointer additionalProperties,
+                Pointer<COMObject> watcher)>()(
         lpVtbl, aqsFilter.toHString(), additionalProperties.lpVtbl, watcher);
 
     if (FAILED(hr)) {
@@ -330,4 +238,60 @@ class IDeviceInformationStatics extends IInspectable {
 
     return DeviceWatcher.fromPtr(watcher);
   }
+}
+
+final class _IDeviceInformationStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId,
+              Pointer<COMObject> asyncOp)>> CreateFromIdAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr deviceId,
+                  VTablePointer additionalProperties,
+                  Pointer<COMObject> asyncOp)>>
+      CreateFromIdAsyncAdditionalProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> asyncOp)>> FindAllAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 deviceClass,
+              Pointer<COMObject> asyncOp)>> FindAllAsyncDeviceClass;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr aqsFilter,
+              Pointer<COMObject> asyncOp)>> FindAllAsyncAqsFilter;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr aqsFilter,
+                  VTablePointer additionalProperties,
+                  Pointer<COMObject> asyncOp)>>
+      FindAllAsyncAqsFilterAndAdditionalProperties;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> watcher)>> CreateWatcher;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 deviceClass,
+              Pointer<COMObject> watcher)>> CreateWatcherDeviceClass;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr aqsFilter,
+              Pointer<COMObject> watcher)>> CreateWatcherAqsFilter;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr aqsFilter,
+                  VTablePointer additionalProperties,
+                  Pointer<COMObject> watcher)>>
+      CreateWatcherAqsFilterAndAdditionalProperties;
 }

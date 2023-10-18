@@ -23,22 +23,17 @@ const IID_IAudioStreamDescriptor2 = '{2e68f1f6-a448-497b-8840-85082665acf9}';
 
 class IAudioStreamDescriptor2 extends IInspectable
     implements IMediaStreamDescriptor {
-  IAudioStreamDescriptor2.fromPtr(super.ptr);
+  IAudioStreamDescriptor2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioStreamDescriptor2Vtbl>().ref;
+
+  final _IAudioStreamDescriptor2Vtbl _vtable;
 
   factory IAudioStreamDescriptor2.from(IInspectable interface) => interface
       .cast(IAudioStreamDescriptor2.fromPtr, IID_IAudioStreamDescriptor2);
 
   set leadingEncoderPadding(int? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_LeadingEncoderPadding.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -47,17 +42,9 @@ class IAudioStreamDescriptor2 extends IInspectable
   int? get leadingEncoderPadding {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_LeadingEncoderPadding.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -75,16 +62,8 @@ class IAudioStreamDescriptor2 extends IInspectable
   }
 
   set trailingEncoderPadding(int? value) {
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_TrailingEncoderPadding.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference(IntType.uint32).lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -93,17 +72,9 @@ class IAudioStreamDescriptor2 extends IInspectable
   int? get trailingEncoderPadding {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_TrailingEncoderPadding.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -136,4 +107,24 @@ class IAudioStreamDescriptor2 extends IInspectable
 
   @override
   String get language => _iMediaStreamDescriptor.language;
+}
+
+final class _IAudioStreamDescriptor2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_LeadingEncoderPadding;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_LeadingEncoderPadding;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_TrailingEncoderPadding;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_TrailingEncoderPadding;
 }

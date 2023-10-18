@@ -25,7 +25,10 @@ import 'pdfpagerotation.dart';
 const IID_IPdfPage = '{9db4b0c8-5320-4cfc-ad76-493fdad0e594}';
 
 class IPdfPage extends IInspectable {
-  IPdfPage.fromPtr(super.ptr);
+  IPdfPage.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPdfPageVtbl>().ref;
+
+  final _IPdfPageVtbl _vtable;
 
   factory IPdfPage.from(IInspectable interface) =>
       interface.cast(IPdfPage.fromPtr, IID_IPdfPage);
@@ -33,19 +36,9 @@ class IPdfPage extends IInspectable {
   Future<void> renderToStreamAsync(IRandomAccessStream? outputStream) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer outputStream,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer outputStream,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.RenderToStreamAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer outputStream,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl, outputStream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -60,20 +53,9 @@ class IPdfPage extends IInspectable {
       IRandomAccessStream? outputStream, PdfPageRenderOptions? options) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer outputStream,
-                            VTablePointer options,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer outputStream,
-                    VTablePointer options, Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.RenderWithOptionsToStreamAsync.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer outputStream,
+                VTablePointer options, Pointer<COMObject> asyncInfo)>()(
         lpVtbl, outputStream.lpVtbl, options.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
@@ -87,17 +69,9 @@ class IPdfPage extends IInspectable {
   Future<void> preparePageAsync() {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> asyncInfo)>()(lpVtbl, asyncInfo);
+    final hr = _vtable.PreparePageAsync.asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>()(
+        lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -111,17 +85,9 @@ class IPdfPage extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Index.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -135,17 +101,9 @@ class IPdfPage extends IInspectable {
     final value = calloc<NativeSize>();
 
     try {
-      final hr = vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<NativeSize> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Size.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<NativeSize> value)>()(
+          lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -158,17 +116,9 @@ class IPdfPage extends IInspectable {
   PdfPageDimensions? get dimensions {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Dimensions.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -187,17 +137,9 @@ class IPdfPage extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Rotation.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,17 +153,9 @@ class IPdfPage extends IInspectable {
     final value = calloc<Float>();
 
     try {
-      final hr = vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
+      final hr = _vtable.get_PreferredZoom.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -230,4 +164,44 @@ class IPdfPage extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IPdfPageVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer outputStream,
+              Pointer<COMObject> asyncInfo)>> RenderToStreamAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              VTablePointer outputStream,
+              VTablePointer options,
+              Pointer<COMObject> asyncInfo)>> RenderWithOptionsToStreamAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>
+      PreparePageAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_Index;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<NativeSize> value)>> get_Size;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Dimensions;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Rotation;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> value)>>
+      get_PreferredZoom;
 }

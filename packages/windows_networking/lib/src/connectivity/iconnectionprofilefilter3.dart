@@ -20,22 +20,17 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IConnectionProfileFilter3 = '{0aaa09c0-5014-447c-8809-aee4cb0af94a}';
 
 class IConnectionProfileFilter3 extends IInspectable {
-  IConnectionProfileFilter3.fromPtr(super.ptr);
+  IConnectionProfileFilter3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfileFilter3Vtbl>().ref;
+
+  final _IConnectionProfileFilter3Vtbl _vtable;
 
   factory IConnectionProfileFilter3.from(IInspectable interface) => interface
       .cast(IConnectionProfileFilter3.fromPtr, IID_IConnectionProfileFilter3);
 
   set purposeGuid(Guid? value) {
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+    final hr = _vtable.put_PurposeGuid.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         lpVtbl, value?.toReference().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -44,17 +39,9 @@ class IConnectionProfileFilter3 extends IInspectable {
   Guid? get purposeGuid {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_PurposeGuid.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -70,4 +57,16 @@ class IConnectionProfileFilter3 extends IInspectable {
             referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}')
         .value;
   }
+}
+
+final class _IConnectionProfileFilter3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer value)>>
+      put_PurposeGuid;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_PurposeGuid;
 }

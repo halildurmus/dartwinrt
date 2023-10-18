@@ -22,7 +22,10 @@ import 'launchuristatus.dart';
 const IID_ILaunchUriResult = '{ec27a8df-f6d5-45ca-913a-70a40c5c8221}';
 
 class ILaunchUriResult extends IInspectable {
-  ILaunchUriResult.fromPtr(super.ptr);
+  ILaunchUriResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ILaunchUriResultVtbl>().ref;
+
+  final _ILaunchUriResultVtbl _vtable;
 
   factory ILaunchUriResult.from(IInspectable interface) =>
       interface.cast(ILaunchUriResult.fromPtr, IID_ILaunchUriResult);
@@ -31,17 +34,9 @@ class ILaunchUriResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -54,17 +49,9 @@ class ILaunchUriResult extends IInspectable {
   ValueSet? get result {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Result.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -78,4 +65,16 @@ class ILaunchUriResult extends IInspectable {
 
     return ValueSet.fromPtr(value);
   }
+}
+
+final class _ILaunchUriResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Status;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Result;
 }

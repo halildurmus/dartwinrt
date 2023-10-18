@@ -23,7 +23,10 @@ import 'ioutputstream.dart';
 const IID_IDataWriterFactory = '{338c67c2-8b84-4c2b-9c50-7b8767847a1f}';
 
 class IDataWriterFactory extends IInspectable {
-  IDataWriterFactory.fromPtr(super.ptr);
+  IDataWriterFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataWriterFactoryVtbl>().ref;
+
+  final _IDataWriterFactoryVtbl _vtable;
 
   factory IDataWriterFactory.from(IInspectable interface) =>
       interface.cast(IDataWriterFactory.fromPtr, IID_IDataWriterFactory);
@@ -31,19 +34,9 @@ class IDataWriterFactory extends IInspectable {
   DataWriter createDataWriter(IOutputStream? outputStream) {
     final dataWriter = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer outputStream,
-                            Pointer<COMObject> dataWriter)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer outputStream,
-                    Pointer<COMObject> dataWriter)>()(
+    final hr = _vtable.CreateDataWriter.asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer outputStream,
+                Pointer<COMObject> dataWriter)>()(
         lpVtbl, outputStream.lpVtbl, dataWriter);
 
     if (FAILED(hr)) {
@@ -53,4 +46,12 @@ class IDataWriterFactory extends IInspectable {
 
     return DataWriter.fromPtr(dataWriter);
   }
+}
+
+final class _IDataWriterFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer outputStream,
+              Pointer<COMObject> dataWriter)>> CreateDataWriter;
 }

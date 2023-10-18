@@ -23,7 +23,10 @@ import 'phonenumberparseresult.dart';
 const IID_IPhoneNumberInfoStatics = '{5b3f4f6a-86a9-40e9-8649-6d61161928d4}';
 
 class IPhoneNumberInfoStatics extends IInspectable {
-  IPhoneNumberInfoStatics.fromPtr(super.ptr);
+  IPhoneNumberInfoStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IPhoneNumberInfoStaticsVtbl>().ref;
+
+  final _IPhoneNumberInfoStaticsVtbl _vtable;
 
   factory IPhoneNumberInfoStatics.from(IInspectable interface) => interface
       .cast(IPhoneNumberInfoStatics.fromPtr, IID_IPhoneNumberInfoStatics);
@@ -34,20 +37,9 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final phoneNumber = calloc<COMObject>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr input,
-                              Pointer<COMObject> phoneNumber,
-                              Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int input,
-                      Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
+      final hr = _vtable.TryParse.asFunction<
+              int Function(VTablePointer lpVtbl, int input,
+                  Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
           lpVtbl, input.toHString(), phoneNumber, result);
 
       if (FAILED(hr)) {
@@ -77,21 +69,9 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final phoneNumber = calloc<COMObject>();
 
     try {
-      final hr = vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr input,
-                              IntPtr regionCode,
-                              Pointer<COMObject> phoneNumber,
-                              Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int input, int regionCode,
-                      Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
+      final hr = _vtable.TryParseWithRegion.asFunction<
+              int Function(VTablePointer lpVtbl, int input, int regionCode,
+                  Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
           lpVtbl,
           input.toHString(),
           regionCode.toHString(),
@@ -118,4 +98,20 @@ class IPhoneNumberInfoStatics extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IPhoneNumberInfoStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr input,
+              Pointer<COMObject> phoneNumber, Pointer<Int32> result)>> TryParse;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              IntPtr input,
+              IntPtr regionCode,
+              Pointer<COMObject> phoneNumber,
+              Pointer<Int32> result)>> TryParseWithRegion;
 }

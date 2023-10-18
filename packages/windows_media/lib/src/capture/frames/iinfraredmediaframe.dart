@@ -23,7 +23,10 @@ import 'videomediaframe.dart';
 const IID_IInfraredMediaFrame = '{3fd13503-004b-4f0e-91ac-465299b41658}';
 
 class IInfraredMediaFrame extends IInspectable {
-  IInfraredMediaFrame.fromPtr(super.ptr);
+  IInfraredMediaFrame.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IInfraredMediaFrameVtbl>().ref;
+
+  final _IInfraredMediaFrameVtbl _vtable;
 
   factory IInfraredMediaFrame.from(IInspectable interface) =>
       interface.cast(IInfraredMediaFrame.fromPtr, IID_IInfraredMediaFrame);
@@ -31,17 +34,9 @@ class IInfraredMediaFrame extends IInspectable {
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_FrameReference.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -59,17 +54,9 @@ class IInfraredMediaFrame extends IInspectable {
   VideoMediaFrame? get videoMediaFrame {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_VideoMediaFrame.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -88,17 +75,9 @@ class IInfraredMediaFrame extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsIlluminated.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -107,4 +86,20 @@ class IInfraredMediaFrame extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IInfraredMediaFrameVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_FrameReference;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_VideoMediaFrame;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsIlluminated;
 }

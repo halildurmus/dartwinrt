@@ -23,7 +23,10 @@ import 'dayofweek.dart';
 const IID_ICalendar = '{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}';
 
 class ICalendar extends IInspectable {
-  ICalendar.fromPtr(super.ptr);
+  ICalendar.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ICalendarVtbl>().ref;
+
+  final _ICalendarVtbl _vtable;
 
   factory ICalendar.from(IInspectable interface) =>
       interface.cast(ICalendar.fromPtr, IID_ICalendar);
@@ -31,17 +34,9 @@ class ICalendar extends IInspectable {
   Calendar? clone() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.Clone.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -57,21 +52,17 @@ class ICalendar extends IInspectable {
   }
 
   void setToMin() {
-    final hr = vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.SetToMin.asFunction<int Function(VTablePointer lpVtbl)>()(
+            lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setToMax() {
-    final hr = vtable
-        .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.SetToMax.asFunction<int Function(VTablePointer lpVtbl)>()(
+            lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -79,17 +70,9 @@ class ICalendar extends IInspectable {
   List<String>? get languages {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Languages.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -110,17 +93,9 @@ class ICalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_NumeralSystem.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -131,17 +106,9 @@ class ICalendar extends IInspectable {
   }
 
   set numeralSystem(String value) {
-    final hr =
-        vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.put_NumeralSystem
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -150,17 +117,9 @@ class ICalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetCalendarSystem.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -171,17 +130,9 @@ class ICalendar extends IInspectable {
   }
 
   void changeCalendarSystem(String value) {
-    final hr =
-        vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.ChangeCalendarSystem.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int value)>()(lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -190,17 +141,9 @@ class ICalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.GetClock.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -211,17 +154,9 @@ class ICalendar extends IInspectable {
   }
 
   void changeClock(String value) {
-    final hr =
-        vtable
-                .elementAt(15)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr value)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            lpVtbl, value.toHString());
+    final hr = _vtable.ChangeClock.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int value)>()(lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -230,17 +165,9 @@ class ICalendar extends IInspectable {
     final result = calloc<Int64>();
 
     try {
-      final hr = vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Int64> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Int64> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.GetDateTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -251,25 +178,17 @@ class ICalendar extends IInspectable {
   }
 
   void setDateTime(DateTime value) {
-    final hr = vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+    final hr = _vtable.SetDateTime.asFunction<
+            int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value.toWinRTDateTime());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setToNow() {
-    final hr = vtable
-        .elementAt(18)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(lpVtbl);
+    final hr =
+        _vtable.SetToNow.asFunction<int Function(VTablePointer lpVtbl)>()(
+            lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -278,17 +197,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstEra.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -302,17 +213,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastEra.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -326,17 +229,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfEras.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -350,17 +245,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Era.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -371,13 +258,7 @@ class ICalendar extends IInspectable {
   }
 
   set era(int value) {
-    final hr = vtable
-            .elementAt(23)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Era
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -385,15 +266,8 @@ class ICalendar extends IInspectable {
   }
 
   void addEras(int eras) {
-    final hr = vtable
-            .elementAt(24)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 eras)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int eras)>()(
-        lpVtbl, eras);
+    final hr = _vtable.AddEras.asFunction<
+        int Function(VTablePointer lpVtbl, int eras)>()(lpVtbl, eras);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -402,17 +276,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(25)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.EraAsFullString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -426,17 +292,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(26)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.EraAsString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -450,17 +308,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(27)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstYearInThisEra.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -474,17 +324,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(28)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastYearInThisEra.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -498,17 +340,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(29)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfYearsInThisEra.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -522,17 +356,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(30)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Year.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -543,13 +369,7 @@ class ICalendar extends IInspectable {
   }
 
   set year(int value) {
-    final hr = vtable
-            .elementAt(31)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Year
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -557,15 +377,8 @@ class ICalendar extends IInspectable {
   }
 
   void addYears(int years) {
-    final hr = vtable
-            .elementAt(32)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 years)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int years)>()(
-        lpVtbl, years);
+    final hr = _vtable.AddYears.asFunction<
+        int Function(VTablePointer lpVtbl, int years)>()(lpVtbl, years);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -574,17 +387,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(33)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.YearAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -598,17 +403,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(34)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Int32 remainingDigits, Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int remainingDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, remainingDigits, result);
+      final hr = _vtable.YearAsTruncatedString.asFunction<
+          int Function(VTablePointer lpVtbl, int remainingDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, remainingDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -622,17 +419,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(35)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.YearAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -646,17 +435,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(36)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstMonthInThisYear.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -670,17 +451,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(37)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastMonthInThisYear.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -694,17 +467,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(38)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfMonthsInThisYear.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -718,17 +483,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(39)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Month.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -739,13 +496,7 @@ class ICalendar extends IInspectable {
   }
 
   set month(int value) {
-    final hr = vtable
-            .elementAt(40)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Month
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -753,17 +504,8 @@ class ICalendar extends IInspectable {
   }
 
   void addMonths(int months) {
-    final hr =
-        vtable
-                .elementAt(41)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Int32 months)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int months)>()(
-            lpVtbl, months);
+    final hr = _vtable.AddMonths.asFunction<
+        int Function(VTablePointer lpVtbl, int months)>()(lpVtbl, months);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -772,17 +514,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(42)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.MonthAsFullString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -796,17 +530,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(43)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.MonthAsString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -820,17 +546,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(44)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.MonthAsFullSoloString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -844,17 +562,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(45)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.MonthAsSoloString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -868,17 +578,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(46)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.MonthAsNumericString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -892,17 +594,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(47)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.MonthAsPaddedNumericString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -913,15 +607,8 @@ class ICalendar extends IInspectable {
   }
 
   void addWeeks(int weeks) {
-    final hr = vtable
-            .elementAt(48)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 weeks)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int weeks)>()(
-        lpVtbl, weeks);
+    final hr = _vtable.AddWeeks.asFunction<
+        int Function(VTablePointer lpVtbl, int weeks)>()(lpVtbl, weeks);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -930,17 +617,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(49)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstDayInThisMonth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -954,17 +633,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(50)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastDayInThisMonth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -978,17 +649,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(51)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfDaysInThisMonth.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1002,17 +665,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(52)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Day.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1023,13 +678,7 @@ class ICalendar extends IInspectable {
   }
 
   set day(int value) {
-    final hr = vtable
-            .elementAt(53)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Day
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1037,15 +686,8 @@ class ICalendar extends IInspectable {
   }
 
   void addDays(int days) {
-    final hr = vtable
-            .elementAt(54)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 days)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int days)>()(
-        lpVtbl, days);
+    final hr = _vtable.AddDays.asFunction<
+        int Function(VTablePointer lpVtbl, int days)>()(lpVtbl, days);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1054,17 +696,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(55)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.DayAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1078,17 +712,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(56)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.DayAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1102,17 +728,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(57)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_DayOfWeek.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1126,17 +744,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(58)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.DayOfWeekAsFullString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1150,17 +760,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(59)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.DayOfWeekAsString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1174,17 +776,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(60)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.DayOfWeekAsFullSoloString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1198,17 +792,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(61)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.DayOfWeekAsSoloString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1222,17 +808,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(62)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstPeriodInThisDay.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1246,17 +824,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(63)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastPeriodInThisDay.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1270,17 +840,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(64)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfPeriodsInThisDay.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1294,17 +856,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(65)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Period.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1315,13 +869,7 @@ class ICalendar extends IInspectable {
   }
 
   set period(int value) {
-    final hr = vtable
-            .elementAt(66)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Period
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1329,17 +877,8 @@ class ICalendar extends IInspectable {
   }
 
   void addPeriods(int periods) {
-    final hr =
-        vtable
-                .elementAt(67)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Int32 periods)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int periods)>()(
-            lpVtbl, periods);
+    final hr = _vtable.AddPeriods.asFunction<
+        int Function(VTablePointer lpVtbl, int periods)>()(lpVtbl, periods);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1348,17 +887,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(68)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.PeriodAsFullString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1372,17 +903,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(69)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int idealLength,
-                  Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
+      final hr = _vtable.PeriodAsString.asFunction<
+          int Function(VTablePointer lpVtbl, int idealLength,
+              Pointer<IntPtr> result)>()(lpVtbl, idealLength, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1396,17 +919,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(70)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstHourInThisPeriod.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1420,17 +935,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(71)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastHourInThisPeriod.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1444,17 +951,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(72)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfHoursInThisPeriod.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1468,17 +967,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(73)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Hour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1489,13 +980,7 @@ class ICalendar extends IInspectable {
   }
 
   set hour(int value) {
-    final hr = vtable
-            .elementAt(74)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Hour
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1503,15 +988,8 @@ class ICalendar extends IInspectable {
   }
 
   void addHours(int hours) {
-    final hr = vtable
-            .elementAt(75)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 hours)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int hours)>()(
-        lpVtbl, hours);
+    final hr = _vtable.AddHours.asFunction<
+        int Function(VTablePointer lpVtbl, int hours)>()(lpVtbl, hours);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1520,17 +998,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(76)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.HourAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1544,17 +1014,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(77)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.HourAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1568,17 +1030,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(78)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Minute.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1589,13 +1043,7 @@ class ICalendar extends IInspectable {
   }
 
   set minute(int value) {
-    final hr = vtable
-            .elementAt(79)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Minute
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1603,17 +1051,8 @@ class ICalendar extends IInspectable {
   }
 
   void addMinutes(int minutes) {
-    final hr =
-        vtable
-                .elementAt(80)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Int32 minutes)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int minutes)>()(
-            lpVtbl, minutes);
+    final hr = _vtable.AddMinutes.asFunction<
+        int Function(VTablePointer lpVtbl, int minutes)>()(lpVtbl, minutes);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1622,17 +1061,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(81)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.MinuteAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1646,17 +1077,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(82)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.MinuteAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1670,17 +1093,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(83)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Second.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1691,13 +1106,7 @@ class ICalendar extends IInspectable {
   }
 
   set second(int value) {
-    final hr = vtable
-            .elementAt(84)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Second
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1705,17 +1114,8 @@ class ICalendar extends IInspectable {
   }
 
   void addSeconds(int seconds) {
-    final hr =
-        vtable
-                .elementAt(85)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, Int32 seconds)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int seconds)>()(
-            lpVtbl, seconds);
+    final hr = _vtable.AddSeconds.asFunction<
+        int Function(VTablePointer lpVtbl, int seconds)>()(lpVtbl, seconds);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1724,17 +1124,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(86)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.SecondAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1748,17 +1140,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(87)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.SecondAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1772,17 +1156,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(88)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Nanosecond.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1793,13 +1169,7 @@ class ICalendar extends IInspectable {
   }
 
   set nanosecond(int value) {
-    final hr = vtable
-            .elementAt(89)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
-            .value
+    final hr = _vtable.put_Nanosecond
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         lpVtbl, value);
 
@@ -1807,16 +1177,9 @@ class ICalendar extends IInspectable {
   }
 
   void addNanoseconds(int nanoseconds) {
-    final hr = vtable
-            .elementAt(90)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Int32 nanoseconds)>>>()
-            .value
-            .asFunction<int Function(VTablePointer lpVtbl, int nanoseconds)>()(
-        lpVtbl, nanoseconds);
+    final hr = _vtable.AddNanoseconds.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int nanoseconds)>()(lpVtbl, nanoseconds);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1825,17 +1188,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(91)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
-          lpVtbl, result);
+      final hr = _vtable.NanosecondAsString.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> result)>()(lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1849,17 +1204,9 @@ class ICalendar extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(92)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
-                          Pointer<IntPtr> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int minDigits,
-                  Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
+      final hr = _vtable.NanosecondAsPaddedString.asFunction<
+          int Function(VTablePointer lpVtbl, int minDigits,
+              Pointer<IntPtr> result)>()(lpVtbl, minDigits, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1873,17 +1220,9 @@ class ICalendar extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(93)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer other, Pointer<Int32> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer other,
-                  Pointer<Int32> result)>()(lpVtbl, other.lpVtbl, result);
+      final hr = _vtable.Compare.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer other,
+              Pointer<Int32> result)>()(lpVtbl, other.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1897,17 +1236,9 @@ class ICalendar extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final hr = vtable
-              .elementAt(94)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int64 other,
-                              Pointer<Int32> result)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int other,
-                      Pointer<Int32> result)>()(
+      final hr = _vtable.CompareDateTime.asFunction<
+              int Function(
+                  VTablePointer lpVtbl, int other, Pointer<Int32> result)>()(
           lpVtbl, other.toWinRTDateTime(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -1919,17 +1250,9 @@ class ICalendar extends IInspectable {
   }
 
   void copyTo(Calendar? other) {
-    final hr = vtable
-            .elementAt(95)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, VTablePointer other)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer other)>()(
-        lpVtbl, other.lpVtbl);
+    final hr = _vtable.CopyTo.asFunction<
+        int Function(
+            VTablePointer lpVtbl, VTablePointer other)>()(lpVtbl, other.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1938,17 +1261,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(96)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstMinuteInThisHour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1962,17 +1277,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(97)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastMinuteInThisHour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1986,17 +1293,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(98)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfMinutesInThisHour.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2010,17 +1309,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(99)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_FirstSecondInThisMinute.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2034,17 +1325,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(100)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastSecondInThisMinute.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2058,17 +1341,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(101)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_NumberOfSecondsInThisMinute.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2082,17 +1357,9 @@ class ICalendar extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(102)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_ResolvedLanguage.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2106,17 +1373,9 @@ class ICalendar extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(103)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
+      final hr = _vtable.get_IsDaylightSavingTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Bool> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -2125,4 +1384,372 @@ class ICalendar extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _ICalendarVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      Clone;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      SetToMin;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      SetToMax;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Languages;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_NumeralSystem;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      put_NumeralSystem;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetCalendarSystem;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      ChangeCalendarSystem;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      GetClock;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr value)>>
+      ChangeClock;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> result)>>
+      GetDateTime;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int64 value)>>
+      SetDateTime;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      SetToNow;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstEra;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastEra;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfEras;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Era;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Era;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 eras)>>
+      AddEras;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      EraAsFullString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> EraAsString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstYearInThisEra;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastYearInThisEra;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfYearsInThisEra;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Year;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Year;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 years)>>
+      AddYears;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      YearAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 remainingDigits,
+              Pointer<IntPtr> result)>> YearAsTruncatedString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> YearAsPaddedString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstMonthInThisYear;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastMonthInThisYear;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfMonthsInThisYear;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Month;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Month;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 months)>>
+      AddMonths;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      MonthAsFullString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> MonthAsString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      MonthAsFullSoloString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> MonthAsSoloString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      MonthAsNumericString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> MonthAsPaddedNumericString;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 weeks)>>
+      AddWeeks;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstDayInThisMonth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastDayInThisMonth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfDaysInThisMonth;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Day;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Day;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 days)>>
+      AddDays;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      DayAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> DayAsPaddedString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_DayOfWeek;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      DayOfWeekAsFullString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> DayOfWeekAsString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      DayOfWeekAsFullSoloString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> DayOfWeekAsSoloString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstPeriodInThisDay;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastPeriodInThisDay;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfPeriodsInThisDay;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Period;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Period;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 periods)>>
+      AddPeriods;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      PeriodAsFullString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 idealLength,
+              Pointer<IntPtr> result)>> PeriodAsString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstHourInThisPeriod;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastHourInThisPeriod;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfHoursInThisPeriod;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Hour;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Hour;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 hours)>>
+      AddHours;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      HourAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> HourAsPaddedString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Minute;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Minute;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 minutes)>>
+      AddMinutes;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      MinuteAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> MinuteAsPaddedString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Second;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Second;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 seconds)>>
+      AddSeconds;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      SecondAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> SecondAsPaddedString;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Nanosecond;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 value)>>
+      put_Nanosecond;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 nanoseconds)>>
+      AddNanoseconds;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>>
+      NanosecondAsString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 minDigits,
+              Pointer<IntPtr> result)>> NanosecondAsPaddedString;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer other,
+              Pointer<Int32> result)>> Compare;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int64 other, Pointer<Int32> result)>>
+      CompareDateTime;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer other)>> CopyTo;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstMinuteInThisHour;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastMinuteInThisHour;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfMinutesInThisHour;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_FirstSecondInThisMinute;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_LastSecondInThisMinute;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_NumberOfSecondsInThisMinute;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_ResolvedLanguage;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> value)>>
+      get_IsDaylightSavingTime;
 }

@@ -20,7 +20,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDataPlanUsage = '{b921492d-3b44-47ff-b361-be59e69ed1b0}';
 
 class IDataPlanUsage extends IInspectable {
-  IDataPlanUsage.fromPtr(super.ptr);
+  IDataPlanUsage.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IDataPlanUsageVtbl>().ref;
+
+  final _IDataPlanUsageVtbl _vtable;
 
   factory IDataPlanUsage.from(IInspectable interface) =>
       interface.cast(IDataPlanUsage.fromPtr, IID_IDataPlanUsage);
@@ -29,17 +32,9 @@ class IDataPlanUsage extends IInspectable {
     final value = calloc<Uint32>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_MegabytesUsed.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -53,17 +48,9 @@ class IDataPlanUsage extends IInspectable {
     final value = calloc<Int64>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
+      final hr = _vtable.get_LastSyncTime.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int64> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -72,4 +59,16 @@ class IDataPlanUsage extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IDataPlanUsageVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+      get_MegabytesUsed;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> value)>>
+      get_LastSyncTime;
 }

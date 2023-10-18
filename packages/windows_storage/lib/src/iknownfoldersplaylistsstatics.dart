@@ -23,7 +23,10 @@ const IID_IKnownFoldersPlaylistsStatics =
     '{dad5ecd6-306f-4d6a-b496-46ba8eb106ce}';
 
 class IKnownFoldersPlaylistsStatics extends IInspectable {
-  IKnownFoldersPlaylistsStatics.fromPtr(super.ptr);
+  IKnownFoldersPlaylistsStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IKnownFoldersPlaylistsStaticsVtbl>().ref;
+
+  final _IKnownFoldersPlaylistsStaticsVtbl _vtable;
 
   factory IKnownFoldersPlaylistsStatics.from(IInspectable interface) =>
       interface.cast(IKnownFoldersPlaylistsStatics.fromPtr,
@@ -32,17 +35,9 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
   StorageFolder? get playlists {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Playlists.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +51,12 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IKnownFoldersPlaylistsStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Playlists;
 }

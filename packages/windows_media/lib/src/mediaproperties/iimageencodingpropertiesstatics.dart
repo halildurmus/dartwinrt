@@ -23,7 +23,11 @@ const IID_IImageEncodingPropertiesStatics =
     '{257c68dc-8b99-439e-aa59-913a36161297}';
 
 class IImageEncodingPropertiesStatics extends IInspectable {
-  IImageEncodingPropertiesStatics.fromPtr(super.ptr);
+  IImageEncodingPropertiesStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IImageEncodingPropertiesStaticsVtbl>().ref;
+
+  final _IImageEncodingPropertiesStaticsVtbl _vtable;
 
   factory IImageEncodingPropertiesStatics.from(IInspectable interface) =>
       interface.cast(IImageEncodingPropertiesStatics.fromPtr,
@@ -32,17 +36,9 @@ class IImageEncodingPropertiesStatics extends IInspectable {
   ImageEncodingProperties? createJpeg() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateJpeg.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -60,17 +56,9 @@ class IImageEncodingPropertiesStatics extends IInspectable {
   ImageEncodingProperties? createPng() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreatePng.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -88,17 +76,9 @@ class IImageEncodingPropertiesStatics extends IInspectable {
   ImageEncodingProperties? createJpegXR() {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.CreateJpegXR.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -112,4 +92,20 @@ class IImageEncodingPropertiesStatics extends IInspectable {
 
     return ImageEncodingProperties.fromPtr(value);
   }
+}
+
+final class _IImageEncodingPropertiesStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateJpeg;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreatePng;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      CreateJpegXR;
 }

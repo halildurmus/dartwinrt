@@ -34,7 +34,10 @@ class IXmlText extends IInspectable
         IXmlNode,
         IXmlNodeSelector,
         IXmlNodeSerializer {
-  IXmlText.fromPtr(super.ptr);
+  IXmlText.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlTextVtbl>().ref;
+
+  final _IXmlTextVtbl _vtable;
 
   factory IXmlText.from(IInspectable interface) =>
       interface.cast(IXmlText.fromPtr, IID_IXmlText);
@@ -42,17 +45,9 @@ class IXmlText extends IInspectable
   IXmlText? splitText(int offset) {
     final secondPart = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
-                        Pointer<COMObject> secondPart)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int offset,
-                Pointer<COMObject> secondPart)>()(lpVtbl, offset, secondPart);
+    final hr = _vtable.SplitText.asFunction<
+        int Function(VTablePointer lpVtbl, int offset,
+            Pointer<COMObject> secondPart)>()(lpVtbl, offset, secondPart);
 
     if (FAILED(hr)) {
       free(secondPart);
@@ -198,4 +193,12 @@ class IXmlText extends IInspectable
 
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
+}
+
+final class _IXmlTextVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
+              Pointer<COMObject> secondPart)>> SplitText;
 }

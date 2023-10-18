@@ -24,7 +24,10 @@ import 'softwarebitmap.dart';
 const IID_ISoftwareBitmapFactory = '{c99feb69-2d62-4d47-a6b3-4fdb6a07fdf8}';
 
 class ISoftwareBitmapFactory extends IInspectable {
-  ISoftwareBitmapFactory.fromPtr(super.ptr);
+  ISoftwareBitmapFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_ISoftwareBitmapFactoryVtbl>().ref;
+
+  final _ISoftwareBitmapFactoryVtbl _vtable;
 
   factory ISoftwareBitmapFactory.from(IInspectable interface) => interface.cast(
       ISoftwareBitmapFactory.fromPtr, IID_ISoftwareBitmapFactory);
@@ -32,21 +35,9 @@ class ISoftwareBitmapFactory extends IInspectable {
   SoftwareBitmap create(BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, Pointer<COMObject> value)>()(
+    final hr = _vtable.Create.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, Pointer<COMObject> value)>()(
         lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
@@ -61,22 +52,9 @@ class ISoftwareBitmapFactory extends IInspectable {
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 format,
-                            Int32 width,
-                            Int32 height,
-                            Int32 alpha,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, int alpha, Pointer<COMObject> value)>()(
+    final hr = _vtable.CreateWithAlpha.asFunction<
+            int Function(VTablePointer lpVtbl, int format, int width,
+                int height, int alpha, Pointer<COMObject> value)>()(
         lpVtbl, format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
@@ -86,4 +64,21 @@ class ISoftwareBitmapFactory extends IInspectable {
 
     return SoftwareBitmap.fromPtr(value);
   }
+}
+
+final class _ISoftwareBitmapFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 format, Int32 width,
+              Int32 height, Pointer<COMObject> value)>> Create;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 format,
+              Int32 width,
+              Int32 height,
+              Int32 alpha,
+              Pointer<COMObject> value)>> CreateWithAlpha;
 }

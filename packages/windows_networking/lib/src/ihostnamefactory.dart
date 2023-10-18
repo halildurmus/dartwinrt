@@ -22,7 +22,10 @@ import 'hostname.dart';
 const IID_IHostNameFactory = '{458c23ed-712f-4576-adf1-c20b2c643558}';
 
 class IHostNameFactory extends IInspectable {
-  IHostNameFactory.fromPtr(super.ptr);
+  IHostNameFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IHostNameFactoryVtbl>().ref;
+
+  final _IHostNameFactoryVtbl _vtable;
 
   factory IHostNameFactory.from(IInspectable interface) =>
       interface.cast(IHostNameFactory.fromPtr, IID_IHostNameFactory);
@@ -30,18 +33,9 @@ class IHostNameFactory extends IInspectable {
   HostName createHostName(String hostName) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr hostName,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int hostName,
-                    Pointer<COMObject> value)>()(
-        lpVtbl, hostName.toHString(), value);
+    final hr = _vtable.CreateHostName.asFunction<
+        int Function(VTablePointer lpVtbl, int hostName,
+            Pointer<COMObject> value)>()(lpVtbl, hostName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -50,4 +44,12 @@ class IHostNameFactory extends IInspectable {
 
     return HostName.fromPtr(value);
   }
+}
+
+final class _IHostNameFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, IntPtr hostName,
+              Pointer<COMObject> value)>> CreateHostName;
 }

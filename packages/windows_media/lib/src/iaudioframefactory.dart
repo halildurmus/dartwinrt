@@ -22,7 +22,10 @@ import 'audioframe.dart';
 const IID_IAudioFrameFactory = '{91a90ade-2422-40a6-b9ad-30d02404317d}';
 
 class IAudioFrameFactory extends IInspectable {
-  IAudioFrameFactory.fromPtr(super.ptr);
+  IAudioFrameFactory.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IAudioFrameFactoryVtbl>().ref;
+
+  final _IAudioFrameFactoryVtbl _vtable;
 
   factory IAudioFrameFactory.from(IInspectable interface) =>
       interface.cast(IAudioFrameFactory.fromPtr, IID_IAudioFrameFactory);
@@ -30,17 +33,9 @@ class IAudioFrameFactory extends IInspectable {
   AudioFrame create(int capacity) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int capacity,
-                Pointer<COMObject> value)>()(lpVtbl, capacity, value);
+    final hr = _vtable.Create.asFunction<
+        int Function(VTablePointer lpVtbl, int capacity,
+            Pointer<COMObject> value)>()(lpVtbl, capacity, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -49,4 +44,12 @@ class IAudioFrameFactory extends IInspectable {
 
     return AudioFrame.fromPtr(value);
   }
+}
+
+final class _IAudioFrameFactoryVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
+              Pointer<COMObject> value)>> Create;
 }

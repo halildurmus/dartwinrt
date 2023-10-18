@@ -21,7 +21,12 @@ const IID_IAudioEncodingPropertiesWithFormatUserData =
     '{98f10d79-13ea-49ff-be70-2673db69702c}';
 
 class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
-  IAudioEncodingPropertiesWithFormatUserData.fromPtr(super.ptr);
+  IAudioEncodingPropertiesWithFormatUserData.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IAudioEncodingPropertiesWithFormatUserDataVtbl>()
+            .ref;
+
+  final _IAudioEncodingPropertiesWithFormatUserDataVtbl _vtable;
 
   factory IAudioEncodingPropertiesWithFormatUserData.from(
           IInspectable interface) =>
@@ -31,17 +36,9 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                        Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int valueSize,
-                Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
+    final hr = _vtable.SetFormatUserData.asFunction<
+        int Function(VTablePointer lpVtbl, int valueSize,
+            Pointer<Uint8> value)>()(lpVtbl, value.length, valueArray);
 
     free(valueArray);
 
@@ -53,19 +50,9 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
     final value = calloc<Pointer<Uint8>>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl,
-                          Pointer<Uint32> valueSize,
-                          Pointer<Pointer<Uint8>> value)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                  Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
+      final hr = _vtable.GetFormatUserData.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>()(lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,4 +62,16 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
       free(value);
     }
   }
+}
+
+final class _IAudioEncodingPropertiesWithFormatUserDataVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+              Pointer<Uint8> value)>> SetFormatUserData;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+              Pointer<Pointer<Uint8>> value)>> GetFormatUserData;
 }

@@ -24,7 +24,10 @@ import 'webprovidererror.dart';
 const IID_IFindAllAccountsResult = '{a5812b5d-b72e-420c-86ab-aac0d7b7261f}';
 
 class IFindAllAccountsResult extends IInspectable {
-  IFindAllAccountsResult.fromPtr(super.ptr);
+  IFindAllAccountsResult.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFindAllAccountsResultVtbl>().ref;
+
+  final _IFindAllAccountsResultVtbl _vtable;
 
   factory IFindAllAccountsResult.from(IInspectable interface) => interface.cast(
       IFindAllAccountsResult.fromPtr, IID_IFindAllAccountsResult);
@@ -32,17 +35,9 @@ class IFindAllAccountsResult extends IInspectable {
   List<WebAccount?>? get accounts {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Accounts.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -64,17 +59,9 @@ class IFindAllAccountsResult extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final hr = vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> value)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -87,17 +74,9 @@ class IFindAllAccountsResult extends IInspectable {
   WebProviderError? get providerError {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_ProviderError.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -111,4 +90,20 @@ class IFindAllAccountsResult extends IInspectable {
 
     return WebProviderError.fromPtr(value);
   }
+}
+
+final class _IFindAllAccountsResultVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Accounts;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+      get_Status;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_ProviderError;
 }

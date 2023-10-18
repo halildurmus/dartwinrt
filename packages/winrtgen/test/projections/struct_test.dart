@@ -53,6 +53,10 @@ void main() {
           NativeStructProjection.fromType('Windows.Foundation.Rect');
     });
 
+    test('has correct class name', () {
+      expect(rectProjection.className, equals('NativeRect'));
+    });
+
     test('has correct struct name', () {
       expect(rectProjection.structName, equals('NativeRect'));
     });
@@ -140,6 +144,10 @@ void main() {
     test('includes correct dartdoc category comment', () {
       expect(rectProjection.category, isEmpty);
       expect(rectProjection.classPreamble, isEmpty);
+    });
+
+    test('has correct class name', () {
+      expect(rectProjection.className, equals('Rect'));
     });
 
     test('has correct struct name', () {

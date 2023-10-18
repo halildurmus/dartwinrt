@@ -22,7 +22,10 @@ import 'domainauthenticationkind.dart';
 const IID_IConnectionProfile6 = '{dc27dfe2-7a6f-5d0e-9589-2fe2e5b6f9aa}';
 
 class IConnectionProfile6 extends IInspectable {
-  IConnectionProfile6.fromPtr(super.ptr);
+  IConnectionProfile6.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IConnectionProfile6Vtbl>().ref;
+
+  final _IConnectionProfile6Vtbl _vtable;
 
   factory IConnectionProfile6.from(IInspectable interface) =>
       interface.cast(IConnectionProfile6.fromPtr, IID_IConnectionProfile6);
@@ -31,17 +34,9 @@ class IConnectionProfile6 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl, Int32 kind,
-                          Pointer<Bool> result)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, int kind,
-                  Pointer<Bool> result)>()(lpVtbl, kind.value, result);
+      final hr = _vtable.IsDomainAuthenticatedBy.asFunction<
+          int Function(VTablePointer lpVtbl, int kind,
+              Pointer<Bool> result)>()(lpVtbl, kind.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -50,4 +45,13 @@ class IConnectionProfile6 extends IInspectable {
       free(result);
     }
   }
+}
+
+final class _IConnectionProfile6Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 kind, Pointer<Bool> result)>>
+      IsDomainAuthenticatedBy;
 }

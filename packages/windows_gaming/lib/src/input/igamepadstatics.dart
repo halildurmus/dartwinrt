@@ -22,7 +22,10 @@ import 'gamepad.dart';
 const IID_IGamepadStatics = '{8bbce529-d49c-39e9-9560-e47dde96b7c8}';
 
 class IGamepadStatics extends IInspectable {
-  IGamepadStatics.fromPtr(super.ptr);
+  IGamepadStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGamepadStaticsVtbl>().ref;
+
+  final _IGamepadStaticsVtbl _vtable;
 
   factory IGamepadStatics.from(IInspectable interface) =>
       interface.cast(IGamepadStatics.fromPtr, IID_IGamepadStatics);
@@ -31,17 +34,9 @@ class IGamepadStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer value, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer value,
-                  Pointer<IntPtr> token)>()(lpVtbl, value.ref.lpVtbl, token);
+      final hr = _vtable.add_GamepadAdded.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<IntPtr> token)>()(lpVtbl, value.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -52,17 +47,9 @@ class IGamepadStatics extends IInspectable {
   }
 
   void remove_GamepadAdded(int token) {
-    final hr =
-        vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_GamepadAdded
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -71,17 +58,9 @@ class IGamepadStatics extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer value, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer value,
-                  Pointer<IntPtr> token)>()(lpVtbl, value.ref.lpVtbl, token);
+      final hr = _vtable.add_GamepadRemoved.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<IntPtr> token)>()(lpVtbl, value.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -92,17 +71,9 @@ class IGamepadStatics extends IInspectable {
   }
 
   void remove_GamepadRemoved(int token) {
-    final hr =
-        vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_GamepadRemoved
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -110,17 +81,9 @@ class IGamepadStatics extends IInspectable {
   List<Gamepad?>? get gamepads {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Gamepads.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -137,4 +100,26 @@ class IGamepadStatics extends IInspectable {
             creator: Gamepad.fromPtr)
         .toList();
   }
+}
+
+final class _IGamepadStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<IntPtr> token)>> add_GamepadAdded;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_GamepadAdded;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer value,
+              Pointer<IntPtr> token)>> add_GamepadRemoved;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_GamepadRemoved;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Gamepads;
 }

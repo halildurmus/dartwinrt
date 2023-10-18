@@ -29,7 +29,12 @@ const IID_IWebAuthenticationCoreManagerStatics2 =
 
 class IWebAuthenticationCoreManagerStatics2 extends IInspectable
     implements IWebAuthenticationCoreManagerStatics {
-  IWebAuthenticationCoreManagerStatics2.fromPtr(super.ptr);
+  IWebAuthenticationCoreManagerStatics2.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<_IWebAuthenticationCoreManagerStatics2Vtbl>()
+            .ref;
+
+  final _IWebAuthenticationCoreManagerStatics2Vtbl _vtable;
 
   factory IWebAuthenticationCoreManagerStatics2.from(IInspectable interface) =>
       interface.cast(IWebAuthenticationCoreManagerStatics2.fromPtr,
@@ -39,25 +44,13 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
       String webAccountProviderId, String authority, User? user) {
     final asyncInfo = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr webAccountProviderId,
-                            IntPtr authority,
-                            VTablePointer user,
-                            Pointer<COMObject> asyncInfo)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int webAccountProviderId,
-                    int authority,
-                    VTablePointer user,
-                    Pointer<COMObject> asyncInfo)>()(
+    final hr = _vtable.FindAccountProviderWithAuthorityForUserAsync.asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int webAccountProviderId,
+                int authority,
+                VTablePointer user,
+                Pointer<COMObject> asyncInfo)>()(
         lpVtbl,
         webAccountProviderId.toHString(),
         authority.toHString(),
@@ -117,4 +110,17 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
       _iWebAuthenticationCoreManagerStatics
           .findAccountProviderWithAuthorityAsync(
               webAccountProviderId, authority);
+}
+
+final class _IWebAuthenticationCoreManagerStatics2Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl,
+                  IntPtr webAccountProviderId,
+                  IntPtr authority,
+                  VTablePointer user,
+                  Pointer<COMObject> asyncInfo)>>
+      FindAccountProviderWithAuthorityForUserAsync;
 }

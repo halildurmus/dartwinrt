@@ -29,7 +29,10 @@ const IID_IXmlDocumentType = '{f7342425-9781-4964-8e94-9b1c6dfc9bc7}';
 
 class IXmlDocumentType extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
-  IXmlDocumentType.fromPtr(super.ptr);
+  IXmlDocumentType.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IXmlDocumentTypeVtbl>().ref;
+
+  final _IXmlDocumentTypeVtbl _vtable;
 
   factory IXmlDocumentType.from(IInspectable interface) =>
       interface.cast(IXmlDocumentType.fromPtr, IID_IXmlDocumentType);
@@ -38,17 +41,9 @@ class IXmlDocumentType extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
-          lpVtbl, value);
+      final hr = _vtable.get_Name.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<IntPtr> value)>()(lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -61,17 +56,9 @@ class IXmlDocumentType extends IInspectable
   XmlNamedNodeMap? get entities {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Entities.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -89,17 +76,9 @@ class IXmlDocumentType extends IInspectable
   XmlNamedNodeMap? get notations {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Notations.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -215,4 +194,20 @@ class IXmlDocumentType extends IInspectable
 
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
+}
+
+final class _IXmlDocumentTypeVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>>
+      get_Name;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Entities;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Notations;
 }

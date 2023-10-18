@@ -21,7 +21,10 @@ import 'package:windows_system/windows_system.dart';
 const IID_IFileOpenPicker3 = '{d9a5c5b3-c5dc-5b98-bd80-a8d0ca0584d8}';
 
 class IFileOpenPicker3 extends IInspectable {
-  IFileOpenPicker3.fromPtr(super.ptr);
+  IFileOpenPicker3.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IFileOpenPicker3Vtbl>().ref;
+
+  final _IFileOpenPicker3Vtbl _vtable;
 
   factory IFileOpenPicker3.from(IInspectable interface) =>
       interface.cast(IFileOpenPicker3.fromPtr, IID_IFileOpenPicker3);
@@ -29,17 +32,9 @@ class IFileOpenPicker3 extends IInspectable {
   User? get user {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_User.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -53,4 +48,12 @@ class IFileOpenPicker3 extends IInspectable {
 
     return User.fromPtr(value);
   }
+}
+
+final class _IFileOpenPicker3Vtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_User;
 }

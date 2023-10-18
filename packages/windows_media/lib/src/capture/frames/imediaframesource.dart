@@ -26,7 +26,10 @@ import 'mediaframesourceinfo.dart';
 const IID_IMediaFrameSource = '{d6782953-90db-46a8-8add-2aa884a8d253}';
 
 class IMediaFrameSource extends IInspectable {
-  IMediaFrameSource.fromPtr(super.ptr);
+  IMediaFrameSource.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IMediaFrameSourceVtbl>().ref;
+
+  final _IMediaFrameSourceVtbl _vtable;
 
   factory IMediaFrameSource.from(IInspectable interface) =>
       interface.cast(IMediaFrameSource.fromPtr, IID_IMediaFrameSource);
@@ -34,17 +37,9 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameSourceInfo? get info {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Info.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -62,17 +57,9 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameSourceController? get controller {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_Controller.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -90,17 +77,9 @@ class IMediaFrameSource extends IInspectable {
   List<MediaFrameFormat?>? get supportedFormats {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SupportedFormats.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -121,17 +100,9 @@ class IMediaFrameSource extends IInspectable {
   MediaFrameFormat? get currentFormat {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_CurrentFormat.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -149,17 +120,9 @@ class IMediaFrameSource extends IInspectable {
   Future<void> setFormatAsync(MediaFrameFormat? format) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer format,
-                Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
+    final hr = _vtable.SetFormatAsync.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer format,
+            Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -173,17 +136,9 @@ class IMediaFrameSource extends IInspectable {
     final token = calloc<IntPtr>();
 
     try {
-      final hr = vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          VTablePointer handler, Pointer<IntPtr> token)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer handler,
-                  Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
+      final hr = _vtable.add_FormatChanged.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>()(lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -194,17 +149,9 @@ class IMediaFrameSource extends IInspectable {
   }
 
   void remove_FormatChanged(int token) {
-    final hr =
-        vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl, IntPtr token)>>>()
-                .value
-                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
-            lpVtbl, token);
+    final hr = _vtable.remove_FormatChanged
+            .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+        lpVtbl, token);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -212,17 +159,9 @@ class IMediaFrameSource extends IInspectable {
   CameraIntrinsics? tryGetCameraIntrinsics(MediaFrameFormat? format) {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer format,
-                Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
+    final hr = _vtable.TryGetCameraIntrinsics.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer format,
+            Pointer<COMObject> value)>()(lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -236,4 +175,39 @@ class IMediaFrameSource extends IInspectable {
 
     return CameraIntrinsics.fromPtr(value);
   }
+}
+
+final class _IMediaFrameSourceVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Info;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_Controller;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SupportedFormats;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_CurrentFormat;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
+              Pointer<COMObject> value)>> SetFormatAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer handler,
+              Pointer<IntPtr> token)>> add_FormatChanged;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, IntPtr token)>>
+      remove_FormatChanged;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
+              Pointer<COMObject> value)>> TryGetCameraIntrinsics;
 }

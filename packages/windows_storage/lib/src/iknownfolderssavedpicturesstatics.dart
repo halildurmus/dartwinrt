@@ -23,7 +23,11 @@ const IID_IKnownFoldersSavedPicturesStatics =
     '{055c93ea-253d-467c-b6ca-a97da1e9a18d}';
 
 class IKnownFoldersSavedPicturesStatics extends IInspectable {
-  IKnownFoldersSavedPicturesStatics.fromPtr(super.ptr);
+  IKnownFoldersSavedPicturesStatics.fromPtr(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<_IKnownFoldersSavedPicturesStaticsVtbl>().ref;
+
+  final _IKnownFoldersSavedPicturesStaticsVtbl _vtable;
 
   factory IKnownFoldersSavedPicturesStatics.from(IInspectable interface) =>
       interface.cast(IKnownFoldersSavedPicturesStatics.fromPtr,
@@ -32,17 +36,9 @@ class IKnownFoldersSavedPicturesStatics extends IInspectable {
   StorageFolder? get savedPictures {
     final value = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
-        lpVtbl, value);
+    final hr = _vtable.get_SavedPictures.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> value)>()(lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -56,4 +52,12 @@ class IKnownFoldersSavedPicturesStatics extends IInspectable {
 
     return StorageFolder.fromPtr(value);
   }
+}
+
+final class _IKnownFoldersSavedPicturesStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)>>
+      get_SavedPictures;
 }

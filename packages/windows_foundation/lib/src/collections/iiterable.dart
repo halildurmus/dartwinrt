@@ -76,21 +76,16 @@ interface class IIterable<T> extends IInspectable {
     }
   }
 
+  late final _IIterableVtbl __vtable =
+      ptr.ref.vtable.cast<_IIterableVtbl>().ref;
+
   /// Returns an iterator for the items in the collection.
   IIterator<T> first() {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
+    final hr = __vtable.First.asFunction<
+        int Function(VTablePointer lpVtbl,
+            Pointer<COMObject> retValuePtr)>()(lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -103,4 +98,12 @@ interface class IIterable<T> extends IInspectable {
         doubleType: _doubleType,
         intType: _intType);
   }
+}
+
+final class _IIterableVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>> First;
 }

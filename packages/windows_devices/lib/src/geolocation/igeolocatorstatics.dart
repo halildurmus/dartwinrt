@@ -23,7 +23,10 @@ import 'geoposition.dart';
 const IID_IGeolocatorStatics = '{9a8e7571-2df5-4591-9f87-eb5fd894e9b7}';
 
 class IGeolocatorStatics extends IInspectable {
-  IGeolocatorStatics.fromPtr(super.ptr);
+  IGeolocatorStatics.fromPtr(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<_IGeolocatorStaticsVtbl>().ref;
+
+  final _IGeolocatorStaticsVtbl _vtable;
 
   factory IGeolocatorStatics.from(IInspectable interface) =>
       interface.cast(IGeolocatorStatics.fromPtr, IID_IGeolocatorStatics);
@@ -31,17 +34,9 @@ class IGeolocatorStatics extends IInspectable {
   Future<GeolocationAccessStatus> requestAccessAsync() {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> result)>()(lpVtbl, result);
+    final hr = _vtable.RequestAccessAsync.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<COMObject> result)>()(lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -57,17 +52,9 @@ class IGeolocatorStatics extends IInspectable {
   Future<List<Geoposition?>> getGeopositionHistoryAsync(DateTime startTime) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startTime,
-                    Pointer<COMObject> result)>()(
+    final hr = _vtable.GetGeopositionHistoryAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime,
+                Pointer<COMObject> result)>()(
         lpVtbl, startTime.toWinRTDateTime(), result);
 
     if (FAILED(hr)) {
@@ -87,17 +74,9 @@ class IGeolocatorStatics extends IInspectable {
       DateTime startTime, Duration duration) {
     final result = calloc<COMObject>();
 
-    final hr = vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
-                            Int64 duration, Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int startTime, int duration,
-                    Pointer<COMObject> result)>()(lpVtbl,
+    final hr = _vtable.GetGeopositionHistoryWithDurationAsync.asFunction<
+            int Function(VTablePointer lpVtbl, int startTime, int duration,
+                Pointer<COMObject> result)>()(lpVtbl,
         startTime.toWinRTDateTime(), duration.toWinRTDuration(), result);
 
     if (FAILED(hr)) {
@@ -112,4 +91,22 @@ class IGeolocatorStatics extends IInspectable {
             iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
+}
+
+final class _IGeolocatorStaticsVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<COMObject> result)>>
+      RequestAccessAsync;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
+              Pointer<COMObject> result)>> GetGeopositionHistoryAsync;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
+                  Int64 duration, Pointer<COMObject> result)>>
+      GetGeopositionHistoryWithDurationAsync;
 }
