@@ -53,7 +53,7 @@ class IMediaEncodingProfile2 extends IInspectable {
 
     return IVector.fromPtr(value,
         iterableIid: '{a3e2c972-a171-5b94-8389-e983ebc3f3b9}',
-        creator: AudioStreamDescriptor.fromPtr);
+        tObjectCreator: AudioStreamDescriptor.fromPtr);
   }
 
   void setVideoTracks(IIterable<VideoStreamDescriptor?>? value) {
@@ -78,7 +78,7 @@ class IMediaEncodingProfile2 extends IInspectable {
 
     return IVector.fromPtr(value,
         iterableIid: '{3acbf03c-0a79-5823-aaa9-d88bc3f8f594}',
-        creator: VideoStreamDescriptor.fromPtr);
+        tObjectCreator: VideoStreamDescriptor.fromPtr);
   }
 }
 

@@ -82,37 +82,21 @@ final class AsyncOperationParameterProjection
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get constructorArgs {
-    final typeArg = typeIdentifier.dereference();
-    final typeProjection = TypeProjection(typeArg);
+    final [typeArg] = typeIdentifier.typeArgs;
+    final typeArgProjection = TypeProjection(typeArg);
+    final typeArgNativeType = typeArgProjection.nativeType.toLowerCase();
 
-    // If the type argument is an enum or a WinRT object (e.g., StorageFile),
-    // the constructor of that class must be passed in the 'enumCreator'
-    // parameter for enums, 'creator' parameter for WinRT objects so that the
-    // IAsyncOperation implementation can instantiate the object.
-    final creator = typeArg.creator;
+    final args = <String>{
+      if (typeArgProjection.isWinRTEnum)
+        'tResultEnumCreator: ${typeArg.creator}'
+      else if (typeArg.creator case final creator?)
+        'tResultObjectCreator: $creator',
+      if (typeArgProjection.isDouble)
+        'tResultDoubleType: DoubleType.$typeArgNativeType'
+      else if (typeArgProjection.isInteger)
+        'tResultIntType: IntType.$typeArgNativeType',
+    };
 
-    // e.g., float, int32
-    final nativeType = typeProjection.nativeType.toLowerCase();
-
-    // If the type argument is a double, 'doubleType' parameter must be
-    // specified so that the IAsyncOperation implementation can use the
-    // appropriate native double type
-    final doubleType =
-        this.typeArg == 'double' ? 'DoubleType.$nativeType' : null;
-
-    // If the type argument is an int, 'intType' parameter must be specified so
-    // that the IAsyncOperation implementation can use the appropriate native
-    // integer type
-    final intType = this.typeArg == 'int' ? 'IntType.$nativeType' : null;
-
-    final args = <String>[];
-    if (typeProjection.isWinRTEnum) {
-      args.add('enumCreator: $creator');
-    } else if (creator != null) {
-      args.add('creator: $creator');
-    }
-    if (doubleType != null) args.add('doubleType: $doubleType');
-    if (intType != null) args.add('intType: $intType');
     return args.isEmpty ? '' : ', ${args.join(', ')}';
   }
 

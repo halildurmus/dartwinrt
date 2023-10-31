@@ -65,7 +65,7 @@ class IFocusControl extends IInspectable {
 
     return IVectorView<FocusPreset>.fromPtr(value,
             iterableIid: '{26ba711b-3a32-5216-bc34-61ecafbebdc1}',
-            enumCreator: FocusPreset.from)
+            tEnumCreator: FocusPreset.from)
         .toList();
   }
 

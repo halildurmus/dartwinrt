@@ -93,7 +93,7 @@ class IMultiSourceMediaFrameReader extends IInspectable implements IClosable {
     final asyncOperation =
         IAsyncOperation<MultiSourceMediaFrameReaderStartStatus>.fromPtr(
             operation,
-            enumCreator: MultiSourceMediaFrameReaderStartStatus.from);
+            tResultEnumCreator: MultiSourceMediaFrameReaderStartStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

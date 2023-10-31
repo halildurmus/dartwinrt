@@ -43,7 +43,7 @@ class ILowLagPhotoCapture extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<CapturedPhoto?>.fromPtr(operation,
-        creator: CapturedPhoto.fromPtr);
+        tResultObjectCreator: CapturedPhoto.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

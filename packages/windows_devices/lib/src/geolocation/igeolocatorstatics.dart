@@ -45,7 +45,7 @@ class IGeolocatorStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<GeolocationAccessStatus>.fromPtr(
         result,
-        enumCreator: GeolocationAccessStatus.from);
+        tResultEnumCreator: GeolocationAccessStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -64,9 +64,9 @@ class IGeolocatorStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
         result,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: Geoposition.fromPtr,
-            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}',
+            tObjectCreator: Geoposition.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -86,9 +86,9 @@ class IGeolocatorStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
         result,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: Geoposition.fromPtr,
-            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}',
+            tObjectCreator: Geoposition.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

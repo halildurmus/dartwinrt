@@ -46,9 +46,9 @@ class IStorageLibraryChangeReader extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageLibraryChange?>>.fromPtr(operation,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: StorageLibraryChange.fromPtr,
-                iterableIid: '{87c15dfc-0c5e-518b-9206-97d3d9823c61}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{87c15dfc-0c5e-518b-9206-97d3d9823c61}',
+                tObjectCreator: StorageLibraryChange.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

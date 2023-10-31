@@ -49,7 +49,7 @@ class IDevicePickerFilter extends IInspectable {
 
     return IVector.fromPtr(value,
         iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
-        enumCreator: DeviceClass.from);
+        tEnumCreator: DeviceClass.from);
   }
 
   IVector<String>? get supportedDeviceSelectors {

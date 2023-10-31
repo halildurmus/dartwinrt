@@ -51,7 +51,7 @@ class IFindAllAccountsResult extends IInspectable {
 
     return IVectorView<WebAccount?>.fromPtr(value,
             iterableIid: '{cb15d439-a910-542a-89ed-7cfe67848a83}',
-            creator: WebAccount.fromPtr)
+            tObjectCreator: WebAccount.fromPtr)
         .toList();
   }
 

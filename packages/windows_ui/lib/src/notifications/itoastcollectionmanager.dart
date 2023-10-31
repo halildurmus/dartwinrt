@@ -61,9 +61,9 @@ class IToastCollectionManager extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ToastCollection?>>.fromPtr(operation,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: ToastCollection.fromPtr,
-                iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}',
+                tObjectCreator: ToastCollection.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -81,7 +81,7 @@ class IToastCollectionManager extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ToastCollection?>.fromPtr(operation,
-        creator: ToastCollection.fromPtr);
+        tResultObjectCreator: ToastCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

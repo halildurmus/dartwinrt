@@ -47,7 +47,7 @@ class IBitmapPropertiesView extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<BitmapPropertySet>.fromPtr(asyncInfo,
-        creator: BitmapPropertySet.fromPtr);
+        tResultObjectCreator: BitmapPropertySet.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

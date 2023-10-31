@@ -49,9 +49,9 @@ class IStorageFolderQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFolder.fromPtr,
-            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}',
+            tObjectCreator: StorageFolder.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -69,9 +69,9 @@ class IStorageFolderQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFolder.fromPtr,
-            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}',
+            tObjectCreator: StorageFolder.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

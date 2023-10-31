@@ -97,8 +97,8 @@ class JsonObject extends IInspectable
 
   late final _iMap = IMap<String, IJsonValue?>.fromPtr(
       toInterface('{c9d9a725-786b-5113-b4b7-9b61764c220b}'),
-      creator: IJsonValue.fromPtr,
-      iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}');
+      iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}',
+      vObjectCreator: IJsonValue.fromPtr);
 
   @override
   IJsonValue? lookup(String key) => _iMap.lookup(key);

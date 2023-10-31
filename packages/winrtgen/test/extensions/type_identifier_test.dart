@@ -51,7 +51,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                "(ptr) => IAsyncOperation.fromPtr(ptr, creator: (ptr) => IVectorView.fromPtr(ptr, creator: StorageFile.fromPtr, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
+                "(ptr) => IAsyncOperation.fromPtr(ptr, tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}', tObjectCreator: StorageFile.fromPtr))"));
       });
 
       test('(IAsyncOperation<StorageFile?>)', () {
@@ -60,7 +60,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                '(ptr) => IAsyncOperation.fromPtr(ptr, creator: StorageFile.fromPtr)'));
+                '(ptr) => IAsyncOperation.fromPtr(ptr, tResultObjectCreator: StorageFile.fromPtr)'));
       });
 
       test('(IIterable<IKeyValuePair<String, IJsonValue?>>)', () {
@@ -68,7 +68,7 @@ void main() {
         expect(
             typeDef.interfaces[3].typeSpec!.creator,
             equals(
-                '(ptr) => IIterable.fromPtr(ptr, creator: (ptr) => IKeyValuePair.fromPtr(ptr, creator: IJsonValue.fromPtr))'));
+                '(ptr) => IIterable.fromPtr(ptr, tObjectCreator: (ptr) => IKeyValuePair.fromPtr(ptr, vObjectCreator: IJsonValue.fromPtr))'));
       });
 
       test('(IIterable<IKeyValuePair<String, String>>)', () {
@@ -76,7 +76,7 @@ void main() {
         expect(
             typeDef.interfaces[1].typeSpec!.creator,
             equals(
-                '(ptr) => IIterable.fromPtr(ptr, creator: IKeyValuePair.fromPtr)'));
+                '(ptr) => IIterable.fromPtr(ptr, tObjectCreator: IKeyValuePair.fromPtr)'));
       });
 
       test('(IMap<int, IBuffer?>)', () {
@@ -86,7 +86,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                "(ptr) => IMap.fromPtr(ptr, intType: IntType.uint32, creator: IBuffer.fromPtr, iterableIid: '{4fe7fe23-22b1-528c-881d-a4eceaef0f11}')"));
+                "(ptr) => IMap.fromPtr(ptr, iterableIid: '{4fe7fe23-22b1-528c-881d-a4eceaef0f11}', kIntType: IntType.uint32, vObjectCreator: IBuffer.fromPtr)"));
       });
 
       test('(IMap<String, IJsonValue?>)', () {
@@ -94,7 +94,7 @@ void main() {
         expect(
             typeDef.interfaces[2].typeSpec!.creator,
             equals(
-                "(ptr) => IMap.fromPtr(ptr, creator: IJsonValue.fromPtr, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}')"));
+                "(ptr) => IMap.fromPtr(ptr, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}', vObjectCreator: IJsonValue.fromPtr)"));
       });
 
       test('(IMap<String, IVectorView<TextSegment>>)', () {
@@ -104,7 +104,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                "(ptr) => IMap.fromPtr(ptr, creator: (ptr) => IVectorView.fromPtr(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
+                "(ptr) => IMap.fromPtr(ptr, iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}', vObjectCreator: (ptr) => IVectorView.fromPtr(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'))"));
       });
 
       test('(IMap<String, String>)', () {
@@ -121,7 +121,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                "(ptr) => IMapView.fromPtr(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromPtr, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
+                "(ptr) => IMapView.fromPtr(ptr, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}', kEnumCreator: PedometerStepKind.from, vObjectCreator: PedometerReading.fromPtr)"));
       });
 
       test('(IMapView<String, String>)', () {
@@ -154,7 +154,7 @@ void main() {
         expect(
             method.returnType.typeIdentifier.creator,
             equals(
-                "(ptr) => IVectorView.fromPtr(ptr, iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}', intType: IntType.int64)"));
+                "(ptr) => IVectorView.fromPtr(ptr, iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}', tIntType: IntType.int64)"));
       });
 
       test('(Object?)', () {

@@ -68,7 +68,7 @@ class INetworkOperatorTetheringClient extends IInspectable {
 
     return IVectorView<HostName?>.fromPtr(value,
             iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
-            creator: HostName.fromPtr)
+            tObjectCreator: HostName.fromPtr)
         .toList();
   }
 }

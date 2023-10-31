@@ -57,7 +57,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
         operation,
-        creator: FindAllAccountsResult.fromPtr);
+        tResultObjectCreator: FindAllAccountsResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -77,7 +77,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
         operation,
-        creator: FindAllAccountsResult.fromPtr);
+        tResultObjectCreator: FindAllAccountsResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -97,7 +97,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
         operation,
-        creator: WebAccountProvider.fromPtr);
+        tResultObjectCreator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -117,7 +117,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
         operation,
-        creator: WebAccountProvider.fromPtr);
+        tResultObjectCreator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -147,7 +147,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
         operation,
-        creator: WebAccountProvider.fromPtr);
+        tResultObjectCreator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

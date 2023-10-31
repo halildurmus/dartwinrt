@@ -49,7 +49,7 @@ class IMediaCaptureVideoProfile2 extends IInspectable {
 
     return IVectorView<MediaFrameSourceInfo?>.fromPtr(value,
             iterableIid: '{2e29c5b0-6aa9-50f2-91a4-5b67a5598f2e}',
-            creator: MediaFrameSourceInfo.fromPtr)
+            tObjectCreator: MediaFrameSourceInfo.fromPtr)
         .toList();
   }
 

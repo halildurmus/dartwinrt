@@ -39,7 +39,7 @@ void main() {
 
       return IVectorView.fromPtr(retValuePtr,
           iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
-          doubleType: DoubleType.float);
+          tDoubleType: DoubleType.float);
     }
 
     IVectorView<double> getVectorView() {

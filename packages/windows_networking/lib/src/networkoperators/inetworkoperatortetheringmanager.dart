@@ -137,7 +137,8 @@ class INetworkOperatorTetheringManager extends IInspectable {
     final asyncOperation =
         IAsyncOperation<NetworkOperatorTetheringOperationResult?>.fromPtr(
             asyncInfo,
-            creator: NetworkOperatorTetheringOperationResult.fromPtr);
+            tResultObjectCreator:
+                NetworkOperatorTetheringOperationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -156,7 +157,8 @@ class INetworkOperatorTetheringManager extends IInspectable {
     final asyncOperation =
         IAsyncOperation<NetworkOperatorTetheringOperationResult?>.fromPtr(
             asyncInfo,
-            creator: NetworkOperatorTetheringOperationResult.fromPtr);
+            tResultObjectCreator:
+                NetworkOperatorTetheringOperationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

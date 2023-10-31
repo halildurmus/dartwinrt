@@ -25,8 +25,8 @@ class DeviceInformationCollection extends IInspectable
 
   late final _iVectorView = IVectorView<DeviceInformation?>.fromPtr(
       toInterface('{e170688f-3495-5bf6-aab5-9cac17e0f10f}'),
-      creator: DeviceInformation.fromPtr,
-      iterableIid: '{dd9f8a5d-ec98-5f4b-a3ea-9c8b5ad53c4b}');
+      iterableIid: '{dd9f8a5d-ec98-5f4b-a3ea-9c8b5ad53c4b}',
+      tObjectCreator: DeviceInformation.fromPtr);
 
   @override
   DeviceInformation? getAt(int index) => _iVectorView.getAt(index);

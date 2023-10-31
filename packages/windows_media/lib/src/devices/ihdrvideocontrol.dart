@@ -65,7 +65,7 @@ class IHdrVideoControl extends IInspectable {
 
     return IVectorView<HdrVideoMode>.fromPtr(value,
             iterableIid: '{1d9679a7-2d06-5294-ac67-f9cd3561dcb8}',
-            enumCreator: HdrVideoMode.from)
+            tEnumCreator: HdrVideoMode.from)
         .toList();
   }
 

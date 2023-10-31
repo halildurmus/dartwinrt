@@ -53,7 +53,7 @@ class IMediaEncodingProfile3 extends IInspectable {
 
     return IVector.fromPtr(result,
         iterableIid: '{f3d07841-3852-509d-a12b-a9f2ac89da93}',
-        creator: TimedMetadataStreamDescriptor.fromPtr);
+        tObjectCreator: TimedMetadataStreamDescriptor.fromPtr);
   }
 }
 

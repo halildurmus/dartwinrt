@@ -51,7 +51,7 @@ final class __IAsyncOperationBoolVtbl extends Struct {
 }
 
 final class _IAsyncOperationDouble extends IAsyncOperation<double> {
-  _IAsyncOperationDouble.fromPtr(super.ptr);
+  _IAsyncOperationDouble.fromPtr(super.ptr, {super.tResultDoubleType});
 
   late final __IAsyncOperationDoubleVtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationDoubleVtbl>().ref;
@@ -92,7 +92,7 @@ final class __IAsyncOperationDoubleVtbl extends Struct {
 }
 
 final class _IAsyncOperationFloat extends IAsyncOperation<double> {
-  _IAsyncOperationFloat.fromPtr(super.ptr);
+  _IAsyncOperationFloat.fromPtr(super.ptr, {super.tResultDoubleType});
 
   late final __IAsyncOperationFloatVtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationFloatVtbl>().ref;
@@ -174,7 +174,7 @@ final class __IAsyncOperationGuidVtbl extends Struct {
 }
 
 final class _IAsyncOperationInt16 extends IAsyncOperation<int> {
-  _IAsyncOperationInt16.fromPtr(super.ptr);
+  _IAsyncOperationInt16.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationInt16Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationInt16Vtbl>().ref;
@@ -215,7 +215,7 @@ final class __IAsyncOperationInt16Vtbl extends Struct {
 }
 
 final class _IAsyncOperationInt32 extends IAsyncOperation<int> {
-  _IAsyncOperationInt32.fromPtr(super.ptr);
+  _IAsyncOperationInt32.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationInt32Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationInt32Vtbl>().ref;
@@ -256,7 +256,7 @@ final class __IAsyncOperationInt32Vtbl extends Struct {
 }
 
 final class _IAsyncOperationInt64 extends IAsyncOperation<int> {
-  _IAsyncOperationInt64.fromPtr(super.ptr);
+  _IAsyncOperationInt64.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationInt64Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationInt64Vtbl>().ref;
@@ -341,11 +341,12 @@ final class __IAsyncOperationLoadMoreItemsResultVtbl extends Struct {
 
 final class _IAsyncOperationInspectable<TResult>
     extends IAsyncOperation<TResult> {
-  _IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});
+  _IAsyncOperationInspectable.fromPtr(super.ptr,
+      {required this.tResultObjectCreator});
 
   late final __IAsyncOperationInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationInspectableVtbl>().ref;
-  final COMObjectCreator<TResult> creator;
+  final COMObjectCreator<TResult> tResultObjectCreator;
 
   @override
   TResult getResults() {
@@ -365,7 +366,7 @@ final class _IAsyncOperationInspectable<TResult>
       return null as TResult;
     }
 
-    return creator(retValuePtr);
+    return tResultObjectCreator(retValuePtr);
   }
 }
 
@@ -521,7 +522,7 @@ final class __IAsyncOperationStringVtbl extends Struct {
 }
 
 final class _IAsyncOperationUint8 extends IAsyncOperation<int> {
-  _IAsyncOperationUint8.fromPtr(super.ptr);
+  _IAsyncOperationUint8.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationUint8Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationUint8Vtbl>().ref;
@@ -562,7 +563,7 @@ final class __IAsyncOperationUint8Vtbl extends Struct {
 }
 
 final class _IAsyncOperationUint16 extends IAsyncOperation<int> {
-  _IAsyncOperationUint16.fromPtr(super.ptr);
+  _IAsyncOperationUint16.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationUint16Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationUint16Vtbl>().ref;
@@ -603,7 +604,7 @@ final class __IAsyncOperationUint16Vtbl extends Struct {
 }
 
 final class _IAsyncOperationUint32 extends IAsyncOperation<int> {
-  _IAsyncOperationUint32.fromPtr(super.ptr);
+  _IAsyncOperationUint32.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationUint32Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationUint32Vtbl>().ref;
@@ -644,7 +645,7 @@ final class __IAsyncOperationUint32Vtbl extends Struct {
 }
 
 final class _IAsyncOperationUint64 extends IAsyncOperation<int> {
-  _IAsyncOperationUint64.fromPtr(super.ptr);
+  _IAsyncOperationUint64.fromPtr(super.ptr, {super.tResultIntType});
 
   late final __IAsyncOperationUint64Vtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationUint64Vtbl>().ref;
@@ -686,11 +687,12 @@ final class __IAsyncOperationUint64Vtbl extends Struct {
 
 final class _IAsyncOperationWinRTEnum<TResult>
     extends IAsyncOperation<TResult> {
-  _IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IAsyncOperationWinRTEnum.fromPtr(super.ptr,
+      {required this.tResultEnumCreator});
 
   late final __IAsyncOperationWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationWinRTEnumVtbl>().ref;
-  final EnumCreator<TResult> enumCreator;
+  final EnumCreator<TResult> tResultEnumCreator;
 
   @override
   TResult getResults() {
@@ -703,7 +705,7 @@ final class _IAsyncOperationWinRTEnum<TResult>
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tResultEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -730,11 +732,11 @@ final class __IAsyncOperationWinRTEnumVtbl extends Struct {
 final class _IAsyncOperationWinRTFlagsEnum<TResult>
     extends IAsyncOperation<TResult> {
   _IAsyncOperationWinRTFlagsEnum.fromPtr(super.ptr,
-      {required this.enumCreator});
+      {required this.tResultEnumCreator});
 
   late final __IAsyncOperationWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IAsyncOperationWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<TResult> enumCreator;
+  final EnumCreator<TResult> tResultEnumCreator;
 
   @override
   TResult getResults() {
@@ -747,7 +749,7 @@ final class _IAsyncOperationWinRTFlagsEnum<TResult>
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tResultEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }

@@ -45,7 +45,7 @@ class IPackage9 extends IInspectable {
 
     return IVector.fromPtr(result,
         iterableIid: '{69ad6aa7-0c49-5f27-a5eb-ef4d59467b6d}',
-        creator: Package.fromPtr);
+        tObjectCreator: Package.fromPtr);
   }
 
   String get sourceUriSchemeName {

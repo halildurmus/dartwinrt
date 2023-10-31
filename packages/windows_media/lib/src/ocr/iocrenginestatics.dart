@@ -66,7 +66,7 @@ class IOcrEngineStatics extends IInspectable {
 
     return IVectorView<Language?>.fromPtr(value,
             iterableIid: '{48409a10-61b6-5db1-a69d-8abc46ac608a}',
-            creator: Language.fromPtr)
+            tObjectCreator: Language.fromPtr)
         .toList();
   }
 

@@ -50,7 +50,7 @@ class IBitmapFrame extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ImageStream?>.fromPtr(asyncInfo,
-        creator: ImageStream.fromPtr);
+        tResultObjectCreator: ImageStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -216,7 +216,7 @@ class IBitmapFrame extends IInspectable {
 
     final asyncOperation = IAsyncOperation<PixelDataProvider?>.fromPtr(
         asyncInfo,
-        creator: PixelDataProvider.fromPtr);
+        tResultObjectCreator: PixelDataProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -252,7 +252,7 @@ class IBitmapFrame extends IInspectable {
 
     final asyncOperation = IAsyncOperation<PixelDataProvider?>.fromPtr(
         asyncInfo,
-        creator: PixelDataProvider.fromPtr);
+        tResultObjectCreator: PixelDataProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

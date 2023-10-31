@@ -140,7 +140,7 @@ class IDigitalWindowControl extends IInspectable {
 
     return IVectorView<DigitalWindowCapability?>.fromPtr(value,
             iterableIid: '{a4f28d49-fb50-5c0d-ba48-6695e4612500}',
-            creator: DigitalWindowCapability.fromPtr)
+            tObjectCreator: DigitalWindowCapability.fromPtr)
         .toList();
   }
 

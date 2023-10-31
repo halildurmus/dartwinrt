@@ -10,11 +10,12 @@
 part of 'ikeyvaluepair.dart';
 
 final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
-  _IKeyValuePairGuidInspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairGuidInspectable.fromPtr(super.ptr,
+      {required this.vObjectCreator});
 
   late final __IKeyValuePairGuidInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairGuidInspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   Guid get key {
@@ -51,7 +52,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -125,11 +126,12 @@ final class __IKeyValuePairGuidObjectVtbl extends Struct {
 }
 
 final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt16Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairInt16Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairInt16InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairInt16InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -166,7 +168,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -183,11 +185,12 @@ final class __IKeyValuePairInt16InspectableVtbl extends Struct {
 }
 
 final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt32Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairInt32Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairInt32InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairInt32InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -224,7 +227,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -241,11 +244,12 @@ final class __IKeyValuePairInt32InspectableVtbl extends Struct {
 }
 
 final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt64Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairInt64Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairInt64InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairInt64InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -282,7 +286,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -356,11 +360,12 @@ final class __IKeyValuePairObjectObjectVtbl extends Struct {
 
 final class _IKeyValuePairStringInspectable<V>
     extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringInspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairStringInspectable.fromPtr(super.ptr,
+      {required this.vObjectCreator});
 
   late final __IKeyValuePairStringInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairStringInspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   String get key {
@@ -397,7 +402,7 @@ final class _IKeyValuePairStringInspectable<V>
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -524,11 +529,12 @@ final class __IKeyValuePairStringStringVtbl extends Struct {
 }
 
 final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr,
+      {required this.vEnumCreator});
 
   late final __IKeyValuePairStringWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairStringWinRTEnumVtbl>().ref;
-  final EnumCreator<V> enumCreator;
+  final EnumCreator<V> vEnumCreator;
 
   @override
   String get key {
@@ -558,7 +564,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return vEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -580,11 +586,11 @@ final class __IKeyValuePairStringWinRTEnumVtbl extends Struct {
 final class _IKeyValuePairStringWinRTFlagsEnum<V>
     extends IKeyValuePair<String, V> {
   _IKeyValuePairStringWinRTFlagsEnum.fromPtr(super.ptr,
-      {required this.enumCreator});
+      {required this.vEnumCreator});
 
   late final __IKeyValuePairStringWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairStringWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<V> enumCreator;
+  final EnumCreator<V> vEnumCreator;
 
   @override
   String get key {
@@ -614,7 +620,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return vEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -634,11 +640,12 @@ final class __IKeyValuePairStringWinRTFlagsEnumVtbl extends Struct {
 }
 
 final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint8Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairUint8Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairUint8InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairUint8InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -675,7 +682,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -692,11 +699,12 @@ final class __IKeyValuePairUint8InspectableVtbl extends Struct {
 }
 
 final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint16Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairUint16Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairUint16InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairUint16InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -733,7 +741,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -750,11 +758,12 @@ final class __IKeyValuePairUint16InspectableVtbl extends Struct {
 }
 
 final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint32Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairUint32Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairUint32InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairUint32InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -791,7 +800,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -808,11 +817,12 @@ final class __IKeyValuePairUint32InspectableVtbl extends Struct {
 }
 
 final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint64Inspectable.fromPtr(super.ptr, {required this.creator});
+  _IKeyValuePairUint64Inspectable.fromPtr(super.ptr,
+      {super.kIntType, required this.vObjectCreator});
 
   late final __IKeyValuePairUint64InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairUint64InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   int get key {
@@ -849,7 +859,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -920,12 +930,12 @@ final class __IKeyValuePairUriStringVtbl extends Struct {
 final class _IKeyValuePairWinRTEnumInspectable<K, V>
     extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTEnumInspectable.fromPtr(super.ptr,
-      {required this.enumKeyCreator, required this.creator});
+      {required this.kEnumCreator, required this.vObjectCreator});
 
   late final __IKeyValuePairWinRTEnumInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairWinRTEnumInspectableVtbl>().ref;
-  final EnumCreator<K> enumKeyCreator;
-  final COMObjectCreator<V> creator;
+  final EnumCreator<K> kEnumCreator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   K get key {
@@ -938,7 +948,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumKeyCreator(retValuePtr.value);
+      return kEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -962,7 +972,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 
@@ -981,12 +991,12 @@ final class __IKeyValuePairWinRTEnumInspectableVtbl extends Struct {
 final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
     extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(super.ptr,
-      {required this.enumKeyCreator, required this.creator});
+      {required this.kEnumCreator, required this.vObjectCreator});
 
   late final __IKeyValuePairWinRTFlagsEnumInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IKeyValuePairWinRTFlagsEnumInspectableVtbl>().ref;
-  final EnumCreator<K> enumKeyCreator;
-  final COMObjectCreator<V> creator;
+  final EnumCreator<K> kEnumCreator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   K get key {
@@ -999,7 +1009,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumKeyCreator(retValuePtr.value);
+      return kEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1023,7 +1033,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 }
 

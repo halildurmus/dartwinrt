@@ -103,7 +103,7 @@ class IApplicationDataContainer extends IInspectable {
 
     return IMapView<String, ApplicationDataContainer?>.fromPtr(value,
             iterableIid: '{a785be1d-159e-53ad-9553-598b03dca048}',
-            creator: ApplicationDataContainer.fromPtr)
+            vObjectCreator: ApplicationDataContainer.fromPtr)
         .toMap();
   }
 

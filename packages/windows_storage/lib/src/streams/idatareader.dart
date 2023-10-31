@@ -396,7 +396,7 @@ class IDataReader extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<int>.fromPtr(operation, intType: IntType.uint32);
+        IAsyncOperation<int>.fromPtr(operation, tResultIntType: IntType.uint32);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

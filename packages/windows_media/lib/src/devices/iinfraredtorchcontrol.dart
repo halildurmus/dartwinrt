@@ -65,7 +65,7 @@ class IInfraredTorchControl extends IInspectable {
 
     return IVectorView<InfraredTorchMode>.fromPtr(value,
             iterableIid: '{58a4b7b6-36c3-5541-b383-3690d7293c10}',
-            enumCreator: InfraredTorchMode.from)
+            tEnumCreator: InfraredTorchMode.from)
         .toList();
   }
 

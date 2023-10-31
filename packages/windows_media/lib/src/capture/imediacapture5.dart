@@ -66,7 +66,7 @@ class IMediaCapture5 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaCapturePauseResult?>.fromPtr(
         operation,
-        creator: MediaCapturePauseResult.fromPtr);
+        tResultObjectCreator: MediaCapturePauseResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -84,7 +84,7 @@ class IMediaCapture5 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaCaptureStopResult?>.fromPtr(
         operation,
-        creator: MediaCaptureStopResult.fromPtr);
+        tResultObjectCreator: MediaCaptureStopResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -107,7 +107,7 @@ class IMediaCapture5 extends IInspectable {
 
     return IMapView<String, MediaFrameSource?>.fromPtr(value,
             iterableIid: '{a038e80f-0b3d-5cd4-849d-13036e1f506e}',
-            creator: MediaFrameSource.fromPtr)
+            vObjectCreator: MediaFrameSource.fromPtr)
         .toMap();
   }
 
@@ -125,7 +125,7 @@ class IMediaCapture5 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<MediaFrameReader?>.fromPtr(value,
-        creator: MediaFrameReader.fromPtr);
+        tResultObjectCreator: MediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -144,7 +144,7 @@ class IMediaCapture5 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<MediaFrameReader?>.fromPtr(value,
-        creator: MediaFrameReader.fromPtr);
+        tResultObjectCreator: MediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -172,7 +172,7 @@ class IMediaCapture5 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<MediaFrameReader?>.fromPtr(value,
-        creator: MediaFrameReader.fromPtr);
+        tResultObjectCreator: MediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

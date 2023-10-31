@@ -50,7 +50,7 @@ class ILauncherStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriResult?>.fromPtr(operation,
-        creator: LaunchUriResult.fromPtr);
+        tResultObjectCreator: LaunchUriResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -77,7 +77,7 @@ class ILauncherStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriResult?>.fromPtr(operation,
-        creator: LaunchUriResult.fromPtr);
+        tResultObjectCreator: LaunchUriResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -126,7 +126,7 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
         operation,
-        enumCreator: LaunchQuerySupportStatus.from);
+        tResultEnumCreator: LaunchQuerySupportStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -156,7 +156,7 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
         operation,
-        enumCreator: LaunchQuerySupportStatus.from);
+        tResultEnumCreator: LaunchQuerySupportStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -174,7 +174,7 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
         operation,
-        enumCreator: LaunchQuerySupportStatus.from);
+        tResultEnumCreator: LaunchQuerySupportStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -194,7 +194,7 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
         operation,
-        enumCreator: LaunchQuerySupportStatus.from);
+        tResultEnumCreator: LaunchQuerySupportStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -213,9 +213,9 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: AppInfo.fromPtr,
-            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}',
+            tObjectCreator: AppInfo.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -235,9 +235,9 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: AppInfo.fromPtr,
-            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}',
+            tObjectCreator: AppInfo.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -256,9 +256,9 @@ class ILauncherStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: AppInfo.fromPtr,
-            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{63d0bffe-0e34-55b3-83d5-314caff2b137}',
+            tObjectCreator: AppInfo.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

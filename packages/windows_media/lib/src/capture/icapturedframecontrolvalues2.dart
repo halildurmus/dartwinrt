@@ -53,7 +53,7 @@ class ICapturedFrameControlValues2 extends IInspectable {
 
     return IReference<MediaCaptureFocusState?>.fromPtr(value,
             referenceIid: '{58820185-5da0-5faa-86da-9bd9f03974fa}',
-            enumCreator: MediaCaptureFocusState.from)
+            tEnumCreator: MediaCaptureFocusState.from)
         .value;
   }
 

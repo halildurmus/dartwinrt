@@ -78,7 +78,7 @@ class IWindowingEnvironment extends IInspectable {
 
     return IVectorView<DisplayRegion?>.fromPtr(result,
             iterableIid: '{026730ab-250d-503c-a876-43bbb754ad44}',
-            creator: DisplayRegion.fromPtr)
+            tObjectCreator: DisplayRegion.fromPtr)
         .toList();
   }
 

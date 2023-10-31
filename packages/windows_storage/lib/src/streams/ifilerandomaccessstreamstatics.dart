@@ -54,7 +54,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         operation,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -87,7 +87,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         operation,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -106,7 +106,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         operation,
-        creator: StorageStreamTransaction.fromPtr);
+        tResultObjectCreator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -132,7 +132,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         operation,
-        creator: StorageStreamTransaction.fromPtr);
+        tResultObjectCreator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -152,7 +152,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         operation,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -188,7 +188,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         operation,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -208,7 +208,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         operation,
-        creator: StorageStreamTransaction.fromPtr);
+        tResultObjectCreator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -241,7 +241,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         operation,
-        creator: StorageStreamTransaction.fromPtr);
+        tResultObjectCreator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

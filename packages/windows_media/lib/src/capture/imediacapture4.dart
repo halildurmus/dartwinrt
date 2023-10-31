@@ -54,7 +54,7 @@ class IMediaCapture4 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<IMediaExtension?>.fromPtr(op,
-        creator: IMediaExtension.fromPtr);
+        tResultObjectCreator: IMediaExtension.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -73,7 +73,7 @@ class IMediaCapture4 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<IMediaExtension?>.fromPtr(op,
-        creator: IMediaExtension.fromPtr);
+        tResultObjectCreator: IMediaExtension.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -160,7 +160,7 @@ class IMediaCapture4 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<VideoFrame?>.fromPtr(operation,
-        creator: VideoFrame.fromPtr);
+        tResultObjectCreator: VideoFrame.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -178,7 +178,7 @@ class IMediaCapture4 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<VideoFrame?>.fromPtr(operation,
-        creator: VideoFrame.fromPtr);
+        tResultObjectCreator: VideoFrame.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -238,7 +238,7 @@ class IMediaCapture4 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<AdvancedPhotoCapture?>.fromPtr(
         operation,
-        creator: AdvancedPhotoCapture.fromPtr);
+        tResultObjectCreator: AdvancedPhotoCapture.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

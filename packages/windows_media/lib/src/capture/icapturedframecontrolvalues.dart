@@ -139,7 +139,7 @@ class ICapturedFrameControlValues extends IInspectable {
 
     return IReference<CaptureSceneMode?>.fromPtr(value,
             referenceIid: '{e20596aa-0bbe-5203-be6b-6b71ff5b0843}',
-            enumCreator: CaptureSceneMode.from)
+            tEnumCreator: CaptureSceneMode.from)
         .value;
   }
 

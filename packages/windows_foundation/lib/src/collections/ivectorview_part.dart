@@ -588,7 +588,7 @@ final class __IVectorViewDateTimeVtbl extends Struct {
 
 final class _IVectorViewDouble extends IVectorView<double> {
   _IVectorViewDouble.fromPtr(super.ptr,
-      {required super.iterableIid, super.doubleType});
+      {required super.iterableIid, super.tDoubleType});
 
   late final __IVectorViewDoubleVtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewDoubleVtbl>().ref;
@@ -773,7 +773,7 @@ final class __IVectorViewDurationVtbl extends Struct {
 
 final class _IVectorViewFloat extends IVectorView<double> {
   _IVectorViewFloat.fromPtr(super.ptr,
-      {required super.iterableIid, super.doubleType});
+      {required super.iterableIid, super.tDoubleType});
 
   late final __IVectorViewFloatVtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewFloatVtbl>().ref;
@@ -1058,7 +1058,7 @@ final class __IVectorViewGuidVtbl extends Struct {
 
 final class _IVectorViewInt16 extends IVectorView<int> {
   _IVectorViewInt16.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewInt16Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewInt16Vtbl>().ref;
@@ -1149,7 +1149,7 @@ final class __IVectorViewInt16Vtbl extends Struct {
 
 final class _IVectorViewInt32 extends IVectorView<int> {
   _IVectorViewInt32.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewInt32Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewInt32Vtbl>().ref;
@@ -1240,7 +1240,7 @@ final class __IVectorViewInt32Vtbl extends Struct {
 
 final class _IVectorViewInt64 extends IVectorView<int> {
   _IVectorViewInt64.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewInt64Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewInt64Vtbl>().ref;
@@ -1625,12 +1625,12 @@ final class __IVectorViewNitRangeVtbl extends Struct {
 
 final class _IVectorViewInspectable<T> extends IVectorView<T> {
   _IVectorViewInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid, required this.tObjectCreator})
+      : super(tObjectCreator: tObjectCreator);
 
   late final __IVectorViewInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewInspectableVtbl>().ref;
-  final COMObjectCreator<T> creator;
+  final COMObjectCreator<T> tObjectCreator;
 
   @override
   T getAt(int index) {
@@ -1650,7 +1650,7 @@ final class _IVectorViewInspectable<T> extends IVectorView<T> {
       return null as T;
     }
 
-    return creator(retValuePtr);
+    return tObjectCreator(retValuePtr);
   }
 
   @override
@@ -1688,7 +1688,7 @@ final class _IVectorViewInspectable<T> extends IVectorView<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(creator, length: retValuePtr.value)
+        items: items.toList(tObjectCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -2981,7 +2981,7 @@ final class __IVectorViewTextSegmentVtbl extends Struct {
 
 final class _IVectorViewUint8 extends IVectorView<int> {
   _IVectorViewUint8.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewUint8Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewUint8Vtbl>().ref;
@@ -3072,7 +3072,7 @@ final class __IVectorViewUint8Vtbl extends Struct {
 
 final class _IVectorViewUint16 extends IVectorView<int> {
   _IVectorViewUint16.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewUint16Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewUint16Vtbl>().ref;
@@ -3163,7 +3163,7 @@ final class __IVectorViewUint16Vtbl extends Struct {
 
 final class _IVectorViewUint32 extends IVectorView<int> {
   _IVectorViewUint32.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewUint32Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewUint32Vtbl>().ref;
@@ -3254,7 +3254,7 @@ final class __IVectorViewUint32Vtbl extends Struct {
 
 final class _IVectorViewUint64 extends IVectorView<int> {
   _IVectorViewUint64.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType});
+      {required super.iterableIid, super.tIntType});
 
   late final __IVectorViewUint64Vtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewUint64Vtbl>().ref;
@@ -3443,12 +3443,12 @@ final class __IVectorViewWindowIdVtbl extends Struct {
 
 final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTEnum.fromPtr(super.ptr,
-      {required super.iterableIid, required this.enumCreator})
-      : super(enumCreator: enumCreator);
+      {required super.iterableIid, required this.tEnumCreator})
+      : super(tEnumCreator: tEnumCreator);
 
   late final __IVectorViewWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewWinRTEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T getAt(int index) {
@@ -3461,7 +3461,7 @@ final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -3502,7 +3502,7 @@ final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 
       return (
         retValuePtr.value,
-        items: items.toEnumList(enumCreator, length: retValuePtr.value)
+        items: items.toEnumList(tEnumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -3537,12 +3537,12 @@ final class __IVectorViewWinRTEnumVtbl extends Struct {
 
 final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTFlagsEnum.fromPtr(super.ptr,
-      {required super.iterableIid, required this.enumCreator})
-      : super(enumCreator: enumCreator);
+      {required super.iterableIid, required this.tEnumCreator})
+      : super(tEnumCreator: tEnumCreator);
 
   late final __IVectorViewWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IVectorViewWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T getAt(int index) {
@@ -3555,7 +3555,7 @@ final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -3596,7 +3596,7 @@ final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
 
       return (
         retValuePtr.value,
-        items: items.toEnumList(enumCreator, length: retValuePtr.value)
+        items: items.toEnumList(tEnumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);

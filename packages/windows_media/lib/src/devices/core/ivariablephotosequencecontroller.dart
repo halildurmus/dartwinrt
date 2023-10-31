@@ -173,7 +173,7 @@ class IVariablePhotoSequenceController extends IInspectable {
 
     return IVector.fromPtr(items,
         iterableIid: '{bd8eeadc-2dd9-5ad8-ac5d-f3b13b94b9c2}',
-        creator: FrameController.fromPtr);
+        tObjectCreator: FrameController.fromPtr);
   }
 }
 

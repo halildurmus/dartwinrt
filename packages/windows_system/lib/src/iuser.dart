@@ -110,7 +110,7 @@ class IUser extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<IPropertySet>.fromPtr(operation,
-        creator: IPropertySet.fromPtr);
+        tResultObjectCreator: IPropertySet.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -130,7 +130,7 @@ class IUser extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IRandomAccessStreamReference?>.fromPtr(operation,
-            creator: IRandomAccessStreamReference.fromPtr);
+            tResultObjectCreator: IRandomAccessStreamReference.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

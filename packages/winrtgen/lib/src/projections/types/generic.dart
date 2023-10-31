@@ -10,18 +10,14 @@ import '../parameter.dart';
 final class GenericEnumParameterProjection extends ParameterProjection {
   GenericEnumParameterProjection(super.parameter);
 
-  @override
-  String get type {
-    final genericParamSequence = parameter.typeIdentifier.genericParamSequence;
-    return method.parent.genericParams[genericParamSequence].name;
-  }
+  String get genericParamName => method
+      .parent.genericParams[parameter.typeIdentifier.genericParamSequence].name;
 
   @override
-  String get creator => switch (method.parent.genericParams) {
-        [final param, _] when param.name == type =>
-          'enumKeyCreator($identifier.value)',
-        _ => 'enumCreator($identifier.value)'
-      };
+  String get type => genericParamName;
+
+  @override
+  String get creator => '${type.toCamelCase()}EnumCreator($identifier.value)';
 
   @override
   String get into => '($identifier as WinRTEnum).value';
@@ -36,14 +32,14 @@ final class GenericObjectParameterProjection extends ParameterProjection {
       typeProjection.typeIdentifier.name ==
       TypeArgKind.nullableInspectable.name;
 
-  @override
-  String get type {
-    final genericParamSequence = parameter.typeIdentifier.genericParamSequence;
-    return method.parent.genericParams[genericParamSequence].name;
-  }
+  String get genericParamName => method
+      .parent.genericParams[parameter.typeIdentifier.genericParamSequence].name;
 
   @override
-  String get creator => 'creator($identifier)';
+  String get type => genericParamName;
+
+  @override
+  String get creator => '${type.toCamelCase()}ObjectCreator($identifier)';
 
   @override
   String get into => '($identifier as IInspectable).lpVtbl';

@@ -151,7 +151,7 @@ class ILearningModel extends IInspectable {
 
     return IVectorView<ILearningModelFeatureDescriptor?>.fromPtr(value,
             iterableIid: '{0fa50877-6792-56b7-af46-430a8901894a}',
-            creator: ILearningModelFeatureDescriptor.fromPtr)
+            tObjectCreator: ILearningModelFeatureDescriptor.fromPtr)
         .toList();
   }
 
@@ -174,7 +174,7 @@ class ILearningModel extends IInspectable {
 
     return IVectorView<ILearningModelFeatureDescriptor?>.fromPtr(value,
             iterableIid: '{0fa50877-6792-56b7-af46-430a8901894a}',
-            creator: ILearningModelFeatureDescriptor.fromPtr)
+            tObjectCreator: ILearningModelFeatureDescriptor.fromPtr)
         .toList();
   }
 }

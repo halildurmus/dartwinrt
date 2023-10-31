@@ -72,7 +72,7 @@ class IRemoteAutomationClientSession extends IInspectable {
 
     final asyncOperation = IAsyncOperation<RemoteAutomationWindow?>.fromPtr(
         operation,
-        creator: RemoteAutomationWindow.fromPtr);
+        tResultObjectCreator: RemoteAutomationWindow.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

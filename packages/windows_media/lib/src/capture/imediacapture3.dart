@@ -47,7 +47,7 @@ class IMediaCapture3 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<VariablePhotoSequenceCapture?>.fromPtr(operation,
-            creator: VariablePhotoSequenceCapture.fromPtr);
+            tResultObjectCreator: VariablePhotoSequenceCapture.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

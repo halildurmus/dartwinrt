@@ -50,7 +50,7 @@ class IStorageItemContentProperties extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<MusicProperties?>.fromPtr(operation,
-        creator: MusicProperties.fromPtr);
+        tResultObjectCreator: MusicProperties.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -67,7 +67,7 @@ class IStorageItemContentProperties extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<VideoProperties?>.fromPtr(operation,
-        creator: VideoProperties.fromPtr);
+        tResultObjectCreator: VideoProperties.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -84,7 +84,7 @@ class IStorageItemContentProperties extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<ImageProperties?>.fromPtr(operation,
-        creator: ImageProperties.fromPtr);
+        tResultObjectCreator: ImageProperties.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -102,7 +102,7 @@ class IStorageItemContentProperties extends IInspectable
 
     final asyncOperation = IAsyncOperation<DocumentProperties?>.fromPtr(
         operation,
-        creator: DocumentProperties.fromPtr);
+        tResultObjectCreator: DocumentProperties.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

@@ -46,7 +46,7 @@ class IXmlDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
-        creator: XmlDocument.fromPtr);
+        tResultObjectCreator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -68,7 +68,7 @@ class IXmlDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
-        creator: XmlDocument.fromPtr);
+        tResultObjectCreator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -85,7 +85,7 @@ class IXmlDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
-        creator: XmlDocument.fromPtr);
+        tResultObjectCreator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -104,7 +104,7 @@ class IXmlDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
-        creator: XmlDocument.fromPtr);
+        tResultObjectCreator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

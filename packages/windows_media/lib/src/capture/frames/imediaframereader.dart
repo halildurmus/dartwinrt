@@ -90,7 +90,7 @@ class IMediaFrameReader extends IInspectable implements IClosable {
 
     final asyncOperation = IAsyncOperation<MediaFrameReaderStartStatus>.fromPtr(
         operation,
-        enumCreator: MediaFrameReaderStartStatus.from);
+        tResultEnumCreator: MediaFrameReaderStartStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

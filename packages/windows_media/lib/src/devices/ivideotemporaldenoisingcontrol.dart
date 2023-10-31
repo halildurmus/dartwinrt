@@ -68,7 +68,7 @@ class IVideoTemporalDenoisingControl extends IInspectable {
 
     return IVectorView<VideoTemporalDenoisingMode>.fromPtr(value,
             iterableIid: '{caf26629-ee84-5d4c-ae37-9dc4b26978eb}',
-            enumCreator: VideoTemporalDenoisingMode.from)
+            tEnumCreator: VideoTemporalDenoisingMode.from)
         .toList();
   }
 

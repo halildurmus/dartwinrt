@@ -62,8 +62,8 @@ class IBatteryStatics extends IInspectable {
       throwWindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<Battery?>.fromPtr(result, creator: Battery.fromPtr);
+    final asyncOperation = IAsyncOperation<Battery?>.fromPtr(result,
+        tResultObjectCreator: Battery.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

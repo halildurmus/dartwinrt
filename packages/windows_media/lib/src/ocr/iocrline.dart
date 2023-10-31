@@ -49,7 +49,7 @@ class IOcrLine extends IInspectable {
 
     return IVectorView<OcrWord?>.fromPtr(value,
             iterableIid: '{a0ce663a-46d0-55e5-928e-251eb67a1e99}',
-            creator: OcrWord.fromPtr)
+            tObjectCreator: OcrWord.fromPtr)
         .toList();
   }
 

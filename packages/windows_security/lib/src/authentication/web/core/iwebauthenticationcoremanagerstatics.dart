@@ -52,7 +52,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
         asyncInfo,
-        creator: WebTokenRequestResult.fromPtr);
+        tResultObjectCreator: WebTokenRequestResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -72,7 +72,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
         asyncInfo,
-        creator: WebTokenRequestResult.fromPtr);
+        tResultObjectCreator: WebTokenRequestResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -90,7 +90,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
         asyncInfo,
-        creator: WebTokenRequestResult.fromPtr);
+        tResultObjectCreator: WebTokenRequestResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -110,7 +110,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
         asyncInfo,
-        creator: WebTokenRequestResult.fromPtr);
+        tResultObjectCreator: WebTokenRequestResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -129,7 +129,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<WebAccount?>.fromPtr(asyncInfo,
-        creator: WebAccount.fromPtr);
+        tResultObjectCreator: WebAccount.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -149,7 +149,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
         asyncInfo,
-        creator: WebAccountProvider.fromPtr);
+        tResultObjectCreator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -169,7 +169,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
         asyncInfo,
-        creator: WebAccountProvider.fromPtr);
+        tResultObjectCreator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

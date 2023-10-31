@@ -89,7 +89,7 @@ class IDeviceInformationPairing2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
-        creator: DevicePairingResult.fromPtr);
+        tResultObjectCreator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -107,7 +107,7 @@ class IDeviceInformationPairing2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceUnpairingResult?>.fromPtr(
         result,
-        creator: DeviceUnpairingResult.fromPtr);
+        tResultObjectCreator: DeviceUnpairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -66,7 +66,7 @@ class IMediaFrameSourceInfo2 extends IInspectable {
 
     return IVectorView<MediaCaptureVideoProfileMediaDescription?>.fromPtr(value,
             iterableIid: '{0895e56d-fe1f-5364-ab67-c597d8970b89}',
-            creator: MediaCaptureVideoProfileMediaDescription.fromPtr)
+            tObjectCreator: MediaCaptureVideoProfileMediaDescription.fromPtr)
         .toList();
   }
 }

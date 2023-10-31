@@ -66,7 +66,7 @@ class IAdvancedPhotoControl extends IInspectable {
 
     return IVectorView<AdvancedPhotoMode>.fromPtr(value,
             iterableIid: '{7d090784-70a9-570c-be82-0d0890318975}',
-            enumCreator: AdvancedPhotoMode.from)
+            tEnumCreator: AdvancedPhotoMode.from)
         .toList();
   }
 

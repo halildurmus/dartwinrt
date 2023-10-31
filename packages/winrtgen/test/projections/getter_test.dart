@@ -310,7 +310,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return enumCreator(retValuePtr.value);'));
+          equals('return tEnumCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -343,7 +343,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return enumKeyCreator(retValuePtr.value);'));
+          equals('return kEnumCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -376,7 +376,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return enumCreator(retValuePtr.value);'));
+          equals('return tEnumCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -409,8 +409,8 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck(freeRetVal: true)));
       expect(projection.nullCheck,
           equals(nullCheck('retValuePtr', castReturn: true)));
-      expect(
-          projection.returnStatement, equals('return creator(retValuePtr);'));
+      expect(projection.returnStatement,
+          equals('return tObjectCreator(retValuePtr);'));
       expect(projection.postambles, isEmpty);
     });
 
@@ -521,8 +521,8 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IMap.fromPtr(value,
             iterableIid: '{4fe7fe23-22b1-528c-881d-a4eceaef0f11}',
-            creator: IBuffer.fromPtr,
-            intType: IntType.uint32);
+            kIntType: IntType.uint32,
+            vObjectCreator: IBuffer.fromPtr);
 '''));
       expect(projection.postambles, isEmpty);
     });
@@ -649,7 +649,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
-            enumCreator: DeviceClass.from);
+            tEnumCreator: DeviceClass.from);
 '''));
       expect(projection.postambles, isEmpty);
     });
@@ -682,7 +682,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{421d4b91-b13b-5f37-ae54-b5249bd80539}',
-            intType: IntType.uint32);
+            tIntType: IntType.uint32);
 '''));
       expect(projection.postambles, isEmpty);
     });
@@ -839,7 +839,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<int>.fromPtr(value,
             iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}',
-            intType: IntType.int64).toList();
+            tIntType: IntType.int64).toList();
 '''));
       expect(projection.postambles, isEmpty);
     });

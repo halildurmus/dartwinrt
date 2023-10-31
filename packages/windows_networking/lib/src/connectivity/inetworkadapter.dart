@@ -128,7 +128,7 @@ class INetworkAdapter extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ConnectionProfile?>.fromPtr(value,
-        creator: ConnectionProfile.fromPtr);
+        tResultObjectCreator: ConnectionProfile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

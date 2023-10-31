@@ -62,7 +62,7 @@ class IMediaCaptureStatics extends IInspectable {
 
     return IVectorView<MediaCaptureVideoProfile?>.fromPtr(value,
             iterableIid: '{dbd49d71-e07b-5e11-824a-62ace8bdfc3e}',
-            creator: MediaCaptureVideoProfile.fromPtr)
+            tObjectCreator: MediaCaptureVideoProfile.fromPtr)
         .toList();
   }
 
@@ -81,7 +81,7 @@ class IMediaCaptureStatics extends IInspectable {
 
     return IVectorView<MediaCaptureVideoProfile?>.fromPtr(value,
             iterableIid: '{dbd49d71-e07b-5e11-824a-62ace8bdfc3e}',
-            creator: MediaCaptureVideoProfile.fromPtr)
+            tObjectCreator: MediaCaptureVideoProfile.fromPtr)
         .toList();
   }
 
@@ -101,7 +101,7 @@ class IMediaCaptureStatics extends IInspectable {
 
     return IVectorView<MediaCaptureVideoProfile?>.fromPtr(value,
             iterableIid: '{dbd49d71-e07b-5e11-824a-62ace8bdfc3e}',
-            creator: MediaCaptureVideoProfile.fromPtr)
+            tObjectCreator: MediaCaptureVideoProfile.fromPtr)
         .toList();
   }
 }

@@ -35,15 +35,15 @@ abstract interface class IReference<T> extends IInspectable {
   /// `int?`, `String?`, `WinRTEnum?` (e.g., `WebErrorStatus?`), or
   /// `WinRTStruct?` (e.g., `BasicGeoposition?`).
   ///
-  /// [enumCreator] must be specified if [T] is `WinRTEnum?`.
+  /// [tEnumCreator] must be specified if [T] is `WinRTEnum?`.
   /// ```dart
   /// final reference = IReference<WebErrorStatus?>.fromPtr(ptr,
-  ///     enumCreator: WebErrorStatus.from);
+  ///     tEnumCreator: WebErrorStatus.from);
   /// ```
   factory IReference.fromPtr(
     Pointer<COMObject> ptr, {
     required String referenceIid,
-    EnumCreator<T>? enumCreator,
+    EnumCreator<T>? tEnumCreator,
   }) {
     if (isSameType<T, bool?>()) {
       return _IReferenceBool.fromPtr(ptr) as IReference<T>;
@@ -91,13 +91,13 @@ abstract interface class IReference<T> extends IInspectable {
     }
 
     if (isSubtypeOfWinRTFlagsEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IReferenceWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
+      return _IReferenceWinRTFlagsEnum.fromPtr(ptr, tEnumCreator: tEnumCreator);
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IReferenceWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
+      return _IReferenceWinRTEnum.fromPtr(ptr, tEnumCreator: tEnumCreator);
     }
 
     if (isSubtypeOfWinRTStruct<T>()) {

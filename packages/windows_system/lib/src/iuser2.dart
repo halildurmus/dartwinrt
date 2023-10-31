@@ -46,7 +46,7 @@ class IUser2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<UserAgeConsentResult>.fromPtr(
         operation,
-        enumCreator: UserAgeConsentResult.from);
+        tResultEnumCreator: UserAgeConsentResult.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

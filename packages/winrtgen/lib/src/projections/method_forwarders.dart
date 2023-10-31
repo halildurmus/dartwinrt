@@ -39,71 +39,51 @@ final class MethodForwardersProjection {
   /// The constructor arguments passed to the constructors of the [interface].
   String? get constructorArgs {
     if (!isGenericInterface) return null;
-    final creatorArg = creatorArgument;
-    final iterableIidArg = iterableIidArgument;
-    final intTypeArg = intTypeArgument;
-    final args = <String>[
-      if (creatorArg != null) creatorArg,
-      if (iterableIidArg != null) iterableIidArg,
-      if (intTypeArg != null) intTypeArg
-    ];
-    return args.isEmpty ? '' : ', ${args.join(', ')}';
-  }
-
-  String? get creatorArgument {
-    if (!isGenericInterface) return null;
 
     final typeSpec = interface.typeSpec;
     if (typeSpec == null) {
       throw StateError('Type $interface has no typeSpec.');
     }
 
-    final typeArgs = typeSpec.typeArgs;
-    // Use the value (last) typeArg to parse the creator argument as it is not
-    // required for the key (first) typeArg.
-    final typeArg = switch (shortInterfaceName) {
-      'IMap' || 'IMapView' => typeArgs.last,
-      _ => typeArgs.first,
+    final genericParams = typeSpec.type?.genericParams;
+    if (genericParams == null) {
+      throw StateError('Type $typeSpec has no type.');
+    }
+
+    final args = <String>{
+      if (shortInterfaceName
+          case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
+        'iterableIid: ${typeSpec.iterableIID.quote()}',
+      if (typeSpec.typeArgs case [final typeArg1, final typeArg2]) ...{
+        if (typeArg1.creator case final creator?)
+          typeArg1.isWinRTEnum
+              ? '${genericParams[0].name.toCamelCase()}EnumCreator: $creator'
+              : '${genericParams[0].name.toCamelCase()}ObjectCreator: $creator'
+        else if (TypeProjection(typeArg1).isDouble)
+          '${genericParams[0].name.toCamelCase()}DoubleType: DoubleType.${TypeProjection(typeArg1).nativeType.toLowerCase()}'
+        else if (TypeProjection(typeArg1).isInteger)
+          '${genericParams[0].name.toCamelCase()}IntType: IntType.${TypeProjection(typeArg1).nativeType.toLowerCase()}',
+        if (typeArg2.creator case final creator?)
+          typeArg2.isWinRTEnum
+              ? '${genericParams[1].name.toCamelCase()}EnumCreator: $creator'
+              : '${genericParams[1].name.toCamelCase()}ObjectCreator: $creator'
+        else if (TypeProjection(typeArg2).isDouble)
+          '${genericParams[1].name.toCamelCase()}DoubleType: DoubleType.${TypeProjection(typeArg2).nativeType.toLowerCase()}'
+        else if (TypeProjection(typeArg2).isInteger)
+          '${genericParams[1].name.toCamelCase()}IntType: IntType.${TypeProjection(typeArg2).nativeType.toLowerCase()}',
+      } else if (typeSpec.typeArgs case [final typeArg]) ...{
+        if (typeArg.creator case final creator?)
+          typeArg.isWinRTEnum
+              ? '${genericParams[0].name.toCamelCase()}EnumCreator: $creator'
+              : '${genericParams[0].name.toCamelCase()}ObjectCreator: $creator'
+        else if (TypeProjection(typeArg).isDouble)
+          '${genericParams[0].name.toCamelCase()}DoubleType: DoubleType.${TypeProjection(typeArg).nativeType.toLowerCase()}'
+        else if (TypeProjection(typeArg).isInteger)
+          '${genericParams[0].name.toCamelCase()}IntType: IntType.${TypeProjection(typeArg).nativeType.toLowerCase()}',
+      },
     };
-    final creator = typeArg.creator;
-    if (creator == null) return null;
 
-    final typeArgProjection = TypeProjection(typeArg);
-    return typeArgProjection.isWinRTEnum
-        ? 'enumCreator: $creator'
-        : 'creator: $creator';
-  }
-
-  String? get iterableIidArgument {
-    if (!isGenericInterface) return null;
-
-    if (interface.typeSpec case final typeSpec?) {
-      return switch (shortInterfaceName) {
-        'IMap' ||
-        'IMapView' ||
-        'IVector' ||
-        'IVectorView' =>
-          'iterableIid: ${typeSpec.iterableIID.quote()}',
-        _ => null
-      };
-    }
-
-    throw StateError('Type $interface has no typeSpec.');
-  }
-
-  String? get intTypeArgument {
-    if (!isGenericInterface) return null;
-
-    if (interface.typeSpec case final typeSpec?) {
-      if (typeArgs case 'int' || 'int?') {
-        final typeArg = typeSpec.dereference();
-        final typeArgProjection = TypeProjection(typeArg);
-        return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
-      }
-      return null;
-    }
-
-    throw StateError('Type $interface has no typeSpec.');
+    return args.isEmpty ? '' : ', ${args.join(', ')}';
   }
 
   String get interfaceInstantiation {

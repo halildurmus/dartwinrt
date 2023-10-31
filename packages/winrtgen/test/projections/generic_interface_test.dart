@@ -332,7 +332,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});'));
+                '_IAsyncOperationInspectable.fromPtr(super.ptr, {required this.tResultObjectCreator});'));
       });
 
       test('(3)', () {
@@ -341,7 +341,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});'));
+                '_IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.tResultEnumCreator});'));
       });
 
       test('(4)', () {
@@ -350,7 +350,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IVectorInt32.fromPtr(super.ptr, {required super.iterableIid, super.intType});'));
+                '_IVectorInt32.fromPtr(super.ptr, {required super.iterableIid, super.tIntType});'));
       });
 
       test('(5)', () {
@@ -359,7 +359,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IVectorViewFloat.fromPtr(super.ptr, {required super.iterableIid, super.doubleType});'));
+                '_IVectorViewFloat.fromPtr(super.ptr, {required super.iterableIid, super.tDoubleType});'));
       });
 
       test('(6)', () {
@@ -381,7 +381,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.creator}) : super(creator: creator);'));
+                '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.vObjectCreator}) : super(vObjectCreator: vObjectCreator);'));
       });
 
       test('(8)', () {
@@ -392,7 +392,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapWinRTEnumInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.enumKeyCreator, required this.creator}) : super(enumKeyCreator: enumKeyCreator, creator: creator);'));
+                '_IMapWinRTEnumInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.kEnumCreator, required this.vObjectCreator}) : super(kEnumCreator: kEnumCreator, vObjectCreator: vObjectCreator);'));
       });
     });
 

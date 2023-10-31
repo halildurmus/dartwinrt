@@ -74,7 +74,7 @@ class IMessageDialog extends IInspectable {
 
     return IVector.fromPtr(value,
         iterableIid: '{e63de42b-53c3-5e07-90d3-98172d545412}',
-        creator: IUICommand.fromPtr);
+        tObjectCreator: IUICommand.fromPtr);
   }
 
   int get defaultCommandIndex {
@@ -164,7 +164,7 @@ class IMessageDialog extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IUICommand?>.fromPtr(
         messageDialogAsyncOperation,
-        creator: IUICommand.fromPtr);
+        tResultObjectCreator: IUICommand.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

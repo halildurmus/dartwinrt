@@ -148,7 +148,7 @@ class IFileIOStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVector<String>>.fromPtr(
         linesOperation,
-        creator: (ptr) => IVector.fromPtr(ptr,
+        tResultObjectCreator: (ptr) => IVector.fromPtr(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -169,7 +169,7 @@ class IFileIOStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVector<String>>.fromPtr(
         linesOperation,
-        creator: (ptr) => IVector.fromPtr(ptr,
+        tResultObjectCreator: (ptr) => IVector.fromPtr(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -260,8 +260,8 @@ class IFileIOStatics extends IInspectable {
       throwWindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IBuffer?>.fromPtr(operation, creator: IBuffer.fromPtr);
+    final asyncOperation = IAsyncOperation<IBuffer?>.fromPtr(operation,
+        tResultObjectCreator: IBuffer.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

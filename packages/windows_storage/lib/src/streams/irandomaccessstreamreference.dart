@@ -46,7 +46,7 @@ class IRandomAccessStreamReference extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IRandomAccessStreamWithContentType?>.fromPtr(operation,
-            creator: IRandomAccessStreamWithContentType.fromPtr);
+            tResultObjectCreator: IRandomAccessStreamWithContentType.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

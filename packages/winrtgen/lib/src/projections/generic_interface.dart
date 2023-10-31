@@ -138,12 +138,19 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   Set<String> get _superArguments => switch (shortName) {
         'IMap' || 'IMapView' || 'IVector' || 'IVectorView' => {
             if (typeArgs case [final typeArg1, final typeArg2]) ...{
-              if (typeArg1.isEnum) 'enumKeyCreator: enumKeyCreator',
-              if (typeArg2.isInspectable) 'creator: creator',
-              if (typeArg2.isEnum) 'enumCreator: enumCreator'
+              if (typeArg1.isEnum)
+                '${typeDef.genericParams[0].name.toCamelCase()}EnumCreator: ${typeDef.genericParams[0].name.toCamelCase()}EnumCreator'
+              else if (typeArg1.isInspectable)
+                '${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator: ${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator',
+              if (typeArg2.isEnum)
+                '${typeDef.genericParams[1].name.toCamelCase()}EnumCreator: ${typeDef.genericParams[1].name.toCamelCase()}EnumCreator'
+              else if (typeArg2.isInspectable)
+                '${typeDef.genericParams[1].name.toCamelCase()}ObjectCreator: ${typeDef.genericParams[1].name.toCamelCase()}ObjectCreator'
             } else if (typeArgs case [final typeArg]) ...{
-              if (typeArg.isInspectable) 'creator: creator',
-              if (typeArg.isEnum) 'enumCreator: enumCreator'
+              if (typeArg.isEnum)
+                '${typeDef.genericParams[0].name.toCamelCase()}EnumCreator: ${typeDef.genericParams[0].name.toCamelCase()}EnumCreator'
+              else if (typeArg.isInspectable)
+                '${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator: ${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator'
             }
           },
         _ => {}
@@ -153,24 +160,31 @@ final class GenericInterfaceProjection extends InterfaceProjection {
         if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
           'required super.iterableIid',
         if (typeArgs case [final typeArg1, final typeArg2]) ...{
-          if (typeArg1.isEnum) 'required this.enumKeyCreator',
-          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-              when typeArg1.isDouble)
-            'super.doubleType',
-          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-              when typeArg1.isInt)
-            'super.intType',
-          if (typeArg2.isInspectable) 'required this.creator',
-          if (typeArg2.isEnum) 'required this.enumCreator'
+          if (typeArg1.isEnum)
+            'required this.${typeDef.genericParams[0].name.toCamelCase()}EnumCreator'
+          else if (typeArg1.isInspectable)
+            'required this.${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator'
+          else if (typeArg1.isDouble)
+            'super.${typeDef.genericParams[0].name.toCamelCase()}DoubleType'
+          else if (typeArg1.isInt)
+            'super.${typeDef.genericParams[0].name.toCamelCase()}IntType',
+          if (typeArg2.isEnum)
+            'required this.${typeDef.genericParams[1].name.toCamelCase()}EnumCreator'
+          else if (typeArg2.isInspectable)
+            'required this.${typeDef.genericParams[1].name.toCamelCase()}ObjectCreator'
+          else if (typeArg2.isDouble)
+            'super.${typeDef.genericParams[1].name.toCamelCase()}DoubleType'
+          else if (typeArg2.isInt)
+            'super.${typeDef.genericParams[1].name.toCamelCase()}IntType',
         } else if (typeArgs case [final typeArg]) ...{
-          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-              when typeArg.isDouble)
-            'super.doubleType',
-          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-              when typeArg.isInt)
-            'super.intType',
-          if (typeArg.isInspectable) 'required this.creator',
-          if (typeArg.isEnum) 'required this.enumCreator'
+          if (typeArg.isEnum)
+            'required this.${typeDef.genericParams[0].name.toCamelCase()}EnumCreator'
+          else if (typeArg.isInspectable)
+            'required this.${typeDef.genericParams[0].name.toCamelCase()}ObjectCreator'
+          else if (typeArg.isDouble)
+            'super.${typeDef.genericParams[0].name.toCamelCase()}DoubleType'
+          else if (typeArg.isInt)
+            'super.${typeDef.genericParams[0].name.toCamelCase()}IntType',
         }
       };
 
@@ -194,16 +208,18 @@ final class GenericInterfaceProjection extends InterfaceProjection {
       'late final _${className}Vtbl _vtable = ptr.ref.vtable.cast<_${className}Vtbl>().ref;',
       if (typeArgs case [final typeArg1, final typeArg2]) ...{
         if (typeArg1.isEnum)
-          'final EnumCreator<${genericParams[0].name}> enumKeyCreator;',
-        if (typeArg2.isInspectable)
-          'final COMObjectCreator<${genericParams[1].name}> creator;',
+          'final EnumCreator<${genericParams[0].name}> ${genericParams[0].name.toCamelCase()}EnumCreator;'
+        else if (typeArg1.isInspectable)
+          'final COMObjectCreator<${genericParams[0].name}> ${genericParams[0].name.toCamelCase()}ObjectCreator;',
         if (typeArg2.isEnum)
-          'final EnumCreator<${genericParams[1].name}> enumCreator;'
+          'final EnumCreator<${genericParams[1].name}> ${genericParams[1].name.toCamelCase()}EnumCreator;'
+        else if (typeArg2.isInspectable)
+          'final COMObjectCreator<${genericParams[1].name}> ${genericParams[1].name.toCamelCase()}ObjectCreator;'
       } else if (typeArgs case [final typeArg]) ...{
-        if (typeArg.isInspectable)
-          'final COMObjectCreator<${genericParams[0].name}> creator;',
         if (typeArg.isEnum)
-          'final EnumCreator<${genericParams[0].name}> enumCreator;'
+          'final EnumCreator<${genericParams[0].name}> ${genericParams[0].name.toCamelCase()}EnumCreator;'
+        else if (typeArg.isInspectable)
+          'final COMObjectCreator<${genericParams[0].name}> ${genericParams[0].name.toCamelCase()}ObjectCreator;'
       }
     };
   }

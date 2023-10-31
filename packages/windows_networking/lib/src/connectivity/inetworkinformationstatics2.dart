@@ -49,9 +49,9 @@ class INetworkInformationStatics2 extends IInspectable {
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectionProfile?>>.fromPtr(
             value,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: ConnectionProfile.fromPtr,
-                iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}',
+                tObjectCreator: ConnectionProfile.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

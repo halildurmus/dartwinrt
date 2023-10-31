@@ -50,7 +50,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(operation,
-        creator: ToastNotifier.fromPtr);
+        tResultObjectCreator: ToastNotifier.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -70,7 +70,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<ToastNotificationHistory?>.fromPtr(
         operation,
-        creator: ToastNotificationHistory.fromPtr);
+        tResultObjectCreator: ToastNotificationHistory.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

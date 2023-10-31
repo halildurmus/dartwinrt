@@ -44,7 +44,7 @@ class IToastNotificationHistory2 extends IInspectable {
 
     return IVectorView<ToastNotification?>.fromPtr(result,
             iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-            creator: ToastNotification.fromPtr)
+            tObjectCreator: ToastNotification.fromPtr)
         .toList();
   }
 
@@ -63,7 +63,7 @@ class IToastNotificationHistory2 extends IInspectable {
 
     return IVectorView<ToastNotification?>.fromPtr(result,
             iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-            creator: ToastNotification.fromPtr)
+            tObjectCreator: ToastNotification.fromPtr)
         .toList();
   }
 }

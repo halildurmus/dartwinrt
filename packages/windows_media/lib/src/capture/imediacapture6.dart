@@ -73,7 +73,7 @@ class IMediaCapture6 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<MultiSourceMediaFrameReader?>.fromPtr(value,
-            creator: MultiSourceMediaFrameReader.fromPtr);
+            tResultObjectCreator: MultiSourceMediaFrameReader.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

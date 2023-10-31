@@ -34,8 +34,8 @@ class XmlNodeList extends IInspectable
 
   late final _iVectorView = IVectorView<IXmlNode?>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
-      creator: IXmlNode.fromPtr,
-      iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
+      iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}',
+      tObjectCreator: IXmlNode.fromPtr);
 
   @override
   IXmlNode? getAt(int index) => _iVectorView.getAt(index);

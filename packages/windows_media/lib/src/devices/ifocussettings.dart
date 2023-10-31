@@ -129,7 +129,7 @@ class IFocusSettings extends IInspectable {
 
     return IReference<ManualFocusDistance?>.fromPtr(value,
             referenceIid: '{b0060b8a-1105-5ad4-963d-f6cf1905d349}',
-            enumCreator: ManualFocusDistance.from)
+            tEnumCreator: ManualFocusDistance.from)
         .value;
   }
 

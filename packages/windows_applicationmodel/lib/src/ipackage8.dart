@@ -225,7 +225,7 @@ class IPackage8 extends IInspectable {
 
     return IVectorView<AppListEntry?>.fromPtr(result,
             iterableIid: '{86f4d4ef-d8fd-5fb5-807c-72da8fc9e544}',
-            creator: AppListEntry.fromPtr)
+            tObjectCreator: AppListEntry.fromPtr)
         .toList();
   }
 

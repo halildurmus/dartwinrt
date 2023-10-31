@@ -47,7 +47,7 @@ class ILowLagMediaRecording3 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaCapturePauseResult?>.fromPtr(
         operation,
-        creator: MediaCapturePauseResult.fromPtr);
+        tResultObjectCreator: MediaCapturePauseResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -65,7 +65,7 @@ class ILowLagMediaRecording3 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaCaptureStopResult?>.fromPtr(
         operation,
-        creator: MediaCaptureStopResult.fromPtr);
+        tResultObjectCreator: MediaCaptureStopResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

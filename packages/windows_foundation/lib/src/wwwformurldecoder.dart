@@ -49,8 +49,8 @@ class WwwFormUrlDecoder extends IInspectable
 
   late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry?>.fromPtr(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
-      creator: IWwwFormUrlDecoderEntry.fromPtr,
-      iterableIid: '{876be83b-7218-5bfb-a169-83152ef7e146}');
+      iterableIid: '{876be83b-7218-5bfb-a169-83152ef7e146}',
+      tObjectCreator: IWwwFormUrlDecoderEntry.fromPtr);
 
   @override
   IWwwFormUrlDecoderEntry? getAt(int index) => _iVectorView.getAt(index);
