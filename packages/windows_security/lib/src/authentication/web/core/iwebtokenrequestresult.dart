@@ -51,7 +51,7 @@ class IWebTokenRequestResult extends IInspectable {
 
     return IVectorView<WebTokenResponse?>.fromPtr(value,
             iterableIid: '{7e5bb7ec-bbd7-5575-9a61-f5815fa22a0e}',
-            creator: WebTokenResponse.fromPtr)
+            tObjectCreator: WebTokenResponse.fromPtr)
         .toList();
   }
 

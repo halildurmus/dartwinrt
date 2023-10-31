@@ -40,8 +40,11 @@ void main() {
         throwWindowsException(hr);
       }
 
-      return IVectorView.fromPtr(retValuePtr,
-          creator: HostName.fromPtr, iterableIid: IID_IIterable_HostName);
+      return IVectorView.fromPtr(
+        retValuePtr,
+        iterableIid: IID_IIterable_HostName,
+        tObjectCreator: HostName.fromPtr,
+      );
     }
 
     IVectorView<HostName?> getVectorView() {

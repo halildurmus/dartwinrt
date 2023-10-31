@@ -44,8 +44,8 @@ class IOcrEngine extends IInspectable {
       throwWindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<OcrResult?>.fromPtr(result, creator: OcrResult.fromPtr);
+    final asyncOperation = IAsyncOperation<OcrResult?>.fromPtr(result,
+        tResultObjectCreator: OcrResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

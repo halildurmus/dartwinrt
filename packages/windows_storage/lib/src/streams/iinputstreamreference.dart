@@ -43,7 +43,7 @@ class IInputStreamReference extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<IInputStream?>.fromPtr(operation,
-        creator: IInputStream.fromPtr);
+        tResultObjectCreator: IInputStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

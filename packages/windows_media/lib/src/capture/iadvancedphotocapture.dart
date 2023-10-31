@@ -45,7 +45,7 @@ class IAdvancedPhotoCapture extends IInspectable {
 
     final asyncOperation = IAsyncOperation<AdvancedCapturedPhoto?>.fromPtr(
         operation,
-        creator: AdvancedCapturedPhoto.fromPtr);
+        tResultObjectCreator: AdvancedCapturedPhoto.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -64,7 +64,7 @@ class IAdvancedPhotoCapture extends IInspectable {
 
     final asyncOperation = IAsyncOperation<AdvancedCapturedPhoto?>.fromPtr(
         operation,
-        creator: AdvancedCapturedPhoto.fromPtr);
+        tResultObjectCreator: AdvancedCapturedPhoto.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

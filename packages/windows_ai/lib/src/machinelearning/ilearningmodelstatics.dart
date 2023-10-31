@@ -46,7 +46,7 @@ class ILearningModelStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
-        creator: LearningModel.fromPtr);
+        tResultObjectCreator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -65,7 +65,7 @@ class ILearningModelStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
-        creator: LearningModel.fromPtr);
+        tResultObjectCreator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -128,7 +128,7 @@ class ILearningModelStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
-        creator: LearningModel.fromPtr);
+        tResultObjectCreator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -151,7 +151,7 @@ class ILearningModelStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
-        creator: LearningModel.fromPtr);
+        tResultObjectCreator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

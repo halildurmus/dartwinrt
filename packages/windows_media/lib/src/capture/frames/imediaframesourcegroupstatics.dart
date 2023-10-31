@@ -46,9 +46,9 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<MediaFrameSourceGroup?>>.fromPtr(value,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: MediaFrameSourceGroup.fromPtr,
-                iterableIid: '{d0b71deb-76e8-5833-9623-2b1e1a8e1b72}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{d0b71deb-76e8-5833-9623-2b1e1a8e1b72}',
+                tObjectCreator: MediaFrameSourceGroup.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -66,7 +66,7 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaFrameSourceGroup?>.fromPtr(
         value,
-        creator: MediaFrameSourceGroup.fromPtr);
+        tResultObjectCreator: MediaFrameSourceGroup.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

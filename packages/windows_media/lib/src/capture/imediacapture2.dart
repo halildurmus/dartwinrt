@@ -55,7 +55,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagMediaRecording?>.fromPtr(
         operation,
-        creator: LowLagMediaRecording.fromPtr);
+        tResultObjectCreator: LowLagMediaRecording.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -75,7 +75,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagMediaRecording?>.fromPtr(
         operation,
-        creator: LowLagMediaRecording.fromPtr);
+        tResultObjectCreator: LowLagMediaRecording.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -95,7 +95,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagMediaRecording?>.fromPtr(
         operation,
-        creator: LowLagMediaRecording.fromPtr);
+        tResultObjectCreator: LowLagMediaRecording.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -125,7 +125,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagMediaRecording?>.fromPtr(
         operation,
-        creator: LowLagMediaRecording.fromPtr);
+        tResultObjectCreator: LowLagMediaRecording.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -144,7 +144,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagPhotoCapture?>.fromPtr(
         operation,
-        creator: LowLagPhotoCapture.fromPtr);
+        tResultObjectCreator: LowLagPhotoCapture.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -163,7 +163,7 @@ class IMediaCapture2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<LowLagPhotoSequenceCapture?>.fromPtr(
         operation,
-        creator: LowLagPhotoSequenceCapture.fromPtr);
+        tResultObjectCreator: LowLagPhotoSequenceCapture.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

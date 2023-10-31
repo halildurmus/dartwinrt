@@ -46,7 +46,7 @@ class IMediaDeviceController extends IInspectable {
 
     return IVectorView<IMediaEncodingProperties?>.fromPtr(value,
             iterableIid: '{d7fc75d5-3492-5bbb-9b34-dac3e24e79d0}',
-            creator: IMediaEncodingProperties.fromPtr)
+            tObjectCreator: IMediaEncodingProperties.fromPtr)
         .toList();
   }
 

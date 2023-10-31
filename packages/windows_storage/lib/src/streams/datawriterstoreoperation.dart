@@ -23,7 +23,7 @@ class DataWriterStoreOperation extends IInspectable
 
   late final _iAsyncOperation = IAsyncOperation<int>.fromPtr(
       toInterface('{ef60385f-be78-584b-aaef-7829ada2b0de}'),
-      intType: IntType.uint32);
+      tResultIntType: IntType.uint32);
 
   @override
   set completed(Pointer<COMObject> handler) =>

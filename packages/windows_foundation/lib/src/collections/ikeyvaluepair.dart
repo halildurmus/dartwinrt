@@ -18,7 +18,13 @@ part 'ikeyvaluepair_part.dart';
 /// two type parameters into one to satisfy the constraints of another generic
 /// interface.
 abstract interface class IKeyValuePair<K, V> extends IInspectable {
-  IKeyValuePair(super.ptr);
+  IKeyValuePair(
+    super.ptr, {
+    DoubleType? kDoubleType,
+    IntType? kIntType,
+    DoubleType? vDoubleType,
+    IntType? vIntType,
+  });
 
   /// Creates an instance of [IKeyValuePair] from the given [ptr].
   ///
@@ -28,37 +34,42 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
   /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.,
   /// `IJsonValue?`), or `WinRTEnum` (e.g., `ChatMessageStatus`).
   ///
-  /// [creator] must be specified if [V] is `IInspectable?`.
-  /// ```dart
-  /// final keyValuePair = IKeyValuePair<String, IJsonValue?>.fromPtr
-  ///     (ptr, creator: IJsonValue.fromPtr);
-  /// ```
-  ///
-  /// [enumKeyCreator] must be specified if [K] is `WinRTEnum`.
+  /// [kEnumCreator] must be specified if [K] is `WinRTEnum`.
   /// ```dart
   /// final keyValuePair =
   ///     IKeyValuePair<PedometerStepKind, PedometerReading?>.fromPtr
-  ///         (ptr, enumKeyCreator: PedometerStepKind.from,
-  ///         creator: PedometerReading.fromPtr);
+  ///         (ptr, kEnumCreator: PedometerStepKind.from,
+  ///         vObjectCreator: PedometerReading.fromPtr);
   /// ```
   ///
-  /// [enumCreator] must be specified if [V] is `WinRTEnum`.
+  /// [vEnumCreator] must be specified if [V] is `WinRTEnum`.
   /// ```dart
   /// final keyValuePair = IKeyValuePair<String, ChatMessageStatus>.fromPtr(ptr,
-  ///     enumCreator: ChatMessageStatus.from);
+  ///     vEnumCreator: ChatMessageStatus.from);
+  /// ```
+  ///
+  /// [vObjectCreator] must be specified if [V] is `IInspectable?`.
+  /// ```dart
+  /// final keyValuePair = IKeyValuePair<String, IJsonValue?>.fromPtr(ptr,
+  ///     vObjectCreator: IJsonValue.fromPtr);
   /// ```
   factory IKeyValuePair.fromPtr(
     Pointer<COMObject> ptr, {
-    COMObjectCreator<V>? creator,
-    EnumCreator<K>? enumKeyCreator,
-    EnumCreator<V>? enumCreator,
-    IntType? intType,
+    EnumCreator<K>? kEnumCreator,
+    IntType? kIntType,
+    EnumCreator<V>? vEnumCreator,
+    COMObjectCreator<V>? vObjectCreator,
   }) {
     if (K == Guid) {
       if (isSubtypeOfInspectable<V>()) {
-        if (creator == null) throw ArgumentError.notNull('creator');
-        return _IKeyValuePairGuidInspectable<V>.fromPtr(ptr, creator: creator)
-            as IKeyValuePair<K, V>;
+        if (vObjectCreator == null) {
+          throw ArgumentError.notNull('vObjectCreator');
+        }
+
+        return _IKeyValuePairGuidInspectable<V>.fromPtr(
+          ptr,
+          vObjectCreator: vObjectCreator,
+        ) as IKeyValuePair<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
@@ -67,23 +78,23 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
     }
 
     if (K == int && isSubtypeOfInspectable<V>()) {
-      if (creator == null) throw ArgumentError.notNull('creator');
-      if (intType == null) throw ArgumentError.notNull('intType');
-      final keyValuePair = switch (intType) {
-        IntType.int16 =>
-          _IKeyValuePairInt16Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.int32 =>
-          _IKeyValuePairInt32Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.int64 =>
-          _IKeyValuePairInt64Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.uint8 =>
-          _IKeyValuePairUint8Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.uint16 =>
-          _IKeyValuePairUint16Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.uint32 =>
-          _IKeyValuePairUint32Inspectable<V>.fromPtr(ptr, creator: creator),
-        IntType.uint64 =>
-          _IKeyValuePairUint64Inspectable<V>.fromPtr(ptr, creator: creator)
+      if (vObjectCreator == null) throw ArgumentError.notNull('vObjectCreator');
+      if (kIntType == null) throw ArgumentError.notNull('kIntType');
+      final keyValuePair = switch (kIntType) {
+        IntType.int16 => _IKeyValuePairInt16Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.int32 => _IKeyValuePairInt32Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.int64 => _IKeyValuePairInt64Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.uint8 => _IKeyValuePairUint8Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.uint16 => _IKeyValuePairUint16Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.uint32 => _IKeyValuePairUint32Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator),
+        IntType.uint64 => _IKeyValuePairUint64Inspectable<V>.fromPtr(ptr,
+            kIntType: kIntType, vObjectCreator: vObjectCreator)
       };
       return keyValuePair as IKeyValuePair<K, V>;
     }
@@ -94,21 +105,24 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
       }
 
       if (isSubtypeOfInspectable<V>()) {
-        if (creator == null) throw ArgumentError.notNull('creator');
-        return _IKeyValuePairStringInspectable<V>.fromPtr(ptr, creator: creator)
-            as IKeyValuePair<K, V>;
+        if (vObjectCreator == null) {
+          throw ArgumentError.notNull('vObjectCreator');
+        }
+
+        return _IKeyValuePairStringInspectable<V>.fromPtr(ptr,
+            vObjectCreator: vObjectCreator) as IKeyValuePair<K, V>;
       }
 
       if (isSubtypeOfWinRTFlagsEnum<V>()) {
-        if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+        if (vEnumCreator == null) throw ArgumentError.notNull('vEnumCreator');
         return _IKeyValuePairStringWinRTFlagsEnum<V>.fromPtr(ptr,
-            enumCreator: enumCreator) as IKeyValuePair<K, V>;
+            vEnumCreator: vEnumCreator) as IKeyValuePair<K, V>;
       }
 
       if (isSubtypeOfWinRTEnum<V>()) {
-        if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+        if (vEnumCreator == null) throw ArgumentError.notNull('vEnumCreator');
         return _IKeyValuePairStringWinRTEnum<V>.fromPtr(ptr,
-            enumCreator: enumCreator) as IKeyValuePair<K, V>;
+            vEnumCreator: vEnumCreator) as IKeyValuePair<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
@@ -117,16 +131,22 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
     }
 
     if (isSubtypeOfWinRTEnum<K>() && isSubtypeOfInspectable<V>()) {
-      if (enumKeyCreator == null) throw ArgumentError.notNull('enumKeyCreator');
-      if (creator == null) throw ArgumentError.notNull('creator');
+      if (kEnumCreator == null) throw ArgumentError.notNull('kEnumCreator');
+      if (vObjectCreator == null) throw ArgumentError.notNull('vObjectCreator');
 
       if (isSubtypeOfWinRTFlagsEnum<K>()) {
-        return _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(ptr,
-            creator: creator, enumKeyCreator: enumKeyCreator);
+        return _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(
+          ptr,
+          kEnumCreator: kEnumCreator,
+          vObjectCreator: vObjectCreator,
+        );
       }
 
-      return _IKeyValuePairWinRTEnumInspectable.fromPtr(ptr,
-          creator: creator, enumKeyCreator: enumKeyCreator);
+      return _IKeyValuePairWinRTEnumInspectable.fromPtr(
+        ptr,
+        kEnumCreator: kEnumCreator,
+        vObjectCreator: vObjectCreator,
+      );
     }
 
     if (K == Uri && V == String) {

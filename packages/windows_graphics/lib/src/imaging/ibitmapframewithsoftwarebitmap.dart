@@ -56,7 +56,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
-        creator: SoftwareBitmap.fromPtr);
+        tResultObjectCreator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -75,7 +75,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
-        creator: SoftwareBitmap.fromPtr);
+        tResultObjectCreator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -110,7 +110,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
-        creator: SoftwareBitmap.fromPtr);
+        tResultObjectCreator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

@@ -44,7 +44,7 @@ class IPdfDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<PdfDocument?>.fromPtr(asyncInfo,
-        creator: PdfDocument.fromPtr);
+        tResultObjectCreator: PdfDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -63,7 +63,7 @@ class IPdfDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<PdfDocument?>.fromPtr(asyncInfo,
-        creator: PdfDocument.fromPtr);
+        tResultObjectCreator: PdfDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -81,7 +81,7 @@ class IPdfDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<PdfDocument?>.fromPtr(asyncInfo,
-        creator: PdfDocument.fromPtr);
+        tResultObjectCreator: PdfDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -100,7 +100,7 @@ class IPdfDocumentStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<PdfDocument?>.fromPtr(asyncInfo,
-        creator: PdfDocument.fromPtr);
+        tResultObjectCreator: PdfDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

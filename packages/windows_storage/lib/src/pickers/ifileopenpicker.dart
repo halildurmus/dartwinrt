@@ -162,7 +162,7 @@ class IFileOpenPicker extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -180,9 +180,9 @@ class IFileOpenPicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFile.fromPtr,
-            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}',
+            tObjectCreator: StorageFile.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

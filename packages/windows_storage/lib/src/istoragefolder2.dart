@@ -44,7 +44,7 @@ class IStorageFolder2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(operation,
-        creator: IStorageItem.fromPtr);
+        tResultObjectCreator: IStorageItem.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

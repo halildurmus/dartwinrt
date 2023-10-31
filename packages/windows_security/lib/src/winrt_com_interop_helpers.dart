@@ -57,8 +57,9 @@ final class WebAuthenticationCoreManagerInterop {
       }
 
       final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
-          asyncOperationPtr,
-          creator: WebTokenRequestResult.fromPtr);
+        asyncOperationPtr,
+        tResultObjectCreator: WebTokenRequestResult.fromPtr,
+      );
       return asyncOperation.toFuture(asyncOperation.getResults);
     } finally {
       free(pIID);
@@ -99,8 +100,9 @@ final class WebAuthenticationCoreManagerInterop {
       }
 
       final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
-          asyncOperationPtr,
-          creator: WebTokenRequestResult.fromPtr);
+        asyncOperationPtr,
+        tResultObjectCreator: WebTokenRequestResult.fromPtr,
+      );
       return asyncOperation.toFuture(asyncOperation.getResults);
     } finally {
       free(pIID);

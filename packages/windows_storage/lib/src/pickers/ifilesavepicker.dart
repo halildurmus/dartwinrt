@@ -122,7 +122,7 @@ class IFileSavePicker extends IInspectable {
 
     return IMap.fromPtr(value,
         iterableIid: '{4fed2669-d0d3-59f6-91d9-95902d728d6a}',
-        creator: (ptr) => IVector.fromPtr(ptr,
+        vObjectCreator: (ptr) => IVector.fromPtr(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
   }
 
@@ -215,7 +215,7 @@ class IFileSavePicker extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

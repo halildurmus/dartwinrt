@@ -30,8 +30,8 @@ class BitmapPropertySet extends IInspectable
 
   late final _iMap = IMap<String, BitmapTypedValue?>.fromPtr(
       toInterface('{2c70ef8d-5d4c-5185-8db7-fed87728165d}'),
-      creator: BitmapTypedValue.fromPtr,
-      iterableIid: '{05f9430c-2f22-5638-aa89-8c9abcd54ff9}');
+      iterableIid: '{05f9430c-2f22-5638-aa89-8c9abcd54ff9}',
+      vObjectCreator: BitmapTypedValue.fromPtr);
 
   @override
   BitmapTypedValue? lookup(String key) => _iMap.lookup(key);

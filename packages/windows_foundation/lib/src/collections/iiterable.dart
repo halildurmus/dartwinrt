@@ -15,11 +15,6 @@ import 'iiterator.dart';
 /// Exposes an iterator that supports simple iteration over a collection of a
 /// specified type.
 interface class IIterable<T> extends IInspectable {
-  final COMObjectCreator<T>? _creator;
-  final EnumCreator<T>? _enumCreator;
-  final DoubleType? _doubleType;
-  final IntType? _intType;
-
   /// Creates an instance of [IIterable] from the given [ptr].
   ///
   /// [T] must be of type `bool`, `DateTime`, `double`, `Duration`, `Guid`,
@@ -27,54 +22,59 @@ interface class IIterable<T> extends IInspectable {
   /// `StorageFile?`), `WinRTEnum` (e.g., `DeviceClass`), or `WinRTStruct`
   /// (e.g., `BasicGeoposition`).
   ///
-  /// [doubleType] must be specified if [T] is `double`.
+  /// [tDoubleType] must be specified if [T] is `double`.
   /// ```dart
   /// final iterable =
-  ///     IIterable<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  ///     IIterable<double>.fromPtr(ptr, tDoubleType: DoubleType.float);
   /// ```
   ///
-  /// [intType] must be specified if [T] is `int`.
+  /// [tIntType] must be specified if [T] is `int`.
   /// ```dart
-  /// final iterable = IIterable<int>.fromPtr(ptr, intType: IntType.uint64);
+  /// final iterable = IIterable<int>.fromPtr(ptr, tIntType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable?`.
+  /// [tObjectCreator] must be specified if [T] is `IInspectable?`.
   /// ```dart
   /// final iterable = IIterable<StorageFile?>.fromPtr(ptr,
-  ///     creator: StorageFile.fromPtr);
+  ///     tObjectCreator: StorageFile.fromPtr);
   /// ```
   ///
-  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
+  /// [tEnumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final iterable = IIterable<DeviceClass>.fromPtr(ptr,
-  ///     enumCreator: DeviceClass.from);
+  ///     tEnumCreator: DeviceClass.from);
   /// ```
   IIterable.fromPtr(
     super.ptr, {
-    COMObjectCreator<T>? creator,
-    EnumCreator<T>? enumCreator,
-    DoubleType? doubleType,
-    IntType? intType,
-  })  : _creator = creator,
-        _enumCreator = enumCreator,
-        _doubleType = doubleType,
-        _intType = intType {
-    if (doubleType == null && this is IIterable<double>) {
-      throw ArgumentError.notNull('doubleType');
+    EnumCreator<T>? tEnumCreator,
+    COMObjectCreator<T>? tObjectCreator,
+    DoubleType? tDoubleType,
+    IntType? tIntType,
+  })  : _tEnumCreator = tEnumCreator,
+        _tObjectCreator = tObjectCreator,
+        _tDoubleType = tDoubleType,
+        _tIntType = tIntType {
+    if (tDoubleType == null && this is IIterable<double>) {
+      throw ArgumentError.notNull('tDoubleType');
     }
 
-    if (intType == null && this is IIterable<int>) {
-      throw ArgumentError.notNull('intType');
+    if (tIntType == null && this is IIterable<int>) {
+      throw ArgumentError.notNull('tIntType');
     }
 
-    if (creator == null && this is IIterable<IInspectable>) {
-      throw ArgumentError.notNull('creator');
+    if (tObjectCreator == null && this is IIterable<IInspectable>) {
+      throw ArgumentError.notNull('tObjectCreator');
     }
 
-    if (enumCreator == null && this is IIterable<WinRTEnum>) {
-      throw ArgumentError.notNull('enumCreator');
+    if (tEnumCreator == null && this is IIterable<WinRTEnum>) {
+      throw ArgumentError.notNull('tEnumCreator');
     }
   }
+
+  final EnumCreator<T>? _tEnumCreator;
+  final COMObjectCreator<T>? _tObjectCreator;
+  final DoubleType? _tDoubleType;
+  final IntType? _tIntType;
 
   late final _IIterableVtbl __vtable =
       ptr.ref.vtable.cast<_IIterableVtbl>().ref;
@@ -92,11 +92,13 @@ interface class IIterable<T> extends IInspectable {
       throwWindowsException(hr);
     }
 
-    return IIterator.fromPtr(retValuePtr,
-        creator: _creator,
-        enumCreator: _enumCreator,
-        doubleType: _doubleType,
-        intType: _intType);
+    return IIterator.fromPtr(
+      retValuePtr,
+      tEnumCreator: _tEnumCreator,
+      tObjectCreator: _tObjectCreator,
+      tDoubleType: _tDoubleType,
+      tIntType: _tIntType,
+    );
   }
 }
 

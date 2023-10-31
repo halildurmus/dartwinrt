@@ -49,7 +49,7 @@ class ISceneModeControl extends IInspectable {
 
     return IVectorView<CaptureSceneMode>.fromPtr(value,
             iterableIid: '{16d26b98-2cbc-52f0-ab64-1723714418e9}',
-            enumCreator: CaptureSceneMode.from)
+            tEnumCreator: CaptureSceneMode.from)
         .toList();
   }
 

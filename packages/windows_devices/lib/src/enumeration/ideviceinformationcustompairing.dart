@@ -52,7 +52,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
-        creator: DevicePairingResult.fromPtr);
+        tResultObjectCreator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -72,7 +72,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
-        creator: DevicePairingResult.fromPtr);
+        tResultObjectCreator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -101,7 +101,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
-        creator: DevicePairingResult.fromPtr);
+        tResultObjectCreator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

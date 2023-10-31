@@ -56,28 +56,14 @@ void main() {
       expect(
           methodForwardersProjection.constructorArgs,
           equals(
-              ", creator: IJsonValue.fromPtr, iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}'"));
-    });
-
-    test('creatorArgument', () {
-      expect(methodForwardersProjection.creatorArgument,
-          equals('creator: IJsonValue.fromPtr'));
-    });
-
-    test('iterableIidArgument', () {
-      expect(methodForwardersProjection.iterableIidArgument,
-          equals("iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}'"));
-    });
-
-    test('intTypeArgument', () {
-      expect(methodForwardersProjection.intTypeArgument, isNull);
+              ", iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}', tObjectCreator: IJsonValue.fromPtr"));
     });
 
     test('interfaceInsantiation', () {
       expect(
           methodForwardersProjection.interfaceInstantiation,
           equals(
-              "IVector<IJsonValue?>.fromPtr(toInterface('{d44662bc-dce3-59a8-9272-4b210f33908b}'), creator: IJsonValue.fromPtr, iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}');"));
+              "IVector<IJsonValue?>.fromPtr(toInterface('{d44662bc-dce3-59a8-9272-4b210f33908b}'), iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}', tObjectCreator: IJsonValue.fromPtr);"));
     });
 
     test('methods', () {

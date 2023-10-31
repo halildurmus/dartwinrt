@@ -25,7 +25,7 @@ part 'iiterator_part.dart';
 
 /// Supports simple iteration over a collection.
 abstract interface class IIterator<T> extends IInspectable {
-  IIterator(super.ptr);
+  IIterator(super.ptr, {DoubleType? tDoubleType, IntType? tIntType});
 
   /// Creates an instance of [IIterator] from the given [ptr].
   ///
@@ -34,34 +34,34 @@ abstract interface class IIterator<T> extends IInspectable {
   /// `StorageFile?`), `WinRTEnum` (e.g., `DeviceClass`), or `WinRTStruct`
   /// (e.g., `BasicGeoposition`).
   ///
-  /// [doubleType] must be specified if [T] is `double`.
+  /// [tDoubleType] must be specified if [T] is `double`.
   /// ```dart
   /// final iterator =
-  ///     IIterator<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  ///     IIterator<double>.fromPtr(ptr, tDoubleType: DoubleType.float);
   /// ```
   ///
-  /// [intType] must be specified if [T] is `int`.
+  /// [tIntType] must be specified if [T] is `int`.
   /// ```dart
-  /// final iterator = IIterator<int>.fromPtr(ptr, intType: IntType.uint64);
+  /// final iterator = IIterator<int>.fromPtr(ptr, tIntType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable?`.
+  /// [tObjectCreator] must be specified if [T] is `IInspectable?`.
   /// ```dart
   /// final iterator = IIterator<StorageFile?>.fromPtr(ptr,
-  ///     creator: StorageFile.fromPtr);
+  ///     tObjectCreator: StorageFile.fromPtr);
   /// ```
   ///
-  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
+  /// [tEnumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final iterator = IIterator<DeviceClass>.fromPtr(ptr,
-  ///     enumCreator: DeviceClass.from);
+  ///     tEnumCreator: DeviceClass.from);
   /// ```
   factory IIterator.fromPtr(
     Pointer<COMObject> ptr, {
-    COMObjectCreator<T>? creator,
-    EnumCreator<T>? enumCreator,
-    DoubleType? doubleType,
-    IntType? intType,
+    EnumCreator<T>? tEnumCreator,
+    COMObjectCreator<T>? tObjectCreator,
+    DoubleType? tDoubleType,
+    IntType? tIntType,
   }) {
     if (T == bool) return _IIteratorBool.fromPtr(ptr) as IIterator<T>;
     if (T == DateTime) return _IIteratorDateTime.fromPtr(ptr) as IIterator<T>;
@@ -69,44 +69,46 @@ abstract interface class IIterator<T> extends IInspectable {
     if (T == Guid) return _IIteratorGuid.fromPtr(ptr) as IIterator<T>;
 
     if (T == double) {
-      if (doubleType == null) throw ArgumentError.notNull('doubleType');
-      final iterator = switch (doubleType) {
-        DoubleType.double => _IIteratorDouble.fromPtr(ptr),
-        DoubleType.float => _IIteratorFloat.fromPtr(ptr),
+      if (tDoubleType == null) throw ArgumentError.notNull('tDoubleType');
+      final iterator = switch (tDoubleType) {
+        DoubleType.double =>
+          _IIteratorDouble.fromPtr(ptr, tDoubleType: tDoubleType),
+        DoubleType.float =>
+          _IIteratorFloat.fromPtr(ptr, tDoubleType: tDoubleType),
       };
       return iterator as IIterator<T>;
     }
 
     if (T == int) {
-      if (intType == null) throw ArgumentError.notNull('intType');
-      final iterator = switch (intType) {
-        IntType.int16 => _IIteratorInt16.fromPtr(ptr),
-        IntType.int32 => _IIteratorInt32.fromPtr(ptr),
-        IntType.int64 => _IIteratorInt64.fromPtr(ptr),
-        IntType.uint8 => _IIteratorUint8.fromPtr(ptr),
-        IntType.uint16 => _IIteratorUint16.fromPtr(ptr),
-        IntType.uint32 => _IIteratorUint32.fromPtr(ptr),
-        IntType.uint64 => _IIteratorUint64.fromPtr(ptr)
+      if (tIntType == null) throw ArgumentError.notNull('tIntType');
+      final iterator = switch (tIntType) {
+        IntType.int16 => _IIteratorInt16.fromPtr(ptr, tIntType: tIntType),
+        IntType.int32 => _IIteratorInt32.fromPtr(ptr, tIntType: tIntType),
+        IntType.int64 => _IIteratorInt64.fromPtr(ptr, tIntType: tIntType),
+        IntType.uint8 => _IIteratorUint8.fromPtr(ptr, tIntType: tIntType),
+        IntType.uint16 => _IIteratorUint16.fromPtr(ptr, tIntType: tIntType),
+        IntType.uint32 => _IIteratorUint32.fromPtr(ptr, tIntType: tIntType),
+        IntType.uint64 => _IIteratorUint64.fromPtr(ptr, tIntType: tIntType)
       };
       return iterator as IIterator<T>;
     }
 
     if (isSubtypeOfInspectable<T>()) {
-      if (creator == null) throw ArgumentError.notNull('creator');
-      return _IIteratorInspectable.fromPtr(ptr, creator: creator);
+      if (tObjectCreator == null) throw ArgumentError.notNull('tObjectCreator');
+      return _IIteratorInspectable.fromPtr(ptr, tObjectCreator: tObjectCreator);
     }
 
     if (T == String) return _IIteratorString.fromPtr(ptr) as IIterator<T>;
     if (isSubtype<T, Uri>()) return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
 
     if (isSubtypeOfWinRTFlagsEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IIteratorWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
+      return _IIteratorWinRTFlagsEnum.fromPtr(ptr, tEnumCreator: tEnumCreator);
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IIteratorWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
+      return _IIteratorWinRTEnum.fromPtr(ptr, tEnumCreator: tEnumCreator);
     }
 
     if (isNullableObjectType<T>()) {

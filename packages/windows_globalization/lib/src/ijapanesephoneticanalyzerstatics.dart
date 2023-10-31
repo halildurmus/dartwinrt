@@ -47,7 +47,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
 
     return IVectorView<JapanesePhoneme?>.fromPtr(result,
             iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
-            creator: JapanesePhoneme.fromPtr)
+            tObjectCreator: JapanesePhoneme.fromPtr)
         .toList();
   }
 
@@ -67,7 +67,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
 
     return IVectorView<JapanesePhoneme?>.fromPtr(result,
             iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
-            creator: JapanesePhoneme.fromPtr)
+            tObjectCreator: JapanesePhoneme.fromPtr)
         .toList();
   }
 }

@@ -205,7 +205,7 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, equals('enumCreator(value.value)'));
+      expect(projection.creator, equals('tEnumCreator(value.value)'));
       expect(projection.into, equals('(value as WinRTEnum).value'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
@@ -230,7 +230,7 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, equals('enumCreator(value.value)'));
+      expect(projection.creator, equals('tEnumCreator(value.value)'));
       expect(projection.into, equals('(value as WinRTEnum).value'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
@@ -255,7 +255,7 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, equals('creator(value)'));
+      expect(projection.creator, equals('tObjectCreator(value)'));
       expect(projection.into, equals('(value as IInspectable).lpVtbl'));
       expect(projection.preambles, isEmpty);
       expect(
@@ -423,7 +423,7 @@ void main() {
       expect(projection.creator, equalsIgnoringWhitespace('''
         IReference<BluetoothLEAdvertisementFlags?>.fromPtr(value,
             referenceIid: '{91c0ba96-9e69-5b82-bf1d-83ab2a509c53}',
-            enumCreator: BluetoothLEAdvertisementFlags.from).value
+            tEnumCreator: BluetoothLEAdvertisementFlags.from).value
 '''));
       expect(projection.into, equals('value?.toReference().lpVtbl ?? nullptr'));
       expect(projection.preambles, isEmpty);
@@ -477,7 +477,7 @@ void main() {
       expect(projection.creator, equalsIgnoringWhitespace('''
         IVector.fromPtr(dnsServerList,
           iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
-          creator: HostName.fromPtr)
+          tObjectCreator: HostName.fromPtr)
 '''));
       expect(projection.into, equals('dnsServerList.lpVtbl'));
       expect(projection.preambles, isEmpty);

@@ -97,7 +97,7 @@ class IGamepadStatics extends IInspectable {
 
     return IVectorView<Gamepad?>.fromPtr(value,
             iterableIid: '{47132ba0-6b17-5cd2-a8bd-b5d3443ccb13}',
-            creator: Gamepad.fromPtr)
+            tObjectCreator: Gamepad.fromPtr)
         .toList();
   }
 }

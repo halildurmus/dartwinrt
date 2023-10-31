@@ -439,7 +439,7 @@ final class __IIteratorDateTimeVtbl extends Struct {
 }
 
 final class _IIteratorDouble extends IIterator<double> {
-  _IIteratorDouble.fromPtr(super.ptr);
+  _IIteratorDouble.fromPtr(super.ptr, {super.tDoubleType});
 
   late final __IIteratorDoubleVtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorDoubleVtbl>().ref;
@@ -573,7 +573,7 @@ final class __IIteratorDurationVtbl extends Struct {
 }
 
 final class _IIteratorFloat extends IIterator<double> {
-  _IIteratorFloat.fromPtr(super.ptr);
+  _IIteratorFloat.fromPtr(super.ptr, {super.tDoubleType});
 
   late final __IIteratorFloatVtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorFloatVtbl>().ref;
@@ -781,7 +781,7 @@ final class __IIteratorGuidVtbl extends Struct {
 }
 
 final class _IIteratorInt16 extends IIterator<int> {
-  _IIteratorInt16.fromPtr(super.ptr);
+  _IIteratorInt16.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorInt16Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorInt16Vtbl>().ref;
@@ -848,7 +848,7 @@ final class __IIteratorInt16Vtbl extends Struct {
 }
 
 final class _IIteratorInt32 extends IIterator<int> {
-  _IIteratorInt32.fromPtr(super.ptr);
+  _IIteratorInt32.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorInt32Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorInt32Vtbl>().ref;
@@ -915,7 +915,7 @@ final class __IIteratorInt32Vtbl extends Struct {
 }
 
 final class _IIteratorInt64 extends IIterator<int> {
-  _IIteratorInt64.fromPtr(super.ptr);
+  _IIteratorInt64.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorInt64Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorInt64Vtbl>().ref;
@@ -1203,11 +1203,11 @@ final class __IIteratorNitRangeVtbl extends Struct {
 }
 
 final class _IIteratorInspectable<T> extends IIterator<T> {
-  _IIteratorInspectable.fromPtr(super.ptr, {required this.creator});
+  _IIteratorInspectable.fromPtr(super.ptr, {required this.tObjectCreator});
 
   late final __IIteratorInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorInspectableVtbl>().ref;
-  final COMObjectCreator<T> creator;
+  final COMObjectCreator<T> tObjectCreator;
 
   @override
   T get current {
@@ -1227,7 +1227,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
       return null as T;
     }
 
-    return creator(retValuePtr);
+    return tObjectCreator(retValuePtr);
   }
 
   @override
@@ -1245,7 +1245,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(creator, length: retValuePtr.value)
+        items: items.toList(tObjectCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -2213,7 +2213,7 @@ final class __IIteratorTextSegmentVtbl extends Struct {
 }
 
 final class _IIteratorUint8 extends IIterator<int> {
-  _IIteratorUint8.fromPtr(super.ptr);
+  _IIteratorUint8.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorUint8Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorUint8Vtbl>().ref;
@@ -2280,7 +2280,7 @@ final class __IIteratorUint8Vtbl extends Struct {
 }
 
 final class _IIteratorUint16 extends IIterator<int> {
-  _IIteratorUint16.fromPtr(super.ptr);
+  _IIteratorUint16.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorUint16Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorUint16Vtbl>().ref;
@@ -2347,7 +2347,7 @@ final class __IIteratorUint16Vtbl extends Struct {
 }
 
 final class _IIteratorUint32 extends IIterator<int> {
-  _IIteratorUint32.fromPtr(super.ptr);
+  _IIteratorUint32.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorUint32Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorUint32Vtbl>().ref;
@@ -2414,7 +2414,7 @@ final class __IIteratorUint32Vtbl extends Struct {
 }
 
 final class _IIteratorUint64 extends IIterator<int> {
-  _IIteratorUint64.fromPtr(super.ptr);
+  _IIteratorUint64.fromPtr(super.ptr, {super.tIntType});
 
   late final __IIteratorUint64Vtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorUint64Vtbl>().ref;
@@ -2555,11 +2555,11 @@ final class __IIteratorWindowIdVtbl extends Struct {
 }
 
 final class _IIteratorWinRTEnum<T> extends IIterator<T> {
-  _IIteratorWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IIteratorWinRTEnum.fromPtr(super.ptr, {required this.tEnumCreator});
 
   late final __IIteratorWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorWinRTEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T get current {
@@ -2572,7 +2572,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -2593,7 +2593,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
 
       return (
         retValuePtr.value,
-        items: items.toEnumList(enumCreator, length: retValuePtr.value)
+        items: items.toEnumList(tEnumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -2623,11 +2623,11 @@ final class __IIteratorWinRTEnumVtbl extends Struct {
 }
 
 final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
-  _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {required this.tEnumCreator});
 
   late final __IIteratorWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IIteratorWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T get current {
@@ -2640,7 +2640,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -2661,7 +2661,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
 
       return (
         retValuePtr.value,
-        items: items.toEnumList(enumCreator, length: retValuePtr.value)
+        items: items.toEnumList(tEnumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);

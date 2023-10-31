@@ -50,9 +50,9 @@ class IStorageFileQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFile.fromPtr,
-            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}',
+            tObjectCreator: StorageFile.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -70,9 +70,9 @@ class IStorageFileQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFile.fromPtr,
-            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}',
+            tObjectCreator: StorageFile.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

@@ -11,12 +11,12 @@ part of 'imapview.dart';
 
 final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
   _IMapViewGuidInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid, required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewGuidInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewGuidInspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(Guid key) {
@@ -40,7 +40,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -164,12 +164,14 @@ final class __IMapViewGuidObjectVtbl extends Struct {
 
 final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewInt16InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewInt16InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -189,7 +191,7 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -233,12 +235,14 @@ final class __IMapViewInt16InspectableVtbl extends Struct {
 
 final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewInt32InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewInt32InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -258,7 +262,7 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -302,12 +306,14 @@ final class __IMapViewInt32InspectableVtbl extends Struct {
 
 final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewInt64InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewInt64InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -327,7 +333,7 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -438,12 +444,12 @@ final class __IMapViewObjectObjectVtbl extends Struct {
 
 final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   _IMapViewStringInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid, required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewStringInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewStringInspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(String key) {
@@ -464,7 +470,7 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -641,12 +647,12 @@ final class __IMapViewStringStringVtbl extends Struct {
 
 final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   _IMapViewStringWinRTEnum.fromPtr(super.ptr,
-      {required super.iterableIid, required this.enumCreator})
-      : super(enumCreator: enumCreator);
+      {required super.iterableIid, required this.vEnumCreator})
+      : super(vEnumCreator: vEnumCreator);
 
   late final __IMapViewStringWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewStringWinRTEnumVtbl>().ref;
-  final EnumCreator<V> enumCreator;
+  final EnumCreator<V> vEnumCreator;
 
   @override
   V lookup(String key) {
@@ -660,7 +666,7 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return vEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -708,12 +714,12 @@ final class __IMapViewStringWinRTEnumVtbl extends Struct {
 
 final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   _IMapViewStringWinRTFlagsEnum.fromPtr(super.ptr,
-      {required super.iterableIid, required this.enumCreator})
-      : super(enumCreator: enumCreator);
+      {required super.iterableIid, required this.vEnumCreator})
+      : super(vEnumCreator: vEnumCreator);
 
   late final __IMapViewStringWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewStringWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<V> enumCreator;
+  final EnumCreator<V> vEnumCreator;
 
   @override
   V lookup(String key) {
@@ -727,7 +733,7 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return vEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -775,12 +781,14 @@ final class __IMapViewStringWinRTFlagsEnumVtbl extends Struct {
 
 final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint8Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewUint8InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewUint8InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -800,7 +808,7 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -844,12 +852,14 @@ final class __IMapViewUint8InspectableVtbl extends Struct {
 
 final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewUint16InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewUint16InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -869,7 +879,7 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -913,12 +923,14 @@ final class __IMapViewUint16InspectableVtbl extends Struct {
 
 final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewUint32InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewUint32InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -938,7 +950,7 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -982,12 +994,14 @@ final class __IMapViewUint32InspectableVtbl extends Struct {
 
 final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, required this.creator})
-      : super(creator: creator);
+      {required super.iterableIid,
+      super.kIntType,
+      required this.vObjectCreator})
+      : super(vObjectCreator: vObjectCreator);
 
   late final __IMapViewUint64InspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewUint64InspectableVtbl>().ref;
-  final COMObjectCreator<V> creator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(int key) {
@@ -1007,7 +1021,7 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -1115,14 +1129,14 @@ final class __IMapViewUriStringVtbl extends Struct {
 final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
-      required this.enumKeyCreator,
-      required this.creator})
-      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+      required this.kEnumCreator,
+      required this.vObjectCreator})
+      : super(kEnumCreator: kEnumCreator, vObjectCreator: vObjectCreator);
 
   late final __IMapViewWinRTEnumInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewWinRTEnumInspectableVtbl>().ref;
-  final EnumCreator<K> enumKeyCreator;
-  final COMObjectCreator<V> creator;
+  final EnumCreator<K> kEnumCreator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(K key) {
@@ -1143,7 +1157,7 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override
@@ -1189,14 +1203,14 @@ final class __IMapViewWinRTEnumInspectableVtbl extends Struct {
 final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
-      required this.enumKeyCreator,
-      required this.creator})
-      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+      required this.kEnumCreator,
+      required this.vObjectCreator})
+      : super(kEnumCreator: kEnumCreator, vObjectCreator: vObjectCreator);
 
   late final __IMapViewWinRTFlagsEnumInspectableVtbl _vtable =
       ptr.ref.vtable.cast<__IMapViewWinRTFlagsEnumInspectableVtbl>().ref;
-  final EnumCreator<K> enumKeyCreator;
-  final COMObjectCreator<V> creator;
+  final EnumCreator<K> kEnumCreator;
+  final COMObjectCreator<V> vObjectCreator;
 
   @override
   V lookup(K key) {
@@ -1217,7 +1231,7 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       return null as V;
     }
 
-    return creator(retValuePtr);
+    return vObjectCreator(retValuePtr);
   }
 
   @override

@@ -160,7 +160,7 @@ class IBitmapDecoderStatics extends IInspectable {
     return IVectorView<BitmapCodecInformation?>.fromPtr(
             decoderInformationEnumerator,
             iterableIid: '{2b6bdb90-a4eb-5142-b582-3ccb1edc5789}',
-            creator: BitmapCodecInformation.fromPtr)
+            tObjectCreator: BitmapCodecInformation.fromPtr)
         .toList();
   }
 
@@ -177,7 +177,7 @@ class IBitmapDecoderStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,
-        creator: BitmapDecoder.fromPtr);
+        tResultObjectCreator: BitmapDecoder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -199,7 +199,7 @@ class IBitmapDecoderStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,
-        creator: BitmapDecoder.fromPtr);
+        tResultObjectCreator: BitmapDecoder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

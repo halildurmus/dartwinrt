@@ -46,7 +46,7 @@ class IApplicationDataStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<ApplicationData?>.fromPtr(
         getForUserOperation,
-        creator: ApplicationData.fromPtr);
+        tResultObjectCreator: ApplicationData.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -68,7 +68,7 @@ class IOpticalImageStabilizationControl extends IInspectable {
 
     return IVectorView<OpticalImageStabilizationMode>.fromPtr(value,
             iterableIid: '{323d7734-94c2-544d-a560-56560fe68819}',
-            enumCreator: OpticalImageStabilizationMode.from)
+            tEnumCreator: OpticalImageStabilizationMode.from)
         .toList();
   }
 

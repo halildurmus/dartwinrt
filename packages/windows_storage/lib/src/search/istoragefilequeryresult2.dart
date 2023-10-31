@@ -50,7 +50,7 @@ class IStorageFileQueryResult2 extends IInspectable
 
     return IMap.fromPtr(result,
         iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
-        creator: (ptr) => IVectorView.fromPtr(ptr,
+        vObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
             iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
   }
 

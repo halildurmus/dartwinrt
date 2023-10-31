@@ -49,7 +49,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

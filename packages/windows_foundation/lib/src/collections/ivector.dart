@@ -33,20 +33,20 @@ abstract interface class IVector<T> extends IInspectable
   IVector(
     super.ptr, {
     required String iterableIid,
-    COMObjectCreator<T>? creator,
-    EnumCreator<T>? enumCreator,
-    DoubleType? doubleType,
-    IntType? intType,
-  })  : _creator = creator,
-        _enumCreator = enumCreator,
-        _doubleType = doubleType,
-        _intType = intType,
+    EnumCreator<T>? tEnumCreator,
+    COMObjectCreator<T>? tObjectCreator,
+    DoubleType? tDoubleType,
+    IntType? tIntType,
+  })  : _tEnumCreator = tEnumCreator,
+        _tObjectCreator = tObjectCreator,
+        _tDoubleType = tDoubleType,
+        _tIntType = tIntType,
         _iterableIid = iterableIid;
 
-  final COMObjectCreator<T>? _creator;
-  final EnumCreator<T>? _enumCreator;
-  final DoubleType? _doubleType;
-  final IntType? _intType;
+  final EnumCreator<T>? _tEnumCreator;
+  final COMObjectCreator<T>? _tObjectCreator;
+  final DoubleType? _tDoubleType;
+  final IntType? _tIntType;
   final String _iterableIid;
 
   /// Creates an instance of [IVector] from the given [ptr] and [iterableIid].
@@ -59,40 +59,40 @@ abstract interface class IVector<T> extends IInspectable
   /// `StorageFile?`), `WinRTEnum` (e.g., `DeviceClass`), or `WinRTStruct`
   /// (e.g., `BasicGeoposition`).
   ///
-  /// [doubleType] must be specified if [T] is `double`.
+  /// [tDoubleType] must be specified if [T] is `double`.
   /// ```dart
   /// final vector = IVector<double>.fromPtr(ptr,
-  ///     doubleType: DoubleType.float,
-  ///     iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}');
+  ///     iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
+  ///     tDoubleType: DoubleType.float);
   /// ```
   ///
-  /// [intType] must be specified if [T] is `int`.
+  /// [tIntType] must be specified if [T] is `int`.
   /// ```dart
   /// final vector = IVector<int>.fromPtr(ptr,
-  ///     intType: IntType.uint64,
-  ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
+  ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}',
+  ///     tIntType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable?`.
+  /// [tObjectCreator] must be specified if [T] is `IInspectable?`.
   /// ```dart
   /// final vector = IVector<StorageFile?>.fromPtr(ptr,
-  ///     creator: StorageFile.fromPtr,
-  ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
+  ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}',
+  ///     tObjectCreator: StorageFile.fromPtr);
   /// ```
   ///
-  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
+  /// [tEnumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final vector = IVector<DeviceClass>.fromPtr(ptr,
-  ///     enumCreator: DeviceClass.from,
-  ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
+  ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
+  ///     tEnumCreator: DeviceClass.from);
   /// ```
   factory IVector.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
-    COMObjectCreator<T>? creator,
-    EnumCreator<T>? enumCreator,
-    DoubleType? doubleType,
-    IntType? intType,
+    EnumCreator<T>? tEnumCreator,
+    COMObjectCreator<T>? tObjectCreator,
+    DoubleType? tDoubleType,
+    IntType? tIntType,
   }) {
     if (T == bool) {
       return _IVectorBool.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
@@ -113,39 +113,39 @@ abstract interface class IVector<T> extends IInspectable
     }
 
     if (isSubtypeOfInspectable<T>()) {
-      if (creator == null) throw ArgumentError.notNull('creator');
+      if (tObjectCreator == null) throw ArgumentError.notNull('tObjectCreator');
       return _IVectorInspectable.fromPtr(ptr,
-          creator: creator, iterableIid: iterableIid);
+          tObjectCreator: tObjectCreator, iterableIid: iterableIid);
     }
 
     if (T == double) {
-      if (doubleType == null) throw ArgumentError.notNull('doubleType');
-      final vector = switch (doubleType) {
+      if (tDoubleType == null) throw ArgumentError.notNull('tDoubleType');
+      final vector = switch (tDoubleType) {
         DoubleType.double => _IVectorDouble.fromPtr(ptr,
-            doubleType: doubleType, iterableIid: iterableIid),
+            tDoubleType: tDoubleType, iterableIid: iterableIid),
         DoubleType.float => _IVectorFloat.fromPtr(ptr,
-            doubleType: doubleType, iterableIid: iterableIid),
+            tDoubleType: tDoubleType, iterableIid: iterableIid),
       };
       return vector as IVector<T>;
     }
 
     if (T == int) {
-      if (intType == null) throw ArgumentError.notNull('intType');
-      final vector = switch (intType) {
+      if (tIntType == null) throw ArgumentError.notNull('tIntType');
+      final vector = switch (tIntType) {
         IntType.int16 => _IVectorInt16.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.int32 => _IVectorInt32.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.int64 => _IVectorInt64.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.uint8 => _IVectorUint8.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.uint16 => _IVectorUint16.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.uint32 => _IVectorUint32.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid),
+            tIntType: tIntType, iterableIid: iterableIid),
         IntType.uint64 => _IVectorUint64.fromPtr(ptr,
-            intType: intType, iterableIid: iterableIid)
+            tIntType: tIntType, iterableIid: iterableIid)
       };
       return vector as IVector<T>;
     }
@@ -160,15 +160,15 @@ abstract interface class IVector<T> extends IInspectable
     }
 
     if (isSubtypeOfWinRTFlagsEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
       return _IVectorWinRTFlagsEnum.fromPtr(ptr,
-          enumCreator: enumCreator, iterableIid: iterableIid);
+          tEnumCreator: tEnumCreator, iterableIid: iterableIid);
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      if (tEnumCreator == null) throw ArgumentError.notNull('tEnumCreator');
       return _IVectorWinRTEnum.fromPtr(ptr,
-          enumCreator: enumCreator, iterableIid: iterableIid);
+          tEnumCreator: tEnumCreator, iterableIid: iterableIid);
     }
 
     if (isNullableObjectType<T>()) {
@@ -294,12 +294,14 @@ abstract interface class IVector<T> extends IInspectable
       throwWindowsException(hr);
     }
 
-    final vectorView = IVectorView<T>.fromPtr(retValuePtr,
-        creator: _creator,
-        enumCreator: _enumCreator,
-        doubleType: _doubleType,
-        intType: _intType,
-        iterableIid: _iterableIid);
+    final vectorView = IVectorView<T>.fromPtr(
+      retValuePtr,
+      iterableIid: _iterableIid,
+      tEnumCreator: _tEnumCreator,
+      tObjectCreator: _tObjectCreator,
+      tDoubleType: _tDoubleType,
+      tIntType: _tIntType,
+    );
     return vectorView.toList();
   }
 
@@ -349,11 +351,13 @@ abstract interface class IVector<T> extends IInspectable
   /// Replaces all the items in the vector with the specified items.
   void replaceAll(List<T> value);
 
-  late final _iIterable = IIterable<T>.fromPtr(toInterface(_iterableIid),
-      creator: _creator,
-      enumCreator: _enumCreator,
-      doubleType: _doubleType,
-      intType: _intType);
+  late final _iIterable = IIterable<T>.fromPtr(
+    toInterface(_iterableIid),
+    tEnumCreator: _tEnumCreator,
+    tObjectCreator: _tObjectCreator,
+    tDoubleType: _tDoubleType,
+    tIntType: _tIntType,
+  );
 
   @override
   IIterator<T> first() => _iIterable.first();

@@ -65,7 +65,7 @@ class IPackage6 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<PackageUpdateAvailabilityResult?>.fromPtr(operation,
-            creator: PackageUpdateAvailabilityResult.fromPtr);
+            tResultObjectCreator: PackageUpdateAvailabilityResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -134,7 +134,7 @@ class IGeolocator extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(value,
-        creator: Geoposition.fromPtr);
+        tResultObjectCreator: Geoposition.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -153,7 +153,7 @@ class IGeolocator extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(value,
-        creator: Geoposition.fromPtr);
+        tResultObjectCreator: Geoposition.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

@@ -159,7 +159,7 @@ class IDeviceInformation extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(asyncOp,
-        creator: DeviceThumbnail.fromPtr);
+        tResultObjectCreator: DeviceThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -176,7 +176,7 @@ class IDeviceInformation extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(asyncOp,
-        creator: DeviceThumbnail.fromPtr);
+        tResultObjectCreator: DeviceThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

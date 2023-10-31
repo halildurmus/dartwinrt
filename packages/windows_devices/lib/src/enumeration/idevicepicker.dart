@@ -211,7 +211,7 @@ class IDevicePicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         operation,
-        creator: DeviceInformation.fromPtr);
+        tResultObjectCreator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -234,7 +234,7 @@ class IDevicePicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         operation,
-        creator: DeviceInformation.fromPtr);
+        tResultObjectCreator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

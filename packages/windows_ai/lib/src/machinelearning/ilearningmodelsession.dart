@@ -109,7 +109,7 @@ class ILearningModelSession extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(operation,
-            creator: LearningModelEvaluationResult.fromPtr);
+            tResultObjectCreator: LearningModelEvaluationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -129,7 +129,7 @@ class ILearningModelSession extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(operation,
-            creator: LearningModelEvaluationResult.fromPtr);
+            tResultObjectCreator: LearningModelEvaluationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

@@ -60,7 +60,7 @@ class IConnectionProfile5 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<ConnectionProfileDeleteStatus>.fromPtr(operation,
-            enumCreator: ConnectionProfileDeleteStatus.from);
+            tResultEnumCreator: ConnectionProfileDeleteStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

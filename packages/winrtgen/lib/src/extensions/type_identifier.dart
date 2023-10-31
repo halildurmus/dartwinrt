@@ -35,55 +35,76 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     final shortName = typeIdentifier.shortName.outerType;
     final typeArgs = typeIdentifier.typeArgs;
-    final args = <String>['ptr'];
 
-    if (shortName case 'IKeyValuePair' || 'IMap' || 'IMapView') {
-      // Handle enum key typeArg
-      if (typeArgs.first.type?.isEnum ?? false) {
-        final enumKeyCreator = typeArgs.first.creator;
-        args.add('enumKeyCreator: $enumKeyCreator');
-      }
+    final genericParams = type?.genericParams;
+    if (genericParams == null) throw StateError('Type $this has no type.');
 
-      // Handle int key typeArg
-      if (typeArgs.first.baseType
-          case BaseType.int32Type || BaseType.uint32Type) {
-        final typeProjection = TypeProjection(typeArgs.first);
-        final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
-        args.add('intType: $intType');
-      }
-    }
-
-    // Use the value (last) typeArg to parse the creator argument since the
-    // key (first) typeArg is handled above.
-    final typeArg = switch (shortName) {
-      'IKeyValuePair' || 'IMap' || 'IMapView' => typeArgs.last,
-      _ => typeArgs.first,
+    final args = <String>{
+      'ptr',
+      if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
+        'iterableIid: ${typeIdentifier.iterableIID.quote()}',
     };
-    final creator = typeArg.creator;
-    if (creator != null) {
-      final typeArgIsEnum = typeArg.type?.isEnum ?? false;
-      final creatorParamName = typeArgIsEnum ? 'enumCreator' : 'creator';
-      args.add('$creatorParamName: $creator');
-    }
 
-    if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView') {
-      args.add('iterableIid: ${typeIdentifier.iterableIID.quote()}');
-    } else if (shortName == 'IReference') {
+    if (shortName == 'IReference') {
       final referenceArgSignature = typeArgs.first.signature;
       final referenceSignature =
           'pinterface($IID_IReference;$referenceArgSignature)';
       final iid = referenceSignature.toIID();
       args.add('referenceIid: ${iid.quote()}');
-    } else {
-      if (creator == null) return '$shortName.fromPtr';
     }
 
-    // Hanlde int typeArg in IIterable, IVector and IVectorView interfaces
-    if (typeIdentifier.shortName.typeArguments == 'int') {
-      final typeProjection = TypeProjection(typeArgs.first);
-      final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
-      args.add('intType: $intType');
+    if (typeArgs case [final typeArg1, final typeArg2]) {
+      final typeArg1Creator = typeArg1.creator;
+      final typeArg1ParamName = genericParams[0].name.toCamelCase();
+      final typeArg1TypeProjection = TypeProjection(typeArg1);
+      final typeArg1NativeType =
+          typeArg1TypeProjection.nativeType.toLowerCase();
+      final typeArg2Creator = typeArg2.creator;
+      final typeArg2ParamName = genericParams[1].name.toCamelCase();
+      final typeArg2TypeProjection = TypeProjection(typeArg2);
+      final typeArg2NativeType =
+          typeArg2TypeProjection.nativeType.toLowerCase();
+
+      if (typeArg1.isWinRTEnum) {
+        args.add('${typeArg1ParamName}EnumCreator: $typeArg1Creator');
+      } else if (typeArg1Creator != null) {
+        args.add('${typeArg1ParamName}ObjectCreator: $typeArg1Creator');
+      } else if (typeArg1TypeProjection.isDouble) {
+        args.add(
+            '${typeArg1ParamName}DoubleType: DoubleType.$typeArg1NativeType');
+      } else if (typeArg1TypeProjection.isInteger) {
+        args.add('${typeArg1ParamName}IntType: IntType.$typeArg1NativeType');
+      }
+
+      if (typeArg2.isWinRTEnum) {
+        args.add('${typeArg2ParamName}EnumCreator: $typeArg2Creator');
+      } else if (typeArg2Creator != null) {
+        args.add('${typeArg2ParamName}ObjectCreator: $typeArg2Creator');
+      } else if (typeArg2TypeProjection.isDouble) {
+        args.add(
+            '${typeArg2ParamName}DoubleType: DoubleType.$typeArg2NativeType');
+      } else if (typeArg2TypeProjection.isInteger) {
+        args.add('${typeArg2ParamName}IntType: IntType.$typeArg2NativeType');
+      }
+    } else if (typeArgs case [final typeArg]) {
+      final typeArgCreator = typeArg.creator;
+      final typeArgParamName = genericParams[0].name.toCamelCase();
+      final typeArgTypeProjection = TypeProjection(typeArg);
+      final typeArgNativeType = typeArgTypeProjection.nativeType.toLowerCase();
+
+      if (typeArg.isWinRTEnum) {
+        args.add('${typeArgParamName}EnumCreator: $typeArgCreator');
+      } else if (typeArgCreator != null) {
+        args.add('${typeArgParamName}ObjectCreator: $typeArgCreator');
+      } else if (typeArgTypeProjection.isDouble) {
+        args.add(
+            '${typeArgParamName}DoubleType: DoubleType.$typeArgNativeType');
+      } else if (typeArgTypeProjection.isInteger) {
+        args.add('${typeArgParamName}IntType: IntType.$typeArgNativeType');
+      }
     }
+
+    if (args.length == 1 && args.contains('ptr')) return '$shortName.fromPtr';
 
     return '(ptr) => $shortName.fromPtr(${args.join(', ')})';
   }

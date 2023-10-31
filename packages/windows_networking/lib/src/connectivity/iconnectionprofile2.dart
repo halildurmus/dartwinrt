@@ -200,9 +200,9 @@ class IConnectionProfile2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<NetworkUsage?>>.fromPtr(
         value,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: NetworkUsage.fromPtr,
-            iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}',
+            tObjectCreator: NetworkUsage.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -229,9 +229,9 @@ class IConnectionProfile2 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectivityInterval?>>.fromPtr(value,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: ConnectivityInterval.fromPtr,
-                iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}',
+                tObjectCreator: ConnectivityInterval.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

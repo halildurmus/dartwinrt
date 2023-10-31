@@ -293,7 +293,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return enumCreator(retValuePtr.value);'));
+          equals('return tEnumCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -325,7 +325,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return enumCreator(retValuePtr.value);'));
+          equals('return tEnumCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -357,8 +357,8 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck(freeRetVal: true)));
       expect(projection.nullCheck,
           equals(nullCheck('retValuePtr', castReturn: true)));
-      expect(
-          projection.returnStatement, equals('return creator(retValuePtr);'));
+      expect(projection.returnStatement,
+          equals('return tObjectCreator(retValuePtr);'));
       expect(projection.postambles, isEmpty);
     });
 
@@ -561,7 +561,7 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         final asyncOperation =
-            IAsyncOperation<int>.fromPtr(operation, intType: IntType.uint32);
+            IAsyncOperation<int>.fromPtr(operation, tResultIntType: IntType.uint32);
         return asyncOperation.toFuture(asyncOperation.getResults);
 '''));
       expect(projection.postambles, isEmpty);
@@ -600,7 +600,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         final asyncOperation =
             IAsyncOperation<IMapView<String, Object?>>.fromPtr(operation,
-                creator: (ptr) => IMapView.fromPtr(ptr,
+                tResultObjectCreator: (ptr) => IMapView.fromPtr(ptr,
                     iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
         return asyncOperation.toFuture(() => asyncOperation.getResults().toMap());
 '''));
@@ -636,7 +636,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         final asyncOperation =
             IAsyncOperation<IReference<DateTime?>?>.fromPtr(operation,
-                creator: (ptr) => IReference.fromPtr(ptr,
+                tResultObjectCreator: (ptr) => IReference.fromPtr(ptr,
                     referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}'));
         return asyncOperation.toFuture(() => asyncOperation.getResults()?.value);
 '''));
@@ -670,9 +670,9 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         final asyncOperation =
             IAsyncOperation<IVectorView<User?>>.fromPtr(operation,
-                creator: (ptr) => IVectorView.fromPtr(ptr,
-                    creator: User.fromPtr,
-                    iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
+                tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                    iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}',
+                    tObjectCreator: User.fromPtr));
         return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
 '''));
       expect(projection.postambles, isEmpty);
@@ -705,7 +705,7 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         final asyncOperation =
-            IAsyncOperation<StorageFile?>.fromPtr(operation, creator: StorageFile.fromPtr);
+            IAsyncOperation<StorageFile?>.fromPtr(operation, tResultObjectCreator: StorageFile.fromPtr);
         return asyncOperation.toFuture(asyncOperation.getResults);
 '''));
       expect(projection.postambles, isEmpty);
@@ -773,7 +773,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IMap.fromPtr(result,
             iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
-            creator: (ptr) => IVectorView.fromPtr(ptr,
+            vObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
             iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
 '''));
       expect(projection.postambles, isEmpty);
@@ -935,7 +935,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{3acbf03c-0a79-5823-aaa9-d88bc3f8f594}',
-            creator: VideoStreamDescriptor.fromPtr);
+            tObjectCreator: VideoStreamDescriptor.fromPtr);
 '''));
       expect(projection.postambles, isEmpty);
     });
@@ -967,7 +967,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<double>.fromPtr(result,
             iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
-            doubleType: DoubleType.float).toList();
+            tDoubleType: DoubleType.float).toList();
 '''));
       expect(projection.postambles, isEmpty);
     });
@@ -999,7 +999,7 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<int>.fromPtr(result,
             iterableIid: '{81a643fb-f51c-5565-83c4-f96425777b66}',
-            intType: IntType.int32).toList();
+            tIntType: IntType.int32).toList();
 '''));
       expect(projection.postambles, isEmpty);
     });

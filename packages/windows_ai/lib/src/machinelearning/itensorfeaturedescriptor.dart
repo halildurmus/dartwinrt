@@ -65,7 +65,7 @@ class ITensorFeatureDescriptor extends IInspectable {
 
     return IVectorView<int>.fromPtr(value,
             iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}',
-            intType: IntType.int64)
+            tIntType: IntType.int64)
         .toList();
   }
 }

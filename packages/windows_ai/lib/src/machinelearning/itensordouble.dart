@@ -42,7 +42,7 @@ class ITensorDouble extends IInspectable {
 
     return IVectorView<double>.fromPtr(result,
             iterableIid: '{c738964e-9c64-5bce-b5ce-61e9a282ec4a}',
-            doubleType: DoubleType.double)
+            tDoubleType: DoubleType.double)
         .toList();
   }
 }

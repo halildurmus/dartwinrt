@@ -1122,11 +1122,11 @@ final class __IReferenceWhiteBalanceGainVtbl extends Struct {
 }
 
 final class _IReferenceWinRTEnum<T> extends IReference<T> {
-  _IReferenceWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IReferenceWinRTEnum.fromPtr(super.ptr, {required this.tEnumCreator});
 
   late final __IReferenceWinRTEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IReferenceWinRTEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T get value {
@@ -1141,7 +1141,7 @@ final class _IReferenceWinRTEnum<T> extends IReference<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1157,11 +1157,11 @@ final class __IReferenceWinRTEnumVtbl extends Struct {
 }
 
 final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
-  _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
+  _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {required this.tEnumCreator});
 
   late final __IReferenceWinRTFlagsEnumVtbl _vtable =
       ptr.ref.vtable.cast<__IReferenceWinRTFlagsEnumVtbl>().ref;
-  final EnumCreator<T> enumCreator;
+  final EnumCreator<T> tEnumCreator;
 
   @override
   T get value {
@@ -1176,7 +1176,7 @@ final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return enumCreator(retValuePtr.value);
+      return tEnumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }

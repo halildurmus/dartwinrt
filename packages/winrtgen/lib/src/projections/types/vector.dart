@@ -22,41 +22,27 @@ final class VectorParameterProjection extends ParameterProjection {
   /// The constructor arguments passed to the constructors of `IVector` and
   /// `IVectorView`.
   String get vectorConstructorArgs {
-    final typeArgProjection = TypeProjection(typeIdentifier.typeArgs.first);
-
-    // If the type argument is an enum or a WinRT object (e.g., StorageFile),
-    // the constructor of that class must be passed in the 'enumCreator'
-    // parameter for enums, 'creator' parameter for WinRT objects so that the
-    // IVector and IVectorView implementations can instantiate the object
-    final creator = typeArgProjection.typeIdentifier.creator;
+    final [typeArg] = typeIdentifier.typeArgs;
+    final typeArgProjection = TypeProjection(typeArg);
+    final typeArgNativeType = typeArgProjection.nativeType.toLowerCase();
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the IVector and IVectorView implementations can use the correct IID
     // when instantiating the IIterable object
     final iterableIid = typeProjection.typeIdentifier.iterableIID;
 
-    // e.g., float, int32
-    final nativeType = typeArgProjection.nativeType.toLowerCase();
+    final args = <String>{
+      'iterableIid: ${iterableIid.quote()}',
+      if (typeArgProjection.isWinRTEnum)
+        'tEnumCreator: ${typeArg.creator}'
+      else if (typeArg.creator case final creator?)
+        'tObjectCreator: $creator',
+      if (typeArgProjection.isDouble)
+        'tDoubleType: DoubleType.$typeArgNativeType'
+      else if (typeArgProjection.isInteger)
+        'tIntType: IntType.$typeArgNativeType',
+    };
 
-    // If the type argument is a double, 'doubleType' parameter must be
-    // specified so that the IVector and IVectorView implementations can use
-    // the appropriate native double type
-    final doubleType =
-        vectorTypeArg == 'double' ? 'DoubleType.$nativeType' : null;
-
-    // If the type argument is an int, 'intType' parameter must be specified so
-    // that the IVector and IVectorView implementations can use the appropriate
-    // native integer type
-    final intType = vectorTypeArg == 'int' ? 'IntType.$nativeType' : null;
-
-    final args = <String>['iterableIid: ${iterableIid.quote()}'];
-    if (typeArgProjection.isWinRTEnum) {
-      args.add('enumCreator: $creator');
-    } else if (creator != null) {
-      args.add('creator: $creator');
-    }
-    if (doubleType != null) args.add('doubleType: $doubleType');
-    if (intType != null) args.add('intType: $intType');
     return ', ${args.join(', ')}';
   }
 

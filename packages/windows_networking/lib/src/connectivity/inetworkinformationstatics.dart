@@ -49,7 +49,7 @@ class INetworkInformationStatics extends IInspectable {
 
     return IVectorView<ConnectionProfile?>.fromPtr(value,
             iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}',
-            creator: ConnectionProfile.fromPtr)
+            tObjectCreator: ConnectionProfile.fromPtr)
         .toList();
   }
 
@@ -87,7 +87,7 @@ class INetworkInformationStatics extends IInspectable {
 
     return IVectorView<LanIdentifier?>.fromPtr(value,
             iterableIid: '{accef3cd-5d92-5c01-8ac4-79fe74cd733e}',
-            creator: LanIdentifier.fromPtr)
+            tObjectCreator: LanIdentifier.fromPtr)
         .toList();
   }
 
@@ -105,7 +105,7 @@ class INetworkInformationStatics extends IInspectable {
 
     return IVectorView<HostName?>.fromPtr(value,
             iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
-            creator: HostName.fromPtr)
+            tObjectCreator: HostName.fromPtr)
         .toList();
   }
 
@@ -123,7 +123,7 @@ class INetworkInformationStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromPtr(value,
-        creator: ProxyConfiguration.fromPtr);
+        tResultObjectCreator: ProxyConfiguration.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -144,7 +144,7 @@ class INetworkInformationStatics extends IInspectable {
 
     return IVectorView<EndpointPair?>.fromPtr(value,
             iterableIid: '{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}',
-            creator: EndpointPair.fromPtr)
+            tObjectCreator: EndpointPair.fromPtr)
         .toList();
   }
 

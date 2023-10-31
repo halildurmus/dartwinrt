@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
 import '../../constants/constants.dart';
 import '../../extensions/extensions.dart';
 import '../parameter.dart';
@@ -14,8 +16,9 @@ final class IReferenceParameterProjection extends ParameterProjection {
   @override
   String get type => shortTypeName.typeArguments;
 
-  TypeProjection get typeArgProjection =>
-      TypeProjection(typeProjection.typeIdentifier.typeArgs.first);
+  TypeIdentifier get typeArg => typeProjection.typeIdentifier.typeArgs.first;
+
+  TypeProjection get typeArgProjection => TypeProjection(typeArg);
 
   String get toReferenceArgument => switch (type) {
         'double?' => 'DoubleType.${typeArgProjection.nativeType.toLowerCase()}',
@@ -25,25 +28,21 @@ final class IReferenceParameterProjection extends ParameterProjection {
 
   /// The constructor arguments passed to the constructor of `IReference`.
   String get referenceConstructorArgs {
-    // If the type argument is an enum, the constructor of the enum class must
-    // be passed in the 'enumCreator' parameter so that the 'IReference'
-    // implementation can instantiate the object
-    final enumCreator = typeArgProjection.isWinRTEnum
-        ? '${type.stripQuestionMarkSuffix()}.from'
-        : null;
-
     // The IID for IReference<T> must be passed in the 'referenceIid' parameter
     // so that the 'IReference' implementation can use the correct IID when
     // retrieving the value it holds.
     // To learn know more about how the IID is calculated, please see
     // https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
-    final referenceArgSignature =
-        typeProjection.typeIdentifier.typeArgs.first.signature;
+    final referenceArgSignature = typeArg.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     final referenceIid = referenceSignature.toIID();
-    final args = <String>['referenceIid: ${referenceIid.quote()}'];
-    if (enumCreator != null) args.add('enumCreator: $enumCreator');
+
+    final args = <String>{
+      'referenceIid: ${referenceIid.quote()}',
+      if (typeArg.isWinRTEnum) 'tEnumCreator: ${typeArg.creator}'
+    };
+
     return ', ${args.join(', ')}';
   }
 

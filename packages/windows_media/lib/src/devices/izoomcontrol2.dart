@@ -50,7 +50,7 @@ class IZoomControl2 extends IInspectable {
 
     return IVectorView<ZoomTransitionMode>.fromPtr(value,
             iterableIid: '{db656915-8fac-5fb2-98e0-0e97421656c5}',
-            enumCreator: ZoomTransitionMode.from)
+            tEnumCreator: ZoomTransitionMode.from)
         .toList();
   }
 

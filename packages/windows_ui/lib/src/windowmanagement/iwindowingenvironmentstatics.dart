@@ -47,7 +47,7 @@ class IWindowingEnvironmentStatics extends IInspectable {
 
     return IVectorView<WindowingEnvironment?>.fromPtr(result,
             iterableIid: '{626a6481-0174-5a56-84c9-e8d4c48cfb1b}',
-            creator: WindowingEnvironment.fromPtr)
+            tObjectCreator: WindowingEnvironment.fromPtr)
         .toList();
   }
 
@@ -65,7 +65,7 @@ class IWindowingEnvironmentStatics extends IInspectable {
 
     return IVectorView<WindowingEnvironment?>.fromPtr(result,
             iterableIid: '{626a6481-0174-5a56-84c9-e8d4c48cfb1b}',
-            creator: WindowingEnvironment.fromPtr)
+            tObjectCreator: WindowingEnvironment.fromPtr)
         .toList();
   }
 }

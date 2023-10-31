@@ -76,8 +76,10 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
       EnumParameterProjection() ||
       ObjectParameterProjection() when !typeArgIsObjectType =>
         typeArgParamCreator.substring(0, typeArgParamCreator.indexOf('(')),
-      GenericEnumParameterProjection() => 'enumCreator',
-      GenericObjectParameterProjection() => 'creator',
+      final GenericEnumParameterProjection p =>
+        '${p.type.toCamelCase()}EnumCreator',
+      final GenericObjectParameterProjection p =>
+        '${p.type.toCamelCase()}ObjectCreator',
       _ => ''
     };
   }

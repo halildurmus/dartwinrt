@@ -42,7 +42,7 @@ class ITensorUInt16Bit extends IInspectable {
 
     return IVectorView<int>.fromPtr(result,
             iterableIid: '{ecfa9a6f-fa2e-5345-b297-efb4e8c6be87}',
-            intType: IntType.uint16)
+            tIntType: IntType.uint16)
         .toList();
   }
 }

@@ -47,7 +47,7 @@ class IDeviceInformationStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(asyncOp,
-        creator: DeviceInformation.fromPtr);
+        tResultObjectCreator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -69,7 +69,7 @@ class IDeviceInformationStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(asyncOp,
-        creator: DeviceInformation.fromPtr);
+        tResultObjectCreator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -87,7 +87,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
         asyncOp,
-        creator: DeviceInformationCollection.fromPtr);
+        tResultObjectCreator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -106,7 +106,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
         asyncOp,
-        creator: DeviceInformationCollection.fromPtr);
+        tResultObjectCreator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -125,7 +125,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
         asyncOp,
-        creator: DeviceInformationCollection.fromPtr);
+        tResultObjectCreator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -149,7 +149,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
         asyncOp,
-        creator: DeviceInformationCollection.fromPtr);
+        tResultObjectCreator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

@@ -48,7 +48,7 @@ class IFolderLauncherOptions extends IInspectable {
 
     return IVector.fromPtr(value,
         iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}',
-        creator: IStorageItem.fromPtr);
+        tObjectCreator: IStorageItem.fromPtr);
   }
 }
 

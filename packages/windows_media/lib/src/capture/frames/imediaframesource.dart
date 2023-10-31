@@ -93,7 +93,7 @@ class IMediaFrameSource extends IInspectable {
 
     return IVectorView<MediaFrameFormat?>.fromPtr(value,
             iterableIid: '{1f029a27-1123-538a-9261-8a380e12bac6}',
-            creator: MediaFrameFormat.fromPtr)
+            tObjectCreator: MediaFrameFormat.fromPtr)
         .toList();
   }
 

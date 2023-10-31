@@ -47,7 +47,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -66,7 +66,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -85,7 +85,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -104,7 +104,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

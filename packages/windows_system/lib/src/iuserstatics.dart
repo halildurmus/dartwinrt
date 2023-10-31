@@ -67,9 +67,9 @@ class IUserStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: User.fromPtr,
-            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}',
+            tObjectCreator: User.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -89,9 +89,9 @@ class IUserStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: User.fromPtr,
-            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}',
+            tObjectCreator: User.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -113,9 +113,9 @@ class IUserStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: User.fromPtr,
-            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}',
+            tObjectCreator: User.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

@@ -60,7 +60,7 @@ class IMediaFrameSourceController2 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<MediaFrameSourceGetPropertyResult?>.fromPtr(operation,
-            creator: MediaFrameSourceGetPropertyResult.fromPtr);
+            tResultObjectCreator: MediaFrameSourceGetPropertyResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -95,7 +95,7 @@ class IMediaFrameSourceController2 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<MediaFrameSourceSetPropertyStatus>.fromPtr(operation,
-            enumCreator: MediaFrameSourceSetPropertyStatus.from);
+            tResultEnumCreator: MediaFrameSourceSetPropertyStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

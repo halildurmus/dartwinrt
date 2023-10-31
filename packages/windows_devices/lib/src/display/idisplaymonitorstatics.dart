@@ -60,7 +60,7 @@ class IDisplayMonitorStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,
-        creator: DisplayMonitor.fromPtr);
+        tResultObjectCreator: DisplayMonitor.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -78,7 +78,7 @@ class IDisplayMonitorStatics extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,
-        creator: DisplayMonitor.fromPtr);
+        tResultObjectCreator: DisplayMonitor.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

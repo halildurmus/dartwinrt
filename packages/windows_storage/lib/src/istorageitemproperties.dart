@@ -49,7 +49,7 @@ class IStorageItemProperties extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         operation,
-        creator: StorageItemThumbnail.fromPtr);
+        tResultObjectCreator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -69,7 +69,7 @@ class IStorageItemProperties extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         operation,
-        creator: StorageItemThumbnail.fromPtr);
+        tResultObjectCreator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -89,7 +89,7 @@ class IStorageItemProperties extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         operation,
-        creator: StorageItemThumbnail.fromPtr);
+        tResultObjectCreator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

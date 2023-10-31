@@ -107,7 +107,7 @@ class IPackage extends IInspectable {
 
     return IVectorView<Package?>.fromPtr(value,
             iterableIid: '{69ad6aa7-0c49-5f27-a5eb-ef4d59467b6d}',
-            creator: Package.fromPtr)
+            tObjectCreator: Package.fromPtr)
         .toList();
   }
 }

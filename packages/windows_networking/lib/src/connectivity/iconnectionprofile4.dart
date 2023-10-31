@@ -54,9 +54,9 @@ class IConnectionProfile4 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ProviderNetworkUsage?>>.fromPtr(value,
-            creator: (ptr) => IVectorView.fromPtr(ptr,
-                creator: ProviderNetworkUsage.fromPtr,
-                iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}'));
+            tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+                iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}',
+                tObjectCreator: ProviderNetworkUsage.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

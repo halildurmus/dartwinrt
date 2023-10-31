@@ -95,7 +95,7 @@ class IStorageFile extends IInspectable
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         operation,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -113,7 +113,7 @@ class IStorageFile extends IInspectable
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         operation,
-        creator: StorageStreamTransaction.fromPtr);
+        tResultObjectCreator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -132,7 +132,7 @@ class IStorageFile extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -151,7 +151,7 @@ class IStorageFile extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -178,7 +178,7 @@ class IStorageFile extends IInspectable
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

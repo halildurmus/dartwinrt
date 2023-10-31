@@ -94,7 +94,7 @@ class IToastNotifier extends IInspectable {
 
     return IVectorView<ScheduledToastNotification?>.fromPtr(result,
             iterableIid: '{7a7b2a51-c182-5846-a861-4f9c036f24ad}',
-            creator: ScheduledToastNotification.fromPtr)
+            tObjectCreator: ScheduledToastNotification.fromPtr)
         .toList();
   }
 }

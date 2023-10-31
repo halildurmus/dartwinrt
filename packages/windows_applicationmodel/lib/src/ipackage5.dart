@@ -44,9 +44,9 @@ class IPackage5 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
-            creator: (ptr) => IVector.fromPtr(ptr,
-                creator: PackageContentGroup.fromPtr,
-                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
+            tResultObjectCreator: (ptr) => IVector.fromPtr(ptr,
+                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}',
+                tObjectCreator: PackageContentGroup.fromPtr));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -65,7 +65,7 @@ class IPackage5 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<PackageContentGroup?>.fromPtr(
         operation,
-        creator: PackageContentGroup.fromPtr);
+        tResultObjectCreator: PackageContentGroup.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -84,9 +84,9 @@ class IPackage5 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
-            creator: (ptr) => IVector.fromPtr(ptr,
-                creator: PackageContentGroup.fromPtr,
-                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
+            tResultObjectCreator: (ptr) => IVector.fromPtr(ptr,
+                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}',
+                tObjectCreator: PackageContentGroup.fromPtr));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -106,9 +106,9 @@ class IPackage5 extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
-            creator: (ptr) => IVector.fromPtr(ptr,
-                creator: PackageContentGroup.fromPtr,
-                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
+            tResultObjectCreator: (ptr) => IVector.fromPtr(ptr,
+                iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}',
+                tObjectCreator: PackageContentGroup.fromPtr));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

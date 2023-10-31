@@ -53,7 +53,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -72,7 +72,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -91,7 +91,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -110,7 +110,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -128,7 +128,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
-        creator: StorageFile.fromPtr);
+        tResultObjectCreator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -146,7 +146,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
-        creator: StorageFolder.fromPtr);
+        tResultObjectCreator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -164,7 +164,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     }
 
     final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(operation,
-        creator: IStorageItem.fromPtr);
+        tResultObjectCreator: IStorageItem.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -184,9 +184,9 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFile.fromPtr,
-            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}',
+            tObjectCreator: StorageFile.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -206,9 +206,9 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: StorageFolder.fromPtr,
-            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}',
+            tObjectCreator: StorageFolder.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -226,9 +226,9 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: IStorageItem.fromPtr,
-            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}',
+            tObjectCreator: IStorageItem.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

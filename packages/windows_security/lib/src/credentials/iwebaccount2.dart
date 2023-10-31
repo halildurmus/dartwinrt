@@ -88,7 +88,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         asyncInfo,
-        creator: IRandomAccessStream.fromPtr);
+        tResultObjectCreator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

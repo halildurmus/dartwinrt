@@ -67,7 +67,7 @@ class IIsoSpeedControl extends IInspectable {
 
     return IVectorView<IsoSpeedPreset>.fromPtr(value,
             iterableIid: '{94839abe-9712-545a-a94d-a567a3e8dfb7}',
-            enumCreator: IsoSpeedPreset.from)
+            tEnumCreator: IsoSpeedPreset.from)
         .toList();
   }
 

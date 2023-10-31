@@ -23,43 +23,37 @@ final class MapParameterProjection extends ParameterProjection {
   /// The constructor arguments passed to the constructors of `IMap` and
   /// `IMapView`.
   String get mapConstructorArgs {
-    final typeArgs = typeIdentifier.typeArgs;
-    final keyArgTypeProjection = TypeProjection(typeArgs.first);
-    final valueArgTypeProjection = TypeProjection(typeArgs.last);
-
-    // If the type argument is an enum, the constructor of that class must be
-    // passed in the 'enumKeyCreator' parameter for enum, so that the 'IMap' and
-    // 'IMapView' implementations can instantiate the enum.
-    final enumKeyCreator = typeArgs.first.creator;
-
-    // If the type argument is an enum, a WinRT object (e.g., IJsonValue), the
-    // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enum, 'creator' parameter for WinRT object so that the 'IMap' and
-    // 'IMapView' implementations can instantiate the object
-    final creator = typeArgs.last.creator;
-
-    // If the key type argument is an int, 'intType' parameter must be specified
-    // so that the IMap and IMapView implementations can use the appropriate
-    // native integer type
-    final intType = mapTypeArgs.split(', ')[0] == 'int'
-        ? 'IntType.${keyArgTypeProjection.nativeType.toLowerCase()}'
-        : null;
+    final [typeArg1, typeArg2] = typeIdentifier.typeArgs;
+    final keyArgTypeProjection = TypeProjection(typeArg1);
+    final keyArgNativeType = keyArgTypeProjection.nativeType.toLowerCase();
+    final valueArgTypeProjection = TypeProjection(typeArg2);
+    final valueArgNativeType = valueArgTypeProjection.nativeType.toLowerCase();
 
     // The IID for IIterable<IKeyValuePair<K, V>> must be passed in the
     // 'iterableIid' parameter so that the 'IMap' and 'IMapView' implementations
     // can use the correct IID when instantiating the IIterable object
     final iterableIid = typeIdentifier.iterableIID;
 
-    final args = <String>['iterableIid: ${iterableIid.quote()}'];
-    if (keyArgTypeProjection.isWinRTEnum) {
-      args.add('enumKeyCreator: $enumKeyCreator');
-    }
-    if (valueArgTypeProjection.isWinRTEnum) {
-      args.add('enumCreator: $creator');
-    } else if (creator != null) {
-      args.add('creator: $creator');
-    }
-    if (intType != null) args.add('intType: $intType');
+    final args = <String>{
+      'iterableIid: ${iterableIid.quote()}',
+      if (typeArg1.isWinRTEnum)
+        'kEnumCreator: ${typeArg1.creator}'
+      else if (typeArg1.creator case final creator?)
+        'kObjectCreator: $creator'
+      else if (keyArgTypeProjection.isDouble)
+        'kDoubleType: DoubleType.$keyArgNativeType'
+      else if (keyArgTypeProjection.isInteger)
+        'kIntType: IntType.$keyArgNativeType',
+      if (typeArg2.isWinRTEnum)
+        'vEnumCreator: ${typeArg2.creator}'
+      else if (typeArg2.creator case final creator?)
+        'vObjectCreator: $creator'
+      else if (valueArgTypeProjection.isDouble)
+        'vDoubleType: DoubleType.$valueArgNativeType'
+      else if (valueArgTypeProjection.isInteger)
+        'vIntType: IntType.$valueArgNativeType'
+    };
+
     return ', ${args.join(', ')}';
   }
 

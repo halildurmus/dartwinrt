@@ -85,7 +85,7 @@ class IFocusControl2 extends IInspectable {
 
     return IVectorView<FocusMode>.fromPtr(value,
             iterableIid: '{561bc21f-4ae2-580a-a216-0ad48f373a4c}',
-            enumCreator: FocusMode.from)
+            tEnumCreator: FocusMode.from)
         .toList();
   }
 
@@ -108,7 +108,7 @@ class IFocusControl2 extends IInspectable {
 
     return IVectorView<ManualFocusDistance>.fromPtr(value,
             iterableIid: '{cf8cbeb1-2a4c-522d-962f-84c31a598d68}',
-            enumCreator: ManualFocusDistance.from)
+            tEnumCreator: ManualFocusDistance.from)
         .toList();
   }
 
@@ -131,7 +131,7 @@ class IFocusControl2 extends IInspectable {
 
     return IVectorView<AutoFocusRange>.fromPtr(value,
             iterableIid: '{751664c6-f8d6-50a3-ab80-137c6d908c55}',
-            enumCreator: AutoFocusRange.from)
+            tEnumCreator: AutoFocusRange.from)
         .toList();
   }
 

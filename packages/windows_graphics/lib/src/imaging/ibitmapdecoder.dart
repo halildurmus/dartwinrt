@@ -102,7 +102,7 @@ class IBitmapDecoder extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<ImageStream?>.fromPtr(asyncInfo,
-        creator: ImageStream.fromPtr);
+        tResultObjectCreator: ImageStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -119,7 +119,7 @@ class IBitmapDecoder extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<BitmapFrame?>.fromPtr(asyncInfo,
-        creator: BitmapFrame.fromPtr);
+        tResultObjectCreator: BitmapFrame.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

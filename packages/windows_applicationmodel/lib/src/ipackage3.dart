@@ -81,9 +81,9 @@ class IPackage3 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IVectorView<AppListEntry?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: AppListEntry.fromPtr,
-            iterableIid: '{86f4d4ef-d8fd-5fb5-807c-72da8fc9e544}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{86f4d4ef-d8fd-5fb5-807c-72da8fc9e544}',
+            tObjectCreator: AppListEntry.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

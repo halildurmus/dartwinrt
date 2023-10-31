@@ -109,7 +109,7 @@ class IStorageItem extends IInspectable {
     }
 
     final asyncOperation = IAsyncOperation<BasicProperties?>.fromPtr(operation,
-        creator: BasicProperties.fromPtr);
+        tResultObjectCreator: BasicProperties.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

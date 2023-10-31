@@ -18,7 +18,11 @@ part 'iasyncoperation_part.dart';
 /// methods that have results but don't report progress.
 abstract interface class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
-  IAsyncOperation(super.ptr);
+  IAsyncOperation(
+    super.ptr, {
+    DoubleType? tResultDoubleType,
+    IntType? tResultIntType,
+  });
 
   late final _IAsyncOperationVtbl __vtable =
       ptr.ref.vtable.cast<_IAsyncOperationVtbl>().ref;
@@ -29,36 +33,36 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   /// `String`, `Uri?`, `IInspectable?` (e.g., `StorageFile?`), `WinRTEnum`
   /// (e.g., `LaunchUriStatus`), or `WinRTStruct` (e.g., `LoadMoreItemsResult`).
   ///
-  /// [doubleType] must be specified if [TResult] is `double`.
+  /// [tResultDoubleType] must be specified if [TResult] is `double`.
   /// ```darts
-  /// final asyncOperation =
-  ///     IAsyncOperation<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  /// final asyncOperation = IAsyncOperation<double>.fromPtr(ptr,
+  ///     tResultDoubleType: DoubleType.float);
   /// ```
   ///
-  /// [intType] must be specified if [TResult] is `int`.
+  /// [tResultIntType] must be specified if [TResult] is `int`.
   /// ```dart
   /// final asyncOperation =
-  ///     IAsyncOperation<int>.fromPtr(ptr, intType: IntType.uint64);
+  ///     IAsyncOperation<int>.fromPtr(ptr, tResultIntType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [TResult] is `IInspectable?`.
+  /// [tResultObjectCreator] must be specified if [TResult] is `IInspectable?`.
   /// ```dart
   /// ...
-  /// final asyncOperation =
-  ///     IAsyncOperation<StorageFile?>(ptr, creator: StorageFile.fromPtr);
+  /// final asyncOperation = IAsyncOperation<StorageFile?>(ptr,
+  ///     tResultObjectCreator: StorageFile.fromPtr);
   /// ```
   ///
-  /// [enumCreator] must be specified if [TResult] is `WinRTEnum`.
+  /// [tResultEnumCreator] must be specified if [TResult] is `WinRTEnum`.
   /// ```dart
-  /// final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromPtr
-  ///     (ptr, enumCreator: LaunchUriStatus.from);
+  /// final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromPtr(ptr,
+  ///     tResultEnumCreator: LaunchUriStatus.from);
   /// ```
   factory IAsyncOperation.fromPtr(
     Pointer<COMObject> ptr, {
-    COMObjectCreator<TResult>? creator,
-    EnumCreator<TResult>? enumCreator,
-    DoubleType? doubleType,
-    IntType? intType,
+    EnumCreator<TResult>? tResultEnumCreator,
+    COMObjectCreator<TResult>? tResultObjectCreator,
+    DoubleType? tResultDoubleType,
+    IntType? tResultIntType,
   }) {
     if (TResult == bool) {
       return _IAsyncOperationBool.fromPtr(ptr) as IAsyncOperation<TResult>;
@@ -69,29 +73,45 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     }
 
     if (isSubtypeOfInspectable<TResult>()) {
-      if (creator == null) throw ArgumentError.notNull('creator');
-      return _IAsyncOperationInspectable.fromPtr(ptr, creator: creator);
+      if (tResultObjectCreator == null) {
+        throw ArgumentError.notNull('tResultObjectCreator');
+      }
+
+      return _IAsyncOperationInspectable.fromPtr(
+        ptr,
+        tResultObjectCreator: tResultObjectCreator,
+      );
     }
 
     if (TResult == double) {
-      if (doubleType == null) throw ArgumentError.notNull('doubleType');
-      final asyncOperation = switch (doubleType) {
-        DoubleType.double => _IAsyncOperationDouble.fromPtr(ptr),
-        DoubleType.float => _IAsyncOperationFloat.fromPtr(ptr),
+      if (tResultDoubleType == null)
+        throw ArgumentError.notNull('tResultDoubleType');
+      final asyncOperation = switch (tResultDoubleType) {
+        DoubleType.double => _IAsyncOperationDouble.fromPtr(ptr,
+            tResultDoubleType: tResultDoubleType),
+        DoubleType.float => _IAsyncOperationFloat.fromPtr(ptr,
+            tResultDoubleType: tResultDoubleType),
       };
       return asyncOperation as IAsyncOperation<TResult>;
     }
 
     if (TResult == int) {
-      if (intType == null) throw ArgumentError.notNull('intType');
-      final asyncOperation = switch (intType) {
-        IntType.int16 => _IAsyncOperationInt16.fromPtr(ptr),
-        IntType.int32 => _IAsyncOperationInt32.fromPtr(ptr),
-        IntType.int64 => _IAsyncOperationInt64.fromPtr(ptr),
-        IntType.uint8 => _IAsyncOperationUint8.fromPtr(ptr),
-        IntType.uint16 => _IAsyncOperationUint16.fromPtr(ptr),
-        IntType.uint32 => _IAsyncOperationUint32.fromPtr(ptr),
-        IntType.uint64 => _IAsyncOperationUint64.fromPtr(ptr)
+      if (tResultIntType == null) throw ArgumentError.notNull('tResultIntType');
+      final asyncOperation = switch (tResultIntType) {
+        IntType.int16 =>
+          _IAsyncOperationInt16.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.int32 =>
+          _IAsyncOperationInt32.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.int64 =>
+          _IAsyncOperationInt64.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.uint8 =>
+          _IAsyncOperationUint8.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.uint16 =>
+          _IAsyncOperationUint16.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.uint32 =>
+          _IAsyncOperationUint32.fromPtr(ptr, tResultIntType: tResultIntType),
+        IntType.uint64 =>
+          _IAsyncOperationUint64.fromPtr(ptr, tResultIntType: tResultIntType)
       };
       return asyncOperation as IAsyncOperation<TResult>;
     }
@@ -109,14 +129,25 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     }
 
     if (isSubtypeOfWinRTFlagsEnum<TResult>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IAsyncOperationWinRTFlagsEnum.fromPtr(ptr,
-          enumCreator: enumCreator);
+      if (tResultEnumCreator == null) {
+        throw ArgumentError.notNull('tResultEnumCreator');
+      }
+
+      return _IAsyncOperationWinRTFlagsEnum.fromPtr(
+        ptr,
+        tResultEnumCreator: tResultEnumCreator,
+      );
     }
 
     if (isSubtypeOfWinRTEnum<TResult>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      return _IAsyncOperationWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
+      if (tResultEnumCreator == null) {
+        throw ArgumentError.notNull('tResultEnumCreator');
+      }
+
+      return _IAsyncOperationWinRTEnum.fromPtr(
+        ptr,
+        tResultEnumCreator: tResultEnumCreator,
+      );
     }
 
     if (isSubtypeOfWinRTStruct<TResult>()) {

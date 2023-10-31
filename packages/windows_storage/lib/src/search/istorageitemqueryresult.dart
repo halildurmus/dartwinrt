@@ -50,9 +50,9 @@ class IStorageItemQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: IStorageItem.fromPtr,
-            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}',
+            tObjectCreator: IStorageItem.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
@@ -70,9 +70,9 @@ class IStorageItemQueryResult extends IInspectable
 
     final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         operation,
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            creator: IStorageItem.fromPtr,
-            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+        tResultObjectCreator: (ptr) => IVectorView.fromPtr(ptr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}',
+            tObjectCreator: IStorageItem.fromPtr));
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 

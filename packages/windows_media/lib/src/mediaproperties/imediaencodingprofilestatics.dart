@@ -149,7 +149,7 @@ class IMediaEncodingProfileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaEncodingProfile?>.fromPtr(
         operation,
-        creator: MediaEncodingProfile.fromPtr);
+        tResultObjectCreator: MediaEncodingProfile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
@@ -168,7 +168,7 @@ class IMediaEncodingProfileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<MediaEncodingProfile?>.fromPtr(
         operation,
-        creator: MediaEncodingProfile.fromPtr);
+        tResultObjectCreator: MediaEncodingProfile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

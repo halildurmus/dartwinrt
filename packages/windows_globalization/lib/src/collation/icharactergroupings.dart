@@ -49,8 +49,8 @@ class ICharacterGroupings extends IInspectable
 
   late final _iVectorView = IVectorView<CharacterGrouping?>.fromPtr(
       toInterface('{f7cf5a4a-2b7a-5bc9-a0c4-9dce07ff61c9}'),
-      creator: CharacterGrouping.fromPtr,
-      iterableIid: '{82e3abf0-06e3-5609-ba39-c51eb2f5fae6}');
+      iterableIid: '{82e3abf0-06e3-5609-ba39-c51eb2f5fae6}',
+      tObjectCreator: CharacterGrouping.fromPtr);
 
   @override
   CharacterGrouping? getAt(int index) => _iVectorView.getAt(index);

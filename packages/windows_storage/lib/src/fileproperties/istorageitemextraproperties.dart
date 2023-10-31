@@ -48,7 +48,7 @@ class IStorageItemExtraProperties extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IMap<String, Object?>>.fromPtr(
         operation,
-        creator: (ptr) => IMap.fromPtr(ptr,
+        tResultObjectCreator: (ptr) => IMap.fromPtr(ptr,
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
