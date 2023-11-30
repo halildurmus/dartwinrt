@@ -362,6 +362,7 @@ class IDisplayMonitor extends IInspectable {
       return result.value.toList(length: resultSize.value);
     } finally {
       free(resultSize);
+      free(result.value);
       free(result);
     }
   }

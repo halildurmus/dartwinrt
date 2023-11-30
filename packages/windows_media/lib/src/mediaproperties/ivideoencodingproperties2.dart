@@ -54,6 +54,7 @@ class IVideoEncodingProperties2 extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }

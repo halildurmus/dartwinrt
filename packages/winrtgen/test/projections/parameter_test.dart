@@ -672,8 +672,8 @@ void main() {
             'final valueSize = calloc<Uint32>();',
             'final value = calloc<Pointer<IntPtr>>();'
           ]));
-      expect(
-          projection.postambles, equals(['free(valueSize);', 'free(value);']));
+      expect(projection.postambles,
+          equals(['free(valueSize);', 'free(value.value);', 'free(value);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('value'));

@@ -970,8 +970,8 @@ void main() {
           projection.returnStatement,
           equals(
               'return value.value.toEnumList(DigitalWindowMode.from, length: valueSize.value);'));
-      expect(
-          projection.postambles, equals(['free(valueSize);', 'free(value);']));
+      expect(projection.postambles,
+          equals(['free(valueSize);', 'free(value.value);', 'free(value);']));
     });
 
     test('projects List<Guid>', () {
@@ -1007,8 +1007,14 @@ void main() {
           projection.returnStatement,
           equals(
               'return contentKeyIds.value.toList(length: contentKeyIdsSize.value);'));
-      expect(projection.postambles,
-          equals(['free(contentKeyIdsSize);', 'free(contentKeyIds);']));
+      expect(
+        projection.postambles,
+        equals([
+          'free(contentKeyIdsSize);',
+          'free(contentKeyIds.value);',
+          'free(contentKeyIds);'
+        ]),
+      );
     });
 
     test('projects List<int>', () {
@@ -1042,7 +1048,9 @@ void main() {
       expect(projection.returnStatement,
           equals('return value.value.toList(length: valueSize.value);'));
       expect(
-          projection.postambles, equals(['free(valueSize);', 'free(value);']));
+        projection.postambles,
+        equals(['free(valueSize);', 'free(value.value);', 'free(value);']),
+      );
     });
 
     test('projects List<String>', () {
@@ -1076,7 +1084,9 @@ void main() {
       expect(projection.returnStatement,
           equals('return value.value.toList(length: valueSize.value);'));
       expect(
-          projection.postambles, equals(['free(valueSize);', 'free(value);']));
+        projection.postambles,
+        equals(['free(valueSize);', 'free(value.value);', 'free(value);']),
+      );
     });
 
     test('projects List<Vector2>', () {
@@ -1110,7 +1120,9 @@ void main() {
       expect(projection.returnStatement,
           equals('return value.value.toList(length: valueSize.value);'));
       expect(
-          projection.postambles, equals(['free(valueSize);', 'free(value);']));
+        projection.postambles,
+        equals(['free(valueSize);', 'free(value.value);', 'free(value);']),
+      );
     });
 
     test('projects Object', () {

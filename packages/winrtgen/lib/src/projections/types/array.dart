@@ -182,6 +182,9 @@ base class ReceiveArrayParameterProjection extends ArrayParameterProjection {
       ];
 
   @override
-  List<String> get postambles =>
-      ['free($sizeIdentifier);', 'free($identifier);'];
+  List<String> get postambles => [
+        'free($sizeIdentifier);',
+        'free($identifier.value);',
+        'free($identifier);'
+      ];
 }

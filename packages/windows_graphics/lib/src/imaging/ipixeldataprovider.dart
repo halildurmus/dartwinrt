@@ -43,6 +43,7 @@ class IPixelDataProvider extends IInspectable {
       return pixelData.value.toList(length: pixelDataSize.value);
     } finally {
       free(pixelDataSize);
+      free(pixelData.value);
       free(pixelData);
     }
   }

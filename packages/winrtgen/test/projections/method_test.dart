@@ -1101,8 +1101,11 @@ void main() {
           projection.returnStatement,
           equals(
               'return result.value.toEnumList(AnnotationType.from, length: resultSize.value);'));
-      expect(projection.postambles,
-          orderedEquals(['free(resultSize);', 'free(result);']));
+      expect(
+        projection.postambles,
+        orderedEquals(
+            ['free(resultSize);', 'free(result.value);', 'free(result);']),
+      );
     });
 
     test('projects List<DisplayId>', () {
@@ -1134,8 +1137,11 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
           equals('return result.value.toList(length: resultSize.value);'));
-      expect(projection.postambles,
-          orderedEquals(['free(resultSize);', 'free(result);']));
+      expect(
+        projection.postambles,
+        orderedEquals(
+            ['free(resultSize);', 'free(result.value);', 'free(result);']),
+      );
     });
 
     test('projects List<int>', () {
@@ -1171,8 +1177,11 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
           equals('return result.value.toList(length: resultSize.value);'));
-      expect(projection.postambles,
-          orderedEquals(['free(resultSize);', 'free(result);']));
+      expect(
+        projection.postambles,
+        orderedEquals(
+            ['free(resultSize);', 'free(result.value);', 'free(result);']),
+      );
     });
 
     test('projects List<ITextRangeProvider?>', () {
@@ -1207,8 +1216,11 @@ void main() {
           projection.returnStatement,
           equals(
               'return result.value.toList(ITextRangeProvider.fromPtr, length: resultSize.value);'));
-      expect(projection.postambles,
-          orderedEquals(['free(resultSize);', 'free(result);']));
+      expect(
+        projection.postambles,
+        orderedEquals(
+            ['free(resultSize);', 'free(result.value);', 'free(result);']),
+      );
     });
 
     test('projects List<String> (Char16)', () {
@@ -1236,7 +1248,7 @@ void main() {
               'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Uint16>> value)'));
       expect(projection.identifiers, equals('lpVtbl, valueSize, value'));
       expect(projection.parametersPostamble,
-          equals(['free(valueSize);', 'free(value);']));
+          equals(['free(valueSize);', 'free(value.value);', 'free(value);']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
