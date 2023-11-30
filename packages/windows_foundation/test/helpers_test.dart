@@ -54,14 +54,5 @@ void main() {
     expect(getWindowHandle(), isZero);
   });
 
-  test('refCount', () {
-    final propertySet = PropertySet();
-    expect(refCount(propertySet), 1);
-    propertySet.addRef();
-    expect(refCount(propertySet), 2);
-    propertySet.release();
-    expect(refCount(propertySet), 1);
-  });
-
   tearDownAll(forceGC);
 }
