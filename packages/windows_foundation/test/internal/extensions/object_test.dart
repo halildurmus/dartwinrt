@@ -172,6 +172,7 @@ void main() {
           return value.value;
         } finally {
           free(valueSize);
+          free(value.value);
           free(value);
         }
       }

@@ -370,6 +370,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -388,6 +389,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -406,6 +408,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -424,6 +427,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -442,6 +446,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -460,6 +465,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -478,6 +484,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -496,6 +503,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -514,6 +522,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -532,6 +541,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toStringList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -550,6 +560,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -568,6 +579,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -586,6 +598,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toObjectList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -604,6 +617,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -622,6 +636,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toDateTimeList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -640,6 +655,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toDurationList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -658,6 +674,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -676,6 +693,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
@@ -694,6 +712,7 @@ class IPropertyValue extends IInspectable {
       return value.value.toList(length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }

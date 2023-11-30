@@ -63,6 +63,7 @@ class IDigitalWindowControl extends IInspectable {
           .toEnumList(DigitalWindowMode.from, length: valueSize.value);
     } finally {
       free(valueSize);
+      free(value.value);
       free(value);
     }
   }
