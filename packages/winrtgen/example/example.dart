@@ -62,7 +62,9 @@ void printClass() {
   print(format(classProjection));
 }
 
-void main() {
+void main() async {
+  await WinRTMetadataStore.loadMetadata();
+
   printEnum();
   printStruct();
   printMethod();
@@ -70,4 +72,6 @@ void main() {
   printSetter();
   printInterface();
   printClass();
+
+  WinRTMetadataStore.close();
 }
