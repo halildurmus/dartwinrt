@@ -172,7 +172,6 @@ void main() {
           return value.value;
         } finally {
           free(valueSize);
-          free(value.value);
           free(value);
         }
       }
@@ -189,7 +188,8 @@ void main() {
         Uri.https('dartwinrt.dev')
       ]);
 
-      final list = getInspectableArray(pv.ptr).toObjectList(length: 9);
+      final array = getInspectableArray(pv.ptr);
+      final list = array.toObjectList(length: 9);
       expect(list.length, equals(9));
       expect(list[0], isA<IInspectable>());
       expect(list[1], isNull);
@@ -200,6 +200,7 @@ void main() {
       expect(list[6], isA<DateTime>());
       expect(list[7], isA<Rect>());
       expect(list[8], isA<Uri>());
+      free(array);
     });
   });
 
