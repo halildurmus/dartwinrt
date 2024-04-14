@@ -38,16 +38,16 @@ The summary WinRT API documentation comments are
 
 [api_reference_link]: https://pub.dev/documentation/windows_devices/latest/
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
-[ci_badge]: https://github.com/dart-windows/dartwinrt/actions/workflows/windows_devices.yml/badge.svg
-[ci_link]: https://github.com/dart-windows/dartwinrt/actions/workflows/windows_devices.yml
+[ci_badge]: https://github.com/halildurmus/dartwinrt/actions/workflows/windows_devices.yml/badge.svg
+[ci_link]: https://github.com/halildurmus/dartwinrt/actions/workflows/windows_devices.yml
 [dart_windows_link]: https://github.com/dart-windows
-[docs_link]: https://dartwinrt.dev
-[example_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_devices/example
-[issue_tracker_link]: https://github.com/dart-windows/dartwinrt/issues
+[docs_link]: https://win32.pub/docs/category/winrt-programming
+[example_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/windows_devices/example
+[issue_tracker_link]: https://github.com/halildurmus/dartwinrt/issues
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
 [language_link]: https://dart.dev
 [legal_notices_link]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
-[license_badge]: https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue
+[license_badge]: https://img.shields.io/github/license/halildurmus/dartwinrt?color=blue
 [license_link]: https://opensource.org/licenses/BSD-3-Clause
 [package_badge]: https://img.shields.io/pub/v/windows_devices.svg
 [package_link]: https://pub.dev/packages/windows_devices

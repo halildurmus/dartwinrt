@@ -15,7 +15,7 @@ import '../iids.dart';
 extension WinRTStructConversion on WinRTStruct {
   // TODO(halildurmus): Boxing structs are not supported yet (except for Guid,
   // Point, Rect, and Size).
-  // https://github.com/dart-windows/dartwinrt/issues/307
+  // https://github.com/halildurmus/dartwinrt/issues/307
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }

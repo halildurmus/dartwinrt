@@ -83,7 +83,7 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
         ...importsForTypes
       }
         // TODO(halildurmus): Remove this once events are supported.
-        // https://github.com/dart-windows/dartwinrt/issues/161
+        // https://github.com/halildurmus/dartwinrt/issues/161
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   @override

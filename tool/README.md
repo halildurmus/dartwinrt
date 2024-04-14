@@ -106,12 +106,12 @@ original file contents, as defined in the set specified in
 **Note**: Whenever you add a new golden test, remember to update the set in the
 `golden_file_entries.dart` file.
 
-[assets_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/assets
+[assets_dir_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/winrtgen/assets
 [ecma_335_link]: https://www.ecma-international.org/publications-and-standards/standards/ecma-335/
-[golden_file_entries_dart_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/lib/src/constants/golden_file_entries.dart
-[goldens_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/test/goldens
+[golden_file_entries_dart_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/winrtgen/lib/src/constants/golden_file_entries.dart
+[goldens_dir_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/winrtgen/test/goldens
 [melos_link]: https://github.com/invertase/melos
-[melos_yaml_link]: https://github.com/dart-windows/dartwinrt/tree/main/melos.yaml
+[melos_yaml_link]: https://github.com/halildurmus/dartwinrt/tree/main/melos.yaml
 [metadata_link]: https://learn.microsoft.com/uwp/winrt-cref/winmd-files
 [storagefile_link]: https://learn.microsoft.com/uwp/api/windows.storage.storagefile
 [winmd_link]: https://github.com/dart-windows/winmd

@@ -13,7 +13,7 @@ body:
       description: Please search to see if an issue already exists for this.
       options:
         - label: I have searched the
-            [existing issues](https://github.com/dart-windows/dartwinrt/issues)
+            [existing issues](https://github.com/halildurmus/dartwinrt/issues)
           required: true
 
   - type: dropdown
@@ -83,7 +83,7 @@ body:
     attributes:
       label: Code of Conduct
       description: By submitting this issue, you agree to follow our
-        [Code of Conduct](https://github.com/dart-windows/dartwinrt/tree/main/CODE_OF_CONDUCT.md)
+        [Code of Conduct](https://github.com/halildurmus/dartwinrt/tree/main/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true

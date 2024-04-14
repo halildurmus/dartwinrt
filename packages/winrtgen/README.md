@@ -7,9 +7,9 @@ Metadata (WinMD) files.
 [![Language: Dart][language_badge]][language_link]
 [![License: BSD-3-Clause][license_badge]][license_link]
 
-[ci_badge]: https://github.com/dart-windows/dartwinrt/actions/workflows/winrtgen.yml/badge.svg
-[ci_link]: https://github.com/dart-windows/dartwinrt/actions/workflows/winrtgen.yml
+[ci_badge]: https://github.com/halildurmus/dartwinrt/actions/workflows/winrtgen.yml/badge.svg
+[ci_link]: https://github.com/halildurmus/dartwinrt/actions/workflows/winrtgen.yml
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
 [language_link]: https://dart.dev
-[license_badge]: https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue
+[license_badge]: https://img.shields.io/github/license/halildurmus/dartwinrt?color=blue
 [license_link]: https://opensource.org/licenses/BSD-3-Clause

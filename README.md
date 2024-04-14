@@ -8,11 +8,14 @@
 A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using FFI.
 
+☠☠ **Warning: These packages are highly experimental.** ☠☠
+
 Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 
 ## Documentation 📝
 
-For official documentation, please visit https://dartwinrt.dev.
+For official documentation, please visit
+<https://win32.pub/docs/category/winrt-programming>.
 
 ## Usage 📋
 
@@ -93,31 +96,31 @@ The summary WinRT API documentation comments are
 [Creative Commons Attribution 4.0 International Public License][cc_license_link].
 
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
-[codecov_badge_link]: https://codecov.io/gh/dart-windows/dartwinrt/branch/main/graph/badge.svg?token=f9L9PfTTLa
-[codecov_link]: https://codecov.io/gh/dart-windows/dartwinrt
+[codecov_badge_link]: https://codecov.io/gh/halildurmus/dartwinrt/branch/main/graph/badge.svg?token=f9L9PfTTLa
+[codecov_link]: https://codecov.io/gh/halildurmus/dartwinrt
 [dart_windows_card]: https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card-480x240.png
 [dart_windows_link]: https://github.com/dart-windows
-[issue_tracker_link]: https://github.com/dart-windows/dartwinrt/issues
+[issue_tracker_link]: https://github.com/halildurmus/dartwinrt/issues
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
 [language_link]: https://dart.dev
 [legal_notices_link]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
-[license_badge]: https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue
+[license_badge]: https://img.shields.io/github/license/halildurmus/dartwinrt?color=blue
 [license_link]: https://opensource.org/licenses/BSD-3-Clause
 [publisher_badge]: https://img.shields.io/pub/publisher/windows_foundation.svg
 [publisher_link]: https://pub.dev/publishers/win32.pub
 [win32_pub_link]: https://win32.pub
 
 [//]: # (Screenshots)
-[battery_ss_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/battery.png?raw=true
-[formatter_ss_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/formatter.png?raw=true
-[geolocator_ss_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/geolocator.png?raw=true
+[battery_ss_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/battery.png?raw=true
+[formatter_ss_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/formatter.png?raw=true
+[geolocator_ss_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/geolocator.png?raw=true
 [ocrengine_link]: https://learn.microsoft.com/uwp/api/windows.media.ocr.ocrengine
-[power_ss_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/power.png?raw=true
+[power_ss_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/power.png?raw=true
 
 [//]: # (GIFs)
-[dialog_gif_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/dialog.gif?raw=true
-[notification_gif_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/notification.gif?raw=true
-[ocr_gif_link]: https://github.com/dart-windows/dartwinrt/blob/main/screenshots/ocr.gif?raw=true
+[dialog_gif_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/dialog.gif?raw=true
+[notification_gif_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/notification.gif?raw=true
+[ocr_gif_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/ocr.gif?raw=true
 
 [//]: # (windows_ai links)
 [windows_ai]: ./packages/windows_ai/

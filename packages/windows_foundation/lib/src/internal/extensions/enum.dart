@@ -13,7 +13,7 @@ import '../../winrt_enum.dart';
 /// @nodoc
 extension WinRTEnumConversion on WinRTEnum {
   // TODO(halildurmus): Boxing enums are not supported yet.
-  // https://github.com/dart-windows/dartwinrt/issues/307
+  // https://github.com/halildurmus/dartwinrt/issues/307
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }

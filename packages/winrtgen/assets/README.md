@@ -4,4 +4,4 @@ supplements this metadata with documentation.
 The [winrtgen][winrtgen_link] package consumes this metadata and transforms it
 into Dart files.
 
-[winrtgen_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen
+[winrtgen_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/winrtgen

@@ -93,7 +93,7 @@ extension ObjectConversion on Object {
 
     // TODO(halildurmus): Support boxing enums and other structs (e.g.,
     // BasicGeoposition)
-    // https://github.com/dart-windows/dartwinrt/issues/307
+    // https://github.com/halildurmus/dartwinrt/issues/307
 
     throw UnsupportedError('Cannot box value of type $runtimeType');
   }

@@ -3,9 +3,9 @@ description: Provides access to WinRT APIs from the Windows.Graphics namespace
   using FFI.
 version: 0.2.0
 homepage: https://win32.pub
-repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_graphics
-issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22pkg%3A+windows_graphics%22
-documentation: https://dartwinrt.dev
+repository: https://github.com/halildurmus/dartwinrt/tree/main/packages/windows_graphics
+issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22pkg%3A+windows_graphics%22
+documentation: https://win32.pub/docs/category/winrt-programming
 
 topics:
   - winrt

@@ -63,7 +63,7 @@ void main() {
     });
 
     test('List<Uri?>', () {
-      final boxed = <Uri?>[Uri.parse('https://dartwinrt.dev'), null].boxValue();
+      final boxed = <Uri?>[Uri.parse('https://win32.pub'), null].boxValue();
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.inspectableArray));
@@ -71,7 +71,7 @@ void main() {
       expect(list.length, equals(2));
       final [element1, element2] = list;
       expect(element1, isA<Uri>());
-      expect(element1.toString(), equals('https://dartwinrt.dev/'));
+      expect(element1.toString(), equals('https://win32.pub/'));
       expect(element2, isNull);
     });
 
@@ -84,10 +84,10 @@ void main() {
     });
 
     test('Uri', () {
-      final boxed = Uri.parse('https://dartwinrt.dev').boxValue();
+      final boxed = Uri.parse('https://win32.pub').boxValue();
       expect(boxed, isA<winrt_uri.Uri>());
       final pv = boxed as winrt_uri.Uri;
-      expect(pv.toString(), equals('https://dartwinrt.dev/'));
+      expect(pv.toString(), equals('https://win32.pub/'));
     });
   });
 
