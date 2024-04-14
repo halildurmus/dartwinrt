@@ -114,4 +114,4 @@ original file contents, as defined in the set specified in
 [melos_yaml_link]: https://github.com/halildurmus/dartwinrt/tree/main/melos.yaml
 [metadata_link]: https://learn.microsoft.com/uwp/winrt-cref/winmd-files
 [storagefile_link]: https://learn.microsoft.com/uwp/api/windows.storage.storagefile
-[winmd_link]: https://github.com/dart-windows/winmd
+[winmd_link]: https://github.com/halildurmus/winmd

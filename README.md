@@ -1,5 +1,3 @@
-[![Dart | Windows][dart_windows_card]][win32_pub_link]
-
 [![Publisher: win32.pub][publisher_badge]][publisher_link]
 [![Language: Dart][language_badge]][language_link]
 [![License: BSD-3-Clause][license_badge]][license_link]
@@ -9,8 +7,6 @@ A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using FFI.
 
 ☠☠ **Warning: These packages are highly experimental.** ☠☠
-
-Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 
 ## Documentation 📝
 
@@ -98,8 +94,6 @@ The summary WinRT API documentation comments are
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
 [codecov_badge_link]: https://codecov.io/gh/halildurmus/dartwinrt/branch/main/graph/badge.svg?token=f9L9PfTTLa
 [codecov_link]: https://codecov.io/gh/halildurmus/dartwinrt
-[dart_windows_card]: https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card-480x240.png
-[dart_windows_link]: https://github.com/dart-windows
 [issue_tracker_link]: https://github.com/halildurmus/dartwinrt/issues
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
 [language_link]: https://dart.dev

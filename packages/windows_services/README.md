@@ -1,8 +1,5 @@
-<img src="https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card.png" width="50%" height="50%">
-
 Provides an idiomatic Dart projection of the Windows Runtime (WinRT) APIs
 from the `Windows.Services` namespace using Dart FFI.
-Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 
 [![ci][ci_badge]][ci_link]
 [![Package: windows_services][package_badge]][package_link]
@@ -38,7 +35,6 @@ The summary WinRT API documentation comments are
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
 [ci_badge]: https://github.com/halildurmus/dartwinrt/actions/workflows/windows_services.yml/badge.svg
 [ci_link]: https://github.com/halildurmus/dartwinrt/actions/workflows/windows_services.yml
-[dart_windows_link]: https://github.com/dart-windows
 [docs_link]: https://win32.pub/docs/category/winrt-programming
 [example_link]: https://github.com/halildurmus/dartwinrt/tree/main/packages/windows_services/example
 [issue_tracker_link]: https://github.com/halildurmus/dartwinrt/issues

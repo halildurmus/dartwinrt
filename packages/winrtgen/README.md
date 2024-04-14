@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card.png" width="50%" height="50%">
-
 Provides functionality to generate Windows Runtime (WinRT) APIs from Windows
 Metadata (WinMD) files.
 
