@@ -17,13 +17,13 @@ void main() {
     expect(isWindowsRuntimeAvailable(), isTrue);
   });
 
-  final dartUri1 = Uri.https('dartwinrt.dev', '/');
+  final dartUri1 = Uri.https('win32.pub', '/');
   final dartUri2 = Uri.https('win32.pub', '/');
 
   test('Dart Uri to WinRTUri', () {
     final winrtUri = dartUri1.toWinRTUri();
     expect(winrtUri.schemeName, equals('https'));
-    expect(winrtUri.host, equals('dartwinrt.dev'));
+    expect(winrtUri.host, equals('win32.pub'));
   });
 
   group('List<Uri?>', () {
@@ -51,7 +51,7 @@ void main() {
     final winrtUri = winrt_uri.Uri.createUri(dartUri1.toString());
     final dartUri = winrtUri.toDartUri();
     expect(dartUri.scheme, equals('https'));
-    expect(dartUri.host, equals('dartwinrt.dev'));
+    expect(dartUri.host, equals('win32.pub'));
   });
 
   group('Pointer<COMObject>', () {
@@ -71,7 +71,7 @@ void main() {
       final ptr = (winrt_uri.Uri.createUri(dartUri1.toString())..detach()).ptr;
       final winrtUri = ptr.toWinRTUri();
       expect(winrtUri.schemeName, equals('https'));
-      expect(winrtUri.host, equals('dartwinrt.dev'));
+      expect(winrtUri.host, equals('win32.pub'));
     });
   });
 

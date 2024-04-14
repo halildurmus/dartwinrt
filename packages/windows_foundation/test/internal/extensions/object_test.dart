@@ -110,7 +110,7 @@ void main() {
       5,
       DateTime.now(),
       const Rect(1, 2, 3, 4),
-      Uri.https('dartwinrt.dev')
+      Uri.https('win32.pub')
     ];
     final array = list.toArray();
     expect(array[0].address, isNonZero);
@@ -185,7 +185,7 @@ void main() {
         5,
         DateTime.now(),
         const Rect(1, 2, 3, 4),
-        Uri.https('dartwinrt.dev')
+        Uri.https('win32.pub')
       ]);
 
       final array = getInspectableArray(pv.ptr);
