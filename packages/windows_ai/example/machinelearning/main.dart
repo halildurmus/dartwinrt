@@ -1,4 +1,4 @@
-// Copyright (c) 2023, Dart | Windows. Please see the AUTHORS file for details.
+// Copyright (c) 2023, Halil Durmus. Please see the AUTHORS file for details.
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -10,7 +10,6 @@ import 'dart:io';
 
 import 'package:win32/win32.dart';
 import 'package:windows_ai/windows_ai.dart';
-import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_graphics/windows_graphics.dart';
 import 'package:windows_media/windows_media.dart';
 import 'package:windows_storage/windows_storage.dart';
