@@ -8,11 +8,6 @@ Windows Runtime (WinRT) APIs using FFI.
 
 ☠☠ **Warning: These packages are highly experimental.** ☠☠
 
-## Documentation 📝
-
-For official documentation, please visit
-<https://win32.pub/docs/category/winrt-programming>.
-
 ## Usage 📋
 
 With these packages, you can build apps that directly call the WinRT APIs from
@@ -102,7 +97,6 @@ The summary WinRT API documentation comments are
 [license_link]: https://opensource.org/licenses/BSD-3-Clause
 [publisher_badge]: https://img.shields.io/pub/publisher/windows_foundation.svg
 [publisher_link]: https://pub.dev/publishers/win32.pub
-[win32_pub_link]: https://win32.pub
 
 [//]: # (Screenshots)
 [battery_ss_link]: https://github.com/halildurmus/dartwinrt/blob/main/screenshots/battery.png?raw=true
