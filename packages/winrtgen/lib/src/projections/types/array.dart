@@ -137,6 +137,7 @@ base class FillArrayParameterProjection extends ArrayParameterProjection {
 base class PassArrayParameterProjection extends ArrayParameterProjection {
   PassArrayParameterProjection(super.parameter);
 
+  @override
   String get nativeType => typeArgParamProjection.typeProjection.nativeType;
 
   String get cast => switch (typeArgParamProjection) {

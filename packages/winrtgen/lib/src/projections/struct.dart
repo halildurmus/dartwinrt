@@ -281,7 +281,7 @@ extension PointerNative${structName}Conversion on Pointer<Native$structName> {
 
   $toListComment
   List<$structName> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
 '''
     ].join();

@@ -180,8 +180,7 @@ base class MethodProjection {
         ...parameters
             .where((param) => param.postambles.isNotEmpty)
             .map((param) => param.postambles)
-            .expand((param) => param)
-            .toList(),
+            .expand((param) => param),
         if (parameters
             .whereType<StructParameterProjection>()
             .any((param) => param.needsAllocator))

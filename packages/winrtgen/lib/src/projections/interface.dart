@@ -25,6 +25,7 @@ base class InterfaceProjection extends BaseProjection {
   factory InterfaceProjection.fromType(String type, {String comment = ''}) =>
       InterfaceProjection(type.typeDef, comment: comment);
 
+  @override
   String get header => Header.class_;
 
   String get iidConstant => '''

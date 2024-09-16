@@ -57,6 +57,7 @@ final class VectorParameterProjection extends ParameterProjection {
   @override
   String get creator => 'IVector.fromPtr($identifier$vectorConstructorArgs)';
 
+  @override
   String get into => '$identifier.lpVtbl';
 
   // No deallocation is needed as Finalizer will handle it.

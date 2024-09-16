@@ -413,7 +413,7 @@ extension PointerNativeRectConversion on Pointer<NativeRect> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeRect>`.
   List<Rect> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
 '''));
     });
@@ -438,7 +438,7 @@ extension PointerNativeGpioChangeRecordConversion
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeGpioChangeRecord>`.
   List<GpioChangeRecord> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
 '''));
     });
@@ -461,7 +461,7 @@ extension PointerNativeHttpProgressConversion on Pointer<NativeHttpProgress> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeHttpProgress>`.
   List<HttpProgress> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
 '''));
     });
@@ -484,7 +484,7 @@ extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeSortEntry>`.
   List<SortEntry> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
 '''));
     });

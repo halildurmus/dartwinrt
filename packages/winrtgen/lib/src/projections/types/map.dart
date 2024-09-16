@@ -68,6 +68,7 @@ final class MapParameterProjection extends ParameterProjection {
   @override
   String get creator => 'IMap.fromPtr($identifier$mapConstructorArgs)';
 
+  @override
   String get into => '$identifier.lpVtbl';
 
   // No deallocation is needed as Finalizer will handle it.

@@ -18,7 +18,7 @@ final class EnumIdentifierProjection {
 
   String get identifierName => field.name.toCamelCase().toSafeIdentifier();
 
-  int get identifierValue => field.value;
+  int get identifierValue => field.value as int;
 
   bool get isDeprecated => field.isDeprecated;
 
@@ -35,7 +35,7 @@ final class EnumProjection extends BaseProjection {
       :
         // The first field is always the special field value__
         fields = typeDef.fields.skip(1).toList()
-          ..sort((a, b) => a.value.compareTo(b.value));
+          ..sort((a, b) => (a.value as int).compareTo(b.value as int));
 
   final List<Field> fields;
 
