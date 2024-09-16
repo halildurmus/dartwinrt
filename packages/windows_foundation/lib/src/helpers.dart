@@ -120,7 +120,7 @@ void _initializeMTA() {
 }
 
 /// Whether the program is running in Flutter.
-const _isFlutter = const bool.fromEnvironment('dart.library.ui');
+const _isFlutter = bool.fromEnvironment('dart.library.ui');
 
 /// Returns the window handle (HWND) of the current window.
 ///

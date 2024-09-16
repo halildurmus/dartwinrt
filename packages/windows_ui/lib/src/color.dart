@@ -79,5 +79,5 @@ extension PointerNativeColorConversion on Pointer<NativeColor> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeColor>`.
   List<Color> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

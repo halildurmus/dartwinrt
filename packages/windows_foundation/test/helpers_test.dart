@@ -28,9 +28,9 @@ void main() {
 
   test('createActivationFactory', () {
     const className = 'Windows.Globalization.Calendar';
-    const IID_ICalendarFactory = '{83f58412-e56b-4c75-a66e-0f63d57758a6}';
+    const iidIcalendarfactory = '{83f58412-e56b-4c75-a66e-0f63d57758a6}';
     final calendarFactory = createActivationFactory(
-        IInspectable.new, className, IID_ICalendarFactory);
+        IInspectable.new, className, iidIcalendarfactory);
     expect(calendarFactory.ptr.address, isNonZero);
     expect(calendarFactory.ptr.ref.isNull, isFalse);
     expect(refCount(calendarFactory), equals(2));

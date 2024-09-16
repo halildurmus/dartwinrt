@@ -165,5 +165,5 @@ extension PointerNativeMatrix4x4Conversion on Pointer<NativeMatrix4x4> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeMatrix4x4>`.
   List<Matrix4x4> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

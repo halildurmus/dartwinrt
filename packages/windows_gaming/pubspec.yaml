@@ -2,10 +2,8 @@ name: windows_gaming
 description: Provides access to WinRT APIs from the Windows.Gaming namespace
   using FFI.
 version: 0.2.0
-homepage: https://win32.pub
 repository: https://github.com/halildurmus/dartwinrt/tree/main/packages/windows_gaming
 issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22pkg%3A+windows_gaming%22
-documentation: https://win32.pub/docs/category/winrt-programming
 
 topics:
   - winrt

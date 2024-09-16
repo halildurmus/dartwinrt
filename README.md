@@ -1,3 +1,25 @@
+> [!WARNING]
+> As of **[2024-09-16]**, this project is **officially discontinued** and will
+> no longer be maintained.
+>
+> This decision was made due to the following reasons:
+>
+> - **Time Constraints**: I am unable to dedicate the necessary time to maintain
+> this project due to other commitments.
+> - **Technical Limitations**: The project depends on features that are not
+> currently supported by the Dart language. While this may change in the future,
+> especially with the introduction of
+> [Shared Memory Multithreading](https://github.com/dart-lang/language/blob/main/working/333%20-%20shared%20memory%20multithreading/proposal.md), it is not feasible to
+> continue development at this time.
+>
+> The repository will remain **archived** for historical and reference purposes.
+> However, no further updates, bug fixes, or support will be provided.
+>
+> Thank you for your understanding and for all the support throughout the
+> project’s lifecycle.
+
+---
+
 [![Publisher: win32.pub][publisher_badge]][publisher_link]
 [![Language: Dart][language_badge]][language_link]
 [![License: BSD-3-Clause][license_badge]][license_link]

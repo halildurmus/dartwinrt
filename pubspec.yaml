@@ -1,8 +1,8 @@
 name: dartwinrt_workspace
+publish_to: none
 
 environment:
-  sdk: '^3.0.0'
+  sdk: ^3.4.0
 
 dev_dependencies:
-  lints: ^3.0.0
-  melos: ^3.0.1
+  lints: ^4.0.0

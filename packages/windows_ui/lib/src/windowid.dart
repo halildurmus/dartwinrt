@@ -23,7 +23,7 @@ final class WindowId implements WinRTStruct {
   @override
   Pointer<NativeWindowId> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeWindowId>();
-    nativeStructPtr.ref..value = value;
+    nativeStructPtr.ref.value = value;
     return nativeStructPtr;
   }
 
@@ -68,5 +68,5 @@ extension PointerNativeWindowIdConversion on Pointer<NativeWindowId> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeWindowId>`.
   List<WindowId> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

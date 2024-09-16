@@ -80,5 +80,5 @@ extension PointerNativeRectInt32Conversion on Pointer<NativeRectInt32> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeRectInt32>`.
   List<RectInt32> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

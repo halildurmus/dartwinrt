@@ -142,14 +142,16 @@ abstract interface class IIterator<T> extends IInspectable {
         return _IIteratorPointerDeviceUsage.fromPtr(ptr) as IIterator<T>;
       }
       if (T == Rect) return _IIteratorRect.fromPtr(ptr) as IIterator<T>;
-      if (T == RectInt32)
+      if (T == RectInt32) {
         return _IIteratorRectInt32.fromPtr(ptr) as IIterator<T>;
+      }
       if (T == Size) return _IIteratorSize.fromPtr(ptr) as IIterator<T>;
       if (T == SizeUInt32) {
         return _IIteratorSizeUInt32.fromPtr(ptr) as IIterator<T>;
       }
-      if (T == SortEntry)
+      if (T == SortEntry) {
         return _IIteratorSortEntry.fromPtr(ptr) as IIterator<T>;
+      }
       if (T == StorePackageUpdateStatus) {
         return _IIteratorStorePackageUpdateStatus.fromPtr(ptr) as IIterator<T>;
       }

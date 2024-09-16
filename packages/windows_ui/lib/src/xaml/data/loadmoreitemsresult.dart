@@ -23,7 +23,7 @@ final class LoadMoreItemsResult implements WinRTStruct {
   @override
   Pointer<NativeLoadMoreItemsResult> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeLoadMoreItemsResult>();
-    nativeStructPtr.ref..count = count;
+    nativeStructPtr.ref.count = count;
     return nativeStructPtr;
   }
 
@@ -74,5 +74,5 @@ extension PointerNativeLoadMoreItemsResultConversion
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeLoadMoreItemsResult>`.
   List<LoadMoreItemsResult> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

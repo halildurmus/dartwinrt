@@ -10,6 +10,7 @@ import 'dart:io';
 
 import 'package:win32/win32.dart';
 import 'package:windows_ai/windows_ai.dart';
+import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_graphics/windows_graphics.dart';
 import 'package:windows_media/windows_media.dart';
 import 'package:windows_storage/windows_storage.dart';

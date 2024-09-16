@@ -73,5 +73,5 @@ extension PointerNativeSpatialRayConversion on Pointer<NativeSpatialRay> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeSpatialRay>`.
   List<SpatialRay> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

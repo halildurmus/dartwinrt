@@ -26,7 +26,7 @@ final class AutomationRemoteOperationOperandId implements WinRTStruct {
       {Allocator allocator = malloc}) {
     final nativeStructPtr =
         allocator<NativeAutomationRemoteOperationOperandId>();
-    nativeStructPtr.ref..value = value;
+    nativeStructPtr.ref.value = value;
     return nativeStructPtr;
   }
 
@@ -80,5 +80,5 @@ extension PointerNativeAutomationRemoteOperationOperandIdConversion
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeAutomationRemoteOperationOperandId>`.
   List<AutomationRemoteOperationOperandId> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }

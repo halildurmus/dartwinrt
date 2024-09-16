@@ -84,8 +84,9 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     }
 
     if (TResult == double) {
-      if (tResultDoubleType == null)
+      if (tResultDoubleType == null) {
         throw ArgumentError.notNull('tResultDoubleType');
+      }
       final asyncOperation = switch (tResultDoubleType) {
         DoubleType.double => _IAsyncOperationDouble.fromPtr(ptr,
             tResultDoubleType: tResultDoubleType),

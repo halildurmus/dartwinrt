@@ -25,7 +25,7 @@ final class AutomationAnnotationTypeRegistration implements WinRTStruct {
       {Allocator allocator = malloc}) {
     final nativeStructPtr =
         allocator<NativeAutomationAnnotationTypeRegistration>();
-    nativeStructPtr.ref..localId = localId;
+    nativeStructPtr.ref.localId = localId;
     return nativeStructPtr;
   }
 
@@ -80,5 +80,5 @@ extension PointerNativeAutomationAnnotationTypeRegistrationConversion
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeAutomationAnnotationTypeRegistration>`.
   List<AutomationAnnotationTypeRegistration> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
+      [for (var i = 0; i < length; i++) (this + i).toDart()];
 }
